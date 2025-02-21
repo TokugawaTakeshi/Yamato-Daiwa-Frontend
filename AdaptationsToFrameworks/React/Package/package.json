@@ -1,19 +1,20 @@
 {
   "name": "@yamato-daiwa/frontend-react",
   "version": "0.0.0",
-  "description": "The adaptation of '@yamato-daiwa/frontend' package for React framework and also some additional functionality.",
+  "description": "The adaptation of \"@yamato-daiwa/frontend\" package for React framework and also some additional functionality.",
   "keywords": [
     "frontend",
     "react"
   ],
   "author": {
-    "name": "Takeshi Tokugawa",
-    "email": "tokugawa.takesi@gmail.com"
+    "name": "Yamato Daiwa Co., Ltd.",
+    "email": "frontend-es-info@yamato-daiwa.com"
   },
   "license": "MIT",
+  "homepage": "https://frontend.yamato-daiwa.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TokugawaTakeshi/yamato_daiwa-frontend.git"
+    "url": "git+https://github.com/TokugawaTakeshi/yamato_daiwa-frontend.git"
   },
   "bugs": {
     "url": "https://github.com/TokugawaTakeshi/yamato_daiwa-frontend/issues",
@@ -21,6 +22,7 @@
   },
   "module": "./Distributable/index.js",
   "types": "./Distributable/index.d.ts",
+
   "peerDependencies": {
     "@yamato-daiwa/frontend": "2.0.0-alpha.6",
     "react": "~18.2.0",
@@ -47,7 +49,7 @@
   "scripts": {
     "Rebuild Distributable": "yda build --selectiveExecution Distributable --mode PRODUCTION & npm run \"Generate TypeScript Types\"",
     "Generate TypeScript Types": "tsc --project tsconfig.declarations.json --declaration --emitDeclarationOnly --outDir Distributable",
-    "Start Workbenches": "rimraf Workbenches/Output & yda build --selectiveExecution Workbenches --mode LOCAL_DEVELOPMENT",
+    "Start Workbenches": "rimraf Workbenches/Output && yda build --selectiveExecution Workbenches --mode LOCAL_DEVELOPMENT",
     "Lint": "eslint ."
   }
 }

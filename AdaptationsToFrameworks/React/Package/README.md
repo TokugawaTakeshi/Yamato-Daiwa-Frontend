@@ -18,4 +18,4 @@ npm i @yamato-daiwa/frontend-react @yamato-daiwa/frontend@2.0.0-beta.6
 ## Documentation
 ### GUI Components
 
-+ [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToJavaScriptFrameworks/React/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-React.english.html)
++ [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/React/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-React.english.html)

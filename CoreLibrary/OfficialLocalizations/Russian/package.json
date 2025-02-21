@@ -11,7 +11,7 @@
   ],
   "author": {
     "name": "Yamato Daiwa Co., Ltd.",
-    "email": "ee-info@yamato-daiwa.com"
+    "email": "frontend-es-info@yamato-daiwa.com"
   },
   "license": "MIT",
   "homepage": "https://frontend.yamato-daiwa.com/",
@@ -21,10 +21,11 @@
   },
   "bugs": {
     "url": "https://github.com/TokugawaTakeshi/yamato_daiwa-frontend/issues",
-    "email": "ee-info@yamato-daiwa.com"
+    "email": "frontend-es-info@yamato-daiwa.com"
   },
   "module": "./LogicDistributable/index.js",
   "types": "./LogicDistributable/index.d.ts",
+
   "peerDependencies": {
     "@yamato-daiwa/frontend": "2.0.0-beta.6"
   },

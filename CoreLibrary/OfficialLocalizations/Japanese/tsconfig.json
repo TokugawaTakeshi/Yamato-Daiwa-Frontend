@@ -19,6 +19,9 @@
 
   },
 
-  "include": [ "index.ts", "Components" ]
+  "include": [
+    "index.ts",
+    "GUI_Components"
+  ]
 
 }

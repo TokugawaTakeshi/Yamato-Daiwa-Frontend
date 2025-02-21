@@ -5,10 +5,10 @@ const maximalElementsCountInputtedValueValidationRuleLocalization__english:
     MaximalElementsCountInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: (
-    templateVariables: MaximalElementsCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
+    { maximalElementsCount }: MaximalElementsCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
       "Too many items has been inputted. " +
-      `Please input no more than ${ templateVariables.maximalElementsCount } items.`
+      `Please input no more than ${ maximalElementsCount } items.`
 };
 
 

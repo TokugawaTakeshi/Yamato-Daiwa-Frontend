@@ -210,7 +210,7 @@ namespace ValidatableControl {
       }
 
 
-      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions, @typescript-eslint/no-unsafe-type-assertion --
       * In this case, we are guarantee the ValidValue by "this.isInvalid" check */
       return this.value as ValidValue;
 
