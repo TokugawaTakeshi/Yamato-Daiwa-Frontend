@@ -18,33 +18,31 @@
   },
   "bugs": {
     "url": "https://github.com/TokugawaTakeshi/yamato_daiwa-frontend/issues",
-    "email": "tokugawa.takesi@gmail.com"
+    "email": "frontend-es-info@yamato-daiwa.com"
   },
   "module": "./Distributable/index.js",
   "types": "./Distributable/index.d.ts",
-
   "peerDependencies": {
-    "@yamato-daiwa/frontend": "2.0.0-alpha.6",
-    "react": "~18.2.0",
-    "react-dom": "~18.2.0",
-    "react-router-dom": "~6.23.0"
+    "@yamato-daiwa/frontend": "2.0.0-beta.6",
+    "react": "~19.0.0",
+    "react-dom": "~19.0.0",
+    "react-router-dom": "~7.2.0"
   },
   "dependencies": {
     "@yamato-daiwa/es-extensions": "1.7.2",
-    "@yamato-daiwa/es-extensions-browserjs": "1.7.0",
-    "prop-types": "15.8.1"
+    "@yamato-daiwa/es-extensions-browserjs": "1.7.0"
   },
   "devDependencies": {
-    "@types/react": "18.3.12",
-    "@types/react-dom": "18.3.1",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
     "@yamato-daiwa/automation": "0.5.0",
-    "@yamato-daiwa/frontend": "2.0.0-alpha.6",
-    "@yamato-daiwa/style_guides": "0.4.0",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "react-router-dom": "6.28.0",
+    "@yamato-daiwa/frontend": "2.0.0-beta.6",
+    "@yamato-daiwa/style_guides": "0.6.3",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-router-dom": "7.2.0",
     "rimraf": "6.0.1",
-    "typescript": "5.7.2"
+    "typescript": "5.7.3"
   },
   "scripts": {
     "Rebuild Distributable": "yda build --selectiveExecution Distributable --mode PRODUCTION & npm run \"Generate TypeScript Types\"",

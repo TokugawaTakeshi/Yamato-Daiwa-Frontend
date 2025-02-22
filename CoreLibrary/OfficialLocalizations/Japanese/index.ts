@@ -13,13 +13,15 @@ export { default as maximalElementsCountInputtedValueValidationRuleLocalization_
 export { default as minimalElementsCountInputtedValueValidationRuleLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Arrayed/MinimalElementsCountInputtedValueValidationRuleLocalization.japanese";
 
+export { nonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization__japanese } from
+    "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization.japanese";
+export { numericMaximumInputtedValueValidationRuleLocalization__japanese } from
+      "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NumericMaximumInputtedValueValidationRuleLocalization.japanese";
+export { numericMinimumInputtedValueValidationRuleLocalization__japanese } from
+      "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NumericMinimumInputtedValueValidationRuleLocalization.japanese";
+
 
 /* ━━━ Alpha / Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-export { numericMaximumInputtedValueValidationRuleLocalization__japanese } from
-    "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NumericMaximumInputtedValueValidationRuleLocalization.japanese";
-export { numericMinimumInputtedValueValidationRuleLocalization__japanese } from
-    "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NumericMinimumInputtedValueValidationRuleLocalization.japanese";
-
 export { default as emailAddressInputtedValueValidationRuleLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/EmailAddressInputtedValueValidationRuleLocalization.japanese";
 

@@ -4,8 +4,8 @@ The adaptation of [Yamato Daiwa Frontend](https://www.npmjs.com/package/@yamato-
   development to [React framework](https://react.dev/).
 
 This adaptation package provides only React-specific functionality.
-The [core package](https://www.npmjs.com/package/@yamato-daiwa/frontend) is still required (the peer dependency) to
-get the styles.
+The [core package](https://www.npmjs.com/package/@yamato-daiwa/frontend) is still required as the peer dependency to 
+  get the styles.
 
 
 ## Installation
@@ -13,6 +13,13 @@ get the styles.
 ```bash
 npm i @yamato-daiwa/frontend-react @yamato-daiwa/frontend@2.0.0-beta.6
 ```
+
+### Peer Dependencies
+
++ **@yamato-daiwa/frontend**: 2.0.0-beta.6
++ **react**: ~19.0.0
++ **react-dom**: ~19.0.0
++ **react-router-dom**: ~7.2.0
 
 
 ## Documentation

@@ -3,9 +3,9 @@ import React from "react";
 
 function OverflowSafeSingleLineLabel(
   properties: OverflowSafeSingleLineLabel.Properties
-): JSX.Element {
+): React.ReactElement {
 
-  const RootElementTag: keyof JSX.IntrinsicElements = properties.rootElementTag ?? "div";
+  const RootElementTag: keyof React.JSX.IntrinsicElements = properties.rootElementTag ?? "div";
 
   return (
     <RootElementTag className="OverflowSafeSingleLineLabel">
@@ -14,12 +14,13 @@ function OverflowSafeSingleLineLabel(
       </span>
     </RootElementTag>
   );
+
 }
 
 
 namespace OverflowSafeSingleLineLabel {
   export type Properties = Readonly<{
-    rootElementTag?: keyof JSX.IntrinsicElements;
+    rootElementTag?: keyof React.JSX.IntrinsicElements;
     children: React.ReactNode;
     className?: string | Array<string>;
   }>;

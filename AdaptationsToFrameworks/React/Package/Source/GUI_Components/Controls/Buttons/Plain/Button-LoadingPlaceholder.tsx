@@ -2,7 +2,6 @@ import Button from "./Button";
 
 /* ─── Framework ───────────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import React, { type ReactNode } from "react";
-import ReactPropertiesValidation from "prop-types";
 
 /* ─── Utils ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import ComponentsAuxiliaries from "../../../ComponentsAuxiliaries";
@@ -10,16 +9,6 @@ import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
 class ButtonLoadingPlaceholder extends React.Component<ButtonLoadingPlaceholder.Properties> {
-
-  protected static readonly propTypes: Readonly<{ [ propertyKey in keyof ButtonLoadingPlaceholder.Properties ]: unknown }> = {
-    theme: ReactPropertiesValidation.oneOf(Object.values(Button.Themes)),
-    areThemesCSS_ClassesCommon: ReactPropertiesValidation.bool,
-    geometricVariation: ReactPropertiesValidation.oneOf(Object.values(Button.GeometricVariations)),
-    geometricModifiers: ReactPropertiesValidation.arrayOf(
-      ReactPropertiesValidation.oneOf(Object.values(Button.GeometricModifiers))
-    ),
-    className: ReactPropertiesValidation.string
-  };
 
   public static readonly defaultProps: Required<
     Pick<

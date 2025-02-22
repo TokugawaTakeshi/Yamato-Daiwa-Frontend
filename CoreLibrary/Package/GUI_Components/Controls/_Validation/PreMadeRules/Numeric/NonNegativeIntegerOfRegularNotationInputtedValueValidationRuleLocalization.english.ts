@@ -5,7 +5,8 @@ import type NonNegativeIntegerOfRegularNotationInputtedValueValidationRule from
 const nonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization__english:
     NonNegativeIntegerOfRegularNotationInputtedValueValidationRule.Localization =
 {
-  errorMessageBuilder: (): string => "The inputted value is not the integer (of non-scientific notation). " +
+  errorMessageBuilder: (): string =>
+      "The inputted value is not the non-negative integer (of non-scientific notation). " +
       "Please input digits only."
 };
 

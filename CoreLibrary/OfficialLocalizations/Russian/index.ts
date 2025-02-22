@@ -13,6 +13,13 @@ export { default as maximalElementsCountInputtedValueValidationRuleLocalization_
 export { default as minimalElementsCountInputtedValueValidationRuleLocalization__russian } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Arrayed/MinimalElementsCountInputtedValueValidationRuleLocalization.russian";
 
+export { nonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization__russian } from
+    "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization.russian";
+export { numericMaximumInputtedValueValidationRuleLocalization__russian } from
+    "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NumericMaximumInputtedValueValidationRuleLocalization.russian";
+export { numericMinimumInputtedValueValidationRuleLocalization__russian } from
+    "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NumericMinimumInputtedValueValidationRuleLocalization.russian";
+
 
 /* ━━━ Alpha / Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export { default as emailAddressInputtedValueValidationLocalization__russian } from

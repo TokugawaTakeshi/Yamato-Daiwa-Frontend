@@ -5,23 +5,12 @@ import ComponentsAuxiliaries from "../ComponentsAuxiliaries";
 
 /* ─── Framework ───────────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import React, { type ReactNode } from "react";
-import ReactPropertiesValidation from "prop-types";
 
 /* ─── Utils ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
 class BadgeLoadingPlaceholder extends React.Component<BadgeLoadingPlaceholder.Properties> {
-
-  protected static readonly propTypes: Readonly<{ [ propertyKey in keyof BadgeLoadingPlaceholder.Properties ]: unknown }> = {
-    theme: ReactPropertiesValidation.oneOf(Object.values(Badge.Themes)),
-    areThemesCSS_ClassesCommon: ReactPropertiesValidation.bool,
-    geometricVariation: ReactPropertiesValidation.oneOf(Object.values(Badge.GeometricVariations)),
-    geometricModifiers: ReactPropertiesValidation.arrayOf(
-      ReactPropertiesValidation.oneOf(Object.values(Badge.GeometricModifiers))
-    ),
-    className: ReactPropertiesValidation.string
-  };
 
   public static readonly defaultProps: Required<
     Pick<

@@ -1,6 +1,5 @@
 /* ─── Framework ────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import React from "react";
-import ReactPropertiesValidation from "prop-types";
 
 /* ─── Utils ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import ComponentsAuxiliaries from "../ComponentsAuxiliaries";
@@ -11,26 +10,6 @@ class Badge extends React.Component<Badge.Properties> {
 
   public static CSS_NAMESPACE: string = "Badge--YDF";
 
-
-  protected static get propTypes(): Readonly<{ [ propertyKey in keyof Badge.Properties ]: unknown }> {
-    return {
-      keyLabel: ReactPropertiesValidation.string,
-      valueLabel: ReactPropertiesValidation.string.isRequired,
-      SVG_Icon: ReactPropertiesValidation.elementType,
-      theme: ReactPropertiesValidation.oneOf(Object.values(Badge.Themes)),
-      areThemesCSS_ClassesCommon: ReactPropertiesValidation.bool,
-      geometricVariation: ReactPropertiesValidation.oneOf(Object.values(Badge.GeometricVariations)),
-      geometricModifiers: ReactPropertiesValidation.arrayOf(
-        ReactPropertiesValidation.oneOf(Object.values(Badge.GeometricModifiers))
-      ),
-      decorativeVariation: ReactPropertiesValidation.oneOf(Object.values(Badge.DecorativeVariations)),
-      decorativeModifiers: ReactPropertiesValidation.arrayOf(
-        ReactPropertiesValidation.oneOf(Object.values(Badge.DecorativeModifiers))
-      ),
-      rootElementTag: ReactPropertiesValidation.string,
-      className: ReactPropertiesValidation.string
-    };
-  }
 
   public static get defaultProps(): Required<
     Pick<

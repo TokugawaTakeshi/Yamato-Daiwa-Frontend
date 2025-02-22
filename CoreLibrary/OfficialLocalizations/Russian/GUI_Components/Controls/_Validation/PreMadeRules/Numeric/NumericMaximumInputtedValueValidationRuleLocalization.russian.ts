@@ -1,10 +1,10 @@
 import type { NumericMaximumInputtedValueValidationRule } from "@yamato-daiwa/frontend";
 
 
-export const numericMaximumInputtedValueValidationRuleLocalization__japanese:
+export const numericMaximumInputtedValueValidationRuleLocalization__russian:
     NumericMaximumInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: ({ maximalValue }: NumericMaximumInputtedValueValidationRule.ErrorMessage.TemplateVariables): string =>
-      `入力された数は${ maximalValue }と言う最大数を超えています。` +
-      `最大${ maximalValue }を入力して下さい。`
+      "Введённое число превышает максимально допустимое. " +
+      `Пожалуйста, введите число не больше ${ maximalValue }.`
 };

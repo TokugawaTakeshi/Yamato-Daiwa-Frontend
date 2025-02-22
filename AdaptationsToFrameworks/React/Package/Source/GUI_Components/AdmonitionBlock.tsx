@@ -11,7 +11,6 @@ import MultiplicationSignIcon__Boxed__Filled from "../SVG_Icons/MultiplicationSi
 
 /* ─── Framework ──────────────────────────────────────────────────────────────────────────────────────────────────── */
 import React from "react";
-import ReactPropertiesValidation from "prop-types";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import ComponentsAuxiliaries from "./ComponentsAuxiliaries";
@@ -21,32 +20,6 @@ import { isNotNull, isNotUndefined } from "@yamato-daiwa/es-extensions";
 class AdmonitionBlock extends React.Component<AdmonitionBlock.Properties, AdmonitionBlock.State> {
 
   public static CSS_NAMESPACE: string = "AdmonitionBlock--YDF";
-
-
-  protected static get propTypes(): Readonly<{ [ propertyKey in keyof AdmonitionBlock.Properties ]: unknown }> {
-    return {
-      title: ReactPropertiesValidation.string,
-      SVG_Icon: ReactPropertiesValidation.oneOf([
-        ReactPropertiesValidation.bool,
-        ReactPropertiesValidation.elementType
-      ]),
-      dismissible: ReactPropertiesValidation.bool,
-      theme: ReactPropertiesValidation.oneOf(Object.values(AdmonitionBlock.Themes)),
-      areThemesCSS_ClassesCommon: ReactPropertiesValidation.bool,
-      geometricVariation: ReactPropertiesValidation.oneOf(Object.values(AdmonitionBlock.GeometricVariations)),
-      decorativeVariation: ReactPropertiesValidation.oneOf(Object.values(AdmonitionBlock.DecorativeVariations)),
-      className: ReactPropertiesValidation.string,
-      children: ReactPropertiesValidation.oneOfType([
-        ReactPropertiesValidation.arrayOf(ReactPropertiesValidation.node),
-        ReactPropertiesValidation.node
-      ]),
-      actionBarContent: ReactPropertiesValidation.oneOfType([
-        ReactPropertiesValidation.arrayOf(ReactPropertiesValidation.node),
-        ReactPropertiesValidation.node
-      ]),
-      rootElementAttributes: ReactPropertiesValidation.object
-    };
-  }
 
   public static get defaultProps(): Required<
     Pick<
@@ -77,7 +50,7 @@ class AdmonitionBlock extends React.Component<AdmonitionBlock.Properties, Admoni
 
 
   /* ━━━ Dismissing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected rootElementReference: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>();
+  protected rootElementReference: React.RefObject<HTMLDivElement | null> = React.createRef<HTMLDivElement>();
 
   protected onDismissingButtonClicked(): void {
     if (isNotNull(this.rootElementReference.current)) {

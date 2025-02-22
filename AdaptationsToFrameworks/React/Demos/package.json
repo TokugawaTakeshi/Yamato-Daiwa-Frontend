@@ -3,22 +3,22 @@
 	"name": "@yamato-daiwa/frontend-react-demos",
 	"version": "0.0.0",
 	"dependencies": {
-		"@yamato-daiwa/es-extensions": "1.7.0",
+		"@yamato-daiwa/es-extensions": "1.7.2",
 		"@yamato-daiwa/es-extensions-browserjs": "1.7.0",
 		"@yamato-daiwa/frontend": "../../../CoreLibrary/Package",
 		"@yamato-daiwa/frontend-demos": "../../../CoreLibrary/Demos",
 		"@yamato-daiwa/frontend-react": "../Package",
 		"prop-types": "15.8.1",
-		"react": "18.3.1",
-		"react-dom": "18.3.1"
+		"react": "19.0.0",
+		"react-dom": "19.0.0"
 	},
 	"devDependencies": {
-		"@types/react": "18.3.11",
-		"@types/react-dom": "18.3.1",
+		"@types/react": "19.0.10",
+		"@types/react-dom": "19.0.4",
 		"@yamato-daiwa/automation": "0.5.0",
-		"@yamato-daiwa/style_guides": "0.3.0-alpha.11",
+		"@yamato-daiwa/style_guides": "0.6.3",
 		"rimraf": "6.0.1",
-		"typescript": "5.6.3"
+		"typescript": "5.7.3"
 	},
 	"scripts": {
 		"Watch Local Gallereys": "rimraf LocalGalleriesBuild && yda build --selectiveExecution LocalGalleries --mode LOCAL_DEVELOPMENT",

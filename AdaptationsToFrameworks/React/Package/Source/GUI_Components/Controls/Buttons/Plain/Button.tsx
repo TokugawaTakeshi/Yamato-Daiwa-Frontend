@@ -1,6 +1,5 @@
 /* ─── Framework ──────────────────────────────────────────────────────────────────────────────────────────────────── */
 import React from "react";
-import ReactPropertiesValidation from "prop-types";
 import { Link as ReactLink, type To as ReactLinkRoute } from "react-router-dom";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
@@ -12,38 +11,6 @@ class Button extends React.Component<Button.Properties> {
 
   public static readonly CSS_NAMESPACE: string = "Button--YDF";
 
-
-  protected static get propTypes(): Readonly<{ [ propertyKey in keyof Button.Properties ]: unknown }> {
-    return {
-      HTML_Type: ReactPropertiesValidation.oneOf(Object.values(Button.HTML_Types)),
-      label: ReactPropertiesValidation.oneOfType([ ReactPropertiesValidation.string, ReactPropertiesValidation.number ]),
-      accessibilityGuidance: ReactPropertiesValidation.string,
-      disabled: ReactPropertiesValidation.bool,
-      toggled: ReactPropertiesValidation.bool,
-      theme: ReactPropertiesValidation.oneOf(Object.values(Button.Themes)),
-      areThemesCSS_ClassesCommon: ReactPropertiesValidation.bool,
-      geometricVariation: ReactPropertiesValidation.oneOf(Object.values(Button.GeometricVariations)),
-      geometricModifiers: ReactPropertiesValidation.arrayOf(
-        ReactPropertiesValidation.oneOf(Object.values(Button.GeometricModifiers))
-      ),
-      decorativeVariation: ReactPropertiesValidation.oneOf(Object.values(Button.DecorativeVariations)),
-      decorativeModifiers: ReactPropertiesValidation.arrayOf(
-        ReactPropertiesValidation.oneOf(Object.values(Button.DecorativeModifiers))
-      ),
-      prependedSVG_Icon: ReactPropertiesValidation.elementType,
-      appendedSVG_Icon: ReactPropertiesValidation.elementType,
-      loneSVG_Icon: ReactPropertiesValidation.elementType,
-      reactLinkRoute: ReactPropertiesValidation.oneOf([
-        ReactPropertiesValidation.string,
-        ReactPropertiesValidation.object
-      ]),
-      externalURI: ReactPropertiesValidation.string,
-      mustOpenURI_OnNewTab: ReactPropertiesValidation.bool,
-      requestingForIgnoringOfLinkRelationshipToSearchEngine: ReactPropertiesValidation.bool,
-      onClick: ReactPropertiesValidation.func,
-      className: ReactPropertiesValidation.string
-    };
-  }
 
   public static get defaultProps(): Required<
     Pick<
