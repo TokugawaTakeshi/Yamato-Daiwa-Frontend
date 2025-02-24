@@ -1,7 +1,7 @@
 import type { MaximalElementsCountInputtedValueValidationRule } from "@yamato-daiwa/frontend";
 
 
-const maximalElementsCountInputtedValueValidationRuleLocalization__japanese:
+export const maximalElementsCountInputtedValueValidationRuleLocalization__japanese:
     MaximalElementsCountInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: (
@@ -10,6 +10,3 @@ const maximalElementsCountInputtedValueValidationRuleLocalization__japanese:
       "入力された項目が最大数を超えています。" +
       `最大${ maximalElementsCount }にしてください。`
 };
-
-
-export default maximalElementsCountInputtedValueValidationRuleLocalization__japanese;

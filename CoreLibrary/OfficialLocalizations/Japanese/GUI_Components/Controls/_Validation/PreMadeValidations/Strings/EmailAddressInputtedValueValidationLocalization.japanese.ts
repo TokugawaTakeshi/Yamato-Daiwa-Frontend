@@ -1,5 +1,5 @@
 import type { EmailAddressInputtedValueValidation } from "@yamato-daiwa/frontend";
-import emailAddressInputtedValueValidationRuleLocalization__japanese from
+import { emailAddressInputtedValueValidationRuleLocalization__japanese } from
     "../../PreMadeRules/Strings/EmailAddressInputtedValueValidationRuleLocalization.japanese";
 
 

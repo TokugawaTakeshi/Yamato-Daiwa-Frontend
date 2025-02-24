@@ -1,7 +1,7 @@
 import type { MaximalElementsCountInputtedValueValidationRule } from "@yamato-daiwa/frontend";
 
 
-const maximalElementsCountInputtedValueValidationRuleLocalization__russian:
+export const maximalElementsCountInputtedValueValidationRuleLocalization__russian:
     MaximalElementsCountInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: (
@@ -10,6 +10,3 @@ const maximalElementsCountInputtedValueValidationRuleLocalization__russian:
       "Слишком много пунктов. " +
       `Пожалуйста, введите не более ${ maximalElementsCount }.`
 };
-
-
-export default maximalElementsCountInputtedValueValidationRuleLocalization__russian;

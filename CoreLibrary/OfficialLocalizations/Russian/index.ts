@@ -4,13 +4,13 @@ export { admonitionBlockYDF_ComponentLocalization__russian } from "./GUI_Compone
 
 /* ─── Controls ───────────────────────────────────────────────────────────────────────────────────────────────────── */
 /* ┄┄┄ Validation ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
-export { default as inputtedValueValidationLocalization__russian } from
-    "./GUI_Components/Controls/_Validation/InputtedValueValidationLocaization.japanese";
+export { inputtedValueValidationLocalization__russian } from
+      "./GUI_Components/Controls/_Validation/InputtedValueValidationLocalization.russian";
 
 /* --- Pre Made Rules ----------------------------------------------------------------------------------------------- */
-export { default as maximalElementsCountInputtedValueValidationRuleLocalization__russian } from
+export { maximalElementsCountInputtedValueValidationRuleLocalization__russian } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Arrayed/MaximalElementsCountInputtedValueValidationRuleLocalization.russian";
-export { default as minimalElementsCountInputtedValueValidationRuleLocalization__russian } from
+export { minimalElementsCountInputtedValueValidationRuleLocalization__russian } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Arrayed/MinimalElementsCountInputtedValueValidationRuleLocalization.russian";
 
 export { nonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization__russian } from
@@ -19,6 +19,11 @@ export { numericMaximumInputtedValueValidationRuleLocalization__russian } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NumericMaximumInputtedValueValidationRuleLocalization.russian";
 export { numericMinimumInputtedValueValidationRuleLocalization__russian } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NumericMinimumInputtedValueValidationRuleLocalization.russian";
+
+export { allowedCharactersInputtedValueValidationRuleLocalization__russian } from
+    "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/AllowedCharactersInputtedValueValidationRuleLocalization.russian";
+export { emailAddressInputtedValueValidationRuleLocalization__russian } from
+    "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/EmailAddressInputtedValueValidationRuleLocalization.russian";
 
 
 /* ━━━ Alpha / Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

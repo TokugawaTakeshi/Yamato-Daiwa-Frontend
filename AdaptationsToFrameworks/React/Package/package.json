@@ -1,6 +1,6 @@
 {
   "name": "@yamato-daiwa/frontend-react",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "The adaptation of \"@yamato-daiwa/frontend\" package for React framework and also some additional functionality.",
   "keywords": [
     "frontend",

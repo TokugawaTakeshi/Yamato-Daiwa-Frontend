@@ -5,9 +5,9 @@ const allowedCharactersInputtedValueValidationRuleLocalization__english:
     AllowedCharactersInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: (
-    templateVariables: AllowedCharactersInputtedValueValidationRule.ErrorMessage.TemplateVariables
+    { inputtedDisallowedCharacters }: AllowedCharactersInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
-    `Below characters are disallowed: ${ templateVariables.inputtedDisallowedCharacters.join(",") }. ` +
+    `Below characters are disallowed: ${ inputtedDisallowedCharacters.join(",") }. ` +
     "Please remove these characters."
 };
 

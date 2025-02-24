@@ -4,27 +4,29 @@ export { admonitionBlockYDF_ComponentLocalization__japanese } from "./GUI_Compon
 
 /* ─── Controls ───────────────────────────────────────────────────────────────────────────────────────────────────── */
 /* ┄┄┄ Validation ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
-export { default as inputtedValueValidationLocalization__japanese } from
-    "./GUI_Components/Controls/_Validation/InputtedValueValidationLocaization.japanese";
+export { inputtedValueValidationLocalization__japanese } from
+    "./GUI_Components/Controls/_Validation/InputtedValueValidationLocalization.japanese";
 
 /* --- Pre Made Rules ----------------------------------------------------------------------------------------------- */
-export { default as maximalElementsCountInputtedValueValidationRuleLocalization__japanese } from
+export { maximalElementsCountInputtedValueValidationRuleLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Arrayed/MaximalElementsCountInputtedValueValidationRuleLocalization.japanese";
-export { default as minimalElementsCountInputtedValueValidationRuleLocalization__japanese } from
+export { minimalElementsCountInputtedValueValidationRuleLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Arrayed/MinimalElementsCountInputtedValueValidationRuleLocalization.japanese";
 
 export { nonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization.japanese";
 export { numericMaximumInputtedValueValidationRuleLocalization__japanese } from
-      "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NumericMaximumInputtedValueValidationRuleLocalization.japanese";
+    "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NumericMaximumInputtedValueValidationRuleLocalization.japanese";
 export { numericMinimumInputtedValueValidationRuleLocalization__japanese } from
-      "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NumericMinimumInputtedValueValidationRuleLocalization.japanese";
+    "./GUI_Components/Controls/_Validation/PreMadeRules/Numeric/NumericMinimumInputtedValueValidationRuleLocalization.japanese";
+
+export { allowedCharactersInputtedValueValidationRuleLocalization__japanese } from
+    "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/AllowedCharactersInputtedValueValidationRuleLocalization.japanese";
+export { emailAddressInputtedValueValidationRuleLocalization__japanese } from
+    "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/EmailAddressInputtedValueValidationRuleLocalization.japanese";
 
 
 /* ━━━ Alpha / Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-export { default as emailAddressInputtedValueValidationRuleLocalization__japanese } from
-    "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/EmailAddressInputtedValueValidationRuleLocalization.japanese";
-
 export { default as JapanesePhoneNumberInputtedValueValidationRule } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/JapanesePhoneNumberInputtedValueValidationRule";
 export { default as japanesePhoneNumberInputtedValueValidationRuleLocalization__japanese } from

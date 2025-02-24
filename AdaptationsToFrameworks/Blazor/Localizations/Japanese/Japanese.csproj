@@ -1,9 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>YamatoDaiwaFrontend-JapaneseLocalization</PackageId>
+    <Title>Yamato Daiwa Frontend - Japanese Localization</Title>
+    <Description>Japanese localization for "YamatoDaiwaFrontend" package</Description>
+    <Version>0.2.0</Version>
+    <RootNamespace>YamatoDaiwa.Frontend.Japanese</RootNamespace>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://frontend.yamato-daiwa.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend.git</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +22,12 @@
 
   <ItemGroup>
     <PackageReference Include="YamatoDaiwaCS_Extensions" Version="0.2.0" />
+    <PackageReference Include="YamatoDaiwaFrontend" Version="0.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="LICENSE.md" Pack="true" PackagePath="\" />
+    <None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>
