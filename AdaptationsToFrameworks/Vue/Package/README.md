@@ -14,8 +14,15 @@ The [core package](https://www.npmjs.com/package/@yamato-daiwa/frontend) is stil
 npm i @yamato-daiwa/frontend-vue @yamato-daiwa/frontend@2.0.0-beta.6
 ```
 
+### Peer Dependencies
+
++ **@yamato-daiwa/frontend**: 2.0.0-beta.6
++ **vue**: ~3.5.0
++ **vue-router**: ~4.5.0
+
 
 ## Documentation
 ### GUI Components
 
 + [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-Vue.english.html)
++ [Badge](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/Badge/Badge-Vue.english.html)

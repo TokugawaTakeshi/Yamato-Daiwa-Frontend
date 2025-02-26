@@ -1,6 +1,9 @@
-import React from "react";
-import Gallery from "../../../Gallery";
+/* ─── GUI Components ─────────────────────────────────────────────────────────────────────────────────────────────── */
 import { AdmonitionBlock, Button, ThemesShowcase } from "@yamato-daiwa/frontend-react";
+import Gallery from "../../../Gallery";
+
+/* ─── Framework ──────────────────────────────────────────────────────────────────────────────────────────────────── */
+import React from "react";
 
 
 class AdmonitionBlockGallery extends Gallery<AdmonitionBlockGallery.PartialsFlags> {
@@ -44,7 +47,6 @@ class AdmonitionBlockGallery extends Gallery<AdmonitionBlockGallery.PartialsFlag
                 geometricVariationLabelPrefix={ AdmonitionBlockGallery.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX }
                 decorativeVariations={ AdmonitionBlock.DecorativeVariations }
                 decorativeVariationLabelPrefix={ AdmonitionBlockGallery.DECORATIVE_VARIATION_KEY_LABEL_PREFIX }
-                decorativeVariationsListItemAdditionalCSS_Classes={ [ "AdmonitionBlockGallery-ListItem" ] }
                 renderChild={
 
                   ({ theme, geometricVariation, decorativeVariation }: ThemesShowcase.DataForChildren): React.ReactElement =>
@@ -90,7 +92,6 @@ class AdmonitionBlockGallery extends Gallery<AdmonitionBlockGallery.PartialsFlag
               geometricVariationLabelPrefix={ AdmonitionBlockGallery.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX }
               decorativeVariations={ AdmonitionBlock.DecorativeVariations }
               decorativeVariationLabelPrefix={ AdmonitionBlockGallery.DECORATIVE_VARIATION_KEY_LABEL_PREFIX }
-              decorativeVariationsListItemAdditionalCSS_Classes={ [ "AdmonitionBlockGallery-ListItem" ] }
               renderChild={
 
                 ({ theme, geometricVariation, decorativeVariation }: ThemesShowcase.DataForChildren): React.ReactElement =>
@@ -137,7 +138,6 @@ class AdmonitionBlockGallery extends Gallery<AdmonitionBlockGallery.PartialsFlag
               geometricVariationLabelPrefix={ AdmonitionBlockGallery.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX }
               decorativeVariations={ AdmonitionBlock.DecorativeVariations }
               decorativeVariationLabelPrefix={ AdmonitionBlockGallery.DECORATIVE_VARIATION_KEY_LABEL_PREFIX }
-              decorativeVariationsListItemAdditionalCSS_Classes={ [ "AdmonitionBlockGallery-ListItem" ] }
               renderChild={
 
                 ({ theme, geometricVariation, decorativeVariation }: ThemesShowcase.DataForChildren): React.ReactElement =>
@@ -209,7 +209,6 @@ class AdmonitionBlockGallery extends Gallery<AdmonitionBlockGallery.PartialsFlag
               geometricVariationLabelPrefix={ AdmonitionBlockGallery.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX }
               decorativeVariations={ AdmonitionBlock.DecorativeVariations }
               decorativeVariationLabelPrefix={ AdmonitionBlockGallery.DECORATIVE_VARIATION_KEY_LABEL_PREFIX }
-              decorativeVariationsListItemAdditionalCSS_Classes={ [ "AdmonitionBlockGallery-ListItem" ] }
               renderChild={
 
                 ({ theme, geometricVariation, decorativeVariation }: ThemesShowcase.DataForChildren): React.ReactElement =>
@@ -254,7 +253,6 @@ class AdmonitionBlockGallery extends Gallery<AdmonitionBlockGallery.PartialsFlag
               geometricVariationLabelPrefix={ AdmonitionBlockGallery.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX }
               decorativeVariations={ AdmonitionBlock.DecorativeVariations }
               decorativeVariationLabelPrefix={ AdmonitionBlockGallery.DECORATIVE_VARIATION_KEY_LABEL_PREFIX }
-              decorativeVariationsListItemAdditionalCSS_Classes={ [ "AdmonitionBlockGallery-ListItem" ] }
               renderChild={
 
                 ({ theme, geometricVariation, decorativeVariation }: ThemesShowcase.DataForChildren): React.ReactElement =>
@@ -299,7 +297,6 @@ class AdmonitionBlockGallery extends Gallery<AdmonitionBlockGallery.PartialsFlag
               geometricVariationLabelPrefix={ AdmonitionBlockGallery.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX }
               decorativeVariations={ AdmonitionBlock.DecorativeVariations }
               decorativeVariationLabelPrefix={ AdmonitionBlockGallery.DECORATIVE_VARIATION_KEY_LABEL_PREFIX }
-              decorativeVariationsListItemAdditionalCSS_Classes={ [ "AdmonitionBlockGallery-ListItem" ] }
               renderChild={
 
                 ({ theme, geometricVariation, decorativeVariation }: ThemesShowcase.DataForChildren): React.ReactElement =>
@@ -354,7 +351,6 @@ class AdmonitionBlockGallery extends Gallery<AdmonitionBlockGallery.PartialsFlag
               geometricVariationLabelPrefix={ AdmonitionBlockGallery.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX }
               decorativeVariations={ AdmonitionBlock.DecorativeVariations }
               decorativeVariationLabelPrefix={ AdmonitionBlockGallery.DECORATIVE_VARIATION_KEY_LABEL_PREFIX }
-              decorativeVariationsListItemAdditionalCSS_Classes={ [ "AdmonitionBlockGallery-ListItem" ] }
               renderChild={
 
                 ({ theme, geometricVariation, decorativeVariation }: ThemesShowcase.DataForChildren): React.ReactElement =>

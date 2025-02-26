@@ -5,6 +5,6 @@ export const nonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocal
     NonNegativeIntegerOfRegularNotationInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: (): string =>
-      "Введённое значение не является неотрицательным целым числом (неэкспоненциальная  записи). " +
+      "Введённое значение не является неотрицательным целым числом (неэкспоненциальной записи). " +
       "Пожалуйста, введите только цифры."
 };

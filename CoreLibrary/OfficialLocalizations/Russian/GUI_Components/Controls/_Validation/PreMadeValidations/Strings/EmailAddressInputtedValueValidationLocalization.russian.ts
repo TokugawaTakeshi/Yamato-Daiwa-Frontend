@@ -3,9 +3,12 @@ import type {
   MinimalCharactersCountInputtedValueValidationRule,
   MaximalCharactersCountInputtedValueValidationRule
 } from "@yamato-daiwa/frontend";
+import {
+  emailAddressInputtedValueValidationRuleLocalization__russian
+} from "../../PreMadeRules/Strings/EmailAddressInputtedValueValidationRuleLocalization.russian";
 
 
-const emailAddressInputtedValueValidationLocalization__russian: EmailAddressInputtedValueValidation.Localization = {
+export const emailAddressInputtedValueValidationLocalization__russian: EmailAddressInputtedValueValidation.Localization = {
 
   requiredInputIsMissingValidationErrorMessage:
       "Ввод электронного адреса обязателен. Пожалуйста, введите адрес электронной почты.",
@@ -14,18 +17,14 @@ const emailAddressInputtedValueValidationLocalization__russian: EmailAddressInpu
     { rawValue, minimalCharactersCount }: MinimalCharactersCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
       `${ rawValue.length } символов недостаточно для электронного адреса. ` +
-      `Пожалуйста, введите ${ minimalCharactersCount } characters.`,
+      `Пожалуйста, проверьте электронный адрес и введите не менее ${ minimalCharactersCount } символов.`,
 
   maximalCharactersCountValidationErrorMessageBuilder: (
     { rawValue, maximalCharactersCount }: MaximalCharactersCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
       `${ rawValue.length } символов слишком много для электронного адреса. ` +
-      `Пожалуйста, введите не более ${ maximalCharactersCount } символов.`,
+      `Пожалуйста, проверьте электронный адрес и введите не более ${ maximalCharactersCount } символов.`,
 
-  invalidEmailAddressErrorMessageBuilder: (): string =>
-      "Введён невозможный адрес электронной почты. Пожалуйста, проверьте электронный адрес и откорректируйте ввод."
+  invalidEmailAddressErrorMessageBuilder: emailAddressInputtedValueValidationRuleLocalization__russian.errorMessageBuilder
 
 };
-
-
-export default emailAddressInputtedValueValidationLocalization__russian;

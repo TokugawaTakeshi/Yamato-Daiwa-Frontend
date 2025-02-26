@@ -6,6 +6,7 @@ import {
   Logger,
   InvalidParameterValueError,
   isString,
+  isNull,
   isNotNull
 } from "@yamato-daiwa/es-extensions";
 
@@ -67,11 +68,51 @@ class Button {
     }
 
   }
+  /* eslint-enable no-underscore-dangle -- */
 
 
   /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static pickOneBySelector(properties: Button.InitializationProperties): Button {
     return new Button(properties);
+  }
+
+
+  /* ─── Avoiding of Instantiation ────────────────────────────────────────────────────────────────────────────────── */
+  public static setLabel(targetButton: Element, label: string): void {
+
+    if (targetButton instanceof HTMLButtonElement || targetButton instanceof HTMLAnchorElement) {
+
+      const labelElement: Element | null = targetButton.querySelector(Button.LABEL_ELEMENT_SELECTOR);
+
+      if (isNull(labelElement)) {
+        targetButton.textContent = label;
+      } else {
+        labelElement.textContent = label;
+      }
+
+      return;
+
+    }
+
+
+    if (targetButton instanceof HTMLInputElement) {
+      targetButton.value = label;
+    }
+
+
+    Logger.throwErrorAndLog({
+
+      errorInstance: new InvalidParameterValueError({
+        parameterNumber: 1,
+        parameterName: "targetButton",
+        messageSpecificPart:
+            "The first parameter must be instance of either `HTMLButtonElement`, `HTMLAnchorElement` or " +
+              "HTMLInputElement while actually neither of."
+      }),
+      title: InvalidParameterValueError.localization.defaultTitle,
+      occurrenceLocation: "Button.setLabel(compoundParameter)"
+    });
+
   }
 
 

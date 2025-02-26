@@ -1,6 +1,6 @@
 {
 	"name": "@yamato-daiwa/frontend-vue",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "The adaptation of \"@yamato-daiwa/frontend\" package for Vue framework and also some additional functionality.",
 	"keywords": [
 		"frontend",
@@ -18,7 +18,7 @@
 	},
 	"bugs": {
 		"url": "https://github.com/TokugawaTakeshi/yamato_daiwa-frontend/issues",
-		"email": "tokugawa.takesi@gmail.com"
+		"email": "frontend-es-info@yamato-daiwa.com"
 	},
 	"module": "./Distributable/index.js",
 	"types": "./Distributable/index.d.ts",

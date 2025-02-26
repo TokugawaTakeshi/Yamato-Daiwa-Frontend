@@ -1,9 +1,8 @@
 import React from "react";
 
-
 abstract class Gallery<PartialsFlags extends Readonly<{ [key: string]: boolean | undefined; }>>
   extends React.Component<Gallery.Properties<PartialsFlags>>
-/* eslint-disable-next-line @typescript-eslint/brace-style -- In this case, the Allman style is more elegant. */
+/* eslint-disable-next-line @stylistic/brace-style -- In this case, the Allman style is more elegant. */
 {
 
   protected get mustRenderAllPartials(): boolean {

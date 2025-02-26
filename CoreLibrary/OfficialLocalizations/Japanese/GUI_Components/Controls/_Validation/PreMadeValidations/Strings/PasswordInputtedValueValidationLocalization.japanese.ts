@@ -6,7 +6,7 @@ import type {
 } from "@yamato-daiwa/frontend";
 
 
-const passwordInputtedValueValidationLocalization__japanese: PasswordInputtedValueValidation.Localization = {
+export const passwordInputtedValueValidationLocalization__japanese: PasswordInputtedValueValidation.Localization = {
 
   requiredInputIsMissingValidationErrorMessage:
       "パスワードは必須となります。お手数ですが、パスワードを入力して下さい。",
@@ -26,6 +26,3 @@ const passwordInputtedValueValidationLocalization__japanese: PasswordInputtedVal
       `入力されたパスワードは長すぎます。最大${ maximalCharactersCount }文字以下で入力してください。`
 
 };
-
-
-export default passwordInputtedValueValidationLocalization__japanese;

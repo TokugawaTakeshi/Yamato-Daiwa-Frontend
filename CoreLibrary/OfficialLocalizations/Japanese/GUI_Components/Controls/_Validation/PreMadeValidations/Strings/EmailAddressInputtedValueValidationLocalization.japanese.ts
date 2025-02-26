@@ -3,7 +3,7 @@ import { emailAddressInputtedValueValidationRuleLocalization__japanese } from
     "../../PreMadeRules/Strings/EmailAddressInputtedValueValidationRuleLocalization.japanese";
 
 
-const emailAddressInputtedValueValidationLocalization__japanese: EmailAddressInputtedValueValidation.Localization = {
+export const emailAddressInputtedValueValidationLocalization__japanese: EmailAddressInputtedValueValidation.Localization = {
 
   requiredInputIsMissingValidationErrorMessage: "メールアドレスは必須です。ご入力をお願いいたします。",
 
@@ -16,6 +16,3 @@ const emailAddressInputtedValueValidationLocalization__japanese: EmailAddressInp
   invalidEmailAddressErrorMessageBuilder: emailAddressInputtedValueValidationRuleLocalization__japanese.errorMessageBuilder
 
 };
-
-
-export default emailAddressInputtedValueValidationLocalization__japanese;

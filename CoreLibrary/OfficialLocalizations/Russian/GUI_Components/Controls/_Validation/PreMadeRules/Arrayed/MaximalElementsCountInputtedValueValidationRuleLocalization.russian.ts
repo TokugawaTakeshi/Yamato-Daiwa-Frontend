@@ -7,6 +7,6 @@ export const maximalElementsCountInputtedValueValidationRuleLocalization__russia
   errorMessageBuilder: (
     { maximalElementsCount }: MaximalElementsCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
-      "Слишком много пунктов. " +
-      `Пожалуйста, введите не более ${ maximalElementsCount }.`
+      "Указано слишком много пунктов. " +
+      `Пожалуйста, укажите не более ${ maximalElementsCount }.`
 };

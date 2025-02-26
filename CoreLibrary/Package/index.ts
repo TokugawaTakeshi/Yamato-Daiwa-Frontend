@@ -17,6 +17,8 @@ export { default as HamburgerMenuButton } from "./GUI_Components/Controls/Button
 
 export { default as CompoundControlShell } from "./GUI_Components/Controls/CompoundControlShell/CompoundControlShell";
 
+export { default as DateTimePicker } from "./GUI_Components/Controls/DateTimePicker/DateTimePicker";
+
 export { default as FilesUploader } from "./GUI_Components/Controls/FilesUploader/FilesUploader";
 
 export { default as NumberBox } from "./GUI_Components/Controls/NumberBox/NumberBox";

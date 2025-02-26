@@ -12,7 +12,7 @@ The toolkit for the frontend development with [Pug](https://pugjs.org/api/gettin
 ## Installation
 
 ```
-npm i @yamato-daiwa/frontend@2.0.0-beta.5
+npm i @yamato-daiwa/frontend@2.0.0-beta.7
 ```
 
 ## Documentation

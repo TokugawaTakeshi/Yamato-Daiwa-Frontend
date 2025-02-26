@@ -7,6 +7,6 @@ export const minimalElementsCountInputtedValueValidationRuleLocalization__russia
   errorMessageBuilder: (
     { minimalElementsCount }: MinimalElementsCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
-      "Слишком мало пунктов. " +
-      `Пожалуйста, введите хотя бы ${ minimalElementsCount }.`
+      "Указано слишком мало пунктов. " +
+      `Пожалуйста, укажите хотя бы ${ minimalElementsCount }.`
 };

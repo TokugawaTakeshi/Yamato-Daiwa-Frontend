@@ -4,11 +4,11 @@ export { default as YDF_ComponentsCoordinator } from "./GUI_Components/Component
 /* ━━━ GUI Components ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export { default as AdmonitionBlock } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock.vue";
 
-
-/* ━━━ Alpha / Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export { default as Badge } from "./GUI_Components/Badge/Badge.vue";
 export { default as BadgeLoadingPlaceholder } from "./GUI_Components/Badge/LoadingPlaceholder/Badge-LoadingPlaceholder.vue";
 
+
+/* ━━━ Alpha / Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export { default as Button } from "./GUI_Components/Controls/Buttons/Plain/Button.vue";
 export { default as ButtonLoadingPlaceholder } from
       "./GUI_Components/Controls/Buttons/Plain/LoadingPlaceholder/Button-LoadingPlaceholder.vue";

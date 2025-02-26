@@ -1,16 +1,43 @@
 /* eslint-disable @typescript-eslint/member-ordering --
  * The members of this class has been organized semantically. */
 
+/* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+import componentDynamicPartsHTML from "./FilesUploader.parts.pug";
+import type FilesUploaderLocalization from "./FilesUploaderLocalization";
+import { filesUploaderYDF_ComponentLocalization__english } from "./FilesUploaderLocalization.english";
+
 /* ─── Validation ─────────────────────────────────────────────────────────────────────────────────────────────────── */
 import ValidatableControl from "../_Validation/ValidatableControl";
 import type InputtedValueValidation from "../_Validation/InputtedValueValidation";
 
-/* ─── Children components ────────────────────────────────────────────────────────────────────────────────────────── */
+/* ─── Children Components ────────────────────────────────────────────────────────────────────────────────────────── */
 import CompoundControlShell from "../CompoundControlShell/CompoundControlShell";
+import Button from "../Buttons/Plain/Button";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
-import { encodeFileToBase64, Logger, InvalidParameterValueError, isNull, isNotNull } from "@yamato-daiwa/es-extensions";
-import { getExpectedToBeSingleDOM_Element, LeftClickEventListener } from "@yamato-daiwa/es-extensions-browserjs";
+import {
+  encodeFileToBase64,
+  Logger,
+  InvalidParameterValueError,
+  InvalidExternalDataError,
+  isUndefined,
+  isNotUndefined,
+  isNull,
+  isNotNull,
+  isString,
+  nullToUndefined,
+  isArrayOfCertainTypeElements,
+  removeSpecificCharacterFromCertainPosition,
+  convertPotentialStringToIntegerIfPossible,
+  RawObjectDataProcessor
+} from "@yamato-daiwa/es-extensions";
+import {
+  cloneDOM_Element,
+  createDOM_ElementFromHTML_Code,
+  DelegatedLeftClickEventListener,
+  extractAndValidateDatasetFromDOM_Element,
+  getExpectedToBeSingleDOM_Element
+} from "@yamato-daiwa/es-extensions-browserjs";
 
 
 class FilesUploader<
@@ -21,31 +48,75 @@ class FilesUploader<
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ─── Accessing to DOM ─────────────────────────────────────────────────────────────────────────────────────────── */
-  protected static readonly NATIVE_INPUT_ELEMENT_SELECTOR: string = ".FilesUploader--YDF-HiddenInputElement";
-  protected static readonly FILES_PICKING_BUTTON_ELEMENT_SELECTOR: string = ".FilesUploader--YDF-FilePickingButton";
-  protected static readonly DRAG_AND_DROP_AREA_ELEMENT_SELECTOR: string = ".FilesUploader--YDF-DragAndDropArea";
+  protected static readonly FILES_PICKING_BUTTON_SELECTOR: string = ".FilesUploader--YDF-FilePickingButton";
+  protected static readonly DRAG_AND_DROP_AREA_SELECTOR: string = ".FilesUploader--YDF-DragAndDropArea";
 
-  protected static readonly INVALID_VALUE_STATE_CSS_CLASS: string = ".FilesUploader--YDF-FilesUploader__InvalidValueState";
+  protected static readonly SINGLE_IMAGE_PREVIEWER_SELECTOR: string = ".FilesUploader--YDF-SingleImagePreviewer";
+  protected static readonly SINGLE_IMAGE_PREVIEWER_IMAGE_SELECTOR: string = ".FilesUploader--YDF-SingleImagePreviewer-Image";
+  protected static readonly SINGLE_FILE_DELETING_BUTTON_SELECTOR: string = ".FilesUploader--YDF-SingleFileDeletingButton";
+  protected static readonly SINGLE_IMAGE_PREVIEWER_MOUNTING_POINT_SELECTOR: string =
+      ".FilesUploader--YDF-SingleImagePreviewerMountingPoint";
+
+
+  /* ─── Initialization on Demand ─────────────────────────────────────────────────────────────────────────────────── */
+  protected static dynamicParts: DocumentFragment | null = null;
+
+  // ━━━ TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  protected static readonly NATIVE_INPUT_ELEMENT_SELECTOR: string = ".FilesUploader--YDF-HiddenInputElement";
+
+  protected static readonly INVALID_VALUE_STATE_CSS_CLASS: string = "FilesUploader--YDF-FilesUploader__InvalidValueState";
+  protected static readonly DRAG_AND_DROP_AREA_DRAG_OVER_STATE_CSS_CLASS: string =
+      "FilesUploader--YDF-DragAndDropArea__DragOverState";
+
+  protected static readonly INITIAL_VALUE_DATASET_KEY: string = "initial_value";
+
+
+  /* ─── Events ───────────────────────────────────────────────────────────────────────────────────────────────────── */
+  protected readonly delegatedLeftClickEventListener: DelegatedLeftClickEventListener;
+
+
+  /* ─── Settings ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+  protected static readonly fileNamesExtensionsWithoutDotsOfFilesRecognizedAsImages: Set<string> = new Set([
+    "jpg", "png", "webp", "gif", "png"
+  ]);
+
+
+  /* ─── Settings ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+  public static localization: FilesUploaderLocalization = filesUploaderYDF_ComponentLocalization__english;
 
 
   /* ━━━ Instance Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public readonly payload: ValidatableControl.Payload<ValidValue, InvalidValue, Validation>;
 
+  protected readonly scenario: FilesUploader.Scenarios;
+
   protected mustDisplayErrorsMessagesImmideatlyIfAny: boolean = false;
+
+  protected localization: FilesUploaderLocalization;
 
 
   /* ─── DOM ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
   protected readonly shellComponent: CompoundControlShell;
+
+  protected singleImagePreviewer?: Element;
+  protected singleImagePreviewerImage?: HTMLImageElement;
+  protected singleFileDeletingButton?: Button;
+  protected singleImagePreviewerMountingPoint?: Element;
+
   protected readonly nativeInputElement: HTMLInputElement;
-  protected readonly filesPickingButtonElement: HTMLInputElement | null;
-  protected readonly dragAndDropAreaElement: HTMLInputElement | null;
+  protected readonly dragAndDropArea: HTMLElement | null;
 
 
-  /* ─── Reactivity ───────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ─── Events Handling ──────────────────────────────────────────────────────────────────────────────────────────── */
+  protected readonly onBase64EncodingOfAllFilesDoneEventExternalHandler?:
+      FilesUploader.OnBase64EncodingOfAllFilesDoneEventHandler;
+
+
+  /* ━━━ Reactivity ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* eslint-disable no-underscore-dangle -- [ CONVENTION ]
    * The instance fields begins from the underscore MUST be changed only via setters or constructor. */
+  /* ─── Validation Error Messages Highlighting ───────────────────────────────────────────────────────────────────── */
   protected _mustHighlightInvalidInputIfAnyValidationErrorsMessages: boolean = false;
-  protected _isUserDraggingFileNow: boolean = false;
 
   protected get $mustHighlightInvalidInputIfAnyValidationErrorsMessages(): boolean {
     return this._mustHighlightInvalidInputIfAnyValidationErrorsMessages;
@@ -78,6 +149,10 @@ class FilesUploader<
 
   }
 
+
+  /* ─── Dragging Action Registration ─────────────────────────────────────────────────────────────────────────────── */
+  protected _isUserDraggingFileNow: boolean = false;
+
   protected get $isUserDraggingNow(): boolean {
     return this._isUserDraggingFileNow;
   }
@@ -89,9 +164,11 @@ class FilesUploader<
     }
 
 
+    this.dragAndDropArea?.classList.toggle(FilesUploader.DRAG_AND_DROP_AREA_DRAG_OVER_STATE_CSS_CLASS);
     this._isUserDraggingFileNow = value;
 
   }
+  /* eslint-enable no-underscore-dangle */
 
 
   /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -117,16 +194,40 @@ class FilesUploader<
     return new FilesUploader<ValidValue, InvalidValue, Validation>(properties);
   }
 
+  public static addNamesExtensionsOfFilesWithMustBeRecognizedAsImages__leadingDotsAreOptional(
+    namesExtensionsOfFilesWithMustBeRecognizedAsImages__leadingDotsAreOptional: ReadonlyArray<string> | ReadonlySet<string>
+  ): void {
+    for (
+      const nameExtensionOfFilesWithMustBeRecognizedAsImages__leadingDotsAreOptional of
+          namesExtensionsOfFilesWithMustBeRecognizedAsImages__leadingDotsAreOptional
+    ) {
+      FilesUploader.fileNamesExtensionsWithoutDotsOfFilesRecognizedAsImages.add(
+        removeSpecificCharacterFromCertainPosition({
+          targetString: nameExtensionOfFilesWithMustBeRecognizedAsImages__leadingDotsAreOptional,
+          targetCharacter: ".",
+          fromFirstPosition: true
+        })
+      );
+    }
+  }
 
-  /* ━━━ Interface Implementation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  /* ━━━ Public Instance Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ─── Interface Implementation ─────────────────────────────────────────────────────────────────────────────────── */
   public highlightInvalidInput(): this {
     this.$mustHighlightInvalidInputIfAnyValidationErrorsMessages = true;
     return this;
   }
 
   public focus(): this {
-    (this.filesPickingButtonElement ?? this.dragAndDropAreaElement)?.focus();
+
+    (
+      this.shellComponent.rootElement.querySelector<HTMLButtonElement>(FilesUploader.FILES_PICKING_BUTTON_SELECTOR) ??
+      this.dragAndDropArea
+    )?.focus();
+
     return this;
+
   }
 
   public getRootElementOffsetCoordinates(): ValidatableControl.RootElementOffsetCoordinates {
@@ -141,14 +242,179 @@ class FilesUploader<
   }
 
 
-  /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected constructor(initializationProperties: FilesUploader.InitializationProperties<Validation>) {
+  /* ─── Other ────────────────────────────────────────────────────────────────────────────────────────────────────── */
+  public destroy(): void {
 
-    this.shellComponent = CompoundControlShell.pickOne({
-      selector: initializationProperties.selector,
-      contextElement: initializationProperties.contextElement,
+    if (isNotNull(this.dragAndDropArea)) {
+      this.dragAndDropArea.ondragover = null;
+      this.dragAndDropArea.ondragleave = null;
+      this.dragAndDropArea.ondrop = null;
+    }
+
+  }
+
+
+  /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected constructor(
+    {
+      rootElement,
+      contextElement,
+      validation,
+      localization = FilesUploader.localization,
+      ...initializationProperties
+    }: FilesUploader.InitializationProperties<Validation>
+  ) {
+
+    this.localization = localization;
+
+    /* ─── DOM ────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    if (isNull(FilesUploader.dynamicParts)) {
+      FilesUploader.dynamicParts = createDOM_ElementFromHTML_Code({
+        HTML_Code: componentDynamicPartsHTML,
+        rootDOM_ElementSubtype: HTMLTemplateElement
+      }).content;
+    }
+
+    this.shellComponent = CompoundControlShell.initializeOne({
+      rootElement,
+      contextElement,
       mustDisplayErrorsMessagesIfAny: this.mustDisplayErrorsMessagesImmideatlyIfAny
     });
+
+    const {
+      maximalFilesCount,
+      initialValue
+    }: Readonly<{
+      minimalFilesCount: number;
+      maximalFilesCount?: number;
+      initialValue?: string;
+    }> = extractAndValidateDatasetFromDOM_Element({
+      targetDOM_Element: this.shellComponent.rootElement,
+      targetDOM_ElementNameOrSelectorForLogging: "Root element",
+      mustDeleteMentionedDataAttributesOnceExtracted: true,
+      validDataSpecification: {
+        minimal_files_count: {
+          newName: "minimalFilesCount",
+          preValidationModifications: [ convertPotentialStringToIntegerIfPossible ],
+          type: Number,
+          numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
+          required: true
+        },
+        maximal_files_count: {
+          newName: "maximalFilesCount",
+          preValidationModifications: [ convertPotentialStringToIntegerIfPossible ],
+          type: Number,
+          numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
+          required: false
+        },
+        initial_value: {
+          newName: "initialValue",
+          preValidationModifications: [ emptyStringToUndefined ],
+          type: String,
+          required: false
+        }
+      }
+    });
+
+    this.delegatedLeftClickEventListener = new DelegatedLeftClickEventListener({
+      delegatingContainer: this.shellComponent.rootElement,
+      handlersBySelectors: {
+        [FilesUploader.FILES_PICKING_BUTTON_SELECTOR]: this.onClickFilesPickingButton.bind(this),
+        [FilesUploader.SINGLE_FILE_DELETING_BUTTON_SELECTOR]: this.onClickSingleFileDeletingButton.bind(this)
+      }
+    });
+
+    this.dragAndDropArea = this.shellComponent.rootElement.querySelector(FilesUploader.DRAG_AND_DROP_AREA_SELECTOR);
+
+    if (isNotNull(this.dragAndDropArea)) {
+      this.dragAndDropArea.ondragover = this.onFileDraggingStarted.bind(this);
+      this.dragAndDropArea.ondragleave = this.onFileDraggingTerminated.bind(this);
+      this.dragAndDropArea.ondrop = this.onFilesDropped.bind(this);
+    }
+
+    if (maximalFilesCount === 1) {
+
+      this.singleImagePreviewer = nullToUndefined(
+        this.shellComponent.rootElement.querySelector(FilesUploader.SINGLE_IMAGE_PREVIEWER_SELECTOR)
+      );
+
+      if (isUndefined(this.singleImagePreviewer)) {
+
+        this.singleImagePreviewer = cloneDOM_Element({
+          targetElement: getExpectedToBeSingleDOM_Element({
+            selector: FilesUploader.SINGLE_IMAGE_PREVIEWER_SELECTOR,
+            contextElement: FilesUploader.dynamicParts
+          }),
+          mustCopyAllChildren: true
+        });
+
+        this.singleImagePreviewerImage = getExpectedToBeSingleDOM_Element({
+          selector: FilesUploader.SINGLE_IMAGE_PREVIEWER_IMAGE_SELECTOR,
+          contextElement: this.singleImagePreviewer,
+          expectedDOM_ElementSubtype: HTMLImageElement
+        });
+
+        /* [ MVC Scenario ]
+         * When compiling the Pug to HTML, the initial value is something like `{{ initialValue }}`, but when executing
+         *   the JavaScript it is already the valid value of `src` attribute. */
+        if (isNotUndefined(initialValue)) {
+          setHTML_Attributes(
+            this.singleImagePreviewerImage,
+            {
+              src: initialValue,
+              alt: this.localization.singleImagePreviewer.image.alternatingText
+            }
+          );
+        }
+
+        if (!validation.isInputRequired()) {
+
+          this.singleFileDeletingButton = Button.pickOneBySelector({
+            targetElement: cloneDOM_Element({
+              targetElement: getExpectedToBeSingleDOM_Element({
+                selector: FilesUploader.SINGLE_FILE_DELETING_BUTTON_SELECTOR,
+                contextElement: FilesUploader.dynamicParts
+              }),
+              mustCopyAllChildren: true
+            })
+          });
+
+        }
+
+        this.singleImagePreviewerMountingPoint = getExpectedToBeSingleDOM_Element({
+          selector: FilesUploader.SINGLE_IMAGE_PREVIEWER_MOUNTING_POINT_SELECTOR,
+          contextElement: this.shellComponent.rootElement
+        });
+
+        this.singleImagePreviewerMountingPoint.replaceWith(...[
+          this.singleImagePreviewer,
+          ...isNotUndefined(this.singleFileDeletingButton) ? [ this.singleFileDeletingButton.rootElement ] : []
+        ]);
+
+      } else {
+
+        this.singleImagePreviewerImage = getExpectedToBeSingleDOM_Element({
+          selector: FilesUploader.SINGLE_IMAGE_PREVIEWER_IMAGE_SELECTOR,
+          contextElement: this.singleImagePreviewer,
+          expectedDOM_ElementSubtype: HTMLImageElement
+        });
+
+        this.singleImagePreviewerMountingPoint = cloneDOM_Element({
+          targetElement: getExpectedToBeSingleDOM_Element({
+            selector: FilesUploader.SINGLE_IMAGE_PREVIEWER_MOUNTING_POINT_SELECTOR,
+            contextElement: FilesUploader.dynamicParts
+          }),
+          mustCopyAllChildren: true
+        });
+
+      }
+
+    }
+
+    if (isNotUndefined(this.singleFileDeletingButton)) {
+      this.singleFileDeletingButton.$label = this.localization.buttons.singleImageDeleting.label;
+      this.singleFileDeletingButton.$accessibilityGuidance = this.localization.buttons.singleImageDeleting.accessibilityGuidance;
+    }
 
     this.nativeInputElement = getExpectedToBeSingleDOM_Element({
       selector: FilesUploader.NATIVE_INPUT_ELEMENT_SELECTOR,
@@ -316,9 +582,80 @@ class FilesUploader<
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- Temporary
     // @ts-ignore
     this.payload.$setValue({ newValue: Array.from(newBase64EncodedFiles) });
+  /* ─── Not sorted yet ───────────────────────────────────────────────────────────────────────────────────────────── */
+  protected synchronizePreviewWithNewestValues(): void {
+
+    if (isString(this.payload.value)) {
+
+      if (this.payload.value.startsWith("data:image")) {
+
+        if (
+          isUndefined(this.singleImagePreviewer) ||
+          isUndefined(this.singleImagePreviewerImage) ||
+          isUndefined(this.singleImagePreviewerMountingPoint)
+        ) {
+          Logger.throwErrorAndLog({
+            errorInstance: new UnexpectedEventError(
+              "One or more required element for working with images has not been initialized."
+            ),
+            title: UnexpectedEventError.localization.defaultTitle,
+            occurrenceLocation: "FilesUploader.synchronizePreviewWithNewestValues()",
+            additionalData: {
+              singleImagePreviewer: isUndefined(this.singleImagePreviewer) ? "Initialized" : "Not initialized",
+              singleImagePreviewerImage: isUndefined(this.singleImagePreviewerImage) ? "Initialized" : "Not initialized",
+              singleImagePreviewerMountingPoint:
+                  isUndefined(this.singleImagePreviewerMountingPoint) ? "Initialized" : "Not initialized"
+            }
+          });
+        }
+
+
+        this.singleImagePreviewerImage.src = this.payload.value;
+
+        if (this.singleImagePreviewer.isConnected) {
+          return;
+        }
+
+
+        this.singleImagePreviewerMountingPoint.replaceWith(...[
+          this.singleImagePreviewer,
+          ...isNotUndefined(this.singleFileDeletingButton) ? [ this.singleFileDeletingButton.rootElement ] : []
+        ]);
+
+      }
+
+      return;
+
+    }
+
+
+    if (isNull(this.payload.value)) {
+
+      if (
+        isUndefined(this.singleImagePreviewer) ||
+        isUndefined(this.singleImagePreviewerMountingPoint)
+      ) {
+        Logger.throwErrorAndLog({
+          errorInstance: new UnexpectedEventError(
+            "One or more required element for working with images has not been initialized."
+          ),
+          title: UnexpectedEventError.localization.defaultTitle,
+          occurrenceLocation: "FilesUploader.synchronizePreviewWithNewestValues()",
+          additionalData: {
+            singleImagePreviewer: isUndefined(this.singleImagePreviewer) ? "Initialized" : "Not initialized",
+            singleImagePreviewerImage: isUndefined(this.singleImagePreviewerImage) ? "Initialized" : "Not initialized",
+            singleImagePreviewerMountingPoint:
+                isUndefined(this.singleImagePreviewerMountingPoint) ? "Initialized" : "Not initialized"
+          }
+        });
+      }
+
+      this.singleImagePreviewer.replaceWith(this.singleImagePreviewerMountingPoint);
+      this.singleFileDeletingButton?.rootElement.remove();
+
+    }
 
   }
-
 
 }
 
@@ -341,15 +678,25 @@ namespace FilesUploader {
   export namespace InitializationProperties {
 
     export type Common<Validation extends InputtedValueValidation> = Readonly<
+      (
+        {
+          rootElement: Readonly<{ selector: string; }>;
+          contextElement?: ParentNode | Readonly<{ selector: string; }>;
+        } |
+        {
+          rootElement: Element;
+          contextElement?: never;
+        }
+      ) &
       {
-        selector: string;
-        contextElement?: ParentNode | Readonly<{ selector: string; }>;
         invalidInputPrevention?: Readonly<{
           minimalFilesCount?: number;
           maximalFilesCount?: number;
         }>;
         validation: Validation;
         mustHighlightInvalidInputIfAnyValidationErrorsMessagesImmediately: boolean;
+        onBase64EncodingOfAllFilesDoneEventHandler?: OnBase64EncodingOfAllFilesDoneEventHandler;
+        localization?: FilesUploaderLocalization;
       }>;
 
     export type SingleRequiredFileScenario<Validation extends InputtedValueValidation> =
@@ -374,6 +721,11 @@ namespace FilesUploader {
         Common<Validation>;
 
   }
+
+  export type Base64EncodedFile = string;
+
+  export type OnBase64EncodingOfAllFilesDoneEventHandler =
+      (base64EncodedFiles: ReadonlyArray<Base64EncodedFile>) => Promise<Array<Base64EncodedFile>>;
 
 }
 

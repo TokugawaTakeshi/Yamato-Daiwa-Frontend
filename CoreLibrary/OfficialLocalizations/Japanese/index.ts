@@ -1,6 +1,7 @@
-/* ━━━ Officially Realized ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* ━━━ GUI Components ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export { admonitionBlockYDF_ComponentLocalization__japanese } from "./GUI_Components/AdmonitionBlockLocalization.japanese";
+export { filesUploaderYDF_ComponentLocalization__japanese } from "./GUI_Components/Controls/FilesUploaderLocalization.japanese";
+
 
 /* ─── Controls ───────────────────────────────────────────────────────────────────────────────────────────────────── */
 /* ┄┄┄ Validation ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
@@ -25,16 +26,17 @@ export { allowedCharactersInputtedValueValidationRuleLocalization__japanese } fr
 export { emailAddressInputtedValueValidationRuleLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/EmailAddressInputtedValueValidationRuleLocalization.japanese";
 
-
-/* ━━━ Alpha / Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export { default as JapanesePhoneNumberInputtedValueValidationRule } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/JapanesePhoneNumberInputtedValueValidationRule";
 export { default as japanesePhoneNumberInputtedValueValidationRuleLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/JapanesePhoneNumberInputtedValueValidationRuleLocalization.japanese";
 
-export { default as maximalCharactersCountInputtedValueValidationRuleLocalization__japanese } from
+export { linkValidationRuleLocalization__japanese } from
+    "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/LinkValidationRuleLocalization.japanese";
+
+export { maximalCharactersCountInputtedValueValidationRuleLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/MaximalCharactersCountInputtedValueValidationRuleLocalization.japanese";
-export { default as minimalCharactersCountInputtedValueValidationRuleLocalization__japanese } from
+export { minimalCharactersCountInputtedValueValidationRuleLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/MinimalCharactersCountInputtedValueValidationRuleLocalization.japanese";
 
 export { default as MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule } from
@@ -47,15 +49,16 @@ export { default as MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule
 export { default as minimalKanjiOrKanaCharactersRatioInputtedValueValidationRuleLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRuleLocalization.japanese";
 
-export { default as noLinksInputtedValueValidationRuleLocalization__japanese } from
+export { noLinksInputtedValueValidationRuleLocalization__japanese } from
       "./GUI_Components/Controls/_Validation/PreMadeRules/Strings/NoLinksInputtedValueValidationRuleLocalization.japanese";
 
+/* --- Pre Made Validations ----------------------------------------------------------------------------------------- */
 export { default as JapanesePhoneNumberInputtedValueValidation } from
     "./GUI_Components/Controls/_Validation/PreMadeValidations/Strings/PhoneNumber/JapanesePhoneNumberInputtedValueValidation";
 export { default as japanesePhoneNumberInputtedValueValidationLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeValidations/Strings/PhoneNumber/JapanesePhoneNumberInputtedValueValidationLocalization.japanese";
 
-export { default as emailAddressInputtedValueValidationLocalization__japanese } from
+export { emailAddressInputtedValueValidationLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeValidations/Strings/EmailAddressInputtedValueValidationLocalization.japanese";
-export { default as passwordInputtedValueValidationLocalization__japanese } from
+export { passwordInputtedValueValidationLocalization__japanese } from
     "./GUI_Components/Controls/_Validation/PreMadeValidations/Strings/PasswordInputtedValueValidationLocalization.japanese";

@@ -26,3 +26,4 @@ npm i @yamato-daiwa/frontend-react @yamato-daiwa/frontend@2.0.0-beta.6
 ### GUI Components
 
 + [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/React/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-React.english.html)
++ [Badge](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/React/GUI_Components/Children/Badge/Badge-React.english.html)

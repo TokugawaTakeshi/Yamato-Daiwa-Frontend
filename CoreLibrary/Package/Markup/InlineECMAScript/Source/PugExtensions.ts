@@ -62,6 +62,8 @@ export {
 
   /* ━━━ Date & Time ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   CalendarBuilder,
+  convert24HoursFormatTo12HoursFormat,
+  DateWithoutTime,
   getDaysCountInSpecificMonth,
   getMonthNameByNumber,
   getMonthNumberByName,

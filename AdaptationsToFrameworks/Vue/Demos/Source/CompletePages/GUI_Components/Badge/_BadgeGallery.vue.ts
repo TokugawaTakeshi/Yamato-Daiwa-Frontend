@@ -34,6 +34,18 @@ class BadgeGallery extends Gallery<BadgeGallery.PartialsFlags> {
   protected textOverflowSafetyTest!: string;
 
 
+  /* ─── Computed ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+  protected mustRenderAtLeansOnePartialRelatedWithGeometricModifier(): boolean {
+    return this.partialsFlags.pillShapeGeometricModifier === true ||
+        this.partialsFlags.singleLineGeometricModifier === true;
+  }
+
+  protected mustRenderAtLeansOnePartialRelatedWithDecorativeModifier(): boolean {
+    return this.partialsFlags.bordersDisguisingDecorativeModifier === true ||
+        this.partialsFlags.noBackgroundDecorativeModifier === true;
+  }
+
+
   /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected initializeNonReactiveClassFields(): void {
 

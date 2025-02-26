@@ -6,6 +6,8 @@
 
 DateTimePicker--YDF = {
 
+  CSS_NAMESPACE: "DateTimePicker--YDF",
+
   componentIndependentCSS_Class: "RegularTheme--YDF",
 
   defaultProperties: {
@@ -71,9 +73,307 @@ provideDateTimePickerYDF_Component(
   })
 
 
-  .DateTimePicker--YDF
+  //- ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
 
-    min-width 120px
+    .DateTimePicker--YDF
+
+      &-NativeInputElement
+
+        display none
+
+
+      &-IndicatorButton
+
+        ButtonLikeElementsPrimer()
+
+        display flex
+        align-items center
+
+        width 100%
+
+        cursor pointer
+
+
+        &-Icon
+
+          flex-shrink 0
+
+
+      &-DialogRelativePositioner
+
+        position relative
+
+
+      &-Dialog
+
+        width 100%
+
+        position absolute
+        z-index YDF_Configuration.zIndexes.lowermostLayer + 1
+
+
+        &[hidden]
+
+          display none
+
+
+        &-TopActionBar
+
+          display flex
+          flex-wrap wrap
+          align-items center
+
+
+          >*
+
+            flex-shrink 0
+
+
+      &-DaysActions
+
+        width 100%
+
+
+      &-DaysMatrix
+
+        table-layout fixed
+        width 100%
+
+
+      &-DayTitleCell
+
+        width percentage(1/7)
+        text-align center
+
+
+      &-DaySelectingButton
+
+        ButtonLikeElementsPrimer()
+        width 100%
+
+
+        &:disabled
+
+          pointer-events none
+
+
+      &-MonthsMatrix
+
+        display grid
+        grid-template-columns repeat(4, 1fr)
+
+
+        &[hidden]
+
+          display none
+
+
+      &-MonthSelectingButton
+
+        ButtonLikeElementsPrimer()
+
+
+        &:disabled
+
+          pointer-events none
+
+
+      &-YearsMatrix
+
+        display grid
+        grid-template-columns repeat(5, 1fr)
+
+
+        &[hidden]
+
+          display none
+
+
+      &-SelectYearButton
+
+        ButtonLikeElementsPrimer()
+
+
+      &-HoursMatrix
+
+        table-layout fixed
+        width 100%
+
+
+      &-HourSelectingButton
+
+        ButtonLikeElementsPrimer()
+        width 100%
+
+
+        &:disabled
+
+          pointer-events none
+
+
+      &-MinutesMatrix
+
+        display grid
+        grid-template-columns repeat(10, 1fr)
+
+
+  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "DateTimePicker.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+
+    +provideDefaultSelectorWhenRootAndApply("." + DateTimePicker--YDF.CSS_NAMESPACE)
+
+      min-width 120px
+
+
+    .DateTimePicker--YDF-IndicatorButton
+
+      border-width 1px
+      BorderLeftFilletsRadius(3px)
+      padding: calc(.45rem - 2px) .5rem calc(.45rem + 1px)
+
+
+    .DateTimePicker--YDF-IndicatorButton-Icon
+
+      width 24px
+
+
+    .DateTimePicker--YDF-IndicatorButton-Label
+
+      font-size 14px
+
+      margin-left 12px
+
+
+    .DateTimePicker--YDF-DaysMatrix
+
+      border-top-width 1px
+      margin-top 4px
+
+
+    .DateTimePicker--YDF-Dialog
+
+      border-radius 3px
+
+
+    .DateTimePicker--YDF-Dialog-TopActionBar
+
+      column-gap 6px
+      row-gap 4px
+
+      Paddings({ horizontalSymmetric: 6px })
+
+      margin-top 4px
+
+
+    .DateTimePicker--YDF-Dialog-DaysActions
+
+      td
+
+        padding-top 4px
+
+        text-align center
+        vertical-align middle
+
+
+    .DateTimePicker--YDF-Dialog-Header
+
+      Paddings({ horizontalSymmetric: 6px })
+
+
+    .DateTimePicker--YDF-Dialog-Header-CurrentScopeLabel
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+        fontSize: 1rem,
+        lineSpacing: 4px,
+        mustApplyNegativeMarginsToRootElement: true
+      })
+
+      margin-top 4px
+
+
+    .DateTimePicker--YDF-DayTitleCell
+
+      Paddings({
+        verticalSymmetric: 10px,
+        verticalUpwardShifting: 1px
+      })
+
+      font-size 1rem
+
+
+    .DateTimePicker--YDF-DaySelectingButton
+
+      Paddings({
+        verticalSymmetric: 10px,
+        verticalUpwardShifting: 1px
+      })
+      font-size 1rem
+
+
+    .DateTimePicker--YDF-MonthsMatrix
+
+      margin-top 4px
+
+
+    .DateTimePicker--YDF-MonthSelectingButton
+
+      Paddings({
+        verticalSymmetric: 10px,
+        verticalUpwardShifting: 1px
+      })
+      font-size 14px
+
+
+    .DateTimePicker--YDF-YearsMatrix
+
+      margin-top 4px
+
+
+    .DateTimePicker--YDF-SelectYearButton
+
+      Paddings({
+        verticalSymmetric: 10px,
+        verticalUpwardShifting: 1px
+      })
+      font-size 14px
+
+
+    .DateTimePicker--YDF-HoursMatrix-HeaderCell
+
+      Paddings({
+        verticalSymmetric: 6px,
+        verticalUpwardShifting: 1px
+      })
+
+
+    .DateTimePicker--YDF-HourSelectingButton
+
+      Paddings({
+        verticalSymmetric: 10px,
+        verticalUpwardShifting: 1px
+      })
+
+      font-size 14px
+
+
+  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "DateTimePicker.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    ROOT_ELEMENT_SELECTOR = getCurrentSelectorSubstitutingRoot(".DateTimePicker--YDF")
 
 
     ClickableCellsCommonDecorations()
@@ -117,45 +417,27 @@ provideDateTimePickerYDF_Component(
         pointer-events none
 
 
-    MatrixDividerLine()
-
-      border-top 1px solid #ebebeb
-
-
-    &-SelectedDateTimeDisplaying
-
-      ButtonLikeElementsPrimer()
-
-      display flex
-      align-items center
-      width 100%
-
-      border-width 1px
-      BorderLeftFilletsRadius(3px)
-      padding: calc(.45rem - 2px) .5rem calc(.45rem + 1px)
+    .DateTimePicker--YDF-IndicatorButton
 
       border-color #c5c5c5
       border-style solid
       color #454545
 
-      cursor pointer
-
 
       &:hover
 
-        opacity 75%
+        border-color: JQueryUI_BaseTheme.clickableElements.activeState.background
 
 
       &:focus
 
-        border-color #7B828E
+        border-color: JQueryUI_BaseTheme.warning.borderColor
         box-shadow 0 0 6px rgba(black, 0.16)
 
 
       &:active
 
-        border-color #7B828E
-        box-shadow none
+        border-color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor
 
 
       &:disabled
@@ -163,90 +445,29 @@ provideDateTimePickerYDF_Component(
         opacity 25%
 
 
-      /.DateTimePicker--YDF__InvalidValueState &
+      /{ROOT_ELEMENT_SELECTOR}.DateTimePicker--YDF__InvalidValueState &
 
-        border-color #C82A1C
+        border-color: JQueryUI_BaseTheme.error.borderColor
+        background: JQueryUI_BaseTheme.error.background
 
 
-      /.DateTimePicker--YDF__ValidValueState &
+      /{ROOT_ELEMENT_SELECTOR}.DateTimePicker--YDF__ValidValueState &
 
         border-color #0D47A1
 
 
-      &-Icon
+    .DateTimePicker--YDF-IndicatorButton-Icon
 
-        width 24px
-
-        fill #7B828E
-
-        flex-shrink 0
+      fill #7B828E
 
 
-      &-Label
+    .DateTimePicker--YDF-DaysMatrix
 
-        font-size 14px
-
-        margin-left 12px
-
-
-    &-DialogRelativePositioner
-
-      position relative
+      border-top-style solid
+      border-top-color lightgray
 
 
-    &-Dialog
-
-      width 100%
-
-      position absolute
-      z-index YDF_Configuration.zIndexes.lowermostLayer + 1
-      border-radius 3px
-
-      background-color white
-      box-shadow 0 3px 10px rgba(black, 0.1)
-
-
-    &-TopActionBar
-
-      display flex
-      flex-wrap wrap
-      align-items center
-      column-gap 6px
-      row-gap 4px
-
-      Paddings({ horizontalSymmetric: 6px })
-
-      margin-top 4px
-
-
-      >*
-
-        flex-shrink 0
-
-
-    &-ContextGuidance
-
-      Paddings({ horizontalSymmetric: 6px })
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({ fontSize: 1rem, lineSpacing: 4px })
-
-      color: W3C_39_ShadesOfGray--YDF[16]
-
-      margin-top 4px
-
-
-    &-CurrentScopeTitle
-
-      font-size 13px
-
-      color #abb1ba
-
-      margin-left 12px
-
-
-    &-DayMatrixActions
-
-      width 100%
-
+    .DateTimePicker--YDF-Dialog-DaysActions
 
       th
 
@@ -254,35 +475,20 @@ provideDateTimePickerYDF_Component(
         font-weight bold
 
 
-      td
+    .DateTimePicker--YDF-Dialog
 
-        padding-top 4px
-
-        text-align center
-        vertical-align middle
+      background-color white
+      box-shadow 0 3px 10px rgba(black, 0.1)
 
 
-    &-DaysMatrix
+    .DateTimePicker--YDF-Dialog-Header-CurrentScopeLabel
 
-      table-layout fixed
-      width 100%
-      MatrixDividerLine()
-
-      margin-top 4px
+      color: W3C_39_ShadesOfGray--YDF[16]
 
 
-    &-DayTitleCell
+    .DateTimePicker--YDF-DayTitleCell
 
-      width percentage(1/7)
 
-      Paddings({
-        verticalSymmetric: 10px,
-        verticalUpwardShifting: 1px
-      })
-
-      font-size 1rem
-
-      text-align center
       color: JQueryUI_BaseTheme.clickableElements.hoverState.fontColor
 
 
@@ -291,16 +497,7 @@ provideDateTimePickerYDF_Component(
         color: YDF_ColorPalette.red.slightlyDark
 
 
-    &-SelectDayButton
-
-      ButtonLikeElementsPrimer()
-
-      width 100%
-      Paddings({
-        verticalSymmetric: 10px,
-        verticalUpwardShifting: 1px
-      })
-      font-size 1rem
+    .DateTimePicker--YDF-DaySelectingButton
 
       ClickableCellsCommonDecorations()
 
@@ -310,18 +507,12 @@ provideDateTimePickerYDF_Component(
         box-shadow inset 0 0 1px 1px #0D47A1
 
 
-    &-MonthsMatrix
+      &__SelectedState
 
-      display grid
-      grid-template-columns repeat(4, 1fr)
-      MatrixDividerLine()
-
-      margin-top 4px
+        background-color lightgoldenrodyellow
 
 
-    &-MonthSelectingButton
-
-      ButtonLikeElementsPrimer()
+    .DateTimePicker--YDF-MonthSelectingButton
 
       Paddings({
         verticalSymmetric: 10px,
@@ -332,67 +523,22 @@ provideDateTimePickerYDF_Component(
       ClickableCellsCommonDecorations()
 
 
-      &:disabled
-
-        pointer-events none
-
-
-    &-YearsMatrix
-
-      display grid
-      grid-template-columns repeat(5, 1fr)
-      MatrixDividerLine()
-
-      margin-top 4px
-
-
-    &-SelectYearButton
-
-      ButtonLikeElementsPrimer()
-
-      Paddings({
-        verticalSymmetric: 10px,
-        verticalUpwardShifting: 1px
-      })
-      font-size 14px
+    .DateTimePicker--YDF-SelectYearButton
 
       ClickableCellsCommonDecorations()
 
 
-    &-HoursMatrix
-
-      table-layout fixed
-      width 100%
-
-
-      &-HeaderCell
-
-        Paddings({
-          verticalSymmetric: 6px,
-          verticalUpwardShifting: 1px
-        })
-
-
-    &-SelectHourButton
-
-      ButtonLikeElementsPrimer()
-
-      width 100%
-      Paddings({
-        verticalSymmetric: 10px,
-        verticalUpwardShifting: 1px
-      })
-      font-size 14px
+    .DateTimePicker--YDF-HourSelectingButton
 
       ClickableCellsCommonDecorations()
 
 
-      &:disabled
+  //- ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
 
-        pointer-events none
-
-
-    &-MinutesMatrix
-
-      display grid
-      grid-template-columns repeat(10, 1fr)
+  applyComponentThemes({
+    CSS_Namespace: DateTimePicker--YDF.CSS_NAMESPACE,
+    themes: properties.themes,
+    applyGeometricVariation: applyGeometricVariation,
+    applyDecorativeVariation: applyDecorativeVariation
+  })

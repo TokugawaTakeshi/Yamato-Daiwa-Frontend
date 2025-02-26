@@ -75,13 +75,12 @@ class LinkValidationRule implements InputtedValueValidation.Rule {
 
     }
 
-
-    return this.regularExpressions.some((regularExpression: RegExp): boolean => regularExpression.test(rawValue)) ?
+    return this.regularExpressions.every((regularExpression: RegExp): boolean => regularExpression.test(rawValue)) ?
+        { isValid: true } :
         {
           isValid: false,
           errorMessage: this.errorMessageBuilder({ rawValue })
-        } :
-        { isValid: true };
+        };
 
   }
 

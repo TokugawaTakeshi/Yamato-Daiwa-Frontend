@@ -12,184 +12,166 @@ provideLinkYDF_Component()
 
 .StaticPreviewAnywherePage--YDF
 
-  PRIMARY_COLOR = #ff9068
-  ACCENTED_COLOR = #fd746c
-
-  Centerer__CustomMinAndMaxWidths({ maximalWidth: 960px })
-  padding 12px 10px 24px
+  Centerer({ maximalWidth: 2*NARROWEST_SCREEN_WIDTH_UNIT--YDF })
+  padding 0.8rem 0.6rem 2rem
 
 
   &-TopHeading
 
     applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
-      fontSize: 32px,
-      lineHeight: 36px,
+      fontSize: 2.4rem,
+      lineSpacing: 0.2,
       mustAllowWordsBreakingAnywhere: true
     })
 
-    color ACCENTED_COLOR
+    font-weight bold
+    color #fd746c
 
 
   &-Navigation
 
-    margin-top 12px
+    margin-top 1rem
 
 
   &-SectionHeading
 
     applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
-      fontSize: 28px,
-      lineHeight: 32px,
+      fontSize: 2rem,
+      lineSpacing: 0.2,
       mustAllowWordsBreakingAnywhere: true
     })
 
     font-weight bold
-    color ACCENTED_COLOR
+    color #fd746c
 
 
   &-SubsectionHeading
 
     applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
-      fontSize: 22px,
-      lineHeight: 26px,
+      fontSize: 1.6rem,
+      lineSpacing: 0.2,
       mustAllowWordsBreakingAnywhere: true
     })
 
     font-weight bold
-    color PRIMARY_COLOR
+    color #ff9068
+
+    retireFrom({ targetElementSelector: ".StaticPreviewAnywherePage--YDF-SectionHeading", y: 0.2rem })
 
 
-  &-PagesSubsubgroupHeading
+  &-SubsubsectionHeading
 
     applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
-      fontSize: 18px,
-      lineHeight: 20px,
+      fontSize: 1.2rem,
+      lineSpacing: 0.2,
       mustAllowWordsBreakingAnywhere: true
     })
 
     font-weight bold
     color: W3C_39_ShadesOfGray--YDF[24]
 
+    retireFrom({ targetElementSelector: ".StaticPreviewAnywherePage--YDF-SubsectionHeading", y: 0.2rem })
+
 
   &-CardsFlow
 
     PositionalRelationship({
       definitions:\
-        (".StaticPreviewAnywherePage--YDF-SectionHeading" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px } })\
-        (".StaticPreviewAnywherePage--YDF-SubsectionHeading" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px } })
+        (".StaticPreviewAnywherePage--YDF-SectionHeading" { retireFromIt: { y: 0.5rem }, pushItFromSelf: { y: 1rem } })\
+        (".StaticPreviewAnywherePage--YDF-SubsectionHeading" { retireFromIt: { y: 0.5rem }, pushItFromSelf: { y: 1rem } })\
+        (".StaticPreviewAnywherePage--YDF-SubsubsectionHeading" { retireFromIt: { y: 0.5rem }, pushItFromSelf: { y: 1rem } })
     })
 
 
   &-Card
 
-    WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 500px
+    display grid
+    grid-template-columns auto minmax(0, 1fr)
+    column-gap 0.5rem
+    align-items center
 
-    WideScreensConfiguration()
-      @media (min-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH)
-        {block}
-
-    NarrowScreensConfiguration()
-      @media (max-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)
-        {block}
-
-
-    padding 6px
+    border-radius 3px
+    padding 0.4rem
     box-shadow 0 0 4px 1px alpha(black, 0.25)
 
-    retireFromElementWithSameSelector({ y: 8px })
-
-
-    +WideScreensConfiguration()
-
-      display flex
-      align-items center
-
-
-    +NarrowScreensConfiguration()
-
-      display grid
-      grid-template-columns auto minmax(0, 1fr)
-      grid-template-rows auto 1fr
-
-      align-items center
-      column-gap 6px
+    retireFromElementWithSameSelector({ y: 0.6rem })
 
 
     &-Title
 
-      font-size 16px
+      font-size 1.2rem
       font-weight bold
 
-
-      +WideScreensConfiguration()
-
-        margin-left 12px
+      color: W3C_39_ShadesOfGray--YDF[12]
 
 
     &-Link
 
-      retireFrom({ targetElementSelector: ".StaticPreviewAnywherePage--YDF-Card-Badge", x: 6px })
+      line-height 1.3
 
 
     ul
 
-      li+li
+      list-style-type "■"
+      list-style-position outside
 
-        margin-top 4px
-
-
-    table
-
-      +WideScreensConfiguration()
-
-        border-collapse separate
+      grid-column span 2
+      margin-top 0.3rem
 
 
-      +NarrowScreensConfiguration()
+      li
 
-        display block
-
-        grid-column span 2
-        margin-top 6px
+        margin-left 1rem
+        padding-left 0.6rem
 
 
-      tbody,
-      tr
+        &::marker
 
-        +NarrowScreensConfiguration()
-
-          display block
+          color: W3C_39_ShadesOfGray--YDF[12]
 
 
-          +tr
+        +li
 
-            margin-top 6px
+          margin-top 0.1rem
+
+
+    &-ScrollingContainerForTable
+
+      overflow-x auto
+      overflow-y hidden
+
+      grid-column span 2
+      margin-top 0.4rem
+
+
+      table
+
+        border-collapse collapse
+
+
+      th,
+      td
+
+        border-width 1px
+        padding 0.4rem
+        padding-right 1px //* [ Why?! ] Without right padding the right border is invisible even scrolled to maximum. */
+
+        border-style solid
+        border-color W3C_39_ShadesOfGray--YDF[24]
+
+        white-space nowrap
 
 
       th
 
+        font-size 1rem
+        text-align right
+
         font-weight bold
 
-
-        +WideScreensConfiguration()
-
-          text-align right
-
-
-        +NarrowScreensConfiguration()
-
-          display block
+        color: W3C_39_ShadesOfGray--YDF[12]
 
 
       td
 
-        +NarrowScreensConfiguration()
-
-          display block
-
-          margin-left 6px
-
-
-          +td
-
-            margin-top 4px
+        padding-left 0.5rem

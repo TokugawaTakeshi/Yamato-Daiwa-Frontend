@@ -12,17 +12,21 @@
     uploadSingleFileByDragAndDropGuidance: "Upload",
 
     buttons: {
+
       filePicking: {
-        buildLabel: ({ areMultipleFileAllowed }) => `Select file${ areMultipleFileAllowed ? "s" : "" }`
+        buildLabel: ({ areMultipleFileAllowed }) =>
+            `Select file${ areMultipleFileAllowed ? "s" : "" }`
+      },
+
+      singleImageDeleting: {
+        label: "Удалить",
+        accessibilityGuidance: "Удалить файл"
       }
+
     },
 
     singleImagePreviewer: {
-      image: { alternatingText: "Uploaded image preview" },
-      deletingButton: {
-        label: "Delete",
-        accessibilityGuidance: "Delete the image"
-      }
+      image: { alternatingText: "Превью выбранного изображения" }
     }
 
   };

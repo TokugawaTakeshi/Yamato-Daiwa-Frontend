@@ -11,6 +11,7 @@ namespace YamatoDaiwa.Frontend.GUI_Components.AdmonitionBlock;
 public partial class AdmonitionBlock :
     Microsoft.AspNetCore.Components.ComponentBase,
     ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement,
+    IHTML_AttributesFallthrough,
     IAsyncDisposable
 {
 

@@ -94,7 +94,7 @@ mixin FilesUploader--YDF(properties, statesSimulations)
     ];
 
 
-    /** @type { ?string } */
+    /** @type { string | undefined } */
     let singleImagePreviewURI;
 
     if (isString(value)) {
@@ -113,8 +113,10 @@ mixin FilesUploader--YDF(properties, statesSimulations)
       })
     )
 
+    /* FIXME Not found to specify "accept all files" such as satisfy the HTML validator.
+     *  Both "*" and *.*" has been treated as invalid. */
     const acceptAttributeValueForInputTag = supportedFilesNamesExtensionsWihtoutLeadingDots.length > 0 ?
-        `.${ supportedFilesNamesExtensionsWihtoutLeadingDots.join(", .") }` : "*";
+        `.${ supportedFilesNamesExtensionsWihtoutLeadingDots.join(", .") }` : "*.*";
 
 
   +CompoundControlShell--YDF(
@@ -148,6 +150,8 @@ mixin FilesUploader--YDF(properties, statesSimulations)
   ).FilesUploader--YDF&attributes(attributes)(
     class=rootElementModifierCSS_Classes
     data-initial_value=value
+    data-minimal_files_count=minimalFilesCount
+    data-maximal_files_count=maximalFilesCount
   )
 
     if !noFilePickingButton
@@ -176,6 +180,7 @@ mixin FilesUploader--YDF(properties, statesSimulations)
         +FileAdding--YDF_Icon.FilesUploader--YDF-DragAndDropArea-Icon
         p.FilesUploader--YDF-DragAndDropArea-Guidance=FilesUploader__YDF.localization.uploadSingleFileByDragAndDropGuidance
 
+
     if singleImagePreviewURI
 
       .FilesUploader--YDF-SingleImagePreviewer
@@ -185,12 +190,16 @@ mixin FilesUploader--YDF(properties, statesSimulations)
           alt=FilesUploader__YDF.localization.singleImagePreviewer.image.alternatingText
         )
 
-      if !(required && maximalFilesCount === 1)
-        +Button--YDF.FilesUploader--YDF-FileDeletingButton(
+      if !required
+        +Button--YDF.FilesUploader--YDF-SingleFileDeletingButton(
           aria-label=FilesUploader__YDF.localization.singleImagePreviewer.deletingButton.accessibilityGuidance
         )
           +TrashCan__Filled--YDF_Icon.Button--YDF-SVG_Icon
           span.Button--YDF-Label= FilesUploader__YDF.localization.singleImagePreviewer.deletingButton.label
+
+    else if maximalFilesCount === 1
+
+      template.FilesUploader--YDF-SingleImagePreviewerMountingPoint
 
     if multipleImagesPreview
 

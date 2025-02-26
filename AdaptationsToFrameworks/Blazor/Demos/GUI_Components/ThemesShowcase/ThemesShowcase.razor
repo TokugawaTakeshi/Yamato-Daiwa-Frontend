@@ -20,7 +20,7 @@
               name=@this.decorativeVariationsWrapperTag
               attributes=@(
                 new Dictionary<string, object> {
-                  { "class", String.Join(" ", "ThemesShowcase--YDF-ChildList", this.decorativeVariationsWrapperAdditionalCSS_Classes) }
+                  { "class", this.innermostChildListClassAttributeValue }
                 }
               )
             >
@@ -53,16 +53,16 @@
                 {
               
                   @ComponentSlot(
-                      new ComponentSlotData
-                        {
-                        themeKey = themeKey,
-                        themeValue = Enum.Parse(themes, themeKey),
-                        geometricVariationKey = geometricVariationKey,
-                        geometricVariationValue = Enum.Parse(geometricVariations, geometricVariationKey),
-                        decorativeVariationKey = decorativeVariationKey,
-                        decorativeVariationValue = Enum.Parse(decorativeVariations, decorativeVariationKey)
-                      }
-                    )
+                    new ComponentSlotData
+                      {
+                      themeKey = themeKey,
+                      themeValue = Enum.Parse(themes, themeKey),
+                      geometricVariationKey = geometricVariationKey,
+                      geometricVariationValue = Enum.Parse(geometricVariations, geometricVariationKey),
+                      decorativeVariationKey = decorativeVariationKey,
+                      decorativeVariationValue = Enum.Parse(decorativeVariations, decorativeVariationKey)
+                    }
+                  )
                   
                 }
               

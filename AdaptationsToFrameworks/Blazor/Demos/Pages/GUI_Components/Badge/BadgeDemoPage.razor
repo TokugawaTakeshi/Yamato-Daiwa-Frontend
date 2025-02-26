@@ -1,13 +1,256 @@
 @page "/Badge"
 
-
+@using Demos.GUI_Components.ThemesShowcase;
 @using YamatoDaiwa.Frontend.GUI_Components.Badge
+@using YamatoDaiwa.Frontend.GUI_Components.Badge.LoadingPlaceholder
+@using YamatoDaiwa.Frontend.SVG_Icons.Calendar
 
 
-<Badge
-  value="Hello, world!"
-  decorativeVariation=@Badge.StandardDecorativeVariations.calmingBright
-  rootElementModifierCSS_Class="A"
-  rootElementModifierCSS_Classes=@(new[] { "B", "C" })
-  rootElementSpaceSeparatedModifierCSS_Classes="E F"
-/>
+<div class="YDF_Gallery">
+
+  <h1 class="Heading1">Badge Component Demos</h1>
+
+  
+  @* ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Minimal</h2>
+  
+  <ThemesShowcase
+    themes=@typeof(Badge.StandardThemes)
+    themeKeyLabelPrefix=@BadgeDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Badge.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@BadgeDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Badge.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@BadgeDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsWrapperAdditionalCSS_Classes=@([ "BadgeGallery-TwoColumnsTable" ])
+  >
+    <ComponentSlot>
+      <Badge
+        valueLabel="Value"
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+      />
+    </ComponentSlot>
+  </ThemesShowcase>
+
+  
+  @* ━━━ Keys and Values ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Keys and Values</h2>
+  
+  <ThemesShowcase
+    themes=@typeof(Badge.StandardThemes)
+    themeKeyLabelPrefix=@BadgeDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Badge.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@BadgeDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Badge.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@BadgeDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsWrapperAdditionalCSS_Classes=@([ "BadgeGallery-TwoColumnsTable" ])
+  >
+    <ComponentSlot>
+      <Badge
+        keyLabel="Key"
+        valueLabel="Value"
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+      />
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Long Labels ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Long Labels</h2>
+  
+  <div class="BadgeGallery-LinearFlow BadgeGallery-LinearFlow__LimitedChildrenMaximalWidth">
+    <Badge
+      keyLabel=@textOverflowSafetyTest
+      valueLabel=@textOverflowSafetyTest
+      decorativeVariation=@Badge.StandardDecorativeVariations.achromaticPastel
+    />
+  </div>
+  
+  
+  @* ━━━ Icons, Keys and Values ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Icons, Keys and Values</h2>
+  
+  <ThemesShowcase
+    themes=@typeof(Badge.StandardThemes)
+    themeKeyLabelPrefix=@BadgeDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Badge.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@BadgeDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Badge.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@BadgeDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsWrapperAdditionalCSS_Classes=@([ "BadgeGallery-TwoColumnsTable" ])
+  >
+    <ComponentSlot>
+      <Badge
+        keyLabel="Date"
+        valueLabel=@this.stringifiedTodayDate
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+      >
+        <PrependedSVG_Icon>
+          <CalendarIcon__Time rootElementModifierCSS_Class="Badge--YDF-SVG_Icon"/>
+        </PrependedSVG_Icon>  
+      </Badge>
+    </ComponentSlot>
+  </ThemesShowcase>
+
+  
+  @* ━━━ Icons and Values ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Icons and Values</h2>
+
+  <ThemesShowcase
+    themes=@typeof(Badge.StandardThemes)
+    themeKeyLabelPrefix=@BadgeDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Badge.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@BadgeDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Badge.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@BadgeDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsWrapperAdditionalCSS_Classes=@([ "BadgeGallery-TwoColumnsTable" ])
+  >
+    <ComponentSlot>
+      <Badge
+        valueLabel=@this.stringifiedTodayDate
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+      >
+        <PrependedSVG_Icon>
+          <CalendarIcon__Time rootElementModifierCSS_Class="Badge--YDF-SVG_Icon"/>
+        </PrependedSVG_Icon>
+      </Badge>
+    </ComponentSlot>
+  </ThemesShowcase>
+
+
+  @* ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Geometric Modifiers</h2>
+  
+  @* ─── Pill Shape ───────────────────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">Pill Shape</h3>
+  
+  <ThemesShowcase
+    themes=@typeof(Badge.StandardThemes)
+    themeKeyLabelPrefix=@BadgeDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Badge.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@BadgeDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Badge.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@BadgeDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsWrapperAdditionalCSS_Classes=@([ "BadgeGallery-TwoColumnsTable" ])
+  >
+    <ComponentSlot>
+      <Badge
+        keyLabel="Date"
+        valueLabel=@this.stringifiedTodayDate
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        geometricModifiers=@(new []{ Badge.GeometricModifiers.pillShape })
+        decorativeVariation=@context.decorativeVariationValue
+      >
+        <PrependedSVG_Icon>
+          <CalendarIcon__Time rootElementModifierCSS_Class="Badge--YDF-SVG_Icon"/>
+        </PrependedSVG_Icon>  
+      </Badge>
+    </ComponentSlot>
+  </ThemesShowcase>
+
+
+  @* ─── Single Line ──────────────────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">Single Line</h3>
+
+  <div class="BadgeGallery-LinearFlow BadgeGallery-LinearFlow__LimitedChildrenMaximalWidth">
+    <Badge
+      keyLabel=@textOverflowSafetyTest
+      valueLabel=@textOverflowSafetyTest
+      geometricModifiers=@(new []{ Badge.GeometricModifiers.singleLine })
+      decorativeVariation=@Badge.StandardDecorativeVariations.achromaticPastel
+    />
+  </div>
+
+
+  @* ━━━ Decorative Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Decorative Modifiers</h2>
+
+  @* ─── Borders Disguising ───────────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">Borders Disguising</h3>
+  
+  <ThemesShowcase
+    themes=@typeof(Badge.StandardThemes)
+    themeKeyLabelPrefix=@BadgeDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Badge.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@BadgeDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Badge.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@BadgeDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsWrapperAdditionalCSS_Classes=@([ "BadgeGallery-TwoColumnsTable" ])
+  >
+    <ComponentSlot>
+      <Badge
+        keyLabel="Date"
+        valueLabel=@this.stringifiedTodayDate
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        decorativeModifiers=@(new []{ Badge.DecorativeModifiers.bordersDisguising })
+      >
+        <PrependedSVG_Icon>
+          <CalendarIcon__Time rootElementModifierCSS_Class="Badge--YDF-SVG_Icon"/>
+        </PrependedSVG_Icon>  
+      </Badge>
+    </ComponentSlot>
+  </ThemesShowcase>
+
+
+  @* ─── No Background ────────────────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">No Background</h3>
+  
+  <ThemesShowcase
+    themes=@typeof(Badge.StandardThemes)
+    themeKeyLabelPrefix=@BadgeDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Badge.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@BadgeDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Badge.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@BadgeDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsWrapperAdditionalCSS_Classes=@([ "BadgeGallery-TwoColumnsTable" ])
+  >
+    <ComponentSlot>
+      <Badge
+        keyLabel="Date"
+        valueLabel=@this.stringifiedTodayDate
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        decorativeModifiers=@(new []{ Badge.DecorativeModifiers.noBackground })
+      >
+        <PrependedSVG_Icon>
+          <CalendarIcon__Time rootElementModifierCSS_Class="Badge--YDF-SVG_Icon"/>
+        </PrependedSVG_Icon>  
+      </Badge>
+    </ComponentSlot>
+  </ThemesShowcase>
+
+  
+  @* ━━━ Loading Placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Loading Placeholder</h2>
+  
+  <div class="BadgeGallery-LinearFlow">
+  
+    <BadgeLoadingPlaceholder
+    />
+
+    <BadgeLoadingPlaceholder
+      geometricVariation=@Badge.StandardGeometricVariations.regular
+    />
+
+    <BadgeLoadingPlaceholder
+      geometricVariation=@Badge.StandardGeometricVariations.small
+    />
+
+    <BadgeLoadingPlaceholder
+      geometricVariation=@Badge.StandardGeometricVariations.small
+    />
+  
+  </div>
+  
+</div>

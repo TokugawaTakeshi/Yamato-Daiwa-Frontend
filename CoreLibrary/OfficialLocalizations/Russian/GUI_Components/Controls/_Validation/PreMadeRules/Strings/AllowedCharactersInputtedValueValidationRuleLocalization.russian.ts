@@ -7,6 +7,6 @@ export const allowedCharactersInputtedValueValidationRuleLocalization__russian:
   errorMessageBuilder: (
     { inputtedDisallowedCharacters }: AllowedCharactersInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
-    `Следующие символы не допускаются: ${ inputtedDisallowedCharacters.join(",") }. ` +
-    "Пожалуйста, удалите эти символы."
+    `Следующие символы не допускаются: ${ inputtedDisallowedCharacters.join(", ") }. ` +
+    "Пожалуйста, удалите эти символы или замените на другие."
 };

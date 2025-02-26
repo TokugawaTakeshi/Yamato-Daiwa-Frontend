@@ -8,9 +8,14 @@ namespace YamatoDaiwa.Frontend.GUI_Components.Badge.LoadingPlaceholder;
 
 public partial class BadgeLoadingPlaceholder :
     Microsoft.AspNetCore.Components.ComponentBase,
-    ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement
+    ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement,
+    IHTML_AttributesFallthrough
 {
 
+  [Microsoft.AspNetCore.Components.Parameter(CaptureUnmatchedValues = true)]
+  public IDictionary<string, object>? rootElementAttributes { get; set; }
+  
+  
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected string _theme = Badge.StandardThemes.regular.ToString();
 
@@ -39,7 +44,7 @@ public partial class BadgeLoadingPlaceholder :
   }
 
   [Microsoft.AspNetCore.Components.Parameter]
-  public Badge.GeometricModifiers[] geometricModifiers { get; set; } = Array.Empty<Badge.GeometricModifiers>();
+  public Badge.GeometricModifiers[] geometricModifiers { get; set; } = [];
 
 
   /* ━━━ CSS classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -52,36 +57,37 @@ public partial class BadgeLoadingPlaceholder :
   [Microsoft.AspNetCore.Components.Parameter]
   public string? rootElementSpaceSeparatedModifierCSS_Classes { get; set; } = null;
 
-  private string composeClassAttributeValueForRootElement(string namespaceCSS_Class)
-  {
-    return new List<string> { namespaceCSS_Class }.
+  private string composeClassAttributeValueForRootElement => new List<string>
+      {
+        Badge.CSS_NAMESPACE, 
+        "Badge--YDF__LoadingPlaceholder"
+      }.
 
-        AddElementToEndIf(
-          $"Badge--YDF__{ this._theme.ToUpperCamelCase() }Theme",
-          YDF_ComponentsHelper.MustApplyThemeCSS_Class(
-            typeof(Badge.StandardThemes), Badge.CustomThemes, this.areThemesCSS_ClassesCommon
-          )
-        ).
+      AddElementToEndIf(
+        $"{ Badge.CSS_NAMESPACE }__{ this._theme.ToUpperCamelCase() }Theme",
+        YDF_ComponentsHelper.MustApplyThemeCSS_Class(
+          typeof(Badge.StandardThemes), Badge.CustomThemes, this.areThemesCSS_ClassesCommon
+        )
+      ).
 
-        AddElementToEndIf(
-          $"Badge--YDF__{ this._geometricVariation.ToUpperCamelCase() }Geometry",
-          YDF_ComponentsHelper.MustApplyGeometricVariationModifierCSS_Class(
-            typeof(Badge.StandardGeometricVariations), Badge.CustomGeometricVariations
-          )
-        ).
-        AddElementToEndIf(
-          "Badge--YDF__PllShapeGeometricModifier",
-          this.geometricModifiers.Contains(Badge.GeometricModifiers.pillShape)
-        ).
+      AddElementToEndIf(
+        $"{ Badge.CSS_NAMESPACE }__{ this._geometricVariation.ToUpperCamelCase() }GeometricVariation",
+        YDF_ComponentsHelper.MustApplyGeometricVariationModifierCSS_Class(
+          typeof(Badge.StandardGeometricVariations), Badge.CustomGeometricVariations
+        )
+      ).
+      AddElementToEndIf(
+        $"{ Badge.CSS_NAMESPACE }__PllShapeGeometricModifier",
+        this.geometricModifiers.Contains(Badge.GeometricModifiers.pillShape)
+      ).
 
 
-        AddElementToEndIf(
-          ((ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes,
-          rootElementSpaceSeparatedExternalCSS_Classes =>
-              !String.IsNullOrEmpty(rootElementSpaceSeparatedExternalCSS_Classes)
-        ).
+      AddElementToEndIf(
+        ((ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes,
+        rootElementSpaceSeparatedExternalCSS_Classes =>
+          !String.IsNullOrEmpty(rootElementSpaceSeparatedExternalCSS_Classes)
+      ).
 
-        StringifyEachElementAndJoin(" ");
-  }
-
+      StringifyEachElementAndJoin(" ");
+  
 }

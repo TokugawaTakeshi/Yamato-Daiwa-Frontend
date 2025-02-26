@@ -180,7 +180,7 @@ block append Functionality
 
   mixin RegularWebPageTemplate-Link--YDF(properties)
 
-    +Link--YDF({ internalURI: properties.URI })= properties.title || properties.label
+    +Link--YDF({ internalURI: properties.URI })&attributes(attributes)= properties.title || properties.label
 
 
   mixin RegularWebPageTemplate-LinksList--YDF(links)
@@ -225,21 +225,23 @@ block append Functionality
 
         span.StaticPreviewAnywherePage--YDF-Card-Title= page.title
 
-        table
+        .StaticPreviewAnywherePage--YDF-Card-ScrollingContainerForTable
 
-          tbody
+          table
 
-            each stateDependentVariation in page.linksTable
+            tbody
 
-              tr
+              each stateDependentVariation in page.linksTable
 
-                th= stateDependentVariation.rowLabel
+                tr
 
-                each column in stateDependentVariation.columns
+                  th= stateDependentVariation.rowLabel
 
-                  td
+                  each column in stateDependentVariation.columns
 
-                    +RegularWebPageTemplate-Link--YDF(column)
+                    td
+
+                      +RegularWebPageTemplate-Link--YDF(column)
 
   mixin RegularWebPageTemplate-SectionsFlow--YDF(sections)
 

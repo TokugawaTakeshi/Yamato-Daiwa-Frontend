@@ -7,7 +7,7 @@ module.exports = [
     ignores: [
       ".idea/",
       "Distributable/",
-      "Tests/Output/"
+      "Tests/Build/"
     ]
   },
 

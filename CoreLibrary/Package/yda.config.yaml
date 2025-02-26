@@ -1,42 +1,42 @@
-projectBuilding:
+$projectBuilding:
 
-  commonSettings:
+  $commonSettings:
 
-    selectiveExecutions:
+    $selectiveExecutions:
 
       PugAuxiliaries:
-        tasksAndSourceFilesSelection:
-          ECMA_ScriptLogicProcessing: [ PugExtensions, ComponentsDefaultLocalizations ]
+        $tasksAndSourceFilesSelection:
+          $ECMA_ScriptLogicProcessing: [ PugExtensions, GUI_ComponentsRequirements ]
 
       Logic:
-        tasksAndSourceFilesSelection:
-          ECMA_ScriptLogicProcessing: [ Logic ]
+        $tasksAndSourceFilesSelection:
+          $ECMA_ScriptLogicProcessing: [ Logic ]
 
       StylesAndComponentsTesting:
 
-        tasksAndSourceFilesSelection:
-          markupProcessing: [ StylesAndComponentsTesting ]
-          stylesProcessing: [ StylesAndComponentsTesting ]
-          ECMA_ScriptLogicProcessing: [ StylesAndComponentsTesting ]
+        $tasksAndSourceFilesSelection:
+          $markupProcessing: [ StylesAndComponentsTesting ]
+          $stylesProcessing: [ StylesAndComponentsTesting ]
+          $ECMA_ScriptLogicProcessing: [ StylesAndComponentsTesting ]
 
-        browserLiveReloadingSetupID: StylesAndComponentsTesting
+        $browserLiveReloadingSetupID: StylesAndComponentsTesting
 
       Workbenches:
 
-        tasksAndSourceFilesSelection:
-          markupProcessing: [ Workbenches ]
-          stylesProcessing: [ Workbenches ]
-          ECMA_ScriptLogicProcessing: [ Workbenches ]
+        $tasksAndSourceFilesSelection:
+          $markupProcessing: [ Workbenches ]
+          $stylesProcessing: [ Workbenches ]
+          $ECMA_ScriptLogicProcessing: [ Workbenches ]
 
-        browserLiveReloadingSetupID: Workbenches
+        $browserLiveReloadingSetupID: Workbenches
 
       StaticPreviewAnywherePage:
-        tasksAndSourceFilesSelection:
-          stylesProcessing: [ StaticPreviewAnywherePage ]
+        $tasksAndSourceFilesSelection:
+          $stylesProcessing: [ StaticPreviewAnywherePage ]
 
 
   # === Markup =========================================================================================================
-  markupProcessing:
+  $markupProcessing:
 
     common:
 
@@ -68,7 +68,7 @@ projectBuilding:
 
 
   # === Styles =========================================================================================================
-  stylesProcessing:
+  $stylesProcessing:
 
     entryPointsGroups:
 
@@ -111,8 +111,9 @@ projectBuilding:
         singleEntryPointSourceFileRelativePath: PagesTemplates/StaticPreviewAnywherePage/StaticPreviewAnywherePage.styl
 
         buildingModeDependent:
-          LOCAL_DEVELOPMENT:
+          PRODUCTION:
             outputTopDirectoryRelativePath: PagesTemplates/StaticPreviewAnywherePage
+            revisioning: { disable: true }
 
 
   # === ECMAScript logic processing ====================================================================================
@@ -158,9 +159,9 @@ projectBuilding:
             revisioning: { disable: true }
 
 
-      ComponentsDefaultLocalizations:
+      GUI_ComponentsRequirements:
 
-        singleEntryPointSourceFileRelativePath: Markup/InlineECMAScript/Source/ComponentsDefaultLocalizations.ts
+        singleEntryPointSourceFileRelativePath: Markup/InlineECMAScript/Source/GUI_ComponentsRequirements.ts
 
         targetRuntime:
           type: PUG
@@ -168,7 +169,7 @@ projectBuilding:
         distributing:
           exposingOfExportsFromEntryPoints:
             mustExpose: true
-            namespace: __COMPONENTS_DEFAULT_LOCALIZATIONS_EXPORTS__
+            namespace: __YDF_GUI_COMPONENTS_REQUIREMENTS__
 
         buildingModeDependent:
           PRODUCTION:

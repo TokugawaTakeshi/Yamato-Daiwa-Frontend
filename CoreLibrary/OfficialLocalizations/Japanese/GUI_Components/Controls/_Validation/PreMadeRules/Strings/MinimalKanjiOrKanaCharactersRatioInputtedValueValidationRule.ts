@@ -46,7 +46,7 @@ class MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule implements In
     if (isNotUndefined(compoundParameter.errorMessageBuilder)) {
       this.errorMessageBuilder = compoundParameter.errorMessageBuilder;
     } else if (isNotUndefined(compoundParameter.errorMessage)) {
-      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions, @typescript-eslint/no-unsafe-type-assertion --
        * It was proved that "errorMessage" is non-undefined, and it will not change. */
       this.errorMessageBuilder = (): string => compoundParameter.errorMessage as string;
     } else {
@@ -81,11 +81,11 @@ class MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule implements In
         ((): boolean => {
 
           let kanjiOrKanaCharactersCount: number = 0;
-          let kanjiOrKanaCharactersRatio: number = 0;
+          let kanjiOrKanaCharactersRatio: number;
 
           for (const character of rawValue) {
 
-            if (/[ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠]/u.test(character)) {
+            if ((/[ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠]/u).test(character)) {
 
               kanjiOrKanaCharactersCount++;
               kanjiOrKanaCharactersRatio = kanjiOrKanaCharactersCount / rawValue.length;

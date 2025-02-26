@@ -17,9 +17,9 @@ public interface ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement : 
         
       AddElementToEndIf(this.rootElementModifierCSS_Class!,  !String.IsNullOrEmpty(this.rootElementModifierCSS_Class)).
         
-      AddElementsToEnd(this.rootElementSpaceSeparatedModifierCSS_Classes?.Split(" ") ?? Array.Empty<string>()).
+      AddElementsToEnd(this.rootElementSpaceSeparatedModifierCSS_Classes?.Split(" ") ?? []).
         
-      AddElementsToEnd(this.rootElementModifierCSS_Classes ?? Array.Empty<string>()).
+      AddElementsToEnd(this.rootElementModifierCSS_Classes ?? []).
         
       StringifyEachElementAndJoin(" ");
   

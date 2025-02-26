@@ -21,7 +21,7 @@ const emailAddressInputtedValueValidationLocalization__english: EmailAddressInpu
   maximalCharactersCountValidationErrorMessageBuilder: (
     { rawValue, maximalCharactersCount }: MaximalCharactersCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
-      `${ rawValue.length } characters is too much for the email address. ` +
+      `${ rawValue.length } characters is too many for the email address. ` +
       `Please check the correct email address and input no more than ${ maximalCharactersCount } characters.`,
 
   invalidEmailAddressErrorMessageBuilder: emailAddressInputtedValueValidationRuleLocalization__english.errorMessageBuilder

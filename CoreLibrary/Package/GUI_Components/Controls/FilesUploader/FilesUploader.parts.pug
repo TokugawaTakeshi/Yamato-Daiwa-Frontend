@@ -1,0 +1,18 @@
+include ../../../Functionality.pug
+include ../../../GUI_Components.pug
+
+
+template
+
+  .FilesUploader--YDF-SingleImagePreviewer
+
+    img.FilesUploader--YDF-SingleImagePreviewer-Image(
+      src=""
+      alt=""
+    )
+
+    +Button--YDF.FilesUploader--YDF-SingleFileDeletingButton(
+      aria-label=""
+    )
+      +TrashCan__Filled--YDF_Icon.Button--YDF-SVG_Icon
+      span.Button--YDF-Label

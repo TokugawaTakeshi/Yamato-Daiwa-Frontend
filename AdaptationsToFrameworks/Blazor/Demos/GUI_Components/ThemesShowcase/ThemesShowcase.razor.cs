@@ -37,6 +37,16 @@ public partial class ThemesShowcase : Microsoft.AspNetCore.Components.ComponentB
   [Microsoft.AspNetCore.Components.Parameter]
   public Microsoft.AspNetCore.Components.RenderFragment<ComponentSlotData> ComponentSlot { get; set; } = null!;
 
+  private string innermostChildListClassAttributeValue =>
+    String.Join(
+      " ",
+      "ThemesShowcase--YDF-ChildList",
+      String.Join(
+        " ",
+        this.decorativeVariationsWrapperAdditionalCSS_Classes
+      )
+    );
+  
   public record ComponentSlotData
   {
     public required string themeKey { get; init; } 

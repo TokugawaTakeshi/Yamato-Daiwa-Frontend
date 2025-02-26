@@ -6,8 +6,8 @@ module.exports = [
   {
     ignores: [
       ".idea/",
-      "Distributable/",
-      "Workbenches/Output/"
+      "Distributable/**",
+      "Workbenches/Build/"
     ]
   },
 

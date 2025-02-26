@@ -134,9 +134,9 @@ class Badge extends React.Component<Badge.Properties> {
 
         { isNotUndefined(SVG_Icon) && <SVG_Icon className="Badge--YDF-SVG_Icon"/> }
 
-        { isNotUndefined(this.props.keyLabel) && <span className="Badge--YDF-Key">{ this.props.keyLabel }</span> }
+        { isNotUndefined(this.props.keyLabel) && <span className="Badge--YDF-KeyLabel">{ this.props.keyLabel }</span> }
 
-        <span className="Badge--YDF-Value">{ this.props.valueLabel }</span>
+        <span className="Badge--YDF-ValueLabel">{ this.props.valueLabel }</span>
 
       </RootElement>
 
