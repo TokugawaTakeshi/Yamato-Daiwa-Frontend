@@ -1,8 +1,9 @@
 @page "/AdmonitionBlock"
 
 
+@using YamatoDaiwa.Frontend.GUI_Components.AdmonitionBlock;
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.Buttons.Plain;
 @using Demos.GUI_Components.ThemesShowcase;
-@using YamatoDaiwa.Frontend.GUI_Components.AdmonitionBlock
 
 
 <div class="YDF_Gallery">
@@ -196,12 +197,10 @@
           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  
         </p>
         
-        <button
-          type="button"
-          class="AdmonitionBlock--YDF-CenteredButton"
-        >
-          Alklaku min
-        </button>
+         <Button
+          label="Alklaku min"
+          rootElementModifierCSS_Class="AdmonitionBlock--YDF-CenteredButton"
+        />
         
       </AdmonitionBlock>  
     </ComponentSlot>
@@ -236,19 +235,8 @@
         </ChildContent>
 
         <ActionBarContent>
-          
-          <button
-            type="button"
-          >
-            Ago 1
-          </button>
-
-          <button
-            type="button"
-          >
-            Ago 2
-          </button>
-          
+           <Button label="Ago 1"/>
+           <Button label="Ago 2"/>
         </ActionBarContent>
         
       </AdmonitionBlock>  

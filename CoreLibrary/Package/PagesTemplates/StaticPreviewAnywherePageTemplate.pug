@@ -245,9 +245,32 @@ block append Functionality
 
   mixin RegularWebPageTemplate-SectionsFlow--YDF(sections)
 
+    -
+
+      HeadingsLevelsCoordinator__YDF.incrementLevel();
+
+      let headingCSS_Class;
+
+      switch (HeadingsLevelsCoordinator__YDF.currentLevel) {
+
+        case 3: {
+          headingCSS_Class = "StaticPreviewAnywherePage--YDF-SubsectionHeading";
+          break;
+        }
+
+
+        case 4: {
+          headingCSS_Class = "StaticPreviewAnywherePage--YDF-SubsubsectionHeading";
+        }
+
+      }
+
+
     each section in sections
 
-      h3.StaticPreviewAnywherePage--YDF-SubsectionHeading= section.heading
+      #{ HeadingsLevelsCoordinator__YDF.getHeadingTagOfCurrentLevel() }(
+        class=headingCSS_Class
+      )= section.heading
 
       if section.pages
 
@@ -260,6 +283,8 @@ block append Functionality
       if section.sections
 
         +RegularWebPageTemplate-SectionsFlow--YDF(section.sections)
+
+    - HeadingsLevelsCoordinator__YDF.decrementLevel();
 
 
 block append Styles
@@ -277,26 +302,37 @@ block append PageContent
 
     if StaticPreviewAnywherePage__YDF.topHeading
 
-      h1.StaticPreviewAnywherePage--YDF-TopHeading= StaticPreviewAnywherePage__YDF.topHeading
+      #{ HeadingsLevelsCoordinator__YDF.getHeadingTagOfCurrentLevel() }.StaticPreviewAnywherePage--YDF-TopHeading
+        | #{ StaticPreviewAnywherePage__YDF.topHeading }
+
 
     if StaticPreviewAnywherePage__YDF.tableOfContents.length > 0
 
-      - const tableOfContentsItems = [ ...StaticPreviewAnywherePage__YDF.tableOfContents ];
+      -
+
+        const tableOfContentsItems = [ ...StaticPreviewAnywherePage__YDF.tableOfContents ];
+        HeadingsLevelsCoordinator__YDF.incrementLevel();
+
 
       nav.StaticPreviewAnywherePage--YDF-Navigation
+
 
         //- ━━━ Leading Unsectioned Pages ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         if StaticPreviewAnywherePage__YDF.tableOfContents[0].title
 
-          - let currentPageIndex = 0;
+          -
+            let currentPageIndex = 0;
+            let currentItem = StaticPreviewAnywherePage__YDF.tableOfContents[currentPageIndex];
 
           ul.StaticPreviewAnywherePage--YDF-CardsFlow
 
-            while StaticPreviewAnywherePage__YDF.tableOfContents[currentPageIndex].title
+            while currentItem && currentItem.title
 
-              +RegularWebPageTemplate-Card--YDF(StaticPreviewAnywherePage__YDF.tableOfContents[currentPageIndex])
+              +RegularWebPageTemplate-Card--YDF(currentItem)
 
-              - currentPageIndex++;
+              -
+                currentPageIndex++;
+                currentItem = StaticPreviewAnywherePage__YDF.tableOfContents[currentPageIndex]
 
           - tableOfContentsItems.slice(currentPageIndex);
 
@@ -306,7 +342,8 @@ block append PageContent
 
           if polymorphicElement.heading
 
-            h2.StaticPreviewAnywherePage--YDF-SectionHeading= polymorphicElement.heading
+            #{ HeadingsLevelsCoordinator__YDF.getHeadingTagOfCurrentLevel() }.StaticPreviewAnywherePage--YDF-SectionHeading
+              | #{ polymorphicElement.heading }
 
           if polymorphicElement.pages
 

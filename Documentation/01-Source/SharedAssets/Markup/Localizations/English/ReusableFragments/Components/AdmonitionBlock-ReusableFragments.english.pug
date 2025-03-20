@@ -12,7 +12,7 @@ mixin AdmonitionBlockComponent-Abstract
     li.
       As in printed products, the frame is being used on the web sites with large amount of text for the accenting
         of specific fragments.
-      To allow the visitor instantly estimate the level of importance, the color coding is being used.
+      To allow the visitor instantly estimate the level of importance of accented text, the color coding is being used.
       For the important block, the warm colors is being selected (red, orange, yellow), and for the secondary
         information the cold colors (blue, green) or achromatic (black or gray frame with white or light gray
         background).
@@ -64,3 +64,47 @@ mixin AdmonitionBlockComponent-Abstract
   p.Article-Paragraph.
     The #[+Term--YDID floating messages] (in #[+ImportantEntity--YDID YDF] it is the #[+ImportantEntity--YDID Snackbar]
       component) are better suited with such cases).
+
+
+mixin AdmonitionBlockComponent-Synopsis(properties)
+
+  -
+
+    const {
+
+      framework
+
+    } = properties ?? {};
+
+    let intelliJ_IDEA_FamilyIDEsLiveTemplateAbbreviation;
+
+    switch (framework) {
+
+      default: {
+        intelliJ_IDEA_FamilyIDEsLiveTemplateAbbreviation = "ab-ydf";
+      }
+
+    }
+
+  +GUI_ComponentSummaryViewer({
+    framework,
+    metadataClass: AdmonitionBlock__YDF,
+    intelliJ_IDEA_FamilyIDEsLiveTemplateAbbreviation: "ab-ydf",
+    stylusMixinName: "provideAdmonitionBlockYDF_Component",
+    themesNamesTranslations: {
+      [AdmonitionBlock__YDF.Themes.regular]: "Basic (Default)"
+    },
+    geometricVariationsTranslations: {
+      [AdmonitionBlock__YDF.GeometricVariations.regular]: "Basic (Default)",
+      [AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike]: "Sticky note-like"
+    },
+    decorativeVariationsTranslations: {
+      [AdmonitionBlock__YDF.DecorativeVariations.notice]: "Notice",
+      [AdmonitionBlock__YDF.DecorativeVariations.error]: "Error or critical notice",
+      [AdmonitionBlock__YDF.DecorativeVariations.warning]: "Warning",
+      [AdmonitionBlock__YDF.DecorativeVariations.success]: "Successfully completed action",
+      [AdmonitionBlock__YDF.DecorativeVariations.guidance]: "Guidance",
+      [AdmonitionBlock__YDF.DecorativeVariations.question]: "Question"
+    }
+  })
+

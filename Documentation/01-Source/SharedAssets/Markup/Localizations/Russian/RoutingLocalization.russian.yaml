@@ -233,7 +233,7 @@ coreLibrary:
 
           $heading: "Кнопки"
 
-adaptationsToJavaScriptFrameworks:
+adaptationsToFrameworks:
 
   $heading: "Адаптации для JavaScript-фреймворков"
 

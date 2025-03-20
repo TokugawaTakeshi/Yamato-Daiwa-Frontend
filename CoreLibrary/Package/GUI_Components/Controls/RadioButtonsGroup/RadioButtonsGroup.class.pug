@@ -2,17 +2,35 @@
 
   class RadioButtonsGroup__YDF {
 
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
     static CSS_NAMESPACE = "RadioButtonsGroup--YDF";
 
 
     /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @type { { [themeName: string]: string } }
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
     static Themes = { regular: "REGULAR" };
 
-    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
-    /** @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null } */
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
     static _selfAndChildrenComponentsThemesCorrespondence = null;
 
-    /** @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } } */
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } }
+     * */
     static get selfAndChildrenComponentsThemesCorrespondence() {
       return RadioButtonsGroup__YDF._selfAndChildrenComponentsThemesCorrespondence ?? (
         RadioButtonsGroup__YDF._selfAndChildrenComponentsThemesCorrespondence = {
@@ -23,18 +41,23 @@
     }
 
     /**
+     * @public
+     *
      * @param {
      *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
      * } ownAndCorrespondingCompoundControlShellThemesDefinition
+     *
+     * @returns { typeof RadioButtonsGroup__YDF }
+     *
      * @example
      * RadioButtonsGroup__YDF.defineThemes({
      *   redmond: {
      *     compoundControlShell: CompoundControlShell__YDF.Themes.redmond,
-     *     button: Button__YDF.Themes.redmond
+     *     radioButton: RadioButton__YDF.Themes.redmond
      *   },
      *   cupertino: {
      *     compoundControlShell: CompoundControlShell__YDF.Themes.cupertino,
-     *     button: Button__YDF.Themes.cupertino
+     *     radioButton: RadioButton__YDF.Themes.cupertino
      *   }
      * });
      */
@@ -44,8 +67,16 @@
       );
     }
 
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
     static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
 
+    /**
+     * @public
+     * @returns { typeof RadioButtonsGroup__YDF }
+     * */
     static considerThemesAsCommon() {
       RadioButtonsGroup__YDF.areThemesCSS_ClassesCommon = true;
       return RadioButtonsGroup__YDF;
@@ -53,16 +84,28 @@
 
 
     /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
     static GeometricVariations = {
       regular: "REGULAR",
       small: "SMALL"
     };
 
-    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
-    /** @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null } */
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
     static _selfAndChildrenComponentsGeometricVariationsCorrespondence = null;
 
-    /** @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } } */
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } }
+     * */
     static get selfAndChildrenComponentsGeometricVariationsCorrespondence() {
       return RadioButtonsGroup__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence ?? (
         RadioButtonsGroup__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence = {
@@ -78,6 +121,27 @@
       );
     }
 
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition
+     *
+     * @returns { typeof RadioButtonsGroup__YDF }
+     *
+     * @example
+     * RadioButtonsGroup__YDF.defineGeometricVariations({
+     *   large: {
+     *     compoundControlShell: CompoundControlShell__YDF.GeometricVariation.large,
+     *     radioButton: RadioButton__YDF.GeometricVariations.large
+     *   },
+     *   extraLarge: {
+     *     compoundControlShell: CompoundControlShell__YDF.GeometricVariation.extraLarge,
+     *     radioButton: RadioButton__YDF.GeometricVariations.extraLarge
+     *   }
+     * });
+     */
     static defineGeometricVariations(ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition) {
       return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
         ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition, RadioButtonsGroup__YDF
@@ -86,13 +150,25 @@
 
 
     /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
     static DecorativeVariations = { regular: "REGULAR" };
 
-    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
-    /** @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null } */
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
     static _selfAndChildrenComponentsDecorativeVariationsCorrespondence = null;
 
-    /** @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } } */
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } }
+     * */
     static get selfAndChildrenComponentsDecorativeVariationsCorrespondence() {
       return RadioButtonsGroup__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
         RadioButtonsGroup__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
@@ -106,6 +182,27 @@
       );
     }
 
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition
+     *
+     * @returns { typeof RadioButtonsGroup__YDF }
+     *
+     * @example
+     * RadioButtonsGroup__YDF.defineDecorativeVariations({
+     *   modest: {
+     *     compoundControlShell: CompoundControlShell__YDF.DecorativeVariation.modest
+     *     radioButton: Button__YDF.GeometricVariations.modest
+     *   },
+     *   catchy: {
+     *     compoundControlShell: CompoundControlShell__YDF.DecorativeVariation.catchy,
+     *     radioButton: Button__YDF.GeometricVariations.catchy
+     *   }
+     * });
+     */
     static defineDecorativeVariations(ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition) {
       return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
         ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition, RadioButtonsGroup__YDF

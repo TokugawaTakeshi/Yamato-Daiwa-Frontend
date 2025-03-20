@@ -1,6 +1,6 @@
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import Button from "../Button.vue";
-import componentTemplate from "./Button-LoadingPlaceholder.vue.pug";
+import componentVueTemplate from "./Button-LoadingPlaceholder.vue.pug";
 
 /* ─── Framework ──────────────────────────────────────────────────────────────────────────────────────────────────── */
 import {
@@ -16,7 +16,7 @@ import ComponentsAuxiliaries from "../../../../ComponentsAuxiliaries";
 
 @VueComponentConfiguration({
   name: "Button--YDF-LoadingPlaceholder",
-  template: componentTemplate
+  template: componentVueTemplate
 })
 export default class ButtonLoadingPlaceholder extends VueComponent {
 
@@ -30,12 +30,13 @@ export default class ButtonLoadingPlaceholder extends VueComponent {
   @VueProperty({ type: Boolean, default: Button.areThemesCSS_ClassesCommon })
   protected readonly areThemesCSS_ClassesCommon!: boolean;
 
+
   @VueProperty({
     type: String,
     default: Button.GeometricVariations.regular,
     validator: (rawValue: string): boolean => isElementOfEnumeration(rawValue, Button.GeometricVariations)
   })
-  protected readonly geometry!: string;
+  protected readonly geometricVariation!: string;
 
   @VueProperty({
     type: Array,
@@ -59,7 +60,7 @@ export default class ButtonLoadingPlaceholder extends VueComponent {
       }),
 
       ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation: this.geometry,
+        geometricVariation: this.geometricVariation,
         allGeometricVariations: Button.GeometricVariations,
         CSS_Namespace: Button.CSS_NAMESPACE
       }),

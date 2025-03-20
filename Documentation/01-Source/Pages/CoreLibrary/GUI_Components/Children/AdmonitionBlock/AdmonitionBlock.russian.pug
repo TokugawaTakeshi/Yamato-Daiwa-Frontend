@@ -12,9 +12,14 @@ block append Metadata
 
   -
 
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.coreLibrary.$children.GUI_Components.$children.AdmonitionBlock;
+
     RegularWebPageTemplate__YDF.configure({
       metadata: {
-        title: buildHTML_PageTitle("AdmonitionBlock"),
+        title: buildHTML_PageTitle(topHeading),
         description: MetaDescriptionTemplates.GUI_Components.AdmonitionBlock
       },
       stylesSheetsURIs: [
@@ -31,11 +36,6 @@ block append Metadata
       english: routing.english.coreLibrary.$children.GUI_Components.$children.AdmonitionBlock.$URI,
       japanese: routing.japanese.coreLibrary.$children.GUI_Components.$children.AdmonitionBlock.$URI
     });
-
-    const {
-      $sectioning: localizedSectioning,
-      $heading: topHeading
-    } = localizedRouting.coreLibrary.$children.GUI_Components.$children.AdmonitionBlock;
 
 
 block append HeadScripts
@@ -56,11 +56,12 @@ block append SpecificContent
 
     +WebPageViewer--YDF({
       URI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage.html",
-      title: "Примеры использования компонента «AdmonitionBlock» " +
-          "(библиотека: «Yamato Daiwa Frontend», сокращённо: «YDF»). "
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "AdmonitionBlock" })
     })
 
     +AdmonitionBlockComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
 
 
     //- ━━━ Сводка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -70,26 +71,7 @@ block append SpecificContent
       HTML_ID: localizedSectioning.synopsis.$anchor
     }).Article-Heading2
 
-    +GUI_ComponentSummaryViewer({
-      metadataClass: AdmonitionBlock__YDF,
-      intelliJ_IDEA_FamilyIDEsLiveTemplateAbbreviation: "ab-ydf",
-      stylusMixinName: "provideAdmonitionBlockYDF_Component",
-      themesNamesTranslations: {
-        [AdmonitionBlock__YDF.Themes.regular]: "Базовая (по умолчанию)"
-      },
-      geometricVariationsTranslations: {
-        [AdmonitionBlock__YDF.GeometricVariations.regular]: "Базовая (по умолчанию)",
-        [AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike]: "Похожая на клейкие листочки"
-      },
-      decorativeVariationsTranslations: {
-        [AdmonitionBlock__YDF.DecorativeVariations.notice]: "Заметка",
-        [AdmonitionBlock__YDF.DecorativeVariations.error]: "Ошибка либо критически важное примечание",
-        [AdmonitionBlock__YDF.DecorativeVariations.warning]: "Предупреждение",
-        [AdmonitionBlock__YDF.DecorativeVariations.success]: "Успешное выполннение действия",
-        [AdmonitionBlock__YDF.DecorativeVariations.guidance]: "Объяснение",
-        [AdmonitionBlock__YDF.DecorativeVariations.question]: "Вопрос"
-      }
-    })
+    +AdmonitionBlockComponent-Synopsis
 
 
     //- ━━━ Использование ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -114,360 +96,360 @@ block append SpecificContent
     }).Article-Heading4
 
     +ComponentMarkupProvidingGuidanceFragment({ componentName: "AdmonitionBlock" })
+    //- TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //-
+      //- ─── Pug-примесь `AdmonitionBlock--YDF` ─────────────────────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 4,
+        innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$heading,
+        HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$anchor
+      }).Article-Heading4
 
+      -
 
-    //- ─── Pug-примесь `AdmonitionBlock--YDF` ─────────────────────────────────────────────────────────────────────────
-    +Heading--YDF({
-      level: 4,
-      innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$heading,
-      HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$anchor
-    }).Article-Heading4
+        AdmonitionBlockComponentPropertiesSpecification.localizedDescriptiveHeading = "Свойства";
 
-    -
+        AdmonitionBlockComponentPropertiesSpecification.setPropertiesLocalizedInterpretations({
+          title: "Заголовок",
+          SVG_Icon: "SVG-иконка",
+          dismissible: "Возможно ли убрать",
+          theme: "Тема",
+          areThemesCSS_ClassesCommon: "Являются ли CSS-классы тем общими для всех компонентов",
+          geometricVariation: "Геометрическая вариация",
+          decorativeVariation: "Декоративная вариация"
+        });
 
-      AdmonitionBlockComponentPropertiesSpecification.localizedDescriptiveHeading = "Свойства";
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives = [
+          ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives,
+          [
+            { text: "(Любые, определённые через " },
+            { code: "AdmonitionBlock__YDF.defineThemes(themesNames)" },
+            { text: ")" }
+          ]
+        ];
 
-      AdmonitionBlockComponentPropertiesSpecification.setPropertiesLocalizedInterpretations({
-        title: "Заголовок",
-        SVG_Icon: "SVG-иконка",
-        dismissible: "Возможно ли убрать",
-        theme: "Тема",
-        areThemesCSS_ClassesCommon: "Являются ли CSS-классы тем общими для всех компонентов",
-        geometricVariation: "Геометрическая вариация",
-        decorativeVariation: "Декоративная вариация"
-      });
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives = [
+          ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives,
+          [
+            { text: "(Любые, определённые через " },
+            { code: "AdmonitionBlock__YDF.defineGeometricVariations(geometricVariationsNames)" },
+            { text: ")" }
+          ]
+        ];
 
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives = [
-        ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives,
-        [
-          { text: "(Любые, определённые через " },
-          { code: "AdmonitionBlock__YDF.defineThemes(themesNames)" },
-          { text: ")" }
-        ]
-      ];
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives = [
+          ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives,
+          [
+            { text: "(Любые, определённые через " },
+            { code: "AdmonitionBlock__YDF.defineDecorativeVariations(decorativeVariationsNames)" },
+            { text: ")" }
+          ]
+        ];
 
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives = [
-        ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives,
-        [
-          { text: "(Любые, определённые через " },
-          { code: "AdmonitionBlock__YDF.defineGeometricVariations(geometricVariationsNames)" },
-          { text: ")" }
-        ]
-      ];
+      +CallableExpressionScheme--YDF_DK({
+        technicalName: "AdmonitionBlock--YDF",
+        parametersSpecification: [
+          {
+            genericTechnicalName: "properties",
+            localizedName: "Свойства",
+            type: "Properties",
+            required: true
+          }
+        ],
+        hiddenReturnValue: true
+      })
+        +ObjectTypeAbstract--YDF_DK(
+          AdmonitionBlockComponentPropertiesSpecification
+        ).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem
 
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives = [
-        ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives,
-        [
-          { text: "(Любые, определённые через " },
-          { code: "AdmonitionBlock__YDF.defineDecorativeVariations(decorativeVariationsNames)" },
-          { text: ")" }
-        ]
-      ];
+  //-
+      //- ─── Минимальный пример (только обязательные свойства) ──────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 5,
+        text: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.minimalExample.$heading,
+        HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.minimalExample.$anchor
+      }).Article-Heading5
 
-    +CallableExpressionScheme--YDF_DK({
-      technicalName: "AdmonitionBlock--YDF",
-      parametersSpecification: [
-        {
-          genericTechnicalName: "properties",
-          localizedName: "Свойства",
-          type: "Properties",
-          required: true
-        }
-      ],
-      hiddenReturnValue: true
-    })
-      +ObjectTypeAbstract--YDF_DK(
-        AdmonitionBlockComponentPropertiesSpecification
-      ).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem
+      +AdmonitionBlockComponent-MinimalExampleDescription
 
-
-    //- ─── Минимальный пример (только обязательные свойства) ──────────────────────────────────────────────────────────
-    +Heading--YDF({
-      level: 5,
-      text: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.minimalExample.$heading,
-      HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.minimalExample.$anchor
-    }).Article-Heading5
-
-    +AdmonitionBlockComponent-MinimalExampleDescription
-
-    +CodeViewer--YDF
-      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug }).
-        +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.notice }).
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-
-    //- ─── Заголовок (свойство `title`) ───────────────────────────────────────────────────────────────────────────────
-    +Heading--YDF({
-      level: 5,
-      innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.title.$heading,
-      HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.title.$anchor
-    }).Article-Heading5
-
-    +PropertyMetadata--YDF_DK(AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.title)
-
-    +AdmonitionBlockComponent-TitlePropertyDescription
-
-    +CodeViewer--YDF
-      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug }).
-        +AdmonitionBlock--YDF({
-          title: "Titulo",
-          decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.notice
-        }).
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-
-    //- TODO < Фреймворки (ещё не завершены!) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    //- ─── SVG-иконка (свойство `SVG_Icon`) ───────────────────────────────────────────────────────────────────────────
-    +Heading--YDF({
-      level: 5,
-      innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.SVG_Icon.$heading,
-      HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.SVG_Icon.$anchor
-    }).Article-Heading5
-
-    +PropertyMetadata--YDF_DK(AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.SVG_Icon)
-
-    +WebPageViewer--YDF({
-      URI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-DefaultSvgIcons.html",
-      title: "Примеры отображения компонента «AdmonitionBlock» с иконками " +
-          "(библиотека: «Yamato Daiwa Frontend», сокращённо: «YDF»). "
-    })
-
-    p.Article-Paragraph.
-      #[+Term--YDID Иконка] вдобавок к цвету фона позволяет лучше передать важность сообщения.
-      Для того, чтобы отобразилась иконка по умолчанию (зависит от #[+Term--YDID декоративной вариации]),
-        #[+Keyword--YDID необходимо] указать #[+Term--YDID свойству] #[+ImportantEntity__Code--YDID SVG_Icon]
-        значение #[+ImportantEntity__Code--YDID true]:
-
-    +CodeViewer--YDF
-      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug }).
-        +AdmonitionBlock--YDF({
-          SVG_Icon: true,
-          decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.notice
-        }).
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-    p.Article-Paragraph.
-      #[+Keyword--YDID Наиболее] рекомендуемым вариантом является сочетание заголовков и иконок:
-
-    +WebPageViewer--YDF({
-      URI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-TitlesAndSvgIcons.html",
-      title: "Примеры отображения компонента «AdmonitionBlock» с заголовками и иконками " +
-          "(библиотека: «Yamato Daiwa Frontend», сокращённо: «YDF»). "
-    })
-
-    +CodeViewer--YDF
-      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug }).
-        +AdmonitionBlock--YDF({
-          title: "Titulo",
-          SVG_Icon: true,
-          decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.notice
-        }).
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-
-    //- ─── Пользовательские иконки ────────────────────────────────────────────────────────────────────────────────────
-    +Heading--YDF({
-      level: 6,
-      text: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.SVG_Icon.$children.custom.$heading,
-      HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.SVG_Icon.$children.custom.$anchor
-    }).Article-Heading6
-
-    p.Article-Paragraph
-      | К сожалению ввиду того, что #[+ImportantEntity--YDID Pug] #[+Keyword--YDID не]&nbsp;поддерживает
-      |   #[+Term--YDID слоты] (как, например,
-      |
-      +Link--YDF({
-        unendorsedExternalURI: sharedExternalLinks.vue.officialSite.slots
-      }) слоты во феймворке Vue
-      | ), а #[+Term--YDID Pug-примесь] #[+Keyword--YDID не]&nbsp;является #[+Term--YDID функцией], возвращающей
-      |   строчное значение с #[+Term--YDID HTML-кодом], возможность указать пользовательскую #[+Term--YDID SVG-иконку]
-      |   вместо стандартной #[+Keyword--YDID ограничена].
-      | Решение основывается на использовании #[+Term--YDID svg-элемента] #[+ImportantEntity__Code--YDID use], который
-      |   позволяет #[+Keyword--YDID сослаться] на #[+Keyword__Contrast--YDID другой] #[+Term--YDID элемент],
-      |   #[+Keyphrase--YDID находящийся на той же #[+Term--YDID HTML-странице]], но при этом он
-      |   #[+Keyword--YDID не]&nbsp;обязательно должен быть видимым.
-      | Когда иконка добавлена на страницу, укажите #[+Term--YDID свойству] #[+ImportantEntity__Code--YDID SVG_Icon]
-      |   значение #[+Keyphrase--YDID на сей раз] #[+Keyword--YDID объектного] #[+Term--YDID типа] со следующими
-      |   #[+Term--YDID свойствами]:
-
-    dl.Article-DescriptionList
-
-      dt #[+ImportantEntity__Code--YDID innerElementID]
-      dd.
-        Идентификатор #[+Keyword--YDID дочернего] #[+Term--YDID элемента] по отношению к #[+Term--YDID элементу]
-          #[+ImportantEntity__Code--YDID svg] целевой #[+Term--YDID иконки].
-        Если #[+Term--YDID элемент] #[+ImportantEntity__Code--YDID svg] имеет несколько дочерних
-          #[+Term--YDID элементов], то их #[+Keyword--YDID необходимо] объединить в #[+Term--YDID группу] (элемент
-          #[+ImportantEntity__Code--YDID g]), и тогда идентификатор должен быть у этой #[+Term--YDID группы].
-
-      dt #[+ImportantEntity__Code--YDID SVG_ElementAttributes]
-      dd.
-        #[+Keyword--YDID Внутренний] #[+Term--YDID объект] типа #[+Term--YDID «ассоциативный массив»], через который
-          следует передать #[+Term--YDID аттрибуты] #[+Term__Contrast--YDID тэга] #[+ImportantEntity__Code--YDID svg],
-          необходимые для нормального отображения целевой иконки.
-        #[+Keyword--YDID Обычно] используется #[+Term--YDID аттрибут] #[+ImportantEntity__Code--YDID viewBox],
-          но возможны и любые другие #[+Keyword--YDID валидные] #[+Term--YDID аттрибуты] #[+Term__Contrast--YDID тэга]
-          #[+ImportantEntity__Code--YDID svg], при этом имена #[+Term--YDID аттрибутов] должны быть
-          #[+Keyphrase--YDID такими же, как и в обычном #[+Term--YDID HTML-коде] или #[+Term--YDID Pug-коде]]
-          (например, #[+SecondaryEntity__Code--YDID viewBox] записывается в #[+Term--YDID верблюжьем регистре],
-          а #[+SecondaryEntity__Code--YDID color-interpolation] — в #[+Term--YDID шашлычной нотации], при этом в
-          последнем случае #[+Term--YDID ключ] #[+Keyword--YDID необходимо] обернуть в кавычки).
-
-    +CodeViewer--YDF({
-      resultWebViewURI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-CustomSvgIcons.html"
-    })
-      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
-        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
-          +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript }).
-            svg.AdmonitionBlockGallery-PreRenderedInvisibleCustomSVG_Icon(
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              style="display: none;"
-            )
-              path#SAMPLE_THIRD_PARTY_ICON_INNER_ELEMENT(
-                d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M13,13V7H11V13H13M13,17V15H11V17H13Z"
-              )
-
-          +AdmonitionBlock--YDF({
-            decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning,
-            SVG_Icon: {
-              innerElementID: "SAMPLE_THIRD_PARTY_ICON_INNER_ELEMENT",
-              SVG_ElementAttributes: {
-                viewBox: "0 0 24 24"
-              }
-            }
-          })(lang="es").
+      +CodeViewer--YDF
+        +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug }).
+          +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.notice }).
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
               dolore magna aliqua.
             Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        +CodeViewer-Explanation--YDF
-
-          p.Article-Paragraph.
-            Как видно, пользовательская иконка меньше по размерам, чем стандартная.
-            На самом деле, высота у них #[+Keyword--YDID одинаковая] (она задана в через #[+Term--YDID стили]), а
-              проблема заключается в том, что у этой иконки между областью, называемой #[+Term--YDID «view box»] и
-              #[+Keyword--YDID мнимым] прямоугольником, который описывает #[+Term--YDID элемент]
-              #[+SecondaryEntity__Code--YDID path], имеется зазор.
-            Этот зазор #[+Keyword--YDID не]&nbsp;имеет отношения к #[+Term--YDID CSS-свойствам]
-              #[+ImportantEntity__Code--YDID padding] и #[+ImportantEntity--YDID margin], ровно как и
-              #[+Keyword--YDID не]&nbsp;имеет отношения с #[+ImportantEntity--YDID CSS] как к таковому — дело в самом
-              #[+Term--YDID SVG-изображении].
-            Проблема в том, что у каждого поставщика SVG-иконок своя величина этого зазора, а в
-              #[+ImportantEntity--YDID YDF] такого зазора #[+Keyword--YDID нет], благодаря чему способ регулирования
-              расстояния до других элементов #[+Keyword--YDID унифицирован] — это #[+ImportantEntity--YDID CSS].
-
-          p.Article-Paragraph.
-            Вероятно, Вы хотите знать, как сделать так, чтобы можно было легко заменять иконки от одного поставщика
-              иконками от другого поставщика, при этом их размеры выглядели одинаково и для всех иконок были одни и те
-              же стили.
-            Короткий ответ: #[+Keyword--YDID никак] — из-за того самого зазора, о котором выше шла речь.
-            Придётся либо модифицировать #[+Term--YDID SVG-код] иконок с целью сделать им один и тот же зазор
-              (или убрать его), либо регулировать внешнюю геометрию каждой иконки индивидуальными #[+Term--YDID стилями].
-    //- TODO > Фреймворки (ещё не завершены!) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-    //- ─── Кнопки ─────────────────────────────────────────────────────────────────────────────────────────────────────
-    +Heading--YDF({
-      level: 6,
-      text: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.buttons.$heading,
-      HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.buttons.$anchor
-    }).Article-Heading6
-
-    +AdmonitionBlockComponent-ButtonsUsageCommonDescription
-
-    p.Article-Paragraph.
-      Если кнопка или ссылка одна, и Вы хотите расположить её по центру, то укажите ей #[+Term--YDID CSS-класс]
-        #[+ImportantEntity__Code--YDID AdmonitionBlock--YDF-CenteredButton]:
-
-    +CodeViewer--YDF
-      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug }).
-        +AdmonitionBlock--YDF({
-          title: "Ничего не найдено",
-          decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.guidance,
-          SVG_Icon: true
-        })
-          p К сожалению, соответствующих указанной Вами фильтрации данных нет.
-          +Button--YDF({ label: "Сброс фильтров" }).AdmonitionBlock--YDF-CenteredButton
-
-    p.Article-Paragraph.
-      Если пользователю предлагается несколько способов отреагировать на сообщение, то оберните Ваши кнопки в
-        блочный элемент с #[+Term--YDID CSS-классом] #[+ImportantEntity__Code--YDID AdmonitionBlock--YDF-ActionBar]:
-
-    +CodeViewer--YDF
-      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug }).
-        +AdmonitionBlock--YDF({
-          title: "Конфликт при сохранении данных",
-          decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning,
-          SVG_Icon: true
-        })
-
-          p.
-            К сожалению, пока Вы редактировали данные, удалённое хранилище было обновлено.
-            Необходимо сравнить Вашу версию с новейшей из удалённого хранилища и собрать их них окончательную версию.
-
-          .AdmonitionBlock--YDF-ActionBar
-            +Button--YDF({ label: "Разрешить конфликт" })
-            +Button--YDF({ label: "Сохранить версию" })
-
-    +WebPageViewer--YDF({
-      URI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-ActionBar.html",
-      title: "Примеры отображения компонента «AdmonitionBlock» с панелью действий " +
-          "(библиотека: «Yamato Daiwa Frontend», сокращённо: «YDF»). "
-    })
 
 
-    //- ─── Убирание ───────────────────────────────────────────────────────────────────────────────────────────────────
-    h5.Article-Heading5(
-      id=localizedSectioning.usage.$children.markup.$children.pugMixin.$children.dismissing.$anchor
-    )!= localizedSectioning.usage.$children.markup.$children.pugMixin.$children.dismissing.$heading
+      //- ─── Заголовок (свойство `title`) ───────────────────────────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 5,
+        innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.title.$heading,
+        HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.title.$anchor
+      }).Article-Heading5
 
-    +AdmonitionBlockComponent-DismissingFunctionalityCommonDescription
+      +PropertyMetadata--YDF_DK(AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.title)
 
-    p.Article-Paragraph.
-      Для того, чтобы дать возможность пользователю убрать рамку с текстом (без сторонней логики),
-        #[+Keyword--YDID необходимо] выполнить следующие действия:
+      +AdmonitionBlockComponent-TitlePropertyDescription
 
-    ol.Article-OrderedList
+      +CodeViewer--YDF
+        +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug }).
+          +AdmonitionBlock--YDF({
+            title: "Titulo",
+            decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.notice
+          }).
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-      li.
-        При использовании #[+Term--YDID Pug-примеси] #[+ImportantEntity__Code--YDID AdmonitionBlock--YDF] указать
-          #[+Term--YDID свойству] #[+ImportantEntity__Code--YDID dismissible] #[+Keyword--YDID единственного]
-          #[+Term--YDID параметра] значение #[+ImportantEntity__Code--YDID true].
-        Это отобразит кнопку убирания, однако #[+Keyphrase--YDID на этом этапе] она #[+Keyword--YDID пока] работать
-          #[+Keyword--YDID не]&nbsp;будет.
 
-      li.
-        Подключить в Ваш #[+Term--YDID TypeScript-код] #[+Term--YDID класс] #[+ImportantEntity--YDID AdmonitionBlock] и
-          воспользоваться одним из его #[+Term--YDID методов].
-        Все они добавляют прослушивания события нажатия на кнопку убирания.
-        Например, чтобы что активировать все рамки с текстом, отображающиеся на странице
-          #[+Keyphrase--YDID на данный момент], вызовите #[+Keyword--YDID статический] #[+Term--YDID метод]
-          #[+ImportantEntity__Code--YDID initializeAll]:
+      //- TODO < Фреймворки (ещё не завершены!) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      //- ─── SVG-иконка (свойство `SVG_Icon`) ───────────────────────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 5,
+        innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.SVG_Icon.$heading,
+        HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.SVG_Icon.$anchor
+      }).Article-Heading5
 
-    +CodeViewer--YDF
+      +PropertyMetadata--YDF_DK(AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.SVG_Icon)
 
-      +CodeViewer-Listing--YDF({
-        fileLabel: "Разметка",
-        codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
-      }): :html_special_characters_to_html_entities
-        +AdmonitionBlock--YDF({
-          title: "Редактирование задач",
-          decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.guidance,
-          SVG_Icon: true,
-          dismissable: true
-        }) Кликните карточку, чтобы начать редактировать сооответствующую задачу.
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-DefaultSvgIcons.html",
+        title: "Примеры отображения компонента «AdmonitionBlock» с иконками " +
+            "(библиотека: «Yamato Daiwa Frontend», сокращённо: «YDF»). "
+      })
 
-      +CodeViewer-Listing--YDF({
-        fileLabel: "Логика",
-        codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript
-      }): :html_special_characters_to_html_entities
-        import { AdmonitionBlock } from "@yamato-daiwa/frontend";
+      p.Article-Paragraph.
+        #[+Term--YDID Иконка] вдобавок к цвету фона позволяет лучше передать важность сообщения.
+        Для того, чтобы отобразилась иконка по умолчанию (зависит от #[+Term--YDID декоративной вариации]),
+          #[+Keyword--YDID необходимо] указать #[+Term--YDID свойству] #[+ImportantEntity__Code--YDID SVG_Icon]
+          значение #[+ImportantEntity__Code--YDID true]:
 
-        AdmonitionBlock.initializeAll();
+      +CodeViewer--YDF
+        +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug }).
+          +AdmonitionBlock--YDF({
+            SVG_Icon: true,
+            decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.notice
+          }).
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+      p.Article-Paragraph.
+        #[+Keyword--YDID Наиболее] рекомендуемым вариантом является сочетание заголовков и иконок:
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-TitlesAndSvgIcons.html",
+        title: "Примеры отображения компонента «AdmonitionBlock» с заголовками и иконками " +
+            "(библиотека: «Yamato Daiwa Frontend», сокращённо: «YDF»). "
+      })
+
+      +CodeViewer--YDF
+        +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug }).
+          +AdmonitionBlock--YDF({
+            title: "Titulo",
+            SVG_Icon: true,
+            decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.notice
+          }).
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+      //- ─── Пользовательские иконки ────────────────────────────────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 6,
+        text: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.SVG_Icon.$children.custom.$heading,
+        HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.SVG_Icon.$children.custom.$anchor
+      }).Article-Heading6
+
+      p.Article-Paragraph
+        | К сожалению ввиду того, что #[+ImportantEntity--YDID Pug] #[+Keyword--YDID не]&nbsp;поддерживает
+        |   #[+Term--YDID слоты] (как, например,
+        |
+        +Link--YDF({
+          unendorsedExternalURI: sharedExternalLinks.vue.officialSite.slots
+        }) слоты во феймворке Vue
+        | ), а #[+Term--YDID Pug-примесь] #[+Keyword--YDID не]&nbsp;является #[+Term--YDID функцией], возвращающей
+        |   строчное значение с #[+Term--YDID HTML-кодом], возможность указать пользовательскую #[+Term--YDID SVG-иконку]
+        |   вместо стандартной #[+Keyword--YDID ограничена].
+        | Решение основывается на использовании #[+Term--YDID svg-элемента] #[+ImportantEntity__Code--YDID use], который
+        |   позволяет #[+Keyword--YDID сослаться] на #[+Keyword__Contrast--YDID другой] #[+Term--YDID элемент],
+        |   #[+Keyphrase--YDID находящийся на той же #[+Term--YDID HTML-странице]], но при этом он
+        |   #[+Keyword--YDID не]&nbsp;обязательно должен быть видимым.
+        | Когда иконка добавлена на страницу, укажите #[+Term--YDID свойству] #[+ImportantEntity__Code--YDID SVG_Icon]
+        |   значение #[+Keyphrase--YDID на сей раз] #[+Keyword--YDID объектного] #[+Term--YDID типа] со следующими
+        |   #[+Term--YDID свойствами]:
+
+      dl.Article-DescriptionList
+
+        dt #[+ImportantEntity__Code--YDID innerElementID]
+        dd.
+          Идентификатор #[+Keyword--YDID дочернего] #[+Term--YDID элемента] по отношению к #[+Term--YDID элементу]
+            #[+ImportantEntity__Code--YDID svg] целевой #[+Term--YDID иконки].
+          Если #[+Term--YDID элемент] #[+ImportantEntity__Code--YDID svg] имеет несколько дочерних
+            #[+Term--YDID элементов], то их #[+Keyword--YDID необходимо] объединить в #[+Term--YDID группу] (элемент
+            #[+ImportantEntity__Code--YDID g]), и тогда идентификатор должен быть у этой #[+Term--YDID группы].
+
+        dt #[+ImportantEntity__Code--YDID SVG_ElementAttributes]
+        dd.
+          #[+Keyword--YDID Внутренний] #[+Term--YDID объект] типа #[+Term--YDID «ассоциативный массив»], через который
+            следует передать #[+Term--YDID аттрибуты] #[+Term__Contrast--YDID тэга] #[+ImportantEntity__Code--YDID svg],
+            необходимые для нормального отображения целевой иконки.
+          #[+Keyword--YDID Обычно] используется #[+Term--YDID аттрибут] #[+ImportantEntity__Code--YDID viewBox],
+            но возможны и любые другие #[+Keyword--YDID валидные] #[+Term--YDID аттрибуты] #[+Term__Contrast--YDID тэга]
+            #[+ImportantEntity__Code--YDID svg], при этом имена #[+Term--YDID аттрибутов] должны быть
+            #[+Keyphrase--YDID такими же, как и в обычном #[+Term--YDID HTML-коде] или #[+Term--YDID Pug-коде]]
+            (например, #[+SecondaryEntity__Code--YDID viewBox] записывается в #[+Term--YDID верблюжьем регистре],
+            а #[+SecondaryEntity__Code--YDID color-interpolation] — в #[+Term--YDID шашлычной нотации], при этом в
+            последнем случае #[+Term--YDID ключ] #[+Keyword--YDID необходимо] обернуть в кавычки).
+
+      +CodeViewer--YDF({
+        resultWebViewURI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-CustomSvgIcons.html"
+      })
+        +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+          +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+            +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript }).
+              svg.AdmonitionBlockGallery-PreRenderedInvisibleCustomSVG_Icon(
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                style="display: none;"
+              )
+                path#SAMPLE_THIRD_PARTY_ICON_INNER_ELEMENT(
+                  d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M13,13V7H11V13H13M13,17V15H11V17H13Z"
+                )
+
+            +AdmonitionBlock--YDF({
+              decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning,
+              SVG_Icon: {
+                innerElementID: "SAMPLE_THIRD_PARTY_ICON_INNER_ELEMENT",
+                SVG_ElementAttributes: {
+                  viewBox: "0 0 24 24"
+                }
+              }
+            })(lang="es").
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          +CodeViewer-Explanation--YDF
+
+            p.Article-Paragraph.
+              Как видно, пользовательская иконка меньше по размерам, чем стандартная.
+              На самом деле, высота у них #[+Keyword--YDID одинаковая] (она задана в через #[+Term--YDID стили]), а
+                проблема заключается в том, что у этой иконки между областью, называемой #[+Term--YDID «view box»] и
+                #[+Keyword--YDID мнимым] прямоугольником, который описывает #[+Term--YDID элемент]
+                #[+SecondaryEntity__Code--YDID path], имеется зазор.
+              Этот зазор #[+Keyword--YDID не]&nbsp;имеет отношения к #[+Term--YDID CSS-свойствам]
+                #[+ImportantEntity__Code--YDID padding] и #[+ImportantEntity--YDID margin], ровно как и
+                #[+Keyword--YDID не]&nbsp;имеет отношения с #[+ImportantEntity--YDID CSS] как к таковому — дело в самом
+                #[+Term--YDID SVG-изображении].
+              Проблема в том, что у каждого поставщика SVG-иконок своя величина этого зазора, а в
+                #[+ImportantEntity--YDID YDF] такого зазора #[+Keyword--YDID нет], благодаря чему способ регулирования
+                расстояния до других элементов #[+Keyword--YDID унифицирован] — это #[+ImportantEntity--YDID CSS].
+
+            p.Article-Paragraph.
+              Вероятно, Вы хотите знать, как сделать так, чтобы можно было легко заменять иконки от одного поставщика
+                иконками от другого поставщика, при этом их размеры выглядели одинаково и для всех иконок были одни и те
+                же стили.
+              Короткий ответ: #[+Keyword--YDID никак] — из-за того самого зазора, о котором выше шла речь.
+              Придётся либо модифицировать #[+Term--YDID SVG-код] иконок с целью сделать им один и тот же зазор
+                (или убрать его), либо регулировать внешнюю геометрию каждой иконки индивидуальными #[+Term--YDID стилями].
+      //- TODO > Фреймворки (ещё не завершены!) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+      //- ─── Кнопки ─────────────────────────────────────────────────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 6,
+        text: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.buttons.$heading,
+        HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$children.buttons.$anchor
+      }).Article-Heading6
+
+      +AdmonitionBlockComponent-ButtonsUsageCommonDescription
+
+      p.Article-Paragraph.
+        Если кнопка или ссылка одна, и Вы хотите расположить её по центру, то укажите ей #[+Term--YDID CSS-класс]
+          #[+ImportantEntity__Code--YDID AdmonitionBlock--YDF-CenteredButton]:
+
+      +CodeViewer--YDF
+        +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug }).
+          +AdmonitionBlock--YDF({
+            title: "Ничего не найдено",
+            decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.guidance,
+            SVG_Icon: true
+          })
+            p К сожалению, соответствующих указанной Вами фильтрации данных нет.
+            +Button--YDF({ label: "Сброс фильтров" }).AdmonitionBlock--YDF-CenteredButton
+
+      p.Article-Paragraph.
+        Если пользователю предлагается несколько способов отреагировать на сообщение, то оберните Ваши кнопки в
+          блочный элемент с #[+Term--YDID CSS-классом] #[+ImportantEntity__Code--YDID AdmonitionBlock--YDF-ActionBar]:
+
+      +CodeViewer--YDF
+        +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug }).
+          +AdmonitionBlock--YDF({
+            title: "Конфликт при сохранении данных",
+            decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning,
+            SVG_Icon: true
+          })
+
+            p.
+              К сожалению, пока Вы редактировали данные, удалённое хранилище было обновлено.
+              Необходимо сравнить Вашу версию с новейшей из удалённого хранилища и собрать их них окончательную версию.
+
+            .AdmonitionBlock--YDF-ActionBar
+              +Button--YDF({ label: "Разрешить конфликт" })
+              +Button--YDF({ label: "Сохранить версию" })
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-ActionBar.html",
+        title: "Примеры отображения компонента «AdmonitionBlock» с панелью действий " +
+            "(библиотека: «Yamato Daiwa Frontend», сокращённо: «YDF»). "
+      })
+
+
+      //- ─── Убирание ───────────────────────────────────────────────────────────────────────────────────────────────────
+      h5.Article-Heading5(
+        id=localizedSectioning.usage.$children.markup.$children.pugMixin.$children.dismissing.$anchor
+      )!= localizedSectioning.usage.$children.markup.$children.pugMixin.$children.dismissing.$heading
+
+      +AdmonitionBlockComponent-DismissingFunctionalityCommonDescription
+
+      p.Article-Paragraph.
+        Для того, чтобы дать возможность пользователю убрать рамку с текстом (без сторонней логики),
+          #[+Keyword--YDID необходимо] выполнить следующие действия:
+
+      ol.Article-OrderedList
+
+        li.
+          При использовании #[+Term--YDID Pug-примеси] #[+ImportantEntity__Code--YDID AdmonitionBlock--YDF] указать
+            #[+Term--YDID свойству] #[+ImportantEntity__Code--YDID dismissible] #[+Keyword--YDID единственного]
+            #[+Term--YDID параметра] значение #[+ImportantEntity__Code--YDID true].
+          Это отобразит кнопку убирания, однако #[+Keyphrase--YDID на этом этапе] она #[+Keyword--YDID пока] работать
+            #[+Keyword--YDID не]&nbsp;будет.
+
+        li.
+          Подключить в Ваш #[+Term--YDID TypeScript-код] #[+Term--YDID класс] #[+ImportantEntity--YDID AdmonitionBlock] и
+            воспользоваться одним из его #[+Term--YDID методов].
+          Все они добавляют прослушивания события нажатия на кнопку убирания.
+          Например, чтобы что активировать все рамки с текстом, отображающиеся на странице
+            #[+Keyphrase--YDID на данный момент], вызовите #[+Keyword--YDID статический] #[+Term--YDID метод]
+            #[+ImportantEntity__Code--YDID initializeAll]:
+
+      +CodeViewer--YDF
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "Разметка",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
+        }): :html_special_characters_to_html_entities
+          +AdmonitionBlock--YDF({
+            title: "Редактирование задач",
+            decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.guidance,
+            SVG_Icon: true,
+            dismissable: true
+          }) Кликните карточку, чтобы начать редактировать сооответствующую задачу.
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "Логика",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript
+        }): :html_special_characters_to_html_entities
+          import { AdmonitionBlock } from "@yamato-daiwa/frontend";
+
+          AdmonitionBlock.initializeAll();

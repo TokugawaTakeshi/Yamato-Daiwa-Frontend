@@ -3,9 +3,9 @@
   class ${NAME}__YDF {
 
     /**
-     * @type { string }
      * @public
      * @readonly
+     * @type string
      */
     static CSS_NAMESPACE = "${NAME}--YDF";
 
@@ -13,14 +13,15 @@
     /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
     /**
-     * @type { { [themeName: string]: string } }
      * @public
+     * @type { { [themeName: string]: string } }
      * @description If you want to define new themes, do it only via `defineThemes` static method.
      */
     static Themes = { regular: "REGULAR" };
 
     // == < If no children components: =================================================================================
     /**
+     * @public
      * @param { Array<string> } themesNames
      * @return { typeof ${NAME}__YDF }
      */
@@ -28,16 +29,19 @@
       return ComponentsAuxiliaries.defineNewThemes(themesNames, ${NAME}__YDF);
     }
     // === < Or, if any children components: ===========================================================================
-    /* [ Pitfall ] The classes of other components may not be declared yet thus initialization on demand required. */
+    /* [ Pitfall ] The classes of other components may not be declared yet thus initialization on demand is required. */
     /**
-     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null }
      * @private
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
      * */
     static _selfAndChildrenComponentsThemesCorrespondence = null;
 
+  //- TODO Reokace children components with actual ones
     /**
-     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } }
      * @public
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } }
      * */
     static get selfAndChildrenComponentsThemesCorrespondence() {
       return ${NAME}__YDF._selfAndChildrenComponentsThemesCorrespondence ?? (
@@ -48,11 +52,16 @@
       );
     }
 
+    //- TODO Replace children components with actual ones
     /**
+     * @public
+     *
      * @param {
      *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
      * } ownAndCorrespondingCompoundControlShellThemesDefinition
+     *
      * @returns { typeof ${NAME}__YDF }
+     *
      * @example
      * ${NAME}__YDF.defineThemes({
      *   redmond: {
@@ -64,7 +73,6 @@
      *     button: Button__YDF.Themes.cupertino
      *   }
      * });
-     * @public
      */
     static defineThemes(ownAndCorrespondingCompoundControlShellThemesDefinition) {
       return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
@@ -73,14 +81,14 @@
     }
     // === > ===========================================================================================================
     /**
-     * @type { boolean } [areThemesCSS_ClassesCommon=ComponentsAuxiliaries.areComponentsThemesCommon]
      * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
      * */
     static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
 
     /**
-     * @returns { typeof ${NAME}__YDF }
      * @public
+     * @returns { typeof ${NAME}__YDF }
      * */
     static considerThemesAsCommon() {
       ${NAME}__YDF.areThemesCSS_ClassesCommon = true;
@@ -91,8 +99,8 @@
     /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
 
     /**
-     * @type { { [geometricVariationName: string]: string } }
      * @public
+     * @type { { [geometricVariationName: string]: string } }
      * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
      */
     static GeometricVariations = {
@@ -102,6 +110,7 @@
 
     // == < If no children components: =================================================================================
     /**
+     * @public
      * @param { Array<string> } geometricVariationsNames
      * @return { typeof ${NAME}__YDF }
      */
@@ -109,11 +118,18 @@
       return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, ${NAME}__YDF);
     }
     // === < Or, if any children components: ===========================================================================
-    /* [ Pitfall ] The classes of other components may not be declared yet thus initialization on demand required. */
-    /** @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null } */
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
     static _selfAndChildrenComponentsGeometricVariationsCorrespondence = null;
 
-    /** @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } } */
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } }
+     * */
     static get selfAndChildrenComponentsGeometricVariationsCorrespondence() {
       return DropDownList__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence ?? (
         DropDownList__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence = {
@@ -129,6 +145,28 @@
       );
     }
 
+    //- TODO Replace children components with actual ones
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition
+     *
+     * @returns { typeof ${NAME}__YDF }
+     *
+     * @example
+     * ${NAME}__YDF.defineGeometricVariations({
+     *   large: {
+     *     compoundControlShell: CompoundControlShell__YDF.GeometricVariation.large,
+     *     radioButton: RadioButton__YDF.GeometricVariations.large
+     *   },
+     *   extraLarge: {
+     *     compoundControlShell: CompoundControlShell__YDF.GeometricVariation.extraLarge,
+     *     radioButton: RadioButton__YDF.GeometricVariations.extraLarge
+     *   }
+     * });
+     */
     static defineGeometricVariations(ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition) {
       return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
         ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition, ${NAME}__YDF
@@ -137,13 +175,14 @@
     // === > ===========================================================================================================
 
     /**
+     * @public
+     * @readonly
      * @type {
      *   Readonly<{
      *     bordersDisguising: string;
      *     noBackground: string;
      *   }>
      * }
-     * @readonly
      */
     static GeometricModifiers = {
       pillShape: "PILL_SHAPE",
@@ -154,8 +193,8 @@
     /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
 
     /**
-     * @type { { [decorativeVariationsName: string]: string } }
      * @public
+     * @type { { [decorativeVariationsName: string]: string } }
      * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
      */
     static DecorativeVariations = {
@@ -168,6 +207,7 @@
 
     // == < If no children components: =================================================================================
     /**
+     * @public
      * @param { Array<string> } decorativeVariationsNames
      * @return { typeof ${NAME}__YDF }
      */
@@ -175,11 +215,18 @@
       return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, Button__YDF);
     }
     // === < Or, if any children components: ===========================================================================
-    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
-    /** @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null } */
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
     static _selfAndChildrenComponentsDecorativeVariationsCorrespondence = null;
 
-    /** @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } } */
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } }
+     * */
     static get selfAndChildrenComponentsDecorativeVariationsCorrespondence() {
       return DropDownList__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
         DropDownList__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
@@ -193,6 +240,28 @@
       );
     }
 
+    //- TODO Replace children components with actual ones
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition
+     *
+     * @returns { typeof ${NAME}__YDF }
+     *
+     * @example
+     * ${NAME}__YDF.defineDecorativeVariations({
+     *   modest: {
+     *     compoundControlShell: CompoundControlShell__YDF.DecorativeVariation.modest
+     *     radioButton: Button__YDF.GeometricVariations.modest
+     *   },
+     *   catchy: {
+     *     compoundControlShell: CompoundControlShell__YDF.DecorativeVariation.catchy,
+     *     radioButton: Button__YDF.GeometricVariations.catchy
+     *   }
+     * });
+     */
     static defineDecorativeVariations(ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition) {
       return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
         ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition, DropDownList__YDF
@@ -201,13 +270,14 @@
     // === > ===========================================================================================================
 
     /**
+     * @public
+     * @readonly
      * @type {
      *   Readonly<{
      *     bordersDisguising: string;
      *     noBackground: string;
      *   }>
      * }
-     * @readonly
      */
     static DecorativeModifiers = {
       bordersDisguising: "BORDERS_DISGUISING",
@@ -218,9 +288,9 @@
     /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
     /**
-     * @type { RawObjectDataProcessor.PropertiesSpecification }
      * @public
      * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
      * */
     static propertiesSpecification = {
 

@@ -14,8 +14,8 @@ import { Logger } from "@yamato-daiwa/es-extensions";
       Path.resolve(CURRENT_FILE_DIRECTORY, "PugExtensions.generated.pug")
     ],
     [
-      Path.resolve(CURRENT_FILE_DIRECTORY, "Temporary", "ComponentsDefaultLocalizations.js"),
-      Path.resolve(CURRENT_FILE_DIRECTORY, "ComponentsDefaultLocalizations.generated.pug")
+      Path.resolve(CURRENT_FILE_DIRECTORY, "Temporary", "GUI_ComponentsRequirements.js"),
+      Path.resolve(CURRENT_FILE_DIRECTORY, "GUI_ComponentsRequirements.generated.pug")
     ]
   ]);
 

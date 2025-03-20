@@ -1,0 +1,41 @@
+extends ../../../../../node_modules/@yamato-daiwa/frontend/PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Requirements
+
+  include ../../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.pug
+  include ../../../../Galleries/GalleryConfigurator.pug
+  include _DropDownListGalleryPage.partials.pug
+  include ../../../../Galleries/GUI_Components/Controls/DropDownList/DropDownListGallery.pug
+
+
+block append Metadata
+
+  -
+
+    /**
+     * @param { string } [partialTitle]
+     * @returns { string }
+     * */
+    function generateHTML_PageTitle(partialTitle) {
+      return [
+        "DropDownList Component Demos",
+        ...partialTitle ? [ ` — ${ partialTitle }` ] : [],
+        " — Yamato Daiwa Frontend (YDF)"
+      ].join("");
+    }
+
+    RegularWebPageTemplate__YDF.configure({
+      stylesSheetsURIs: [
+        "@Partials/YDF-Demos-Primer",
+        "@Partials/YDF-Demos-CommonRequirements",
+        "@Pages/GUI_Components/Controls/DropDownList/DropDownListGalleryPage"
+      ]
+    });
+
+
+block append PageContent
+
+  .YDF_Gallery
+
+    +DropDownListGallery

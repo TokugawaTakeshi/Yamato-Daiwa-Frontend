@@ -1,4 +1,3 @@
-using YamatoDaiwa.CSharpExtensions;
 using YamatoDaiwa.Frontend.GUI_Components.Abstractions;
 using YamatoDaiwa.Frontend.Helpers;
 
@@ -6,17 +5,18 @@ using YamatoDaiwa.Frontend.Helpers;
 namespace YamatoDaiwa.Frontend.GUI_Components.Badge;
 
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 public partial class Badge :
     Microsoft.AspNetCore.Components.ComponentBase,
-    ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement,
-    IHTML_AttributesFallthrough
+    IHTML_AttributesFallthrough,
+    ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement
 {
 
-  public static string CSS_NAMESPACE = "Badge--YDF";
-  
+  public const string CSS_NAMESPACE = "Badge--YDF";
+
   [Microsoft.AspNetCore.Components.Parameter(CaptureUnmatchedValues = true)]
-  public IDictionary<string, object>? rootElementAttributes { get; set; }
-  
+  public IDictionary<string, object>? rootElementHTML_Attributes { get; set; }
+
   [Microsoft.AspNetCore.Components.Parameter]
   public string? keyLabel { get; set; }
 
@@ -32,15 +32,22 @@ public partial class Badge :
 
   protected internal static Type? CustomThemes;
 
-  public static void defineCustomThemes(Type CustomThemes)
+  public static void defineCustomThemes(Type customThemes)
   {
-    YDF_ComponentsHelper.ValidateCustomTheme(CustomThemes);
-    Badge.CustomThemes = CustomThemes;
+    YDF_ComponentsHelper.ValidateCustomTheme(customThemes);
+    Badge.CustomThemes = customThemes;
   }
 
-  protected string _theme = Badge.StandardThemes.regular.ToString();
+  protected string _theme = nameof(Badge.StandardThemes.regular);
 
   [Microsoft.AspNetCore.Components.Parameter]
+  [
+    System.Diagnostics.CodeAnalysis.SuppressMessage(
+      "Microsoft.Performance",
+      "BL0007",
+      Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
+    )
+  ]
   public object theme
   {
     get => this._theme;
@@ -68,15 +75,22 @@ public partial class Badge :
 
   protected internal static Type? CustomGeometricVariations;
 
-  public static void defineCustomGeometricVariations(Type CustomGeometricVariations)
+  public static void defineCustomGeometricVariations(Type customGeometricVariations)
   {
-    YDF_ComponentsHelper.ValidateCustomGeometricVariation(CustomGeometricVariations);
-    Badge.CustomGeometricVariations = CustomGeometricVariations;
+    YDF_ComponentsHelper.ValidateCustomGeometricVariation(customGeometricVariations);
+    Badge.CustomGeometricVariations = customGeometricVariations;
   }
 
-  protected string _geometricVariation = Badge.StandardGeometricVariations.regular.ToString();
+  protected string _geometricVariation = nameof(Badge.StandardGeometricVariations.regular);
 
   [Microsoft.AspNetCore.Components.Parameter]
+  [
+    System.Diagnostics.CodeAnalysis.SuppressMessage(
+      "Microsoft.Performance",
+      "BL0007",
+      Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
+    )
+  ]
   public object geometricVariation
   {
     get => this._geometricVariation;
@@ -92,7 +106,7 @@ public partial class Badge :
   }
 
   [Microsoft.AspNetCore.Components.Parameter]
-  public Badge.GeometricModifiers[] geometricModifiers { get; set; } = Array.Empty<Badge.GeometricModifiers>();
+  public Badge.GeometricModifiers[] geometricModifiers { get; set; } = [];
 
 
   /* ─── Decoration ───────────────────────────────────────────────────────────────────────────────────────────────── */
@@ -116,15 +130,22 @@ public partial class Badge :
 
   protected internal static Type? CustomDecorativeVariations;
 
-  public static void defineCustomDecorativeVariations(Type CustomDecorativeVariations) {
-    YDF_ComponentsHelper.ValidateCustomDecorativeVariation(CustomDecorativeVariations);
-    Badge.CustomDecorativeVariations = CustomDecorativeVariations;
+  public static void defineCustomDecorativeVariations(Type customDecorativeVariations) {
+    YDF_ComponentsHelper.ValidateCustomDecorativeVariation(customDecorativeVariations);
+    Badge.CustomDecorativeVariations = customDecorativeVariations;
   }
 
   protected string _decorativeVariation = null!;
 
   [Microsoft.AspNetCore.Components.Parameter]
   [Microsoft.AspNetCore.Components.EditorRequired]
+  [
+    System.Diagnostics.CodeAnalysis.SuppressMessage(
+      "Microsoft.Performance",
+      "BL0007",
+      Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
+    )
+  ]
   public required object decorativeVariation
   {
     get => _decorativeVariation;
@@ -140,10 +161,10 @@ public partial class Badge :
   }
 
   [Microsoft.AspNetCore.Components.Parameter]
-  public Badge.DecorativeModifiers[] decorativeModifiers { get; set; } = Array.Empty<Badge.DecorativeModifiers>();
+  public Badge.DecorativeModifiers[] decorativeModifiers { get; set; } = [];
 
 
-  /* ━━━ CSS classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   [Microsoft.AspNetCore.Components.Parameter]
   public string? rootElementModifierCSS_Class { get; set; } = null;
 
@@ -153,51 +174,22 @@ public partial class Badge :
   [Microsoft.AspNetCore.Components.Parameter]
   public string? rootElementSpaceSeparatedModifierCSS_Classes { get; set; } = null;
 
-  private string classAttributeValueForRootElement => new List<string> { Badge.CSS_NAMESPACE }.
-
-      AddElementToEndIf(
-        $"{ Badge.CSS_NAMESPACE }__{ this._theme.ToUpperCamelCase() }Theme",
-        YDF_ComponentsHelper.MustApplyThemeCSS_Class(
-          typeof(Badge.StandardThemes), Badge.CustomThemes, this.areThemesCSS_ClassesCommon
-        )
-      ).
-
-      AddElementToEndIf(
-        $"{ Badge.CSS_NAMESPACE }__{ this._geometricVariation.ToUpperCamelCase() }GeometricVariation",
-        YDF_ComponentsHelper.MustApplyGeometricVariationModifierCSS_Class(
-          typeof(Badge.StandardGeometricVariations), Badge.CustomGeometricVariations
-        )
-      ).
-      AddElementToEndIf(
-        $"{ Badge.CSS_NAMESPACE }__PllShapeGeometricModifier",
-        this.geometricModifiers.Contains(Badge.GeometricModifiers.pillShape)
-      ).
-      AddElementToEndIf(
-        $"{ Badge.CSS_NAMESPACE }__SingleLineGeometricModifier",
-        this.geometricModifiers.Contains(Badge.GeometricModifiers.singleLine)
-      ).
-
-      AddElementToEndIf(
-        $"{ Badge.CSS_NAMESPACE }__{ this._decorativeVariation.ToUpperCamelCase() }DecorativeVariation",
-        YDF_ComponentsHelper.MustApplyDecorativeVariationModifierCSS_Class(
-          typeof(Badge.StandardDecorativeVariations), Badge.CustomDecorativeVariations
-        )
-      ).
-      AddElementToEndIf(
-        $"{ Badge.CSS_NAMESPACE }__BordersDisguisingDecorativeModifier",
-        this.decorativeModifiers.Contains(Badge.DecorativeModifiers.bordersDisguising)
-      ).
-      AddElementToEndIf(
-        $"{ Badge.CSS_NAMESPACE }__NoBackgroundDecorativeModifier",
-        this.decorativeModifiers.Contains(Badge.DecorativeModifiers.noBackground)
-      ).
-
-      AddElementToEndIf(
-        ((ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes,
-        rootElementSpaceSeparatedExternalCSS_Classes =>
-          !String.IsNullOrEmpty(rootElementSpaceSeparatedExternalCSS_Classes)
-      ).
-
-      StringifyEachElementAndJoin(" ");
+  private string classAttributeValueForRootElement => YDF_ComponentsHelper.GenerateClassAttributeValueForRootElement(
+    CSS_Namespace: Badge.CSS_NAMESPACE,
+    activeTheme: this._theme,
+    standardThemes: typeof(Badge.StandardThemes),
+    customThemes: Badge.CustomThemes,
+    areThemesCSS_ClassesCommon: this.areThemesCSS_ClassesCommon,
+    activeGeometricVariation: this._geometricVariation,
+    standardGeometricVariations: typeof(Badge.StandardGeometricVariations),
+    customGeometricVariations: Badge.CustomGeometricVariations,
+    activeDecorativeVariation: this._decorativeVariation,
+    standardDecorativeVariations: typeof(Badge.StandardDecorativeVariations),
+    customDecorativeVariations: Badge.CustomDecorativeVariations,
+    activeGeometricModifiers: this.geometricModifiers,
+    activeDecorativeModifiers: this.decorativeModifiers,
+    externalSpaceSeparatedCSS_Classes:
+        ((ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes
+  );
 
 }

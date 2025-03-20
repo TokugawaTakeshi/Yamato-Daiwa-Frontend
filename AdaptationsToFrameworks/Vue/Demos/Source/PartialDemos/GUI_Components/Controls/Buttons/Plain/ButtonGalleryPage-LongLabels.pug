@@ -1,0 +1,12 @@
+extends ../../../../../CompletePages/GUI_Components/Controls/Buttons/Plain/_ButtonGalleryPage.template.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.metadata.title = generateHTML_PageTitle("Long Labels");
+
+    ButtonGalleryOptions.
+        renderSinglePartial(ButtonGalleryOptions.Partials.longLabels).
+        visuallyHideAllHeadings();

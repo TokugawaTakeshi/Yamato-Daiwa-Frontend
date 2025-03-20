@@ -1,0 +1,12 @@
+extends ../../../../../CompletePages/GUI_Components/Controls/Buttons/Plain/_ButtonGalleryPage.template.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.metadata.title = generateHTML_PageTitle("Prepended Svg Icons");
+
+    ButtonGalleryOptions.
+        renderSinglePartial(ButtonGalleryOptions.Partials.prependedSVG_Icons).
+        visuallyHideAllHeadings();

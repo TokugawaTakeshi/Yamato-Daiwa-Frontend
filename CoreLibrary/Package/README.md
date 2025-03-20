@@ -70,6 +70,9 @@ npm i @yamato-daiwa/frontend@2.0.0-beta.7
 
 * [AdmonitionBlock](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock.english.html)
 * [Badge](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Badge/Badge.english.html)
+* Controls
+  * Buttons 
+    * [Plain (Button)](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/Button.english.html)
 
 [//]: # (TODO ===================================================================================================================)
 [//]: # (###### Functions)

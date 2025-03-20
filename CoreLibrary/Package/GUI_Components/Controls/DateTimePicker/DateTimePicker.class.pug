@@ -3,13 +3,15 @@
   class DateTimePicker__YDF {
 
     /**
-     * @type { string }
      * @public
      * @readonly
+     * @type string
      */
     static CSS_NAMESPACE = "DateTimePicker--YDF";
 
     /**
+     * @public
+     * @readonly
      * @type {
      *   Readonly<{
      *     days: string;
@@ -19,7 +21,6 @@
      *     minutes: string;
      *   }>
      * }
-     * @readonly
      */
     static Matrices = {
       days: "DAYS",
@@ -30,6 +31,8 @@
     };
 
     /**
+     * @public
+     * @readonly
      * @type {
      *   Readonly<{
      *     dateWithTime: string;
@@ -38,7 +41,6 @@
      *     datesWithTimeRange: string;
      *   }>
      * }
-     * @readonly
      */
     static Modes = {
       dateWithTime: "DATE_WITH_TIME",
@@ -57,16 +59,17 @@
      */
     static Themes = { regular: "REGULAR" };
 
-    /* [ Pitfall ] The classes of other components may not be declared yet thus initialization on demand required. */
     /**
-     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null }
      * @private
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
      * */
     static _selfAndChildrenComponentsThemesCorrespondence = null;
 
     /**
-     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } }
      * @public
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } }
      * */
     static get selfAndChildrenComponentsThemesCorrespondence() {
       return DateTimePicker__YDF._selfAndChildrenComponentsThemesCorrespondence ?? (
@@ -78,10 +81,14 @@
     }
 
     /**
+     * @public
+     *
      * @param {
      *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
      * } ownAndCorrespondingCompoundControlShellThemesDefinition
+     *
      * @returns { typeof DateTimePicker__YDF }
+     *
      * @example
      * DateTimePicker__YDF.defineThemes({
      *   redmond: {
@@ -93,7 +100,6 @@
      *     button: Button__YDF.Themes.cupertino
      *   }
      * });
-     * @public
      */
     static defineThemes(ownAndCorrespondingCompoundControlShellThemesDefinition) {
       return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
@@ -102,14 +108,14 @@
     }
 
     /**
-     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
      * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
      * */
     static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
 
     /**
-     * @returns { typeof Badge__YDF }
      * @public
+     * @returns { typeof DateTimePicker__YDF }
      * */
     static considerThemesAsCommon() {
       DateTimePicker__YDF.areThemesCSS_ClassesCommon = true;
@@ -120,8 +126,8 @@
     /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
 
     /**
-     * @type { { [geometricVariationName: string]: string } }
      * @public
+     * @type { { [geometricVariationName: string]: string } }
      * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
      */
     static GeometricVariations = {
@@ -129,16 +135,17 @@
       small: "SMALL"
     };
 
-    /* [ Pitfall ] The classes of other components may not be declared yet thus initialization on demand required. */
     /**
-     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null }
      * @private
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
      * */
     static _selfAndChildrenComponentsGeometricVariationsCorrespondence = null;
 
     /**
-     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } }
      * @public
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } }
      * */
     static get selfAndChildrenComponentsGeometricVariationsCorrespondence() {
       return DateTimePicker__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence ?? (
@@ -156,22 +163,25 @@
     }
 
     /**
+     * @public
+     *
      * @param {
      *   { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
      * } ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition
+     *
      * @returns { typeof DateTimePicker__YDF }
+     *
      * @example
      * DateTimePicker__YDF.defineGeometricVariations({
-     *   redmond: {
-     *     compoundControlShell: CompoundControlShell__YDF.GeometricVariation.tiny,
-     *     button: Button__YDF.GeometricVariation.huge
+     *   large: {
+     *     compoundControlShell: CompoundControlShell__YDF.GeometricVariation.large,
+     *     button: Button__YDF.GeometricVariations.large
      *   },
-     *   cupertino: {
-     *     compoundControlShell: CompoundControlShell__YDF.GeometricVariation.tiny,
-     *     button: Button__YDF.GeometricVariation.huge
+     *   extraLarge: {
+     *     compoundControlShell: CompoundControlShell__YDF.GeometricVariation.extraLarge,
+     *     button: Button__YDF.GeometricVariations.extraLarge
      *   }
      * });
-     * @public
      */
     static defineGeometricVariations(ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition) {
       return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
@@ -181,13 +191,25 @@
 
 
     /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
     static DecorativeVariations = { regular: "REGULAR" };
 
-    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
-    /** @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null } */
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
     static _selfAndChildrenComponentsDecorativeVariationsCorrespondence = null;
 
-    /** @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } } */
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } }
+     * */
     static get selfAndChildrenComponentsDecorativeVariationsCorrespondence() {
       return DateTimePicker__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
         DateTimePicker__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
@@ -201,6 +223,27 @@
       );
     }
 
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition
+     *
+     * @returns { typeof DateTimePicker__YDF }
+     *
+     * @example
+     * DateTimePicker__YDF.defineDecorativeVariations({
+     *   modest: {
+     *     compoundControlShell: CompoundControlShell__YDF.DecorativeVariation.modest
+     *     button: Button__YDF.GeometricVariations.modest
+     *   },
+     *   catchy: {
+     *     compoundControlShell: CompoundControlShell__YDF.DecorativeVariation.catchy,
+     *     button: Button__YDF.GeometricVariations.catchy
+     *   }
+     * });
+     */
     static defineDecorativeVariations(ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition) {
       return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
         ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition, DateTimePicker__YDF

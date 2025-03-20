@@ -9,8 +9,6 @@ mixin NumberBox--YDF(properties, statesSimulations)
 
   -
 
-    const COMPONENT_ID = NumberBox__YDF.generateComponentID();
-
     const {
 
       /** @var { string | undefined } */
@@ -59,10 +57,7 @@ mixin NumberBox--YDF(properties, statesSimulations)
       maximalValue,
 
       /** @var { string | undefined } */
-      nativeInputElementHTML_ID,
-
-      /** @var { string | undefined } */
-      labelElementHTML_ID,
+      instanceID_UniqueDynamicPart,
 
       /** @var { string } [ theme = NumberBox__YDF.Themes.regular ] */
       theme,
@@ -77,7 +72,9 @@ mixin NumberBox--YDF(properties, statesSimulations)
       orientation,
 
       /** @var { string } [ decorativeVariation = NumberBox__YDF.DecorativeVariations.regular ] */
-      decorativeVariation
+      decorativeVariation,
+
+      ...instanceID_DependentProperties
 
     } = processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
@@ -86,6 +83,13 @@ mixin NumberBox--YDF(properties, statesSimulations)
       parameterPropertiesSpecification: NumberBox__YDF.propertiesSpecification,
       mixinName: NumberBox__YDF.CSS_NAMESPACE
     });
+
+    const INSTANCE_ID = NumberBox__YDF.generateInstanceID(instanceID_UniqueDynamicPart);
+
+    const {
+      nativeInputElementHTML_ID = `${ INSTANCE_ID }-INPUT_OR_TEXT_AREA`,
+      labelElementHTML_ID = `${ INSTANCE_ID }-LABEL`
+    } = instanceID_DependentProperties;
 
     const {
 
@@ -160,7 +164,7 @@ mixin NumberBox--YDF(properties, statesSimulations)
       mustDisplayAppropriateBadgeIfInputIsOptional,
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
       coreElementHTML_ID: nativeInputElementHTML_ID,
-      labelElementHTML_ID: labelElementHTML_ID,
+      labelElementHTML_ID,
 
       mainSlotWrapperAdditionalCSS_Classes: [ "NumberBox--YDF-LinearFlow" ],
 
@@ -185,21 +189,24 @@ mixin NumberBox--YDF(properties, statesSimulations)
       disabled: disabled || readonly,
       theme: NumberBox__YDF.selfAndChildrenComponentsThemesCorrespondence.button[theme],
       geometricVariation: NumberBox__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.button[geometricVariation],
-      geometricModifiers: [ Button__YDF.GeometricModifiers.squareShape ],
+      geometricModifiers: [
+        Button__YDF.GeometricModifiers.horizontallyShrinkable,
+        Button__YDF.GeometricModifiers.noBottomBorderAndRoundings
+      ],
       decorativeVariation: NumberBox__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.button[decorativeVariation]
     }).NumberBox--YDF-Button(
       aria-controls=nativeInputElementHTML_ID
       tabindex="-1"
       data-button-incrementing
-    ) ▴
+    )
 
     input.NumberBox--YDF-NativeInput(
       type="number"
       autocomplete="off"
       spellcheck="false"
       value=initialValue
-      min=minimalNumericValue
-      max=maximalNumericValue
+      min=minimalValue
+      max=maximalValue
       data-step="1"
       placeholder=placeholder
       disabled=disabled
@@ -212,11 +219,15 @@ mixin NumberBox--YDF(properties, statesSimulations)
 
     +Button--YDF({
       HTML_Type: Button__YDF.HTML_Types.regular,
+      label: "▼",
       accessibilityGuidance: NumberBox__YDF.localization.buttons.decrementing.generateAccessibilityGuidance({ step }),
       disabled: disabled || readonly,
       theme: NumberBox__YDF.selfAndChildrenComponentsThemesCorrespondence.button[theme],
       geometricVariation: NumberBox__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.button[geometricVariation],
-      geometricModifiers: [ Button__YDF.GeometricModifiers.noTopBorderAndRoundings ],
+      geometricModifiers: [
+        Button__YDF.GeometricModifiers.horizontallyShrinkable,
+        Button__YDF.GeometricModifiers.noTopBorderAndRoundings
+      ],
       decorativeVariation: NumberBox__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.button[decorativeVariation]
     }).NumberBox--YDF-Button(
       aria-controls=nativeInputElementHTML_ID

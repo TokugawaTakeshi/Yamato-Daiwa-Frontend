@@ -3,6 +3,18 @@
 
 # Yamato-Daiwa Frontend IntelliJ IDEA plugin changelog
 
+## [0.0.11]
+
+### Added
+
+- **bdg-ydf** — alias for **Badge--YDF** Live Template
+
+### Changed
+
+- **Badge--YDF** and **Badge--YDF-LoadingPlaceholder** has been updated according the newest API
+- **Badge.styl** file template has been updated according the newest API
+
+
 ## [0.0.10]
 
 ### Added

@@ -3,20 +3,18 @@ import FileSystem from "fs";
 import {
   ImprovedPath,
   ImprovedGlob,
+  ImprovedFileSystem,
   ConsoleApplicationLogger,
   FileNotFoundError
 } from "@yamato-daiwa/es-extensions-nodejs";
-import type {
-  ReplacingOfMatchesWithRegularExpressionToDynamicValue
-} from "@yamato-daiwa/es-extensions";
 import {
   toUpperCamelCase,
   explodeCasedPhraseToWords,
-  replaceDoubleBackslashesWithForwardSlashes,
   extractFileNameWithoutAnyExtensions,
   Logger,
   getMatchingWithFirstRegularExpressionCapturingGroup,
-  replaceMatchesWithRegularExpressionToDynamicValue
+  replaceMatchesWithRegularExpressionToDynamicValue,
+  type ReplacingOfMatchesWithRegularExpressionToDynamicValue
 } from "@yamato-daiwa/es-extensions";
 import Handlebars from "handlebars";
 
@@ -26,29 +24,31 @@ Logger.setImplementation(ConsoleApplicationLogger);
 const PROJECT_ROOT_DIRECTORY_ABSOLUTE_PATH: string = Path.dirname(process.argv[1]);
 const TARGET_DIRECTORY_ABSOLUTE_PATH: string = Path.join(PROJECT_ROOT_DIRECTORY_ABSOLUTE_PATH, process.argv[2]);
 
-const searchResultsForGalleryOptionsClassFile: ReadonlyArray<string> =
+const searchResultsForGalleryPageEntryPointFile: ReadonlyArray<string> =
     ImprovedGlob.getFilesAbsolutePathsSynchronously([
-      replaceDoubleBackslashesWithForwardSlashes(`${ TARGET_DIRECTORY_ABSOLUTE_PATH }/*Options.pug`)
+      `${ TARGET_DIRECTORY_ABSOLUTE_PATH }/*GalleryPage.partials.pug`
     ]);
 
-if (searchResultsForGalleryOptionsClassFile.length !== 1) {
+
+if (searchResultsForGalleryPageEntryPointFile.length !== 1) {
   Logger.throwErrorAndLog({
     errorInstance: new FileNotFoundError({
       customMessage:
-        `In the directory "${ TARGET_DIRECTORY_ABSOLUTE_PATH }" there must be exactly one "*.Options.pug" file, while ` +
-        `${ searchResultsForGalleryOptionsClassFile.length } found.`
+        `In the directory "${ TARGET_DIRECTORY_ABSOLUTE_PATH }" there must be exactly one "*.GalleryPage.partials.pug" ` +
+        ` file while ${ searchResultsForGalleryPageEntryPointFile.length } found.`
     }),
     title: FileNotFoundError.localization.defaultTitle,
     occurrenceLocation: "PartialDemosGenerator.ts"
   });
 }
 
-const galleryClassFileAbsolutePath: string = searchResultsForGalleryOptionsClassFile[0];
-const galleryOptionsClassFileContent: string = FileSystem.readFileSync(galleryClassFileAbsolutePath).toString();
+
+const partialsDeclarationsFileAbsolutePath: string = searchResultsForGalleryPageEntryPointFile[0];
+const partialsDeclarationsFileContent: string = FileSystem.readFileSync(partialsDeclarationsFileAbsolutePath).toString();
 
 const partialEnumerationValue__rawJavaScriptCode: string = getMatchingWithFirstRegularExpressionCapturingGroup({
-  targetString: galleryOptionsClassFileContent,
-  regularExpression: /static Partials\s+=\s+(?<enumerationValue>\{[\w\r\n\s:"',]+?\})/gmu,
+  targetString: partialsDeclarationsFileContent,
+  regularExpression: /setPartials\((?<enumerationValue>\{[\w\r\n\s:"',]+?\})/gmu,
   mustThrowErrorIfZeroOrMoreThanOneMatchings: true
 }).replace("'", "\"");
 
@@ -61,15 +61,18 @@ const partialEnumerationValue__normalizedJSON: string = replaceMatchesWithRegula
 });
 
 const partialEnumerationValue: Readonly<{ [partialKey: string]: string; }> = JSON.parse(partialEnumerationValue__normalizedJSON);
-const componentName__upperCamelCase: string =
-    extractFileNameWithoutAnyExtensions({
-      targetPath: galleryClassFileAbsolutePath,
-      mustThrowErrorIfLastPathSegmentHasNoDots: true
-    }).replace("Options", "");
-const outputFilesNamesConstantPart: string = `${ componentName__upperCamelCase }Page`;
+
+const targetGUI_Component__upperCamelCase: string = extractFileNameWithoutAnyExtensions({
+  targetPath: partialsDeclarationsFileAbsolutePath,
+  mustThrowErrorIfLastPathSegmentHasNoDots: false
+}).
+    replace("GalleryPage", "").
+    replace("_", "");
+
+const outputFilesNamesConstantPart: string = `${ targetGUI_Component__upperCamelCase }Page`;
 
 const commonRelativePath: string = Path.relative(
-  Path.join(PROJECT_ROOT_DIRECTORY_ABSOLUTE_PATH, "Source", "Galleries"),
+  Path.join(PROJECT_ROOT_DIRECTORY_ABSOLUTE_PATH, "Source", "CompletePages"),
   TARGET_DIRECTORY_ABSOLUTE_PATH
 );
 
@@ -93,7 +96,7 @@ const relativePathToPagePugTemplate: string = ImprovedPath.computeRelativePath({
     "Source",
     "CompletePages",
     commonRelativePath,
-    `_${ componentName__upperCamelCase }Page.template.pug`
+    `_${ targetGUI_Component__upperCamelCase }GalleryPage.template.pug`
 
   ),
   alwaysForwardSlashSeparators: true
@@ -107,14 +110,14 @@ for (const partialKey of Object.keys(partialEnumerationValue)) {
   const outputFileNameWithExtension: string = `${ outputFilesNamesConstantPart }-${ partialKey__upperCamelCase }.pug`;
   const fileOutputPath: string = Path.join(outputDirectoryAbsolutePath, outputFileNameWithExtension);
 
-  FileSystem.writeFileSync(
-    Path.join(fileOutputPath),
-    getOutputPugCode({
+  ImprovedFileSystem.writeFileToPossiblyNotExistingDirectory({
+    filePath: fileOutputPath,
+    content: getOutputPugCode({
       relativePathToPathTemplate: relativePathToPagePugTemplate,
       pageTitleSpecificPart: explodeCasedPhraseToWords(partialKey__upperCamelCase).join(" "),
-      componentName__upperCamelCase,
       partialKey
-    })
-  );
+    }),
+    synchronously: true
+  });
 
 }

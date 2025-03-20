@@ -35,12 +35,12 @@ class BadgeGallery extends Gallery<BadgeGallery.PartialsFlags> {
 
 
   /* ─── Computed ─────────────────────────────────────────────────────────────────────────────────────────────────── */
-  protected mustRenderAtLeansOnePartialRelatedWithGeometricModifier(): boolean {
+  protected mustRenderAtLeastOnePartialRelatedWithGeometricModifier(): boolean {
     return this.partialsFlags.pillShapeGeometricModifier === true ||
         this.partialsFlags.singleLineGeometricModifier === true;
   }
 
-  protected mustRenderAtLeansOnePartialRelatedWithDecorativeModifier(): boolean {
+  protected mustRenderAtLeastOnePartialRelatedWithDecorativeModifier(): boolean {
     return this.partialsFlags.bordersDisguisingDecorativeModifier === true ||
         this.partialsFlags.noBackgroundDecorativeModifier === true;
   }

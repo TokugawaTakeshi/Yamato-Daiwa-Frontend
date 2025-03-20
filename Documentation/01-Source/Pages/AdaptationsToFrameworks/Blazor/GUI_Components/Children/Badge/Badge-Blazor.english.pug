@@ -11,9 +11,14 @@ block append Metadata
 
   -
 
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.adaptationsToFrameworks.$children.blazor.$children.GUI_Components.$children.Badge;
+
     RegularWebPageTemplate__YDF.configure({
       metadata: {
-        title: buildHTML_PageTitle("Badge (Blazor)"),
+        title: buildHTML_PageTitle(topHeading),
         description: MetaDescriptionTemplates.GUI_Components.Badge
       },
       stylesSheetsURIs: [
@@ -31,11 +36,6 @@ block append Metadata
       russian: routing.russian.adaptationsToFrameworks.$children.blazor.$children.GUI_Components.$children.Badge.$URI
     });
 
-    const {
-      $sectioning: localizedSectioning,
-      $heading: topHeading
-    } = localizedRouting.adaptationsToFrameworks.$children.blazor.$children.GUI_Components.$children.Badge;
-
 
 block append HeadScripts
 
@@ -48,7 +48,62 @@ block append SpecificContent
 
   article
 
-    //- ━━━ Badge ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ━━━ Badge (Blazor) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     h1.Article-Heading1!= topHeading
 
     +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
+
+    +WebPageViewer--YDF({
+      URI: "$Demos:Vue/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "AdmonitionBlock" })
+    })
+
+    +AdmonitionBlockComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ━━━ Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.synopsis.$heading,
+      HTML_ID: localizedSectioning.synopsis.$anchor
+    }).Article-Heading2
+
+    +GUI_ComponentSummaryViewer({
+      framework: SupportedFrameworks.blazor,
+      metadataClass: Badge__YDF,
+      stylusMixinName: "provideBadgeYDF_Component",
+      themesNamesTranslations: {
+        [AdmonitionBlock__YDF.Themes.regular]: "Regular (Default)"
+      },
+      geometricVariationsTranslations: {
+        [Badge__YDF.GeometricVariations.regular]: "Regular (Default)",
+        [Badge__YDF.GeometricVariations.small]: "Small"
+      },
+      geometricModifiersNamesTranslations: {
+        [Badge__YDF.GeometricModifiers.pillShape]: "Maximal Roundings of the Corners",
+        [Badge__YDF.GeometricModifiers.singleLine]: "Always Single Line with Text Truncating on Overflow"
+      },
+      decorativeVariationsTranslations: {
+        [Badge__YDF.DecorativeVariations.veryCatchyBright]: "Very Catchy Bright (red as default)",
+        [Badge__YDF.DecorativeVariations.catchyBright]: "Catchy Bright (orange as default)",
+        [Badge__YDF.DecorativeVariations.modestlyCatchyBright]: "Modestly Catchy Bright (yellow as default)",
+        [Badge__YDF.DecorativeVariations.neutralBright]: "Neutral Bright (light blue as default)",
+        [Badge__YDF.DecorativeVariations.modestlyCalmingBright]: "Modestly Calming Bright (blue as default)",
+        [Badge__YDF.DecorativeVariations.calmingBright]: "Calming Bright (green as default)",
+        [Badge__YDF.DecorativeVariations.achromaticBright]: "Achromatic Bright (dark gray as default)",
+        [Badge__YDF.DecorativeVariations.veryCatchyPastel]: "Very Catchy Pastel (red as default)",
+        [Badge__YDF.DecorativeVariations.catchyPastel]: "Catchy Pastel (orange as default",
+        [Badge__YDF.DecorativeVariations.modestlyCatchyPastel]: "Modestly catchy pastel (yellow as default)",
+        [Badge__YDF.DecorativeVariations.neutralPastel]: "Neutral Pastel (light blue as default)",
+        [Badge__YDF.DecorativeVariations.modestlyCalmingPastel]: "Modestly Calming Pastel (blue as default)",
+        [Badge__YDF.DecorativeVariations.calmingPastel]: "Calming Pastel (green as default)",
+        [Badge__YDF.DecorativeVariations.achromaticPastel]: "Achromatic Pastel (light gray as default)"
+      },
+      decorativeModifiersNamesTranslations: {
+        [Badge__YDF.DecorativeModifiers.bordersDisguising]: "No Borders Effect without Changing of Dimensions",
+        [Badge__YDF.DecorativeModifiers.noBackground]: "No Fill"
+      },
+      loadingPlaceholder: true
+    })

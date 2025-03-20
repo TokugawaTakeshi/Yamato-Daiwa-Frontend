@@ -60,18 +60,18 @@ class EmailAddressInputtedValueValidation extends InputtedValueValidation {
       staticRules: [
         new MinimalCharactersCountInputtedValueValidationRule({
           minimalCharactersCount: MINIMAL_CHARACTERS_COUNT,
-          errorMessageBuilder: EmailAddressInputtedValueValidation.localization.
+          errorMessageBuilder: (compoundParameter.localization ?? EmailAddressInputtedValueValidation.localization).
               minimalCharactersCountValidationErrorMessageBuilder
         }),
         new EmailAddressInputtedValueValidationRule({
           regularExpression: compoundParameter.regularExpression,
-          errorMessageBuilder: EmailAddressInputtedValueValidation.localization.
+          errorMessageBuilder: (compoundParameter.localization ?? EmailAddressInputtedValueValidation.localization).
               invalidEmailAddressErrorMessageBuilder,
           mustFinishValidationIfValueIsInvalid: true
         }),
         new MaximalCharactersCountInputtedValueValidationRule({
           maximalCharactersCount: MAXIMAL_CHARACTERS_COUNT,
-          errorMessageBuilder: EmailAddressInputtedValueValidation.localization.
+          errorMessageBuilder: (compoundParameter.localization ?? EmailAddressInputtedValueValidation.localization).
               maximalCharactersCountValidationErrorMessageBuilder
         })
       ],

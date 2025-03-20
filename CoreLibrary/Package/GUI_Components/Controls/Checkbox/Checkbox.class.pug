@@ -1,0 +1,233 @@
+-
+
+  class Checkbox__YDF {
+
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
+    static CSS_NAMESPACE = "Checkbox--YDF";
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @type { { [themeName: string]: string } }
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
+    static Themes = { regular: "REGULAR" };
+
+    /**
+     * @public
+     * @param { Array<string> } themesNames
+     * @return { typeof Checkbox__YDF }
+     */
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineThemes(themesNames, Checkbox__YDF);
+    }
+
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @public
+     * @returns { typeof Checkbox__YDF }
+     * @public
+     * */
+    static considerThemesAsCommon() {
+      Checkbox__YDF.areThemesCSS_ClassesCommon = true;
+      return Checkbox__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL",
+      minimalistic: "MINIMALISTIC"
+    };
+
+    /**
+     * @public
+     * @param { Array<string> } geometricVariationsNames
+     * @return { typeof Checkbox__YDF }
+     */
+    static defineGeometricVariations(geometricVariationsNames) {
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, Checkbox__YDF);
+    }
+
+    /**
+     * @public
+     * @readonly
+     * @type {
+     *   Readonly<{
+     *     squareShape: string;
+     *     singleLine: string;
+     *     noLeftBorderAndRoundings: string;
+     *     noRightBorderAndRoundings: string;
+     *     noTopBorderAndRoundings: string;
+     *     noBottomBorderAndRoundings: string;
+     *     noRoundings: string;
+     *   }>
+     * }
+     */
+    static GeometricModifiers = {
+      squareShape: "SQUARE_SHAPE",
+      singleLine: "SINGLE_LINE",
+      noLeftBorderAndRoundings: "NO_LEFT_BORDER_AND_ROUNDINGS",
+      noRightBorderAndRoundings: "NO_RIGHT_BORDER_AND_ROUNDINGS",
+      noTopBorderAndRoundings: "NO_TOP_BORDER_AND_ROUNDINGS",
+      noBottomBorderAndRoundings: "NO_BOTTOM_BORDER_AND_ROUNDINGS",
+      noRoundings: "NO_ROUNDINGS"
+    };
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = {
+      regular: "REGULAR",
+      minimalistic: "MINIMALISTIC"
+    };
+
+    /**
+     * @public
+     * @param { Array<string> } decorativeVariationsNames
+     * @return { typeof Checkbox__YDF }
+     */
+    static defineDecorativeVariations(decorativeVariationsNames) {
+      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, Checkbox__YDF);
+    }
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * */
+    static propertiesSpecification = {
+
+      label: {
+        type: String,
+        required: false,
+        minimalCharactersCount: 1
+      },
+
+      externalLabelHTML_ID: {
+        type: String,
+        required: false,
+        minimalCharactersCount: 1
+      },
+
+      HTML_Name: {
+        type: String,
+        required: false,
+        minimalCharactersCount: 1
+      },
+
+      HTML_Value: {
+        type: String,
+        required: false,
+        minimalCharactersCount: 1
+      },
+
+      /** @description
+       * 1 minimal character is definitely not enough for unique string, but in MVC mode it could be the variable. */
+      instanceID_UniqueDynamicPart: {
+        type: String,
+        required: false,
+        minimalCharactersCount: 1
+      },
+
+      inputElementHTML_ID: {
+        type: String,
+        required: false,
+        minimalCharactersCount: 1
+      },
+
+      checked: {
+        type: Boolean,
+        defaultValue: false
+      },
+
+      disabled: {
+        type: Boolean,
+        defaultValue: false
+      },
+
+      readonly: {
+        type: Boolean,
+        defaultValue: false
+      },
+
+      theme: {
+        type: String,
+        defaultValue: Checkbox__YDF.Themes.regular,
+        allowedAlternatives: Object.
+            entries(Checkbox__YDF.Themes).
+            map(([ key, value ]) => ({ key: `Checkbox__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        defaultValue: ComponentsAuxiliaries.areComponentsThemesCommon
+      },
+
+      geometricVariation: {
+        type: String,
+        defaultValue: Checkbox__YDF.GeometricVariations.regular,
+        allowedAlternatives: Object.
+            entries(Checkbox__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `Checkbox__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      geometricModifiers: {
+        type: Array,
+        defaultValue: [],
+        element: {
+          type: String,
+          allowedAlternatives: Object.values(Checkbox__YDF.GeometricModifiers)
+        }
+      },
+
+      decorativeVariation: {
+        type: String,
+        defaultValue: Checkbox__YDF.DecorativeVariations.regular,
+        allowedAlternatives: Object.
+            entries(Checkbox__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `Checkbox__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    };
+
+
+    /* ━━━ ID generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @param { string } [uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()]
+     * @returns { string }
+     */
+    static generateInstanceID(
+      uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()
+    ) {
+      return `CHECKBOX--YDF-${ uniqueDynamicPart }`;
+    }
+
+  }

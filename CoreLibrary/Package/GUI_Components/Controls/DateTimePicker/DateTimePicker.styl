@@ -130,10 +130,23 @@ provideDateTimePickerYDF_Component(
             flex-shrink 0
 
 
-      &-DaysActions
+          &-TwoPairsButtonsTable
 
-        width 100%
+            table-layout fixed
+            width 100%
 
+
+        &-Header
+
+          display flex
+          justify-content space-between
+          align-items center
+
+
+        &-BottomActionBar
+
+          display flex
+          flex-direction row-reverse
 
       &-DaysMatrix
 
@@ -274,19 +287,35 @@ provideDateTimePickerYDF_Component(
       margin-top 4px
 
 
-    .DateTimePicker--YDF-Dialog-DaysActions
+    .DateTimePicker--YDF-Dialog-TopActionBar-TwoPairsButtonsTable
+
+      th
+
+        text-align center
+
 
       td
 
-        padding-top 4px
-
-        text-align center
+        padding-top 0.2rem
         vertical-align middle
+
+
+        &:nth-child(odd)
+
+          padding-right 0.2rem
+          text-align right
+
+
+        &:nth-child(even)
+
+          padding-left 0.2rem
+          text-align left
 
 
     .DateTimePicker--YDF-Dialog-Header
 
       Paddings({ horizontalSymmetric: 6px })
+      margin-top 0.2rem
 
 
     .DateTimePicker--YDF-Dialog-Header-CurrentScopeLabel
@@ -296,8 +325,6 @@ provideDateTimePickerYDF_Component(
         lineSpacing: 4px,
         mustApplyNegativeMarginsToRootElement: true
       })
-
-      margin-top 4px
 
 
     .DateTimePicker--YDF-DayTitleCell
@@ -365,6 +392,11 @@ provideDateTimePickerYDF_Component(
       font-size 14px
 
 
+    .DateTimePicker--YDF-Dialog-BottomActionBar
+
+      padding 4px
+
+
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
@@ -409,7 +441,12 @@ provideDateTimePickerYDF_Component(
         cursor not-allowed
 
 
-      &__Selected
+      &__Today
+
+        box-shadow inset 0 0 1px 1px JQueryUI_BaseTheme.clickableElements.focusState.shadowColor
+
+
+      &__SelectedState
 
         color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor
         background-color: JQueryUI_BaseTheme.clickableElements.activeState.background
@@ -421,6 +458,7 @@ provideDateTimePickerYDF_Component(
 
       border-color #c5c5c5
       border-style solid
+      background-color white
       color #454545
 
 
@@ -467,7 +505,7 @@ provideDateTimePickerYDF_Component(
       border-top-color lightgray
 
 
-    .DateTimePicker--YDF-Dialog-DaysActions
+    .DateTimePicker--YDF-Dialog-TopActionBar-TwoPairsButtonsTable
 
       th
 
@@ -478,7 +516,7 @@ provideDateTimePickerYDF_Component(
     .DateTimePicker--YDF-Dialog
 
       background-color white
-      box-shadow 0 3px 10px rgba(black, 0.1)
+      box-shadow 0 3px 10px rgba(black, 0.25)
 
 
     .DateTimePicker--YDF-Dialog-Header-CurrentScopeLabel
@@ -500,16 +538,6 @@ provideDateTimePickerYDF_Component(
     .DateTimePicker--YDF-DaySelectingButton
 
       ClickableCellsCommonDecorations()
-
-
-      &__Today
-
-        box-shadow inset 0 0 1px 1px #0D47A1
-
-
-      &__SelectedState
-
-        background-color lightgoldenrodyellow
 
 
     .DateTimePicker--YDF-MonthSelectingButton

@@ -1,5 +1,5 @@
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
-import componentTemplate from "./Button.vue.pug";
+import componentVueTemplate from "./Button.vue.pug";
 
 /* ─── Framework ──────────────────────────────────────────────────────────────────────────────────────────────────── */
 import {
@@ -7,7 +7,6 @@ import {
   Vue as VueComponent,
   Prop as VueProperty
 } from "vue-facing-decorator";
-
 import type { RouteLocationRaw as VueRouterRawLocation } from "vue-router";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
@@ -21,17 +20,20 @@ import {
   isNonEmptyString,
   isEitherUndefinedOrNull,
   isNeitherUndefinedNorNull,
-  isElementOfEnumeration
+  isElementOfEnumeration,
+  isArbitraryObject,
+  emptyStringToNull,
+  type ElementOfPseudoEnumeration
 } from "@yamato-daiwa/es-extensions";
-import type { ElementOfPseudoEnumeration } from "@yamato-daiwa/es-extensions";
 
 
 @VueComponentConfiguration({
   name: Button.CSS_NAMESPACE,
-  template: componentTemplate
+  template: componentVueTemplate
 })
 class Button extends VueComponent {
 
+  /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static CSS_NAMESPACE: string = "Button--YDF";
 
   public static HTML_Types: Button.HTML_Types = {
@@ -42,8 +44,16 @@ class Button extends VueComponent {
     inputReset: "INPUT_RESET"
   };
 
+
+  /* ━━━ Non-reactive Instance Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected IS_NUXT!: boolean;
 
+  private initializeNonReactiveClassFields(): void {
+    this.IS_NUXT = "$nuxt" in window;
+  }
+
+
+  /* ━━━ Common Properties ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   @VueProperty({
     type: String,
     default: Button.HTML_Types.regular,
@@ -51,21 +61,30 @@ class Button extends VueComponent {
   })
   protected readonly HTML_Type!: ElementOfPseudoEnumeration<Button.HTML_Types>;
 
-  @VueProperty({ type: String })
+
+  /* ─── Textings ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+  @VueProperty({ validator: (value: unknown): boolean => isNonEmptyString(value) || isNumber(value) })
   protected readonly label?: string | number | null;
 
-  @VueProperty({ type: String })
+  @VueProperty({ validator: isNonEmptyString })
   protected readonly accessibilityGuidance?: string | null;
 
-  @VueProperty({ type: [ String, Object ] })
+
+  /* ─── Links ────────────────────────────────────────────────────────────────────────────────────────────────────── */
+  @VueProperty({ validator: (value: unknown): boolean => isNonEmptyString(value) || isArbitraryObject(value) })
   protected readonly route?: VueRouterRawLocation | null;
 
-  @VueProperty({ type: String })
+  @VueProperty({ validator: isNonEmptyString })
   protected readonly externalURI?: string | null;
 
   @VueProperty({ type: Boolean, default: false })
-  protected readonly mustOpenExternalLinkInCurrentTab!: string;
+  protected readonly mustOpenLinkInNewTab!: boolean;
 
+  @VueProperty({ type: Boolean, default: false })
+  protected readonly mustRequestNotFollowLinkForCrawlingToSearchEngine!: boolean;
+
+
+  /* ─── Status ───────────────────────────────────────────────────────────────────────────────────────────────────── */
   @VueProperty({ type: Boolean, default: false })
   protected readonly disabled!: boolean;
 
@@ -89,9 +108,8 @@ class Button extends VueComponent {
 
   public static areThemesCSS_ClassesCommon: boolean = ComponentsAuxiliaries.areThemesCSS_ClassesCommon;
 
-  public static considerThemesAsCommon(): typeof Button {
+  public static considerThemesAsCommon(): void {
     Button.areThemesCSS_ClassesCommon = true;
-    return Button;
   }
 
   @VueProperty({ type: Boolean, default: Button.areThemesCSS_ClassesCommon })
@@ -131,6 +149,7 @@ class Button extends VueComponent {
   public static readonly DecorativeVariations: Button.DecorativeVariations = {
     regular: "REGULAR",
     accented: "ACCENTED",
+    danger: "DANGER",
     linkLike: "LINK_LIKE"
   };
 
@@ -173,7 +192,7 @@ class Button extends VueComponent {
           vueComponentName: Button.name,
           messageSpecificPart:
               "When button has HTML type \"inputButton\", \"inputSubmit\" or \"inputReset\", the \"label\" property " +
-              "must be specified with non-empty string of number."
+                "must be specified with non-empty string of number."
         }),
         title: InvalidVuePropertiesCombinationError.localization.defaultTitle,
         occurrenceLocation: `${ Button.name }.created()`
@@ -230,6 +249,15 @@ class Button extends VueComponent {
 
   }
 
+  protected get relAttributeValueOfAnchorElement(): string | null {
+    return emptyStringToNull(
+      [
+        ...this.mustOpenLinkInNewTab ? [ "noopener", "noreferrer" ] : [],
+        ...this.mustRequestNotFollowLinkForCrawlingToSearchEngine ? [ "nofollow" ] : []
+      ].join(" ")
+    );
+  }
+
 
   /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected get rootElementModifierCSS_Classes(): ReadonlyArray<string> {
@@ -266,11 +294,6 @@ class Button extends VueComponent {
     ];
   }
 
-
-  private initializeNonReactiveClassFields(): void {
-    this.IS_NUXT = "$nuxt" in window;
-  }
-
 }
 
 
@@ -302,19 +325,25 @@ namespace Button {
     squareShapeUnlessOverflowed = "SQUARE_SHAPE_UNLESS_OVERFLOWED",
     singleLine = "SINGLE_LINE",
     noLeftBorderAndRoundings = "NO_LEFT_BORDER_AND_ROUNDINGS",
-    noRightBorderAndRoundings = "NO_RIGHT_BORDER_AND_ROUNDINGS"
+    noRightBorderAndRoundings = "NO_RIGHT_BORDER_AND_ROUNDINGS",
+    noTopBorderAndRoundings = "NO_TOP_BORDER_AND_ROUNDINGS",
+    noBottomBorderAndRoundings = "NO_BOTTOM_BORDER_AND_ROUNDINGS",
+    noRoundings = "NO_ROUNDINGS",
+    horizontallyShrinkable = "HORIZONTALLY_SHRINKABLE"
   }
 
   export type DecorativeVariations = {
     readonly regular: "REGULAR";
     readonly accented: "ACCENTED";
+    readonly danger: "DANGER";
     readonly linkLike: "LINK_LIKE";
     [variationName: string]: string;
   };
 
   export enum DecorativeModifiers {
     bordersDisguising = "BORDERS_DISGUISING",
-    noBackground = "NO_BACKGROUND"
+    noBackground = "NO_BACKGROUND",
+    noBackgroundInDefaultState = "NO_BACKGROUND_IN_DEFAULT_STATE"
   }
 
 }

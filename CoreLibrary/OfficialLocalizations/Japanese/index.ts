@@ -1,5 +1,6 @@
 /* ━━━ GUI Components ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export { admonitionBlockYDF_ComponentLocalization__japanese } from "./GUI_Components/AdmonitionBlockLocalization.japanese";
+export { dateTimePickerYDF_ComponentLocalization__japanese } from "./GUI_Components/Controls/DateTimePickerLocalization.japanese";
 export { filesUploaderYDF_ComponentLocalization__japanese } from "./GUI_Components/Controls/FilesUploaderLocalization.japanese";
 
 

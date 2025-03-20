@@ -1,0 +1,128 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+
+
+@if (isButtonTheTagNameOfRootElement)
+{
+  <button
+    type=@typeAttributeValueOfButtonOrInputElement
+    class=@classAttributeValueForRootElement
+    aria-label=@accessibilityGuidance
+    disabled=@disabled
+    aria-pressed=@(toggled ? "true" : null)
+    @onclick:preventDefault
+    @onclick=@onClick
+    @ref=@rootElement
+    @attributes=@rootElementHTML_Attributes
+  >
+
+    @if (PrependedSVG_Icon is not null)
+    {
+      @PrependedSVG_Icon
+    }
+    
+    @if (!String.IsNullOrEmpty(label))
+    {
+      <span class="Button--YDF-Label">@( label )</span>
+    }
+    
+     @if (AppendedSVG_Icon is not null)
+    {
+      @AppendedSVG_Icon
+    }
+    
+    @if (LoneSVG_Icon is not null)
+    {
+      @LoneSVG_Icon
+    }
+    
+  </button>  
+}
+
+else if (isAnchorTheTagNameOfRootElement)
+{
+  <a
+    href=@externalURI
+    class=@classAttributeValueForRootElement
+    tabindex=@(disabled ? "-1" : null)
+    aria-label=@accessibilityGuidance
+    aria-disabled=@disabled
+    rel=@relAttributeValueForAnchorTag
+    target=@(mustOpenLinkInNewTab ? "_blank" : null)
+    @onclick:preventDefault
+    @onclick=@onClick
+    @ref=@rootElement
+    @attributes=@rootElementHTML_Attributes
+  >
+    
+    @if (PrependedSVG_Icon is not null)
+    {
+      @PrependedSVG_Icon
+    }
+    
+    @if (!String.IsNullOrEmpty(label))
+    {
+      <span class="Button--YDF-Label">@( label )</span>
+    }
+    
+     @if (AppendedSVG_Icon is not null)
+    {
+      @AppendedSVG_Icon
+    }
+    
+    @if (LoneSVG_Icon is not null)
+    {
+      @LoneSVG_Icon
+    }
+    
+  </a> 
+}
+
+else if (isNavLinkTheRootElement)
+{
+  <NavLink
+    href=@internalURN
+    class=@classAttributeValueForRootElement
+    tabindex=@(disabled ? "-1" : null)
+    aria-label=@accessibilityGuidance
+    aria-disabled=@disabled
+    @onclick:preventDefault
+    @attributes=@rootElementHTML_Attributes
+  >
+    
+    @if (PrependedSVG_Icon is not null)
+    {
+      @PrependedSVG_Icon
+    }
+    
+    @if (!String.IsNullOrEmpty(label))
+    {
+      <span class="Button--YDF-Label">@( label )</span>
+    }
+    
+     @if (AppendedSVG_Icon is not null)
+    {
+      @AppendedSVG_Icon
+    }
+    
+    @if (LoneSVG_Icon is not null)
+    {
+      @LoneSVG_Icon
+    }
+    
+  </NavLink> 
+}
+
+else if (isInputTheTagNameOfRootElement)
+{
+  <input 
+    type=@typeAttributeValueOfButtonOrInputElement
+    class=@classAttributeValueForRootElement
+    value=@label
+    disabled=@disabled
+    aria-pressed=@(toggled ? "true" : null)
+    @onclick:preventDefault
+    @onclick=@onClick
+    @ref=@rootElement
+    @attributes=@rootElementHTML_Attributes
+  />  
+}

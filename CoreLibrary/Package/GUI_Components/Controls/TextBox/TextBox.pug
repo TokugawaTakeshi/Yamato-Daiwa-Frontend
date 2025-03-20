@@ -5,41 +5,133 @@ mixin TextBox--YDF(properties, statesSimulations)
 
   -
 
-    const COMPONENT_ID = TextBox__YDF.generateComponentID();
-
     const {
 
-      HTML_Type = TextBox__YDF.HTML_Types.text,
+      /**
+       * @type { Button__YDF.HTML_Types }
+       * @default TextBox__YDF.HTML_Types.text
+       * */
+      HTML_Type,
 
+      /** @type { string | undefined } */
       label,
+
+      /** @type { string | undefined } */
       accessibilityGuidance,
+
+      /** @type { string | undefined } */
       externalLabelHTML_ID,
+
+      /** @type { string | undefined } */
       guidance,
+
+      /** @type { string | undefined } */
       placeholder,
+
+      /**
+       * @type { string | undefined }
+       * @see https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
+       * */
       autocomplete,
 
-      value = "",
+      /**
+       * @type { string }
+       * @default ""
+       * */
+      value,
 
-      multiline = false,
-      disabled = false,
-      readonly = false,
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      multiline,
 
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      autoResizingForMultilineMode,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      disabled,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      readonly,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       required = false,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       mustDisplayAppropriateBadgeIfInputIsRequired = false,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       mustDisplayAppropriateBadgeIfInputIsOptional = false,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge = false,
+
+      /** @type { number } */
       minimalCharactersCount,
+
+      /** @type { number } */
       maximalCharactersCount,
+
+      /** @type { number } */
       minimalNumericValue,
+
+      /** @type { number } */
       maximalNumericValue,
 
-      inputOrTextAreaElementHTML_ID = `${ COMPONENT_ID }-INPUT_OR_TEXT_AREA`,
-      labelElementHTML_ID = `${ COMPONENT_ID }-LABEL`,
+      /** @type { string | undefined } */
+      instanceID_UniqueDynamicPart,
+      HTML_IDs,
 
-      theme = TextBox__YDF.Themes.regular,
-      areThemesExternal = TextBox__YDF.areThemesExternal,
-      geometricVariation = TextBox__YDF.GeometricVariations.regular,
-      decorativeVariation = TextBox__YDF.DecorativeVariations.regular,
+      /**
+       * @type { TextBox__YDF.Themes }
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default TextBox__YDF.areThemesCSS_ClassesCommon
+       * */
+      areThemesExternal,
+
+      /**
+       * @type { TextBox__YDF.GeometricVariations }
+       * @default TextBox__YDF.GeometricVariations.regular
+       * */
+      geometricVariation,
+
+      /**
+       * @type { Array<TextBox__YDF.GeometricModifiers> }
+       * @default []
+       * */
+      geometricModifiers,
+
+      /**
+       * @type { TextBox__YDF.GeometricVariations }
+       * @default TextBox__YDF.DecorativeVariations.regular
+       * */
+      decorativeVariation
 
     } = processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
@@ -48,6 +140,18 @@ mixin TextBox--YDF(properties, statesSimulations)
       parameterPropertiesSpecification: TextBox__YDF.propertiesSpecification,
       mixinName: TextBox__YDF.CSS_NAMESPACE
     });
+
+    const INSTANCE_ID = TextBox__YDF.generateInstanceID(instanceID_UniqueDynamicPart);
+
+    const {
+
+      /** @type { string } */
+      inputOrTextArea: inputOrTextAreaHTML_ID = `${ INSTANCE_ID }-INPUT_OR_TEXT_AREA`,
+
+      /** @type { string } */
+      label: labelElementHTML_ID = `${ INSTANCE_ID }-LABEL`
+
+    } = HTML_IDs ?? {};
 
     const {
       invalidInputHighlightingIfAnyValidationErrorsMessages = false,
@@ -105,7 +209,7 @@ mixin TextBox--YDF(properties, statesSimulations)
       mustDisplayAppropriateBadgeIfInputIsRequired,
       mustDisplayAppropriateBadgeIfInputIsOptional,
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
-      coreElementHTML_ID: inputOrTextAreaElementHTML_ID,
+      coreElementHTML_ID: inputOrTextAreaHTML_ID,
       labelElementHTML_ID: labelElementHTML_ID,
 
       theme: TextBox__YDF.selfAndChildrenComponentsThemesCorrespondence.compoundControlShell[theme],
@@ -132,7 +236,7 @@ mixin TextBox--YDF(properties, statesSimulations)
         required=required
         minlength=minimalCharactersCount
         maxlength=maximalCharactersCount
-        id=inputOrTextAreaElementHTML_ID
+        id=inputOrTextAreaHTML_ID
         aria-label=accessibilityGuidance
         aria-labelledby=externalLabelHTML_ID
       )= value
@@ -151,7 +255,7 @@ mixin TextBox--YDF(properties, statesSimulations)
         maxlength=maximalCharactersCount
         min=minimalNumericValue
         max=maximalNumericValue
-        id=inputOrTextAreaElementHTML_ID
+        id=inputOrTextAreaHTML_ID
         aria-label=accessibilityGuidance
         aria-labelledby=externalLabelHTML_ID
       )

@@ -66,6 +66,50 @@ mixin AdmonitionBlockComponent-Abstract
       это компонент #[+ImportantEntity--YDID Snackbar]).
 
 
+
+mixin AdmonitionBlockComponent-Synopsis(properties)
+
+  -
+
+    const {
+
+      framework
+
+    } = properties ?? {};
+
+    let intelliJ_IDEA_FamilyIDEsLiveTemplateAbbreviation;
+
+    switch (framework) {
+
+      default: {
+        intelliJ_IDEA_FamilyIDEsLiveTemplateAbbreviation = "ab-ydf";
+      }
+
+    }
+
+  +GUI_ComponentSummaryViewer({
+    framework,
+    metadataClass: AdmonitionBlock__YDF,
+    intelliJ_IDEA_FamilyIDEsLiveTemplateAbbreviation: "ab-ydf",
+    stylusMixinName: "provideAdmonitionBlockYDF_Component",
+    themesNamesTranslations: {
+      [AdmonitionBlock__YDF.Themes.regular]: "Базовая (по умолчанию)"
+    },
+    geometricVariationsTranslations: {
+      [AdmonitionBlock__YDF.GeometricVariations.regular]: "Базовая (по умолчанию)",
+      [AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike]: "Похожая на клейкие листочки"
+    },
+    decorativeVariationsTranslations: {
+      [AdmonitionBlock__YDF.DecorativeVariations.notice]: "Заметка",
+      [AdmonitionBlock__YDF.DecorativeVariations.error]: "Ошибка либо критически важное примечание",
+      [AdmonitionBlock__YDF.DecorativeVariations.warning]: "Предупреждение",
+      [AdmonitionBlock__YDF.DecorativeVariations.success]: "Успешное выполннение действия",
+      [AdmonitionBlock__YDF.DecorativeVariations.guidance]: "Объяснение",
+      [AdmonitionBlock__YDF.DecorativeVariations.question]: "Вопрос"
+    }
+  })
+
+
 mixin AdmonitionBlockComponent-MinimalExampleDescription(properties)
 
   -

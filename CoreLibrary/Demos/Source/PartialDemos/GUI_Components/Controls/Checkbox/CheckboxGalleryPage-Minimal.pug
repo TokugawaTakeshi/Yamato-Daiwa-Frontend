@@ -1,0 +1,12 @@
+extends ../../../../CompletePages/GUI_Components/Controls/Checkbox/_CheckboxGalleryPage.template.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.metadata.title = generateHTML_PageTitle("Minimal");
+
+    CheckboxGalleryOptions.
+        renderSinglePartial(CheckboxGalleryOptions.Partials.minimal).
+        visuallyHideAllHeadings();

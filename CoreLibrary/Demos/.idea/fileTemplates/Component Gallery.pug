@@ -1,6 +1,3 @@
-include ${COMPONENT_NAME}Gallery.class.pug
-
-
 mixin ${COMPONENT_NAME}Gallery
 
   -
@@ -10,11 +7,11 @@ mixin ${COMPONENT_NAME}Gallery
         setDefaultGeometricVariationLabelPrefix("${COMPONENT_NAME}__YDF.GeometricVariations.").
         setDefaultDecorativeVariationLabelPrefix("${COMPONENT_NAME}__YDF.DecorativeVariations.");
 
-    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData()
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
 
 
   h1.Heading1(
-    class=(${COMPONENT_NAME}GalleryOptions.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
   ) ${COMPONENT_NAME} Component Demos
 
 
@@ -22,7 +19,7 @@ mixin ${COMPONENT_NAME}Gallery
   if ${COMPONENT_NAME}GalleryOptions.partialsRenderingFlags[${COMPONENT_NAME}GalleryOptions.Partials.minimal]
 
     h2.Heading2(
-      class=(${COMPONENT_NAME}GalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Minimal
 
     +ThemesShowcase--YDF({

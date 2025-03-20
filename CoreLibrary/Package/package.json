@@ -1,6 +1,6 @@
 {
 	"name": "@yamato-daiwa/frontend",
-	"version": "2.0.0-beta.8",
+	"version": "2.0.0-beta.9",
 	"description": "Toolkit for the frontend development with Pug and Stylus pre-processors.",
 	"keywords": [
 		"frontend",
@@ -39,21 +39,21 @@
 	"module": "./LogicDistributable/index.js",
 	"types": "./LogicDistributable/index.d.ts",
 	"dependencies": {
-		"@yamato-daiwa/es-extensions": "1.8.0-alpha.12",
-		"@yamato-daiwa/es-extensions-browserjs": "1.8.0-alpha.6",
+		"@yamato-daiwa/es-extensions": "1.8.0-alpha.13",
+		"@yamato-daiwa/es-extensions-browserjs": "1.8.0-alpha.13",
 		"clipboard": "2.0.11",
-		"fundamental-constants": "0.5.0",
-		"prismjs": "1.29.0",
+		"fundamental-constants": "0.8.0",
+		"prismjs": "1.30.0",
 		"slide-element": "2.3.1"
 	},
 	"devDependencies": {
 		"@types/prismjs": "1.26.5",
-		"@yamato-daiwa/automation": "0.5.0",
-		"@yamato-daiwa/style_guides": "0.3.2",
-		"@yamato-daiwa/style_guides": "0.6.5",
+		"@yamato-daiwa/automation": "../../../YamatoDaiwaAutomation/MainPackage",
+		"@yamato-daiwa/style_guides": "0.6.6",
+		"nanoid": "5.1.5",
 		"rimraf": "6.0.1",
 		"ts-node": "10.9.2",
-		"typescript": "5.8.2"
+		"typescript": "5.8.3"
 	},
 	"scripts": {
 		"Building of Pug Auxiliaries": "yda build --selectiveExecution PugAuxiliaries --mode PRODUCTION && ts-node Markup/InlineECMAScript/PugAuxiliariesOutputFileGenerator.ts",

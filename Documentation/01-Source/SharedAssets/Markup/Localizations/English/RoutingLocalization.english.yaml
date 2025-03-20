@@ -233,7 +233,7 @@ coreLibrary:
 
         $heading: "Buttons"
 
-adaptationsToJavaScriptFrameworks:
+adaptationsToFrameworks:
 
   $heading: "Adaptations to JavaScript Frameworks"
 

@@ -9,13 +9,10 @@ import {
   MenuIcon__ThreeDots__Horizontal
 } from "@yamato-daiwa/frontend-vue";
 import ThemesShowcase from "../../../../../ThemesShowcase.vue";
+import Gallery from "../../../../../Gallery.vue";
 
 /* ─── Framework ──────────────────────────────────────────────────────────────────────────────────────────────────── */
-import {
-  Component as VueComponentOptions,
-  Vue as VueComponent,
-  Prop as VueProperty
-} from "vue-facing-decorator";
+import { Component as VueComponentOptions } from "vue-facing-decorator";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import { getRandomString } from "@yamato-daiwa/es-extensions";
@@ -32,56 +29,28 @@ import { getRandomString } from "@yamato-daiwa/es-extensions";
     MenuIcon__ThreeDots__Horizontal
   }
 })
-class ButtonGallery extends VueComponent {
+class ButtonGallery extends Gallery<ButtonGallery.PartialsFlags> {
 
-  /* ━━━ Properties ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  @VueProperty({ type: Boolean, default: false })
-  protected readonly mustVisuallyHideTopHeading!: boolean;
-
-  @VueProperty({ type: Boolean, default: false })
-  protected readonly mustVisuallyHideAllHeadings!: boolean;
-
-  @VueProperty({ type: Object, default: (): ButtonGallery.PartialsFlags => ({}) })
-  protected readonly partialsFlags!: ButtonGallery.PartialsFlags;
-
-  protected get mustRenderAllPartials(): boolean {
-    return !Object.values(this.partialsFlags).some((value: boolean): boolean => !value);
-  }
-
-  protected get mustRenderAtLeansOnePartialRelatedWithGeometricModifier(): boolean {
-    return Object.entries(this.partialsFlags).some(
-      ([ key, isRequired ]: [ string, boolean | undefined ]): boolean =>
-          key.endsWith("GeometricModifier") && isRequired === true
-    );
-  }
-
-  protected get mustRenderAtLeansOnePartialRelatedWithDecorativeModifier(): boolean {
-    return Object.entries(this.partialsFlags).some(
-      ([ key, isRequired ]: [ string, boolean | undefined ]): boolean =>
-          key.endsWith("DecorativeModifier") && isRequired === true
-    );
-  }
-
-
-  /* ━━━ Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* ─── Non-reactive ──────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ━━━ Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected Button!: typeof Button;
-
-  protected THEME_KEY_LABEL_PREFIX!: string;
-  protected GEOMETRIC_VARIATION_KEY_LABEL_PREFIX!: string;
-  protected DECORATIVE_VARIATION_KEY_LABEL_PREFIX!: string;
 
   protected textOverflowSafetyTest!: string;
 
 
-  /* ━━━ Lifecycle hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public created(): void {
-    this.initializeNonReactiveClassFields();
+  /* ─── Computed ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+  protected mustRenderAtLeastOnePartialRelatedWithGeometricModifier(): boolean {
+    return this.partialsFlags.pillShapeGeometricModifier === true ||
+      this.partialsFlags.singleLineGeometricModifier === true;
+  }
+
+  protected mustRenderAtLeastOnePartialRelatedWithDecorativeModifier(): boolean {
+    return this.partialsFlags.bordersDisguisingDecorativeModifier === true ||
+      this.partialsFlags.noBackgroundDecorativeModifier === true;
   }
 
 
   /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  private initializeNonReactiveClassFields(): void {
+  protected initializeNonReactiveClassFields(): void {
 
     this.Button = Button;
 
@@ -92,6 +61,7 @@ class ButtonGallery extends VueComponent {
     this.textOverflowSafetyTest = `OVERFLOW_TEST-gh${ getRandomString({ minimalCharactersCount: 100 }) }`;
 
   }
+
 }
 
 

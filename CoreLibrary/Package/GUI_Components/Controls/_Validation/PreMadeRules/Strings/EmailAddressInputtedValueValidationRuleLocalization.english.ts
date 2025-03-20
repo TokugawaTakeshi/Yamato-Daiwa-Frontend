@@ -7,7 +7,7 @@ const emailAddressInputtedValueValidationRuleLocalization__english:
       errorMessageBuilder: (): string =>
           "The inputted email address is impossible. " +
           "It must the mistyping. " +
-          "Please correct the inputted value."
+          "Please correct the inputted characters."
     };
 
 

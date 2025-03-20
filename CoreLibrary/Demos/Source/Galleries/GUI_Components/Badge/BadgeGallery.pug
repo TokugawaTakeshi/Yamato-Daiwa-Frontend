@@ -1,6 +1,3 @@
-include BadgeGalleryOptions.pug
-
-
 mixin BadgeGallery
 
   -
@@ -16,15 +13,15 @@ mixin BadgeGallery
 
 
   h1.Heading1(
-    class=(BadgeGalleryOptions.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading": [])
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading": [])
   ) Badge Component Demos
 
 
   //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if BadgeGalleryOptions.partialsRenderingFlags[BadgeGalleryOptions.Partials.minimal]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
 
     h2.Heading2(
-      class=(BadgeGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Minimal
 
     +ThemesShowcase--YDF({
@@ -43,10 +40,10 @@ mixin BadgeGallery
 
 
   //- ━━━ Keys and Values ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if BadgeGalleryOptions.partialsRenderingFlags[BadgeGalleryOptions.Partials.keysAndValues]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.keysAndValues]
 
     h2.Heading2(
-      class=(BadgeGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Keys and Values
 
     +ThemesShowcase--YDF({
@@ -66,10 +63,10 @@ mixin BadgeGallery
 
 
   //- ━━━ Long Labels ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if BadgeGalleryOptions.partialsRenderingFlags[BadgeGalleryOptions.Partials.longLabels]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.longLabels]
 
     h2.Heading2(
-      class=(BadgeGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Long Labels
 
     .BadgeGallery-LinearFlow.BadgeGallery-LinearFlow__LimitedChildrenMaximalWidth
@@ -82,10 +79,10 @@ mixin BadgeGallery
 
 
   //- ━━━ Icons, Keys and Values ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if BadgeGalleryOptions.partialsRenderingFlags[BadgeGalleryOptions.Partials.iconsAndKeysAndValues]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.iconsAndKeysAndValues]
 
     h2.Heading2(
-      class=(BadgeGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Icons, Keys and Values
 
     +ThemesShowcase--YDF({
@@ -105,10 +102,10 @@ mixin BadgeGallery
 
 
   //- ━━━ Icons and Values ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if BadgeGalleryOptions.partialsRenderingFlags[BadgeGalleryOptions.Partials.iconsAndValues]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.iconsAndValues]
 
     h2.Heading2(
-      class=(BadgeGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Icons and Values
 
     +ThemesShowcase--YDF({
@@ -127,17 +124,17 @@ mixin BadgeGallery
 
 
   //- ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if BadgeGalleryOptions.mustRenderGeometricModifiersSection
+  if GalleryConfigurator.mustRenderGeometricModifiersSection
 
     h2.Heading2(
-      class=(BadgeGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Geometric Modifiers
 
     //- ─── Pill Shape ─────────────────────────────────────────────────────────────────────────────────────────────────
-    if BadgeGalleryOptions.partialsRenderingFlags[BadgeGalleryOptions.Partials.pillShapeGeometricModifier]
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.pillShapeGeometricModifier]
 
       h3.Heading3(
-        class=(BadgeGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
       ) Pill Shape
 
       +ThemesShowcase--YDF({
@@ -156,10 +153,10 @@ mixin BadgeGallery
 
 
     //- ─── Single Line ────────────────────────────────────────────────────────────────────────────────────────────────
-    if BadgeGalleryOptions.partialsRenderingFlags[BadgeGalleryOptions.Partials.singleLineGeometricModifier]
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.singleLineGeometricModifier]
 
       h3.Heading3(
-        class=(BadgeGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
       ) Single Line
 
       .BadgeGallery-LinearFlow.BadgeGallery-LinearFlow__LimitedChildrenMaximalWidth
@@ -173,18 +170,18 @@ mixin BadgeGallery
 
 
   //- ━━━ Decorative Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if BadgeGalleryOptions.mustRenderDecorativeModifiersSection
+  if GalleryConfigurator.mustRenderDecorativeModifiersSection
 
     h2.Heading2(
-      class=(BadgeGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Decorative Modifiers
 
 
     //- ─── Borders Disguising ─────────────────────────────────────────────────────────────────────────────────────────
-    if BadgeGalleryOptions.partialsRenderingFlags[BadgeGalleryOptions.Partials.bordersDisguisingDecorativeModifier]
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.bordersDisguisingDecorativeModifier]
 
       h3.Heading3(
-        class=(BadgeGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
       ) Borders Disguising
 
       +ThemesShowcase--YDF({
@@ -203,10 +200,10 @@ mixin BadgeGallery
 
 
     //- ─── No Background ──────────────────────────────────────────────────────────────────────────────────────────────
-    if BadgeGalleryOptions.partialsRenderingFlags[BadgeGalleryOptions.Partials.noBackgroundDecorativeModifier]
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noBackgroundDecorativeModifier]
 
       h3.Heading3(
-        class=(BadgeGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
       ) No Background
 
       +ThemesShowcase--YDF({
@@ -226,10 +223,10 @@ mixin BadgeGallery
 
 
     //- ━━━ Loading Placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    if BadgeGalleryOptions.partialsRenderingFlags[BadgeGalleryOptions.Partials.loadingPlaceholder]
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.loadingPlaceholder]
 
       h2.Heading2(
-        class=(BadgeGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
       ) Loading Placeholder
 
       .BadgeGallery-LinearFlow

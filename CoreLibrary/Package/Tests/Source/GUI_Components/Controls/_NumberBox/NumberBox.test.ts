@@ -3,7 +3,7 @@ import { isNull } from "@yamato-daiwa/es-extensions";
 
 
 NumberBox.pickOneBySelector({
-  selector: "#SAMPLE",
+  rootElement: { selector: "#SAMPLE" },
   scenario: NumberBox.Scenarios.alwaysNonEmptyValue,
   validityHighlightingActivationMode: NumberBox.ValidityHighlightingActivationModes.onFocusOut,
   validation: new

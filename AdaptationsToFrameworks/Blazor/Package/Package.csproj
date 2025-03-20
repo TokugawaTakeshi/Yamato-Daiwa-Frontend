@@ -4,7 +4,7 @@
     <PackageId>YamatoDaiwaFrontend</PackageId>
     <Title>Yamato Daiwa Frontend</Title>
     <Description>The adaptation of the "Yamato Daiwa Frontend" toolkit for the Blazor framework</Description>
-    <Version>0.2.0</Version>
+    <Version>0.3.4</Version>
     <RootNamespace>YamatoDaiwa.Frontend</RootNamespace>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -29,8 +29,15 @@
   <ItemGroup>
     <Folder Include="Exceptions\" />
     <Folder Include="GUI_Components\" />
+    <Folder Include="GUI_Components\Controls\Buttons\Plain\LoadingPlaceholder\" />
     <Folder Include="Helpers\" />
     <Folder Include="SVG_Icons\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Update="package.json" Pack="false" />
+    <Content Update="package-lock.json" Pack="false" />
+    <Content Update="tsconfig.json" Pack="false" />
   </ItemGroup>
 
   <ItemGroup>

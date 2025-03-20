@@ -7,7 +7,7 @@ mixin ComponentMarkupProvidingGuidanceFragment(properties)
     } = properties
 
   p.Article-Paragraph
-    | Разметка данного #[+Term--YDID компонента] поставляется в виде
+    | #[+Term--YDID Разметка] данного #[+Term--YDID GUI-компонента] поставляется в виде
     |   #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.mixins }) Pug-примеси]
     |   #[+ImportantEntity__Code--YDID #{ pugMixinName }].
     | Способ подключения —
@@ -15,8 +15,7 @@ mixin ComponentMarkupProvidingGuidanceFragment(properties)
     +Link--YDF({
       internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$sectioning.markup.$children.providing.$URI
     }) стандартный
-    |:
-    |   путём
+    |: путём
     |
     +Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.includes }) включения Pug-файла
     |   #[+ImportantEntity__Code--YDID Components.pug] в Ваш #[+Term--YDID pug-файл], при этом туда же
@@ -45,10 +44,12 @@ mixin ComponentMarkupProvidingGuidanceFragment(properties)
             #[+Keyword--YDID не]&nbsp;даст: чтобы сгенерировать #[+Term--YDID HTML-код] компонента
             #[+ImportantEntity--YDID #{ componentName }], нужно вызывать #[+Term--YDID Pug-примесь]
             #[+ImportantEntity__Code--YDID #{ pugMixinName }].
-          Кроме того, #[+Keyphrase--YDID на данном этапе] пока ещё #[+Keyword--YDID не]&nbsp;подключены
-            #[+Term--YDID стили], а потому при вызове этой #[+Term--YDID примеси] #[+Term__Contrast--YDID HTML-код]
+          Кроме того, если #[+Keyphrase--YDID на данном этапе] пока ещё #[+Keyword--YDID не]&nbsp;подключены
+            #[+Term--YDID стили], то при вызове этой #[+Term--YDID примеси] #[+Term__Contrast--YDID HTML-код]
             хотя и будет сгенерирован, но корректного отображения
             #[+Keyword--YDID пока]&nbsp;#[+Keyword__Contrast--YDID не]&nbsp;будет.
+          Но если Вы ещё не&nbsp;знаете, как подключать #[+Term--YDID стили], то не&nbsp;волнуйтесь, так ниже это будет
+            обязательно описано.
 
 
 mixin ComponentStylesProvidingGuidanceFragment(properties)
@@ -150,4 +151,5 @@ mixin IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance(properties)
 
 
 include ReusableFragments/Components/AdmonitionBlock-ReusableFragments.russian.pug
+include ReusableFragments/Components/Badge-ReusableFragments.russian.pug
 include ReusableFragments/Components/Button-ReusableFragments.russian.pug

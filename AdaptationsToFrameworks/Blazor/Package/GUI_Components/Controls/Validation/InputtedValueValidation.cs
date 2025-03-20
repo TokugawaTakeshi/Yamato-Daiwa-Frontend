@@ -28,7 +28,7 @@ public abstract class InputtedValueValidation
   
     public IRule.CheckingResult Check(object rawValue);
 
-    public struct CheckingResult
+    public readonly struct CheckingResult
     {
       public string? ErrorMessage { get; init; }
       public bool IsValid => this.ErrorMessage is not null;

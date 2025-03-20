@@ -403,13 +403,15 @@ validateAndAssignStoredInObjectCSS_Properties(compoundParameter, restParameters_
   for propertyKey, propertySpecification in compoundParameter.assigments
 
     CSS_Key = isNonEmptyString(propertySpecification.newName) ? propertySpecification.newName : propertyKey
+    applier = compoundParameter.assigments[propertyKey].applier
 
-    if (isNotNull(compoundParameter.assigments[propertyKey].applier))
+    if (isNotNull(applier))
 
-      // [ Stylus theory ] Functions in object are allowed but must be decomposed to be invoked.
-      applier = compoundParameter.assigments[propertyKey].applier
+      value = extractedCSS_Declarations[CSS_Key]
 
-      applier(extractedCSS_Declarations[CSS_Key])
+      if isNotNull(value)
+
+        applier(extractedCSS_Declarations[CSS_Key])
 
 
     // [ Theory ] The CSS properties with same "newName" but different "propertyKey" could be.
@@ -463,7 +465,7 @@ applyObjectTypeBoxShadowDefinition(compoundParameter, restParameters__MUST_NOT_B
     })
 
     box-shadow: unquote(
-      isTrue(compoundParameter.inset) ? "inset " : "" +\
+      (isTrue(compoundParameter.inset) ? "inset " : "") +\
       buildString(
         "${XOffset} ${YOffset} ${blurRadius} ${spreadRadius} ${color}",
         compoundParameter

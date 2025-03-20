@@ -1,0 +1,275 @@
+// ━━━ Scenario 1: Using of Default Styles ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+// With default options:
+provideButtonYDF_Component()
+
+// With custom options (currently all values are even with default, you can omit the ones you don't want to change):
+provideButtonYDF_Component(
+  options: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true,
+    geometricModifiers: {
+      pillShape: true,
+      squareShape: true,
+      squareShapeUnlessOverflowed: true,
+      singleLine: true,
+      noLeftBorderAndRoundings: true,
+      noRightBorderAndRoundings: true,
+      noTopBorderAndRoundings: true,
+      noBottomBorderAndRoundings: true,
+      noRoundings: true,
+      horizontallyShrinkable: true
+    },
+    decorativeModifiers: {
+      bordersDisguising: true,
+      noBackground: true,
+      noBackgroundInDefaultState: true
+    }
+  }
+)
+
+
+// ━━━ Scenario 2: Override Default Preset a Little ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// [ Hint ] Currently all values are even with default, you can omit the ones you don't want to change
+provideBadgeYDF_Component(
+  overrides: {
+    themes: {
+      regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF"
+
+        geometricVariations: {
+          // [ Guidance ] All of below values are default. If you are want to override most of them consider the extracting
+          //     of geometric variation definition to the separate file.
+          // [ Guidance ] If you are not going to override the default value of some property, you may delete from here.
+          regular: {
+
+            rootElement: {
+
+              minimalWidth: 6rem,
+
+              borders: specifyBordersSizing({
+                thickness: { all: 1px },
+                radius: { all: 3px }
+              }),
+
+              modifiers: {
+                pillShape: {
+                  textSizeToBorderRadiusRatio: 2 // [ Non nullable ! ]
+                }
+              },
+
+              customDeclarations: null
+
+            },
+
+            label: {
+
+              text: {
+
+                size: 1rem, // [ Non nullable ! ]
+
+                // [ Conditional requirement ] Either `lineSpacing` or `lineHeight` must bu non-null but not both
+                lineSpacing: 0.2rem,
+                lineHeight: null
+
+              },
+
+              spacing: {
+
+                horizontalSymmetricWhenLone: 1rem, // [ Non nullable ! ]
+                leftWhenGoingFirst: 1rem, // [ Non nullable ! ]
+                rightWhenGoingLast: 1rem, // [ Non nullable ! ]
+
+                verticalSymmetric: 0.6rem,
+                // OR
+                top: 0.6rem,
+                bottom: 0.7rem,
+
+                upwardShifting: -0.05rem
+
+              },
+
+              customDeclarations: null
+
+            },
+
+            SVG_Icon: {
+
+              default: {
+
+                width: null,
+                height: 1rem, // [ Non nullable ! ]
+
+                spacing: {
+                  leftWhenGoingFirst: 0.75rem,
+                  rightWhenGoingLast: 0.75rem,
+                  beforeLabel: 0.4rem, // [ Non nullable ! ]
+                  afterLabel: 0.5rem, // [ Non nullable ! ]
+                  horizontalSymmetricWhenLone: null
+                },
+
+                customDeclarations: null
+
+              },
+
+              // TODO Make this object empty if you don't need to define the geometry for custom SVG Icons
+              specials: {
+
+                // Example (NOT DEFAULT!)
+                Button--YDF-SVG_Icon__Menu__ThreeDots__Horizontal: {
+                  width: 1rem
+                }
+
+              }
+
+            }
+
+          },
+
+          small: {
+
+            rootElement: {
+
+              minimalWidth: 4rem,
+
+              borders: specifyBordersSizing({
+                thickness: { all: 1px },
+                radius: { all: 3px }
+              }),
+
+              modifiers: {
+                pillShape: {
+                  textSizeToBorderRadiusRatio: 2 // [ Non nullable ! ]
+                }
+              },
+
+              customDeclarations: null
+
+            },
+
+            label: {
+
+              text: {
+
+                size: 0.9rem, // [ Non nullable ! ]
+
+                // [ Conditional requirement ] Either `lineSpacing` or `lineHeight` must bu non-null but not both
+                lineSpacing: 0.2rem,
+                lineHeight: null
+
+              },
+
+              spacing: {
+
+                horizontalSymmetricWhenLone: 0.8rem, // [ Non nullable ! ]
+                leftWhenGoingFirst: 0.8rem, // [ Non nullable ! ]
+                rightWhenGoingLast: 0.8rem, // [ Non nullable ! ]
+
+                verticalSymmetric: 0.4rem,
+                // OR
+                top: null,
+                bottom: null,
+
+                upwardShifting: null
+
+              },
+
+              customDeclarations: null
+
+            },
+
+            SVG_Icon: {
+
+              default: {
+
+                width: null,
+                height: 0.9rem, // [ Non nullable ! ]
+
+                spacing: {
+                  leftWhenGoingFirst: 0.75rem, // [ Non nullable ! ]
+                  rightWhenGoingLast: 0.75rem, // [ Non nullable ! ]
+                  beforeLabel: 0.4rem,
+                  afterLabel: 0.5rem,
+                  horizontalSymmetricWhenLone: null
+                },
+
+                customDeclarations: null
+
+              },
+
+              // TODO Make this object empty if you don't need to define the geometry for custom SVG Icons
+              specials: {
+
+                // Example (NOT DEFAULT!)
+                Button--YDF-SVG_Icon__Menu__ThreeDots__Horizontal: {
+                  width: 0.8rem
+                }
+
+              }
+
+            }
+
+          }
+
+        },
+            }
+
+          },
+
+          catchyBright: {
+            // TODO Ditto
+          },
+
+          modestlyCatchyBright: {
+            // TODO Ditto
+          },
+
+          neutralBright: {
+            // TODO Ditto
+          },
+
+          modestlyCalmingBright: {
+            // TODO Ditto
+          },
+
+          calmingBright: {
+            // TODO Ditto
+          },
+
+          achromaticBright: {
+            // TODO Ditto
+          },
+
+          // You can prevent the generating of styles for the unused variations:
+          veryCatchyPastel: null,
+          catchyPastel: null,
+          modestlyCatchyPastel: null,
+          neutralPastel: null,
+          modestlyCalmingPastel: null,
+          calmingPastel: null,
+          achromaticPastel: null
+
+        }
+
+      }
+    }
+  },
+  // TODO Remove below parameter if options are default
+  options: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true,
+    geometricModifiers: {
+      pillShape: true,
+      singleLine: true
+    },
+    decorativeModifiers: {
+      bordersDisguising: true,
+      noBackground: true
+    }
+  }
+)

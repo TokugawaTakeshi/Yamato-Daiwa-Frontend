@@ -48,11 +48,12 @@
     display flex
     flex-wrap wrap
     gap 6px 6px
+    align-items center
 
     PositionalRelationship({
       definitions:\
-          (".Heading2" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px } })\
-          (".Heading3" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px } })
+          (".Heading2" { retireFromIt: { y: 0.8rem }, pushItFromSelf: { y: 16px } })\
+          (".Heading3" { retireFromIt: { y: 0.8rem }, pushItFromSelf: { y: 16px } })
     })
 
     retireFromElementWithSameSelector({ y: 8px })

@@ -3,9 +3,9 @@
   class AdmonitionBlock__YDF {
 
     /**
-     * @type { string }
      * @public
      * @readonly
+     * @type string
      */
     static CSS_NAMESPACE = "AdmonitionBlock--YDF";
 
@@ -13,30 +13,30 @@
     /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
     /**
-     * @type { { [themeName: string]: string } }
      * @public
+     * @type { { [themeName: string]: string } }
      * @description If you want to define new themes, do it only via `defineThemes` static method.
      */
     static Themes = { regular: "REGULAR" };
 
     /**
+     * @public
      * @param { Array<string> } themesNames
      * @return { typeof AdmonitionBlock__YDF }
-     * @public
      */
     static defineThemes(themesNames) {
       return ComponentsAuxiliaries.defineThemes(themesNames, AdmonitionBlock__YDF);
     }
 
     /**
-     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
      * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
      * */
     static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
 
     /**
-     * @returns { typeof AdmonitionBlock__YDF }
      * @public
+     * @returns { typeof AdmonitionBlock__YDF }
      * */
     static considerThemesAsCommon() {
       AdmonitionBlock__YDF.areThemesCSS_ClassesCommon = true;
@@ -47,8 +47,8 @@
     /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
 
     /**
-     * @type { { [geometricVariationName: string]: string } }
      * @public
+     * @type { { [geometricVariationName: string]: string } }
      * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
      */
     static GeometricVariations = {
@@ -57,6 +57,7 @@
     };
 
     /**
+     * @public
      * @param { Array<string> } geometricVariationsNames
      * @return { typeof AdmonitionBlock__YDF }
      */
@@ -68,8 +69,8 @@
     /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
 
     /**
-     * @type { { [decorativeVariationsName: string]: string } }
      * @public
+     * @type { { [decorativeVariationsName: string]: string } }
      * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
      */
     static DecorativeVariations = {
@@ -82,6 +83,7 @@
     };
 
     /**
+     * @public
      * @param { Array<string> } decorativeVariationsNames
      * @return { typeof AdmonitionBlock__YDF }
      */
@@ -93,9 +95,9 @@
     /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
     /**
-     * @type { RawObjectDataProcessor.PropertiesSpecification }
      * @public
      * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
      * */
     static propertiesSpecification = {
 
@@ -115,8 +117,6 @@
           {
 
             type: Object,
-            required: false,
-
             properties: {
 
               innerElementID: {
@@ -180,51 +180,41 @@
 
     /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /**
-     * @type { AdmonitionBlockLocalization }
      * @public
-     * @static
+     * @type { AdmonitionBlockLocalization }
      * */
     static localization = admonitionBlockYDF_ComponentLocalization__english;
 
 
-    /* ━━━ ID Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ━━━ IDs Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /**
-     * @type { number } Integers Only
-     * @private
-     * @static
-     * */
-    static counterForInstancesIDs_Generating = 0;
-
-    /**
-     * @returns { string } Generated ID
      * @public
-     * @static
-     * */
-    static generateInstanceID() {
-      AdmonitionBlock__YDF.counterForInstancesIDs_Generating++;
-      return `ADMONITION_BLOCK--YDF-${ AdmonitionBlock__YDF.counterForInstancesIDs_Generating }`;
+     * @param { string } [uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()]
+     * @returns { string }
+     */
+    static generateInstanceID(
+      uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()
+    ) {
+      return `ADMONITION_BLOCK--YDF-${ uniqueDynamicPart }`;
     }
 
 
     /* ─── SVG Icons ──────────────────────────────────────────────────────────────────────────────────────────────── */
     /**
-     * @type { number } Integers Only
      * @private
-     * @static
+     * @type { number } Integers Only
      * */
     static counterForCustomSVG_IconsIDs_Generating = 0;
 
     /**
-     * @type { string | null } Integers Only
      * @private
-     * @static
+     * @type { string | null } Integers Only
      * */
     static customSVG_IconCurrentID = null;
 
     /**
-     * @returns { string } Generated ID
      * @public
-     * @static
+     * @returns { string } Generated ID
      * */
     static generateCustomIconNewID() {
 

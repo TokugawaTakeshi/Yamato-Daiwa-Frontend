@@ -1,0 +1,68 @@
+-
+
+  class CheckboxGalleryOptions {
+
+    static mustVisuallyHideTopHeading = false;
+
+    static visuallyHideTopHeadingIf(condition) {
+      CheckboxGalleryOptions.mustVisuallyHideTopHeading = condition;
+      return CheckboxGalleryOptions;
+    }
+
+
+    static mustVisuallyHideAllHeadings = false;
+
+    static visuallyHideAllHeadings() {
+      CheckboxGalleryOptions.mustVisuallyHideAllHeadings = true;
+      CheckboxGalleryOptions.mustVisuallyHideTopHeading = true;
+      return CheckboxGalleryOptions;
+    }
+
+
+    static Partials = {
+      minimal: "MINIMAL",
+      longLabels: "LONG_LABELS",
+      squareShapeGeometricModifier: "SQUARE_SHAPE_GEOMETRIC_MODIFIER",
+      singleLineGeometricModifier: "SINGLE_LINE_GEOMETRIC_MODIFIER",
+      noLeftBorderAndRoundingsGeometricModifier: "NO_LEFT_BORDER_AND_ROUNDINGS_GEOMETRIC_MODIFIER",
+      noRightBorderAndRoundingsGeometricModifier: "NO_RIGHT_BORDER_AND_ROUNDINGS_GEOMETRIC_MODIFIER",
+      noTopBorderAndRoundingsGeometricModifier: "NO_TOP_BORDER_AND_ROUNDINGS_GEOMETRIC_MODIFIER",
+      noBottomBorderAndRoundingsGeometricModifier: "NO_BOTTOM_BORDER_AND_ROUNDINGS_GEOMETRIC_MODIFIER",
+      noRoundingsGeometricModifier: "NO_ROUNDINGS_GEOMETRIC_MODIFIER",
+      loadingPlaceholder: "LOADING_PLACEHOLDER"
+    };
+
+    static partialsRenderingFlags =
+        Object.values(CheckboxGalleryOptions.Partials).
+        reduce(
+          (objectWorkpiece, partialValue) => {
+            objectWorkpiece[partialValue] = true;
+            return objectWorkpiece;
+          },
+          {}
+        );
+
+    static renderSinglePartial(targetPartialValue) {
+
+      for (const [ partialKey, partialValue ] of Object.entries(CheckboxGalleryOptions.Partials)) {
+        CheckboxGalleryOptions.partialsRenderingFlags[partialValue] =
+            CheckboxGalleryOptions.Partials[partialKey] === targetPartialValue;
+      }
+
+      return CheckboxGalleryOptions;
+
+    }
+
+    static get mustRenderGeometricModifiersSection() {
+      return !!Object.entries(CheckboxGalleryOptions.partialsRenderingFlags).
+          filter(([ partialKey ]) => partialKey.includes("GEOMETRIC_MODIFIER")).
+          find(([, mustRender ]) => mustRender)
+    }
+
+    static get mustRenderDecorativeModifiersSection() {
+      return !!Object.entries(CheckboxGalleryOptions.partialsRenderingFlags).
+          filter(([ partialKey ]) => partialKey.includes("DECORATIVE_MODIFIER")).
+          find(([, mustRender]) => mustRender)
+    }
+
+  }

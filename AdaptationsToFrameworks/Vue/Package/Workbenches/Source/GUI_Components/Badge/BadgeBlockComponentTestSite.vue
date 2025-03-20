@@ -20,3 +20,18 @@
   export default class BadgeComponentTestSite extends VueComponent {}
 
 </script>
+
+
+<style lang="stylus">
+
+  @require "../../../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+  @require "../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
+
+
+  CrossBrowserStylesReset()
+  InitialGlobalCSS_Rules()
+
+
+  provideBadgeYDF_Component()
+
+</style>

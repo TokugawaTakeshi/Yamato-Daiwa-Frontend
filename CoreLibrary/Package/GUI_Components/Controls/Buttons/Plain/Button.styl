@@ -56,7 +56,8 @@ Button--YDF = {
     },
     decorativeModifiers: {
       bordersDisguising: true,
-      noBackground: true
+      noBackground: true,
+      noBackgroundInDefaultState: true
     }
   }
 
@@ -128,6 +129,10 @@ provideButtonYDF_Component(
             type: DataTypes--YDF.boolean,
             defaultValue: Button--YDF.defaultOptions.geometricModifiers.noBottomBorderAndRoundings
           },
+          noRoundings: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.geometricModifiers.noRoundings
+          },
           horizontallyShrinkable: {
             type: DataTypes--YDF.boolean,
             defaultValue: Button--YDF.defaultOptions.geometricModifiers.horizontallyShrinkable
@@ -145,6 +150,10 @@ provideButtonYDF_Component(
           noBackground: {
             type: DataTypes--YDF.boolean,
             defaultValue: Button--YDF.defaultOptions.decorativeModifiers.noBackground
+          },
+          noBackgroundInDefaultState: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.decorativeModifiers.noBackgroundInDefaultState
           }
         },
         defaultValue: Button--YDF.defaultOptions.decorativeModifiers
@@ -365,8 +374,8 @@ provideButtonYDF_Component(
 
     if options.geometricModifiers.squareShape
 
-      &.Button--YDF__SquareShapeUnlessOverflowedGeometricModifier,
-      &.Button--YDF__SquareShapeGeometricModifier
+      &.Button--YDF__SquareShapeGeometricModifier,
+      &.Button--YDF__SquareShapeUnlessOverflowedGeometricModifier
 
         min-width HEIGHT
 
@@ -374,6 +383,18 @@ provideButtonYDF_Component(
       &.Button--YDF__SquareShapeGeometricModifier
 
         max-width HEIGHT
+
+
+      //* [ Theory ] For the `input` tag, the fixating of height is required */
+      /input{getCurrentSelectorSubstitutingRoot("." + Button--YDF.CSS_NAMESPACE)}.Button--YDF__SquareShapeUnlessOverflowedGeometricModifier,
+      /input{getCurrentSelectorSubstitutingRoot("." + Button--YDF.CSS_NAMESPACE)}.Button--YDF__SquareShapeGeometricModifier
+
+        min-height HEIGHT
+
+
+      /input{getCurrentSelectorSubstitutingRoot("." + Button--YDF.CSS_NAMESPACE)}.Button--YDF__SquareShapeGeometricModifier
+
+        max-height HEIGHT
 
 
     .Button--YDF-Label
@@ -565,6 +586,16 @@ provideButtonYDF_Component(
             }
           })
 
+
+    if options.loadingPlaceholder
+
+      &.Button--YDF__LoadingPlaceholder
+
+        LoadingPlaceholder()
+
+        height: HEIGHT
+
+
   //* [ Approach ] Being the modifiers, must be applied after theme-dependent styles. */
   applyThemeIndependentGeometricModifiers()
 
@@ -663,16 +694,18 @@ provideButtonYDF_Component(
           margin-left 0 !important
           margin-right 0 !important
 
+      input.Button--YDF__HorizontallyShrinkableGeometricModifier
+
+        padding-left 0 !important
+        padding-right 0 !important
+
 
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
     VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
       "Button.${ themeName }Theme.${ variationName }Decoration",
-      {
-        themeName: themeName,
-        variationName: variationName
-      }
+      { themeName: themeName, variationName: variationName }
     )
 
     StateDependentStyles(state)
@@ -757,14 +790,21 @@ provideButtonYDF_Component(
 
       .Button--YDF__BordersDisguisingDecorativeModifier
 
-        border-color transparent
+        border-color transparent !important
 
 
     if options.decorativeModifiers.noBackground
 
       .Button--YDF__NoBackgroundDecorativeModifier
 
-        background none
+        background none !important
+
+
+    if options.decorativeModifiers.noBackgroundInDefaultState
+
+      .Button--YDF__NoBackgroundInDefaultStateDecorativeModifier
+
+        background transparent
 
 
   // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -773,7 +813,7 @@ provideButtonYDF_Component(
   if !options.themeIndependentStylesOnly
 
     applyComponentThemes({
-      CSS_Namespace: "Button--YDF",
+      CSS_Namespace: Button--YDF.CSS_NAMESPACE,
       themes: properties.themes,
       areThemesCSS_ClassesCommon: options.externalThemes,
       themeIndependentGeometricVariations: options.themeIndependentGeometricVariations,

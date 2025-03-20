@@ -5,15 +5,21 @@ block append Requirements
 
   include ../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
   include ../../../../../../SharedComponents/SharedComponents.russian.pug
+  include Data/BadgeBlockComponentPropertiesSpecification__React.pug
 
 
 block append Metadata
 
   -
 
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.Badge;
+
     RegularWebPageTemplate__YDF.configure({
       metadata: {
-        title: buildHTML_PageTitle("Badge (React)"),
+        title: buildHTML_PageTitle(topHeading),
         description: MetaDescriptionTemplates.GUI_Components.AdmonitionBlock
       },
       stylesSheetsURIs: [
@@ -24,17 +30,12 @@ block append Metadata
       ]
     });
 
-    RoutingEmulator.setCurrentRoute("adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.Badge");
+    RoutingEmulator.setCurrentRoute("adaptationsToFrameworks.react.GUI_Components.Badge");
 
     LanguageDropDownList__YDF_DK.setLinks({
       english: routing.english.adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.Badge.$URI,
       japanese: routing.japanese.adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.Badge.$URI
     });
-
-    const {
-      $sectioning: localizedSectioning,
-      $heading: topHeading
-    } = localizedRouting.adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.Badge;
 
 
 block append HeadScripts
@@ -48,7 +49,62 @@ block append SpecificContent
 
   article
 
-    //- ━━━ Badge ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ━━━ Badge (React) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     h1.Article-Heading1!= topHeading
 
     +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
+
+    +WebPageViewer--YDF({
+      URI: "$Demos:React/GUI_Components/Badge/BadgeGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "Badge" })
+    })
+
+    +BadgeComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ━━━ Сводка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.synopsis.$heading,
+      HTML_ID: localizedSectioning.synopsis.$anchor
+    }).Article-Heading2
+
+    +GUI_ComponentSummaryViewer({
+      framework: SupportedFrameworks.react,
+      metadataClass: Badge__YDF,
+      stylusMixinName: "provideBadgeYDF_Component",
+      themesNamesTranslations: {
+        [AdmonitionBlock__YDF.Themes.regular]: "Базовая (по умолчанию)"
+      },
+      geometricVariationsTranslations: {
+        [Badge__YDF.GeometricVariations.regular]: "Базовая (по умолчанию)",
+        [Badge__YDF.GeometricVariations.small]: "Маленькая"
+      },
+      geometricModifiersNamesTranslations: {
+        [Badge__YDF.GeometricModifiers.pillShape]: "Максимальное скругление углов",
+        [Badge__YDF.GeometricModifiers.singleLine]: "Всегда одна строка с усечением текста при нехватке ширины",
+      },
+      decorativeVariationsTranslations: {
+        [Badge__YDF.DecorativeVariations.veryCatchyBright]: "Очень броская яркая (красная по умолчанию)",
+        [Badge__YDF.DecorativeVariations.catchyBright]: "Броская яркая (оранжевая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.modestlyCatchyBright]: "Умеренно броская яркая (жёлтая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.neutralBright]: "Нейтральная яркая (голубая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.modestlyCalmingBright]: "Умеренно успокаивающая яркая (синяя по умолчанию)",
+        [Badge__YDF.DecorativeVariations.calmingBright]: "Успокаивающая яркая (зелёная по умолчанию)",
+        [Badge__YDF.DecorativeVariations.achromaticBright]: "Ахроматическая яркая (тёмно-серая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.veryCatchyPastel]: "Очень броская пастельная (красная по умолчанию)",
+        [Badge__YDF.DecorativeVariations.catchyPastel]: "Броская пастельная (оранжевая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.modestlyCatchyPastel]: "Умеренно броская пастельная (жёлтая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.neutralPastel]: "Нейтральная пастельная (голубая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.modestlyCalmingPastel]: "Умеренно успокаивающая пастельная (синяя по умолчанию)",
+        [Badge__YDF.DecorativeVariations.calmingPastel]: "Успокаивающая пастельная (зелёная по умолчанию)",
+        [Badge__YDF.DecorativeVariations.achromaticPastel]: "Ахроматическая пастельная (светло-серая по умолчанию)"
+      },
+      decorativeModifiersNamesTranslations: {
+        [Badge__YDF.DecorativeModifiers.bordersDisguising]: "Эффект отсутствия обводки без изменения размеров",
+        [Badge__YDF.DecorativeModifiers.noBackground]: "Без заливки"
+      },
+      loadingPlaceholder: true
+    })

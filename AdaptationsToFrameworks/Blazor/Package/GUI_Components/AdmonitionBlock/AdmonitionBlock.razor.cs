@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using YamatoDaiwa.CSharpExtensions;
-using YamatoDaiwa.Frontend.Animations;
+﻿using YamatoDaiwa.Frontend.Animations;
 using YamatoDaiwa.Frontend.GUI_Components.Abstractions;
 using YamatoDaiwa.Frontend.Helpers;
 
@@ -8,20 +6,20 @@ using YamatoDaiwa.Frontend.Helpers;
 namespace YamatoDaiwa.Frontend.GUI_Components.AdmonitionBlock;
 
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 public partial class AdmonitionBlock :
     Microsoft.AspNetCore.Components.ComponentBase,
-    ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement,
     IHTML_AttributesFallthrough,
+    ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement,
     IAsyncDisposable
 {
 
-  public static string CSS_NAMESPACE = "AdmonitionBlock--YDF";
+  public const string CSS_NAMESPACE = "AdmonitionBlock--YDF";
 
-  
+
   [Microsoft.AspNetCore.Components.Parameter(CaptureUnmatchedValues = true)]
-  public IDictionary<string, object>? rootElementAttributes { get; set; }
-  
-  
+  public IDictionary<string, object>? rootElementHTML_Attributes { get; set; }
+
   [Microsoft.AspNetCore.Components.Parameter]
   public string? title { get; set; }
 
@@ -32,23 +30,23 @@ public partial class AdmonitionBlock :
 
   [Microsoft.AspNetCore.Components.Parameter]
   public Microsoft.AspNetCore.Components.RenderFragment? CustomSVG_Icon { get; set; }
-  
+
   [Microsoft.AspNetCore.Components.Parameter]
   public Microsoft.AspNetCore.Components.RenderFragment? ActionBarContent { get; set; }
 
-  
+
   /* ━━━ Dismissing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   [Microsoft.AspNetCore.Components.Parameter]
   public bool dismissible { get; set; } = false;
 
-  protected ElementReference rootElement;
+  protected Microsoft.AspNetCore.Components.ElementReference rootElement;
   protected CollapsingAnimation? collapsingAnimation;
-  
+
   protected bool isDisplaying = true;
-  
+
   [Microsoft.AspNetCore.Components.Inject]
   protected Microsoft.JSInterop.IJSRuntime javaScriptRuntime { get; set; } = null!;
-  
+
   private async Task onClickDismissingButton()
   {
 
@@ -56,8 +54,8 @@ public partial class AdmonitionBlock :
     {
       return;
     }
-    
-    
+
+
     await this.collapsingAnimation.Animate(
       new CollapsingAnimation.CompoundParameter
       {
@@ -67,28 +65,28 @@ public partial class AdmonitionBlock :
     );
 
     this.isDisplaying = false;
-    
+
   }
 
-  
+
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public enum StandardThemes { regular }
 
   protected internal static Type? CustomThemes;
 
-  public static void defineThemes(Type CustomThemes)
+  public static void defineThemes(Type customThemes)
   {
-    YDF_ComponentsHelper.ValidateCustomTheme(CustomThemes);
-    AdmonitionBlock.CustomThemes = CustomThemes;
+    YDF_ComponentsHelper.ValidateCustomTheme(customThemes);
+    AdmonitionBlock.CustomThemes = customThemes;
   }
 
-  protected string _theme = AdmonitionBlock.StandardThemes.regular.ToString();
+  protected string _theme = nameof(AdmonitionBlock.StandardThemes.regular);
 
   [Microsoft.AspNetCore.Components.Parameter]
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
-      "Microsoft.Performance", 
-      "BL0007", 
+      "Microsoft.Performance",
+      "BL0007",
       Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
     )
   ]
@@ -120,19 +118,19 @@ public partial class AdmonitionBlock :
 
   protected internal static Type? CustomGeometricVariations;
 
-  public static void defineGeometricVariations(Type CustomGeometricVariations)
+  public static void defineGeometricVariations(Type customGeometricVariations)
   {
-    YDF_ComponentsHelper.ValidateCustomGeometricVariation(CustomGeometricVariations);
-    AdmonitionBlock.CustomGeometricVariations = CustomGeometricVariations;
+    YDF_ComponentsHelper.ValidateCustomGeometricVariation(customGeometricVariations);
+    AdmonitionBlock.CustomGeometricVariations = customGeometricVariations;
   }
 
-  protected string _geometricVariation = AdmonitionBlock.StandardGeometricVariations.regular.ToString();
+  protected string _geometricVariation = nameof(AdmonitionBlock.StandardGeometricVariations.regular);
 
   [Microsoft.AspNetCore.Components.Parameter]
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
-      "Microsoft.Performance", 
-      "BL0007", 
+      "Microsoft.Performance",
+      "BL0007",
       Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
     )
   ]
@@ -158,9 +156,9 @@ public partial class AdmonitionBlock :
 
   protected internal static Type? CustomDecorativeVariations;
 
-  public static void defineDecorativeVariations(Type CustomDecorativeVariations) {
-    YDF_ComponentsHelper.ValidateCustomDecorativeVariation(CustomDecorativeVariations);
-    AdmonitionBlock.CustomDecorativeVariations = CustomDecorativeVariations;
+  public static void defineDecorativeVariations(Type customDecorativeVariations) {
+    YDF_ComponentsHelper.ValidateCustomDecorativeVariation(customDecorativeVariations);
+    AdmonitionBlock.CustomDecorativeVariations = customDecorativeVariations;
   }
 
   protected string _decorativeVariation = null!;
@@ -169,8 +167,8 @@ public partial class AdmonitionBlock :
   [Microsoft.AspNetCore.Components.EditorRequired]
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
-      "Microsoft.Performance", 
-      "BL0007", 
+      "Microsoft.Performance",
+      "BL0007",
       Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
     )
   ]
@@ -182,12 +180,12 @@ public partial class AdmonitionBlock :
     );
   }
 
-  
+
   /* ━━━ SVG Icon ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   [Microsoft.AspNetCore.Components.Parameter]
   public bool hasDefaultSVG_Icon { get; set; } = false;
 
-  
+
   /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   [Microsoft.AspNetCore.Components.Parameter]
   public string? rootElementModifierCSS_Class { get; set; } = null;
@@ -198,36 +196,23 @@ public partial class AdmonitionBlock :
   [Microsoft.AspNetCore.Components.Parameter]
   public string? rootElementSpaceSeparatedModifierCSS_Classes { get; set; } = null;
 
-  private string classAttributeValueForRootElement => new List<string> { AdmonitionBlock.CSS_NAMESPACE }.
-
-      AddElementToEndIf(
-        $"{ AdmonitionBlock.CSS_NAMESPACE }__{ this._theme.ToUpperCamelCase() }Theme",
-        YDF_ComponentsHelper.MustApplyThemeCSS_Class(
-          typeof(AdmonitionBlock.StandardThemes), AdmonitionBlock.CustomThemes, this.areThemesCSS_ClassesCommon
-        )
-      ).
-
-      AddElementToEndIf(
-        $"{ AdmonitionBlock.CSS_NAMESPACE }__{ this._geometricVariation.ToUpperCamelCase() }GeometricVariation",
-        YDF_ComponentsHelper.MustApplyGeometricVariationModifierCSS_Class(
-          typeof(AdmonitionBlock.StandardGeometricVariations), AdmonitionBlock.CustomGeometricVariations
-        )
-      ).
-
-      AddElementToEndIf(
-        $"{ AdmonitionBlock.CSS_NAMESPACE }__{ this._decorativeVariation.ToUpperCamelCase() }DecorativeVariation",
-        YDF_ComponentsHelper.MustApplyDecorativeVariationModifierCSS_Class(
-          typeof(AdmonitionBlock.StandardDecorativeVariations), AdmonitionBlock.CustomDecorativeVariations
-        )
-      ).
-
-      AddElementToEndIf(
-        ((ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes,
-        rootElementSpaceSeparatedExternalCSS_Classes =>
-          !String.IsNullOrEmpty(rootElementSpaceSeparatedExternalCSS_Classes)
-      ).
-
-      StringifyEachElementAndJoin(" ");
+  private string classAttributeValueForRootElement => YDF_ComponentsHelper.GenerateClassAttributeValueForRootElement(
+    CSS_Namespace: AdmonitionBlock.CSS_NAMESPACE,
+    activeTheme: this._theme,
+    standardThemes: typeof(AdmonitionBlock.StandardThemes),
+    customThemes: AdmonitionBlock.CustomThemes,
+    areThemesCSS_ClassesCommon: this.areThemesCSS_ClassesCommon,
+    activeGeometricVariation: this._geometricVariation,
+    standardGeometricVariations: typeof(AdmonitionBlock.StandardGeometricVariations),
+    customGeometricVariations: AdmonitionBlock.CustomGeometricVariations,
+    activeDecorativeVariation: this._decorativeVariation,
+    standardDecorativeVariations: typeof(AdmonitionBlock.StandardDecorativeVariations),
+    customDecorativeVariations: AdmonitionBlock.CustomDecorativeVariations,
+    activeGeometricModifiers: null,
+    activeDecorativeModifiers: null,
+    externalSpaceSeparatedCSS_Classes:
+        ((ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes
+  );
 
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -245,7 +230,7 @@ public partial class AdmonitionBlock :
 
   public static Localization localization = new AdmonitionBlockEnglishLocalization();
 
-  
+
   /* ━━━ IDs ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ─── Instance ID ──────────────────────────────────────────────────────────────────────────────────────────────── */
   protected readonly string INSTANCE_ID = AdmonitionBlock.generateInstanceID();
@@ -261,12 +246,12 @@ public partial class AdmonitionBlock :
   /* ─── Root Element HTML ID ─────────────────────────────────────────────────────────────────────────────────────── */
   [Microsoft.AspNetCore.Components.Parameter]
   public string? HTML_ID { get; set; }
-  
+
 
   /* ─── Title HTML ID ────────────────────────────────────────────────────────────────────────────────────────────── */
   protected string TITLE_HTML_ID => $"{ this.INSTANCE_ID }-TITLE";
-  
-  
+
+
   /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected override void OnInitialized()
   {
@@ -278,8 +263,8 @@ public partial class AdmonitionBlock :
   {
     if (this.collapsingAnimation is not null)
     {
-      await this.collapsingAnimation.DisposeAsync();  
+      await this.collapsingAnimation.DisposeAsync();
     }
   }
-  
+
 }

@@ -1,0 +1,26 @@
+extends ../../../../../PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "RadioButton Component Development"
+      },
+      stylesSheetsURIs: [ "@Workbenches/GUI_Components/Controls/RadioButton/RadioButton.workbench" ]
+    });
+
+
+block append Requirements
+
+  include ../../../../../GUI_Components.pug
+
+
+block append PageContent
+
+  +RadioButton--YDF({
+    label: "Check me",
+    HTML_Name: "test"
+  })

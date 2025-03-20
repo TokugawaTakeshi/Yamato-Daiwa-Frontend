@@ -11,9 +11,14 @@ block append Metadata
 
   -
 
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.adaptationsToFrameworks.$children.blazor.$children.GUI_Components.$children.Badge;
+
     RegularWebPageTemplate__YDF.configure({
       metadata: {
-        title: buildHTML_PageTitle("Badge (Blazor)"),
+        title: buildHTML_PageTitle(topHeading),
         description: MetaDescriptionTemplates.GUI_Components.Badge
       },
       stylesSheetsURIs: [
@@ -24,17 +29,12 @@ block append Metadata
       ]
     });
 
-    RoutingEmulator.setCurrentRoute("adaptationsToFrameworks.$children.blazor.$children.GUI_Components.$children.Badge");
+    RoutingEmulator.setCurrentRoute("adaptationsToFrameworks.blazor.GUI_Components.Badge");
 
     LanguageDropDownList__YDF_DK.setLinks({
       english: routing.english.adaptationsToFrameworks.$children.blazor.$children.GUI_Components.$children.Badge.$URI,
       russian: routing.russian.adaptationsToFrameworks.$children.blazor.$children.GUI_Components.$children.Badge.$URI
     });
-
-    const {
-      $sectioning: localizedSectioning,
-      $heading: topHeading
-    } = localizedRouting.adaptationsToFrameworks.$children.blazor.$children.GUI_Components.$children.Badge;
 
 
 block append HeadScripts
@@ -48,7 +48,62 @@ block append SpecificContent
 
   article
 
-    //- ━━━ Badge ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ━━━ Badge (Blazor) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     h1.Article-Heading1!= topHeading
 
     +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
+
+    +WebPageViewer--YDF({
+      URI: "$Demos:Vue/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "AdmonitionBlock" })
+    })
+
+    +AdmonitionBlockComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ━━━ 要約 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.synopsis.$heading,
+      HTML_ID: localizedSectioning.synopsis.$anchor
+    }).Article-Heading2
+
+    +GUI_ComponentSummaryViewer({
+      framework: SupportedFrameworks.blazor,
+      metadataClass: Badge__YDF,
+      stylusMixinName: "provideBadgeYDF_Component",
+      themesNamesTranslations: {
+        [AdmonitionBlock__YDF.Themes.regular]: "標準（規定）"
+      },
+      geometricVariationsTranslations: {
+        [Badge__YDF.GeometricVariations.regular]: "標準（規定）",
+        [Badge__YDF.GeometricVariations.small]: "小型"
+      },
+      geometricModifiersNamesTranslations: {
+        [Badge__YDF.GeometricModifiers.pillShape]: "最大の面取り",
+        [Badge__YDF.GeometricModifiers.singleLine]: "強制一行、オーバーフローの時切り詰め",
+      },
+      decorativeVariationsTranslations: {
+        [Badge__YDF.DecorativeVariations.veryCatchyBright]: "鮮明で超派手（規定は赤）",
+        [Badge__YDF.DecorativeVariations.catchyBright]: "鮮明で派手（規定はオレンジ）",
+        [Badge__YDF.DecorativeVariations.modestlyCatchyBright]: "鮮明でやや派手（規定で黄色）",
+        [Badge__YDF.DecorativeVariations.neutralBright]: "鮮明で中立的（規定で水色）",
+        [Badge__YDF.DecorativeVariations.modestlyCalmingBright]: "鮮明でやや穏やか（規定で青色）",
+        [Badge__YDF.DecorativeVariations.calmingBright]: "鮮明で穏やか（規定で緑色）",
+        [Badge__YDF.DecorativeVariations.achromaticBright]: "鮮明で不染色（規定で暗い灰色）",
+        [Badge__YDF.DecorativeVariations.veryCatchyPastel]: "パステルで超派手（規定は赤）",
+        [Badge__YDF.DecorativeVariations.catchyPastel]: "パステルで派手（規定はオレンジ）",
+        [Badge__YDF.DecorativeVariations.modestlyCatchyPastel]: "パステルでやや派手（規定で黄色）",
+        [Badge__YDF.DecorativeVariations.neutralPastel]: "パステルで中立的（規定で水色）",
+        [Badge__YDF.DecorativeVariations.modestlyCalmingPastel]: "パステルでやや穏やか（規定で青色）",
+        [Badge__YDF.DecorativeVariations.calmingPastel]: "パステルで穏やか（規定で緑色）",
+        [Badge__YDF.DecorativeVariations.achromaticPastel]: "パステルで不染色（規定で明るい灰色）"
+      },
+      decorativeModifiersNamesTranslations: {
+        [Badge__YDF.DecorativeModifiers.bordersDisguising]: "大小変化無しで枠が無い効果",
+        [Badge__YDF.DecorativeModifiers.noBackground]: "塗りつぶし無し"
+      },
+      loadingPlaceholder: true
+    })

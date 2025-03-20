@@ -1,38 +1,38 @@
-projectBuilding:
+$projectBuilding:
 
-  commonSettings:
+  $commonSettings:
 
-    selectiveExecutions:
+    $selectiveExecutions:
 
       LocalGalleries:
 
-        tasksAndSourceFilesSelection:
-          markupProcessing: [ LocalGalleriesIndexPage, CompletePages ]
-          ECMA_ScriptLogicProcessing: [ CompletePages ]
-          plainCopying: [ ExternalStyles ]
+        $tasksAndSourceFilesSelection:
+          $markupProcessing: [ LocalGalleriesIndexPage, CompletePages ]
+          $ECMA_ScriptLogicProcessing: [ CompletePages ]
+          $plainCopying: [ ExternalStyles ]
 
-        browserLiveReloadingSetupID: LocalGalleries
+        $browserLiveReloadingSetupID: LocalGalleries
 
       Distributions:
 
-        tasksAndSourceFilesSelection:
-          markupProcessing: [ CompletePages, PartialDemos ]
-          ECMA_ScriptLogicProcessing: [ CompletePages ]
-          plainCopying: [ ExternalStyles ]
+        $tasksAndSourceFilesSelection:
+          $markupProcessing: [ CompletePages, PartialDemos ]
+          $ECMA_ScriptLogicProcessing: [ CompletePages ]
+          $plainCopying: [ ExternalStyles ]
 
       PartialDemosSourceFiles:
 
-        tasksAndSourceFilesSelection:
-          plainCopying: [ PartialDemos ]
+        $tasksAndSourceFilesSelection:
+          $plainCopying: [ PartialDemos ]
 
 
   # ━━━ Markup ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  markupProcessing:
+  $markupProcessing:
 
-    common:
-      buildingModeDependent:
-        LOCAL_DEVELOPMENT: { mustResolveResourceReferencesToRelativePaths: true }
-        PRODUCTION: { mustResolveResourceReferencesToRelativePaths: true }
+    $common:
+      $buildingModeDependent:
+        $localDevelopment: { $mustResolveResourcesPointersToRelativePaths: true }
+        $production: { $mustResolveResourcesPointersToRelativePaths: true }
 
     entryPointsGroups:
 

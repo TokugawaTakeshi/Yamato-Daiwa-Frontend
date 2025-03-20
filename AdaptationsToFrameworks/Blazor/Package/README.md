@@ -12,13 +12,13 @@ The [core package](https://www.npmjs.com/package/@yamato-daiwa/frontend) is stil
 ### .NET
 
 ```shell
-dotnet add package YamatoDaiwaFrontend --version 0.1.0
+dotnet add package YamatoDaiwaFrontend --version 0.3.4
 ```
 
 ### npm
 
 ```shell
-npm i @yamato-daiwa/frontend@2.0.0-beta.6
+npm i @yamato-daiwa/frontend@2.0.0-beta.8
 ```
 
 ## Documentation
@@ -26,3 +26,9 @@ npm i @yamato-daiwa/frontend@2.0.0-beta.6
 
 + [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Blazor/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-Blazor.english.html)
 + [Badge](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Badge/Badge-Blazor.english.html)
+
+
+#### Controls
+
++ Buttons
+  + [Plain (Button)](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/Buttons/Plain/Button-Blazor.english.html) 

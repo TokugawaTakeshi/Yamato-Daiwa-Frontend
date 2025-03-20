@@ -12,9 +12,14 @@ block append Metadata
 
   -
 
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = routing.japanese.coreLibrary.$children.GUI_Components.$children.AdmonitionBlock;
+
     RegularWebPageTemplate__YDF.configure({
       metadata: {
-        title: buildHTML_PageTitle("AdmonitionBlock"),
+        title: buildHTML_PageTitle(topHeading),
         description: MetaDescriptionTemplates.GUI_Components.AdmonitionBlock
       },
       stylesSheetsURIs: [
@@ -32,11 +37,6 @@ block append Metadata
       russian: routing.russian.coreLibrary.$children.GUI_Components.$children.AdmonitionBlock.$URI
     });
 
-    const {
-      $sectioning: localizedSectioning,
-      $heading: topHeading
-    } = routing.japanese.coreLibrary.$children.GUI_Components.$children.AdmonitionBlock;
-
 
 block append HeadScripts
 
@@ -49,64 +49,109 @@ block append SpecificContent
 
   article
 
+    //- ━━━ AdmonitionBlock ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     h1.Article-Heading1!= topHeading
 
     +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
 
-    -
-
-      AdmonitionBlockComponentPropertiesSpecification.localizedDescriptiveHeading = "プロパティ";
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.title.
-          localizedInterpretation = "見出し";
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.SVG_Icon.
-          localizedInterpretation = "カスタムなSVGアイコン";
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.dismissible.
-          localizedInterpretation = "コンポーネントを取り除ける真偽";
-
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.localizedInterpretation = "テーマ";
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives = [
-        ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives,
-        [
-          { code: "AdmonitionBlock__YDF.defineThemes(themesNames)" },
-          { text: "で宣言された何れでも項目" }
-        ]
-      ];
-
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.areThemesCSS_ClassesCommon.
-          localizedInterpretation = "テーマのCSSクラスは全コンポーネントにとって共通真偽";
-
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.
-          localizedInterpretation = "幾何学的変形";
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives = [
-        ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives,
-        [
-          { code: "AdmonitionBlock__YDF.defineGeometricVariations(geometricVariationsNames)" },
-          { text: "で宣言された何れでも項目" }
-        ]
-      ];
-
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.
-          localizedInterpretation = "修飾的変形";
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives = [
-        ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives,
-        [
-          { code: "AdmonitionBlock__YDF.defineDecorativeVariations(decorativeVariationsNames)" },
-          { text: "で宣言された何れでも項目" }
-        ]
-      ];
-
-    +CallableExpressionScheme--YDF_DK({
-      technicalName: "AdmonitionBlock--YDF",
-      parametersSpecification: [
-        {
-          genericTechnicalName: "properties",
-          localizedName: "プロパティ",
-          type: "Properties",
-          required: true
-        }
-      ],
-      hiddenReturnValue: true
+    +WebPageViewer--YDF({
+      URI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "AdmonitionBlock" })
     })
-      +ObjectTypeAbstract--YDF_DK(
-        AdmonitionBlockComponentPropertiesSpecification
-      ).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem
+
+    +AdmonitionBlockComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ━━━ 要約 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.synopsis.$heading,
+      HTML_ID: localizedSectioning.synopsis.$anchor
+    }).Article-Heading2
+
+    +AdmonitionBlockComponent-Synopsis
+
+
+    //- ━━━ 利用 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.usage.$heading,
+      HTML_ID: localizedSectioning.usage.$anchor
+    }).Article-Heading2
+
+    //- ─── マークアップ ────────────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.usage.$children.markup.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$anchor
+    }).Article-Heading3
+
+    //- ─── プロジェクトへの取り組み ───────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.usage.$children.markup.$children.includingToProject.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.includingToProject.$anchor
+    }).Article-Heading4
+
+    +ComponentMarkupProvidingGuidanceFragment({ componentName: "AdmonitionBlock" })
+    //- TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //-
+      -
+
+        AdmonitionBlockComponentPropertiesSpecification.localizedDescriptiveHeading = "プロパティ";
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.title.
+            localizedInterpretation = "見出し";
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.SVG_Icon.
+            localizedInterpretation = "カスタムなSVGアイコン";
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.dismissible.
+            localizedInterpretation = "コンポーネントを取り除ける真偽";
+
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.localizedInterpretation = "テーマ";
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives = [
+          ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives,
+          [
+            { code: "AdmonitionBlock__YDF.defineThemes(themesNames)" },
+            { text: "で宣言された何れでも項目" }
+          ]
+        ];
+
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.areThemesCSS_ClassesCommon.
+            localizedInterpretation = "テーマのCSSクラスは全コンポーネントにとって共通真偽";
+
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.
+            localizedInterpretation = "幾何学的変形";
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives = [
+          ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives,
+          [
+            { code: "AdmonitionBlock__YDF.defineGeometricVariations(geometricVariationsNames)" },
+            { text: "で宣言された何れでも項目" }
+          ]
+        ];
+
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.
+            localizedInterpretation = "修飾的変形";
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives = [
+          ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives,
+          [
+            { code: "AdmonitionBlock__YDF.defineDecorativeVariations(decorativeVariationsNames)" },
+            { text: "で宣言された何れでも項目" }
+          ]
+        ];
+
+      +CallableExpressionScheme--YDF_DK({
+        technicalName: "AdmonitionBlock--YDF",
+        parametersSpecification: [
+          {
+            genericTechnicalName: "properties",
+            localizedName: "プロパティ",
+            type: "Properties",
+            required: true
+          }
+        ],
+        hiddenReturnValue: true
+      })
+        +ObjectTypeAbstract--YDF_DK(
+          AdmonitionBlockComponentPropertiesSpecification
+        ).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem

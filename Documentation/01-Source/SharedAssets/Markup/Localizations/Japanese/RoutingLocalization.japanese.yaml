@@ -233,7 +233,7 @@ coreLibrary:
 
         $heading: "ボタン"
 
-adaptationsToJavaScriptFrameworks:
+adaptationsToFrameworks:
 
   $heading: "JavaScriptフレームワークの対応"
 

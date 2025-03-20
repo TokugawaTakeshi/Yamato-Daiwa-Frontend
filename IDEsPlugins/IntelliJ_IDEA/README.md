@@ -30,9 +30,12 @@ Adds the [live templates](https://www.jetbrains.com/help/idea/using-live-templat
 - **AdmonitionBlock--YDF**, alias: **ab-ydf** — 
   [AdmonitionBlock--YDF](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock.english.html)
   component.
-- **Badge--YDF**  —
+- **Badge--YDF**, alias: **bdg-ydf**  —
   [Badge--YDF](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Badge/Badge.english.html)
   component. The loading placeholder version **Badge--YDF-LoadingPlaceholder** is also available.
+- **Button--YDF**, alias **btn-ydf** —
+  [Button--YDF](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/Button.english.html)
+  component. The loading placeholder version **Button--YDF-LoadingPlaceholder** is also available.
 
 
 ### Adaptations to JavaScript frameworks

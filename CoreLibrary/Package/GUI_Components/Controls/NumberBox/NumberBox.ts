@@ -10,11 +10,19 @@ import CompoundControlShell from "../CompoundControlShell/CompoundControlShell";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import {
+  InvalidParameterValueError,
+  isNumber,
+  isNotUndefined,
+  isNotNull,
+  Logger
+} from "@yamato-daiwa/es-extensions";
+import {
   getExpectedToBeSingleDOM_Element,
   addInputEventHandler,
-  LeftClickEventListener
+  LeftClickEventListener,
+  cloneDOM_Element
 } from "@yamato-daiwa/es-extensions-browserjs";
-import { isNotUndefined, isNumber } from "@yamato-daiwa/es-extensions";
+import onDifferentValueAssigned from "../../_Auxiliaries/Decorators/onDifferentValueAssigned";
 
 
 class NumberBox<
@@ -25,6 +33,9 @@ class NumberBox<
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ─── Accessing to DOM ─────────────────────────────────────────────────────────────────────────────────────────── */
+  public static readonly CSS_NAMESPACE: string = "NumberBox--YDF";
+  public static readonly ROOT_ELEMENT_SELECTOR: string = `.${ NumberBox.CSS_NAMESPACE }`;
+
   protected static readonly NATIVE_INPUT_ELEMENT_SELECTOR: string = ".NumberBox--YDF-NativeInput";
   protected static readonly VALUE_INCREMENTING_BUTTON_DATE_ATTRIBUTE_KEY: string = "data-button-incrementing";
   protected static readonly VALUE_DECREMENTING_BUTTON_DATE_ATTRIBUTE_KEY: string = "data-button-decrementing";
@@ -42,37 +53,31 @@ class NumberBox<
 
   protected readonly scenario: NumberBox.Scenarios;
   protected readonly validityHighlightingActivationMode: NumberBox.ValidityHighlightingActivationModes;
-  protected readonly minimalValue?: number;
-  protected readonly maximalValue?: number;
   protected readonly step: number;
 
 
   /* ─── DOM ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
   protected readonly shellComponent: CompoundControlShell;
   protected readonly nativeInputElement: HTMLInputElement;
-  protected readonly valueIncrementingButton: Element;
-  protected readonly valueDecrementingButton: Element;
+  protected readonly valueIncrementingButton: HTMLButtonElement;
+  protected readonly valueDecrementingButton: HTMLButtonElement;
 
 
   /* ─── Reactivity ───────────────────────────────────────────────────────────────────────────────────────────────── */
   /* eslint-disable no-underscore-dangle -- [ CONVENTION ]
    * The instance fields begins from the underscore MUST be changed only via setters. */
-  protected _mustHighlightInvalidInputIfAnyValidationErrorsMessages: boolean = false;
+
+  /* ┄┄┄ Invalid Input Highlighting ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+  protected _mustHighlightInvalidInputIfAnyValidationErrorsMessages!: boolean;
 
   protected get $mustHighlightInvalidInputIfAnyValidationErrorsMessages(): boolean {
     return this._mustHighlightInvalidInputIfAnyValidationErrorsMessages;
   }
 
-  protected set $mustHighlightInvalidInputIfAnyValidationErrorsMessages(value: boolean) {
+  @onDifferentValueAssigned()
+  protected set $mustHighlightInvalidInputIfAnyValidationErrorsMessages(_value: boolean) {
 
-    if (this._mustHighlightInvalidInputIfAnyValidationErrorsMessages === value) {
-      return;
-    }
-
-
-    this._mustHighlightInvalidInputIfAnyValidationErrorsMessages = value;
-
-    if (this._mustHighlightInvalidInputIfAnyValidationErrorsMessages) {
+    if (this.$mustHighlightInvalidInputIfAnyValidationErrorsMessages) {
 
       this.shellComponent.$mustDisplayErrorsMessagesIfAny = true;
 
@@ -91,27 +96,62 @@ class NumberBox<
   }
 
 
+  /* ┄┄┄ Minimal Value ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+  protected _minimalValue!: number;
+
+  protected get $minimalValue(): number {
+    return this._minimalValue;
+  }
+
+  @onDifferentValueAssigned()
+  protected set $minimalValue(_value: number) {
+    this.nativeInputElement.min = String(this._minimalValue);
+  }
+
+
+  /* ┄┄┄ Maximal Value ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+  protected _maximalValue!: number;
+
+  protected get $maximalValue(): number {
+    return this._maximalValue;
+  }
+
+  @onDifferentValueAssigned()
+  protected set $maximalValue(_value: number) {
+    this.nativeInputElement.max = String(this._maximalValue);
+  }
+  /* eslint-enable no-underscore-dangle */
+
+
   /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static pickOneBySelector<Validation extends InputtedValueValidation>(
-    initializationProperties: NumberBox.InitializationProperties.AlwaysNonEmptyValueScenario<Validation>
+  public static initializeOne<Validation extends InputtedValueValidation>(
+    initializationProperties: NumberBox.Initialization.AlwaysNonEmptyValueScenario.Properties<Validation>
   ): NumberBox<number, number, Validation>;
 
-  public static pickOneBySelector<Validation extends InputtedValueValidation>(
-    initializationProperties: NumberBox.InitializationProperties.CouldBeInitiallyEmptyButRequiredValueScenario<Validation>
+  public static initializeOne<Validation extends InputtedValueValidation>(
+    initializationProperties: NumberBox.Initialization.CouldBeInitiallyEmptyButRequiredValueScenario.Properties<Validation>
   ): NumberBox<number | null, number, Validation>;
 
-  public static pickOneBySelector<Validation extends InputtedValueValidation>(
-    initializationProperties: NumberBox.InitializationProperties.OptionalValueScenario<Validation>
+  public static initializeOne<Validation extends InputtedValueValidation>(
+    initializationProperties: NumberBox.Initialization.OptionalValueScenario.Properties<Validation>
   ): NumberBox<number | null, number | null, Validation>;
 
-  public static pickOneBySelector<
+  public static initializeOne<
     ValidValue extends NumberBox.SupportedValidatablePayloadValuesTypes,
     InvalidValue extends NumberBox.SupportedValidatablePayloadValuesTypes,
     Validation extends InputtedValueValidation
   >(
-    initializationProperties: NumberBox.InitializationProperties<Validation>
+    initializationProperties: NumberBox.Initialization.Properties<Validation>
   ): NumberBox<ValidValue, InvalidValue, Validation> {
-    return new NumberBox<ValidValue, InvalidValue, Validation>(initializationProperties);
+    return new NumberBox<ValidValue, InvalidValue, Validation>({
+      ...initializationProperties,
+      rootElement: "selector" in initializationProperties.rootElement ?
+          getExpectedToBeSingleDOM_Element({
+            selector: initializationProperties.rootElement.selector,
+            contextElement: initializationProperties.contextElement
+          }) :
+          initializationProperties.rootElement
+    });
   }
 
 
@@ -140,17 +180,39 @@ class NumberBox<
 
 
   /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected constructor(initializationProperties: NumberBox.InitializationProperties<Validation>) {
+  protected constructor(
+    {
+      rootElement,
+      validityHighlightingActivationMode,
+      scenario,
+      minimalValue,
+      maximalValue,
+      ...initializationProperties
+    }: NumberBox.ConstructorParameter<Validation>
+  ) {
 
-    this.scenario = initializationProperties.scenario;
-    this.validityHighlightingActivationMode = initializationProperties.validityHighlightingActivationMode;
+    if (rootElement.classList.contains(NumberBox.ROOT_ELEMENT_SELECTOR)) {
+      Logger.throwErrorAndLog({
+        errorInstance: new InvalidParameterValueError({
+          parameterNumber: 1,
+          parameterName: "compoundParameter",
+          messageSpecificPart:
+              "The following root element definitely not belong to TextBox, the YDF GUI component.\n" +
+              cloneDOM_Element({ targetElement: rootElement, mustCopyAllChildren: false }).outerHTML
+        }),
+        title: InvalidParameterValueError.localization.defaultTitle,
+        occurrenceLocation: "NumberBox.<initilizingMethod>->constructor(initializationProperties)"
+      });
+    }
 
-    this.shellComponent = CompoundControlShell.pickOne({
-      selector: initializationProperties.selector,
-      contextElement: initializationProperties.contextElement,
-      mustDisplayErrorsMessagesIfAny:
-          initializationProperties.validityHighlightingActivationMode ===
-          NumberBox.ValidityHighlightingActivationModes.immediate
+
+    /* ─── DOM ────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    const mustHighlightInvalidInputIfAnyValidationErrorsMessages: boolean =
+        validityHighlightingActivationMode === NumberBox.ValidityHighlightingActivationModes.immediate;
+
+    this.shellComponent = CompoundControlShell.initializeOne({
+      rootElement,
+      mustDisplayErrorsMessagesIfAny: mustHighlightInvalidInputIfAnyValidationErrorsMessages
     });
 
     this.nativeInputElement = getExpectedToBeSingleDOM_Element({
@@ -159,26 +221,8 @@ class NumberBox<
       expectedDOM_ElementSubtype: HTMLInputElement
     });
 
-    this.minimalValue = initializationProperties.minimalValue ?? Number(this.nativeInputElement.min);
-    this.maximalValue = initializationProperties.minimalValue ?? Number(this.nativeInputElement.max);
-    this.step = initializationProperties.step ?? Number(this.nativeInputElement.dataset.step);
 
-    this.valueIncrementingButton = getExpectedToBeSingleDOM_Element({
-      selector: `[${ NumberBox.VALUE_INCREMENTING_BUTTON_DATE_ATTRIBUTE_KEY }]`,
-      contextElement: this.shellComponent.rootElement
-    });
-
-    this.valueIncrementingButton.removeAttribute(NumberBox.VALUE_INCREMENTING_BUTTON_DATE_ATTRIBUTE_KEY);
-
-
-    this.valueDecrementingButton = getExpectedToBeSingleDOM_Element({
-      selector: `[${ NumberBox.VALUE_DECREMENTING_BUTTON_DATE_ATTRIBUTE_KEY }]`,
-      contextElement: this.shellComponent.rootElement
-    });
-
-    this.valueDecrementingButton.removeAttribute(NumberBox.VALUE_DECREMENTING_BUTTON_DATE_ATTRIBUTE_KEY);
-
-
+    /* ─── Payload ────────────────────────────────────────────────────────────────────────────────────────────────── */
     let payloadInitialValue: NumberBox.SupportedValidatablePayloadValuesTypes;
 
     if (isNotUndefined(initializationProperties.overridingPreInputtedInitialValue)) {
@@ -192,8 +236,7 @@ class NumberBox<
       payloadInitialValue = this.transformInputtedRawValue(this.nativeInputElement.value);
 
       if (
-        this.nativeInputElement.value.length === 0 &&
-            initializationProperties.scenario === NumberBox.Scenarios.alwaysNonEmptyValue
+        this.nativeInputElement.value.length === 0 && scenario === NumberBox.Scenarios.alwaysNonEmptyValue
       ) {
         this.nativeInputElement.value = "0";
       }
@@ -210,7 +253,7 @@ class NumberBox<
       getComponentInstance: (): ValidatableControl => this,
       validation: initializationProperties.validation,
       onAnyChangeEventHandler: {
-        handler: this.onAnyChangeOfPayload.bind(this),
+        handler: this.onPayloadInitializedOrChanged.bind(this),
         ID: NumberBox.generateOnAnyChangeOfPayloadEventHandlerID(this.ID)
       },
       onHasBecomeValidEventHandler: {
@@ -228,10 +271,64 @@ class NumberBox<
 
     });
 
-    this.shellComponent.$validationErrorsMessages = this.payload.validationErrorsMessages;
+    this.onPayloadInitializedOrChanged();
 
-    this._mustHighlightInvalidInputIfAnyValidationErrorsMessages =
-        this.validityHighlightingActivationMode === NumberBox.ValidityHighlightingActivationModes.immediate;
+
+    /* ─── Reactivity ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    this.$mustHighlightInvalidInputIfAnyValidationErrorsMessages = mustHighlightInvalidInputIfAnyValidationErrorsMessages;
+
+    if (isNotUndefined(minimalValue)) {
+      this.$minimalValue = minimalValue;
+    } else {
+
+      const minAttributeValue: string | null = this.nativeInputElement.getAttribute("min");
+
+      if (isNotNull(minAttributeValue)) {
+        this.$minimalValue = Number(minAttributeValue);
+      } else {
+        this.$minimalValue = Number.MAX_SAFE_INTEGER;
+      }
+
+    }
+
+    if (isNotUndefined(maximalValue)) {
+      this.$maximalValue = maximalValue;
+    } else {
+
+      const maxAttributeValue: string | null = this.nativeInputElement.getAttribute("max");
+
+      if (isNotNull(maxAttributeValue)) {
+        this.$maximalValue = Number(maxAttributeValue);
+      } else {
+        this.$maximalValue = Number.MAX_SAFE_INTEGER;
+      }
+
+    }
+
+    /* ─── Not Organized Yet ──────────────────────────────────────────────────────────────────────────────────────── */
+    this.scenario = scenario;
+    this.validityHighlightingActivationMode = validityHighlightingActivationMode;
+
+    this.step = initializationProperties.step ?? Number(this.nativeInputElement.dataset.step);
+
+    this.valueIncrementingButton = getExpectedToBeSingleDOM_Element({
+      selector: `[${ NumberBox.VALUE_INCREMENTING_BUTTON_DATE_ATTRIBUTE_KEY }]`,
+      contextElement: this.shellComponent.rootElement,
+      expectedDOM_ElementSubtype: HTMLButtonElement
+    });
+
+    this.valueIncrementingButton.removeAttribute(NumberBox.VALUE_INCREMENTING_BUTTON_DATE_ATTRIBUTE_KEY);
+
+
+    this.valueDecrementingButton = getExpectedToBeSingleDOM_Element({
+      selector: `[${ NumberBox.VALUE_DECREMENTING_BUTTON_DATE_ATTRIBUTE_KEY }]`,
+      contextElement: this.shellComponent.rootElement,
+      expectedDOM_ElementSubtype: HTMLButtonElement
+    });
+
+    this.valueDecrementingButton.removeAttribute(NumberBox.VALUE_DECREMENTING_BUTTON_DATE_ATTRIBUTE_KEY);
+
+    this.shellComponent.$validationErrorsMessages = this.payload.validationErrorsMessages;
 
     addInputEventHandler({
       targetElement: this.nativeInputElement,
@@ -278,8 +375,9 @@ class NumberBox<
 
 
   /* ━━━ Events Handling ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected onAnyChangeOfPayload(): void {
-    // TODO Block buttons if limit reaached
+  protected onPayloadInitializedOrChanged(): void {
+    this.valueIncrementingButton.disabled = (this.payload.value ?? 0) >= this.$maximalValue;
+    this.valueDecrementingButton.disabled = (this.payload.value ?? 0) <= this.$minimalValue;
   }
 
   protected onPayloadHasBecomeValidEventHandler(): void {
@@ -438,43 +536,81 @@ namespace NumberBox {
     optionalValue = "OPTIONAL_VALUE"
   }
 
-  export type InitializationProperties<Validation extends InputtedValueValidation> =
-      InitializationProperties.AlwaysNonEmptyValueScenario<Validation> |
-      InitializationProperties.CouldBeInitiallyEmptyButRequiredValueScenario<Validation> |
-      InitializationProperties.OptionalValueScenario<Validation>;
+  export type ConstructorParameter<Validation extends InputtedValueValidation> =
+      Readonly<{ rootElement: Element; }> &
+      Omit<
+        Initialization.Properties<Validation>,
+            "rootElements" |
+            "contextElement"
+      >;
 
-  export namespace InitializationProperties {
+  export namespace Initialization {
 
-    export type Common<Validation extends InputtedValueValidation> = Readonly<{
-      selector: string;
-      contextElement?: ParentNode | Readonly<{ selector: string; }>;
-      minimalValue?: number;
-      maximalValue?: number;
-      step?: number;
-      validation: Validation;
-      validityHighlightingActivationMode: ValidityHighlightingActivationModes;
-    }>;
+    export type Properties<Validation extends InputtedValueValidation> =
+        (
+          AlwaysNonEmptyValueScenario.Properties<Validation> |
+          CouldBeInitiallyEmptyButRequiredValueScenario.Properties<Validation> |
+          OptionalValueScenario.Properties<Validation>
+        );
 
-    export type AlwaysNonEmptyValueScenario<Validation extends InputtedValueValidation> =
-        Readonly<{
-          scenario: Scenarios.alwaysNonEmptyValue;
-          overridingPreInputtedInitialValue?: number;
-        }> &
-        Common<Validation>;
+    export namespace Properties {
 
-    export type CouldBeInitiallyEmptyButRequiredValueScenario<Validation extends InputtedValueValidation> =
-        Readonly<{
-          scenario: Scenarios.couldBeInitiallyEmptyButRequiredValue;
-          overridingPreInputtedInitialValue?: number | null;
-        }> &
-        Common<Validation>;
+      export type RootElementsDefinition = Readonly<
+        {
+          rootElement: Readonly<{ selector: string; }>;
+          contextElement?: ParentNode | Readonly<{ selector: string; }>;
+        } |
+        {
+          rootElement: Element;
+          contextElement?: never;
+        }
+      >;
 
-    export type OptionalValueScenario<Validation extends InputtedValueValidation> =
-        Readonly<{
-          scenario: Scenarios.optionalValue;
-          overridingPreInputtedInitialValue?: number | null;
-        }> &
-        Common<Validation>;
+      export type Common<Validation extends InputtedValueValidation> = Readonly<{
+        minimalValue?: number;
+        maximalValue?: number;
+        step?: number;
+        validation: Validation;
+        validityHighlightingActivationMode: ValidityHighlightingActivationModes;
+      }>;
+
+    }
+
+    export namespace AlwaysNonEmptyValueScenario {
+
+      export type Properties<Validation extends InputtedValueValidation> =
+          Readonly<{
+            scenario: Scenarios.alwaysNonEmptyValue;
+            overridingPreInputtedInitialValue?: number;
+          }> &
+          Initialization.Properties.Common<Validation> &
+          Initialization.Properties.RootElementsDefinition;
+
+    }
+
+    export namespace CouldBeInitiallyEmptyButRequiredValueScenario {
+
+      export type Properties<Validation extends InputtedValueValidation> =
+          Readonly<{
+            scenario: Scenarios.couldBeInitiallyEmptyButRequiredValue;
+            overridingPreInputtedInitialValue?: number | null;
+          }> &
+          Initialization.Properties.Common<Validation> &
+          Initialization.Properties.RootElementsDefinition;
+
+    }
+
+    export namespace OptionalValueScenario {
+
+      export type Properties<Validation extends InputtedValueValidation> =
+          Readonly<{
+            scenario: Scenarios.optionalValue;
+            overridingPreInputtedInitialValue?: number | null;
+          }> &
+          Initialization.Properties.Common<Validation> &
+          Initialization.Properties.RootElementsDefinition;
+
+    }
 
   }
 

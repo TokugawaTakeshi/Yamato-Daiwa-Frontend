@@ -1,6 +1,3 @@
-include AdmonitionBlockGalleryOptions.pug
-
-
 mixin AdmonitionBlockGallery
 
   -
@@ -14,15 +11,15 @@ mixin AdmonitionBlockGallery
 
 
   h1.Heading1(
-    class=(AdmonitionBlockGalleryOptions.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading": [])
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading": [])
   ) AdmonitionBlock Component Demos
 
 
   //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if AdmonitionBlockGalleryOptions.partialsRenderingFlags[AdmonitionBlockGalleryOptions.Partials.minimal]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
 
     h2.Heading2(
-      class=(AdmonitionBlockGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Minimal
 
     +ThemesShowcase--YDF({
@@ -42,10 +39,10 @@ mixin AdmonitionBlockGallery
 
 
   //- ━━━ Titles ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if AdmonitionBlockGalleryOptions.partialsRenderingFlags[AdmonitionBlockGalleryOptions.Partials.titles]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.titles]
 
     h2.Heading2(
-      class=(AdmonitionBlockGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Titles
 
     +ThemesShowcase--YDF({
@@ -66,10 +63,10 @@ mixin AdmonitionBlockGallery
 
 
   //- ━━━ Default SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if AdmonitionBlockGalleryOptions.partialsRenderingFlags[AdmonitionBlockGalleryOptions.Partials.defaultSVG_Icons]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.defaultSVG_Icons]
 
     h2.Heading2(
-      class=(AdmonitionBlockGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Default SVG Icons
 
     +ThemesShowcase--YDF({
@@ -90,10 +87,10 @@ mixin AdmonitionBlockGallery
 
 
   //- ━━━ Custom SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if AdmonitionBlockGalleryOptions.partialsRenderingFlags[AdmonitionBlockGalleryOptions.Partials.customSVG_Icons]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.customSVG_Icons]
 
     h2.Heading2(
-      class=(AdmonitionBlockGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Custom SVG Icons
 
     svg.AdmonitionBlockGallery-PreRenderedInvisibleCustomSVG_Icon(
@@ -134,10 +131,10 @@ mixin AdmonitionBlockGallery
 
 
   //- ━━━ Titles and SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if AdmonitionBlockGalleryOptions.partialsRenderingFlags[AdmonitionBlockGalleryOptions.Partials.titlesAndSVG_Icons]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.titlesAndSVG_Icons]
 
     h2.Heading2(
-      class=(AdmonitionBlockGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Titles and SVG Icons
 
     +ThemesShowcase--YDF({
@@ -159,10 +156,10 @@ mixin AdmonitionBlockGallery
 
 
   //- ━━━ Dismissing Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if AdmonitionBlockGalleryOptions.partialsRenderingFlags[AdmonitionBlockGalleryOptions.Partials.dismissingButton]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.dismissingButton]
 
     h2.Heading2(
-      class=(AdmonitionBlockGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Dismissing Button
 
     +ThemesShowcase--YDF({
@@ -185,10 +182,10 @@ mixin AdmonitionBlockGallery
 
 
   //- ━━━ Centered Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if AdmonitionBlockGalleryOptions.partialsRenderingFlags[AdmonitionBlockGalleryOptions.Partials.centeredButton]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.centeredButton]
 
     h2.Heading2(
-      class=(AdmonitionBlockGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Centered Button
 
     +ThemesShowcase--YDF({
@@ -212,10 +209,10 @@ mixin AdmonitionBlockGallery
 
 
   //- ━━━ Action Bar ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if AdmonitionBlockGalleryOptions.partialsRenderingFlags[AdmonitionBlockGalleryOptions.Partials.actionBar]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.actionBar]
 
     h2.Heading2(
-      class=(AdmonitionBlockGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Action Bar
 
     +ThemesShowcase--YDF({

@@ -1,3 +1,50 @@
+mixin ComponentMarkupProvidingGuidanceFragment(properties)
+
+  -
+    const {
+      componentName,
+      pugMixinName = `${ componentName }--YDF`
+    } = properties
+
+  p.Article-Paragraph
+    | 当#[+Term--YDID GUIコンポーネント]の#[+Term__Contrast--YDID マークアップ]は
+    |   #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.mixins }) Pugミクスイン]の
+    |   #[+ImportantEntity__Code--YDID #{ pugMixinName }]に依り確保される。
+    | 取り組み方法は
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$sectioning.markup.$children.providing.$URI
+    }) 通常
+    |   即ち#[+ImportantEntity__Code--YDID Components.pug]と言う#[+Term--YDID Pugファイル]の
+    |
+    +Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.includes }) 含め
+    |   。
+    | 但し#[+Keyphrase--YDID 其の前]#[+ImportantEntity__Code--YDID Functionality.pug]ファイルも含めなければいけないが、
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+    }) ページのテンプレート
+    |   の場合、#[+ImportantEntity__Code--YDID Functionality.pug]は#[+Keyword--YDID 含め済み]で、
+    |   #[+Keyword__Contrast--YDID 重複し]含めてると#[+Keyphrase--YDID エラーが発生する]のだ。
+
+  +CodeViewer--YDF
+    +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+      +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+        include ../../node_modules/@yamato-daiwa/frontend/Functionality.pug
+        include ../../node_modules/@yamato-daiwa/frontend/Components.pug
+      +CodeViewer-Explanation--YDF
+        p.Article-Paragraph.
+          上記のコードを含めている#[+Term--YDID Pugファイル]の配置に依り、貴方の場合#[+ImportantEntity--YDID node_modules]
+            #[+Term--YDID ディジタル]への#[+Term__Contrast--YDID 早退パス]が異なる可能性が有ります。
+        p.Article-Paragraph.
+          ところで、#[+Term--YDID GUIコンポーネント]とは限らず#[+ImportantEntity--YDID YDF]の仕組み上の基本的な事ではありますが、
+            上記のファイルを含めるだけでは#[+Term--YDID HTMLコード]が#[+Keyword--YDID 一切]生成#[+Keyword__Contrast--YDID されない]
+            と忘れないでおきましょう。
+          #[+ImportantEntity--YDID #{ componentName }]#[+Term--YDID コンポーネント]の#[+Term__Contrast--YDID HTMLコード]を
+            生成させるには、#[+ImportantEntity__Code--YDID #{ pugMixinName }]と言う#[+Term--YDID Pugミクスイン]を呼び出す必用が有ります。
+          尚、#[+Keyphrase--YDID 現時点では]#[+Term--YDID スタイル]が未だ確保されていなければ、#[+Term--YDID HTMLコード]が生成されたとしても、
+            表示が未だ未だ崩れている状態ですが、勿論此のページ無い#[+Term--YDID スタイル]確保方法を説明しますので、御安心下さい。
+
+
 mixin IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance(properties)
 
   -
@@ -56,3 +103,5 @@ mixin IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance(properties)
 
 
 include ReusableFragments/Components/AdmonitionBlock-ReusableFragments.japanese.pug
+include ReusableFragments/Components/Badge-ReusableFragments.japanese.pug
+include ReusableFragments/Components/Button-ReusableFragments.japanese.pug

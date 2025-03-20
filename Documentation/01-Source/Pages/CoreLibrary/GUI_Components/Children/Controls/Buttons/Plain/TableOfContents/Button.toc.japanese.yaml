@@ -20,7 +20,19 @@ usage:
 
       minimalExample:
 
-        $heading: "最低限の例（必須プロパティのみ）"
+        $heading: "最低限の例"
+
+      overflowControl:
+
+        $heading: "オーバーフロー制御"
+
+      SVG_Icons:
+
+        $heading: "SVGアイコン"
+
+        customIcons:
+
+          $heading: "カスタムアイコン"
 
   logic:
 

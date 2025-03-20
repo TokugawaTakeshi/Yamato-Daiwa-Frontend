@@ -8,17 +8,21 @@ import CollapsingAnimation from "../../../Animations/CollapsingAnimation";
 
 /* ─── Validation ─────────────────────────────────────────────────────────────────────────────────────────────────── */
 import type InputtedValueValidation from "../_Validation/InputtedValueValidation";
+import type ValidatableControl from "../_Validation/ValidatableControl";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
+import onDifferentValueAssigned from "../../_Auxiliaries/Decorators/onDifferentValueAssigned";
 import {
   getExpectedToBeSingleDOM_Element,
   cloneDOM_Element,
-  createDOM_ElementFromHTML_Code
+  createDOM_ElementFromHTML_Code,
+  resolveContextDOM_ElementPolymorphicSpecification
 } from "@yamato-daiwa/es-extensions-browserjs";
 import {
   Logger,
   InvalidParameterValueError,
   isNull,
+  isNotNull,
   isUndefined
 } from "@yamato-daiwa/es-extensions";
 
@@ -27,7 +31,7 @@ export default class CompoundControlShell {
 
   /* ━━━ Static fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ─── Accessing to DOM ─────────────────────────────────────────────────────────────────────────────────────────── */
-  protected static readonly ROOT_ELEMENT_CLASS: string = "CompoundControlShell--YDF";
+  protected static readonly ROOT_ELEMENT_CSS_CLASS: string = "CompoundControlShell--YDF";
 
   /* [ Theory ] Nested components wrapped by `CompoundControlShell` is completely normal scenario which mut be
    *   respected during picking of DOM elements. */
@@ -52,7 +56,7 @@ export default class CompoundControlShell {
       ".CompoundControlShell--YDF-AsynchronousValidationsStatusesList-Item__MalfunctionState";
 
 
-  /* ─── Others constants ─────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ─── Others Constants ─────────────────────────────────────────────────────────────────────────────────────────── */
   protected static readonly ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS: number = 0.2;
   protected static readonly ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS: number = 0.2;
   protected static readonly ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ANIMATION_DURATION_PER_ONE_ITEM__SECONDS: number = 0.2;
@@ -94,80 +98,68 @@ export default class CompoundControlShell {
 
 
   /* ─── Must be Changed Only via Setters or Constructor ──────────────────────────────────────────────────────────── */
-  protected _mustDisplayErrorsMessagesIfAny: boolean;
+  protected _mustDisplayErrorsMessagesIfAny: boolean = false;
   protected _validationErrorsMessages: ReadonlyArray<string> = [];
 
 
-  /* ━━━ Public static methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static pickOne(
-    properties: Readonly<
-      (
-        {
-          selector: string;
-          contextElement?: ParentNode | Readonly<{ selector: string; }>;
-        } |
-        { rootElement: Element; }
-      ) &
-      { mustDisplayErrorsMessagesIfAny: boolean; }
-    >
+  /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public static initializeOne(
+    initializationProperties: Readonly<{
+      rootElement: Element | Readonly<{ selector: string; }>;
+      contextElement?: ParentNode | Readonly<{ selector: string; }>;
+      mustDisplayErrorsMessagesIfAny: boolean;
+      initialValidationErrorsMessages?: ReadonlyArray<string>;
+    }>
   ): CompoundControlShell {
 
     if (isNull(CompoundControlShell.dynamicParts)) {
       CompoundControlShell.initializeCommonDOM_Parts();
     }
 
-    let rootElement: HTMLElement;
 
-    if ("rootElement" in properties) {
+    const contextElement: Element | ParentNode | null =
+        resolveContextDOM_ElementPolymorphicSpecification(initializationProperties.contextElement);
 
-      if (!(properties.rootElement instanceof HTMLElement)) {
-
-        Logger.throwErrorAndLog({
-          errorInstance: new InvalidParameterValueError({
-            parameterNumber: 1,
-            parameterName: "properties",
-            messageSpecificPart:
-                "Specified root element is definitely not the root element of \"CompoundControlShell\" component " +
-                  "because it even not the instance of \"HTMLElement\"."
-          }),
-          title: InvalidParameterValueError.localization.defaultTitle,
-          occurrenceLocation: "CompoundControlShell.pickOne(properties)"
+    const rootElement: Element = initializationProperties.rootElement instanceof Element ?
+        initializationProperties.rootElement :
+        getExpectedToBeSingleDOM_Element({
+          selector: initializationProperties.rootElement.selector,
+          ...isNotNull(contextElement) ? { contextElement } : null
         });
 
-      }
-
-      rootElement = properties.rootElement;
-
-    } else {
-
-      rootElement = getExpectedToBeSingleDOM_Element({
-        selector: properties.selector,
-        contextElement: properties.contextElement,
-        expectedDOM_ElementSubtype: HTMLElement
-      });
-
-    }
-
-    if (!rootElement.classList.contains(CompoundControlShell.ROOT_ELEMENT_CLASS)) {
-
+    if (!(rootElement instanceof HTMLElement)) {
       Logger.throwErrorAndLog({
         errorInstance: new InvalidParameterValueError({
           parameterNumber: 1,
-          parameterName: "properties",
+          parameterName: "initializationProperties",
           messageSpecificPart:
-              "Specified root element is definitely not the root element of \"CompoundControlShell\" component " +
-                "because it has not the CSS class which must be."
+              "The root element passed directly or via selector must be the instance of HTMLElement while actually " +
+                "it does not."
         }),
         title: InvalidParameterValueError.localization.defaultTitle,
-        occurrenceLocation: "CompoundControlShell.pickOne(properties)"
+        occurrenceLocation: "CompoundControlShell.initializeOne(initializationProperties)"
       });
+    }
 
+    if (!rootElement.classList.contains(CompoundControlShell.ROOT_ELEMENT_CSS_CLASS)) {
+      Logger.throwErrorAndLog({
+        errorInstance: new InvalidParameterValueError({
+          parameterNumber: 1,
+          parameterName: "initializationProperties",
+          messageSpecificPart:
+              "The root element passed directly or via selector must have the namespace CSS class " +
+                `"${ CompoundControlShell.ROOT_ELEMENT_CSS_CLASS }" while actually it have no.`
+        }),
+        title: InvalidParameterValueError.localization.defaultTitle,
+        occurrenceLocation: "CompoundControlShell.initializeOne(initializationProperties)"
+      });
     }
 
 
     return new CompoundControlShell({
       rootElement,
-      mustDisplayErrorsMessagesIfAny: properties.mustDisplayErrorsMessagesIfAny
+      mustDisplayErrorsMessagesIfAny: initializationProperties.mustDisplayErrorsMessagesIfAny,
+      initialValidationErrorsMessages: initializationProperties.initialValidationErrorsMessages
     });
 
   }
@@ -175,15 +167,18 @@ export default class CompoundControlShell {
 
   /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   private constructor(
-    initializationProperties: Readonly<{
+    {
+      rootElement,
+      mustDisplayErrorsMessagesIfAny,
+      initialValidationErrorsMessages
+    }: Readonly<{
       rootElement: HTMLElement;
       mustDisplayErrorsMessagesIfAny: boolean;
+      initialValidationErrorsMessages?: ReadonlyArray<string>;
     }>
   ) {
 
-    this.rootElement = initializationProperties.rootElement;
-
-    this._mustDisplayErrorsMessagesIfAny = initializationProperties.mustDisplayErrorsMessagesIfAny;
+    this.rootElement = rootElement;
 
     this.validationErrorsMessagesCollapsableListMountingPoint = getExpectedToBeSingleDOM_Element({
       selector: CompoundControlShell.VALIDATION_ERRORS_MESSAGES_LIST_MOUNTING_POINT_SELECTOR,
@@ -195,6 +190,18 @@ export default class CompoundControlShell {
       contextElement: this.rootElement
     });
 
+    this.$validationErrorsMessages = initialValidationErrorsMessages ?? [];
+    this.$mustDisplayErrorsMessagesIfAny = mustDisplayErrorsMessagesIfAny;
+
+  }
+
+
+  /* ━━━ Public Instance Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public getRootElementOffsetCoordinates(): ValidatableControl.RootElementOffsetCoordinates {
+    return {
+      top: this.rootElement.offsetTop,
+      left: this.rootElement.offsetLeft
+    };
   }
 
 
@@ -203,20 +210,14 @@ export default class CompoundControlShell {
     return this._mustDisplayErrorsMessagesIfAny;
   }
 
-  public set $mustDisplayErrorsMessagesIfAny(value: boolean) {
+  @onDifferentValueAssigned()
+  public set $mustDisplayErrorsMessagesIfAny(_value: boolean) {
 
-    if (this._mustDisplayErrorsMessagesIfAny === value) {
-      return;
-    }
-
-
-    this._mustDisplayErrorsMessagesIfAny = value;
-
-    if (this._mustDisplayErrorsMessagesIfAny) {
+    if (this.$mustDisplayErrorsMessagesIfAny) {
 
       if (!this.validationErrorsMessagesCollapsableList.isConnected) {
 
-        if (this._validationErrorsMessages.length > 0) {
+        if (this.$validationErrorsMessages.length > 0) {
           this.mountAndSlideDownErrorsMessagesList();
         }
 
@@ -237,9 +238,8 @@ export default class CompoundControlShell {
     return this._validationErrorsMessages;
   }
 
-  public set $validationErrorsMessages(validationErrorsMessages: ReadonlyArray<string>) {
-
-    this._validationErrorsMessages = validationErrorsMessages;
+  @onDifferentValueAssigned()
+  public set $validationErrorsMessages(_validationErrorsMessages: ReadonlyArray<string>) {
 
     if (!this.$mustDisplayErrorsMessagesIfAny) {
       this.updateValidationErrorsMessagesCollapsableList();
@@ -337,7 +337,7 @@ export default class CompoundControlShell {
   }
 
 
-  /* ━━━ Protected methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ━━━ Protected Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected updateValidationErrorsMessagesCollapsableList(): void {
     this.validationErrorsMessagesCollapsableList.replaceChildren(
       ...this.$validationErrorsMessages.map(

@@ -5,8 +5,6 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
 
   -
 
-    const COMPONENT_ID = DateTimePicker__YDF.generateComponentID();
-
     const {
 
       label,
@@ -25,8 +23,8 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
       mustDisplayAppropriateBadgeIfInputIsOptional,
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
 
-      coreElementHTML_ID,
-      labelElementHTML_ID,
+      instanceID_UniqueDynamicPart,
+      HTML_IDs,
 
       theme,
       areThemesCSS_ClassesCommon,
@@ -57,6 +55,20 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
       parameterPropertiesSpecification: DateTimePicker__YDF.statesSimulationsSpecification,
       mixinName: DateTimePicker__YDF.CSS_NAMESPACE
     });
+
+
+    /** @type { string } */
+    const INSTANCE_ID = DateTimePicker__YDF.generateInstanceID(instanceID_UniqueDynamicPart);
+
+    const {
+
+      /** @type { string } */
+      input: nativeInputElementHTML_ID = `${ INSTANCE_ID }-INPUT`,
+
+      /** @type { string } */
+      label: labelElementHTML_ID = `${ INSTANCE_ID }-LABEL`
+
+    } = HTML_IDs ?? {};
 
     const rootElementModifierCSS_Classes = [
 
@@ -115,7 +127,7 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
 
         case DateTimePicker__YDF.Modes.dateWithTime: {
 
-          valueAttributeForInputElement = new Date(value).toISOString();
+          valueAttributeForInputElement = new Date(value).toISOString().slice(0, 16);
           formattedLocalDateAndPossiblyTime = new Date(value).toLocaleString();
 
           break;
@@ -143,7 +155,7 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
       mustDisplayAppropriateBadgeIfInputIsRequired,
       mustDisplayAppropriateBadgeIfInputIsOptional,
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
-      coreElementHTML_ID: coreElementHTML_ID,
+      coreElementHTML_ID: nativeInputElementHTML_ID,
       labelElementHTML_ID: labelElementHTML_ID,
 
       mainSlotWrapperAdditionalCSS_Classes: [ "DateTimePicker--YDF-DialogRelativePositioner" ],
@@ -169,6 +181,7 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
     input.DateTimePicker--YDF-NativeInputElement(
       type=(mode === DateTimePicker__YDF.Modes.dateWithTime ? "datetime-local" : "date")
       value=valueAttributeForInputElement
+      id=nativeInputElementHTML_ID
       aria-label=accessibilityGuidance
       aria-labelledby=externalLabelHTML_ID
     )
@@ -210,66 +223,192 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
 
             when DateTimePicker__YDF.Matrices.days
 
-              table.DateTimePicker--YDF-DayMatrixActions
-                thead
-                  tr
-                    th(colspan="2") Month
-                    th(colspan="2") Selection Panels
-                tbody
-                  tr
-                    td
-                      +Button--YDF({
-                        geometricVariation: Button__YDF.GeometricVariations.small
-                      })(
-                        data-button-previous_month
-                      )
-                        +Chevron__Leftward--YDF_Icon.Button--YDF-SVG_Icon
-                        span.Button--YDF-Label Prev.
-                    td
-                      +Button--YDF({
-                        geometricVariation: Button__YDF.GeometricVariations.small
-                      })(
-                        data-button-next_month
-                      )
-                        span.Button--YDF-Label Next
-                        +Chevron__Rightward--YDF_Icon.Button--YDF-SVG_Icon
-                    td: +Button--YDF({ label: "Year", geometricVariation: Button__YDF.GeometricVariations.small })
-                    td: +Button--YDF({ label: "Month", geometricVariation: Button__YDF.GeometricVariations.small })
-              table.DateTimePicker--YDF-DaysActions
+              table.DateTimePicker--YDF-Dialog-TopActionBar-TwoPairsButtonsTable&attributes({
+                [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.daysActions.DATA_ATTRIBUTE_KEY]: ""
+              })
 
                 thead: tr
-                  th(colspan="2")= DateTimePicker__YDF.localization.dialog.topActionBar.labels.month
-                  th(colspan="2")= DateTimePicker__YDF.localization.dialog.topActionBar.labels.selectingPanels
+
+                  th(colspan="2")&attributes({
+                    [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.daysActions.columnsTitles.closestMonths.DATA_ATTRIBUTE_KEY]: ""
+                  })= DateTimePicker__YDF.localization.dialog.topActionBar.dateSelectingMode.labels.month
+
+                  th(colspan="2")&attributes({
+                    [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.daysActions.columnsTitles.selectingPanels.DATA_ATTRIBUTE_KEY]: ""
+                  })= DateTimePicker__YDF.localization.dialog.topActionBar.dateSelectingMode.labels.selectingPanels
 
                 tbody: tr
 
+                  td
+                    +Button--YDF({
+                      geometricVariation: Button__YDF.GeometricVariations.small
+                    })&attributes({
+                      [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.daysActions.buttons.switchingToPreviousMonth.DATA_ATTRIBUTE_KEY]: ""
+                    })
+                      +Chevron__Leftward--YDF_Icon.Button--YDF-SVG_Icon
+                      span.Button--YDF-Label= DateTimePicker__YDF.localization.dialog.topActionBar.dateSelectingMode.buttons.switchingToPreviousMonth.label
 
-              //-
-                +Button--YDF({ label: "Prev. Month", geometricVariation: Button__YDF.GeometricVariations.small })
-                +Button--YDF({ label: "Next Month", geometricVariation: Button__YDF.GeometricVariations.small })
-                +Button--YDF({ label: "Set Month", geometricVariation: Button__YDF.GeometricVariations.small })
-                +Button--YDF({ label: "Set Year", geometricVariation: Button__YDF.GeometricVariations.small })
+                  td
+                    +Button--YDF({
+                      geometricVariation: Button__YDF.GeometricVariations.small
+                    })&attributes({
+                      [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.daysActions.buttons.switchingToNextMonth.DATA_ATTRIBUTE_KEY]: ""
+                    })
+                      span.Button--YDF-Label= DateTimePicker__YDF.localization.dialog.topActionBar.dateSelectingMode.buttons.switchingToNextMonth.label
+                      +Chevron__Rightward--YDF_Icon.Button--YDF-SVG_Icon
+
+                  td
+                    +Button--YDF({
+                      label: DateTimePicker__YDF.localization.dialog.topActionBar.dateSelectingMode.buttons.switchingToMonthSelectingPanel.label,
+                      geometricVariation: Button__YDF.GeometricVariations.small
+                    })&attributes({
+                      [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.reusableButtons.switchingToMonthSelectingPanel.DATA_ATTRIBUTE_KEY]: ""
+                    })
+
+                  td
+                    +Button--YDF({
+                      label: DateTimePicker__YDF.localization.dialog.topActionBar.dateSelectingMode.buttons.switchingToYearSelectingPanel.label,
+                      geometricVariation: Button__YDF.GeometricVariations.small
+                    })&attributes({
+                      [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.reusableButtons.switchingToYearSelectingPanel.DATA_ATTRIBUTE_KEY]: ""
+                    })
 
             when DateTimePicker__YDF.Matrices.months
 
-              +Button--YDF({ label: "Prev. Year", geometricVariation: Button__YDF.GeometricVariations.small })
-              +Button--YDF({ label: "Next Year", geometricVariation: Button__YDF.GeometricVariations.small })
-              +Button--YDF({ label: "Set Year", geometricVariation: Button__YDF.GeometricVariations.small })
+              table.DateTimePicker--YDF-Dialog-TopActionBar-TwoPairsButtonsTable&attributes({
+                [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.monthsActions.DATA_ATTRIBUTE_KEY]: ""
+              })
+
+                thead: tr
+
+                  th(colspan="2")&attributes({
+                    [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.monthsActions.columnsTitles.closestYears.DATA_ATTRIBUTE_KEY]: ""
+                  })= DateTimePicker__YDF.localization.dialog.topActionBar.monthSelectingMode.labels.year
+
+                  th(colspan="2")&attributes({
+                    [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.monthsActions.columnsTitles.selectingPanels.DATA_ATTRIBUTE_KEY]: ""
+                  })= DateTimePicker__YDF.localization.dialog.topActionBar.monthSelectingMode.labels.selectingPanels
+
+                tbody: tr
+
+                  td
+                    +Button--YDF({
+                      geometricVariation: Button__YDF.GeometricVariations.small
+                    })&attributes({
+                      [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.monthsActions.buttons.switchingToPreviousYear.DATA_ATTRIBUTE_KEY]: ""
+                    })
+                      +Chevron__Leftward--YDF_Icon.Button--YDF-SVG_Icon
+                      span.Button--YDF-Label= DateTimePicker__YDF.localization.dialog.topActionBar.monthSelectingMode.buttons.switchingToPreviousYear.label
+
+                  td
+                    +Button--YDF({
+                      geometricVariation: Button__YDF.GeometricVariations.small
+                    })&attributes({
+                      [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.monthsActions.buttons.switchingToNextYear.DATA_ATTRIBUTE_KEY]: ""
+                    })
+                      span.Button--YDF-Label= DateTimePicker__YDF.localization.dialog.topActionBar.monthSelectingMode.buttons.switchingToNextYear.label
+                      +Chevron__Rightward--YDF_Icon.Button--YDF-SVG_Icon
+
+                  td
+                    +Button--YDF({
+                      label: DateTimePicker__YDF.localization.dialog.topActionBar.monthSelectingMode.buttons.switchingToYearSelectingPanel.label,
+                      geometricVariation: Button__YDF.GeometricVariations.small
+                    })&attributes({
+                      [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.reusableButtons.switchingToYearSelectingPanel.DATA_ATTRIBUTE_KEY]: ""
+                    })
+
+                  td
+                    +Button--YDF({
+                      label: DateTimePicker__YDF.localization.dialog.topActionBar.monthSelectingMode.buttons.switchingToDateSelectingPanel.label,
+                      geometricVariation: Button__YDF.GeometricVariations.small
+                    })&attributes({
+                      [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.reusableButtons.switchingToDateSelectingPanel.DATA_ATTRIBUTE_KEY]: ""
+                    })
 
             when DateTimePicker__YDF.Matrices.years
 
-              +Button--YDF({ label: "Prev. 25 Years", geometricVariation: Button__YDF.GeometricVariations.small })
-              +Button--YDF({ label: "Next 25 Years", geometricVariation: Button__YDF.GeometricVariations.small })
-              +Button--YDF({ label: "Set Month", geometricVariation: Button__YDF.GeometricVariations.small })
+              table.DateTimePicker--YDF-Dialog-TopActionBar-TwoPairsButtonsTable&attributes({
+                [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.yearsActions.DATA_ATTRIBUTE_KEY]: ""
+              })
 
+                thead: tr
 
-        .DateTimePicker--YDF-ContextGuidance
+                  th(colspan="2")&attributes({
+                    [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.yearsActions.columnsTitles.adjacentYearsSets.DATA_ATTRIBUTE_KEY]: ""
+                  })= DateTimePicker__YDF.localization.dialog.topActionBar.yearSelectingMode.labels.adjacentYearsSets
 
-          case activeMatrix
+                  th(colspan="2")&attributes({
+                    [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.yearsActions.columnsTitles.selectingPanels.DATA_ATTRIBUTE_KEY]: ""
+                  })= DateTimePicker__YDF.localization.dialog.topActionBar.yearSelectingMode.labels.selectingPanels
 
-            when DateTimePicker__YDF.Matrices.days
+                tbody: tr
 
-              | Please select the day
+                  td
+                    +Button--YDF({
+                      geometricVariation: Button__YDF.GeometricVariations.small
+                    })&attributes({
+                      [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.yearsActions.buttons.switchingToPreviousYearsSet.DATA_ATTRIBUTE_KEY]: ""
+                    })
+                      +Chevron__Leftward--YDF_Icon.Button--YDF-SVG_Icon
+                      span.Button--YDF-Label= DateTimePicker__YDF.localization.dialog.topActionBar.yearSelectingMode.buttons.switchingToPreviousYearsSet.label
+
+                  td
+                    +Button--YDF({
+                      geometricVariation: Button__YDF.GeometricVariations.small
+                    })&attributes({
+                      [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.yearsActions.buttons.switchingToNextYearsSet.DATA_ATTRIBUTE_KEY]: ""
+                    })
+                      span.Button--YDF-Label= DateTimePicker__YDF.localization.dialog.topActionBar.yearSelectingMode.buttons.switchingToNextYearsSet.label
+                      +Chevron__Rightward--YDF_Icon.Button--YDF-SVG_Icon
+
+                  td
+                    +Button--YDF({
+                      label: DateTimePicker__YDF.localization.dialog.topActionBar.yearSelectingMode.buttons.switchingToMonthSelectingPanel.label,
+                      geometricVariation: Button__YDF.GeometricVariations.small
+                    })&attributes({
+                      [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.reusableButtons.switchingToMonthSelectingPanel.DATA_ATTRIBUTE_KEY]: ""
+                    })
+
+                  td
+                    +Button--YDF({
+                      label: DateTimePicker__YDF.localization.dialog.topActionBar.yearSelectingMode.buttons.switchingToDateSelectingPanel.label,
+                      geometricVariation: Button__YDF.GeometricVariations.small
+                    })&attributes({
+                      [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.reusableButtons.switchingToDateSelectingPanel.DATA_ATTRIBUTE_KEY]: ""
+                    })
+        .DateTimePicker--YDF-Dialog-Header
+
+          p.DateTimePicker--YDF-Dialog-Header-CurrentScopeLabel&attributes({
+            [DateTimePicker__YDF.DOM_AccessResources.dialog.header.currentScopeLabel.DATA_ATTRIBUTE_KEY]: ""
+          })
+
+            case activeMatrix
+
+              when DateTimePicker__YDF.Matrices.days
+
+                | JAN
+
+              when DateTimePicker__YDF.Matrices.months
+
+                | 2025
+
+          p.DateTimePicker--YDF-Dialog-Header-Guidance&attributes({
+            [DateTimePicker__YDF.DOM_AccessResources.dialog.header.guidance.DATA_ATTRIBUTE_KEY]: ""
+          })
+
+            case activeMatrix
+
+              when DateTimePicker__YDF.Matrices.days
+
+                | Please select the day
+
+              when DateTimePicker__YDF.Matrices.months
+
+                | Please select the month
+
+              when DateTimePicker__YDF.Matrices.years
+
+                | Please select the year
 
 
         case activeMatrix
@@ -298,10 +437,10 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
                   tr
                     each dayData in weekData
 
-                      td: button.DateTimePicker--YDF-SelectDayButton(
+                      td: button.DateTimePicker--YDF-DaySelectingButton(
                         type="button"
                         disabled= dayNumberInMonth === disabledButtonNumber
-                        class= dayNumberInMonth === selectedButtonNumber && "DateTimePicker-SelectDayButton__Selected"
+                        class= dayNumberInMonth === selectedButtonNumber && "DateTimePicker-DaySelectingButton__Selected"
                       )= dayData.dayOfMonth
 
           when DateTimePicker__YDF.Matrices.months
@@ -334,10 +473,10 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
               tbody
                 each emptyArrayElement, index in new Array(6)
                   tr
-                    td: button.DateTimePicker--YDF-SelectHourButton(type="button")= index
-                    td: button.DateTimePicker--YDF-SelectHourButton(type="button")= index + 6
-                    td: button.DateTimePicker--YDF-SelectHourButton(type="button")= index
-                    td: button.DateTimePicker--YDF-SelectHourButton(type="button")= index + 6
+                    td: button.DateTimePicker--YDF-HourSelectingButton(type="button")= index
+                    td: button.DateTimePicker--YDF-HourSelectingButton(type="button")= index + 6
+                    td: button.DateTimePicker--YDF-HourSelectingButton(type="button")= index
+                    td: button.DateTimePicker--YDF-HourSelectingButton(type="button")= index + 6
 
           when DateTimePicker__YDF.Matrices.minutes
 
@@ -346,5 +485,10 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
                 button.DateTimePicker--YDF-SelectYearButton(
                   type="button"
                 )= index
+
+
+        .DateTimePicker--YDF-Dialog-BottomActionBar
+
+
 
     template.DateTimePicker--YDF-DialogMountingPoint

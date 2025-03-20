@@ -1,0 +1,21 @@
+@require "../../../../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+@require "../../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
+
+
+NumberBoxDefaultPropertiesOverriding = {};
+
+// <==  [ Testing ] Comment out if need to display standard themes only
+//NumberBoxDefaultPropertiesOverriding = {
+//
+//}
+// ==> =================================================================================================================
+
+provideNumberBoxYDF_Component(
+  overridings: NumberBoxDemoDefaultPropertiesOverriding
+)
+
+provideCompoundControlShellYDF_Component()
+provideButtonYDF_Component()
+
+
+@require "../../../../Galleries/GUI_Components/Controls/NumberBox/NumberBoxGallery.styl"

@@ -26,8 +26,41 @@
       geometricVariation: {
         ...Button__YDF.propertiesSpecification.geometricVariation,
         defaultValue: "Button__YDF.GeometricVariations.regular"
+      },
+
+      geometricModifiers: {
+        ...Button__YDF.propertiesSpecification.geometricModifiers,
+        type: "Array<Button__YDF.GeometricModifiers>",
+        element: {
+          allowedAlternatives: Object.keys(Button__YDF.GeometricModifiers).
+              map(key => `Button__YDF.GeometricModifiers.${ key }`)
+        }
+
+      },
+
+      decorativeVariation: {
+        ...Button__YDF.propertiesSpecification.decorativeVariation,
+        defaultValue: "Button__YDF.DecorativeVariations.regular"
+      },
+
+      decorativeModifiers: {
+        ...Button__YDF.propertiesSpecification.decorativeModifiers,
+        type: "Array<Button__YDF.DecorativeModifiers>",
+        element: {
+          ...Button__YDF.propertiesSpecification.decorativeModifiers.element,
+          allowedAlternatives: Object.keys(Button__YDF.DecorativeModifiers).
+              map(key => `Button__YDF.DecorativeModifiers.${ key }`)
+        }
+
       }
 
+    },
+
+    /** @param { Object<string, string> } localizedInterpretations */
+    setPropertiesLocalizedInterpretations(localizedInterpretations) {
+      for (const [propertyName, localizedInterpretation] of Object.entries(localizedInterpretations)) {
+        this.propertiesSpecification[propertyName].localizedInterpretation = localizedInterpretation;
+      }
     }
 
   };

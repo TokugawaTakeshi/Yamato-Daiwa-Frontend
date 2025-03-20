@@ -6,6 +6,7 @@ import {
   Logger,
   InvalidParameterValueError,
   isString,
+  isNonEmptyString,
   isNull,
   isNotNull
 } from "@yamato-daiwa/es-extensions";
@@ -20,12 +21,12 @@ class Button {
 
   /* ━━━ Instance Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ─── Accessing to DOM ─────────────────────────────────────────────────────────────────────────────────────────── */
-  protected readonly rootElement: HTMLButtonElement | HTMLInputElement | HTMLAnchorElement;
+  public readonly rootElement: HTMLButtonElement | HTMLInputElement | HTMLAnchorElement;
   protected readonly labelElement: Element | null;
 
 
   /* ─── Event Handling ───────────────────────────────────────────────────────────────────────────────────────────── */
-  protected readonly leftClickEventListener: LeftClickEventListener;
+  protected readonly leftClickEventListener?: LeftClickEventListener;
   protected leftClickEventExternalHandler: Button.LeftClickHandler | null = null;
 
 
@@ -72,22 +73,41 @@ class Button {
 
 
   /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static pickOneBySelector(properties: Button.InitializationProperties): Button {
+  public static initializeOne(properties: Button.InitializationProperties): Button {
     return new Button(properties);
   }
 
 
   /* ─── Avoiding of Instantiation ────────────────────────────────────────────────────────────────────────────────── */
-  public static setLabel(targetButton: Element, label: string): void {
+  public static setTextings(
+    targetButtonDefinition: Button.RootElementDefinition,
+    {
+      label,
+      accessibilityGuidance
+    }: Readonly<{
+      label?: string;
+      accessibilityGuidance?: string;
+    }>
+  ): void {
+
+
+    const targetButton: HTMLButtonElement | HTMLAnchorElement | HTMLInputElement =
+        Button.resolveAndValidateRootElement(targetButtonDefinition);
 
     if (targetButton instanceof HTMLButtonElement || targetButton instanceof HTMLAnchorElement) {
 
       const labelElement: Element | null = targetButton.querySelector(Button.LABEL_ELEMENT_SELECTOR);
 
-      if (isNull(labelElement)) {
-        targetButton.textContent = label;
-      } else {
-        labelElement.textContent = label;
+      if (isNonEmptyString(label)) {
+        if (isNull(labelElement)) {
+          targetButton.textContent = label;
+        } else {
+          labelElement.textContent = label;
+        }
+      }
+
+      if (isNonEmptyString(accessibilityGuidance)) {
+        targetButton.ariaLabel = accessibilityGuidance;
       }
 
       return;
@@ -95,23 +115,13 @@ class Button {
     }
 
 
-    if (targetButton instanceof HTMLInputElement) {
+    if (isNonEmptyString(label)) {
       targetButton.value = label;
     }
 
-
-    Logger.throwErrorAndLog({
-
-      errorInstance: new InvalidParameterValueError({
-        parameterNumber: 1,
-        parameterName: "targetButton",
-        messageSpecificPart:
-            "The first parameter must be instance of either `HTMLButtonElement`, `HTMLAnchorElement` or " +
-              "HTMLInputElement while actually neither of."
-      }),
-      title: InvalidParameterValueError.localization.defaultTitle,
-      occurrenceLocation: "Button.setLabel(compoundParameter)"
-    });
+    if (isNonEmptyString(accessibilityGuidance)) {
+      targetButton.ariaLabel = accessibilityGuidance;
+    }
 
   }
 
@@ -119,44 +129,8 @@ class Button {
   /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected constructor(properties: Button.InitializationProperties) {
 
-    let rootElement: HTMLButtonElement | HTMLInputElement | HTMLAnchorElement;
-
-    if (
-      properties.targetElement instanceof HTMLButtonElement ||
-      properties.targetElement instanceof HTMLInputElement ||
-      properties.targetElement instanceof HTMLAnchorElement
-    ) {
-
-      rootElement = properties.targetElement;
-
-    } else if ("selector" in properties.targetElement) {
-
-      /* Waiting for the modification of `getExpectedToBeSingleDOM_Element` method */
-      rootElement = getExpectedToBeSingleDOM_Element({
-        selector: properties.targetElement.selector,
-        contextElement: properties.contextElement
-      }) as HTMLButtonElement | HTMLInputElement | HTMLAnchorElement;
-
-    } else {
-
-      Logger.throwErrorAndLog({
-        errorInstance: new InvalidParameterValueError({
-          parameterNumber: 1,
-          parameterName: "properties",
-          messageSpecificPart: [
-            "Invalid value of `targetElement` property. The valid alternatives are:",
-            "● Instance of `HTMLButtonElement`",
-            "● Instance of `HTMLInputElement`",
-            "● Instance of `HTMLAnchorElement`",
-            "● Object with `selector` property referring to singe element. The element is not single on the page " +
-                "but single inside specific container, specify `contextElement` property additionally."
-          ].join("\n")
-        }),
-        title: InvalidParameterValueError.localization.defaultTitle,
-        occurrenceLocation: "Button.pickOneBySelector -> button.constructor(properties)"
-      });
-
-    }
+    const rootElement: HTMLButtonElement | HTMLInputElement | HTMLAnchorElement =
+        Button.resolveAndValidateRootElement(properties);
 
     this.labelElement = rootElement.querySelector(Button.LABEL_ELEMENT_SELECTOR);
 
@@ -216,6 +190,10 @@ namespace Button {
     ) &
     { onClickEventHandler?: LeftClickHandler; }
   >;
+
+  export type InitializationProperties =
+    RootElementDefinition &
+    Readonly<{ onClickEventHandler?: LeftClickHandler; }>;
 
   export type LeftClickHandler = (event: MouseEvent, selfInstance: Button) => unknown;
 

@@ -3,7 +3,7 @@ button.Button--YDF(
   :type="typeAttributeValueOfButtonOrInputElement"
   :disabled="disabled"
   :aria-label="accessibilityGuidance"
-  :aria-pressed="toggled ? 'true' : undefined"
+  :aria-pressed="toggled"
   :class="rootElementModifierCSS_Classes"
   @click.prevent="() => {}"
 )
@@ -25,7 +25,6 @@ component.Button--YDF(
   :tabindex="disabled && -1"
   :aria-label="accessibilityGuidance"
   :aria-disabled="disabled"
-  :aria-pressed="toggled ? 'true' : undefined"
   :class="rootElementModifierCSS_Classes"
 )
 
@@ -41,13 +40,12 @@ component.Button--YDF(
 
 a.Button--YDF(
   v-else-if="isAnchorTheTagNameOfRootElement"
-  :href="disabled ? undefined : externalURI"
-  :target="mustOpenExternalLinkInCurrentTab ? '_self' : '_blank'"
-  rel="noopener noreferrer"
+  :href="disabled ? null : externalURI"
+  :target="mustOpenLinkInNewTab ? '_self' : '_blank'"
+  :rel="relAttributeValueOfAnchorElement"
   :tabindex="disabled && -1"
   :aria-label="accessibilityGuidance"
   :aria-disabled="disabled"
-  :aria-pressed="toggled ? 'true' : undefined"
   :class="rootElementModifierCSS_Classes"
 )
 
@@ -66,7 +64,7 @@ input.Button--YDF(
   :type="typeAttributeValueOfButtonOrInputElement"
   :value="label"
   :disabled="disabled"
-  :aria-pressed="toggled ? 'true' : undefined"
+  :aria-pressed="toggled"
   :class="rootElementModifierCSS_Classes"
   @click.prevent="() => {}"
 )

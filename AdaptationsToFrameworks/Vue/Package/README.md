@@ -26,3 +26,9 @@ npm i @yamato-daiwa/frontend-vue @yamato-daiwa/frontend@2.0.0-beta.6
 
 + [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-Vue.english.html)
 + [Badge](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/Badge/Badge-Vue.english.html)
+
+
+#### Controls
+
++ Buttons
+  + [Plain (Button)](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Buttons/Plain/Button-Vue.english.html) 

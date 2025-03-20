@@ -1,4 +1,4 @@
-examples:
+synopsis:
 
-  $heading: `examples.$heading`
-  $anchor: EXAMPLES--SECTION
+  $heading: `synopsis.$heading`
+  $anchor: SYNOPSIS--SECTION

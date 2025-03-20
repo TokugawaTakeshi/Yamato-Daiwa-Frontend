@@ -81,7 +81,7 @@ provideBadgeYDF_Component(
 
                 size: 1em, // [ Non nullable ! ]
 
-                // [ Conditional requirement ] Either `lineSpacing` or `lineHeight` must non-null but not both
+                // [ Conditional requirement ] Either `lineSpacing` or `lineHeight` must bu non-null but not both
                 lineSpacing: 0.2em,
                 lineHeight: null
 
@@ -169,7 +169,7 @@ provideBadgeYDF_Component(
 
                 size: 0.6em, // [ Non nullable ! ]
 
-                // [ Conditional requirement ] Either `lineSpacing` or `lineHeight` must non-null but not both
+                // [ Conditional requirement ] Either `lineSpacing` or `lineHeight` must bu non-null but not both
                 lineSpacing: 0.1em, // [ Non nullable ! ]
                 lineHeight: null // [ Non nullable ! ]
 
@@ -324,24 +324,24 @@ provideBadgeYDF_Component(
 // ━━━ Scenario 3: Define Own Preset ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // TODO Define the geometric variations (like `Badge-RegularTheme-RegularGeometry`) and the decorative
 //  variations (like `Badge-RegularTheme-VeryCatchyBrightDecoration`) in the separate files then include them here.
-@require "Themes/Regular/GeometricVariations/Badge-RegularTheme-RegularGeometry.styl"
-@require "Themes/Regular/GeometricVariations/Badge-RegularTheme-SmallGeometry.styl"
+@require "Themes/Regular/GeometricVariations/Badge-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/Badge-RegularTheme-SmallGeometricVariation.styl"
 
-@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-VeryCatchyBrightDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-CatchyBrightDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-ModestlyCatchyBrightDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-NeutralBrightDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-CalmingBrightDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-ModestlyCalmingBrightDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-AchromaticBrightDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-VeryCatchyBrightDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-CatchyBrightDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-ModestlyCatchyBrightDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-NeutralBrightDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-CalmingBrightDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-ModestlyCalmingBrightDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-AchromaticBrightDecorativeVariation.styl"
 
-@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-VeryCatchyPastelDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-CatchyPastelDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-ModestlyCatchyPastelDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-NeutralPastelDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-CalmingPastelDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-ModestlyCalmingPastelDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-AchromaticPastelDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-VeryCatchyPastelDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-CatchyPastelDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-ModestlyCatchyPastelDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-NeutralPastelDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-CalmingPastelDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-ModestlyCalmingPastelDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-AchromaticPastelDecorativeVariation.styl"
 
 provideBadgeYDF_Component(
 
@@ -353,27 +353,27 @@ provideBadgeYDF_Component(
         componentIndependentCSS_Class: "RegularTheme--YDF"
 
         geometricVariations: {
-          regular: Badge-RegularTheme-RegularGeometry
-          small: Badge-RegularTheme-SmallGeometry
+          regular: Badge-RegularTheme-RegularGeometricVariation--YDF,
+          small: Badge-RegularTheme-SmallGeometricVariation--YDF
         },
 
         decorativeVariations: {
 
-          veryCatchyBright: Badge-RegularTheme-VeryCatchyBrightDecoration,
-          catchyBright: Badge-RegularTheme-CatchyBrightDecoration,
-          modestlyCatchyBright: Badge-RegularTheme-ModestlyCatchyBrightDecoration,
-          neutralBright: Badge-RegularTheme-NeutralBrightDecoration,
-          modestlyCalmingBright: Badge-RegularTheme-ModestlyCalmingBrightDecoration,
-          calmingBright: Badge-RegularTheme-CalmingBrightDecoration,
-          achromaticBright: Badge-RegularTheme-AchromaticBrightDecoration,
+          veryCatchyBright: Badge-RegularTheme-VeryCatchyBrightDecoration--YDF,
+          catchyBright: Badge-RegularTheme-CatchyBrightDecoration--YDF,
+          modestlyCatchyBright: Badge-RegularTheme-ModestlyCatchyBrightDecoration--YDF,
+          neutralBright: Badge-RegularTheme-NeutralBrightDecoration--YDF,
+          modestlyCalmingBright: Badge-RegularTheme-ModestlyCalmingBrightDecoration--YDF,
+          calmingBright: Badge-RegularTheme-CalmingBrightDecoration--YDF,
+          achromaticBright: Badge-RegularTheme-AchromaticBrightDecoration--YDF,
 
-          veryCatchyPastel: Badge-RegularTheme-VeryCatchyPastelDecoration,
-          catchyPastel: Badge-RegularTheme-CatchyPastelDecoration,
-          modestlyCatchyPastel: Badge-RegularTheme-ModestlyCatchyPastelDecoration,
-          neutralPastel: Badge-RegularTheme-NeutralPastelDecoration,
-          modestlyCalmingPastel: Badge-RegularTheme-ModestlyCalmingPastelDecoration,
-          calmingPastel: Badge-RegularTheme-CalmingPastelDecoration,
-          achromaticPastel: Badge-RegularTheme-AchromaticPastelDecoration
+          veryCatchyPastel: Badge-RegularTheme-VeryCatchyPastelDecoration--YDF,
+          catchyPastel: Badge-RegularTheme-CatchyPastelDecoration--YDF,
+          modestlyCatchyPastel: Badge-RegularTheme-ModestlyCatchyPastelDecoration--YDF,
+          neutralPastel: Badge-RegularTheme-NeutralPastelDecoration--YDF,
+          modestlyCalmingPastel: Badge-RegularTheme-ModestlyCalmingPastelDecoration--YDF,
+          calmingPastel: Badge-RegularTheme-CalmingPastelDecoration--YDF,
+          achromaticPastel: Badge-RegularTheme-AchromaticPastelDecoration--YDF
 
         }
 

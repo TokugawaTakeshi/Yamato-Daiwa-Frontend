@@ -12,9 +12,14 @@ block append Metadata
 
   -
 
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.coreLibrary.$children.GUI_Components.$children.controls.$children.buttons.$children.plain;
+
     RegularWebPageTemplate__YDF.configure({
       metadata: {
-        title: buildHTML_PageTitle("Button"),
+        title: buildHTML_PageTitle(topHeading),
         description: MetaDescriptionTemplates.GUI_Components.buttons.plain
       },
       stylesSheetsURIs: [
@@ -32,11 +37,6 @@ block append Metadata
       russian: routing.russian.coreLibrary.$children.GUI_Components.$children.controls.$children.buttons.$children.plain.$URI
     });
 
-    const {
-      $sectioning: localizedSectioning,
-      $heading: topHeading
-    } = localizedRouting.coreLibrary.$children.GUI_Components.$children.controls.$children.buttons.$children.plain;
-
 
 block append HeadScripts
 
@@ -53,3 +53,82 @@ block append SpecificContent
     h1.Article-Heading1!= topHeading
 
     +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
+
+    +WebPageViewer--YDF({
+      URI: "$Demos:CorePackage/GUI_Components/Controls/Buttons/Plain/ButtonGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "Button" })
+    })
+
+    +ButtonComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ━━━ Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.synopsis.$heading,
+      HTML_ID: localizedSectioning.synopsis.$anchor
+    }).Article-Heading2
+
+    +GUI_ComponentSummaryViewer({
+      metadataClass: Button__YDF,
+      intelliJ_IDEA_FamilyIDEsLiveTemplateAbbreviation: "btn-ydf",
+      stylusMixinName: "provideButtonYDF_Component",
+      themesNamesTranslations: {
+        [Button__YDF.Themes.regular]: "Regular (Default)",
+      },
+      geometricVariationsTranslations: {
+        [Button__YDF.GeometricVariations.regular]: "Regular (Default)",
+        [Button__YDF.GeometricVariations.small]: "Small",
+        [Button__YDF.GeometricVariations.linkLike]: "Link Like"
+      },
+      geometricModifiersNamesTranslations: {
+        [Button__YDF.GeometricModifiers.pillShape]: "Maximal Roundings of the Corners",
+        [Button__YDF.GeometricModifiers.squareShape]: "Square Shape",
+        [Button__YDF.GeometricModifiers.squareShapeUnlessOverflowed]: "Square Shape Unless Overflowed",
+        [Button__YDF.GeometricModifiers.singleLine]: "Always Single Line with Text Truncating on Overflow",
+        [Button__YDF.GeometricModifiers.noLeftBorderAndRoundings]: "No Left Border and Roundings",
+        [Button__YDF.GeometricModifiers.noRightBorderAndRoundings]: "No Right Border and Roundings",
+        [Button__YDF.GeometricModifiers.noTopBorderAndRoundings]: "No Top Border and Roundings",
+        [Button__YDF.GeometricModifiers.noBottomBorderAndRoundings]: "No Bottom Border and Roundings",
+        [Button__YDF.GeometricModifiers.noRoundings]: "No Roundings",
+        [Button__YDF.GeometricModifiers.horizontallyShrinkable]: "Horizontally Shrinkable"
+      },
+      decorativeVariationsTranslations: {
+        [Button__YDF.DecorativeVariations.regular]: "Regular (Default)",
+        [Button__YDF.DecorativeVariations.accented]: "Accessed",
+        [Button__YDF.DecorativeVariations.danger]: "Danger Action",
+        [Button__YDF.DecorativeVariations.linkLike]: "Link Like"
+      },
+      decorativeModifiersNamesTranslations: {
+        [Button__YDF.DecorativeModifiers.bordersDisguising]: "No Borders Effect without Changing of Dimensions",
+        [Button__YDF.DecorativeModifiers.noBackground]: "No Background",
+        [Button__YDF.DecorativeModifiers.noBackgroundInDefaultState]: "No Background in Default State"
+      },
+      loadingPlaceholderPugMixinName: "Button--YDF__LoadingPlaceholder"
+    })
+
+
+    //- ━━━ Usage ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.usage.$heading,
+      HTML_ID: localizedSectioning.usage.$anchor
+    }).Article-Heading2
+
+    //- ─── Markup ─────────────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.usage.$children.markup.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$anchor
+    }).Article-Heading3
+
+    //- ─── Including to Project ───────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.usage.$children.markup.$children.includingToProject.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.includingToProject.$anchor
+    }).Article-Heading4
+
+    +ComponentMarkupProvidingGuidanceFragment({ componentName: "Button" })

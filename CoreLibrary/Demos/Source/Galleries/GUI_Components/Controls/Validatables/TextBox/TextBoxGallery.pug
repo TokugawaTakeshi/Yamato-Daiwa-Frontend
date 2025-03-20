@@ -1,0 +1,37 @@
+mixin TextBoxGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("TextBoxGallery__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("TextBoxGallery__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("TextBoxGallery__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) TextBox Component Demos
+
+
+  //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Minimal
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+
+      +TextBox--YDF({
+        label: "Sample",
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometry: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decoration: themeShowcaseCurrentIterationData.decorativeVariation.value
+      })

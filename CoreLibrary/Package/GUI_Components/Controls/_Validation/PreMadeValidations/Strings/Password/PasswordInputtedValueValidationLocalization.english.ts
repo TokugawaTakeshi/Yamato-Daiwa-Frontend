@@ -16,7 +16,7 @@ const passwordInputtedValueValidationLocalization__english: PasswordInputtedValu
   disallowedCharactersFoundValidationErrorMessageBuilder: (
     { inputtedDisallowedCharacters }: AllowedCharactersInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
-      `The password is including the following disallowed characters: ${ inputtedDisallowedCharacters.join(",") }. ` +
+      `The password is including the following disallowed characters: ${ inputtedDisallowedCharacters.join(", ") }. ` +
       "Please replace or remove these characters.",
 
   minimalCharactersCountValidationErrorMessageBuilder: (

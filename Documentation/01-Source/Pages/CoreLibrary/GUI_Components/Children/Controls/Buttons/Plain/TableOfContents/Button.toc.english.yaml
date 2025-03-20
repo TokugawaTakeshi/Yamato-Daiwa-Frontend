@@ -20,7 +20,19 @@ usage:
 
       minimalExample:
 
-        $heading: "Minimal Example (Required Properties Only)"
+        $heading: "Minimal Example"
+
+      overflowControl:
+
+        $heading: "Overflow Control"
+
+      SVG_Icons:
+
+        $heading: "SVG Icons"
+
+        customIcons:
+
+          $heading: "Custom Icons"
 
   logic:
 

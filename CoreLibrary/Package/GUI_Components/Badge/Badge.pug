@@ -7,31 +7,49 @@ mixin Badge--YDF(properties)
 
     const {
 
-      /** @var { string | undefined } */
+      /** @type { string | undefined } */
       keyLabel,
 
-      /** @var { string } */
+      /** @type { string } */
       valueLabel,
 
-      /** @var { string } [ theme = Badge__YDF.Themes.regular ] */
+      /**
+       * @type { string }
+       * @default Badge__YDF.Themes.regular
+       */
       theme,
 
-      /** @var { boolean } [ areThemesCSS_ClassesCommon = Badge__YDF.areThemesCSS_ClassesCommon ] */
+      /**
+       * @type { boolean }
+       * @default Badge__YDF.areThemesCSS_ClassesCommon
+       */
       areThemesCSS_ClassesCommon,
 
-      /** @var { string } [ geometricVariation = Badge__YDF.GeometricVariations.regular ] */
+      /**
+       * @type { string }
+       * @default Badge__YDF.GeometricVariations.regular
+       */
       geometricVariation,
 
-      /** @var { Array<Badge__YDF.GeometricModifiers> } [ geometricModifiers = [] ] */
+      /**
+       * @type { Array<Badge__YDF.GeometricModifiers> }
+       * @default []
+       */
       geometricModifiers,
 
-      /** @var { string } */
+      /** @type { string } */
       decorativeVariation,
 
-      /** @var { Array<Badge__YDF.DecorativeModifiers> } [ decorativeModifiers = [] ] */
+      /**
+       * @type { Array<Badge__YDF.DecorativeModifiers> }
+       * @default []
+       */
       decorativeModifiers,
 
-      /** @var { string } [ rootElementTag = "span" ] */
+      /**
+       * @type { string }
+       * @default "span"
+       */
       rootElementTag
 
     } = processObjectTypeParameterOfPugMixin({
@@ -42,7 +60,7 @@ mixin Badge--YDF(properties)
       mixinName: Badge__YDF.CSS_NAMESPACE
     })
 
-    /** @var { Array<string> } */
+    /** @type { Array<string> } */
     const rootElementModifierCSS_Classes = [
 
       ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({

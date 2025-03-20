@@ -33,12 +33,14 @@ class LinkValidationRule implements InputtedValueValidation.Rule {
         }> = {}
   ) {
 
-    /* [ Regular Expression Fiddle ] https://regex101.com/r/EhHaLL/1 */
+    /* [ Regular Expression Fiddle ] https://regex101.com/r/EhHaLL/1
+    /* [ Theory ] The `g` frag must NOT be used here because once `text` or `exec` will be called the last index will
+     *     change. */
     this.regularExpressions =
         compoundParameter.regularExpressions ??
         [
           ...isNonEmptyString(compoundParameter.mustStartWith) ?
-              [ new RegExp(`^${ compoundParameter.mustStartWith }`, "gu") ] :
+              [ new RegExp(`^${ compoundParameter.mustStartWith }`, "u") ] :
               [ /https?:\/\//u ]
         ];
 

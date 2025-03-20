@@ -2,17 +2,35 @@
 
   class DropDownList__YDF {
 
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
     static CSS_NAMESPACE = "DropDownList--YDF";
 
 
     /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @type { { [themeName: string]: string } }
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
     static Themes = { regular: "REGULAR" };
 
-    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
-    /** @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null } */
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
     static _selfAndChildrenComponentsThemesCorrespondence = null;
 
-    /** @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } } */
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } }
+     * */
     static get selfAndChildrenComponentsThemesCorrespondence() {
       return DropDownList__YDF._selfAndChildrenComponentsThemesCorrespondence ?? (
         DropDownList__YDF._selfAndChildrenComponentsThemesCorrespondence = {
@@ -23,9 +41,14 @@
     }
 
     /**
+     * @public
+     *
      * @param {
      *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
      * } ownAndCorrespondingCompoundControlShellThemesDefinition
+     *
+     * @returns { typeof DropDownList__YDF }
+     *
      * @example
      * DropDownList__YDF.defineThemes({
      *   redmond: {
@@ -44,8 +67,16 @@
       );
     }
 
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
     static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
 
+    /**
+     * @public
+     * @returns { typeof DropDownList__YDF }
+     * */
     static considerThemesAsCommon() {
       DropDownList__YDF.areThemesCSS_ClassesCommon = true;
       return DropDownList__YDF;
@@ -53,16 +84,29 @@
 
 
     /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
     static GeometricVariations = {
       regular: "REGULAR",
       small: "SMALL"
     };
 
-    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
-    /** @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null } */
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
     static _selfAndChildrenComponentsGeometricVariationsCorrespondence = null;
 
-    /** @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } } */
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } }
+     * */
     static get selfAndChildrenComponentsGeometricVariationsCorrespondence() {
       return DropDownList__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence ?? (
         DropDownList__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence = {
@@ -78,6 +122,27 @@
       );
     }
 
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition
+     *
+     * @returns { typeof DropDownList__YDF }
+     *
+     * @example
+     * DropDownList__YDF.defineGeometricVariations({
+     *   large: {
+     *     compoundControlShell: CompoundControlShell__YDF.GeometricVariation.large,
+     *     button: Button__YDF.GeometricVariations.large
+     *   },
+     *   extraLarge: {
+     *     compoundControlShell: CompoundControlShell__YDF.GeometricVariation.extraLarge,
+     *     button: Button__YDF.GeometricVariations.extraLarge
+     *   }
+     * });
+     */
     static defineGeometricVariations(ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition) {
       return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
         ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition, DropDownList__YDF
@@ -86,13 +151,25 @@
 
 
     /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
     static DecorativeVariations = { regular: "REGULAR" };
 
-    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
-    /** @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null } */
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
     static _selfAndChildrenComponentsDecorativeVariationsCorrespondence = null;
 
-    /** @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } } */
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } }
+     * */
     static get selfAndChildrenComponentsDecorativeVariationsCorrespondence() {
       return DropDownList__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
         DropDownList__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
@@ -106,6 +183,27 @@
       );
     }
 
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition
+     *
+     * @returns { typeof DropDownList__YDF }
+     *
+     * @example
+     * DropDownList__YDF.defineDecorativeVariations({
+     *   modest: {
+     *     compoundControlShell: CompoundControlShell__YDF.DecorativeVariation.modest
+     *     button: Button__YDF.GeometricVariations.modest
+     *   },
+     *   catchy: {
+     *     compoundControlShell: CompoundControlShell__YDF.DecorativeVariation.catchy,
+     *     button: Button__YDF.GeometricVariations.catchy
+     *   }
+     * });
+     */
     static defineDecorativeVariations(ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition) {
       return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
         ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition, DropDownList__YDF
@@ -113,7 +211,7 @@
     }
 
 
-    /* ━━━ Properties specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     static propertiesSpecification = {
 
       label: {
@@ -170,8 +268,11 @@
         required: false,
 
         element: {
+
           type: Object,
+
           properties: {
+
             key: {
               type: RawObjectDataProcessor.ValuesTypesIDs.oneOf,
               required: true,
@@ -186,6 +287,7 @@
                 }
               ]
             },
+
             label: {
               type: RawObjectDataProcessor.ValuesTypesIDs.oneOf,
               required: true,
@@ -200,7 +302,9 @@
                 }
               ]
             }
+
           }
+
         }
 
       },
@@ -295,7 +399,7 @@
             map(([ key, value ]) => ({ key: `DropDownList__YDF.GeometricVariations.${ key }`, value }))
       },
 
-      decorativeModifiers: {
+      decorativeVariation: {
         type: String,
         defaultValue: DropDownList__YDF.DecorativeVariations.regular,
         allowedAlternatives: Object.

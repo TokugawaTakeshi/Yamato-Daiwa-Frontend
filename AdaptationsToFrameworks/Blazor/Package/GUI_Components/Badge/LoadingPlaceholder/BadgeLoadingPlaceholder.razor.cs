@@ -13,7 +13,7 @@ public partial class BadgeLoadingPlaceholder :
 {
 
   [Microsoft.AspNetCore.Components.Parameter(CaptureUnmatchedValues = true)]
-  public IDictionary<string, object>? rootElementAttributes { get; set; }
+  public IDictionary<string, object>? rootElementHTML_Attributes { get; set; }
   
   
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

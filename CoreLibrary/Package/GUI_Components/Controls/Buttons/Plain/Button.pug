@@ -7,46 +7,79 @@ mixin Button--YDF(properties)
 
     const {
 
-      /** @var { Array<Button__YDF.HTML_Types> } [ HTML_Type = Button__YDF.HTML_Types.regular ] */
+      /**
+       * @type { Button__YDF.HTML_Types }
+       * @default Button__YDF.HTML_Types.regular
+       */
       HTML_Type,
 
-      /** @var { string | number | undefined } label */
+      /** @type { string | number | undefined } */
       label,
 
-      /** @var { string | undefined } accessibilityGuidance */
+      /** @type { string | undefined } */
       accessibilityGuidance,
 
-      /** @var { string | undefined } URI */
+      /** @type { string | undefined } */
       URI,
 
-      /** @var { boolean } [ mustOpenLinkInNewTab = false ] */
+      /**
+       * @type { boolean }
+       * @default false
+       */
       mustOpenLinkInNewTab,
 
-      /** @var { boolean } [ mustRequestNotFollowLinkForCrawlingToSearchEngine = false ] */
+      /**
+       * @type { boolean }
+       * @default false
+       */
       mustRequestNotFollowLinkForCrawlingToSearchEngine,
 
-      /** @var { boolean } [ disabled = false ] */
+      /**
+       * @type { boolean }
+       * @default false
+       */
       disabled,
 
-      /** @var { boolean } [ toggled = false ] */
+      /**
+       * @type { boolean }
+       * @default false
+       */
       toggled,
 
-      /** @var { string } [ theme = Button__YDF.Themes.regular ] */
+      /**
+       * @type { string }
+       * @default Button__YDF.Themes.regular
+       */
       theme,
 
-      /** @var { boolean } [ areThemesCSS_ClassesCommon = Button__YDF.areThemesCSS_ClassesCommon ] */
+      /**
+       * @type { boolean }
+       * @default Button__YDF.areThemesCSS_ClassesCommon
+       */
       areThemesCSS_ClassesCommon,
 
-      /** @var { string } [ geometricVariation = Button__YDF.GeometricVariations.regular ] */
+      /**
+       * @type { string }
+       * @default Button__YDF.GeometricVariations.regular
+       */
       geometricVariation,
 
-      /** @var { Array<Button__YDF.GeometricModifiers> } [ geometricModifiers = [] ] */
+      /**
+       * @type { Array<Button__YDF.GeometricModifiers> }
+       * @default []
+       */
       geometricModifiers,
 
-      /** @var { string } [ decorativeVariation = Button__YDF.DecorativeVariations.regular ] */
+      /**
+       * @type { string }
+       * @default Button__YDF.DecorativeVariations.regular
+       * */
       decorativeVariation,
 
-      /** @var { Array<Button__YDF.DecorativeModifiers> } [ decorativeModifiers = [] ] */
+      /**
+       * @type { Array<Button__YDF.DecorativeModifiers> }
+       * @default []
+       * */
       decorativeModifiers
 
     } = processObjectTypeParameterOfPugMixin({
@@ -57,16 +90,16 @@ mixin Button--YDF(properties)
       mixinName: Button__YDF.CSS_NAMESPACE
     });
 
-    /** @type boolean */
+    /** @type { boolean } */
     let isButtonTheTagNameOfRootElement = false;
 
-    /** @type boolean */
+    /** @type { boolean } */
     let isInputTheTagNameOfRootElement = false;
 
-    /** @type boolean */
+    /** @type { boolean } */
     let isAnchorTheTagNameOfRootElement = false;
 
-    /** @type string */
+    /** @type { string } */
     let typeAttributeValueOfButtonOrInputElement;
 
 
@@ -158,12 +191,13 @@ mixin Button--YDF(properties)
 
   if isButtonTheTagNameOfRootElement
 
+    //- /** 【 理論 】 No need to pollute the DOM by explicit `aria-pressed="false"`. */
     button&attributes(attributes)(
-      type= typeAttributeValueOfButtonOrInputElement
-      disabled= disabled
-      aria-label= accessibilityGuidance
+      type=typeAttributeValueOfButtonOrInputElement
+      disabled=disabled
+      aria-label=accessibilityGuidance
       aria-pressed=(toggled && "true")
-      class= commonCSS_Classes
+      class=commonCSS_Classes
     )
 
       if block
@@ -178,10 +212,10 @@ mixin Button--YDF(properties)
 
     -
 
-      /** @var { string | undefined } */
+      /** @type { string | undefined } */
       let targetAttributeValue;
 
-      /** @var { string | undefined } */
+      /** @type { string | undefined } */
       let relAttributeValue;
 
       /** @type { Array<string> } */
@@ -204,15 +238,21 @@ mixin Button--YDF(properties)
         relAttributeValue = relationshipsBetweenLinkedResourceAndCurrentDocument.join(" ");
       }
 
+
+    //- /** 【 理論 】 No need to pollute the DOM by explicit `aria-pressed="false"`. */
+    //-
+      /** 【 理論 】
+       * If to set `aria-pressed` even with `false`, the HTML validator will require `role` attribute additionally.
+       *  Because such scenario does not fit to this component concept, the `toggled` is not supported for anchors.
+       */
     a&attributes(attributes)(
       href=(disabled ? null : URI)
       target=targetAttributeValue
       rel=relAttributeValue
-      tabindex = disabled && -1
-      aria-label= accessibilityGuidance
-      aria-disabled= disabled ? "true" : undefined
-      aria-pressed=(toggled && "true")
-      class= [ ...commonCSS_Classes, disabled ? [ `${ Button__YDF.CSS_NAMESPACE }__DisabledState` ] : [] ]
+      tabindex=(disabled && -1)
+      aria-label=accessibilityGuidance
+      aria-disabled=(disabled && "true")
+      class=[ ...commonCSS_Classes, disabled ? [ `${ Button__YDF.CSS_NAMESPACE }__DisabledState` ] : [] ]
     )
 
       if block
@@ -225,12 +265,13 @@ mixin Button--YDF(properties)
 
   else if isInputTheTagNameOfRootElement
 
+    //- /** 【 理論 】 No need to pollute the DOM by explicit `aria-pressed="false"`. */
     input&attributes(attributes)(
-      type= typeAttributeValueOfButtonOrInputElement
-      value= label
-      disabled= disabled
+      type=typeAttributeValueOfButtonOrInputElement
+      value=label
+      disabled=disabled
       aria-pressed=(toggled && "true")
-      class= commonCSS_Classes
+      class=commonCSS_Classes
     )
 
 
@@ -240,16 +281,28 @@ mixin Button--YDF-LoadingPlaceholder(properties)
 
     const {
 
-      /** @var { string } [ theme = Button__YDF.Themes.regular ] */
+      /**
+       * @type { string }
+       * @default Button__YDF.Themes.regular
+       * */
       theme,
 
-      /** @var { boolean } [ areThemesCSS_ClassesCommon = Button__YDF.areThemesCSS_ClassesCommon ] */
+      /**
+       * @type { boolean }
+       * @default Button__YDF.areThemesCSS_ClassesCommon
+       * */
       areThemesCSS_ClassesCommon,
 
-      /** @var { string } [ geometricVariation = Button__YDF.GeometricVariations.regular ] */
+      /**
+       * @type { string }
+       * @default Button__YDF.GeometricVariations.regular
+       * */
       geometricVariation,
 
-      /** @var { Array<Button__YDF.GeometricModifiers> } [ geometricModifiers = [] ] */
+      /**
+       * @type { Array<Button__YDF.GeometricModifiers> }
+       * @default []
+       * */
       geometricModifiers
 
     } = processObjectTypeParameterOfPugMixin({

@@ -5,15 +5,21 @@ block append Requirements
 
   include ../../../../../../SharedAssets/Markup/SharedAssets.english.pug
   include ../../../../../../SharedComponents/SharedComponents.english.pug
+  include Data/AdmonitionBlockComponentPropertiesSpecification__Vue.pug
 
 
 block append Metadata
 
   -
 
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.adaptationsToFrameworks.$children.vue.$children.GUI_Components.$children.AdmonitionBlock;
+
     RegularWebPageTemplate__YDF.configure({
       metadata: {
-        title: buildHTML_PageTitle("AdmonitionBlock (Vue)"),
+        title: buildHTML_PageTitle(topHeading),
         description: MetaDescriptionTemplates.GUI_Components.AdmonitionBlock
       },
       stylesSheetsURIs: [
@@ -27,14 +33,9 @@ block append Metadata
     RoutingEmulator.setCurrentRoute("adaptationsToFrameworks.vue.GUI_Components.AdmonitionBlock");
 
     LanguageDropDownList__YDF_DK.setLinks({
-      japanese: "./AdmonitionBlock-Vue.japanese.html",
-      russian: "./AdmonitionBlock-Vue.russian.html"
+      japanese: routing.japanese.adaptationsToFrameworks.$children.vue.$children.GUI_Components.$children.AdmonitionBlock.$URI,
+      russian: routing.russian.adaptationsToFrameworks.$children.vue.$children.GUI_Components.$children.AdmonitionBlock.$URI
     });
-
-    const {
-      $sectioning: pageTableOfContents,
-      $heading: topHeading
-    } = localizedRouting.adaptationsToFrameworks.$children.vue.$children.GUI_Components.$children.AdmonitionBlock;
 
 
 block append HeadScripts
@@ -48,6 +49,26 @@ block append SpecificContent
 
   article
 
+    //- ━━━ AdmonitionBlock (Vue) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     h1.Article-Heading1!= topHeading
 
     +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
+
+    +WebPageViewer--YDF({
+      URI: "$Demos:Vue/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "AdmonitionBlock" })
+    })
+
+    +AdmonitionBlockComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ━━━ Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.synopsis.$heading,
+      HTML_ID: localizedSectioning.synopsis.$anchor
+    }).Article-Heading2
+
+    +AdmonitionBlockComponent-Synopsis({ framework: SupportedFrameworks.vue })

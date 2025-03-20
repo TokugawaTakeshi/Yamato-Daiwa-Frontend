@@ -1,3 +1,53 @@
+mixin ComponentMarkupProvidingGuidanceFragment(properties)
+
+  -
+    const {
+      componentName,
+      pugMixinName = `${ componentName }--YDF`
+    } = properties
+
+  p.Article-Paragraph
+    | The #[+Term--YDID markup] of this #[+Term--YDID GUI Component] is been provided by the
+    |   #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.mixins }) Pug mixin] with name
+    |   #[+ImportantEntity__Code--YDID #{ pugMixinName }].
+    | The including method is
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$sectioning.markup.$children.providing.$URI
+    }) standard
+    |, by other words, the
+    |
+    +Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.includes }) including of the Pug file
+    |   #[+ImportantEntity__Code--YDID Components.pug] to your #[+Term--YDID Pug file], herewith it is also
+    |   #[+Keyword--YDID required] to include #[+Keyword--YDID preliminary] the
+    |   #[+ImportantEntity__Code--YDID Functionality.pug] file (the #[+Keyword--YDID last] one
+    |   #[+Keyword__Contrast--YDID already] included to
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+    }) pages templates
+    |
+    | so #[+Keyphrase--YDID if it include them one more time, the error will occur]).
+
+  +CodeViewer--YDF
+    +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+      +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+        include ../../node_modules/@yamato-daiwa/frontend/Functionality.pug
+        include ../../node_modules/@yamato-daiwa/frontend/Components.pug
+      +CodeViewer-Explanation--YDF
+        p.Article-Paragraph.
+          In your case the #[+Term--YDID relative path] to #[+ImportantEntity--YDID node_modules]
+            #[+Term--YDID directory] could differ depending on how deep below the #[+Term--YDID project root directory]
+            your #[+Term--YDID Pug file] including above code been stored.
+        p.Article-Paragraph.
+          Recall that #[+Keyword--YDID just] including of these files will&nbsp;#[+Keyword--YDID not] give any output
+            #[+Term--YDID HTML code] because to get the output HTML code of #[+ImportantEntity--YDID #{ componentName }]
+            it is required to call #[+ImportantEntity__Code--YDID #{ pugMixinName }] #[+Term--YDID Pug mixin].
+          Besides this, if #[+Keyword--YDID currently] the #[+Term--YDID styles] has #[+Keyword--YDID not]&nbsp;been
+            provided yet, although the #[+Term--YDID HTML code] will be generated, the displaying will be incorrect.
+          If you don't know how to provide #[+Term--YDID styles] yet, don't worry — it will be explained below.
+
+
 mixin IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance(properties)
 
   -
@@ -57,3 +107,5 @@ mixin IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance(properties)
 
 
 include ReusableFragments/Components/AdmonitionBlock-ReusableFragments.english.pug
+include ReusableFragments/Components/Badge-ReusableFragments.english.pug
+include ReusableFragments/Components/Button-ReusableFragments.english.pug

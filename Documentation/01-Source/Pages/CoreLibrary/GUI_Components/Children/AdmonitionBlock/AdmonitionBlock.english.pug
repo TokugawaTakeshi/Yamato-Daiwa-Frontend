@@ -12,9 +12,14 @@ block append Metadata
 
   -
 
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = routing.english.coreLibrary.$children.GUI_Components.$children.AdmonitionBlock;
+
     RegularWebPageTemplate__YDF.configure({
       metadata: {
-        title: buildHTML_PageTitle("AdmonitionBlock"),
+        title: buildHTML_PageTitle(topHeading),
         description: MetaDescriptionTemplates.GUI_Components.AdmonitionBlock
       },
       stylesSheetsURIs: [
@@ -32,11 +37,6 @@ block append Metadata
       russian: routing.russian.coreLibrary.$children.GUI_Components.$children.AdmonitionBlock.$URI
     });
 
-    const {
-      $sectioning: localizedSectioning,
-      $heading: topHeading
-    } = routing.english.coreLibrary.$children.GUI_Components.$children.AdmonitionBlock;
-
 
 block append HeadScripts
 
@@ -52,54 +52,89 @@ block append SpecificContent
     //- ━━━ AdmonitionBlock ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     h1.Article-Heading1!= topHeading
 
-    +WebPageViewer--YDF({
-      URI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage.html",
-      title: "The examples of usage of \"AdmonitionBlock\" component (library: \"Yamato Daiwa Frontend\", " +
-          "abbreviation: \"YDF\"). "
-    })
-
     +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
 
-    //- TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +WebPageViewer--YDF({
+      URI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "AdmonitionBlock" })
+    })
+
     +AdmonitionBlockComponent-Abstract
 
-    -
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
 
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives = [
-        ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives,
-        [
-          { text: "Any one declared via" },
-          { code: "AdmonitionBlock__YDF.defineThemes(themesNames)" }
-        ]
-      ];
 
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives = [
-        ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives,
-        [
-          { text: "Any one declared via" },
-          { code: "AdmonitionBlock__YDF.defineGeometricVariations(geometricVariationsNames)" }
-        ]
-      ];
+    //- ━━━ Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.synopsis.$heading,
+      HTML_ID: localizedSectioning.synopsis.$anchor
+    }).Article-Heading2
 
-      AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives = [
-        ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives,
-        [
-          { text: "Any one declared via" },
-          { code: "AdmonitionBlock__YDF.defineDecorativeVariations(decorativeVariationsNames)" }
-        ]
-      ];
+    +AdmonitionBlockComponent-Synopsis
 
-    +CallableExpressionScheme--YDF_DK({
-      technicalName: "AdmonitionBlock--YDF",
-      parametersSpecification: [
-        {
-          genericTechnicalName: "properties",
-          type: "Properties",
-          required: true
-        }
-      ],
-      hiddenReturnValue: true
-    })
-      +ObjectTypeAbstract--YDF_DK(
-        AdmonitionBlockComponentPropertiesSpecification
-      ).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem
+
+    //- ━━━ Usage ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.usage.$heading,
+      HTML_ID: localizedSectioning.usage.$anchor
+    }).Article-Heading2
+
+    //- ─── Markup ─────────────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.usage.$children.markup.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$anchor
+    }).Article-Heading3
+
+    //- ─── Including to Project ───────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.usage.$children.markup.$children.includingToProject.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.includingToProject.$anchor
+    }).Article-Heading4
+
+    +ComponentMarkupProvidingGuidanceFragment({ componentName: "AdmonitionBlock" })
+    //- TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //-
+      -
+
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives = [
+          ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives,
+          [
+            { text: "Any one declared via" },
+            { code: "AdmonitionBlock__YDF.defineThemes(themesNames)" }
+          ]
+        ];
+
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives = [
+          ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives,
+          [
+            { text: "Any one declared via" },
+            { code: "AdmonitionBlock__YDF.defineGeometricVariations(geometricVariationsNames)" }
+          ]
+        ];
+
+        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives = [
+          ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives,
+          [
+            { text: "Any one declared via" },
+            { code: "AdmonitionBlock__YDF.defineDecorativeVariations(decorativeVariationsNames)" }
+          ]
+        ];
+
+      +CallableExpressionScheme--YDF_DK({
+        technicalName: "AdmonitionBlock--YDF",
+        parametersSpecification: [
+          {
+            genericTechnicalName: "properties",
+            type: "Properties",
+            required: true
+          }
+        ],
+        hiddenReturnValue: true
+      })
+        +ObjectTypeAbstract--YDF_DK(
+          AdmonitionBlockComponentPropertiesSpecification
+        ).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem

@@ -744,7 +744,7 @@ adaptationsToFrameworks:
           $children:
 
             AdmonitionBlock:
-              $heading: "<code>AdmonitionBlock</code>"
+              $heading: "<code>AdmonitionBlock</code> (Vue)"
               $URI: `@All/AdaptationsToFrameworks/Vue/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-Vue.${ fileNameLocalizationExtensions }`
               $sectioning:
                 $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/AdmonitionBlock/TableOfContents/AdmonitionBlock-Vue.toc.yaml
@@ -754,7 +754,7 @@ adaptationsToFrameworks:
                   russian: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/AdmonitionBlock/TableOfContents/AdmonitionBlock-Vue.toc.russian.yaml
 
             Badge:
-              $heading: "<code>Badge</code>"
+              $heading: "<code>Badge</code> (Vue)"
               $URI: `@All/AdaptationsToFrameworks/Vue/GUI_Components/Children/Badge/Badge-Vue.${ fileNameLocalizationExtensions }`
               $sectioning:
                 $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/Badge/TableOfContents/Badge-Vue.toc.yaml
@@ -774,7 +774,7 @@ adaptationsToFrameworks:
                   $children:
 
                     plain:
-                      $heading: "<code>Button</code>"
+                      $heading: "<code>Button</code> (Vue)"
                       $URI: `@All/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Buttons/Plain/Button-Vue.${ fileNameLocalizationExtensions }`
                       $sectioning:
                         $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button-Vue.toc.yaml
@@ -795,7 +795,7 @@ adaptationsToFrameworks:
           $children:
 
             AdmonitionBlock:
-              $heading: "<code>AdmonitionBlock</code>"
+              $heading: "<code>AdmonitionBlock</code> (React)"
               $URI: `@All/AdaptationsToFrameworks/React/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-React.${ fileNameLocalizationExtensions }`
               $sectioning:
                 $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/AdmonitionBlock/TableOfContents/AdmonitionBlock-React.toc.yaml
@@ -805,7 +805,7 @@ adaptationsToFrameworks:
                   russian: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/AdmonitionBlock/TableOfContents/AdmonitionBlock-React.toc.russian.yaml
 
             Badge:
-              $heading: "<code>Badge</code>"
+              $heading: "<code>Badge</code> (React)"
               $URI: `@All/AdaptationsToFrameworks/React/GUI_Components/Children/Badge/Badge-React.${ fileNameLocalizationExtensions }`
               $sectioning:
                 $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/Badge/TableOfContents/Badge-React.toc.yaml
@@ -825,7 +825,7 @@ adaptationsToFrameworks:
                   $children:
 
                     plain:
-                      $heading: "<code>Button</code>"
+                      $heading: "<code>Button</code> (React)"
                       $URI: `@All/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/Buttons/Plain/Button-React.${ fileNameLocalizationExtensions }`
                       $sectioning:
                         $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button-React.toc.yaml
@@ -846,7 +846,7 @@ adaptationsToFrameworks:
           $children:
 
             AdmonitionBlock:
-              $heading: "<code>AdmonitionBlock</code>"
+              $heading: "<code>AdmonitionBlock</code> (Blazor)"
               $URI: `@All/AdaptationsToFrameworks/Blazor/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-Blazor.${ fileNameLocalizationExtensions }`
               $sectioning:
                 $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/AdmonitionBlock/TableOfContents/AdmonitionBlock-Blazor.toc.yaml
@@ -856,7 +856,7 @@ adaptationsToFrameworks:
                   russian: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/AdmonitionBlock/TableOfContents/AdmonitionBlock-Blazor.toc.russian.yaml
 
             Badge:
-              $heading: "<code>Badge</code>"
+              $heading: "<code>Badge</code> (Blazor)"
               $URI: `@All/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Badge/Badge-Blazor.${ fileNameLocalizationExtensions }`
               $sectioning:
                 $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Badge/TableOfContents/Badge-Blazor.toc.yaml
@@ -876,7 +876,7 @@ adaptationsToFrameworks:
                   $children:
 
                     plain:
-                      $heading: "<code>Button</code>"
+                      $heading: "<code>Button</code> (Blazor)"
                       $URI: `@All/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/Buttons/Plain/Button-Blazor.${ fileNameLocalizationExtensions }`
                       $sectioning:
                         $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button-Blazor.toc.yaml

@@ -1,0 +1,15 @@
+mixin DropDownListGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("DropDownList__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("DropDownList__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("DropDownList__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) DropDownList Component Demos

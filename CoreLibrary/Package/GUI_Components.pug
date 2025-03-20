@@ -1,21 +1,26 @@
 //- === Must be defined primarily ======================================================================================
-include Markup/InlineECMAScript/ComponentsDefaultLocalizations.generated.pug
+include Markup/InlineECMAScript/GUI_ComponentsRequirements.generated.pug
 
 -
 
   const {
+
+    /* ━━━ DOM Access ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    dateTimePickerYDF_GUI_ComponentDOM_Access,
+
+    /* ━━━ Localizations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     admonitionBlockYDF_ComponentLocalization__english,
     dateTimePickerYDF_ComponentLocalization__english,
     dropDownListYDF_ComponentLocalization__english,
     filesUploaderYDF_ComponentLocalization__english,
-    imagesCropperYDF_ComponentLocalization__english,
     numberBoxYDF_ComponentLocalization__english,
     paginationYDF_ComponentLocalization__english,
     snackbarYDF_ComponentLocalization__english
+
   } = (
     //- [ Theory ] `global` is actual for "gulp-pug" with Pug 3, while `globalThis` for `pug-plugin` for Webpack.
     global ?? globalThis
-  ).__COMPONENTS_DEFAULT_LOCALIZATIONS_EXPORTS__;
+  ).__YDF_GUI_COMPONENTS_REQUIREMENTS__;
 
 include GUI_Components/_Auxiliaries/ComponentsAuxiliaries.pug
 include GUI_Components/Controls/CompoundControlShell/CompoundControlShell.pug
@@ -32,12 +37,12 @@ include GUI_Components/Controls/Buttons/Closing/ClosingButton.pug
 include GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton.pug
 include GUI_Components/Controls/Buttons/Plain/Button.pug
 
+include GUI_Components/Controls/Checkbox/Checkbox.pug
 include GUI_Components/Controls/Chip/Chip.pug
 include GUI_Components/Controls/ComboBox/ComboBox.pug
 include GUI_Components/Controls/DateTimePicker/DateTimePicker.pug
 include GUI_Components/Controls/DropDownList/DropDownList.pug
 include GUI_Components/Controls/FilesUploader/FilesUploader.pug
-include GUI_Components/Controls/ImagesCropper/ImagesCropper.pug
 include GUI_Components/Controls/MenuList/MenuList.pug
 include GUI_Components/Controls/ModalDialogs/Common/ModalDialog.pug
 include GUI_Components/Controls/ModalDialogs/Confirmation/ConfirmationModalDialog.pug

@@ -56,7 +56,7 @@ provideAdmonitionBlockYDF_Component(
 
                 size: 1.6rem, // [ Non nullable ! ]
 
-                // [ Conditional requirement ] Either `lineSpacing` or `lineHeight` must non-null but not both
+                // [ Conditional requirement ] Either `lineSpacing` or `lineHeight` must bu non-null but not both
                 lineSpacing: 0.4rem,
                 lineHeight: null
 
@@ -75,7 +75,7 @@ provideAdmonitionBlockYDF_Component(
               text: {
                 size: 1rem, // [ Non nullable ! ]
 
-                // [ Conditional requirement ] Either `lineSpacing` or `lineHeight` must non-null but not both
+                // [ Conditional requirement ] Either `lineSpacing` or `lineHeight` must bu non-null but not both
                 lineSpacing: 0.4rem,
                 lineHeight: null
 
@@ -252,15 +252,15 @@ provideAdmonitionBlockYDF_Component(
 // ━━━ Scenario 3: Define Own Preset ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // TODO Define the geometric variations (like `AdmonitionBlock-RegularTheme-RegularGeometry`) and the decorative
 //  variations (like `AdmonitionBlock-RegularTheme-NoticeDecoration`) in the separate files then include them here.
-@require "Themes/Regular/GeometricVariations/AdmonitionBlock-RegularTheme-RegularGeometry.styl"
-@require "Themes/Regular/GeometricVariations/AdmonitionBlock-RegularTheme-StickyNoteLikeGeometry.styl"
+@require "Themes/Regular/GeometricVariations/AdmonitionBlock-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/AdmonitionBlock-RegularTheme-StickyNoteLikeGeometricVariation.styl"
 
-@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-NoticeDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-ErrorDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-WarningDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-SuccessDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-GuidanceDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-QuestionDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-NoticeDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-ErrorDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-WarningDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-SuccessDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-GuidanceDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-QuestionDecorativeVariation.styl"
 
 provideAdmonitionBlockYDF_Component({
 
@@ -272,17 +272,17 @@ provideAdmonitionBlockYDF_Component({
         componentIndependentCSS_Class: "RegularTheme--YDF",
 
         geometricVariations: {
-          regular: AdmonitionBlock-RegularTheme-RegularGeometry--YDF,
-          stickyNoteLike: AdmonitionBlock-RegularTheme-StickyNoteLikeGeometry--YDF
+          regular: AdmonitionBlock-RegularTheme-RegularGeometricVariation--YDF,
+          stickyNoteLike: AdmonitionBlock-RegularTheme-StickyNoteLikeGeometricVariation--YDF
         },
 
         decorativeVariations: {
-          notice: AdmonitionBlock-RegularTheme-NoticeDecoration--YDF,
-          error: AdmonitionBlock-RegularTheme-ErrorDecoration--YDF,
-          warning: AdmonitionBlock-RegularTheme-WarningDecoration--YDF,
-          success: AdmonitionBlock-RegularTheme-SuccessDecoration--YDF,
-          guidance: AdmonitionBlock-RegularTheme-GuidanceDecoration--YDF,
-          question: AdmonitionBlock-RegularTheme-QuestionDecoration--YDF
+          notice: AdmonitionBlock-RegularTheme-NoticeDecorativeVariation--YDF,
+          error: AdmonitionBlock-RegularTheme-ErrorDecorativeVariation--YDF,
+          warning: AdmonitionBlock-RegularTheme-WarningDecorativeVariation--YDF,
+          success: AdmonitionBlock-RegularTheme-SuccessDecorativeVariation--YDF,
+          guidance: AdmonitionBlock-RegularTheme-GuidanceDecorativeVariation--YDF,
+          question: AdmonitionBlock-RegularTheme-QuestionDecorativeVariation--YDF
         }
 
       }

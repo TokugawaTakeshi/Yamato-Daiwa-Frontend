@@ -18,8 +18,16 @@ export { default as HamburgerMenuButton } from "./GUI_Components/Controls/Button
 export { default as CompoundControlShell } from "./GUI_Components/Controls/CompoundControlShell/CompoundControlShell";
 
 export { default as DateTimePicker } from "./GUI_Components/Controls/DateTimePicker/DateTimePicker";
+export type { default as DateTimePickerLocalization } from
+    "./GUI_Components/Controls/DateTimePicker/DateTimePickerLocalization";
 
 export { default as FilesUploader } from "./GUI_Components/Controls/FilesUploader/FilesUploader";
+export type { default as FilesUploaderLocalization } from "./GUI_Components/Controls/FilesUploader/FilesUploaderLocalization";
+export { filesUploaderYDF_ComponentLocalization__english } from
+    "./GUI_Components/Controls/FilesUploader/FilesUploaderLocalization.english";
+
+export { default as ModalDialog } from "./GUI_Components/Controls/ModalDialogs/Common/ModalDialog";
+export { default as ConfirmationModalDialog } from "./GUI_Components/Controls/ModalDialogs/Confirmation/ConfirmationModalDialog";
 
 export { default as NumberBox } from "./GUI_Components/Controls/NumberBox/NumberBox";
 
@@ -93,3 +101,5 @@ export { default as passwordInputtedValueValidationLocalization__english } from
 
 export { default as CollapsingAnimation } from "./Animations/CollapsingAnimation";
 export { default as ExpandingAnimation } from "./Animations/ExpandingAnimation";
+
+export { default as onDifferentValueAssigned } from "./GUI_Components/_Auxiliaries/Decorators/onDifferentValueAssigned";
