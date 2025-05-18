@@ -57,13 +57,15 @@
 
       textOrHTML: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       position: {
         type: String,
-        defaultValue: Snackbar__YDF.Positions.topMiddle,
+        undefinedValueSubstitution: Snackbar__YDF.Positions.topMiddle,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Snackbar__YDF.Positions).
             map(([ key, value ]) => ({ key: `Snackbar__YDF.Positions.${ key }`, value }))
@@ -71,7 +73,8 @@
 
       theme: {
         type: String,
-        defaultValue: Snackbar__YDF.Themes.regular,
+        undefinedValueSubstitution: Snackbar__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Snackbar__YDF.Themes).
             map(([ key, value ]) => ({ key: `Snackbar__YDF.Themes.${ key }`, value }))
@@ -79,12 +82,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: Snackbar__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: Snackbar__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: Snackbar__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: Snackbar__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Snackbar__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `Snackbar__YDF.GeometricVariations.${ key }`, value }))
@@ -92,8 +97,8 @@
 
       decorativeVariation: {
         type: String,
-        required: true,
-        defaultValue: Snackbar__YDF.DecorativeVariations.guidance,
+        undefinedValueSubstitution: Snackbar__YDF.DecorativeVariations.guidance,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Snackbar__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `Snackbar__YDF.DecorativeVariations.${ key }`, value }))
@@ -107,12 +112,14 @@
 
       mounted: {
         type: Boolean,
-        defaultValue: true
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       hidden: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       }
 
     };

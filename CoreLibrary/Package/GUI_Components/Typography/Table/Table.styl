@@ -1,10 +1,10 @@
-@require "Themes/Regular/GeometricVariations/Table-RegularTheme-RegularGeometry.styl"
-@require "Themes/Regular/GeometricVariations/Table-RegularTheme-SmallGeometry.styl"
+@require "Themes/Regular/GeometricVariations/Table-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/Table-RegularTheme-SmallGeometricVariation.styl"
 
-@require "Themes/Regular/DecorativeVariations/Pastel/Solid/Table-RegularTheme-AchromaticPastelSolidDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Pastel/Solid/Table-RegularTheme-CalmingPastelSolidDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Pastel/Solid/Table-RegularTheme-ModestlyCalmingPastelSolidDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Pastel/Solid/Table-RegularTheme-NeutralPastelSolidDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Solid/Table-RegularTheme-AchromaticPastelSolidDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Solid/Table-RegularTheme-CalmingPastelSolidDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Solid/Table-RegularTheme-ModestlyCalmingPastelSolidDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Solid/Table-RegularTheme-NeutralPastelSolidDecorativeVariation.styl"
 
 
 Table--YDF = {
@@ -17,8 +17,8 @@ Table--YDF = {
       regular: {
 
         geometricVariations: {
-          regular: Table-RegularTheme-RegularGeometry--YDF,
-          small: Table-RegularTheme-SmallGeometry--YDF
+          regular: Table-RegularTheme-RegularGeometricVariation--YDF,
+          small: Table-RegularTheme-SmallGeometricVariation--YDF
         },
 
         decorativeVariations: {
@@ -27,6 +27,8 @@ Table--YDF = {
           modestlyCalmingPastelSolidDecoration: Table-RegularTheme-ModestlyCalmingPastelSolidDecoration--YDF,
           neutralPastelSolid: Table-RegularTheme-NeutralPastelSolidDecoration--YDF
           modestlyCalmingPastelSolid: Table-RegularTheme-ModestlyCalmingPastelSolidDecoration--YDF
+          calmingPastelSolid: Table-RegularTheme-CalmingPastelSolidDecorativeVariation--YDF,
+          modestlyCalmingPastelSolid: Table-RegularTheme-ModestlyCalmingPastelSolidDecorativeVariation--YDF
         }
 
       }
@@ -119,6 +121,8 @@ provideTableYDF_Component(
 
     .Table--YDF-TableElement
 
+      border-collapse collapse
+
       min-width 100%
 
 
@@ -134,18 +138,13 @@ provideTableYDF_Component(
 
     +provideDefaultSelectorWhenRootAndApply(ROOT_ELEMENT_SELECTOR)
 
-      validateAndAssignStoredInObjectCSS_Properties({
-        targetObject: variation,
-        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-        assigments: {
-          min-width: {
-            dotSeparatedPath: "rootElement.minimalWidth",
-            required: false
-          }
-        }
-      })
-
       applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+
+
+      th,
+      td
+
+        Paddings(variation.cells.all.paddings)
 
 
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────

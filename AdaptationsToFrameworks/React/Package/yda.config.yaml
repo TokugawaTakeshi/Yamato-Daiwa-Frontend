@@ -75,7 +75,7 @@ projectBuilding:
         distributing:
           exposingOfExportsFromEntryPoints:
             mustExpose: true
-          externalizingDependencies: [ @yamato-daiwa/frontend, react, react-dom, react-router-dom, next ]
+          externalizingDependencies: [ @yamato-daiwa/frontend, react, react-router, react-dom ]
           typeScriptTypesDeclarations:
             mustGenerate: true
 

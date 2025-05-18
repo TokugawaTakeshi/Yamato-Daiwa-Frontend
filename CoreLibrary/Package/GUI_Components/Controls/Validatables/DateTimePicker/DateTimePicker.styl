@@ -1,0 +1,575 @@
+@require "Themes/Regular/GeometricVariations/DateTimePicker-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/DateTimePicker-RegularTheme-SmallGeometricVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/DateTimePicker-RegularTheme-RegularDecorativeVariation.styl"
+
+
+DateTimePicker--YDF = {
+
+  CSS_NAMESPACE: "DateTimePicker--YDF",
+
+  componentIndependentCSS_Class: "RegularTheme--YDF",
+
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        geometricVariations: {
+          regular: DateTimePicker-RegularTheme-RegularGeometricVariation--YDF,
+          small: DateTimePicker-RegularTheme-SmallGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          regular: DateTimePicker-RegularTheme-RegularDecorativeVariation--YDF
+        }
+
+      }
+    }
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true
+  }
+
+}
+
+
+provideDateTimePickerYDF_Component(
+  preset = DateTimePicker--YDF.defaultProperties,
+  overridings = {},
+  options = DateTimePicker--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject(preset, overridings)
+
+  validateObjectTypeParameter({
+    mixinOrFunctionName: "provideDateTimePickerYDF_Component",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: DateTimePicker--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: DateTimePicker--YDF.defaultOptions.externalThemes
+      },
+      loadingPlaceholder: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: DateTimePicker--YDF.defaultOptions.loadingPlaceholder
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: DateTimePicker--YDF.defaultOptions.themeIndependentGeometricVariations
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  //- ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .DateTimePicker--YDF
+
+      &-NativeInputElement
+
+        display none
+
+
+      &-IndicatorButton
+
+        ButtonLikeElementsPrimer()
+
+        display flex
+        align-items center
+
+        width 100%
+
+        cursor pointer
+
+
+        &-Icon
+
+          flex-shrink 0
+
+
+      &-DialogRelativePositioner
+
+        position relative
+
+
+      &-Dialog
+
+        width 100%
+
+        position absolute
+        z-index YDF_Configuration.zIndexes.lowermostLayer + 1
+
+
+        &[hidden]
+
+          display none
+
+
+        &-TopActionBar
+
+          display flex
+          flex-wrap wrap
+          align-items center
+
+
+          >*
+
+            flex-shrink 0
+
+
+          &-TwoPairsButtonsTable
+
+            table-layout fixed
+            width 100%
+
+
+        &-Header
+
+          display flex
+          justify-content space-between
+          align-items center
+
+
+        &-BottomActionBar
+
+          display flex
+          flex-direction row-reverse
+
+
+      &-DaysMatrix
+
+        table-layout fixed
+        width 100%
+
+
+      &-DayTitleCell
+
+        width percentage(1/7)
+        text-align center
+
+
+      &-DaySelectingButton
+
+        ButtonLikeElementsPrimer()
+        width 100%
+
+
+        &:disabled
+
+          pointer-events none
+
+
+      &-MonthsMatrix
+
+        display grid
+        grid-template-columns repeat(4, 1fr)
+
+
+        &[hidden]
+
+          display none
+
+
+      &-MonthSelectingButton
+
+        ButtonLikeElementsPrimer()
+
+
+        &:disabled
+
+          pointer-events none
+
+
+      &-YearsMatrix
+
+        display grid
+        grid-template-columns repeat(5, 1fr)
+
+
+        &[hidden]
+
+          display none
+
+
+      &-YearSelectingButton
+
+        ButtonLikeElementsPrimer()
+
+
+      &-HoursMatrix
+
+        table-layout fixed
+        width 100%
+
+
+      &-HourSelectingButton
+
+        ButtonLikeElementsPrimer()
+        width 100%
+
+
+        &:disabled
+
+          pointer-events none
+
+
+      &-MinutesMatrix
+
+        display grid
+        grid-template-columns repeat(10, 1fr)
+
+
+  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "DateTimePicker.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+
+    +provideDefaultSelectorWhenRootAndApply("." + DateTimePicker--YDF.CSS_NAMESPACE)
+
+      min-width 120px
+
+
+    .DateTimePicker--YDF-IndicatorButton
+
+      border-width 1px
+      BorderLeftFilletsRadius(3px)
+      padding: calc(.45rem - 2px) .5rem calc(.45rem + 1px)
+
+
+    .DateTimePicker--YDF-IndicatorButton-Icon
+
+      width 24px
+
+
+    .DateTimePicker--YDF-IndicatorButton-Label
+
+      font-size 14px
+
+      margin-left 12px
+
+
+    .DateTimePicker--YDF-DaysMatrix
+
+      border-top-width 1px
+      margin-top 4px
+
+
+    .DateTimePicker--YDF-Dialog
+
+      border-radius 3px
+
+
+    .DateTimePicker--YDF-Dialog-TopActionBar
+
+      column-gap 6px
+      row-gap 4px
+
+      Paddings({ horizontalSymmetric: 6px })
+
+      margin-top 4px
+
+
+    .DateTimePicker--YDF-Dialog-TopActionBar-TwoPairsButtonsTable
+
+      th
+
+        text-align center
+
+
+      td
+
+        padding-top 0.2rem
+        vertical-align middle
+
+
+        &:nth-child(odd)
+
+          padding-right 0.2rem
+          text-align right
+
+
+        &:nth-child(even)
+
+          padding-left 0.2rem
+          text-align left
+
+
+    .DateTimePicker--YDF-Dialog-Header
+
+      Paddings({ horizontalSymmetric: 6px })
+      margin-top 0.2rem
+
+
+    .DateTimePicker--YDF-Dialog-Header-CurrentScopeLabel
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+        fontSize: 1rem,
+        lineSpacing: 4px,
+        mustApplyNegativeMarginsToRootElement: true
+      })
+
+
+    .DateTimePicker--YDF-DayTitleCell
+
+      Paddings({
+        verticalSymmetric: 10px,
+        verticalUpwardShifting: 1px
+      })
+
+      font-size 1rem
+
+
+    .DateTimePicker--YDF-DaySelectingButton
+
+      Paddings({
+        verticalSymmetric: 10px,
+        verticalUpwardShifting: 1px
+      })
+      font-size 1rem
+
+
+    .DateTimePicker--YDF-MonthsMatrix
+
+      margin-top 4px
+
+
+    .DateTimePicker--YDF-MonthSelectingButton
+
+      Paddings({
+        verticalSymmetric: 10px,
+        verticalUpwardShifting: 1px
+      })
+      font-size 14px
+
+
+    .DateTimePicker--YDF-YearsMatrix
+
+      margin-top 4px
+
+
+    .DateTimePicker--YDF-YearSelectingButton
+
+      Paddings({
+        verticalSymmetric: 10px,
+        verticalUpwardShifting: 1px
+      })
+      font-size 14px
+
+
+    .DateTimePicker--YDF-HoursMatrix-HeaderCell
+
+      Paddings({
+        verticalSymmetric: 6px,
+        verticalUpwardShifting: 1px
+      })
+
+
+    .DateTimePicker--YDF-HourSelectingButton
+
+      Paddings({
+        verticalSymmetric: 10px,
+        verticalUpwardShifting: 1px
+      })
+
+      font-size 14px
+
+
+    .DateTimePicker--YDF-Dialog-BottomActionBar
+
+      &:not(:empty)
+
+        padding 0.3rem
+
+
+  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "DateTimePicker.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    ROOT_ELEMENT_SELECTOR = getCurrentSelectorSubstitutingRoot(".DateTimePicker--YDF")
+
+
+    ClickableCellsCommonDecorations()
+
+      color: JQueryUI_BaseTheme.clickableElements.defaultState.fontColor
+      background-color: JQueryUI_BaseTheme.clickableElements.defaultState.background
+
+      cursor pointer
+
+
+      &:hover
+
+        color: JQueryUI_BaseTheme.clickableElements.hoverState.fontColor
+        background-color: JQueryUI_BaseTheme.clickableElements.hoverState.background
+
+
+      &:focus
+
+        box-shadow inset 0 0 3px 1px #007fff
+
+
+      &:active
+
+        color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor
+        background-color: JQueryUI_BaseTheme.clickableElements.activeState.background
+
+
+      &:disabled
+
+        color: W3C_39_ShadesOfGray--YDF[24]
+        background: W3C_39_ShadesOfGray--YDF[36]
+
+        cursor not-allowed
+
+
+      &__Today
+
+        box-shadow inset 0 0 1px 1px JQueryUI_BaseTheme.clickableElements.focusState.shadowColor
+
+
+      &__SelectedState
+
+        color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor
+        background-color: JQueryUI_BaseTheme.clickableElements.activeState.background
+
+        pointer-events none
+
+
+    .DateTimePicker--YDF-IndicatorButton
+
+      border-color #c5c5c5
+      border-style solid
+      background-color white
+      color #454545
+
+
+      &:hover
+
+        border-color: JQueryUI_BaseTheme.clickableElements.activeState.background
+
+
+      &:focus
+
+        border-color: JQueryUI_BaseTheme.warning.borderColor
+        box-shadow 0 0 6px rgba(black, 0.16)
+
+
+      &:active
+
+        border-color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor
+
+
+      &:disabled
+
+        opacity 25%
+
+
+      /{ROOT_ELEMENT_SELECTOR}.DateTimePicker--YDF__InvalidValueState &
+
+        border-color: JQueryUI_BaseTheme.error.borderColor
+        background: JQueryUI_BaseTheme.error.background
+
+
+      /{ROOT_ELEMENT_SELECTOR}.DateTimePicker--YDF__ValidValueState &
+
+        border-color #0D47A1
+
+
+    .DateTimePicker--YDF-IndicatorButton-Icon
+
+      fill #7B828E
+
+
+    .DateTimePicker--YDF-DaysMatrix
+
+      border-top-style solid
+      border-top-color lightgray
+
+
+    .DateTimePicker--YDF-Dialog-TopActionBar-TwoPairsButtonsTable
+
+      th
+
+        color: W3C_39_ShadesOfGray--YDF[16]
+        font-weight bold
+
+
+    .DateTimePicker--YDF-Dialog
+
+      background-color white
+      box-shadow 0 3px 10px rgba(black, 0.25)
+
+
+    .DateTimePicker--YDF-Dialog-Header-CurrentScopeLabel
+
+      color: W3C_39_ShadesOfGray--YDF[16]
+
+
+    .DateTimePicker--YDF-DayTitleCell
+
+
+      color: JQueryUI_BaseTheme.clickableElements.hoverState.fontColor
+
+
+      &__Holiday
+
+        color: YDF_ColorPalette.red.slightlyDark
+
+
+    .DateTimePicker--YDF-DaySelectingButton
+
+      ClickableCellsCommonDecorations()
+
+
+    .DateTimePicker--YDF-MonthSelectingButton
+
+      Paddings({
+        verticalSymmetric: 10px,
+        verticalUpwardShifting: 1px
+      })
+      font-size 14px
+
+      ClickableCellsCommonDecorations()
+
+
+    .DateTimePicker--YDF-YearSelectingButton
+
+      ClickableCellsCommonDecorations()
+
+
+    .DateTimePicker--YDF-HourSelectingButton
+
+      ClickableCellsCommonDecorations()
+
+
+  //- ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  applyComponentThemes({
+    CSS_Namespace: DateTimePicker--YDF.CSS_NAMESPACE,
+    themes: properties.themes,
+    applyGeometricVariation: applyGeometricVariation,
+    applyDecorativeVariation: applyDecorativeVariation
+  })

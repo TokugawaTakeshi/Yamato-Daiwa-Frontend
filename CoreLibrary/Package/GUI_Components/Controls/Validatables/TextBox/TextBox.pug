@@ -1,0 +1,298 @@
+include TextBox.class.pug
+
+
+mixin TextBox--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      /**
+       * @type { Button__YDF.HTML_Types }
+       * @default TextBox__YDF.HTML_Types.text
+       * */
+      HTML_Type,
+
+      /** @type { string | undefined } */
+      label,
+
+      /** @type { string | undefined } */
+      guidance,
+
+      /** @type { string | undefined } */
+      accessibilityGuidance,
+
+      /** @type { string | undefined } */
+      externalLabelHTML_ID,
+
+      /** @type { string | undefined } */
+      placeholder,
+
+      /**
+       * @type { string | undefined }
+       * @see https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
+       * */
+      autocomplete,
+
+      /**
+       * @type { string }
+       * @default ""
+       * */
+      value,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      multiline,
+
+      /**
+       * @type { boolean }
+       * @default true
+       * */
+      autoResizingForMultilineMode,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      disabled,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      readonly,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      required,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+
+      /** @type { number } */
+      minimalCharactersCount,
+
+      /** @type { number } */
+      maximalCharactersCount,
+
+      /** @type { number } */
+      minimalNumericValue,
+
+      /** @type { number } */
+      maximalNumericValue,
+
+      /** @type { string | undefined } */
+      instanceID_UniqueDynamicPart,
+
+      /**
+       * @type {
+       *   {
+       *     inputOrTextArea?: string;
+       *     label?: string;
+       *   }
+       *  }
+       * */
+      HTML_IDs,
+
+      /**
+       * @type { TextBox__YDF.Themes }
+       * @default TextBox__YDF.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default TextBox__YDF.areThemesCSS_ClassesCommon
+       * */
+      areThemesExternal,
+
+      /**
+       * @type { TextBox__YDF.GeometricVariations }
+       * @default TextBox__YDF.GeometricVariations.regular
+       * */
+      geometricVariation,
+
+      /**
+       * @type { Array<TextBox__YDF.GeometricModifiers> }
+       * @default []
+       * */
+      geometricModifiers,
+
+      /**
+       * @type { TextBox__YDF.GeometricVariations }
+       * @default TextBox__YDF.DecorativeVariations.regular
+       * */
+      decorativeVariation
+
+    } = processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: TextBox__YDF.propertiesSpecification,
+      mixinName: TextBox__YDF.CSS_NAMESPACE
+    });
+
+    /** @type { string } */
+    const INSTANCE_ID = TextBox__YDF.generateInstanceID(instanceID_UniqueDynamicPart);
+
+    const {
+
+      /** @type { string } */
+      inputOrTextArea: inputOrTextAreaHTML_ID = `${ INSTANCE_ID }-INPUT_OR_TEXT_AREA`,
+
+      /** @type { string } */
+      label: labelElementHTML_ID = `${ INSTANCE_ID }-LABEL`
+
+    } = HTML_IDs ?? {};
+
+    const {
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      invalidInputHighlightingIfAnyValidationErrorsMessages,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      validValueHighlightingIfNoValidationErrorsMessages,
+
+      /**
+       * @type { boolean | ReadonlyArray<string> }
+       * @default false
+       * */
+      validationErrorsMessages,
+
+      /**
+       * @type { boolean | ReadonlyArray<"IN_PROGRESS" | "FINISHED_BUT_INVALID" | "FINISHED_AND_VALID" | "MALFUNCTION"> }
+       * @default false
+       * */
+      asynchronousValidationsStatuses
+
+    } = processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: TextBox__YDF.statesSimulationsSpecification,
+      mixinName: TextBox__YDF.CSS_NAMESPACE
+    });
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes = [
+
+      ...multiline ? [ `${ TextBox__YDF.CSS_NAMESPACE }__Multiline` ] : [],
+
+      ...disabled ? [ `${ TextBox__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
+
+      ...invalidInputHighlightingIfAnyValidationErrorsMessages && validationErrorsMessages.length > 0 ?
+          [ `${ TextBox__YDF.CSS_NAMESPACE }__InvalidValueState` ] : [],
+      ...validValueHighlightingIfNoValidationErrorsMessages && validationErrorsMessages.length === 0 ?
+          [ `${ TextBox__YDF.CSS_NAMESPACE }__ValueState` ] : [],
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: TextBox__YDF.Themes,
+        CSS_Namespace: TextBox__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: TextBox__YDF.GeometricVariations,
+        CSS_Namespace: TextBox__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(TextBox__YDF.TextBox__YDF, geometricModifiers),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: TextBox__YDF.DecorativeVariations,
+        CSS_Namespace: TextBox__YDF.CSS_NAMESPACE
+      })
+
+    ];
+
+  +ValidatableControlShell--YDF(
+    {
+
+      label,
+      guidance,
+
+      required,
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+      coreElementHTML_ID: inputOrTextAreaHTML_ID,
+      labelElementHTML_ID: labelElementHTML_ID,
+
+      theme: TextBox__YDF.selfAndChildrenComponentsThemesCorrespondence.validatableControlShell[theme],
+      areThemesCSS_ClassesCommon,
+      geometricVariation: TextBox__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
+          validatableControlShell[geometricVariation],
+      decorativeVariation: TextBox__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.
+          validatableControlShell[decorativeVariation]
+
+    },
+    {
+      validationErrorsMessages,
+      asynchronousValidationsStatuses
+    }
+  ).TextBox--YDF&attributes(attributes)(
+    class=rootElementModifierCSS_Classes
+    data-auto_resizing_for_multiline_mode=(multiline && autoResizingForMultilineMode)
+  )
+
+    if multiline
+
+      textarea.TextBox--YDF-InputOrTextAreaElement(
+        placeholder=placeholder
+        autocomplete=autocomplete
+        readonly=readonly
+        disabled=disabled
+        required=required
+        minlength=minimalCharactersCount
+        maxlength=maximalCharactersCount
+        id=inputOrTextAreaHTML_ID
+        aria-label=accessibilityGuidance
+        aria-labelledby=externalLabelHTML_ID
+      )= value
+
+    else
+
+      input.TextBox--YDF-InputOrTextAreaElement(
+        type=HTML_Type
+        value=value
+        placeholder=placeholder
+        autocomplete=autocomplete
+        readonly=readonly
+        disabled=disabled
+        required=required
+        minlength=minimalCharactersCount
+        maxlength=maximalCharactersCount
+        min=minimalNumericValue
+        max=maximalNumericValue
+        id=inputOrTextAreaHTML_ID
+        aria-label=accessibilityGuidance
+        aria-labelledby=externalLabelHTML_ID
+      )

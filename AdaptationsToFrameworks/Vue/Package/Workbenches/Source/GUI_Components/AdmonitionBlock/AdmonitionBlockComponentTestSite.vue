@@ -24,14 +24,14 @@
 
 <style lang="stylus">
 
-  @require "../../../../../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
-  @require "../../../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
+  @require "../../../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+  @require "../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
 
 
   CrossBrowserStylesReset()
   InitialGlobalCSS_Rules()
 
 
-  provideAdmonitionBlockYDF_Component()
+  generateAdmonitionBlockYDF_GUI_ComponentStyles()
 
 </style>

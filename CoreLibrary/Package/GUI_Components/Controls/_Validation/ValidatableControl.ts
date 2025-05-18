@@ -35,7 +35,7 @@ namespace ValidatableControl {
     public readonly validation: Validation;
     public readonly getComponentInstance: () => ValidatableControl;
 
-    /* [ Convention ] The fields begin from the underscore mush be changes only via constructor or setters. */
+    /* [ Convention ] The fields begin from the underscore must be changed only via constructor or setters. */
     protected _value: ValidValue | InvalidValue;
     protected _validationResult: InputtedValueValidation.Result;
     protected _asynchronousChecksStatus: InputtedValueValidation.AsynchronousChecks.Status | null = null;
@@ -84,10 +84,12 @@ namespace ValidatableControl {
     public $setValue(
       {
         newValue,
-        asynchronousValidationDelay__seconds
+        asynchronousValidationDelay__seconds,
+        messagesOfExternallyDetectedValidationErrors
       }: Readonly<{
         newValue: ValidValue | InvalidValue;
         asynchronousValidationDelay__seconds?: number;
+        messagesOfExternallyDetectedValidationErrors?: ReadonlyArray<string>;
       }>
     ): void {
 
@@ -97,7 +99,8 @@ namespace ValidatableControl {
         this._value,
         {
           mustPostponeAsynchronousValidation: isNotUndefined(asynchronousValidationDelay__seconds),
-          asynchronousChecksCallback: this.onAsynchronousChecksStatusChanged.bind(this)
+          asynchronousChecksCallback: this.onAsynchronousChecksStatusChanged.bind(this),
+          messagesOfExternallyDetectedValidationErrors
         }
       );
 
@@ -133,8 +136,8 @@ namespace ValidatableControl {
     }
 
 
-    /* ━━━ Public methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    /* ─── Event handlers ─────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ━━━ Public Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── Event Handlers ─────────────────────────────────────────────────────────────────────────────────────────── */
     public setOnValueAnyChangeEventHandler(
       polymorphicParameter: Payload.GeneralizedEventHandler | Readonly<{ handler: Payload.GeneralizedEventHandler; ID: string; }>
     ): this {
@@ -192,7 +195,7 @@ namespace ValidatableControl {
     }
 
 
-    /* ━━━ Public getters and getter-like methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ━━━ Public Getters and Getter-like Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     public getExpectedToBeValidValue(): ValidValue {
 
       if (this.isInvalid) {
@@ -347,7 +350,7 @@ namespace ValidatableControl {
     }
 
 
-    /* ─── IDs generating ─────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ─── IDs Generating ─────────────────────────────────────────────────────────────────────────────────────────── */
     protected static counterForSelfID_Generating: number = 0;
 
     protected static generateSelfID(): string {

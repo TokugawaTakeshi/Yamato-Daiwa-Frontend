@@ -1,0 +1,275 @@
+include ValidatableControlShell.class.pug
+
+
+mixin ValidatableControlShell--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      /** @type { string | undefined } */
+      label,
+
+      /** @type { string | undefined } */
+      guidance,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      required,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+
+      /** @type { string | undefined } */
+      coreElementHTML_ID,
+
+      /** @type { string | undefined } */
+      labelElementHTML_ID,
+
+      /**
+       * @type { Array<string> }
+       * @default []
+       * */
+      mainSlotWrapperAdditionalCSS_Classes,
+
+      /**
+       * @type { string }
+       * @default ValidatableControlShell__YDF.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default ValidatableControlShell__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default ValidatableControlShell__YDF.GeometricVariations.regular
+       */
+      geometricVariation,
+
+      /**
+       * @type { string }
+       * @default ValidatableControlShell__YDF.DecorativeVariations.regular
+       */
+      decorativeVariation
+
+    } = processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: ValidatableControlShell__YDF.propertiesSpecification,
+      mixinName: ValidatableControlShell__YDF.CSS_NAMESPACE
+    });
+
+    const {
+
+      /**
+       * @type { boolean | ReadonlyArray<string> }
+       * @default false
+       * */
+      validationErrorsMessages,
+
+      /**
+       * @type { boolean | ReadonlyArray<"IN_PROGRESS" | "FINISHED_BUT_INVALID" | "FINISHED_AND_VALID" | "MALFUNCTION"> }
+       * @default false
+       * */
+      asynchronousValidationsStatuses
+
+    } = processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: ValidatableControlShell__YDF.statesSimulationsSpecification,
+      mixinName: ValidatableControlShell__YDF.CSS_NAMESPACE
+    });
+
+
+    /** @type { string | undefined } */
+    let formattedGuidance;
+
+    if (isNotUndefined(guidance)) {
+      formattedGuidance = ValidatableControlShell__YDF.formatGuidance(guidance);
+    }
+
+    /** @type { ReadonlyArray<string> } */
+    const rootElementModifierCSS_Classes = [
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: ValidatableControlShell__YDF.Themes,
+        CSS_Namespace: ValidatableControlShell__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: ValidatableControlShell__YDF.GeometricVariations,
+        CSS_Namespace: ValidatableControlShell__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: ValidatableControlShell__YDF.DecorativeVariations,
+        CSS_Namespace: ValidatableControlShell__YDF.CSS_NAMESPACE
+      })
+
+    ];
+
+
+    /** @type { boolean } */
+    const mustDisplayRequiredInputBadge = required && mustDisplayAppropriateBadgeIfInputIsRequired;
+
+    /** @type { boolean } */
+    const mustDisplayOptionalInputBadge = !required && mustDisplayAppropriateBadgeIfInputIsOptional;
+
+    /** @type { boolean } */
+    const mustDisplayHeader = label ||
+        mustDisplayRequiredInputBadge ||
+        mustDisplayOptionalInputBadge ||
+        mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge;
+
+
+  .ValidatableControlShell--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
+
+    //- ━━━ Header ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if mustDisplayHeader
+
+      .ValidatableControlShell--YDF-Header
+
+        if label
+
+          label.ValidatableControlShell--YDF-Label(
+            for=coreElementHTML_ID
+            id=labelElementHTML_ID
+          )= label
+
+        if mustDisplayRequiredInputBadge
+
+          +Badge--YDF({
+            valueLabel: ValidatableControlShell__YDF.localization.requirementBadges.required,
+            theme: ValidatableControlShell__YDF.selfAndChildrenComponentsThemesCorrespondence.badge[theme],
+            geometricVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
+                badge[decorativeVariation],
+            geometricModifiers: [ Badge__YDF.GeometricModifiers.pillShape ],
+            decorativeVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.
+                requiredInputBadge[decorativeVariation]
+          }).ValidatableControlShell--YDF-Badge.ValidatableControlShell--YDF-Badge__Required
+
+        else if mustDisplayOptionalInputBadge
+
+          +Badge--YDF({
+            valueLabel: ValidatableControlShell__YDF.localization.requirementBadges.optional,
+            theme: ValidatableControlShell__YDF.selfAndChildrenComponentsThemesCorrespondence.badge[theme],
+            geometricVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
+                badge[decorativeVariation],
+            geometricModifiers: [ Badge__YDF.GeometricModifiers.pillShape ],
+            decorativeVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.
+                optionalInputBadge[decorativeVariation]
+          }).ValidatableControlShell--YDF-Badge.ValidatableControlShell--YDF-Badge__Optional
+
+        else if mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge
+
+          +Badge--YDF({
+            valueLabel: ValidatableControlShell__YDF.localization.requirementBadges.optional,
+            theme: ValidatableControlShell__YDF.selfAndChildrenComponentsThemesCorrespondence.badge[theme],
+            geometricVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
+                badge[decorativeVariation],
+            geometricModifiers: [ Badge__YDF.GeometricModifiers.pillShape ],
+            decorativeVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.
+                optionalInputBadge[decorativeVariation]
+          }).ValidatableControlShell--YDF-Badge.ValidatableControlShell--YDF-Badge__Invisible
+
+
+    //- ━━━ Guidance ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if formattedGuidance
+
+      p.ValidatableControlShell--YDF-Guidance!=formattedGuidance
+
+
+    //- ━━━ Main Slot ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    .ValidatableControlShell--YDF-MainSlotCustomizableWrapper(
+      class= mainSlotWrapperAdditionalCSS_Classes
+    )
+
+      block
+
+
+    //- ━━━ (Non-asynchronous) Validations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if validationErrorsMessages === true
+      ul.ValidatableControlShell--YDF-ValidationErrorsMessagesList
+        each sampleValidationErrorMessage in ValidatableControlShell__YDF.localization.sampleValidationErrorsMessages
+          li.ValidatableControlShell--YDF-ValidationErrorMessage= sampleValidationErrorMessage
+
+    else if Array.isArray(validationErrorsMessages) && validationErrorsMessages.length > 0
+      ul.ValidatableControlShell--YDF-ValidationErrorsMessagesList
+        each validationErrorMessage in validationErrorsMessages
+          li.ValidatableControlShell--YDF-ValidationErrorMessage= validationErrorMessage
+
+    template&attributes({
+      [ValidatableControlShell__YDF.DOM_AccessResources.validationErrorsMessagesListMountingPoint.DATA_ATTRIBUTE_KEY]: ""
+    })
+
+
+    //- ━━━ Asynchronous Validations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if asynchronousValidationsStatuses === true || isNonEmptyArray(asynchronousValidationsStatuses)
+
+      ul.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList
+
+        -
+          const _asynchronousValidationsStatuses = asynchronousValidationsStatuses === true ?
+              ValidatableControlShell__YDF.localization.sampleAsynchronousValidationsStatuses : asynchronousValidationsStatuses;
+
+        each asynchronousValidationsStatus in _asynchronousValidationsStatuses
+
+          case asynchronousValidationsStatus.ID
+
+            when AsynchronousValidations__YDF.Statuses.inProgress
+
+              li.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item(
+                class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__InProgressState"
+              )
+                +LoadingIndicator--YDF({
+                  type: LoadingIndicator__YDF.Types.variableWidthArcSpinner,
+                  geometricVariation: LoadingIndicator__YDF.GeometricVariations.small
+                }).ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-LoadingIndicator
+                p.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text= asynchronousValidationsStatus.message
+
+            when AsynchronousValidations__YDF.Statuses.finishedAndValid
+
+              li.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item(
+                class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__SucceededAndValidState"
+              )
+                +Checkmark__Circled__Filled--YDF_Icon.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon
+                p.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text= asynchronousValidationsStatus.message
+
+            when AsynchronousValidations__YDF.Statuses.malfunction
+
+              li.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item(
+                class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__MalfunctionState"
+              )
+                +MultiplicationSign__Boxed__Filled--YDF_Icon.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon
+                p.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text= asynchronousValidationsStatus.message
+
+    template&attributes({
+      [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesListMountingPoint.DATA_ATTRIBUTE_KEY]: ""
+    })

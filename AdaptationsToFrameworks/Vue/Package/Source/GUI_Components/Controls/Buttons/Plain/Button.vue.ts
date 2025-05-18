@@ -1,6 +1,20 @@
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import componentVueTemplate from "./Button.vue.pug";
 
+/* ─── Validations ─────────────────────────────────────────────────────────────────────────────────────── */
+import VuePropertyValidator from "../../../_VuePropertiesValidators/VuePropertyValidator";
+import BooleanVuePropertyValidator from "../../../_VuePropertiesValidators/BooleanVuePropertyValidator";
+import ElementOfEnumerationVuePropertyValidator from "../../../_VuePropertiesValidators/ElementOfEnumerationVuePropertyValidator";
+import NonEmptyStringVuePropertyValidator from "../../../_VuePropertiesValidators/NonEmptyStringVuePropertyValidator";
+import ThemeVuePropertyValidator from "../../../_VuePropertiesValidators/ThemeVuePropertyValidator";
+import GeometricVariationVuePropertyValidator from "../../../_VuePropertiesValidators/GeometricVariationVuePropertyValidator";
+import GeometricModifiersVuePropertyValidator from "../../../_VuePropertiesValidators/GeometricModifiersVuePropertyValidator";
+import DecorativeVariationVuePropertyValidator from "../../../_VuePropertiesValidators/DecorativeVariationVuePropertyValidator";
+import DecorativeModifiersVuePropertyValidator from "../../../_VuePropertiesValidators/DecorativeModifiersVuePropertyValidator";
+import InvalidVuePropertiesCombinationError from
+    "../../../_Errors/InvalidVuePropertiesCombination/InvalidVuePropertiesCombinationError";
+import preventNullForOptionalVueProperty from "../../../_Decorators/preventNullForOptionalVueProperty";
+
 /* ─── Framework ──────────────────────────────────────────────────────────────────────────────────────────────────── */
 import {
   ComponentBase as VueComponentConfiguration,
@@ -10,17 +24,13 @@ import {
 import type { RouteLocationRaw as VueRouterRawLocation } from "vue-router";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
-import ComponentsAuxiliaries from "../../../ComponentsAuxiliaries";
-import InvalidVuePropertiesCombinationError from
-    "../../../_Errors/InvalidVuePropertiesCombination/InvalidVuePropertiesCombinationError";
+import YDF_ComponentsCoordinator from "../../../YDF_ComponentsCoordinator";
 import {
   Logger,
   isNumber,
-  isString,
   isNonEmptyString,
   isEitherUndefinedOrNull,
   isNeitherUndefinedNorNull,
-  isElementOfEnumeration,
   isArbitraryObject,
   emptyStringToNull,
   type ElementOfPseudoEnumeration
@@ -55,40 +65,126 @@ class Button extends VueComponent {
 
   /* ━━━ Common Properties ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   @VueProperty({
-    type: String,
     default: Button.HTML_Types.regular,
-    validator: (rawValue: string): boolean => isElementOfEnumeration(rawValue, Button.HTML_Types)
+    get validator(): VuePropertyValidator {
+      return ElementOfEnumerationVuePropertyValidator({
+        enumerationFullyQualifiedName: "Button.HTML_Types",
+        enumeration: Button.HTML_Types,
+        propertyName: "HTML_Type",
+        componentName: Button.CSS_NAMESPACE,
+        isPropertyRequired: this.required === true
+      });
+    }
   })
+  @preventNullForOptionalVueProperty
   protected readonly HTML_Type!: ElementOfPseudoEnumeration<Button.HTML_Types>;
 
 
   /* ─── Textings ─────────────────────────────────────────────────────────────────────────────────────────────────── */
-  @VueProperty({ validator: (value: unknown): boolean => isNonEmptyString(value) || isNumber(value) })
-  protected readonly label?: string | number | null;
+  @VueProperty({
+    required: false,
+    validator: VuePropertyValidator.create({
+      checker: (rawValue: unknown): boolean => isNonEmptyString(rawValue) || isNumber(rawValue),
+      messageSpecificPart: "If specified, must be either non-empty string or number.",
+      propertyName: "label",
+      componentName: Button.CSS_NAMESPACE
+    })
+  })
+  @preventNullForOptionalVueProperty
+  protected readonly label?: string | number;
 
-  @VueProperty({ validator: isNonEmptyString })
-  protected readonly accessibilityGuidance?: string | null;
+  @VueProperty({
+    required: false,
+    get validator(): VuePropertyValidator {
+      return NonEmptyStringVuePropertyValidator({
+        isPropertyRequired: this.required === true,
+        propertyName: "accessibilityGuidance",
+        componentName: Button.CSS_NAMESPACE
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
+  protected readonly accessibilityGuidance?: string;
 
 
   /* ─── Links ────────────────────────────────────────────────────────────────────────────────────────────────────── */
-  @VueProperty({ validator: (value: unknown): boolean => isNonEmptyString(value) || isArbitraryObject(value) })
-  protected readonly route?: VueRouterRawLocation | null;
+  @VueProperty({
+    required: false,
+    validator: VuePropertyValidator.create({
+      checker: (rawValue: unknown): boolean => isNonEmptyString(rawValue) || isArbitraryObject(rawValue),
+      messageSpecificPart: "If specified, must be either non-empty string or an object.",
+      propertyName: "route",
+      componentName: Button.CSS_NAMESPACE
+    })
+  })
+  @preventNullForOptionalVueProperty
+  protected readonly route?: VueRouterRawLocation;
 
-  @VueProperty({ validator: isNonEmptyString })
-  protected readonly externalURI?: string | null;
+  @VueProperty({
+    required: false,
+    get validator(): VuePropertyValidator {
+      return NonEmptyStringVuePropertyValidator({
+        propertyName: "externalURI",
+        isPropertyRequired: this.required === true,
+        componentName: Button.CSS_NAMESPACE
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
+  protected readonly externalURI?: string;
 
-  @VueProperty({ type: Boolean, default: false })
+  @VueProperty({
+    default: false,
+    get validator(): VuePropertyValidator {
+      return BooleanVuePropertyValidator({
+        propertyName: "mustOpenLinkInNewTab",
+        componentName: Button.CSS_NAMESPACE,
+        isPropertyRequired: this.required === true
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
   protected readonly mustOpenLinkInNewTab!: boolean;
 
-  @VueProperty({ type: Boolean, default: false })
+  @VueProperty({
+    default: false,
+    get validator(): VuePropertyValidator {
+      return BooleanVuePropertyValidator({
+        propertyName: "mustRequestNotFollowLinkForCrawlingToSearchEngine",
+        componentName: Button.CSS_NAMESPACE,
+        isPropertyRequired: this.required === true
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
   protected readonly mustRequestNotFollowLinkForCrawlingToSearchEngine!: boolean;
 
 
   /* ─── Status ───────────────────────────────────────────────────────────────────────────────────────────────────── */
-  @VueProperty({ type: Boolean, default: false })
+  @VueProperty({
+    default: false,
+    get validator(): VuePropertyValidator {
+      return BooleanVuePropertyValidator({
+        propertyName: "disabled",
+        componentName: Button.CSS_NAMESPACE,
+        isPropertyRequired: this.required === true
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
   protected readonly disabled!: boolean;
 
-  @VueProperty({ type: Boolean, default: false })
+  @VueProperty({
+    default: false,
+    get validator(): VuePropertyValidator {
+      return BooleanVuePropertyValidator({
+        propertyName: "toggled",
+        componentName: Button.CSS_NAMESPACE,
+        isPropertyRequired: this.required === true
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
   protected readonly toggled!: boolean;
 
 
@@ -96,23 +192,33 @@ class Button extends VueComponent {
   public static readonly Themes: Button.Themes = { regular: "REGULAR" };
 
   @VueProperty({
-    type: String,
     default: Button.Themes.regular,
-    validator: (rawValue: string): boolean => isElementOfEnumeration(rawValue, Button.Themes)
+    validator: ThemeVuePropertyValidator(Button)
   })
+  @preventNullForOptionalVueProperty
   protected readonly theme!: string;
 
   public static defineThemes(themesNames: ReadonlyArray<string>): typeof Button {
-    return ComponentsAuxiliaries.defineThemes(themesNames, Button);
+    return YDF_ComponentsCoordinator.defineThemes(themesNames, Button);
   }
 
-  public static areThemesCSS_ClassesCommon: boolean = ComponentsAuxiliaries.areThemesCSS_ClassesCommon;
+  public static areThemesCSS_ClassesCommon: boolean = YDF_ComponentsCoordinator.areThemesCSS_ClassesCommon;
 
   public static considerThemesAsCommon(): void {
     Button.areThemesCSS_ClassesCommon = true;
   }
 
-  @VueProperty({ type: Boolean, default: Button.areThemesCSS_ClassesCommon })
+  @VueProperty({
+    default: Button.areThemesCSS_ClassesCommon,
+    get validator(): VuePropertyValidator {
+      return BooleanVuePropertyValidator({
+        propertyName: "areThemesCSS_ClassesCommon",
+        componentName: Button.CSS_NAMESPACE,
+        isPropertyRequired: this.required === true
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
   private readonly areThemesCSS_ClassesCommon!: boolean;
 
 
@@ -124,25 +230,35 @@ class Button extends VueComponent {
   };
 
   @VueProperty({
-    type: String,
     default: Button.GeometricVariations.regular,
-    validator: (rawValue: string): boolean => isElementOfEnumeration(rawValue, Button.GeometricVariations)
+    validator: GeometricVariationVuePropertyValidator(Button)
   })
+  @preventNullForOptionalVueProperty
   protected readonly geometricVariation!: string;
 
   public static defineGeometricVariations(geometricVariationsNames: ReadonlyArray<string>): typeof Button {
-    return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, Button);
+    return YDF_ComponentsCoordinator.defineGeometricVariations(geometricVariationsNames, Button);
   }
 
+  public static readonly GeometricModifiers: Button.GeometricModifiers = {
+    pillShape: "PILL_SHAPE",
+    squareShape: "SQUARE_SHAPE",
+    squareShapeUnlessOverflowed: "SQUARE_SHAPE_UNLESS_OVERFLOWED",
+    singleLine: "SINGLE_LINE",
+    noLeftBorderAndRoundings: "NO_LEFT_BORDER_AND_ROUNDINGS",
+    noRightBorderAndRoundings: "NO_RIGHT_BORDER_AND_ROUNDINGS",
+    noTopBorderAndRoundings: "NO_TOP_BORDER_AND_ROUNDINGS",
+    noBottomBorderAndRoundings: "NO_BOTTOM_BORDER_AND_ROUNDINGS",
+    noRoundings: "NO_ROUNDINGS",
+    horizontallyShrinkable: "HORIZONTALLY_SHRINKABLE"
+  };
+
   @VueProperty({
-    type: Array,
-    default: (): ReadonlyArray<string> => [],
-    validator: (rawValue: ReadonlyArray<unknown>): boolean =>
-        rawValue.every(
-          (element: unknown): boolean => isString(element) && isElementOfEnumeration(element, Button.GeometricModifiers)
-        )
+    default: (): ReadonlyArray<ElementOfPseudoEnumeration<Button.GeometricModifiers>> => [],
+    validator: GeometricModifiersVuePropertyValidator(Button)
   })
-  protected readonly geometricModifiers!: ReadonlyArray<Button.GeometricModifiers>;
+  @preventNullForOptionalVueProperty
+  protected readonly geometricModifiers!: ReadonlyArray<ElementOfPseudoEnumeration<Button.GeometricModifiers>>;
 
 
   /* ─── Decoration ───────────────────────────────────────────────────────────────────────────────────────────────── */
@@ -154,53 +270,37 @@ class Button extends VueComponent {
   };
 
   @VueProperty({
-    type: String,
     default: Button.DecorativeVariations.regular,
-    validator: (rawValue: string): boolean => isElementOfEnumeration(rawValue, Button.DecorativeVariations)
+    validator: DecorativeVariationVuePropertyValidator(Button)
   })
+  @preventNullForOptionalVueProperty
   protected readonly decorativeVariation!: string;
 
   public static defineDecorativeVariations(decorativeVariationsNames: ReadonlyArray<string>): typeof Button {
-    return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, Button);
+    return YDF_ComponentsCoordinator.defineDecorativeVariations(decorativeVariationsNames, Button);
   }
 
+  public static readonly DecorativeModifiers: Button.DecorativeModifiers = {
+    bordersDisguising: "BORDERS_DISGUISING",
+    noBackground: "NO_BACKGROUND",
+    noBackgroundInDefaultState: "NO_BACKGROUND_IN_DEFAULT_STATE"
+  };
 
   @VueProperty({
-    type: Array,
-    default: (): ReadonlyArray<string> => [],
-    validator: (rawValue: ReadonlyArray<unknown>): boolean =>
-        rawValue.every(
-          (element: unknown): boolean => isString(element) && isElementOfEnumeration(element, Button.DecorativeModifiers)
-        )
+    default: (): ReadonlyArray<ElementOfPseudoEnumeration<Button.DecorativeModifiers>> => [],
+    validator: DecorativeModifiersVuePropertyValidator(Button)
   })
-  protected readonly decorativeModifiers!: ReadonlyArray<Button.DecorativeModifiers>;
+  protected readonly decorativeModifiers!: ReadonlyArray<ElementOfPseudoEnumeration<Button.DecorativeModifiers>>;
 
 
   /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public created(): void {
-
-    if (
-      (!isNonEmptyString(this.label) && isNumber(this.label)) &&
-      (
-        this.HTML_Type === Button.HTML_Types.inputButton ||
-        this.HTML_Type === Button.HTML_Types.inputSubmit ||
-        this.HTML_Type === Button.HTML_Types.inputReset
-      )
-    ) {
-      Logger.throwErrorAndLog({
-        errorInstance: new InvalidVuePropertiesCombinationError({
-          vueComponentName: Button.name,
-          messageSpecificPart:
-              "When button has HTML type \"inputButton\", \"inputSubmit\" or \"inputReset\", the \"label\" property " +
-                "must be specified with non-empty string of number."
-        }),
-        title: InvalidVuePropertiesCombinationError.localization.defaultTitle,
-        occurrenceLocation: `${ Button.name }.created()`
-      });
-    }
-
+  protected created(): void {
     this.initializeNonReactiveClassFields();
+    this.validateProperties();
+  }
 
+  protected beforeUpdate(): void {
+    this.validateProperties();
   }
 
 
@@ -261,37 +361,48 @@ class Button extends VueComponent {
 
   /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected get rootElementModifierCSS_Classes(): ReadonlyArray<string> {
-    return [
+    return YDF_ComponentsCoordinator.generateRootElementModifierCSS_Classes({
+      CSS_Namespace: Button.CSS_NAMESPACE,
+      activeTheme: this.theme,
+      allThemes: Button.Themes,
+      areThemesCSS_ClassesCommon: this.areThemesCSS_ClassesCommon,
+      activeGeometricVariation: this.geometricVariation,
+      allGeometricVariations: Button.GeometricVariations,
+      activeGeometricModifiers: this.geometricModifiers,
+      activeDecorativeVariation: this.decorativeVariation,
+      allDecorativeVariations: Button.DecorativeVariations,
+      activeDecorativeModifiers: this.decorativeModifiers,
+      other: [
+        ...(this.isAnchorTheTagNameOfRootElement || this.isRouterLinkTheRootElement) && this.disabled ?
+            [ `${ Button.CSS_NAMESPACE }__DisabledState` ] : []
+      ]
+    });
+  }
 
-      ...(this.isAnchorTheTagNameOfRootElement || this.isRouterLinkTheRootElement) && this.disabled ?
-          [ `${ Button.CSS_NAMESPACE }__DisabledState` ] : [],
 
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        themeValue: this.theme,
-        allThemes: Button.Themes,
-        areThemesCSS_ClassesCommon: this.areThemesCSS_ClassesCommon,
-        CSS_Namespace: Button.CSS_NAMESPACE
-      }),
+  /* ━━━ Properties Validation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected validateProperties(): void {
 
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation: this.geometricVariation,
-        allGeometricVariations: Button.GeometricVariations,
-        CSS_Namespace: Button.CSS_NAMESPACE
-      }),
+    if (
+      (!isNonEmptyString(this.label) && isNumber(this.label)) &&
+      (
+        this.HTML_Type === Button.HTML_Types.inputButton ||
+        this.HTML_Type === Button.HTML_Types.inputSubmit ||
+        this.HTML_Type === Button.HTML_Types.inputReset
+      )
+    ) {
+      Logger.throwErrorAndLog({
+        errorInstance: new InvalidVuePropertiesCombinationError({
+          vueComponentName: Button.CSS_NAMESPACE,
+          messageSpecificPart:
+              "When button has HTML type \"inputButton\", \"inputSubmit\" or \"inputReset\", the \"label\" property " +
+                "must be specified with non-empty string of number."
+        }),
+        title: InvalidVuePropertiesCombinationError.localization.defaultTitle,
+        occurrenceLocation: `${ Button.CSS_NAMESPACE }.created/beforeUpdate()`
+      });
+    }
 
-      ...ComponentsAuxiliaries.
-          generateDemandedGeometricModifiersCSS_Classes(Button.CSS_NAMESPACE, this.geometricModifiers),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation: this.decorativeVariation,
-        allDecorativeVariations: Button.DecorativeVariations,
-        CSS_Namespace: Button.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.
-          generateDemandedDecorativeModifiersCSS_Classes(Button.CSS_NAMESPACE, this.decorativeModifiers)
-
-    ];
   }
 
 }
@@ -319,18 +430,18 @@ namespace Button {
     [variationName: string]: string;
   };
 
-  export enum GeometricModifiers {
-    pillShape = "PILL_SHAPE",
-    squareShape = "SQUARE_SHAPE",
-    squareShapeUnlessOverflowed = "SQUARE_SHAPE_UNLESS_OVERFLOWED",
-    singleLine = "SINGLE_LINE",
-    noLeftBorderAndRoundings = "NO_LEFT_BORDER_AND_ROUNDINGS",
-    noRightBorderAndRoundings = "NO_RIGHT_BORDER_AND_ROUNDINGS",
-    noTopBorderAndRoundings = "NO_TOP_BORDER_AND_ROUNDINGS",
-    noBottomBorderAndRoundings = "NO_BOTTOM_BORDER_AND_ROUNDINGS",
-    noRoundings = "NO_ROUNDINGS",
-    horizontallyShrinkable = "HORIZONTALLY_SHRINKABLE"
-  }
+  export type GeometricModifiers = Readonly<{
+    pillShape: "PILL_SHAPE";
+    squareShape: "SQUARE_SHAPE";
+    squareShapeUnlessOverflowed: "SQUARE_SHAPE_UNLESS_OVERFLOWED";
+    singleLine: "SINGLE_LINE";
+    noLeftBorderAndRoundings: "NO_LEFT_BORDER_AND_ROUNDINGS";
+    noRightBorderAndRoundings: "NO_RIGHT_BORDER_AND_ROUNDINGS";
+    noTopBorderAndRoundings: "NO_TOP_BORDER_AND_ROUNDINGS";
+    noBottomBorderAndRoundings: "NO_BOTTOM_BORDER_AND_ROUNDINGS";
+    noRoundings: "NO_ROUNDINGS";
+    horizontallyShrinkable: "HORIZONTALLY_SHRINKABLE";
+  }>;
 
   export type DecorativeVariations = {
     readonly regular: "REGULAR";
@@ -340,11 +451,11 @@ namespace Button {
     [variationName: string]: string;
   };
 
-  export enum DecorativeModifiers {
-    bordersDisguising = "BORDERS_DISGUISING",
-    noBackground = "NO_BACKGROUND",
-    noBackgroundInDefaultState = "NO_BACKGROUND_IN_DEFAULT_STATE"
-  }
+  export type DecorativeModifiers = Readonly<{
+    bordersDisguising: "BORDERS_DISGUISING";
+    noBackground: "NO_BACKGROUND";
+    noBackgroundInDefaultState: "NO_BACKGROUND_IN_DEFAULT_STATE";
+  }>;
 
 }
 

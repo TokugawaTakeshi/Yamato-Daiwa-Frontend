@@ -23,14 +23,6 @@ class BadgeGallery extends Gallery<BadgeGallery.PartialsFlags> {
   private static readonly textOverflowSafetyTest: string =
       `OVERFLOW_TEST-gh${ getRandomString({ minimalCharactersCount: 100 }) }`;
 
-  private readonly mustRenderAtLeansOnePartialRelatedWithGeometricModifier =
-      this.props.partialsFlags.pillShapeGeometricModifier === true ||
-      this.props.partialsFlags.singleLineGeometricModifier === true;
-
-  private readonly mustRenderAtLeansOnePartialRelatedWithDecorativeModifier =
-      this.props.partialsFlags.bordersDisguisingDecorativeModifier === true ||
-      this.props.partialsFlags.noBackgroundDecorativeModifier === true;
-
   private readonly todayDate__localized__stringified = new Date().toLocaleDateString();
 
   public render(): React.ReactNode {
@@ -38,9 +30,9 @@ class BadgeGallery extends Gallery<BadgeGallery.PartialsFlags> {
       <>
 
         <h1
-            className={
-              [ "Heading1", ...this.props.mustVisuallyHideTopHeading ? [ "YDF_Gallery-InvisibleHeading" ] : [] ].join(" ")
-            }
+          className={
+            [ "Heading1", ...this.props.mustVisuallyHideTopHeading ? [ "YDF_Gallery-InvisibleHeading" ] : [] ].join(" ")
+          }
         >
           Badge Component Demos
         </h1>
@@ -376,7 +368,7 @@ class BadgeGallery extends Gallery<BadgeGallery.PartialsFlags> {
         }
 
 
-        { /*─── No Background ───────────────────────────────────────────────────────────────────────────────────── */ }
+        { /* ─── No Background ──────────────────────────────────────────────────────────────────────────────────── */ }
         {
 
           (this.mustRenderAllPartials || this.props.partialsFlags.bordersDisguisingDecorativeModifier) && <>
@@ -421,7 +413,7 @@ class BadgeGallery extends Gallery<BadgeGallery.PartialsFlags> {
         }
 
 
-        { /* ━━━ Decorative Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */ }
+        { /* ━━━ Loading Placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */ }
         {
 
           (this.mustRenderAllPartials || this.props.partialsFlags.bordersDisguisingDecorativeModifier) && <>

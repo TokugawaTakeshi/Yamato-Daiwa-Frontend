@@ -1,6 +1,9 @@
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
-import type { AdmonitionBlockLocalization } from "@yamato-daiwa/frontend";
-import { CollapsingAnimation, admonitionBlockYDF_ComponentLocalization__english } from "@yamato-daiwa/frontend";
+import {
+  CollapsingAnimation,
+  admonitionBlockYDF_ComponentLocalization__english,
+  type AdmonitionBlockLocalization
+} from "@yamato-daiwa/frontend";
 import PencilIcon__Circled__Filled from "../SVG_Icons/Pencil/PencilIcon__Circled__Filled";
 import ExclamationMarkIcon__Circled__Filled from "../SVG_Icons/ExclamationMark/ExclamationMarkIcon__Circled__Filled";
 import ExclamationMarkIcon__Triangled__Filled from "../SVG_Icons/ExclamationMark/ExclamationMarkIcon__Triangled__Filled";

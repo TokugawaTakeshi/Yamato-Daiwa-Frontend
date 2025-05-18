@@ -25,12 +25,11 @@
   },
   "module": "./LogicDistributable/index.js",
   "types": "./LogicDistributable/index.d.ts",
-
   "peerDependencies": {
-    "@yamato-daiwa/frontend": "2.0.0-beta.6"
+    "@yamato-daiwa/frontend": "2.0.0-beta.10"
   },
   "devDependencies": {
-    "@yamato-daiwa/frontend": "../../Package",
+    "@yamato-daiwa/frontend": "2.0.0-beta.10",
     "@yamato-daiwa/style_guides": "0.6.2",
     "rimraf": "6.0.1"
   },

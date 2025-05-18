@@ -2,7 +2,7 @@
 * This limitation is unsolicited for the namespaced classes, however, there is no ESLint option allowing this case. */
 import { isBoolean, Logger } from "@yamato-daiwa/es-extensions";
 
-import inputtedValueValidationLocalization__english from "./InputtedValueValidationLocaization.english";
+import inputtedValueValidationLocalization__english from "./InputtedValueValidationLocalization.english";
 
 
 abstract class InputtedValueValidation {

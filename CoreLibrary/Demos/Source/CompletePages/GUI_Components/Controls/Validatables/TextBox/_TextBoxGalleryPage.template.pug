@@ -14,14 +14,14 @@ block append Metadata
   -
 
     /**
-     * @param { string } [partialTitle]
+     * @param { string | undefined } partialTitle
      * @returns { string }
      * */
     function generateHTML_PageTitle(partialTitle) {
       return [
         "TextBox Component Demos",
         ...partialTitle ? [ ` — ${ partialTitle }` ] : [],
-        " — Yamato Daiwa Frontend (YDF)"
+        " — Yamato Daiwa Frontend Vue (YDF Vue)"
       ].join("");
     }
 

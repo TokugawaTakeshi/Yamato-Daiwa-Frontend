@@ -52,6 +52,18 @@
 
     }
 
+    static get mustRenderGeometricModifiersSection() {
+      return !!Object.entries(GalleryConfigurator.partialsRenderingFlags).
+          filter(([ partialKey ]) => partialKey.includes("GEOMETRIC_MODIFIER")).
+          find(([, mustRender ]) => mustRender)
+    }
+
+    static get mustRenderDecorativeModifiersSection() {
+      return !!Object.entries(GalleryConfigurator.partialsRenderingFlags).
+          filter(([ partialKey ]) => partialKey.includes("DECORATIVE_MODIFIER")).
+          find(([, mustRender]) => mustRender)
+    }
+
 
     /* ━━━ Headings ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /**

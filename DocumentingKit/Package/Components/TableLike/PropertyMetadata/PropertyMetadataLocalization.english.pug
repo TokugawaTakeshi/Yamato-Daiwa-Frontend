@@ -3,15 +3,59 @@
   const propertyMetadataYDF_DK_ComponentLocalization__english = {
     localizedInterpretation: "Interpretation",
     type: "Type",
-    typesAlternatives: "Types Alternatives",
+    types: {
+      indexedArray: "Indexed array",
+      associativeArrayLikeObject: "Associative array like object",
+    },
+    polymorphicPropertyVariants: "Variants",
+
+    /* ━━━ Undefindability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    isUndefinedForbidden: "Is Undefined Forbidden",
+    undefinedForbiddenIf: "Undefined Forbidden if",
+    undefinedValueSubstitution: "Undefined Value Substitution",
+    mustTransformUndefinedToNull: "Will undefined be considered as null",
+    mustBeUndefinedIf: "Must be undefined if",
+
+    /* ━━━ Nullability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    isNullForbidden: "Is Null Forbidden",
+    nullForbiddenIf: "Null Forbidden if",
+    nullValueSubstitution: "Null Value Substitution",
+    mustTransformNullToUndefined: "Will null be considered as undefined",
+    mustBeNullIf: "Must be null if",
+
+    /* ━━━ Common Requirement for Languages With Single Empty Type ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     defaultValue: "Default Value",
     required: "Required",
     requiredIf: "Required if",
+
+    /* ━━━ By Types ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── Associative Array ──────────────────────────────────────────────────────────────────────────────────────── */
+    areUndefinedTypeValuesForbidden: "Are Undefined Type Values Forbidden",
+    areNullTypeValuesForbidden: "Are Null Type Values Forbidden",
+    minimalEntriesCount: "Minimal Entries",
+
+
     yes: "Yes",
     no: "No",
     minimalCharactersCount: "Minimal Characters",
     maximalCharactersCount: "Maximum Characters",
+    numbersSet: "Numbers Set",
+    numbersSets: {
+      [RawObjectDataProcessor.NumbersSets.naturalNumber]: "Natural Number",
+      [RawObjectDataProcessor.NumbersSets.nonNegativeInteger]: "Non-negative Integer",
+      [RawObjectDataProcessor.NumbersSets.negativeInteger]: "Negative Integer",
+      [RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero]: "Negative Integer of Zero",
+      [RawObjectDataProcessor.NumbersSets.anyInteger]: "Any Integer",
+      [RawObjectDataProcessor.NumbersSets.positiveDecimalFraction]: "Positive Decimal Fraction",
+      [RawObjectDataProcessor.NumbersSets.negativeDecimalFraction]: "Negative Decimal Fraction",
+      [RawObjectDataProcessor.NumbersSets.decimalFractionOfAnySign]: "Decimal Fraction of Any Sign",
+      [RawObjectDataProcessor.NumbersSets.anyRealNumber]: "Any Real Number"
+    },
     minimalValue: "Minimal Value",
     maximalValue: "Maximal Value",
-    allowedAlternatives: "Allowed Alternatives"
+    allowedKeys: "Allowed Keys",
+    allowedAlternatives: "Allowed Alternatives",
+    objectTypeSchema: "Schema",
+    associativeArrayValues: "Associative Array Values",
+    arrayElements: "Array Elements"
   };

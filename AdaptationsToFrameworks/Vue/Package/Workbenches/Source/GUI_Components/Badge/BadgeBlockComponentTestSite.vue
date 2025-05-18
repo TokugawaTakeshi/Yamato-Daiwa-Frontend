@@ -32,6 +32,6 @@
   InitialGlobalCSS_Rules()
 
 
-  provideBadgeYDF_Component()
+  generateBadgeYDF_GUI_ComponentStyles()
 
 </style>

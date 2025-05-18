@@ -44,6 +44,6 @@ Button(
   InitialGlobalCSS_Rules()
 
 
-  provideButtonYDF_Component()
+  generateButtonYDF_GUI_ComponentStyles()
 
 </style>

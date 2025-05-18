@@ -7,13 +7,13 @@ mixin ClosingButton--YDF(properties)
 
     const {
 
-      noLabel = false,
-      labelLetterCase = ClosingButton__YDF.LabelLetterCases.uppercase,
+      noLabel,
+      labelLetterCase,
 
-      theme = ClosingButton__YDF.Themes.regular,
-      areThemesExternal = ComponentsAuxiliaries.areComponentsThemesCommon || ClosingButton__YDF.areThemesCSS_ClassesCommon,
-      geometricVariation = ClosingButton__YDF.GeometricVariations.regular,
-      decorativeVariation = ClosingButton__YDF.DecorativeVariations.regular
+      theme,
+      areThemesExternal,
+      geometricVariation,
+      decorativeVariation
 
     } = processObjectTypeParameterOfPugMixin({
       rawParameter: properties,

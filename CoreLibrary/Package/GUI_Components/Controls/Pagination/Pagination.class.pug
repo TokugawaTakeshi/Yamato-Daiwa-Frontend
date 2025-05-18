@@ -24,22 +24,22 @@
     /**
      * @param {
      *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
-     * } ownAndCorrespondingCompoundControlShellThemesDefinition
+     * } ownAndCorrespondingValidatableControlShellThemesDefinition
      * @example
      * Pagination__YDF.defineThemes({
      *   redmond: {
-     *     compoundControlShell: CompoundControlShell__YDF.Themes.redmond,
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.redmond,
      *     button: Button__YDF.Themes.redmond
      *   },
      *   cupertino: {
-     *     compoundControlShell: CompoundControlShell__YDF.Themes.cupertino,
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.cupertino,
      *     button: Button__YDF.Themes.cupertino
      *   }
      * });
      */
-    static defineThemes(ownAndCorrespondingCompoundControlShellThemesDefinition) {
+    static defineThemes(ownAndCorrespondingValidatableControlShellThemesDefinition) {
       return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
-        ownAndCorrespondingCompoundControlShellThemesDefinition, Pagination__YDF
+        ownAndCorrespondingValidatableControlShellThemesDefinition, Pagination__YDF
       );
     }
 
@@ -73,9 +73,9 @@
       );
     }
 
-    static defineGeometricVariations(ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition) {
+    static defineGeometricVariations(ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition) {
       return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
-        ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition, Pagination__YDF
+        ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition, Pagination__YDF
       );
     }
 
@@ -92,15 +92,15 @@
       return Pagination__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
         Pagination__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
           button: {
-            [Pagination__YDF.DecorativeVariations.regular]: CompoundControlShell__YDF.DecorativeVariations.regular
+            [Pagination__YDF.DecorativeVariations.regular]: ValidatableControlShell__YDF.DecorativeVariations.regular
           }
         }
       );
     }
 
-    static defineDecorativeVariations(ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition) {
+    static defineDecorativeVariations(ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition) {
       return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
-        ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition, Pagination__YDF
+        ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition, Pagination__YDF
       );
     }
 
@@ -112,28 +112,33 @@
       maximalPageNumberButtonsCount: {
         type: Number,
         numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
-        defaultValue: 5
+        undefinedValueSubstitution: 5,
+        isNullForbidden: true
       },
 
       accessibilityGuidance: {
         type: String,
-        required: true,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       noDisplayMovingToUltimatePagesButtons: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       noDisplayMovingToAdjacentPagesButtons: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       theme: {
         type: String,
-        defaultValue: Pagination__YDF.Themes.regular,
+        undefinedValueSubstitution: Pagination__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Pagination__YDF.Themes).
             map(([ key, value ]) => ({ key: `Pagination__YDF.Themes.${ key }`, value }))
@@ -141,12 +146,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: Pagination__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: Pagination__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: Pagination__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: Pagination__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Pagination__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `Pagination__YDF.GeometricVariations.${ key }`, value }))
@@ -154,7 +161,8 @@
 
       decorativeVariation: {
         type: String,
-        defaultValue: Pagination__YDF.DecorativeVariations.regular,
+        undefinedValueSubstitution: Pagination__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Pagination__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `Pagination__YDF.DecorativeVariations.${ key }`, value }))
@@ -169,15 +177,17 @@
       totalPagesCount: {
         type: Number,
         numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
-        defaultValue: 10
+        undefinedValueSubstitution: 10,
+        isNullForbidden: true
       },
 
       currentPageNumber: {
         type: Number,
         numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
-        defaultValue: 1,
+        undefinedValueSubstitution: 1,
+        isNullForbidden: true,
         customValidators: {
-          validationFunction: ({ currentPropertyValue: currentPageNumber, rawData__currentObjectDepth }) =>
+          validationFunction: ({ value: currentPageNumber, rawData__currentObjectDepth }) =>
               isUndefined(rawData__currentObjectDepth.totalPagesCount) ||
                   currentPageNumber <= rawData__currentObjectDepth.totalPagesCount,
           descriptionForLogging: "\"currentPageNumber\" could not be more than \"totalPagesCount\"."

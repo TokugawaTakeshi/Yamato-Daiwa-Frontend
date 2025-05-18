@@ -7,7 +7,7 @@ provideAdmonitionBlockYDF_Component()
 provideAdmonitionBlockYDF_Component(
   options: {
     themeIndependentStylesOnly: false,
-    externalThemes: false,
+    areThemesCSS_ClassesCommon: false,
     themeIndependentGeometricVariations: true,
     typographyAssimilation: false
   }
@@ -293,7 +293,7 @@ provideAdmonitionBlockYDF_Component({
   // TODO Remove below parameter if you are not going to change the specified below default values
   options: {
     themeIndependentStylesOnly: false,
-    externalThemes: false,
+    areThemesCSS_ClassesCommon: false,
     themeIndependentGeometricVariations: true,
     typographyAssimilation: false
   }
@@ -305,7 +305,7 @@ provideAdmonitionBlockYDF_Component({
 provideAdmonitionBlockYDF_Component({
   options: {
     themeIndependentStylesOnly: true, // You need this option to be `true`, but cam omit remain ones if you are fine with below default values
-    externalThemes: false,
+    areThemesCSS_ClassesCommon: false,
     themeIndependentGeometricVariations: true,
     typographyAssimilation: false
   }

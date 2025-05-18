@@ -1,4 +1,4 @@
-export { default as YDF_ComponentsCoordinator } from "./GUI_Components/ComponentsAuxiliaries";
+export { default as YDF_ComponentsCoordinator } from "./GUI_Components/YDF_ComponentsCoordinator";
 
 /* ━━━ Officially Realized ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* ━━━ GUI Components ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -8,6 +8,10 @@ export { default as Badge } from "./GUI_Components/Badge/Badge.vue";
 export { default as BadgeLoadingPlaceholder } from "./GUI_Components/Badge/LoadingPlaceholder/Badge-LoadingPlaceholder.vue";
 
 /* ─── Controls ───────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┄┄┄ Validatable Control Shell ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+export { default as ValidatableControlShell } from
+    "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell.vue";
+
 /* ┄┄┄ Buttons ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
 export { default as Button } from "./GUI_Components/Controls/Buttons/Plain/Button.vue";
 export { default as ButtonLoadingPlaceholder } from

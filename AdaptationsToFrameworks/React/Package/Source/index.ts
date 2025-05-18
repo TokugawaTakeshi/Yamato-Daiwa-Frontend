@@ -16,3 +16,5 @@ export { default as OverflowSafeSingleLineLabel } from "./GUI_Components/Overflo
 
 /* ━━━ SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export { default as CalendarIcon } from "./SVG_Icons/Calendar/CalendarIcon";
+export { default as HeardIcon__Filled } from "./SVG_Icons/Heart/Heart__Filled";
+export { default as MenuIcon__ThreeDots__Horizontal } from "./SVG_Icons/Menu/MenuIcon__ThreeDots__Horizontal";

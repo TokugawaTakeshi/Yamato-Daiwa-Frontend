@@ -5,17 +5,21 @@ include Markup/InlineECMAScript/GUI_ComponentsRequirements.generated.pug
 
   const {
 
-    /* ━━━ DOM Access ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    AsynchronousValidations: AsynchronousValidations__YDF,
+
+    /* ━━━ DOM Access ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    validatableControlShellDOM_AccessResources: validatableControlShellYDF_GUI_ComponentDOM_AccessResources,
     dateTimePickerYDF_GUI_ComponentDOM_Access,
 
     /* ━━━ Localizations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     admonitionBlockYDF_ComponentLocalization__english,
+    validatableControlShellYDF_ComponentLocalization__english,
     dateTimePickerYDF_ComponentLocalization__english,
     dropDownListYDF_ComponentLocalization__english,
     filesUploaderYDF_ComponentLocalization__english,
     numberBoxYDF_ComponentLocalization__english,
     paginationYDF_ComponentLocalization__english,
-    snackbarYDF_ComponentLocalization__english
+    snackbarYDF_ComponentLocalization__english,
 
   } = (
     //- [ Theory ] `global` is actual for "gulp-pug" with Pug 3, while `globalThis` for `pug-plugin` for Webpack.
@@ -23,7 +27,7 @@ include Markup/InlineECMAScript/GUI_ComponentsRequirements.generated.pug
   ).__YDF_GUI_COMPONENTS_REQUIREMENTS__;
 
 include GUI_Components/_Auxiliaries/ComponentsAuxiliaries.pug
-include GUI_Components/Controls/CompoundControlShell/CompoundControlShell.pug
+include GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell.pug
 //- ====================================================================================================================
 
 
@@ -37,22 +41,23 @@ include GUI_Components/Controls/Buttons/Closing/ClosingButton.pug
 include GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton.pug
 include GUI_Components/Controls/Buttons/Plain/Button.pug
 
-include GUI_Components/Controls/Checkbox/Checkbox.pug
 include GUI_Components/Controls/Chip/Chip.pug
-include GUI_Components/Controls/ComboBox/ComboBox.pug
-include GUI_Components/Controls/DateTimePicker/DateTimePicker.pug
-include GUI_Components/Controls/DropDownList/DropDownList.pug
-include GUI_Components/Controls/FilesUploader/FilesUploader.pug
 include GUI_Components/Controls/MenuList/MenuList.pug
 include GUI_Components/Controls/ModalDialogs/Common/ModalDialog.pug
 include GUI_Components/Controls/ModalDialogs/Confirmation/ConfirmationModalDialog.pug
-include GUI_Components/Controls/NumberBox/NumberBox.pug
 include GUI_Components/Controls/Pagination/Pagination.pug
 include GUI_Components/Controls/RadioButton/RadioButton.pug
-include GUI_Components/Controls/RadioButtonsGroup/RadioButtonsGroup.pug
 include GUI_Components/Controls/SearchBox/SearchBox.pug
 include GUI_Components/Controls/Tabs/Tabs.pug
-include GUI_Components/Controls/TextBox/TextBox.pug
+
+include GUI_Components/Controls/Validatables/Checkbox/Checkbox.pug
+include GUI_Components/Controls/Validatables/ComboBox/ComboBox.pug
+include GUI_Components/Controls/Validatables/DateTimePicker/DateTimePicker.pug
+include GUI_Components/Controls/Validatables/DropDownList/DropDownList.pug
+include GUI_Components/Controls/Validatables/FilesUploader/FilesUploader.pug
+include GUI_Components/Controls/Validatables/NumberBox/NumberBox.pug
+include GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup.pug
+include GUI_Components/Controls/Validatables/TextBox/TextBox.pug
 
 include GUI_Components/InformationSourceReference/InformationSourceReference.pug
 include GUI_Components/LoadingIndicator/LoadingIndicator.pug

@@ -12,14 +12,14 @@ include SingleImageViewerLocalization.english.pug
     static Themes = { regular: "REGULAR" };
 
     static defineThemes(themesNames) {
-      return ComponentsAuxiliaries.defineThemes(themesNames, CompoundControlShell__YDF);
+      return ComponentsAuxiliaries.defineThemes(themesNames, ValidatableControlShell__YDF);
     }
 
     static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
 
     static considerThemesAsCommon() {
-      CompoundControlShell__YDF.areThemesCSS_ClassesCommon = true;
-      return CompoundControlShell__YDF;
+      ValidatableControlShell__YDF.areThemesCSS_ClassesCommon = true;
+      return ValidatableControlShell__YDF;
     }
 
 
@@ -30,7 +30,7 @@ include SingleImageViewerLocalization.english.pug
     };
 
     static defineGeometricVariations(geometricVariationsNames) {
-      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, CompoundControlShell__YDF);
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, ValidatableControlShell__YDF);
     }
 
 
@@ -41,7 +41,7 @@ include SingleImageViewerLocalization.english.pug
     };
 
     defineDecorativeVariations(decorativeVariationsNames) {
-      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, CompoundControlShell__YDF);
+      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, ValidatableControlShell__YDF);
     }
 
 
@@ -50,64 +50,81 @@ include SingleImageViewerLocalization.english.pug
 
       imageURI: {
         type: String,
-        required: true,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       imageAlternateText: {
         type: String,
-        required: true
+        isUndefinedForbidden: true,
+        isNullForbidden: true
       },
 
       fullScreenView: {
         type: Boolean,
-        required: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       aspectRatio: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         validValueRegularExpression: /^\d+\/\d+$/u
       },
 
       autoAspectRatioByYDA: {
         type: Boolean,
-        required: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       maximalWidth__anyValidCSS_Value: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       maximalHeight__anyValidCSS_Value: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       theme: {
         type: String,
-        required: false,
-        allowedAlternatives: Object.values(SingleImageViewer__YDF.Themes)
+        undefinedValueSubstitution: SingleImageViewer__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(SingleImageViewer__YDF.Themes).
+            map(([ key, value ]) => ({ key: `SingleImageViewer__YDF.Themes.${ key }`, value }))
       },
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        required: false
+        undefinedValueSubstitution: SingleImageViewer__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        required: false,
-        allowedAlternatives: Object.values(SingleImageViewer__YDF.GeometricVariations)
+        undefinedValueSubstitution: SingleImageViewer__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(SingleImageViewer__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `SingleImageViewer__YDF.GeometricVariations.${ key }`, value }))
       },
 
       decorativeVariation: {
         type: String,
-        required: false,
-        allowedAlternatives: Object.values(SingleImageViewer__YDF.DecorativeVariations)
+        undefinedValueSubstitution: SingleImageViewer__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(SingleImageViewer__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `SingleImageViewer__YDF.DecorativeVariations.${ key }`, value }))
       }
 
     };

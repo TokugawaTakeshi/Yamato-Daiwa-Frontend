@@ -1,11 +1,11 @@
-@require "Themes/Regular/GeometricVariations/Button-RegularTheme-RegularGeometry.styl"
-@require "Themes/Regular/GeometricVariations/Button-RegularTheme-SmallGeometry.styl"
-@require "Themes/Regular/GeometricVariations/Button-RegularTheme-LinkLikeGeometry.styl"
+@require "Themes/Regular/GeometricVariations/Button-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/Button-RegularTheme-SmallGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/Button-RegularTheme-LinkLikeGeometricVariation.styl"
 
-@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-RegularDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-DangerDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-AccentedDecoration.styl"
-@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-LinkLikeDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-RegularDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-DangerDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-AccentedDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-LinkLikeDecorativeVariation.styl"
 
 
 Button--YDF = {
@@ -20,16 +20,16 @@ Button--YDF = {
         componentIndependentCSS_Class: "RegularTheme--YDF",
 
         geometricVariations: {
-          regular: Button-RegularTheme-RegularGeometry--YDF,
-          small: Button-RegularTheme-SmallGeometry--YDF,
-          linkLike: Button-RegularTheme-LinkLikeGeometry--YDF
+          regular: Button-RegularTheme-RegularGeometricVariation--YDF,
+          small: Button-RegularTheme-SmallGeometricVariation--YDF,
+          linkLike: Button-RegularTheme-LinkLikeGeometricVariation--YDF
         },
 
         decorativeVariations: {
-          regular: Button-RegularTheme-RegularDecoration--YDF,
-          accented: Button-RegularTheme-AccentedDecoration--YDF,
-          danger: Button-RegularTheme-DangerDecoration--YDF,
-          linkLike: Button-RegularTheme-LinkLikeDecoration--YDF
+          regular: Button-RegularTheme-RegularDecorativeVariation--YDF,
+          accented: Button-RegularTheme-AccentedDecorativeVariation--YDF,
+          danger: Button-RegularTheme-DangerDecorativeVariation--YDF,
+          linkLike: Button-RegularTheme-LinkLikeDecorativeVariation--YDF
         }
 
       }
@@ -64,7 +64,7 @@ Button--YDF = {
 }
 
 
-provideButtonYDF_Component(
+generateButtonYDF_GUI_ComponentStyles(
   preset = Button--YDF.defaultProperties,
   overridings = {},
   options = Button--YDF.defaultOptions,
@@ -74,7 +74,7 @@ provideButtonYDF_Component(
   properties = deeplyCloneAndOverrideObject(preset, overridings)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "provideButtonYDF_Component",
+    mixinOrFunctionName: "generateButtonYDF_GUI_ComponentStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {

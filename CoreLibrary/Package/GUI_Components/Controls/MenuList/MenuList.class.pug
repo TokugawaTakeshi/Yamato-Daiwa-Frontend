@@ -77,7 +77,8 @@
 
       theme: {
         type: String,
-        defaultValue: MenuList__YDF.Themes.regular,
+        undefinedValueSubstitution: MenuList__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(MenuList__YDF.Themes).
             map(([ key, value ]) => ({ key: `MenuList__YDF.Themes.${ key }`, value }))
@@ -85,12 +86,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: MenuList__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: MenuList__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: MenuList__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: MenuList__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(MenuList__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `MenuList__YDF.GeometricVariations.${ key }`, value }))
@@ -98,7 +101,8 @@
 
       decorativeVariation: {
         type: String,
-        defaultValue: MenuList__YDF.DecorativeVariations.regular,
+        undefinedValueSubstitution: MenuList__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(MenuList__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `MenuList__YDF.DecorativeVariations.${ key }`, value }))

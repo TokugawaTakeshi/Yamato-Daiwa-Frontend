@@ -17,9 +17,9 @@ class AdmonitionBlockGallery extends Gallery<AdmonitionBlockGallery.PartialsFlag
       <>
 
         <h1
-            className={
-              [ "Heading1", ...this.props.mustVisuallyHideTopHeading ? [ "YDF_Gallery-InvisibleHeading" ] : [] ].join(" ")
-            }
+          className={
+            [ "Heading1", ...this.props.mustVisuallyHideTopHeading ? [ "YDF_Gallery-InvisibleHeading" ] : [] ].join(" ")
+          }
         >
           AdmonitionBlock Component Demos
         </h1>

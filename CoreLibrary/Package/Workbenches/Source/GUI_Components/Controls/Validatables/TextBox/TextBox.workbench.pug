@@ -1,0 +1,29 @@
+extends ../../../../../../PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "TextBox Component Development"
+      },
+      stylesSheetsURIs: [ "@Workbenches/GUI_Components/Controls/Validatables/TextBox/TextBox.workbench" ],
+      scriptsURIs: {
+        atEndOfBody: [ "@Workbenches/GUI_Components/Controls/Validatables/TextBox/TextBox.workbench" ]
+      }
+    });
+
+
+block append Requirements
+
+  include ../../../../../../GUI_Components.pug
+
+
+block append PageContent
+
+  +TextBox--YDF({
+    label: "Test",
+    multiline: true
+  })#TEXT_BOX-1

@@ -1,132 +1,133 @@
-projectBuilding:
+$projectBuilding:
 
-  commonSettings:
+  $commonSettings:
 
-    selectiveExecutions:
+    $selectiveExecutions:
 
       LocalGalleries:
 
-        tasksAndSourceFilesSelection:
-          markupProcessing: [ LocalGalleriesIndexPage, CompletePages ]
-          stylesProcessing: [ Pages, Partials ]
-          ECMA_ScriptLogicProcessing: [ CompletePages ]
+        $tasksAndSourceFilesSelection:
+          $markupProcessing: [ LocalGalleriesIndexPage, CompletePages ]
+          $stylesProcessing: [ Pages, Partials ]
+          $ECMA_ScriptLogicProcessing: [ CompletePages ]
 
-        browserLiveReloadingSetupID: LocalGalleries
+        $browserLiveReloadingSetupID: LocalGalleries
 
       Distributions:
 
-        tasksAndSourceFilesSelection:
-          markupProcessing: [ CompletePages, PartialDemos ]
-          stylesProcessing: [ Pages, Partials ]
-          ECMA_ScriptLogicProcessing: [ CompletePages ]
+        $tasksAndSourceFilesSelection:
+          $markupProcessing: [ CompletePages, PartialDemos ]
+          $stylesProcessing: [ Pages, Partials ]
+          $ECMA_ScriptLogicProcessing: [ CompletePages ]
 
 
-  # ━━━ Markup ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  markupProcessing:
+  # ━━━ Markup Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $markupProcessing:
 
-    common:
-      buildingModeDependent:
-        LOCAL_DEVELOPMENT: { mustResolveResourceReferencesToRelativePaths: true }
-        PRODUCTION: { mustResolveResourceReferencesToRelativePaths: true }
+    $common:
+      $buildingModeDependent:
+        $localDevelopment: { $mustResolveResourcesPointersToRelativePaths: true }
+        $production: { $mustResolveResourcesPointersToRelativePaths: true }
 
-    entryPointsGroups:
+    $entryPointsGroups:
 
       LocalGalleriesIndexPage:
 
-        singleEntryPointSourceFileRelativePath: Source/LocalGalleriesIndexPage.pug
-        buildingModeDependent:
-          LOCAL_DEVELOPMENT: { outputTopDirectoryRelativePath: LocalGalleriesBuild }
+        $singleEntryPointSourceFileRelativePath: Source/LocalGalleriesIndexPage.pug
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
 
       CompletePages:
 
-        sourceFilesTopDirectoryRelativePath: Source/CompletePages
+        $sourceFilesTopDirectoryRelativePath: Source/CompletePages
 
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
 
-        buildingModeDependent:
-          LOCAL_DEVELOPMENT: { outputTopDirectoryRelativePath: LocalGalleriesBuild }
-          PRODUCTION: { outputTopDirectoryRelativePath: Distributions }
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
+          $production: { $outputTopDirectoryRelativePath: Distributions }
 
       PartialDemos:
 
-        sourceFilesTopDirectoryRelativePath: Source/PartialDemos
+        $sourceFilesTopDirectoryRelativePath: Source/PartialDemos
 
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
 
-        buildingModeDependent: { PRODUCTION: { outputTopDirectoryRelativePath: Distributions } }
+        $buildingModeDependent: { $production: { $outputTopDirectoryRelativePath: Distributions } }
 
 
-  # ━━━ Styles ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  stylesProcessing:
+  # ━━━ Styles Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $stylesProcessing:
 
-    entryPointsGroups:
+    $entryPointsGroups:
 
       Pages:
 
-        sourceFilesTopDirectoryRelativePath: Source/CompletePages
+        $sourceFilesTopDirectoryRelativePath: Source/CompletePages
 
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
 
-        buildingModeDependent:
-          LOCAL_DEVELOPMENT: { outputTopDirectoryRelativePath: LocalGalleriesBuild }
-          PRODUCTION:
-            outputTopDirectoryRelativePath: Distributions
-            revisioning: { disable: true }
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
+          $production:
+            $outputTopDirectoryRelativePath: Distributions
+            $revisioning: { $disable: true }
 
       Partials:
 
-        sourceFilesTopDirectoryRelativePath: Source/PartialStylesheets
+        $sourceFilesTopDirectoryRelativePath: Source/PartialStylesheets
 
-        buildingModeDependent:
-          LOCAL_DEVELOPMENT: { outputTopDirectoryRelativePath: LocalGalleriesBuild }
-          PRODUCTION:
-            outputTopDirectoryRelativePath: Distributions
-            revisioning: { disable: true }
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
+          $production:
+            $outputTopDirectoryRelativePath: Distributions
+            $revisioning: { $disable: true }
 
 
   # ━━━ ECMAScript Logic Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ECMA_ScriptLogicProcessing:
+  $ECMA_ScriptLogicProcessing:
 
-    entryPointsGroups:
+    $entryPointsGroups:
 
       CompletePages:
 
-        sourceFilesTopDirectoryRelativePath: Source/CompletePages
+        $sourceFilesTopDirectoryRelativePath: Source/CompletePages
 
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
 
-        targetRuntime:
-          type: BROWSER
+        $targetRuntime:
+          $type: BROWSER
 
-        buildingModeDependent:
-          LOCAL_DEVELOPMENT: { outputTopDirectoryRelativePath: LocalGalleriesBuild }
-          PRODUCTION: { outputTopDirectoryRelativePath: Distributions }
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
+          $production: { $outputTopDirectoryRelativePath: Distributions }
 
 
   # ━━━ Browser Live Reloading ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  browserLiveReloading:
+  $browserLiveReloading:
 
-    setups:
+    $setups:
 
       LocalGalleries:
 
-        localServer:
+        $localServer:
 
-          rootDirectoryRelativePath: LocalGalleriesBuild
-          customStartingFileNameWithExtension: LocalGalleriesIndexPage.html
+          $rootDirectoryRelativePath: LocalGalleriesBuild
+          $customStartingFileNameWithExtension: LocalGalleriesIndexPage.html
 
-        openInBrowsers: chrome
+        $openInBrowsers: chrome
+
 
   # ━━━ Files Watching ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  filesWatching:
+  $filesWatching:
 
-    relativePathsOfExcludeDirectories:
+    $relativePathsOfExcludeDirectories:
       - Distributions

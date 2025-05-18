@@ -1,0 +1,240 @@
+@require "Themes/Regular/GeometricVariations/TextBox-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/TextBox-RegularTheme-SmallGeometricVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/TextBox-RegularTheme-RegularDecorativeVariation.styl"
+
+
+TextBox--YDF = {
+
+  defaultProperties: {
+
+    CSS_NAMESPACE: "TextBox--YDF",
+
+    themes: {
+      regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF",
+
+        geometricVariations: {
+          regular: TextBox-RegularTheme-RegularGeometricVariation--YDF,
+          small: TextBox-RegularTheme-SmallGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          regular: TextBox-RegularTheme-RegularDecorativeVariation--YDF
+        }
+
+      }
+    }
+
+  }
+
+}
+
+
+generateTextBoxYDF_GUI_ComponentStyles(
+  preset = TextBox--YDF.defaultProperties,
+  overridings = {},
+  options = {
+    themeIndependentStylesOnly: false,
+    externalThemes: false,
+    loadingPlaceholder: true
+  },
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject(preset, overridings)
+
+  validateObjectTypeParameter({
+    mixinOrFunctionName: "generateTextBoxYDF_GUI_ComponentStyles",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        required: true
+      },
+      externalThemes: {
+        type: DataTypes--YDF.boolean,
+        required: true
+      },
+      loadingPlaceholder: {
+        type: DataTypes--YDF.boolean,
+        required: true
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: ValidatableControlShell__YDF.defaultOptions.themeIndependentGeometricVariations
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .TextBox--YDF-InputOrTextAreaElement
+
+      TextBoxLikeElementsPrimer()
+
+      width 100%
+
+
+    input.TextBox--YDF-InputOrTextAreaElement
+
+      line-height 1
+
+
+    .TextBox--YDF-YDF__NoRoundingsGeometricModifier .TextBox--YDF-InputOrTextAreaElement
+
+      border-radius 0
+
+
+  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "TextBox.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    ROOT_ELEMENT_SELECTOR = getCurrentSelectorSubstitutingRoot("." + TextBox--YDF.CSS_NAMESPACE)
+
+
+    +provideDefaultSelectorWhenRootAndApply("." + TextBox--YDF.CSS_NAMESPACE)
+
+      applyMixinStoredInObjectIfItIsNotNull(
+        getObjectValueByDotSeparatedPathSafely(variation, "rootElement.customDeclarations")
+      )
+
+
+    .TextBox--YDF-InputOrTextAreaElement
+
+      extractedVariables = extractAndValidateObjectProperties({
+        targetObject: variation,
+        targetObjectName: VARIATION_DATA_FOR_LOGGING,
+        extracts: {
+          paddingsSpecification: { dotSeparatedPath: "inputOrTextAreaElement.paddings", required: false },
+          bordersSpecification: { dotSeparatedPath: "inputOrTextAreaElement.borders", required: false }
+        }
+      })
+
+      paddingsSpecification = extractedVariables.paddingsSpecification
+      bordersSpecification = extractedVariables.bordersSpecification
+
+      Paddings(paddingsSpecification)
+      BordersSizing(bordersSpecification)
+
+
+      /{ROOT_ELEMENT_SELECTOR} input.TextBox--YDF-InputOrTextAreaElement
+
+        // [ CSS Theory ] In the "input" case, the height could not equals to sum of line height, vertical paddings and borders,
+        //  so it must be manually fixed
+        // https://stackoverflow.com/a/42888592/4818123
+        TextElementHeightSizing({
+          type: TextElementHeightSizingTypes--YDF.natural,
+          //mustFixateHeight: true,
+          //topBorderWidth: getFirstNonNullArrayElement(
+          //  bordersSpecification.all bordersSpecification.verticalSymmetric bordersSpecification.top
+          //),
+          //topPadding: getFirstNonNullArrayElement(
+          //  paddingsSpecification.all paddingsSpecification.verticalSymmetric paddingsSpecification.top
+          //),
+          fontSize: extractAndValidateObjectProperties({
+            targetObject: variation,
+            targetObjectName: VARIATION_DATA_FOR_LOGGING,
+            extracts: {
+              textSize: { dotSeparatedPath: "inputOrTextAreaElement.text.size", required: true }
+            }
+          }).textSize,
+          lineHeight: 1
+          //bottomPadding: getFirstNonNullArrayElement(
+          //  paddingsSpecification.all paddingsSpecification.verticalSymmetric paddingsSpecification.bottom
+          //),
+          //bottomBorderWidth: getFirstNonNullArrayElement(
+          //  bordersSpecification.all bordersSpecification.verticalSymmetric bordersSpecification.bottom
+          //)
+        })
+
+
+    textarea.TextBox--YDF-InputOrTextAreaElement
+
+      // [ CSS Theory ] In the "input" case, the height could not equals to sum of "line-height", vertical paddings and borders.
+      // https://stackoverflow.com/a/42888592/4818123
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight(
+        merge(
+          extractAndValidateObjectProperties({
+            targetObject: variation,
+            targetObjectName: VARIATION_DATA_FOR_LOGGING,
+            extracts: {
+              fontSize: { dotSeparatedPath: "inputOrTextAreaElement.text.size", required: true },
+              lineSpacing: { dotSeparatedPath: "inputOrTextAreaElement.text.lineSpacing", required: false },
+              lineHeight: { dotSeparatedPath: "inputOrTextAreaElement.text.lineHeight", mustBeInsteadOf: "inputOrTextAreaElement.text.lineSpacing" }
+            }
+          }),
+          { mustAllowWordsBreakingAnywhere: true }
+        )
+      )
+
+
+  // --- Decoration ----------------------------------------------------------------------------------------------------
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_DATA_FOR_LOGGING = buildString(
+      "TextBox.${themeName}Theme.${variationName}Decoration",
+      {
+        themeName: themeName,
+        variationName: variationName
+      }
+    )
+
+    ROOT_ELEMENT_SELECTOR = getCurrentSelectorSubstitutingRoot(".TextBox--YDF")
+
+
+    .TextBox--YDF-InputOrTextAreaElement
+
+      validateAndAssignStoredInObjectCSS_Properties({
+        targetObject: variation,
+        targetObjectName: VARIATION_DATA_FOR_LOGGING,
+        assigments: {
+          border-style: { dotSeparatedPath: "inputOrTextAreaElement.border.style", required: false },
+          border-color: { dotSeparatedPath: "inputOrTextAreaElement.border.color", required: false },
+          color: { dotSeparatedPath: "inputOrTextAreaElement.text.color", required: false }
+        }
+      })
+
+
+      /{ROOT_ELEMENT_SELECTOR}.TextBox--YDF__InvalidInputState &
+
+        border-color: JQueryUI_BaseTheme.error.borderColor
+        background: JQueryUI_BaseTheme.error.background
+
+
+      &:focus
+
+        border-color: JQueryUI_BaseTheme.warning.borderColor
+
+
+      &:hover
+
+        border-color: JQueryUI_BaseTheme.clickableElements.activeState.background
+
+
+      &:active
+
+        border-color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor
+
+
+  // === Applying ======================================================================================================
+  applyBasicRules()
+
+  if !options.themeIndependentStylesOnly
+
+    applyComponentThemes({
+      CSS_Namespace: "TextBox--YDF",
+      themes: properties.themes,
+      applyGeometricVariation: applyGeometricVariation,
+      applyDecorativeVariation: applyDecorativeVariation
+    })

@@ -103,31 +103,38 @@
 
       title: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       SVG_Icon: {
 
-        type: RawObjectDataProcessor.ValuesTypesIDs.oneOf,
-        required: false,
+        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
 
         alternatives: [
           { type: Boolean },
           {
 
             type: Object,
+
             properties: {
 
               innerElementID: {
                 type: String,
-                required: true,
+                isUndefinedForbidden: true,
+                isNullForbidden: true,
                 minimalCharactersCount: 1
               },
 
               SVG_ElementAttributes: {
-                type: RawObjectDataProcessor.ValuesTypesIDs.associativeArrayOfUniformTypeValues,
-                defaultValue: {},
+                type: RawObjectDataProcessor.ValuesTypesIDs.associativeArray,
+                undefinedValueSubstitution: {},
+                isNullForbidden: true,
+                areUndefinedTypeValuesForbidden: true,
+                areNullTypeValuesForbidden: true,
                 value: {
                   type: String,
                   minimalCharactersCount: 1
@@ -143,12 +150,14 @@
 
       dismissible: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       theme: {
         type: String,
-        defaultValue: AdmonitionBlock__YDF.Themes.regular,
+        undefinedValueSubstitution: AdmonitionBlock__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(AdmonitionBlock__YDF.Themes).
             map(([ key, value ]) => ({ key: `AdmonitionBlock__YDF.Themes.${ key }`, value }))
@@ -156,12 +165,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: AdmonitionBlock__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: AdmonitionBlock__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: AdmonitionBlock__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: AdmonitionBlock__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(AdmonitionBlock__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `AdmonitionBlock__YDF.GeometricVariations.${ key }`, value }))
@@ -169,7 +180,8 @@
 
       decorativeVariation: {
         type: String,
-        required: true,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(AdmonitionBlock__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `AdmonitionBlock__YDF.DecorativeVariations.${ key }`, value }))

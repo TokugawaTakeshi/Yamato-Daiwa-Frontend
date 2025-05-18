@@ -1,6 +1,6 @@
 {
 	"name": "@yamato-daiwa/frontend",
-	"version": "2.0.0-beta.9",
+	"version": "2.0.0-beta.12",
 	"description": "Toolkit for the frontend development with Pug and Stylus pre-processors.",
 	"keywords": [
 		"frontend",
@@ -48,8 +48,8 @@
 	},
 	"devDependencies": {
 		"@types/prismjs": "1.26.5",
-		"@yamato-daiwa/automation": "../../../YamatoDaiwaAutomation/MainPackage",
-		"@yamato-daiwa/style_guides": "0.6.6",
+		"@yamato-daiwa/automation": "0.7.0-alpha.6",
+		"@yamato-daiwa/style_guides": "0.7.0",
 		"nanoid": "5.1.5",
 		"rimraf": "6.0.1",
 		"ts-node": "10.9.2",
@@ -64,5 +64,6 @@
 		"Realize Alpha": "npm publish --tag alpha",
 		"Realize Beta": "npm publish --tag beta",
 		"Realize RC": "npm publish --tag rc"
-	}
+	},
+	"funding": "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend?sponsor=1"
 }

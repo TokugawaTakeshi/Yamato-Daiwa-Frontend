@@ -1,0 +1,184 @@
+@require "Themes/Regular/GeometricVariations/NumberBox-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/NumberBox-RegularTheme-SmallGeometricVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/NumberBox-RegularTheme-RegularDecorativeVariation.styl"
+
+
+NumberBox--YDF = {
+
+  componentIndependentCSS_Class: "RegularTheme--YDF",
+
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        geometricVariations: {
+          regular: NumberBox-RegularTheme-RegularGeometricVariation--YDF,
+          small: NumberBox-RegularTheme-SmallGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          regular: NumberBox-RegularTheme-RegularDecorativeVariation--YDF
+        }
+
+      }
+    }
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true
+  }
+
+}
+
+
+provideNumberBoxYDF_Component(
+  preset = NumberBox--YDF.defaultProperties,
+  overridings = {},
+  options = NumberBox--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject(preset, overridings)
+
+  validateObjectTypeParameter({
+    mixinOrFunctionName: "provideNumberBoxYDF_Component",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: NumberBox--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: NumberBox--YDF.defaultOptions.externalThemes
+      },
+      loadingPlaceholder: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: NumberBox--YDF.defaultOptions.loadingPlaceholder
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: NumberBox--YDF.defaultOptions.themeIndependentGeometricVariations
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .NumberBox--YDF
+
+      &-LinearFlow
+
+        /.NumberBox--YDF__HorizontalOrientation &
+
+          display flex
+
+
+        /.NumberBox--YDF__VerticalOrientation &
+
+          display inline-flex
+          flex-direction column
+
+
+      &-Button
+
+        /.NumberBox--YDF__VerticalOrientation &
+
+          max-width none !important
+
+
+      &-NativeInput
+
+        TextBoxLikeElementsPrimer()
+
+        //* [ Why? ] The with is being set based on minimal and maximal value by `ch` units from markup. */
+        box-sizing content-box
+
+        text-align center
+
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button
+
+          -webkit-appearance none
+          -moz-appearance textfield
+          margin 0
+
+
+  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "NumberBox.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+    +provideDefaultSelectorWhenRootAndApply(ROOT_ELEMENT_SELECTOR)
+
+      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+
+
+    .NumberBox--YDF-NativeInput
+
+      //TextElementHeightSizing({
+      //  type: TextElementHeightSizingTypes--YDF.natural,
+      //  borders: { thickness: { all: 1px } },
+      //  paddings: {
+      //    verticalSymmetric: 0.45rem,
+      //    horizontalSymmetric: 0.5rem,
+      //    upwardShifting: 1px
+      //  },
+      //  fontSize: 1rem,
+      //  fixedLinesCount: 1,
+      //  lineSpacing: 0,
+      //  mustFixateHeight: true,
+      //  mustSkipBordersApplying: true
+      //})
+
+      border-width 1px
+
+      Paddings({
+        horizontalSymmetric: 0.5rem,
+        verticalSymmetric: 0.45rem
+      })
+      font-size 1rem
+      line-height 1
+
+
+  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "NumberBox.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+    .NumberBox--YDF-NativeInput
+
+      border-style solid
+      border-color #c5c5c5
+      color #454545;
+
+
+  // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  applyComponentThemes({
+    CSS_Namespace: "NumberBox--YDF",
+    themes: properties.themes,
+    applyGeometricVariation: applyGeometricVariation,
+    applyDecorativeVariation: applyDecorativeVariation
+  })

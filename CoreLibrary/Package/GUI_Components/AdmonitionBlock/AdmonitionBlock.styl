@@ -49,7 +49,7 @@ AdmonitionBlock--YDF = {
 }
 
 
-provideAdmonitionBlockYDF_Component(
+generateAdmonitionBlockYDF_GUI_ComponentStyles(
   preset = AdmonitionBlock--YDF.defaultProperties,
   overrides = {},
   options = AdmonitionBlock--YDF.defaultOptions,
@@ -59,7 +59,7 @@ provideAdmonitionBlockYDF_Component(
   properties = deeplyCloneAndOverrideObject(preset, overrides)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "provideAdmonitionBlockYDF_Component",
+    mixinOrFunctionName: "generateAdmonitionBlockYDF_GUI_ComponentStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {

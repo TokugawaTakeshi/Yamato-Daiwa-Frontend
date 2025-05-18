@@ -49,6 +49,26 @@ class ButtonGallery extends Gallery<ButtonGallery.PartialsFlags> {
   }
 
 
+  /* ─── Methods ──────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* eslint-disable-next-line @typescript-eslint/class-methods-use-this --
+   * The static members are not visible from the template. */
+  protected get mustSkipDecorativeVariation(): (
+    iterationData: ThemesShowcase.DecorativeVariationSkippingCondition.IterationData
+  ) => boolean {
+    return (
+      { decorativeVariation, geometricVariation }: ThemesShowcase.DecorativeVariationSkippingCondition.IterationData
+    ): boolean =>
+        (
+          decorativeVariation.value === Button.DecorativeVariations.linkLike &&
+          geometricVariation.value !== Button.GeometricVariations.linkLike
+        ) ||
+        (
+          decorativeVariation.value !== Button.DecorativeVariations.linkLike &&
+          geometricVariation.value === Button.GeometricVariations.linkLike
+        );
+  }
+
+
   /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected initializeNonReactiveClassFields(): void {
 
@@ -80,8 +100,13 @@ namespace ButtonGallery {
     singleLineGeometricModifier?: boolean;
     noLeftBorderAndRoundingsGeometricModifier?: boolean;
     noRightBorderAndRoundingsGeometricModifier?: boolean;
+    noTopBorderAndRoundingsGeometricModifier?: boolean;
+    noBottomBorderAndRoundingsGeometricModifier?: boolean;
+    noRoundingsGeometricModifier?: boolean;
+    horizontallyShrinkableGeometricModifier?: boolean;
     bordersDisguisingDecorativeModifier?: boolean;
     noBackgroundDecorativeModifier?: boolean;
+    noBackgroundInDefaultStateDecorativeModifier?: boolean;
     loadingPlaceholder?: boolean;
   }>;
 

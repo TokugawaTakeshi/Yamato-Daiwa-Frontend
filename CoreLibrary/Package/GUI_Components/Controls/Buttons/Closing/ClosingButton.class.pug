@@ -53,35 +53,48 @@ include ClosingButtonLocalization.english.pug
 
       noLabel: {
         type: Boolean,
-        required: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       labelLetterCase: {
         type: String,
-        allowedAlternatives: ClosingButton__YDF.LabelLetterCases
+        undefinedValueSubstitution: ClosingButton__YDF.LabelLetterCases.uppercase,
+        isNullForbidden: true,
+        allowedAlternatives: Object.values(ClosingButton__YDF.LabelLetterCases)
       },
 
       theme: {
         type: String,
-        required: false,
-        allowedAlternatives: Object.values(ClosingButton__YDF.Themes)
+        undefinedValueSubstitution: ClosingButton__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(ClosingButton__YDF.Themes).
+            map(([ key, value ]) => ({ key: `ClosingButton__YDF.Themes.${ key }`, value }))
       },
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        required: false
+        undefinedValueSubstitution: ClosingButton__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        required: false,
-        allowedAlternatives: Object.values(ClosingButton__YDF.GeometricVariations)
+        undefinedValueSubstitution: ClosingButton__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(ClosingButton__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `ClosingButton__YDF.GeometricVariations.${ key }`, value }))
       },
 
       decorativeVariation: {
         type: String,
-        required: false,
-        allowedAlternatives: Object.values(ClosingButton__YDF.DecorativeVariations)
+        undefinedValueSubstitution: ClosingButton__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(ClosingButton__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `ClosingButton__YDF.DecorativeVariations.${ key }`, value }))
       }
 
     };

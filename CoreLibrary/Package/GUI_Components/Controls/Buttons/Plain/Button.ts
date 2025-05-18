@@ -33,8 +33,9 @@ class Button {
   /* ─── Reactivity ───────────────────────────────────────────────────────────────────────────────────────────────── */
   /* eslint-disable no-underscore-dangle -- [ CONVENTION ]
    * The instance fields begins from the underscore MUST be changed only via setters or constructor. */
-  private _label: string | null;
-  private _toggled: boolean = false;
+
+  /* ┄┄┄ Label ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+  protected _label: string | null;
 
   public get $label(): string | null {
     return this._label;
@@ -42,17 +43,46 @@ class Button {
 
   public set $label(value: string | null) {
 
+    if (this._label === value) {
+      return;
+    }
+
+
     this._label = value;
 
-    if (isString(this.$label)) {
+    if (isString(this._label)) {
       if (isNotNull(this.labelElement)) {
-        this.labelElement.textContent = this.$label;
+        this.labelElement.textContent = this._label;
       } else {
-        this.rootElement.textContent = this.$label;
+        this.rootElement.textContent = this._label;
       }
     }
 
   }
+
+
+  /* ┄┄┄ Accessibility Guidance ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+  private _accessibilityGuidance: string | null;
+
+  public get $accessibilityGuidance(): string | null {
+    return this._accessibilityGuidance;
+  }
+
+  public set $accessibilityGuidance(value: string | null) {
+
+    if (value === this._accessibilityGuidance) {
+      return;
+    }
+
+
+    this._accessibilityGuidance = value;
+    this.rootElement.ariaLabel = this._accessibilityGuidance;
+
+  }
+
+
+  /* ┄┄┄ Toggled ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+  protected _toggled: boolean = false;
 
   public get $toggled(): boolean {
     return this._toggled;
@@ -146,13 +176,17 @@ class Button {
 
     }
 
+    this._accessibilityGuidance = this.rootElement.ariaLabel;
+
     this.leftClickEventExternalHandler = properties.onClickEventHandler ?? null;
 
-    this.leftClickEventListener = new LeftClickEventListener({
-      targetElement: this.rootElement,
-      handler: this.onLeftClick.bind(this),
-      eventPropagation: false
-    });
+    if (isNotNull(this.leftClickEventExternalHandler)) {
+      this.leftClickEventListener = new LeftClickEventListener({
+        targetElement: this.rootElement,
+        handler: this.onLeftClick.bind(this),
+        eventPropagation: false
+      });
+    }
 
   }
 
@@ -172,24 +206,70 @@ class Button {
     this.leftClickEventExternalHandler?.(leftClickEvent, this);
   }
 
+
+  /* ─── Routines ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+  protected static resolveAndValidateRootElement(
+    { targetElement, contextElement }: Button.RootElementDefinition
+  ): HTMLButtonElement | HTMLAnchorElement | HTMLInputElement {
+
+    if (
+      targetElement instanceof HTMLButtonElement ||
+      targetElement instanceof HTMLInputElement ||
+      targetElement instanceof HTMLAnchorElement
+    ) {
+
+      return targetElement;
+
+    }
+
+
+    if ("selector" in targetElement) {
+
+      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+      * Waiting for the modification of `getExpectedToBeSingleDOM_Element` method. */
+      return getExpectedToBeSingleDOM_Element({
+        selector: targetElement.selector,
+        contextElement
+      }) as HTMLButtonElement | HTMLInputElement | HTMLAnchorElement;
+
+    }
+
+
+    Logger.throwErrorAndLog({
+      errorInstance: new InvalidParameterValueError({
+        parameterNumber: 1,
+        parameterName: "properties",
+        messageSpecificPart: [
+          "Invalid value of `targetElement` property. The valid alternatives are:",
+          "● Instance of `HTMLButtonElement`",
+          "● Instance of `HTMLInputElement`",
+          "● Instance of `HTMLAnchorElement`",
+          "● Object with `selector` property referring to singe element. The element is not single on the page " +
+              "but single inside specific container, specify `contextElement` property additionally."
+        ].join("\n")
+      }),
+      title: InvalidParameterValueError.localization.defaultTitle,
+      occurrenceLocation: "Button.resolveAndValidateRootElement(rootElementDefinition)"
+    });
+
+  }
+
+
 }
 
 
 namespace Button {
 
-  export type InitializationProperties = Readonly<
-    (
-      {
-        targetElement: Element;
-        contextElement?: never;
-      } |
-      {
-        targetElement: Readonly<{ selector: string; }>;
-        contextElement?: ParentNode | Readonly<{ selector: string; }>;
-      }
-    ) &
-    { onClickEventHandler?: LeftClickHandler; }
-  >;
+  export type RootElementDefinition = Readonly<(
+    {
+      targetElement: Element;
+      contextElement?: never;
+    } |
+    {
+      targetElement: Readonly<{ selector: string; }>;
+      contextElement?: ParentNode | Readonly<{ selector: string; }>;
+    }
+  )>;
 
   export type InitializationProperties =
     RootElementDefinition &

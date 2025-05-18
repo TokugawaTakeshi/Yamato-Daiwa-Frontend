@@ -12,14 +12,14 @@ mixin HamburgerMenuButton--YDF(properties)
 
     const {
 
-      noLabel = false,
-      alwaysEnglishLabel = false,
-      labelLetterCase = HamburgerMenuButton__YDF.LabelLetterCases.uppercase,
+      noLabel,
+      alwaysEnglishLabel,
+      labelLetterCase,
 
-      theme = HamburgerMenuButton__YDF.Themes.regular,
-      areThemesExternal = ComponentsAuxiliaries.areComponentsThemesCommon || HamburgerMenuButton__YDF.areThemesCSS_ClassesCommon,
-      geometricVariation = HamburgerMenuButton__YDF.GeometricVariations.regular,
-      decorativeVariation = HamburgerMenuButton__YDF.DecorativeVariations.regular
+      theme,
+      areThemesExternal,
+      geometricVariation,
+      decorativeVariation
 
     } = processObjectTypeParameterOfPugMixin({
       rawParameter: properties,

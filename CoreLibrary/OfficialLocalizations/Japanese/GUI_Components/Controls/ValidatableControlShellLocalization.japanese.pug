@@ -1,0 +1,40 @@
+-
+
+  const validatableControlShellYDF_ComponentLocalization__japanese = {
+
+    requirementBadges: {
+      required: "必須",
+      optional: "任意"
+    },
+
+    sampleValidationErrorsMessages: [
+
+      "ユーザー名は最低３文字をを含まなければいけない。 " +
+      "お手数ですが、もっと文字を入力して下さい。",
+
+      "入力されたユーザー名は: 「$」、「'」という許可されていない文字を含めています。" +
+      "お手数ですが、次の文字を含めていないユーザー名を入力して下さい。" +
+      "「$」、「&」、「'」、「\"」"
+
+    ],
+
+    sampleAsynchronousValidationsStatuses: [
+      {
+        ID: "IN_PROGRESS",
+        message: "ユーザー名のご利用可否を確認中・・・"
+      },
+      {
+        ID: "FINISHED_AND_VALID",
+        message: "入力されたユーザー名がご利用いただけます。"
+      },
+      {
+        ID: "MALFUNCTION",
+        message:
+                "恐れ入りますが、ユーザー名のご利用可否の確認中不具合が発生しました。" +
+                "インターネット切断が発生した場合、お手数ですが、復帰次第次第もう一度入力して下さいませんでしょうか。" +
+                "インターネット接続に問題無い場合、大変申し訳ございませんが、システムの不具合が発生しました。" +
+                "恐れ入りますが、、お客様のサポートと連絡してくださいませんでしょうか。"
+      }
+    ]
+
+  };

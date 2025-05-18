@@ -3,15 +3,14 @@ extends ../../../../../../node_modules/@yamato-daiwa/frontend/PagesTemplates/Reg
 
 block append Requirements
 
-  include  ../../../../../../node_modules/@yamato-daiwa/frontend-demos/Source/Galleries/GUI_Components/Controls/Buttons/Plain/ButtonGalleryOptions.pug
-  include  ../../../../../_addDataAttributesGeneratingMethodToGalleryOptionsClass.pug
+  include  ../../../../../../node_modules/@yamato-daiwa/frontend-demos/Source/Galleries/GalleryConfigurator.pug
+  include  ../../../../../../node_modules/@yamato-daiwa/frontend-demos/Source/CompletePages/GUI_Components/Controls/Buttons/Plain/_ButtonGalleryPage.partials.pug
+  include  ../../../../../_addDataAttributesGeneratingMethodToGalleryConfiguratorClass.pug
 
 
 block append Metadata
 
   -
-
-    addDataAttributesGeneratingMethodToGalleryOptionsClass(ButtonGalleryOptions)
 
     /**
      * @param { string | undefined } partialTitle
@@ -39,4 +38,4 @@ block append Metadata
 
 block append PageContent
 
-  .YDF_Gallery#APPLICATION&attributes(ButtonGalleryOptions.generateDataAttributes())
+  .YDF_Gallery#APPLICATION&attributes(GalleryConfigurator.generateDataAttributes())

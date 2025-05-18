@@ -71,6 +71,7 @@ export const dateTimePickerYDF_ComponentLocalization__russian: DateTimePickerLoc
               currentlyDisplayingYear: number;
               currentlyDisplayingMonth__numerationFrom1: number;
             }>
+          ): string => `${ currentlyDisplayingMonth__numerationFrom1 } ${ currentlyDisplayingYear }`
 
         },
 
@@ -105,6 +106,26 @@ export const dateTimePickerYDF_ComponentLocalization__russian: DateTimePickerLoc
     },
 
     matrices: {
+
+      days: {
+
+        generateTitleCellContent({ cellIndex }: Readonly<{ cellIndex: number; }>): string {
+          /* eslint-disable @typescript-eslint/no-magic-numbers --
+           * In this case nothing will become readable if to store each value to constant.
+           * Also, the importing of third-party libraries is extremely undesirable for localization bundle. */
+          switch (cellIndex) {
+            case 0: return "ВС";
+            case 1: return "ПН";
+            case 2: return "ВТ";
+            case 3: return "СР";
+            case 4: return "ЧТ";
+            case 5: return "ПТ";
+            default: return "СБ";
+          }
+          /* eslint-enable @typescript-eslint/no-magic-numbers */
+        }
+
+      },
 
       months: {
 

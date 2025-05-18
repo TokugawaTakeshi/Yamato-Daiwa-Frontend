@@ -6,7 +6,7 @@
   **@yamato-daiwa/frontend**, потому должен быть установлен вместе с основным:
 
 ```bash
-npm i @yamato-daiwa/frontend 2.0.0-beta.6 @yamato-daiwa/frontend-localization-russian -E
+npm i @yamato-daiwa/frontend 2.0.0-beta.10 @yamato-daiwa/frontend-localization-russian -E
 ``` 
 
 Также, данный пакет может быть использован с адаптациями для JavaScript фреймворков:

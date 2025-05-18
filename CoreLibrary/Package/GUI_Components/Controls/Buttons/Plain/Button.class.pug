@@ -170,15 +170,16 @@
 
       HTML_Type: {
         type: String,
-        defaultValue: Button__YDF.HTML_Types.regular,
+        undefinedValueSubstitution: Button__YDF.HTML_Types.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.entries(Button__YDF.HTML_Types).
             map(([key, value]) => ({ key: `Button__YDF.HTML_Types.${ key }`, value }))
       },
 
       label: {
-        type: RawObjectDataProcessor.ValuesTypesIDs.oneOf,
-        requiredIf: {
-          predicate: properties =>
+        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        undefinedForbiddenIf: {
+          predicate: ({ rawData__full: properties }) =>
               properties.HTML_Type === Button__YDF.HTML_Types.inputButton ||
               properties.HTML_Type === Button__YDF.HTML_Types.inputSubmit ||
               properties.HTML_Type === Button__YDF.HTML_Types.inputReset,
@@ -186,6 +187,7 @@
               "`HTML_Type` property specified with `Button__YDF.HTML_Types.inputButton`, " +
                 "`Button__YDF.HTML_Types.inputSubmit` or `Button__YDF.HTML_Types.inputReset`"
         },
+        isNullForbidden: true,
         alternatives: [
           {
             type: String,
@@ -200,40 +202,47 @@
 
       accessibilityGuidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       URI: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         /* [ Theory ] It could be the "#" */
         minimalCharactersCount: 1
       },
 
       mustOpenLinkInNewTab: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustRequestNotFollowLinkForCrawlingToSearchEngine: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       disabled: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       toggled: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       theme: {
         type: String,
-        defaultValue: Button__YDF.Themes.regular,
+        undefinedValueSubstitution: Button__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Button__YDF.Themes).
             map(([ key, value ]) => ({ key: `Button__YDF.Themes.${ key }`, value }))
@@ -241,12 +250,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: ComponentsAuxiliaries.areComponentsThemesCommon
+        undefinedValueSubstitution: Button__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: Button__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: Button__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Button__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `Button__YDF.GeometricVariations.${ key }`, value }))
@@ -254,7 +265,10 @@
 
       geometricModifiers: {
         type: Array,
-        defaultValue: [],
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
         element: {
           type: String,
           allowedAlternatives: Object.values(Button__YDF.GeometricModifiers)
@@ -263,7 +277,8 @@
 
       decorativeVariation: {
         type: String,
-        defaultValue: Button__YDF.DecorativeVariations.regular,
+        undefinedValueSubstitution: Button__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Button__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `Button__YDF.DecorativeVariations.${ key }`, value }))
@@ -271,7 +286,10 @@
 
       decorativeModifiers: {
         type: Array,
-        defaultValue: [],
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
         element: {
           type: String,
           allowedAlternatives: Object.values(Button__YDF.DecorativeModifiers)

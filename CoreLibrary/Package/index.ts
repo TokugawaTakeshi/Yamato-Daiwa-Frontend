@@ -4,8 +4,8 @@
 /* ━━━ GUI Components ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* ─── AdmonitionBlock ────────────────────────────────────────────────────────────────────────────────────────────── */
 export { default as AdmonitionBlock } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock";
-export type { AdmonitionBlockLocalization } from "./GUI_Components/AdmonitionBlock/AdmonitionBlockLocalization";
-export { admonitionBlockYDF_ComponentLocalization__english } from
+export type { default as AdmonitionBlockLocalization } from "./GUI_Components/AdmonitionBlock/AdmonitionBlockLocalization";
+export { default as admonitionBlockYDF_ComponentLocalization__english } from
     "./GUI_Components/AdmonitionBlock/AdmonitionBlockLocalization.english";
 
 /* ─── BlockingLoadingOverlay ─────────────────────────────────────────────────────────────────────────────────────── */
@@ -15,26 +15,36 @@ export { default as BlockingLoadingOverlay } from "./GUI_Components/BlockingLoad
 export { default as Button } from "./GUI_Components/Controls/Buttons/Plain/Button";
 export { default as HamburgerMenuButton } from "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton";
 
-export { default as CompoundControlShell } from "./GUI_Components/Controls/CompoundControlShell/CompoundControlShell";
+/* ┄┄┄ ValidatableControlShell ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+export { default as ValidatableControlShell } from "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell";
+export type { default as ValidatableControlShellLocalization } from
+    "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellLocalization";
+export { default as validatableControlShellYDF_ComponentLocalization__english } from
+    "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellLocalization.english";
 
-export { default as DateTimePicker } from "./GUI_Components/Controls/DateTimePicker/DateTimePicker";
+/* ┄┄┄ Validatables ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+export { default as TextBox } from "./GUI_Components/Controls/Validatables/TextBox/TextBox";
+
+
+/* ━━━ Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+export { default as DateTimePicker } from "./GUI_Components/Controls/Validatables/DateTimePicker/DateTimePicker";
 export type { default as DateTimePickerLocalization } from
-    "./GUI_Components/Controls/DateTimePicker/DateTimePickerLocalization";
+    "./GUI_Components/Controls/Validatables/DateTimePicker/DateTimePickerLocalization";
 
-export { default as FilesUploader } from "./GUI_Components/Controls/FilesUploader/FilesUploader";
-export type { default as FilesUploaderLocalization } from "./GUI_Components/Controls/FilesUploader/FilesUploaderLocalization";
+export { default as FilesUploader } from "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploader";
+export type { default as FilesUploaderLocalization } from
+    "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploaderLocalization";
 export { filesUploaderYDF_ComponentLocalization__english } from
-    "./GUI_Components/Controls/FilesUploader/FilesUploaderLocalization.english";
+    "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploaderLocalization.english";
 
 export { default as ModalDialog } from "./GUI_Components/Controls/ModalDialogs/Common/ModalDialog";
 export { default as ConfirmationModalDialog } from "./GUI_Components/Controls/ModalDialogs/Confirmation/ConfirmationModalDialog";
 
-export { default as NumberBox } from "./GUI_Components/Controls/NumberBox/NumberBox";
+export { default as NumberBox } from "./GUI_Components/Controls/Validatables/NumberBox/NumberBox";
 
 export { default as RadioButton } from "./GUI_Components/Controls/RadioButton/RadioButton";
-export { default as RadioButtonsGroup } from "./GUI_Components/Controls/RadioButtonsGroup/RadioButtonsGroup";
+export { default as RadioButtonsGroup } from "./GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup";
 
-export { default as TextBox } from "./GUI_Components/Controls/TextBox/TextBox";
 
 export { default as CodeViewer } from "./GUI_Components/Viewers/Code/CodeViewer";
 export { default as SingleImageViewer } from "./GUI_Components/Viewers/SingleImage/SingleImageViewer";
@@ -103,3 +113,6 @@ export { default as CollapsingAnimation } from "./Animations/CollapsingAnimation
 export { default as ExpandingAnimation } from "./Animations/ExpandingAnimation";
 
 export { default as onDifferentValueAssigned } from "./GUI_Components/_Auxiliaries/Decorators/onDifferentValueAssigned";
+
+export { replaceMarkdownBold } from "./Logic/Utils/Markdown/replaceMarkdownBold";
+export { replaceMarkdownLink } from "./Logic/Utils/Markdown/replaceMarkdownLink";

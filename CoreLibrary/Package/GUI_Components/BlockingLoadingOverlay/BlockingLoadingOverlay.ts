@@ -44,7 +44,7 @@ export default abstract class BlockingLoadingOverlay {
           customMessage:
               "\"BlockingLoadingOverlay\" need to capture the rendered (invisible is fine) DOM before be displayed. " +
               "Invoke \"captureDOM_ButDoNotDisplayYet\" method firs if you don't need to display the blocking loading " +
-                "overlay immideatly."
+                "overlay immediately."
         }),
         title: ClassRequiredInitializationHasNotBeenExecutedError.localization.defaultTitle,
         occurrenceLocation: "BlockingLoadingOverlay.getExpectedToBeInitializedRootElement()"

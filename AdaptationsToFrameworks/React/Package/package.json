@@ -26,23 +26,23 @@
     "@yamato-daiwa/frontend": "2.0.0-beta.6",
     "react": "~19.0.0",
     "react-dom": "~19.0.0",
-    "react-router-dom": "~7.2.0"
+    "react-router": "~7.6.0"
   },
   "dependencies": {
     "@yamato-daiwa/es-extensions": "1.7.2",
     "@yamato-daiwa/es-extensions-browserjs": "1.7.0"
   },
   "devDependencies": {
-    "@types/react": "19.0.10",
-    "@types/react-dom": "19.0.4",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
     "@yamato-daiwa/automation": "0.5.0",
     "@yamato-daiwa/frontend": "2.0.0-beta.6",
-    "@yamato-daiwa/style_guides": "0.6.3",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "react-router-dom": "7.2.0",
+    "@yamato-daiwa/style_guides": "0.7.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-router": "7.6.2",
     "rimraf": "6.0.1",
-    "typescript": "5.7.3"
+    "typescript": "5.8.3"
   },
   "scripts": {
     "Rebuild Distributable": "yda build --selectiveExecution Distributable --mode PRODUCTION & npm run \"Generate TypeScript Types\"",

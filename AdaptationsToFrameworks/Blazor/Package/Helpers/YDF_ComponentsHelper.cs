@@ -35,7 +35,7 @@ public abstract class YDF_ComponentsHelper
       throw new CustomYDF_DecorativeVariationIsNotEnumerationException();
     }
   }
-  
+
 
   /* ━━━ Stringifying & Assigning ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static void ValidateTheme<TStandardThemes>(object? value, Type? customThemes)
@@ -65,7 +65,7 @@ public abstract class YDF_ComponentsHelper
     throw new InvalidThemeParameterForYDF_ComponentException();
 
   }
-  
+
   public static void AssignThemeIfItIsValid<TStandardThemes>(object value, Type? customThemes, ref string _theme)
   {
 

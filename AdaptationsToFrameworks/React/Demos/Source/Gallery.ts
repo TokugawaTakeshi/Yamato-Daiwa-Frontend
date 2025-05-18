@@ -5,6 +5,20 @@ abstract class Gallery<PartialsFlags extends Readonly<{ [key: string]: boolean |
 /* eslint-disable-next-line @stylistic/brace-style -- In this case, the Allman style is more elegant. */
 {
 
+  protected get mustRenderAtLeansOnePartialRelatedWithGeometricModifier(): boolean {
+    return Object.entries(this.props.partialsFlags).some(
+      ([ partialFlagKey, isActive ]: Readonly<[ string, boolean | undefined ]>): boolean =>
+          partialFlagKey.endsWith("GeometricModifier") && isActive === true
+    );
+  }
+
+  protected get mustRenderAtLeansOnePartialRelatedWithDecorativeModifier(): boolean {
+    return Object.entries(this.props.partialsFlags).some(
+      ([ partialFlagKey, isActive ]: Readonly<[ string, boolean | undefined ]>): boolean =>
+          partialFlagKey.endsWith("DecorativeModifier") && isActive === true
+    );
+  }
+
   protected get mustRenderAllPartials(): boolean {
     return Object.values(this.props.partialsFlags).every((value: boolean | undefined): boolean => value === true);
   }

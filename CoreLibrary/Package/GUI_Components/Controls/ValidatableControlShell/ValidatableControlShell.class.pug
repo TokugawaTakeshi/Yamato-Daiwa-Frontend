@@ -1,0 +1,356 @@
+-
+
+  class ValidatableControlShell__YDF {
+
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
+    static CSS_NAMESPACE = "ValidatableControlShell--YDF";
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @type { { [themeName: string]: string } }
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
+    static Themes = { regular: "REGULAR" };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsThemesCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsThemesCorrespondence() {
+      return ValidatableControlShell__YDF._selfAndChildrenComponentsThemesCorrespondence ?? (
+        ValidatableControlShell__YDF._selfAndChildrenComponentsThemesCorrespondence = {
+          badge: { [ValidatableControlShell__YDF.Themes.regular]: Badge__YDF.Themes.regular }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellThemesDefinition
+     *
+     * @returns { typeof ValidatableControlShell__YDF }
+     *
+     * @example
+     * ValidatableControlShell__YDF.defineThemes({
+     *   redmond: {
+     *     badge: Badge__YDF.Themes.redmond
+     *   },
+     *   cupertino: {
+     *     badge: Badge__YDF.Themes.cupertino
+     *   }
+     * });
+     */
+    static defineThemes(ownAndCorrespondingValidatableControlShellThemesDefinition) {
+      return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellThemesDefinition, ValidatableControlShell__YDF
+      );
+    }
+
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @public
+     * @returns { typeof ValidatableControlShell__YDF }
+     * */
+    static considerThemesAsCommon() {
+      ValidatableControlShell__YDF.areThemesCSS_ClassesCommon = true;
+      return ValidatableControlShell__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL"
+    };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsGeometricVariationsCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsGeometricVariationsCorrespondence() {
+      return ValidatableControlShell__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence ?? (
+        ValidatableControlShell__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence = {
+          badge: {
+            [ValidatableControlShell__YDF.GeometricVariations.regular]: Badge__YDF.GeometricVariations.regular,
+            /* [ Approach ]
+             * `Badge__YDF.GeometricVariations.regular` is NOT a mistake because `Badge__YDF.GeometricVariations.small`
+             *    is too small, while the actual size can be flexibly adjusted by relative CSS units.
+             * */
+            [ValidatableControlShell__YDF.GeometricVariations.small]: Badge__YDF.GeometricVariations.regular
+          }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition
+     *
+     * @returns { typeof ValidatableControlShell__YDF }
+     *
+     * @example
+     * ValidatableControlShell__YDF.defineGeometricVariations({
+     *   large: {
+     *     badge: Badge__YDF.GeometricVariation.large
+     *   },
+     *   extraLarge: {
+     *     badge: Badge__YDF.GeometricVariation.extraLarge
+     *   }
+     * });
+     */
+    static defineGeometricVariations(ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition) {
+      return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition, ValidatableControlShell__YDF
+      );
+    }
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = { regular: "REGULAR" };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsDecorativeVariationsCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsDecorativeVariationsCorrespondence() {
+      return ValidatableControlShell__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
+        ValidatableControlShell__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
+          requiredInputBadge: {
+            [ValidatableControlShell__YDF.DecorativeVariations.regular]: Badge__YDF.DecorativeVariations.veryCatchyBright
+          },
+          optionalInputBadge: {
+            [ValidatableControlShell__YDF.DecorativeVariations.regular]: Badge__YDF.DecorativeVariations.modestlyCalmingBright
+          }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition
+     *
+     * @returns { typeof ValidatableControlShell__YDF }
+     *
+     * @example
+     * ValidatableControlShell__YDF.defineDecorativeVariations({
+     *   modest: {
+     *     requiredInputBadge: Badge__YDF.DecorativeVariation.customDecorativeVariation1,
+     *     optionalInputBadge: Badge__YDF.DecorativeVariation.customDecorativeVariation2
+     *   },
+     *   catchy: {
+     *     requiredInputBadge: Badge__YDF.DecorativeVariation.customDecorativeVariation3,
+     *     optionalInputBadge: Badge__YDF.DecorativeVariation.customDecorativeVariation4
+     *   }
+     * });
+     */
+    static defineDecorativeVariations(ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition) {
+      return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition, ValidatableControlShell__YDF
+      );
+    }
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * */
+    static propertiesSpecification = {
+
+      label: {
+        type: String,
+        required: false,
+        minimalCharactersCount: 1
+      },
+
+      guidance: {
+        type: String,
+        required: false,
+        minimalCharactersCount: 1
+      },
+
+      required: {
+        type: Boolean,
+        defaultValue: false
+      },
+
+      mustDisplayAppropriateBadgeIfInputIsRequired: {
+        type: Boolean,
+        defaultValue: false
+      },
+
+      mustDisplayAppropriateBadgeIfInputIsOptional: {
+        type: Boolean,
+        defaultValue: false
+      },
+
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: {
+        type: Boolean,
+        defaultValue: false
+      },
+
+      coreElementHTML_ID: {
+        type: String,
+        required: false,
+        minimalCharactersCount: 1
+      },
+
+      labelElementHTML_ID: {
+        type: String,
+        required: false,
+        minimalCharactersCount: 1
+      },
+
+      mainSlotWrapperAdditionalCSS_Classes: {
+        type: Array,
+        defaultValue: [],
+        element: {
+          type: String,
+          minimalCharactersCount: 1
+        }
+      },
+
+      theme: {
+        type: String,
+        defaultValue: ValidatableControlShell__YDF.Themes.regular,
+        allowedAlternatives: Object.
+            entries(ValidatableControlShell__YDF.Themes).
+            map(([ key, value ]) => ({ key: `ValidatableControlShell__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        defaultValue: ValidatableControlShell__YDF.areThemesCSS_ClassesCommon
+      },
+
+      geometricVariation: {
+        type: String,
+        defaultValue: ValidatableControlShell__YDF.GeometricVariations.regular,
+        allowedAlternatives: Object.
+            entries(ValidatableControlShell__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `ValidatableControlShell__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      decorativeVariation: {
+        type: String,
+        defaultValue: ValidatableControlShell__YDF.DecorativeVariations.regular,
+        allowedAlternatives: Object.
+            entries(ValidatableControlShell__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `ValidatableControlShell__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    };
+
+
+    /* ━━━ State Simulations Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * */
+    static statesSimulationsSpecification = ComponentsAuxiliaries.generateValidatableControlGeneralStatesSimulationsSpecification({
+      validationErrorsMessages: true,
+      asynchronousValidationsStatuses: true
+    })
+
+
+    /* ━━━ Guidance ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @param { string } notFormattedYetGuidance
+     * @return { string }
+     * */
+    static formatGuidance(notFormattedYetGuidance) {
+      return replaceMarkdownLink__YDF(
+        replaceMarkdownBold__YDF(
+          notFormattedYetGuidance,
+          boldedContent => `<span class="ValidatableControlShell--YDF-Guidance-AccentedFragment">${ boldedContent }</span>`,
+        ),
+        ({ URI, anchorText }) =>
+            `<a ` +
+              `class="ValidatableControlShell--YDF-Guidance-Link" ` +
+              `href="${ URI }" ` +
+              `target="_blank" ` +
+              `rel="noopener noreferrer nofollow"` +
+            `>` +
+              `${ anchorText }` +
+            `</a>`
+      )
+    }
+
+
+    /* ━━━ DOM Access ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @readonly
+     * @type { ValidatableControlShell.DOM_AccessResources }
+     * */
+    static DOM_AccessResources = validatableControlShellYDF_GUI_ComponentDOM_AccessResources;
+
+
+    /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @type { ValidatableControlShellLocalization }
+     * */
+    static localization = validatableControlShellYDF_ComponentLocalization__english;
+
+  }

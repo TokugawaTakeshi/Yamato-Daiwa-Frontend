@@ -77,7 +77,7 @@ Badge--YDF = {
 }
 
 
-provideBadgeYDF_Component(
+generateBadgeYDF_GUI_ComponentStyles(
   preset = Badge--YDF.defaultProperties,
   overrides = {},
   options = Badge--YDF.defaultOptions,
@@ -87,7 +87,7 @@ provideBadgeYDF_Component(
   properties = deeplyCloneAndOverrideObject(preset, overrides)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "provideBadgeYDF_Component",
+    mixinOrFunctionName: "generateBadgeYDF_GUI_ComponentStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {

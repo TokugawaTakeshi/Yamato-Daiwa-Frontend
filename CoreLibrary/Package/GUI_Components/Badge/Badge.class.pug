@@ -142,17 +142,20 @@
 
       keyLabel: {
         type: String,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       valueLabel: {
         type: String,
-        required: true
+        isUndefinedForbidden: true,
+        isNullForbidden: true
       },
 
       theme: {
         type: String,
-        defaultValue: Badge__YDF.Themes.regular,
+        undefinedValueSubstitution: Badge__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Badge__YDF.Themes).
             map(([ key, value ]) => ({ key: `Badge__YDF.Themes.${ key }`, value }))
@@ -160,12 +163,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: Badge__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: Badge__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: Badge__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: Badge__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Badge__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `Badge__YDF.GeometricVariations.${ key }`, value }))
@@ -173,7 +178,10 @@
 
       geometricModifiers: {
         type: Array,
-        defaultValue: [],
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
         element: {
           type: String,
           allowedAlternatives: Object.values(Badge__YDF.GeometricModifiers)
@@ -182,7 +190,8 @@
 
       decorativeVariation: {
         type: String,
-        required: true,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Badge__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `Badge__YDF.DecorativeVariations.${ key }`, value }))
@@ -190,7 +199,10 @@
 
       decorativeModifiers: {
         type: Array,
-        defaultValue: [],
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
         element: {
           type: String,
           allowedAlternatives: Object.values(Badge__YDF.DecorativeModifiers)
@@ -199,7 +211,8 @@
 
       rootElementTag: {
         type: String,
-        defaultValue: "span",
+        undefinedValueSubstitution: "span",
+        isNullForbidden: true,
         minimalCharactersCount: 1
       }
 

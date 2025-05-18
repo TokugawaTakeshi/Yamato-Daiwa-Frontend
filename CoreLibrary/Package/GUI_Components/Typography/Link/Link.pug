@@ -8,7 +8,8 @@ mixin Link--YDF(properties)
       internalURI,
       anchor,
       accessibilityGuidance,
-      disabled
+      disabled,
+      alwaysSingleLine = false
     } = properties;
 
 
@@ -41,6 +42,9 @@ mixin Link--YDF(properties)
       relAttributeValue = relations.join(" ");
     }
 
+    const rootElementModifierCSS_Classes = [
+      ...alwaysSingleLine ? [ "Link--YDF__AlwaysSingleLine" ] : [ "Link--YDF__LineBreakable" ]
+    ]
 
   a.Link--YDF&attributes(attributes)(
     href=hrefAttributeValue
@@ -48,5 +52,6 @@ mixin Link--YDF(properties)
     rel=relAttributeValue
     aria-label=accessibilityGuidance
     aria-disabled=(disabled ? "true" : undefined)
+    class=rootElementModifierCSS_Classes
   )
     block

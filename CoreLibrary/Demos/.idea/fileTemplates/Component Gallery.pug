@@ -16,7 +16,7 @@ mixin ${COMPONENT_NAME}Gallery
 
 
   //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if ${COMPONENT_NAME}GalleryOptions.partialsRenderingFlags[${COMPONENT_NAME}GalleryOptions.Partials.minimal]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
 
     h2.Heading2(
       class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])

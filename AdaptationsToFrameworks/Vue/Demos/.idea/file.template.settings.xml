@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExportableFileTemplateSettings">
+    <default_templates>
+      <template name="Page with Gallery.pug" file-name="_${COMPONENT_NAME}Gallery.vue" reformat="false" live-template-enabled="false">
+        <template name="Page with Gallery.pug.child.3.ts" file-name="_${COMPONENT_NAME}Gallery.vue" reformat="false" live-template-enabled="false" />
+        <template name="Page with Gallery.pug.child.0.ts" file-name="${COMPONENT_NAME}GalleryPage" reformat="false" live-template-enabled="false" />
+        <template name="Page with Gallery.pug.child.1.pug" file-name="${COMPONENT_NAME}GalleryPage" reformat="false" live-template-enabled="false" />
+        <template name="Page with Gallery.pug.child.2.pug" file-name="_${COMPONENT_NAME}GalleryPage.template" reformat="false" live-template-enabled="false" />
+      </template>
+      <template name="Page with Gallery.pug.child.0.ts" file-name="${COMPONENT_NAME}GalleryPage" reformat="false" live-template-enabled="false" />
+      <template name="Page with Gallery.pug.child.1.pug" file-name="${COMPONENT_NAME}GalleryPage" reformat="false" live-template-enabled="false" />
+      <template name="Page with Gallery.pug.child.2.pug" file-name="_${COMPONENT_NAME}GalleryPage.template" reformat="false" live-template-enabled="false" />
+      <template name="Page with Gallery.pug.child.3.ts" file-name="_${COMPONENT_NAME}Gallery.vue" reformat="false" live-template-enabled="false" />
+    </default_templates>
+  </component>
+</project>

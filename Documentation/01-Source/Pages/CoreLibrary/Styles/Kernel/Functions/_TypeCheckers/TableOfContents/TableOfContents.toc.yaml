@@ -1,0 +1,98 @@
+strings:
+
+  $heading: `strings.$heading`
+  $anchor: STRINGS--SECTION
+
+  $sectioning:
+
+    isEmptyString:
+      $heading: "<code>isEmptyString</code>"
+      $anchor: isEmptyString--SECTION
+
+    isNonEmptyString:
+      $heading: "<code>isNonEmptyString</code>"
+      $anchor: isNonEmptyString--SECTION
+
+    isString:
+      $heading: "<code>isString</code>"
+      $anchor: isString--SECTION
+
+quantities:
+
+  $heading: `quantities.$heading@
+  $anchor: QUANTITIES--SECTION
+
+  $sectioning:
+
+    isDimensionalOrDimensionlessQuantity:
+      $heading: "<code>isDimensionalOrDimensionlessQuantity</code>"
+      $anchor: isDimensionalOrDimensionlessQuantity--SECTION
+
+    isDimensionalQuantity:
+      $heading: "<code>isDimensionalQuantity</code>"
+      $anchor: isDimensionalQuantity--SECTION
+
+    isDimensionlessQuantity:
+      $heading: "<code>isDimensionlessQuantity</code>"
+      $anchor: isDimensionlessQuantity--SECTION
+
+    isNaturalNumber:
+      $heading: "<code>isNaturalNumber</code>"
+      $anchor: isNaturalNumber--SECTION
+
+booleans:
+
+  $heading: `booleans.$heading`
+  $anchor: BOOLEANS--SECTION
+
+  $sectioning:
+
+    isBoolean:
+      $heading: "<code>isBoolean</code>"
+      $anchor: isBoolean--SECTION
+
+    isFalse:
+      $heading: "<code>isFalse</code>"
+      $anchor: isFalse--SECTION
+
+    isTrue:
+      $heading: "<code>isTrue</code>"
+      $anchor: isTrue--SECTION
+
+nullables:
+
+  $heading: `nullables.$heading`
+  $anchor: NULLABLES--SECTION
+
+  $sectioning:
+
+    isNotNull:
+      $heading: "<code>isNotNull</code>"
+      $anchor: isNotNull--SECTION
+
+    isNull:
+      $heading: "<code>isNull</code>"
+      $anchor: isNull--SECTION
+
+others:
+
+  $heading: `others.$heading`
+  $anchor: OTHERS--SECTION
+
+  $sectioning:
+
+    isCalcExpression:
+      $heading: "<code>isCalcExpression</code>"
+      $anchor: isCalcExpression--SECTION
+
+    isFunction:
+      $heading: "<code>isFunction</code>"
+      $anchor: isFunction--SECTION
+
+    isIdentifier:
+      $heading: "<code>isIdentifier</code>"
+      $anchor: isIdentifier--SECTION
+
+    isObject:
+      $heading: "<code>isObject</code>"
+      $anchor: isObject--SECTION

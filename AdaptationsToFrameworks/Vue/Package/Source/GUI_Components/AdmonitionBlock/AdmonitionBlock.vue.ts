@@ -14,6 +14,15 @@ import { admonitionBlockYDF_ComponentLocalization__english } from "@yamato-daiwa
 /* ─── Related GUI_Components ─────────────────────────────────────────────────────────────────────────────────────── */
 import { Vue3SlideUpDown as VerticallySlidingAlwaysMountedContainer } from "vue3-slide-up-down";
 
+/* ─── Validations ─────────────────────────────────────────────────────────────────────────────────────── */
+import type VuePropertyValidator from "../_VuePropertiesValidators/VuePropertyValidator";
+import ThemeVuePropertyValidator from "../_VuePropertiesValidators/ThemeVuePropertyValidator";
+import BooleanVuePropertyValidator from "../_VuePropertiesValidators/BooleanVuePropertyValidator";
+import NonEmptyStringVuePropertyValidator from "../_VuePropertiesValidators/NonEmptyStringVuePropertyValidator";
+import GeometricVariationVuePropertyValidator from "../_VuePropertiesValidators/GeometricVariationVuePropertyValidator";
+import DecorativeVariationVuePropertyValidator from "../_VuePropertiesValidators/DecorativeVariationVuePropertyValidator";
+import preventNullForOptionalVueProperty from "../_Decorators/preventNullForOptionalVueProperty";
+
 /* ─── Framework ──────────────────────────────────────────────────────────────────────────────────────────────────── */
 import {
   ComponentBase as VueComponentConfiguration,
@@ -22,8 +31,7 @@ import {
 } from "vue-facing-decorator";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
-import { isStringOfLength, isElementOfEnumeration } from "@yamato-daiwa/es-extensions";
-import ComponentsAuxiliaries from "../ComponentsAuxiliaries";
+import YDF_ComponentsCoordinator from "../YDF_ComponentsCoordinator";
 
 
 @VueComponentConfiguration({
@@ -46,15 +54,31 @@ class AdmonitionBlock extends VueComponent {
 
 
   @VueProperty({
-    type: String,
     required: false,
-    validator: (rawValue: unknown): boolean => isStringOfLength(rawValue, { minimalCharactersCount: 1 })
+    get validator(): VuePropertyValidator {
+      return NonEmptyStringVuePropertyValidator({
+        propertyName: "title",
+        componentName: AdmonitionBlock.CSS_NAMESPACE,
+        isPropertyRequired: this.required === true
+      });
+    }
   })
-  protected readonly title!: string;
+  @preventNullForOptionalVueProperty
+  protected readonly title?: string;
 
 
   /* ━━━ Dismissing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  @VueProperty({ type: Boolean, default: false })
+  @VueProperty({
+    default: false,
+    get validator(): VuePropertyValidator {
+      return BooleanVuePropertyValidator({
+        propertyName: "dismissible",
+        componentName: AdmonitionBlock.CSS_NAMESPACE,
+        isPropertyRequired: this.required === true
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
   protected readonly dismissible!: boolean;
 
   protected isDisplaying: boolean = true;
@@ -68,23 +92,33 @@ class AdmonitionBlock extends VueComponent {
   public static readonly Themes: AdmonitionBlock.Themes = { regular: "REGULAR" };
 
   @VueProperty({
-    type: String,
     default: AdmonitionBlock.Themes.regular,
-    validator: (rawValue: string): boolean => isElementOfEnumeration(rawValue, AdmonitionBlock.Themes)
+    validator: ThemeVuePropertyValidator(AdmonitionBlock)
   })
+  @preventNullForOptionalVueProperty
   protected readonly theme!: string;
 
   public static defineThemes(themesNames: ReadonlyArray<string>): typeof AdmonitionBlock {
-    return ComponentsAuxiliaries.defineThemes(themesNames, AdmonitionBlock);
+    return YDF_ComponentsCoordinator.defineThemes(themesNames, AdmonitionBlock);
   }
 
-  protected static areThemesCSS_ClassesCommon: boolean = ComponentsAuxiliaries.areThemesCSS_ClassesCommon;
+  protected static areThemesCSS_ClassesCommon: boolean = YDF_ComponentsCoordinator.areThemesCSS_ClassesCommon;
 
   public static considerThemesAsCommon(): void {
     AdmonitionBlock.areThemesCSS_ClassesCommon = true;
   }
 
-  @VueProperty({ type: Boolean, default: AdmonitionBlock.areThemesCSS_ClassesCommon })
+  @VueProperty({
+    default: AdmonitionBlock.areThemesCSS_ClassesCommon,
+    get validator(): VuePropertyValidator {
+      return BooleanVuePropertyValidator({
+        propertyName: "areThemesCSS_ClassesCommon",
+        componentName: AdmonitionBlock.CSS_NAMESPACE,
+        isPropertyRequired: this.required === true
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
   protected readonly areThemesCSS_ClassesCommon!: boolean;
 
 
@@ -95,14 +129,14 @@ class AdmonitionBlock extends VueComponent {
   };
 
   @VueProperty({
-    type: String,
     default: AdmonitionBlock.GeometricVariations.regular,
-    validator: (rawValue: string): boolean => isElementOfEnumeration(rawValue, AdmonitionBlock.GeometricVariations)
+    validator: GeometricVariationVuePropertyValidator(AdmonitionBlock)
   })
+  @preventNullForOptionalVueProperty
   protected readonly geometricVariation!: string;
 
   public static defineGeometricVariations(geometricVariationsNames: ReadonlyArray<string>): typeof AdmonitionBlock {
-    return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, AdmonitionBlock);
+    return YDF_ComponentsCoordinator.defineGeometricVariations(geometricVariationsNames, AdmonitionBlock);
   }
 
 
@@ -117,19 +151,28 @@ class AdmonitionBlock extends VueComponent {
   };
 
   @VueProperty({
-    type: String,
     required: true,
-    validator: (rawValue: string): boolean => isElementOfEnumeration(rawValue, AdmonitionBlock.DecorativeVariations)
+    validator: DecorativeVariationVuePropertyValidator(AdmonitionBlock)
   })
   protected readonly decorativeVariation!: string;
 
   public static defineDecorativeVariations(decorativeVariationsNames: ReadonlyArray<string>): typeof AdmonitionBlock {
-    return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, AdmonitionBlock);
+    return YDF_ComponentsCoordinator.defineDecorativeVariations(decorativeVariationsNames, AdmonitionBlock);
   }
 
 
   /* ━━━ SVG Icon ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  @VueProperty({ type: Boolean, default: false })
+  @VueProperty({
+    default: false,
+    get validator(): VuePropertyValidator {
+      return BooleanVuePropertyValidator({
+        propertyName: "hasDefaultSVG_Icon",
+        componentName: AdmonitionBlock.CSS_NAMESPACE,
+        isPropertyRequired: this.required === true
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
   protected readonly hasDefaultSVG_Icon!: boolean;
 
   protected get defaultSVG_IconComponentName(): string | null {
@@ -147,28 +190,16 @@ class AdmonitionBlock extends VueComponent {
 
   /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected get rootElementModifierCSS_Classes(): Array<string> {
-    return [
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        themeValue: this.theme,
-        allThemes: AdmonitionBlock.Themes,
-        areThemesCSS_ClassesCommon: this.areThemesCSS_ClassesCommon,
-        CSS_Namespace: AdmonitionBlock.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation: this.geometricVariation,
-        allGeometricVariations: AdmonitionBlock.GeometricVariations,
-        CSS_Namespace: AdmonitionBlock.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation: this.decorativeVariation,
-        allDecorativeVariations: AdmonitionBlock.DecorativeVariations,
-        CSS_Namespace: AdmonitionBlock.CSS_NAMESPACE
-      })
-
-    ];
+    return YDF_ComponentsCoordinator.generateRootElementModifierCSS_Classes({
+      CSS_Namespace: AdmonitionBlock.CSS_NAMESPACE,
+      activeTheme: this.theme,
+      allThemes: AdmonitionBlock.Themes,
+      areThemesCSS_ClassesCommon: this.areThemesCSS_ClassesCommon,
+      activeGeometricVariation: this.geometricVariation,
+      allGeometricVariations: AdmonitionBlock.GeometricVariations,
+      activeDecorativeVariation: this.decorativeVariation,
+      allDecorativeVariations: AdmonitionBlock.DecorativeVariations
+    });
   }
 
 

@@ -9,16 +9,16 @@ mixin SingleImageViewer--YDF(properties, statesSimulations)
 
       imageURI,
       imageAlternateText,
-      fullScreenView = false,
+      fullScreenView,
       aspectRatio,
-      autoAspectRatioByYDA = false,
+      autoAspectRatioByYDA,
       maximalWidth__anyValidCSS_Value,
       maximalHeight__anyValidCSS_Value,
 
-      theme = SingleImageViewer__YDF.Themes.regular,
-      areThemesExternal = ComponentsAuxiliaries.areComponentsThemesCommon || SingleImageViewer__YDF.areThemesCSS_ClassesCommon,
-      geometricVariation = SingleImageViewer__YDF.GeometricVariations.regular,
-      decorativeVariation = SingleImageViewer__YDF.DecorativeVariations.regular
+      theme,
+      areThemesExternal,
+      geometricVariation,
+      decorativeVariation
 
     } = processObjectTypeParameterOfPugMixin({
       rawParameter: properties,

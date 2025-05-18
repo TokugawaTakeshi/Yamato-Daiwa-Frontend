@@ -215,42 +215,198 @@ provideBadgeYDF_Component(
           }
 
         },
+
+        // === TODO 再開点 ============================================================================================
+        decorativeVariations: {
+
+          // [ Guidance ] All of below values are default. If you are want to override most of them consider the extracting
+          //    of decorative variation definition to the separate file.
+          // [ Guidance ] If you are not going to override the default value of some property, you may delete from here.
+          regular: {
+
+            defaultState: {
+
+              rootElement: {
+
+                text: {
+                  color: JQueryUI_BaseTheme.clickableElements.defaultState.fontColor,
+                  underline: null
+                },
+
+                background: {
+                  color: JQueryUI_BaseTheme.clickableElements.defaultState.background,
+                  image: null
+                },
+
+                borders: {
+                  style: solid,
+                  color: JQueryUI_BaseTheme.clickableElements.defaultState.borderColor
+                },
+
+                outline: null,
+                shadow: null,
+
+                customDeclarations: null
+
+              },
+
+              SVG_Icon: {
+                color: JQueryUI_BaseTheme.clickableElements.defaultState.fontColor,
+                customDeclarations: null
+              }
+
+            },
+
+            hoverState: {
+
+              rootElement: {
+
+                text: {
+                  color: JQueryUI_BaseTheme.clickableElements.hoverState.fontColor,
+                  underline: null
+                },
+
+                background: {
+                  color: JQueryUI_BaseTheme.clickableElements.hoverState.background,
+                  image: null
+                },
+
+                borders: {
+                  style: null,
+                  color: JQueryUI_BaseTheme.clickableElements.hoverState.borderColor
+                },
+
+                outline: null,
+                shadow: null,
+
+                customDeclarations: null
+
+              },
+
+              SVG_Icon: {
+                color: JQueryUI_BaseTheme.clickableElements.hoverState.fontColor,
+                customDeclarations: null
+              }
+
+            },
+
+            focusVisibleState: {
+
+              rootElement: {
+
+                text: {
+                  color: null,
+                  underline: null
+                },
+
+                background: {
+                  color: null,
+                  image: null
+                },
+
+                borders: {
+                  style: null,
+                  color: null
+                },
+
+                outline: null,
+
+                shadow: {
+                  blurRadius: 3px,
+                  spreadRadius: 1px,
+                  color: #007fff
+                },
+
+                customDeclarations: null
+
+              },
+
+              SVG_Icon: {
+                color: null,
+                customDeclarations: null
+              }
+
+            },
+
+            activeState: {
+
+              rootElement: {
+
+                text: {
+                  color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor,
+                  underline: null
+                },
+
+                background: {
+                  color: JQueryUI_BaseTheme.clickableElements.activeState.background,
+                  image: null
+                },
+
+                borders: {
+                  style: null,
+                  color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor
+                },
+
+                outline: null,
+                shadow: null,
+
+                customDeclarations: null
+
+              },
+
+              SVG_Icon: {
+                color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor,
+                customDeclarations: null
+              }
+
+            },
+
+            disabledState: {
+
+              rootElement: {
+
+                text: {
+                  color: W3C_39_ShadesOfGray--YDF[24],
+                  underline: null
+                },
+
+                background: {
+                  color: W3C_39_ShadesOfGray--YDF[36],
+                  image: null
+                },
+
+                borders: {
+                  style: null,
+                  color: W3C_39_ShadesOfGray--YDF[32]
+                },
+
+                outline: null,
+                shadow: null,
+
+                customDeclarations: null
+
+              },
+
+              SVG_Icon: {
+                color: W3C_39_ShadesOfGray--YDF[24],
+                customDeclarations: null
+              }
+
             }
 
           },
 
-          catchyBright: {
+          accented: {
             // TODO Ditto
           },
 
-          modestlyCatchyBright: {
+          danger: {
             // TODO Ditto
           },
 
-          neutralBright: {
+          linkLike: {
             // TODO Ditto
-          },
-
-          modestlyCalmingBright: {
-            // TODO Ditto
-          },
-
-          calmingBright: {
-            // TODO Ditto
-          },
-
-          achromaticBright: {
-            // TODO Ditto
-          },
-
-          // You can prevent the generating of styles for the unused variations:
-          veryCatchyPastel: null,
-          catchyPastel: null,
-          modestlyCatchyPastel: null,
-          neutralPastel: null,
-          modestlyCalmingPastel: null,
-          calmingPastel: null,
-          achromaticPastel: null
+          }
 
         }
 
@@ -265,11 +421,115 @@ provideBadgeYDF_Component(
     themeIndependentGeometricVariations: true,
     geometricModifiers: {
       pillShape: true,
-      singleLine: true
+      squareShape: true,
+      squareShapeUnlessOverflowed: true,
+      singleLine: true,
+      noLeftBorderAndRoundings: true,
+      noRightBorderAndRoundings: true,
+      noTopBorderAndRoundings: true,
+      noBottomBorderAndRoundings: true,
+      noRoundings: true,
+      horizontallyShrinkable: true
     },
     decorativeModifiers: {
       bordersDisguising: true,
-      noBackground: true
+      noBackground: true,
+      noBackgroundInDefaultState: true
     }
   }
 )
+
+
+// ━━━ Scenario 3: Define Own Preset ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// TODO Define the geometric variations (like `AdmonitionBlock-RegularTheme-RegularGeometry`) and the decorative
+//  variations (like `AdmonitionBlock-RegularTheme-NoticeDecoration`) in the separate files then include them here.
+@require "Themes/Regular/GeometricVariations/Button-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/Button-RegularTheme-SmallGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/Button-RegularTheme-LinkLikeGeometricVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-RegularDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-DangerDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-AccentedDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-LinkLikeDecorativeVariation.styl"
+
+provideButtonYDF_Component({
+
+  preset: {
+
+    themes: {
+      regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF",
+
+        geometricVariations: {
+          regular: Button-RegularTheme-RegularGeometricVariation--YDF,
+          small: Button-RegularTheme-SmallGeometricVariation--YDF,
+          linkLike: Button-RegularTheme-LinkLikeGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          regular: Button-RegularTheme-RegularDecorativeVariation--YDF,
+          accented: Button-RegularTheme-AccentedDecorativeVariation--YDF,
+          danger: Button-RegularTheme-DangerDecorativeVariation--YDF,
+          linkLike: Button-RegularTheme-LinkLikeDecorativeVariation--YDF
+        }
+
+      }
+    }
+
+  },
+
+  // TODO Remove below parameter if you are not going to change the specified below default values
+  options: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true,
+    geometricModifiers: {
+      pillShape: true,
+      squareShape: true,
+      squareShapeUnlessOverflowed: true,
+      singleLine: true,
+      noLeftBorderAndRoundings: true,
+      noRightBorderAndRoundings: true,
+      noTopBorderAndRoundings: true,
+      noBottomBorderAndRoundings: true,
+      noRoundings: true,
+      horizontallyShrinkable: true
+    },
+    decorativeModifiers: {
+      bordersDisguising: true,
+      noBackground: true,
+      noBackgroundInDefaultState: true
+    }
+  }
+
+})
+
+
+// ━━━ Scenario 4: Writhe the CSS Theme Dependent Styles Yourself ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+provideButtonYDF_Component({
+  options: {
+    themeIndependentStylesOnly: true, // You need this option to be `true`, but cam omit remain ones if you are fine with below default values
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true,
+    geometricModifiers: {
+      pillShape: true,
+      squareShape: true,
+      squareShapeUnlessOverflowed: true,
+      singleLine: true,
+      noLeftBorderAndRoundings: true,
+      noRightBorderAndRoundings: true,
+      noTopBorderAndRoundings: true,
+      noBottomBorderAndRoundings: true,
+      noRoundings: true,
+      horizontallyShrinkable: true
+    },
+    decorativeModifiers: {
+      bordersDisguising: true,
+      noBackground: true,
+      noBackgroundInDefaultState: true
+    }
+  }
+})

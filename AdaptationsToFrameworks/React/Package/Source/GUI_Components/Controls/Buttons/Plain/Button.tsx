@@ -1,6 +1,5 @@
 /* ─── Framework ──────────────────────────────────────────────────────────────────────────────────────────────────── */
 import React from "react";
-import { Link as ReactLink, type To as ReactLinkRoute } from "react-router-dom";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import ComponentsAuxiliaries from "../../../ComponentsAuxiliaries";
@@ -24,12 +23,15 @@ class Button extends React.Component<Button.Properties> {
       "geometricModifiers" |
       "decorativeVariation" |
       "decorativeModifiers" |
-      "mustOpenURI_OnNewTab" |
-      "requestingForIgnoringOfLinkRelationshipToSearchEngine"
+      "mustOpenLinkInNewTab" |
+      "mustRequestNotFollowLinkForCrawlingToSearchEngine" |
+      "SVG_IconCSS_Classes"
     >
   > {
     return {
       HTML_Type: Button.HTML_Types.regular,
+      mustOpenLinkInNewTab: false,
+      mustRequestNotFollowLinkForCrawlingToSearchEngine: false,
       disabled: false,
       toggled: false,
       theme: Button.Themes.regular,
@@ -38,14 +40,16 @@ class Button extends React.Component<Button.Properties> {
       geometricModifiers: [],
       decorativeVariation: Button.DecorativeVariations.regular,
       decorativeModifiers: [],
-      mustOpenURI_OnNewTab: false,
-      requestingForIgnoringOfLinkRelationshipToSearchEngine: false
+      SVG_IconCSS_Classes: []
     };
   }
 
+  protected validateProps(): void {
+
+  }
 
   /* [ Implementation example ] Next.js link (the type of `to` property is different with `href` of "react-router-dom"'s link).
-   *  protected get() customRouterLink {
+   *  protected get customRouterLink(): React.ReactElement {
    *    return (
    *      <NextJS_Link
    *        href={ this.props.nextJS_LinkRoute }
@@ -61,7 +65,19 @@ class Button extends React.Component<Button.Properties> {
    *    );
    * }
    * */
-  protected readonly customRouterLink?: React.ReactElement;
+
+  public static internalLinkRenderer: Button.InternalLinkRenderer =
+      (
+        route: string,
+        requiredAttributes: React.RefAttributes<HTMLAnchorElement>,
+        childrenElements: React.ReactNode
+      ): React.ReactNode =>
+          <a
+            href={ route }
+            { ...requiredAttributes }
+          >
+            { childrenElements }
+          </a>;
 
 
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -94,6 +110,7 @@ class Button extends React.Component<Button.Properties> {
   public static readonly DecorativeVariations: Button.DecorativeVariations = {
     regular: "REGULAR",
     accented: "ACCENTED",
+    danger: "DANGER",
     linkLike: "LINK_LIKE"
   };
 
@@ -102,8 +119,19 @@ class Button extends React.Component<Button.Properties> {
   }
 
 
+  /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public componentDidMount(): void {
+    this.validateProps();
+  }
+
+  public componentDidUpdate(): void {
+    this.validateProps();
+  }
+
+
   /* ━━━ Root Element Attributes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected get typeAttributeValueOfButtonOrInputElement(): "button" | "submit" | "reset" {
+
     switch (this.props.HTML_Type) {
 
       case Button.HTML_Types.submit:
@@ -117,6 +145,7 @@ class Button extends React.Component<Button.Properties> {
       default: return "button";
 
     }
+
   }
 
 
@@ -167,25 +196,47 @@ class Button extends React.Component<Button.Properties> {
   /* ━━━ Rendering ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public render(): React.ReactNode {
 
-    if (isNotUndefined(this.customRouterLink)) {
-      return this.customRouterLink;
-    }
+    if (isNotUndefined(this.props.route)) {
 
-
-    if (isNotUndefined(this.props.reactLinkRoute)) {
-      return (
-        <ReactLink
-          to={ this.props.reactLinkRoute }
-          { ...this.props.mustOpenURI_OnNewTab ? { target: "_blank" } : null }
-          aria-label={ this.props.accessibilityGuidance }
-          aria-disabled={ this.props.disabled }
-          aria-pressed={ this.props.toggled }
-          tabIndex={ this.props.disabled ? -1 : 0 }
-          className={ this.rootElementCSS_Classes.join(" ") }
-        >
-          { this.childrenElements }
-        </ReactLink>
+      this.props.internalLinkRenderer(
+        this.props.route,
+        {
+          ...this.props.mustOpenLinkInNewTab ? { target: "_blank" } : null,
+          "aria-label": this.props.accessibilityGuidance,
+          "aria-disabled": this.props.disabled,
+          "aria-pressed": this.props.toggled,
+          "tab-index": this.props.disabled ? -1 : 0,
+          "class-name": this.rootElementCSS_Classes.join(" ")
+        },
+        this.childrenElements
       );
+
+      Button.internalLinkRenderer(
+        this.props.route,
+        {
+          ...this.props.mustOpenLinkInNewTab ? { target: "_blank" } : null,
+          "aria-label": this.props.accessibilityGuidance,
+          "aria-disabled": this.props.disabled,
+          "aria-pressed": this.props.toggled,
+          "tab-index": this.props.disabled ? -1 : 0,
+          "class-name": this.rootElementCSS_Classes.join(" ")
+        },
+        this.childrenElements
+      );
+
+      return (this.props.internalLinkRenderer ?? Button.internalLinkRenderer)<string | object>(
+        this.props.route,
+        {
+          ...this.props.mustOpenLinkInNewTab ? { target: "_blank" } : null,
+          "aria-label": this.props.accessibilityGuidance,
+          "aria-disabled": this.props.disabled,
+          "aria-pressed": this.props.toggled,
+          "tab-index": this.props.disabled ? -1 : 0,
+          "class-name": this.rootElementCSS_Classes.join(" ")
+        },
+        this.childrenElements
+      );
+
     }
 
 
@@ -193,12 +244,12 @@ class Button extends React.Component<Button.Properties> {
       return (
         <a
           { ...this.props.disabled ? null : { href: this.props.externalURI } }
-          { ...this.props.mustOpenURI_OnNewTab ? { target: "_blank" } : null }
+          { ...this.props.mustOpenLinkInNewTab ? { target: "_blank" } : null }
           rel={
             [
               "noopener",
               "noreferrer",
-              ...this.props.requestingForIgnoringOfLinkRelationshipToSearchEngine ? [ "nofollow" ] : []
+              ...this.props.mustRequestNotFollowLinkForCrawlingToSearchEngine ? [ "nofollow" ] : []
             ].join(" ")
           }
           aria-label={ this.props.accessibilityGuidance }
@@ -235,7 +286,7 @@ class Button extends React.Component<Button.Properties> {
 
     return (
       <button
-        /* eslint-disable-next-line react/button-has-type -- TODO */
+        /* eslint-disable-next-line react/button-has-type -- The plugin does not support the dynamic values. */
         type={ this.typeAttributeValueOfButtonOrInputElement }
         disabled={ this.props.disabled }
         aria-label={ this.props.accessibilityGuidance }
@@ -256,20 +307,26 @@ class Button extends React.Component<Button.Properties> {
     const {
       prependedSVG_Icon: PrependedSVG_Icon,
       appendedSVG_Icon: AppendedSVG_Icon,
-      loneSVG_Icon: LoneSVG_Icon
+      loneSVG_Icon: LoneSVG_Icon,
+      SVG_IconCSS_Classes
     }: Button.Properties = this.props;
+
+    const SVG_IconClassAttributeValue: string = [
+      "Button--YDF-SVG_Icon",
+        ...Array.isArray(SVG_IconCSS_Classes) ? [ ...SVG_IconCSS_Classes ] : [ SVG_IconCSS_Classes ]
+    ].join(" ");
 
     return (
 
       <>
 
-        { isNotUndefined(PrependedSVG_Icon) && <PrependedSVG_Icon className="Badge--YDF-SVG_Icon"/> }
+        { isNotUndefined(PrependedSVG_Icon) && <PrependedSVG_Icon className={ SVG_IconClassAttributeValue } /> }
 
         { isNotUndefined(this.props.label) && <span className="Button--YDF-Label">{ this.props.label }</span> }
 
-        { isNotUndefined(AppendedSVG_Icon) && <AppendedSVG_Icon className="Badge--YDF-SVG_Icon"/> }
+        { isNotUndefined(AppendedSVG_Icon) && <AppendedSVG_Icon className={ SVG_IconClassAttributeValue } /> }
 
-        { isNotUndefined(LoneSVG_Icon) && <LoneSVG_Icon className="Badge--YDF-SVG_Icon"/> }
+        { isNotUndefined(LoneSVG_Icon) && <LoneSVG_Icon className={ SVG_IconClassAttributeValue } /> }
 
       </>
 
@@ -286,6 +343,11 @@ namespace Button {
     HTML_Type?: HTML_Types;
     label?: string | number;
     accessibilityGuidance?: string;
+    route?: string | object;
+    internalLinkRenderer: InternalLinkRenderer;
+    externalURI?: string;
+    mustOpenLinkInNewTab: boolean;
+    mustRequestNotFollowLinkForCrawlingToSearchEngine: boolean;
     disabled: boolean;
     toggled: boolean;
     theme: string;
@@ -297,13 +359,16 @@ namespace Button {
     prependedSVG_Icon?: React.ElementType<{ className: string; }>;
     appendedSVG_Icon?: React.ElementType<{ className: string; }>;
     loneSVG_Icon?: React.ElementType<{ className: string; }>;
-    reactLinkRoute?: ReactLinkRoute;
-    externalURI?: string;
-    mustOpenURI_OnNewTab: boolean;
-    requestingForIgnoringOfLinkRelationshipToSearchEngine: boolean;
+    SVG_IconCSS_Classes?: ReadonlyArray<string> | string;
     onClick?: () => unknown;
     className?: string;
   }>;
+
+  export type InternalLinkRenderer<Route = string | object> = (
+    route: Route,
+    requiredAttributes: React.RefAttributes<HTMLAnchorElement>,
+    childrenElements: React.ReactNode
+  ) => React.ReactNode;
 
   export enum HTML_Types {
     regular = "BUTTON",
@@ -318,6 +383,7 @@ namespace Button {
     [themeName: string]: string;
   };
 
+
   export type GeometricVariations = {
     readonly regular: "REGULAR";
     readonly small: "SMALL";
@@ -331,20 +397,26 @@ namespace Button {
     squareShapeUnlessOverflowed = "SQUARE_SHAPE_UNLESS_OVERFLOWED",
     singleLine = "SINGLE_LINE",
     noLeftBorderAndRoundings = "NO_LEFT_BORDER_AND_ROUNDINGS",
-    noRightBorderAndRoundings = "NO_RIGHT_BORDER_AND_ROUNDINGS"
+    noRightBorderAndRoundings = "NO_RIGHT_BORDER_AND_ROUNDINGS",
+    noTopBorderAndRoundings = "NO_TOP_BORDER_AND_ROUNDINGS",
+    noBottomBorderAndRoundings = "NO_BOTTOM_BORDER_AND_ROUNDINGS",
+    noRoundings = "NO_ROUNDINGS",
+    horizontallyShrinkable = "HORIZONTALLY_SHRINKABLE"
   }
 
 
   export type DecorativeVariations = {
     readonly regular: "REGULAR";
     readonly accented: "ACCENTED";
+    readonly danger: "DANGER";
     readonly linkLike: "LINK_LIKE";
     [variationName: string]: string;
   };
 
   export enum DecorativeModifiers {
     bordersDisguising = "BORDERS_DISGUISING",
-    noBackground = "NO_BACKGROUND"
+    noBackground = "NO_BACKGROUND",
+    noBackgroundInDefaultState = "NO_BACKGROUND_IN_DEFAULT_STATE"
   }
 
 }

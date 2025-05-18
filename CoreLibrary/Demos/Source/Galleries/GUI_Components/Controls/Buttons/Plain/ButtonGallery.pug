@@ -1,6 +1,3 @@
-include ButtonGalleryOptions.pug
-
-
 mixin ButtonGallery
 
   -
@@ -25,15 +22,15 @@ mixin ButtonGallery
 
 
   h1.Heading1(
-    class=(ButtonGalleryOptions.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
   ) Button Component Demos
 
 
   //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.minimal]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
 
     h2.Heading2(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Minimal
 
     +ThemesShowcase--YDF({
@@ -77,10 +74,10 @@ mixin ButtonGallery
 
 
   //- ━━━ Long Labels ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.longLabels]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.longLabels]
 
     h2.Heading2(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Long Labels
 
     +ThemesShowcase--YDF({
@@ -89,7 +86,7 @@ mixin ButtonGallery
       decorativeVariations: Button__YDF.DecorativeVariations,
       skipDecorativeVariationIf,
       iterationData: themeShowcaseCurrentIterationData,
-      decorativeVariationsListItemAdditionalCSS_Classes: "ButtonGallery-DecorativeVariationsListItem",
+      decorativeVariationsListItemAdditionalCSS_Classes: "ButtonGallery-DecorativeVariationsListItem"
     })
 
       dl.ButtonGallery-PseudoTable
@@ -125,10 +122,10 @@ mixin ButtonGallery
 
 
   //- ━━━ Prepended SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.prependedSVG_Icons]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.prependedSVG_Icons]
 
     h2.Heading2(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading": [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading": [])
     ) Prepended SVG Icons
 
     +ThemesShowcase--YDF({
@@ -168,10 +165,10 @@ mixin ButtonGallery
 
 
   //- ━━━ Appended SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.appendedSVG_Icons]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.appendedSVG_Icons]
 
     h2.Heading2(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Appended SVG Icons
 
     +ThemesShowcase--YDF({
@@ -211,10 +208,10 @@ mixin ButtonGallery
 
 
   //- ━━━ Lone Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.loneSVG_Icons]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.loneSVG_Icons]
 
     h2.Heading2(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Lone Icons
 
     +ThemesShowcase--YDF({
@@ -253,10 +250,10 @@ mixin ButtonGallery
 
 
   //- ━━━ Custom SVG Icon ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.customIcons]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.customIcons]
 
     h2.Heading2(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Custom SVG Icon
 
     +ThemesShowcase--YDF({
@@ -296,18 +293,18 @@ mixin ButtonGallery
 
 
   //- ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if ButtonGalleryOptions.mustRenderGeometricModifiersSection
+  if GalleryConfigurator.mustRenderGeometricModifiersSection
 
     h2.Heading2(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Geometric Modifiers
 
 
   //- ─── Pill Shape ───────────────────────────────────────────────────────────────────────────────────────────────────
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.pillShapeGeometricModifier]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.pillShapeGeometricModifier]
 
     h3.Heading3(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Pill Shape
 
     +ThemesShowcase--YDF({
@@ -355,10 +352,10 @@ mixin ButtonGallery
 
 
   //- ─── Square Shape ─────────────────────────────────────────────────────────────────────────────────────────────────
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.squareShapeGeometricModifier]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.squareShapeGeometricModifier]
 
     h3.Heading3(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Square Shape
 
     +ThemesShowcase--YDF({
@@ -406,10 +403,10 @@ mixin ButtonGallery
 
 
   //- ─── Square Shape Unless Overflowed ───────────────────────────────────────────────────────────────────────────────
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.squareShapeUnlessOverflowedGeometricModifier]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.squareShapeUnlessOverflowedGeometricModifier]
 
     h3.Heading3(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Square Shape Unless Overflowed
 
     +ThemesShowcase--YDF({
@@ -430,7 +427,7 @@ mixin ButtonGallery
             accessibilityGuidance: "Like this post",
             theme: themeShowcaseCurrentIterationData.theme.value,
             geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
-            geometricModifiers: [Button__YDF.GeometricModifiers.squareShapeUnlessOverflowed],
+            geometricModifiers: [ Button__YDF.GeometricModifiers.squareShapeUnlessOverflowed ],
             decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
           }): +Heart__Filled--YDF_Icon.Button--YDF-SVG_Icon
 
@@ -449,7 +446,7 @@ mixin ButtonGallery
             accessibilityGuidance: "Like this post",
             theme: themeShowcaseCurrentIterationData.theme.value,
             geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
-            geometricModifiers: [Button__YDF.GeometricModifiers.squareShapeUnlessOverflowed],
+            geometricModifiers: [ Button__YDF.GeometricModifiers.squareShapeUnlessOverflowed ],
             decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
           }): +Heart__Filled--YDF_Icon.Button--YDF-SVG_Icon
 
@@ -469,7 +466,7 @@ mixin ButtonGallery
             accessibilityGuidance: "Like this post",
             theme: themeShowcaseCurrentIterationData.theme.value,
             geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
-            geometricModifiers: [Button__YDF.GeometricModifiers.squareShapeUnlessOverflowed],
+            geometricModifiers: [ Button__YDF.GeometricModifiers.squareShapeUnlessOverflowed ],
             decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
           }): +Heart__Filled--YDF_Icon.Button--YDF-SVG_Icon
 
@@ -484,10 +481,10 @@ mixin ButtonGallery
 
 
   //- ─── Single Line ──────────────────────────────────────────────────────────────────────────────────────────────────
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.singleLineGeometricModifier]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.singleLineGeometricModifier]
 
     h3.Heading3(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Single Line
 
     +ThemesShowcase--YDF({
@@ -535,10 +532,10 @@ mixin ButtonGallery
 
 
   //- ─── No Left Border and Roundings ─────────────────────────────────────────────────────────────────────────────────
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.noLeftBorderAndRoundingsGeometricModifier]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noLeftBorderAndRoundingsGeometricModifier]
 
     h3.Heading3(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) No Left Border and Roundings
 
     +ThemesShowcase--YDF({
@@ -586,10 +583,10 @@ mixin ButtonGallery
 
 
   //- ─── No Right Border and Roundings ────────────────────────────────────────────────────────────────────────────────
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.noRightBorderAndRoundingsGeometricModifier]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noRightBorderAndRoundingsGeometricModifier]
 
     h3.Heading3(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) No Right Border and Roundings
 
     +ThemesShowcase--YDF({
@@ -636,10 +633,10 @@ mixin ButtonGallery
           })
 
   //- ─── No Top Border and Roundings ──────────────────────────────────────────────────────────────────────────────────
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.noTopBorderAndRoundingsGeometricModifier]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noTopBorderAndRoundingsGeometricModifier]
 
     h3.Heading3(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) No Top Border and Roundings
 
     +ThemesShowcase--YDF({
@@ -687,10 +684,10 @@ mixin ButtonGallery
 
 
   //- ─── No Bottom Border and Roundings ───────────────────────────────────────────────────────────────────────────────
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.noBottomBorderAndRoundingsGeometricModifier]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noBottomBorderAndRoundingsGeometricModifier]
 
     h3.Heading3(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) No Bottom Border and Roundings
 
     +ThemesShowcase--YDF({
@@ -736,11 +733,12 @@ mixin ButtonGallery
             decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
           })
 
+
   //- ─── No Roundings ─────────────────────────────────────────────────────────────────────────────────────────────────
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.noRoundingsGeometricModifier]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noRoundingsGeometricModifier]
 
     h3.Heading3(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) No Roundings
 
     +ThemesShowcase--YDF({
@@ -787,10 +785,10 @@ mixin ButtonGallery
           })
 
   //- ─── Horizontally Shrinkable ────────────────────────────────────────────────────────────────────────────────────
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.horizontallyShrinkableGeometricModifier]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.horizontallyShrinkableGeometricModifier]
 
     h3.Heading3(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Horizontally Shrinkable
 
     +ThemesShowcase--YDF({
@@ -839,18 +837,19 @@ mixin ButtonGallery
               decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
             })
 
-  //- ━━━ Decorative modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if ButtonGalleryOptions.mustRenderDecorativeModifiersSection
+
+  //- ━━━ Decorative Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.mustRenderDecorativeModifiersSection
 
     h2.Heading2(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Decorative Modifiers
 
     //- ─── Borders Disguising ─────────────────────────────────────────────────────────────────────────────────────────
-    if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.bordersDisguisingDecorativeModifier]
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.bordersDisguisingDecorativeModifier]
 
       h3.Heading3(
-        class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
       ) Borders Disguising
 
       +ThemesShowcase--YDF({
@@ -896,11 +895,12 @@ mixin ButtonGallery
               decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
             })
 
+
   //- ─── No Background ────────────────────────────────────────────────────────────────────────────────────────────────
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.noBackgroundDecorativeModifier]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noBackgroundDecorativeModifier]
 
     h3.Heading3(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) No Background
 
     +ThemesShowcase--YDF({
@@ -946,11 +946,12 @@ mixin ButtonGallery
             decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
           })
 
+
   //- ─── No Background in Default State Decorative Modifier ───────────────────────────────────────────────────────────
-  if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.noBackgroundInDefaultStateDecorativeModifier]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noBackgroundInDefaultStateDecorativeModifier]
 
     h3.Heading3(
-      class=(ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) No Background in Default State Decorative Modifier
 
     +ThemesShowcase--YDF({
@@ -1008,11 +1009,12 @@ mixin ButtonGallery
             ]
           })
 
-    //- ━━━ Loading placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    if ButtonGalleryOptions.partialsRenderingFlags[ButtonGalleryOptions.Partials.loadingPlaceholder]
+
+    //- ━━━ Loading Placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.loadingPlaceholder]
 
       h2.Heading2(
-        class= ButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading": []
+        class= GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading": []
       ) Loading Placeholder
 
       .ButtonGallery-LinearFlow

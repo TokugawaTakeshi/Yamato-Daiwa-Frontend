@@ -1,0 +1,36 @@
+include ../../../Functionality.pug
+include ../../../GUI_Components.pug
+
+include ../../../Markup/Assets/SVG_Icons/ExclamationMark/ExclamationMarkIcon__Circled__Filled.pug
+include ../../../Markup/Assets/SVG_Icons/Checkmark/CheckmarkIcon__Circled__Filled.pug
+include ../../../Markup/Assets/SVG_Icons/MultiplicationSign/MultiplicationSignIcon__Boxed__Filled.pug
+
+
+
+template
+
+  ul.ValidatableControlShell--YDF-ValidationErrorsMessagesList
+    li.ValidatableControlShell--YDF-ValidationErrorMessage
+
+  ul.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList
+
+    li.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item(
+      class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__InProgressState"
+    )
+      +LoadingIndicator--YDF({
+        type: LoadingIndicator__YDF.Types.variableWidthArcSpinner,
+        geometricVariation: LoadingIndicator__YDF.GeometricVariations.small
+      }).ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-LoadingIndicator
+      p.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text
+
+    li.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item(
+      class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__SucceededAndValidState"
+    )
+      +Checkmark__Circled__Filled--YDF_Icon.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon
+      p.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text
+
+    li.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item(
+      class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__MalfunctionState"
+    )
+      +MultiplicationSign__Boxed__Filled--YDF_Icon.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon
+      p.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text

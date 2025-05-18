@@ -1,5 +1,5 @@
-@require "Themes/Regular/DecorativeVariations/Link-RegularTheme-RegularGeometry.styl"
-@require "Themes/Regular/GeometricVariations/Link-RegularTheme-RegularDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Link-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/Link-RegularTheme-RegularDecorativeVariation.styl"
 
 
 Link--YDF = {
@@ -14,11 +14,11 @@ Link--YDF = {
         componentIndependentCSS_Class: "RegularTheme--YDF",
 
         geometricVariations: {
-          regular: Link-RegularTheme-RegularGeometry--YDF
+          regular: Link-RegularTheme-RegularGeometricVariation--YDF
         },
 
         decorativeVariations: {
-          regular: Link-RegularTheme-RegularDecoration--YDF
+          regular: Link-RegularTheme-RegularDecorativeVariation--YDF
         }
 
       }
@@ -44,7 +44,7 @@ provideLinkYDF_Component(
   properties = deeplyCloneAndOverrideObject(preset, overridings)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "provideButtonYDF_Component",
+    mixinOrFunctionName: "generateButtonYDF_GUI_ComponentStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {
@@ -66,41 +66,18 @@ provideLinkYDF_Component(
 
     .Link--YDF
 
-      line-height 1
-
-      color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor
-
-      text-decoration-line underline
-      text-decoration-color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor
-      text-underline-offset 2px
-
+      line-height inherit
       cursor pointer
 
 
-      &:hover
+      &__AlwaysSingleLine
 
-        color: JQueryUI_BaseTheme.clickableElements.activeState.background
-        text-decoration-color: rgba(JQueryUI_BaseTheme.clickableElements.activeState.background, 0.75)
-
-
-      &:focus-visiable
-
-        color: JQueryUI_BaseTheme.clickableElements.activeState.background
-        text-decoration-color: rgba(JQueryUI_BaseTheme.clickableElements.activeState.background, 0.75)
-        outline 1px solid JQueryUI_BaseTheme.warning.fontColor
-        outline-offset 1px
+        SingleLineTextElementOverflowSafety({ displayEllipsis: true })
 
 
-      &:active
+      &__LineBreakable
 
-        color: JQueryUI_BaseTheme.warning.fontColor
-        text-decoration-color: JQueryUI_BaseTheme.warning.fontColor
-
-
-      &__DisabledState
-
-        color: JQueryUI_BaseTheme.clickableElements.activeState.background
-        text-underline-color: rgba(JQueryUI_BaseTheme.clickableElements.activeState.background, 0.5)
+        word-break break-all
 
 
   // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -111,6 +88,10 @@ provideLinkYDF_Component(
       { themeName: themeName, variationName: variationName }
     )
 
+    +provideDefaultSelectorWhenRootAndApply("." + Link--YDF.CSS_NAMESPACE)
+
+      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+
 
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
@@ -118,10 +99,62 @@ provideLinkYDF_Component(
     VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
       "Button.${ themeName }Theme.${ variationName }Decoration",
       {
-        themeName: themeName,
+        Link: themeName,
         variationName: variationName
       }
     )
+
+    StateDependentStyles(state)
+
+      Declarations()
+
+        validateAndAssignStoredInObjectCSS_Properties({
+          targetObject: variation[state],
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            color: { dotSeparatedPath: "text.color", required: false },
+            underline: { dotSeparatedPath: "text.underline", required: false, applier: applyObjectTypeUnderlineDefinition },
+            background-color: { dotSeparatedPath: "background.color", required: false },
+            background-image: { dotSeparatedPath: "background.image", required: false },
+            border-style: { dotSeparatedPath: "borders.style", required: false },
+            border-color: { dotSeparatedPath: "borders.color", required: false },
+            outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition },
+            box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition }
+          }
+        })
+
+        applyMixinStoredInObjectIfItIsNotNull(variation[state].customDeclarations)
+
+
+      +provideDefaultSelectorWhenRootAndApply("." + Link--YDF.CSS_NAMESPACE)
+
+        if (state == "defaultState")
+
+          Declarations(state)
+
+        else if (state == "hoverState")
+
+          &:hover
+
+            Declarations(state)
+
+        else if (state == "focusVisibleState")
+
+          &:focus-visible
+
+            Declarations(state)
+
+        else if (state == "activeState")
+
+          &:active,
+          &[aria-pressed="true"]
+
+            Declarations(state)
+
+
+    for state in variation
+
+      StateDependentStyles(state)
 
 
   // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

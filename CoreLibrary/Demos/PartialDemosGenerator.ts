@@ -19,6 +19,10 @@ import {
 import Handlebars from "handlebars";
 
 
+/* [ Example ]
+ * ts-node PartialDemosGenerator.ts Source/CompletePages/GUI_Components/AdmonitionBlock
+ */
+
 Logger.setImplementation(ConsoleApplicationLogger);
 
 const PROJECT_ROOT_DIRECTORY_ABSOLUTE_PATH: string = Path.dirname(process.argv[1]);
@@ -69,7 +73,7 @@ const targetGUI_Component__upperCamelCase: string = extractFileNameWithoutAnyExt
     replace("GalleryPage", "").
     replace("_", "");
 
-const outputFilesNamesConstantPart: string = `${ targetGUI_Component__upperCamelCase }Page`;
+const outputFilesNamesConstantPart: string = `${ targetGUI_Component__upperCamelCase }GalleryPage`;
 
 const commonRelativePath: string = Path.relative(
   Path.join(PROJECT_ROOT_DIRECTORY_ABSOLUTE_PATH, "Source", "CompletePages"),

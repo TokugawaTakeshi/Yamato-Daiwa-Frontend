@@ -33,6 +33,22 @@ export const dateTimePickerYDF_ComponentLocalization__english: DateTimePickerLoc
         buttons: {
           switchingToPreviousYear: { label: "Prev." },
           switchingToNextYear: { label: "Next" },
+          switchingToYearSelectingPanel: { label: "Year" },
+          switchingToDateSelectingPanel: { label: "Date" }
+        }
+
+      },
+
+      yearSelectingMode: {
+
+        labels: {
+          adjacentYearsSets: "Adjacent Years Sets",
+          selectingPanels: "Selection Panels"
+        },
+
+        buttons: {
+          switchingToPreviousYearsSet: { label: "Prev. 25 Years" },
+          switchingToNextYearsSet: { label: "Next 25 Years" },
           switchingToMonthSelectingPanel: { label: "Month" },
           switchingToDateSelectingPanel: { label: "Date" }
         }

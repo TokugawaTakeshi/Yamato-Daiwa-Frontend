@@ -5,6 +5,6 @@ export const numericMaximumInputtedValueValidationRuleLocalization__japanese:
     NumericMaximumInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: ({ maximalValue }: NumericMaximumInputtedValueValidationRule.ErrorMessage.TemplateVariables): string =>
-      `入力された数は${ maximalValue }と言う最大数を超えています。` +
-      `最大${ maximalValue }を入力して下さい。`
+      `入力された数は${ maximalValue }と言う最大値を超えています。` +
+      `最大${ maximalValue }以下で入力して下さい。`
 };

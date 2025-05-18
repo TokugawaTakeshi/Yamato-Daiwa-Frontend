@@ -61,17 +61,20 @@
 
       key: {
         type: String,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       value: {
         type: String,
-        required: true
+        isUndefinedForbidden: true,
+        isNullForbidden: true
       },
 
       theme: {
         type: String,
-        defaultValue: Chip__YDF.Themes.regular,
+        undefinedValueSubstitution: Chip__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Chip__YDF.Themes).
             map(([ key, value ]) => ({ key: `Chip__YDF.Themes.${ key }`, value }))
@@ -79,18 +82,21 @@
 
       dismissingButtonAccessibilityGuidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: ComponentsAuxiliaries.areComponentsThemesCommon
+        undefinedValueSubstitution: Chip__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: Chip__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: Chip__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Chip__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `Chip__YDF.GeometricVariations.${ key }`, value }))
@@ -98,7 +104,8 @@
 
       decorativeVariation: {
         type: String,
-        required: true,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Chip__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `Chip__YDF.DecorativeVariations.${ key }`, value }))
@@ -106,7 +113,10 @@
 
       decorativeModifiers: {
         type: Array,
-        defaultValue: [],
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
         element: {
           type: String,
           allowedAlternatives: Object.values(Chip__YDF.DecorativeModifiers)

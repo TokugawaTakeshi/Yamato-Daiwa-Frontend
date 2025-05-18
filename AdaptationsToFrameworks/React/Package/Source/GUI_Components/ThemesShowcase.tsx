@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
 import React from "react";
+import { isUndefined } from "@yamato-daiwa/es-extensions";
 
 
 const ThemesShowcase: React.FC<ThemesShowcase.Properties> =
@@ -15,7 +16,8 @@ const ThemesShowcase: React.FC<ThemesShowcase.Properties> =
         decorativeVariationsWrapperTag: DecorativeVariationsWrapperTag = "dl",
         decorativeVariationsWrapperAdditionalCSS_Classes = [],
         decorativeVariationsListItemAdditionalCSS_Classes = [],
-        renderChild
+        renderChild,
+        decorativeVariationSkippingCondition
       }: ThemesShowcase.Properties
     ): ReactElement =>
 
@@ -55,7 +57,26 @@ const ThemesShowcase: React.FC<ThemesShowcase.Properties> =
 
                                     {
 
-                                      Object.entries(decorativeVariations).map(
+                                      Object.entries(decorativeVariations).
+                                          filter(
+                                            ([ decorativeVariationKey, decorativeVariationValue ]: [ string, string ]): boolean =>
+                                                isUndefined(decorativeVariationSkippingCondition) ?
+                                                    true :
+                                                    !decorativeVariationSkippingCondition({
+                                                      theme: {
+                                                        key: themeKey,
+                                                        value: themeValue
+                                                      },
+                                                      geometricVariation: {
+                                                        key: geometricVariationKey,
+                                                        value: geometricVariationValue
+                                                      },
+                                                      decorativeVariation: {
+                                                        key: decorativeVariationKey,
+                                                        value: decorativeVariationValue
+                                                      }
+                                                    })
+                                          ).map(
 
                                           /* eslint-disable-next-line max-nested-callbacks --
                                            * Maybe it will be better to extract this content to other method, but the
@@ -155,6 +176,8 @@ namespace ThemesShowcase {
     decorativeVariationsWrapperAdditionalCSS_Classes?: ReadonlyArray<string>;
     decorativeVariationsListItemAdditionalCSS_Classes?: ReadonlyArray<string>;
     renderChild: (dataForChildren: DataForChildren) => React.ReactElement;
+    decorativeVariationSkippingCondition?:
+        (compoundParameter: ThemesShowcase.DecorativeVariationSkippingCondition.IterationData) => boolean;
   }>;
 
   export type DataForChildren = Readonly<{
@@ -162,6 +185,22 @@ namespace ThemesShowcase {
     geometricVariation: Readonly<{ key: string; value: string; }>;
     decorativeVariation: Readonly<{ key: string; value: string; }>;
   }>;
+
+  export namespace DecorativeVariationSkippingCondition {
+
+    export type IterationData = Readonly<{
+      [
+        key in
+            "theme" |
+            "geometricVariation" |
+            "decorativeVariation"
+      ]: Readonly<{
+        key: string;
+        value: string;
+      }>
+    }>;
+
+  }
 
 }
 

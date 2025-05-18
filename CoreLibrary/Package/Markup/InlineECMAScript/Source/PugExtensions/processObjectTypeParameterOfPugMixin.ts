@@ -28,10 +28,11 @@ export default function processObjectTypeParameterOfPugMixin(
 
   const mixinParameterRequiredPropertiesNames: ReadonlyArray<string> = Object.entries(mixinParameterPropertiesSpecification).
       filter(
-        ([ _propertyName, propertySpecification ]: [ string, RawObjectDataProcessor.CertainPropertySpecification ]): boolean =>
-            propertySpecification.required === true
+        ([ _propertyName, propertySpecification ]: [ string, RawObjectDataProcessor.PropertySpecification ]): boolean =>
+            propertySpecification.isUndefinedForbidden === true &&
+            propertySpecification.isNullForbidden === true
       ).
-      map(([ propertyName ]: [ string, RawObjectDataProcessor.CertainPropertySpecification ]): string => propertyName);
+      map(([ propertyName ]: [ string, RawObjectDataProcessor.PropertySpecification ]): string => propertyName);
 
   if (isEitherUndefinedOrNull(rawMixinParameter)) {
 
@@ -57,11 +58,11 @@ export default function processObjectTypeParameterOfPugMixin(
     return Object.entries(mixinParameterPropertiesSpecification).reduce(
       (
         processedMixinParameter: ParsedJSON_Object,
-        [ propertyName, propertySpecification ]: [ string, RawObjectDataProcessor.CertainPropertySpecification ]
+        [ propertyName, propertySpecification ]: [ string, RawObjectDataProcessor.PropertySpecification ]
       ): ParsedJSON_Object => {
 
-        if (isNotUndefined(propertySpecification.defaultValue)) {
-          processedMixinParameter[propertyName] = propertySpecification.defaultValue;
+        if (isNotUndefined(propertySpecification.undefinedValueSubstitution)) {
+          processedMixinParameter[propertyName] = propertySpecification.undefinedValueSubstitution;
         }
 
         return processedMixinParameter;
@@ -91,13 +92,16 @@ export default function processObjectTypeParameterOfPugMixin(
 
 
   const mixinParameterProcessingResult: RawObjectDataProcessor.ProcessingResult<ParsedJSON_Object> =
-      RawObjectDataProcessor.process(rawMixinParameter, {
-        nameForLogging: `Parameter No. ${ mixinParameterNumber } of "${ mixinName }" mixin`,
-        subtype: RawObjectDataProcessor.ObjectSubtypes.fixedKeyAndValuePairsObject,
-        properties: mixinParameterPropertiesSpecification
-      });
+      RawObjectDataProcessor.process(
+        rawMixinParameter,
+        {
+          nameForLogging: `Parameter No. ${ mixinParameterNumber } of "${ mixinName }" mixin`,
+          subtype: RawObjectDataProcessor.ObjectSubtypes.fixedSchema,
+          properties: mixinParameterPropertiesSpecification
+        }
+      );
 
-  if (mixinParameterProcessingResult.rawDataIsInvalid) {
+  if (mixinParameterProcessingResult.isRawDataInvalid) {
     Logger.throwErrorAndLog({
       errorInstance: new InvalidParameterValueError({
         customMessage:

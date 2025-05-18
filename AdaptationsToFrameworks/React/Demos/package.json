@@ -9,16 +9,18 @@
 		"@yamato-daiwa/frontend-demos": "../../../CoreLibrary/Demos",
 		"@yamato-daiwa/frontend-react": "../Package",
 		"prop-types": "15.8.1",
-		"react": "19.0.0",
-		"react-dom": "19.0.0"
+		"react": "19.1.0",
+		"react-dom": "19.1.0",
+		"react-router": "7.6.2"
 	},
 	"devDependencies": {
-		"@types/react": "19.0.10",
-		"@types/react-dom": "19.0.4",
-		"@yamato-daiwa/automation": "0.6.0",
-		"@yamato-daiwa/style_guides": "0.6.4",
+		"@types/react": "19.1.8",
+		"@types/react-dom": "19.1.6",
+		"@types/react-router-dom": "5.3.3",
+		"@yamato-daiwa/automation": "../../../../YamatoDaiwaAutomation/MainPackage",
+		"@yamato-daiwa/style_guides": "0.6.9",
 		"rimraf": "6.0.1",
-		"typescript": "5.7.3"
+		"typescript": "5.8.3"
 	},
 	"scripts": {
 		"Watch Local Gallereys": "rimraf LocalGalleriesBuild && yda build --selectiveExecution LocalGalleries --mode LOCAL_DEVELOPMENT",

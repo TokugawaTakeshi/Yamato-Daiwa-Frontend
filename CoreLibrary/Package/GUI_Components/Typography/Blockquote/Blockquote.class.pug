@@ -41,31 +41,36 @@
 
       authorPhotoURI: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       authorPhotoAlternatingText: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       publicationPhotoURI: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       publicationPhotoAlternatingText: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       theme: {
         type: String,
-        defaultValue: Blockquote__YDF.Themes.regular,
+        undefinedValueSubstitution: Blockquote__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Blockquote__YDF.Themes).
             map(([ key, value ]) => ({ key: `Blockquote__YDF.Themes.${ key }`, value }))
@@ -73,12 +78,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: Blockquote__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: Blockquote__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: Blockquote__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: Blockquote__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Blockquote__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `Blockquote__YDF.GeometricVariations.${ key }`, value }))
@@ -86,11 +93,12 @@
 
       decorativeVariation: {
         type: String,
-        defaultValue: Blockquote__YDF.DecorativeVariations.regular,
+        undefinedValueSubstitution: Blockquote__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Blockquote__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `Blockquote__YDF.DecorativeVariations.${ key }`, value }))
-      },
+      }
 
     }
 

@@ -3,15 +3,63 @@
   const propertyMetadataYDF_DK_ComponentLocalization__russian = {
     localizedInterpretation: "Русскоязычное наименование",
     type: "Тип",
-    typesAlternatives: "Варианты типов",
+    types: {
+      indexedArray: "Индексный массив",
+      associativeArrayLikeObject: "Объект типа «ассоциативный массив»"
+    },
+    polymorphicPropertyVariants: "Варианты",
+
+    /* ━━━ Undefindability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    isUndefinedForbidden: "Запрещён ли undefined",
+    undefinedForbiddenIf: "undefined запрещён если",
+    undefinedValueSubstitution: "Замещение значения undefined",
+    mustTransformUndefinedToNull: "Будет ли undefined рассматриваться наравне с null",
+    mustBeUndefinedIf: "Должен быть undefined если",
+
+    /* ━━━ Nullability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    isNullForbidden: "Запрещён ли null",
+    nullForbiddenIf: "null запрещён если",
+    nullValueSubstitution: "Замещение значения null",
+    mustTransformNullToUndefined: "Будет ли null рассматриваться наравне с undefined",
+    mustBeNullIf: "Должен быть null если",
+
+    /* ━━━ Common Requirement for Languages With Single Empty Type ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     defaultValue: "Значение по умолчанию",
     required: "Обязательное",
     requiredIf: "Обязательное если",
+
+    /* ━━━ By Types ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── Associative Array ──────────────────────────────────────────────────────────────────────────────────────── */
+    areUndefinedTypeValuesForbidden: "Запрещены ли значения типа undefined",
+    areNullTypeValuesForbidden: "Запрещены ли значения типа null",
+    minimalEntriesCount: "Минимум пар",
+
+    /* ─── Indexed Array Property ─────────────────────────────────────────────────────────────────────────────────── */
+    minimalElementsCount: "Минимум элементов",
+    areUndefinedElementsForbidden: "Запрещены ли элементы типа undefined",
+    areNullElementsForbidden: "Запрещены ли этементы типа null",
+
     yes: "Да",
     no: "Нет",
     minimalCharactersCount: "Минимум символов",
     maximalCharactersCount: "Максимум символов",
+    numbersSet: "Множество чисел",
     minimalValue: "Минимальное значение",
     maximalValue: "Максимальное значение",
-    allowedAlternatives: "Допустимые варианты"
+    numbersSets: {
+      [RawObjectDataProcessor.NumbersSets.naturalNumber]: "Натуральные числа",
+      [RawObjectDataProcessor.NumbersSets.nonNegativeInteger]: "Неотрицательные целые числа",
+      [RawObjectDataProcessor.NumbersSets.negativeInteger]: "Отрицательный целый числа",
+      [RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero]: "Отрицательное целое число или ноль",
+      [RawObjectDataProcessor.NumbersSets.anyInteger]: "Целое число любого знака",
+      [RawObjectDataProcessor.NumbersSets.positiveDecimalFraction]: "Положительная десятичная дробь",
+      [RawObjectDataProcessor.NumbersSets.negativeDecimalFraction]: "Отрицательная десятичная дробь",
+      [RawObjectDataProcessor.NumbersSets.decimalFractionOfAnySign]: "Десятичная дробь любого знака",
+      [RawObjectDataProcessor.NumbersSets.anyRealNumber]: "Любое действительное число"
+    },
+    allowedKeys: "Допустимые ключи",
+    allowedAlternatives: "Допустимые варианты",
+    objectTypeSchema: "Структура объекта",
+    associativeArrayValue: "Значения ассоциативного массива",
+    arrayElements: "Элементы массива"
   };

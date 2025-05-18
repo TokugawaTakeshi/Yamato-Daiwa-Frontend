@@ -3,15 +3,63 @@
   const propertyMetadataYDF_DK_ComponentLocalization__japanese = {
     localizedInterpretation: "日本語名",
     type: "型",
-    typesAlternatives: "型の選択肢",
+    types: {
+      indexedArray: "指数配列",
+      associativeArrayLikeObject: "連想配列系オブジェクト"
+    },
+    polymorphicPropertyVariants: "選択肢",
+
+    /* ━━━ Undefindability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    isUndefinedForbidden: "undefinedは不可か",
+    undefinedForbiddenIf: "いつundefinedは不可か",
+    undefinedValueSubstitution: "undefinedの代替",
+    mustTransformUndefinedToNull: "undefinedはnullと同じ扱いされるか",
+    mustBeUndefinedIf: "いつundefinedでなければいけないか",
+
+    /* ━━━ Nullability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    isNullForbidden: "nullは不可か",
+    nullForbiddenIf: "いつnullは不可か",
+    nullValueSubstitution: "nullの代替",
+    mustTransformNullToUndefined: "nullはundefinedと同じ扱いされるか",
+    mustBeNullIf: "いつnullでなければいけないか",
+
+    /* ━━━ Common Requirement for Languages With Single Empty Type ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     defaultValue: "規定値",
     required: "必須",
     requiredIf: "いつ必要",
+
+    /* ━━━ By Types ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── Associative Array ──────────────────────────────────────────────────────────────────────────────────────── */
+    areUndefinedTypeValuesForbidden: "undefinedバリューが不可か",
+    areNullTypeValuesForbidden: "nullバリューが不可か",
+    minimalEntriesCount: "最少キー・値組み数",
+
+    /* ─── Indexed Array Property ─────────────────────────────────────────────────────────────────────────────────── */
+    minimalElementsCount: "最少要素数",
+    areUndefinedElementsForbidden: "undefined要素可否",
+    areNullElementsForbidden: "null要素可否",
+
     yes: "はい",
     no: "いいえ",
     minimalCharactersCount: "最小文字数",
     maximalCharactersCount: "最大文字数",
+    numbersSet: "数の集合",
     minimalValue: "最小限",
     maximalValue: "最大限",
-    allowedAlternatives: "利用可能な選択肢"
+    numbersSets: {
+      [RawObjectDataProcessor.NumbersSets.naturalNumber]: "自然数",
+      [RawObjectDataProcessor.NumbersSets.nonNegativeInteger]: "正の整数",
+      [RawObjectDataProcessor.NumbersSets.negativeInteger]: "負の整数",
+      [RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero]: "負の整数・0",
+      [RawObjectDataProcessor.NumbersSets.anyInteger]: "正負不問の整数",
+      [RawObjectDataProcessor.NumbersSets.positiveDecimalFraction]: "正の小数",
+      [RawObjectDataProcessor.NumbersSets.negativeDecimalFraction]: "負の小数",
+      [RawObjectDataProcessor.NumbersSets.decimalFractionOfAnySign]: "正負不問の小数",
+      [RawObjectDataProcessor.NumbersSets.anyRealNumber]: "実数"
+    },
+    allowedKeys: "可能なキー",
+    allowedAlternatives: "利用可能な選択肢",
+    objectTypeSchema: "スキーマ",
+    associativeArrayValue: "連想配列の値",
+    arrayElements: "配列の要素"
   };

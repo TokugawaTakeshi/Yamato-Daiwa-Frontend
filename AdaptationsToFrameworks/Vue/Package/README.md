@@ -11,12 +11,12 @@ The [core package](https://www.npmjs.com/package/@yamato-daiwa/frontend) is stil
 ## Installation
 
 ```bash
-npm i @yamato-daiwa/frontend-vue @yamato-daiwa/frontend@2.0.0-beta.6
+npm i @yamato-daiwa/frontend-vue @yamato-daiwa/frontend@2.0.0-beta.10
 ```
 
 ### Peer Dependencies
 
-+ **@yamato-daiwa/frontend**: 2.0.0-beta.6
++ **@yamato-daiwa/frontend**: 2.0.0-beta.10
 + **vue**: ~3.5.0
 + **vue-router**: ~4.5.0
 

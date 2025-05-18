@@ -9,6 +9,39 @@ mixin TextBoxGallery
 
     const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
 
+    const propertiesForTextBoxesOfEachType = {
+      [TextBox__YDF.HTML_Types.regular]: {
+        label: "Sample",
+        accessibilityLabel: "Sample",
+        value: "sample"
+      },
+      [TextBox__YDF.HTML_Types.email]: {
+        label: "Email",
+        accessibilityLabel: "Email",
+        value: "example@example.com"
+      },
+      [TextBox__YDF.HTML_Types.number]: {
+        label: "Age",
+        accessibilityLabel: "Age",
+        value: 30
+      },
+      [TextBox__YDF.HTML_Types.password]: {
+        label: "Password",
+        accessibilityLabel: "Password",
+        value: "r1H5qf.hr:}]'\\4{qF+gu%im"
+      },
+      [TextBox__YDF.HTML_Types.phoneNumber]: {
+        label: "Phone Number",
+        accessibilityLabel: "Phone Number",
+        value: "132-4567-8901"
+      },
+      [TextBox__YDF.HTML_Types.URI]: {
+        label: "Website",
+        accessibilityLabel: "Website",
+        value: "https://frontend.yamato-daiwa.com/"
+      }
+    };
+
 
   h1.Heading1(
     class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
@@ -26,12 +59,17 @@ mixin TextBoxGallery
       themes: TextBox__YDF.Themes,
       geometricVariations: TextBox__YDF.GeometricVariations,
       decorativeVariations: TextBox__YDF.DecorativeVariations,
-      iterationData: themeShowcaseCurrentIterationData
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "TextBoxGallery-VerticalLinearFlow"
     })
 
-      +TextBox--YDF({
-        label: "Sample",
-        theme: themeShowcaseCurrentIterationData.theme.value,
-        geometry: themeShowcaseCurrentIterationData.geometricVariation.value,
-        decoration: themeShowcaseCurrentIterationData.decorativeVariation.value
-      })
+      each properties, HTML_Type in propertiesForTextBoxesOfEachType
+
+        +TextBox--YDF({
+          HTML_Type,
+          label: properties.label,
+          value: properties.value,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometry: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decoration: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })

@@ -4,6 +4,8 @@ extends ../../../../../node_modules/@yamato-daiwa/frontend/PagesTemplates/Regula
 block append Requirements
 
   include ../../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.pug
+  include ../../../../Galleries/GalleryConfigurator.pug
+  include _TableGalleryPage.partials.pug
   include ../../../../Galleries/GUI_Components/Typography/Table/TableGallery.pug
 
 
@@ -12,7 +14,7 @@ block append Metadata
   -
 
     /**
-     * @param { string } [partialTitle]
+     * @param { string | undefined } partialTitle
      * @returns { string }
      * */
     function generateHTML_Page_Title(partialTitle) {

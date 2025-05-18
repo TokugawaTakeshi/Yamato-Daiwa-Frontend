@@ -53,45 +53,60 @@ include HamburgerMenuButtonLocalization.english.pug
 
       noLabel: {
         type: Boolean,
-        required: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       alwaysEnglishLabel: {
         type: Boolean,
-        required: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       animation: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       labelLetterCase: {
         type: String,
-        allowedAlternatives: HamburgerMenuButton__YDF.LabelLetterCases
+        undefinedValueSubstitution: HamburgerMenuButton__YDF.LabelLetterCases.uppercase,
+        isNullForbidden: true,
+        allowedAlternatives: Object.values(HamburgerMenuButton__YDF.LabelLetterCases)
       },
 
       theme: {
         type: String,
-        required: false,
-        allowedAlternatives: Object.values(HamburgerMenuButton__YDF.Themes)
+        undefinedValueSubstitution: HamburgerMenuButton__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(HamburgerMenuButton__YDF.Themes).
+            map(([ key, value ]) => ({ key: `HamburgerMenuButton__YDF.Themes.${ key }`, value }))
       },
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        required: false
+        undefinedValueSubstitution: HamburgerMenuButton__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        required: false,
-        allowedAlternatives: Object.values(HamburgerMenuButton__YDF.GeometricVariations)
+        undefinedValueSubstitution: HamburgerMenuButton__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(HamburgerMenuButton__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `HamburgerMenuButton__YDF.GeometricVariations.${ key }`, value }))
       },
 
       decorativeVariation: {
         type: String,
-        required: false,
-        allowedAlternatives: Object.values(HamburgerMenuButton__YDF.DecorativeVariations)
+        undefinedValueSubstitution: HamburgerMenuButton__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(HamburgerMenuButton__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `HamburgerMenuButton__YDF.DecorativeVariations.${ key }`, value }))
       }
 
     };

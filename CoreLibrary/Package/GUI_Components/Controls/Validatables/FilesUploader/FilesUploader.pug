@@ -1,0 +1,255 @@
+include FilesUploader.class.pug
+
+
+mixin FilesUploader--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      label,
+      accessibilityGuidance,
+      externalLabelHTML_ID,
+      guidance,
+
+      value,
+
+      disabled,
+      readonly,
+
+      required,
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+      minimalFilesCount,
+      maximalFilesCount,
+      supportedFilesNamesExtensions__leadingDotsAreOptional,
+
+      noFilePickingButton,
+      noDragAndDropArea,
+      noDragAndDropAreaOnTouchScreens,
+      initialImageAspectRatio,
+
+      instanceID_UniqueDynamicPart,
+
+      theme,
+      areThemesCSS_ClassesCommon,
+      geometricVariation,
+      decorativeVariation,
+
+      ...instanceID_DependentProperties
+
+    } = processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: FilesUploader__YDF.propertiesSpecification,
+      mixinName: FilesUploader__YDF.CSS_NAMESPACE
+    });
+
+    const INSTANCE_ID = FilesUploader__YDF.generateInstanceID(instanceID_UniqueDynamicPart);
+
+    const {
+      inputElementHTML_ID = `${ INSTANCE_ID }-INPUT`,
+      labelElementHTML_ID = `${ INSTANCE_ID }-LABEL`
+    } = instanceID_DependentProperties;
+
+    const {
+      filesProcessingStatuses,
+      singleImagePreview,
+      multipleImagesPreview,
+      invalidInputHighlightingIfAnyValidationErrorsMessages,
+      validValueHighlightingIfNoValidationErrorsMessages,
+      validationErrorsMessages,
+      asynchronousValidationsStatuses
+    } = processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: FilesUploader__YDF.statesSimulationsSpecification,
+      mixinName: FilesUploader__YDF.CSS_NAMESPACE
+    });
+
+    const rootElementModifierCSS_Classes = [
+
+      ...disabled ? [ `${ FilesUploader__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
+
+      ...invalidInputHighlightingIfAnyValidationErrorsMessages && validationErrorsMessages.length > 0 ?
+          [ `${ FilesUploader__YDF.CSS_NAMESPACE }__InvalidValueState` ] : [],
+      ...validValueHighlightingIfNoValidationErrorsMessages && validationErrorsMessages.length === 0 ?
+          [ `${ FilesUploader__YDF.CSS_NAMESPACE }__ValueState` ] : [],
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: FilesUploader__YDF.Themes,
+        CSS_Namespace: FilesUploader__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: FilesUploader__YDF.GeometricVariations,
+        CSS_Namespace: FilesUploader__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: FilesUploader__YDF.DecorativeVariations,
+        CSS_Namespace: FilesUploader__YDF.CSS_NAMESPACE
+      })
+
+    ];
+
+    function isMVC_LikeValue(value) {
+      return [
+
+        /* Handlebars-like https://regex101.com/r/6uYwJM/1 */
+        /^\s*\{\{\s*[a-zA-Z0-9_$]+\s*\}\}/u
+
+      ].some(
+        regularExpression => regularExpression.test(value)
+      );
+    }
+
+    /** @type { string | undefined } */
+    let singleImagePreviewURI;
+
+    if (isString(singleImagePreview)) {
+      singleImagePreviewURI = singleImagePreview;
+    } else if (singleImagePreview === true) {
+      singleImagePreviewURI = DummyImagesURIs.highAndNarrow;
+    } else if (isString(value) && !isMVC_LikeValue(value)) {
+      singleImagePreviewURI = value;
+    }
+
+    const supportedFilesNamesExtensionsWihtoutLeadingDots = supportedFilesNamesExtensions__leadingDotsAreOptional.map(
+      fileNameExtension => removeSpecificCharacterFromCertainPosition({
+        targetString: fileNameExtension,
+        targetCharacter: ".",
+        fromFirstPosition: true
+      })
+    );
+
+    /* FIXME Not found to specify "accept all files" such as satisfy the HTML validator.
+     *  Both "*" and *.*" has been treated as invalid. */
+    const acceptAttributeValueForInputTag = supportedFilesNamesExtensionsWihtoutLeadingDots.length > 0 ?
+        `.${ supportedFilesNamesExtensionsWihtoutLeadingDots.join(", .") }` : "*.*";
+
+
+  +ValidatableControlShell--YDF(
+    {
+
+      label,
+      guidance,
+
+      required,
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+
+      coreElementHTML_ID: inputElementHTML_ID,
+      labelElementHTML_ID,
+
+      theme: FilesUploader__YDF.selfAndChildrenComponentsThemesCorrespondence.validatableControlShell[theme],
+      areThemesCSS_ClassesCommon,
+      geometricVariation: FilesUploader__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
+          validatableControlShell[geometricVariation],
+      decorativeVariation: FilesUploader__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.
+          validatableControlShell[decorativeVariation]
+
+    },
+    {
+      invalidInputHighlightingIfAnyValidationErrorsMessages,
+      validValueHighlightingIfNoValidationErrorsMessages,
+      validationErrorsMessages,
+      asynchronousValidationsStatuses
+    }
+  ).FilesUploader--YDF&attributes(attributes)(
+    class=rootElementModifierCSS_Classes
+    data-initial_value=value
+    data-minimal_files_count=minimalFilesCount
+    data-maximal_files_count=maximalFilesCount
+  )
+
+    if !noFilePickingButton
+
+      -
+        const filePickingButtonLabel = FilesUploader__YDF.localization.buttons.filePicking.
+            buildLabel({ areMultipleFileAllowed: maximalFilesCount !== 1 })
+
+      +Button--YDF({
+        theme: FilesUploader__YDF.selfAndChildrenComponentsThemesCorrespondence.button[theme],
+        geometricVariation: FilesUploader__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
+            button[geometricVariation],
+        decorativeVariation: FilesUploader__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.
+            button[decorativeVariation],
+      }).FilesUploader--YDF-FilePickingButton
+        +FileAdding--YDF_Icon.Button--YDF-SVG_Icon
+        span.Button--YDF-Label= filePickingButtonLabel
+
+
+    if !noDragAndDropArea
+
+      .FilesUploader--YDF-DragAndDropArea(
+        tabindex="0",
+        class=(noDragAndDropAreaOnTouchScreens ? "FilesUploader--YDF-DragAndDropArea__HiddenOnTouchScreens" : null)
+      )
+        +FileAdding--YDF_Icon.FilesUploader--YDF-DragAndDropArea-Icon
+        p.FilesUploader--YDF-DragAndDropArea-Guidance=FilesUploader__YDF.localization.uploadSingleFileByDragAndDropGuidance
+
+
+    if singleImagePreviewURI
+
+      .FilesUploader--YDF-SingleImagePreviewer
+
+        -
+
+          const singleImagePreviewStyles = {
+            ...isNotUndefined(initialImageAspectRatio) ? { "aspect-ratio": initialImageAspectRatio } : null
+          };
+
+        img.FilesUploader--YDF-SingleImagePreviewer-Image(
+          src=singleImagePreviewURI
+          alt=FilesUploader__YDF.localization.singleImagePreviewer.image.alternatingText
+          style=singleImagePreviewStyles
+        )
+
+      if !required
+        +Button--YDF.FilesUploader--YDF-SingleFileDeletingButton(
+          aria-label=FilesUploader__YDF.localization.buttons.singleImageDeleting.accessibilityGuidance
+        )
+          +TrashCan__Filled--YDF_Icon.Button--YDF-SVG_Icon
+          span.Button--YDF-Label= FilesUploader__YDF.localization.buttons.singleImageDeleting.label
+
+    else if maximalFilesCount === 1
+
+      template.FilesUploader--YDF-SingleImagePreviewerMountingPoint
+
+    if multipleImagesPreview
+
+      ul.FilesUploader--YDF-ImagesPreviewFlow(
+        aria-label="Images preview"
+      )
+
+        each imageURI in Array.from(Object.values(DummyImagesURIs)).concat(Array.from(Object.values(DummyImagesURIs)))
+
+          li.FilesUploader--YDF-PreviewCard
+
+            .FilesUploader--YDF-PreviewCard-SizingAndDefaultBackgroundProvidingWrapper
+              img.FilesUploader--YDF-PreviewCard-Image(
+                src=imageURI
+                alt="Image preview"
+              )
+
+            +Button--YDF({ label: "Delete" }).FilesUploader--YDF-PreviewCard-Button
+
+
+    input.FilesUploader--YDF-HiddenInputElement(
+      type="file"
+      accept=acceptAttributeValueForInputTag
+      multiple=(maximalFilesCount !== 1)
+      required=required
+      aria-label=accessibilityGuidance
+      aria-labelledby=externalLabelHTML_ID
+      id=inputElementHTML_ID
+    )

@@ -1,0 +1,380 @@
+mixin ValidatableControlShellGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("ValidatableControlShell__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("ValidatableControlShell__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("ValidatableControlShell__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) ValidatableControlShell Component Demos
+
+
+  //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Minimal
+
+    +ThemesShowcase--YDF({
+      themes: ValidatableControlShell__YDF.Themes,
+      geometricVariations: ValidatableControlShell__YDF.GeometricVariations,
+      decorativeVariations: ValidatableControlShell__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +ValidatableControlShell--YDF({
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      })
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+  //- ━━━ Labels ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.labels]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Labels
+
+    +ThemesShowcase--YDF({
+      themes: ValidatableControlShell__YDF.Themes,
+      geometricVariations: ValidatableControlShell__YDF.GeometricVariations,
+      decorativeVariations: ValidatableControlShell__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +ValidatableControlShell--YDF({
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+        label: "Full Name"
+      })
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+  //- ━━━ Guidances ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.guidances]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Guidances
+
+    +ThemesShowcase--YDF({
+      themes: ValidatableControlShell__YDF.Themes,
+      geometricVariations: ValidatableControlShell__YDF.GeometricVariations,
+      decorativeVariations: ValidatableControlShell__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +ValidatableControlShell--YDF({
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+        guidance: "Please input the full name within **100** characters. See [here](#) for details."
+      })
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+  //- ━━━ Labels and Guidances ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.labelsAndGuidances]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Labels and Guidances
+
+    +ThemesShowcase--YDF({
+      themes: ValidatableControlShell__YDF.Themes,
+      geometricVariations: ValidatableControlShell__YDF.GeometricVariations,
+      decorativeVariations: ValidatableControlShell__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +ValidatableControlShell--YDF({
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+        label: "Full Name",
+        guidance: "Please input the full name within **100** characters. See [here](#) for details."
+      })
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+  //- ━━━ Badges ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.requirementBadges]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Requirement Badges
+
+    +ThemesShowcase--YDF({
+      themes: ValidatableControlShell__YDF.Themes,
+      geometricVariations: ValidatableControlShell__YDF.GeometricVariations,
+      decorativeVariations: ValidatableControlShell__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "ValidatableControlShellGallery-RequirementBadgesSection"
+    })
+
+      //- ─── Badges Only ──────────────────────────────────────────────────────────────────────────────────────────────
+      .ValidatableControlShellGallery-RequirementBadgesSection-HorizontalFlow
+
+        +ValidatableControlShell--YDF({
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          required: true,
+          mustDisplayAppropriateBadgeIfInputIsRequired: true
+        })
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        +ValidatableControlShell--YDF({
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          required: false,
+          mustDisplayAppropriateBadgeIfInputIsOptional: true
+        })
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        +ValidatableControlShell--YDF({
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          required: false,
+          mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: true
+        })
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+      //- ─── Labels and Badges ────────────────────────────────────────────────────────────────────────────────────────
+      .ValidatableControlShellGallery-RequirementBadgesSection-HorizontalFlow
+
+        +ValidatableControlShell--YDF({
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          label: "Full Name",
+          required: true,
+          mustDisplayAppropriateBadgeIfInputIsRequired: true
+        })
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        +ValidatableControlShell--YDF({
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          label: "Full Name",
+          required: false,
+          mustDisplayAppropriateBadgeIfInputIsOptional: true
+        })
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        +ValidatableControlShell--YDF({
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          label: "Full Name",
+          required: false,
+          mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: true
+        })
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+      //- ─── Guidances and Badges ─────────────────────────────────────────────────────────────────────────────────────
+      .ValidatableControlShellGallery-RequirementBadgesSection-HorizontalFlow
+
+        +ValidatableControlShell--YDF({
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          guidance: "Please input the full name within **100** characters. See [here](#) for details.",
+          required: true,
+          mustDisplayAppropriateBadgeIfInputIsRequired: true
+        })
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        +ValidatableControlShell--YDF({
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          guidance: "Please input the full name within **100** characters. See [here](#) for details.",
+          required: false,
+          mustDisplayAppropriateBadgeIfInputIsOptional: true
+        })
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        +ValidatableControlShell--YDF({
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          guidance: "Please input the full name within **100** characters. See [here](#) for details.",
+          required: false,
+          mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: true
+        })
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+      //- ─── Labels, Guidances and Badges ─────────────────────────────────────────────────────────────────────────────
+      .ValidatableControlShellGallery-RequirementBadgesSection-HorizontalFlow
+
+        +ValidatableControlShell--YDF({
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          label: "Full Name",
+          guidance: "Please input the full name within **100** characters. See [here](#) for details.",
+          required: true,
+          mustDisplayAppropriateBadgeIfInputIsRequired: true
+        })
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        +ValidatableControlShell--YDF({
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          label: "Full Name",
+          guidance: "Please input the full name within **100** characters. See [here](#) for details.",
+          required: false,
+          mustDisplayAppropriateBadgeIfInputIsOptional: true
+        })
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        +ValidatableControlShell--YDF({
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          label: "Full Name",
+          guidance: "Please input the full name within **100** characters. See [here](#) for details.",
+          required: false,
+          mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: true
+        })
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+  //- ━━━ Validation Errors Messages ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.validationErrorsMessages]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Minimal
+
+    h3.Heading3 One Message
+
+    +ThemesShowcase--YDF({
+      themes: ValidatableControlShell__YDF.Themes,
+      geometricVariations: ValidatableControlShell__YDF.GeometricVariations,
+      decorativeVariations: ValidatableControlShell__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +ValidatableControlShell--YDF(
+        {
+          label: "User Name",
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        },
+        {
+          validationErrorsMessages: [
+            "The user name must have at least 3 characters. Please input more characters."
+          ]
+        }
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+    h3.Heading3 Two Messages
+
+    +ThemesShowcase--YDF({
+      themes: ValidatableControlShell__YDF.Themes,
+      geometricVariations: ValidatableControlShell__YDF.GeometricVariations,
+      decorativeVariations: ValidatableControlShell__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +ValidatableControlShell--YDF(
+        {
+          label: "User Name",
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        },
+        {
+          validationErrorsMessages: true
+        }
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+    h3.Heading3 Narrow Containers
+
+    +ThemesShowcase--YDF({
+      themes: ValidatableControlShell__YDF.Themes,
+      geometricVariations: ValidatableControlShell__YDF.GeometricVariations,
+      decorativeVariations: ValidatableControlShell__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: [
+        "ValidatableControlShellGallery-ValidationErrorsMessagesSection-NarrowContainer"
+      ]
+    })
+      +ValidatableControlShell--YDF(
+        {
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        },
+        {
+          validationErrorsMessages: true
+        }
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core
+
+
+  //- ━━━ Validation Errors Messages ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.validationErrorsMessages]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Validation Errors Messages
+
+    +ThemesShowcase--YDF({
+      themes: ValidatableControlShell__YDF.Themes,
+      geometricVariations: ValidatableControlShell__YDF.GeometricVariations,
+      decorativeVariations: ValidatableControlShell__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +ValidatableControlShell--YDF(
+        {
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        },
+        {
+          asynchronousValidationsStatuses: true
+        }
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+    h3.Heading3 Narrow Containers
+
+    +ThemesShowcase--YDF({
+      themes: ValidatableControlShell__YDF.Themes,
+      geometricVariations: ValidatableControlShell__YDF.GeometricVariations,
+      decorativeVariations: ValidatableControlShell__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: [
+        "ValidatableControlShellGallery-ValidationErrorsMessagesSection-NarrowContainer"
+      ]
+    })
+      +ValidatableControlShell--YDF(
+        {
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        },
+        {
+          asynchronousValidationsStatuses: true
+        }
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core

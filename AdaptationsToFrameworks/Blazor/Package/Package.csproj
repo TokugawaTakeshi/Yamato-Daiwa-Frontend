@@ -33,11 +33,11 @@
     <Folder Include="Helpers\" />
     <Folder Include="SVG_Icons\" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <Content Update="package.json" Pack="false" />
-    <Content Update="package-lock.json" Pack="false" />
-    <Content Update="tsconfig.json" Pack="false" />
+    <Content Update="package.json" Pack="false" CopyToOutputDirectory="Never" />
+    <Content Update="package-lock.json" Pack="false" CopyToOutputDirectory="Never" />
+    <Content Update="tsconfig.json" Pack="false" CopyToOutputDirectory="Never" />
   </ItemGroup>
 
   <ItemGroup>

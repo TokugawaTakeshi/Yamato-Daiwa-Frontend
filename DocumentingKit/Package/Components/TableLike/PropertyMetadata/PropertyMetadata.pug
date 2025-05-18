@@ -16,24 +16,177 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
       class="PropertyMetadata--YDF_DK-Value__Accented"
     )
 
-      case type
+      if isArbitraryObject(type) && isString(type.name) && isString(type.anchorOrURI)
 
-        when Number
-          | number
+        +Link--YDF({ internalURI: type.anchorOrURI })= type.name
 
-        when String
-          | string
+      else
 
-        when Boolean
-          | boolean
+        case propertySpecification.type
 
-        default
+          when Number
+            | number
 
-          | #{ type }
+          when String
+            | string
+
+          when Boolean
+            | boolean
+
+          when Object
+
+            | object
+
+          when Array
+          when RawObjectDataProcessor.ValuesTypesIDs.indexedArray
+
+            | #{ PropertyMetadata__YDF_DK.localization.types.indexedArray }
+
+          when RawObjectDataProcessor.ValuesTypesIDs.associativeArray
+
+            | #{ PropertyMetadata__YDF_DK.localization.types.associativeArrayLikeObject }
+
+          default
+
+            | #{ propertySpecification.type }
+
+    //- ━━━ Requirement For Languages with `undefined` and `null` Empty Data Types ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ─── Undefinedability ─────────────────────────────────────────────────────────────────────────────────────────
+    if isBoolean(propertySpecification.isUndefinedForbidden)
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.isUndefinedForbidden
+      dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization[propertySpecification.isUndefinedForbidden ? "yes" : "no"]
+
+    else if propertySpecification.undefinedForbiddenIf
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.undefinedForbiddenIf
+      dd.PropertyMetadata--YDF_DK-Value= propertySpecification.requiredIf.descriptionForLogging
+
+    else if propertySpecification.undefinedValueSubstitution
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.undefinedValueSubstitution
+      dd.PropertyMetadata--YDF_DK-Value= stringifyAndFormatArbitraryValue(propertySpecification.undefinedValueSubstitution)
+
+    else if propertySpecification.mustTransformUndefinedToNull === true
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.mustTransformUndefinedToNull
+      dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization.yes
+
+    if propertySpecification.mustBeUndefinedIf
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.mustBeUndefinedIf
+      dd.PropertyMetadata--YDF_DK-Value= propertySpecification.mustBeUndefinedIf.descriptionForLogging
 
 
-  mixin ValueTypeSpecificMetadataRows(propertySpecification)
+    //- ─── Nullability ──────────────────────────────────────────────────────────────────────────────────────────────
+    if isBoolean(propertySpecification.isNullForbidden)
 
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.isNullForbidden
+      dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization[propertySpecification.isNullForbidden ? "yes" : "no"]
+
+    else if propertySpecification.nullForbiddenIf
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.nullForbiddenIf
+      dd.PropertyMetadata--YDF_DK-Value= propertySpecification.requiredIf.descriptionForLogging
+
+    else if propertySpecification.nullValueSubstitution
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.nullValueSubstitution
+      dd.PropertyMetadata--YDF_DK-Value= stringifyAndFormatArbitraryValue(propertySpecification.nullValueSubstitution)
+
+    else if propertySpecification.mustTransformNullToUndefined === true
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.mustTransformNullToUndefined
+      dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization.yes
+
+    if propertySpecification.mustBeNullIf
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.mustBeNullIf
+      dd.PropertyMetadata--YDF_DK-Value= propertySpecification.mustBeNullIf.descriptionForLogging
+
+
+    //- ━━━ Common Requirement (Preferred for Languages with Single Kind of Empty Type) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if isNotUndefined(propertySpecification.defaultValue)
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.defaultValue
+      dd.PropertyMetadata--YDF_DK-Value= stringifyAndFormatArbitraryValue(propertySpecification.defaultValue)
+
+    else if propertySpecification.required === true
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.required
+      dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization.yes
+
+    else if propertySpecification.required === false
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.required
+      dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization.no
+
+    if propertySpecification.requiredIf
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.requiredIf
+      dd.PropertyMetadata--YDF_DK-Value= propertySpecification.requiredIf.descriptionForLogging
+
+
+    //- ━━━ Fixed Schema Object Type Property ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if propertySpecification.properties
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.objectTypeSchema
+      dd.PropertyMetadata--YDF_DK-Value
+
+        +ObjectTypeAbstract--YDF_DK({
+          typeName: "object",
+          propertiesSpecification: propertySpecification.properties
+        })
+
+
+    //- ━━━ Associative Array Property ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if propertySpecification.value
+
+      if isBoolean(propertySpecification.areUndefinedTypeValuesForbidden)
+
+        dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.areUndefinedTypeValuesForbidden
+        dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization[propertySpecification.areUndefinedTypeValuesForbidden ? "yes" : "no"]
+
+      if isBoolean(propertySpecification.areNullTypeValuesForbidden)
+
+        dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.areNullTypeValuesForbidden
+        dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization[propertySpecification.areNullTypeValuesForbidden ? "yes" : "no"]
+
+      if propertySpecification.minimalEntriesCount
+
+        dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.minimalEntriesCount
+        dd.PropertyMetadata--YDF_DK-Value.PropertyMetadata--YDF_DK-Value__Accented
+          | #{ propertySpecification.minimalEntriesCount }
+
+      if propertySpecification.allowedKeys
+
+        dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.allowedKeys
+        dd.PropertyMetadata--YDF_DK-Value
+
+          ul.PropertyMetadata--YDF_DK-AllowedAlternativesList
+
+            each allowedKey in propertySpecification.allowedKeys
+
+              li= allowedKey
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.associativeArrayValue
+      dd.PropertyMetadata--YDF_DK-Value
+
+        dl
+
+          +ValueMetadataRows(propertySpecification.value)
+
+
+    //- ━━━ Indexed Array Property ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if propertySpecification.element
+
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.arrayElements
+      dd.PropertyMetadata--YDF_DK-Value
+
+        dl
+
+          +ValueMetadataRows(propertySpecification.element)
+
+
+    //- ━━━ String Property ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     if propertySpecification.minimalCharactersCount
 
       dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.minimalCharactersCount
@@ -45,6 +198,13 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
       dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.maximalCharactersCount
       dd.PropertyMetadata--YDF_DK-Value.PropertyMetadata--YDF_DK-Value__Accented
         | #{ propertySpecification.maximalCharactersCount }
+
+
+    //- ━━━ Numeric Property ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if propertySpecification.numbersSet
+      dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.numbersSet
+      dd.PropertyMetadata--YDF_DK-Value
+        | #{ PropertyMetadata__YDF_DK.localization.numbersSets[propertySpecification.numbersSet] }
 
     if propertySpecification.minimalValue
 
@@ -95,45 +255,21 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
         dd.PropertyMetadata--YDF_DK-Value= propertySpecification.localizedInterpretation
 
 
-      if propertySpecification.type === RawObjectDataProcessor.ValuesTypesIDs.oneOf
+      if propertySpecification.type === RawObjectDataProcessor.ValuesTypesIDs.polymorphic
 
-        dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.typesAlternatives
+        dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.polymorphicPropertyVariants
         dd.PropertyMetadata--YDF_DK-Value
 
-          each alternative in propertySpecification.alternatives
+          ul.PropertyMetadata--YDF_DK-PolymorphicPropertyVariantsList
 
-            dl
+            each alternative in propertySpecification.alternatives
 
-              +ValueTypeRow(alternative.type)
+              li
 
-              +ValueTypeSpecificMetadataRows(propertySpecification)
+                dl
+
+                  +ValueMetadataRows(alternative)
 
       else
 
-        +ValueTypeRow(propertySpecification.type)
-
-
-      if isNotUndefined(propertySpecification.defaultValue)
-
-        dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.defaultValue
-        dd.PropertyMetadata--YDF_DK-Value= propertySpecification.defaultValue
-
-      else if propertySpecification.required === true
-
-        dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.required
-        dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization.yes
-
-      else if propertySpecification.required === false
-
-        dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.required
-        dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization.no
-
-      if propertySpecification.requiredIf
-
-        dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.requiredIf
-        dd.PropertyMetadata--YDF_DK-Value= propertySpecification.requiredIf.descriptionForLogging
-
-
-      if propertySpecification.type !== RawObjectDataProcessor.ValuesTypesIDs.oneOf
-
-        +ValueTypeSpecificMetadataRows(propertySpecification)
+        +ValueMetadataRows(propertySpecification)

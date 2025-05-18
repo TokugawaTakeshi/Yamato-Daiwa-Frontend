@@ -3,15 +3,14 @@ extends ../../../../node_modules/@yamato-daiwa/frontend/PagesTemplates/RegularWe
 
 block append Requirements
 
-  include  ../../../../node_modules/@yamato-daiwa/frontend-demos/Source/Galleries/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryOptions.pug
-  include  ../../../_addDataAttributesGeneratingMethodToGalleryOptionsClass.pug
+  include  ../../../../node_modules/@yamato-daiwa/frontend-demos/Source/Galleries/GalleryConfigurator.pug
+  include  ../../../../node_modules/@yamato-daiwa/frontend-demos/Source/CompletePages/GUI_Components/AdmonitionBlock/_AdmonitionBlockGalleryPage.partials.pug
+  include  ../../../_addDataAttributesGeneratingMethodToGalleryConfiguratorClass.pug
 
 
 block append Metadata
 
   -
-
-    addDataAttributesGeneratingMethodToGalleryOptionsClass(AdmonitionBlockGalleryOptions)
 
     /**
      * @param { string } [partialTitle]
@@ -39,4 +38,4 @@ block append Metadata
 
 block append PageContent
 
-  .YDF_Gallery#APPLICATION&attributes(AdmonitionBlockGalleryOptions.generateDataAttributes())
+  .YDF_Gallery#APPLICATION&attributes(GalleryConfigurator.generateDataAttributes())

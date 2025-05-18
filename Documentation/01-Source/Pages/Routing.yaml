@@ -720,6 +720,26 @@ coreLibrary:
                       japanese: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button.toc.japanese.yaml
                       russian: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button.toc.russian.yaml
 
+            validatableControlShell:
+              $heading: "<code>ValidatableControlShell</code>"
+              $URI: `@All/CoreLibrary/GUI_Components/Children/Controls/ValidatableControlShell/ValidatableControlShell.${ fileNameLocalizationExtensions }`
+              $sectioning:
+                $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell.toc.yaml
+                $localizations:
+                  english: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell.toc.english.yaml
+                  japanese: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell.toc.japanese.yaml
+                  russian: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell.toc.russian.yaml
+
+            validatables:
+
+              $heading: `coreLibrary.GUI_Components.controls.validatables.$heading`
+              $URI: `@All/CoreLibrary/GUI_Components/Children/Controls/Validatables/ValidatableGUI_Components.${ fileNameLocalizationExtensions }`
+              $sectioning:
+                $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.yaml
+                $localizations:
+                  english: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.toc.english.yaml
+                  japanese: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.toc.japanese.yaml
+                  russian: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.toc.russian.yaml
 
         OverflowSafeSingleLineLabel:
           $heading: "<code>OverflowSafeSingleLineLabel</code>"

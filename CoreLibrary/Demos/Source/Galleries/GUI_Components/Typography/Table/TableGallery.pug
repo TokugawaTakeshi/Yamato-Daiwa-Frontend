@@ -1,6 +1,3 @@
-include TableGallery.class.pug
-
-
 mixin TableGallery
 
   -
@@ -14,15 +11,15 @@ mixin TableGallery
 
 
   h1.Heading1(
-    class=(TableGalleryOptions.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
   ) Table Component Demos
 
 
   //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  if TableGalleryOptions.partialsRenderingFlags[TableGalleryOptions.Partials.minimal]
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
 
     h2.Heading2(
-      class=(TableGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
     ) Minimal
 
     +ThemesShowcase--YDF({

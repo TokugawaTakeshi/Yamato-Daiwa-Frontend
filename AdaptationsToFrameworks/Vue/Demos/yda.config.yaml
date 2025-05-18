@@ -1,129 +1,130 @@
-projectBuilding:
+$projectBuilding:
 
-  commonSettings:
+  $commonSettings:
 
-    selectiveExecutions:
+    $selectiveExecutions:
 
       LocalGalleries:
 
-        tasksAndSourceFilesSelection:
-          markupProcessing: [ LocalGalleriesIndexPage, CompletePages ]
-          ECMA_ScriptLogicProcessing: [ CompletePages ]
-          plainCopying: [ ExternalStyles ]
+        $tasksAndSourceFilesSelection:
+          $markupProcessing: [ LocalGalleriesIndexPage, CompletePages ]
+          $ECMA_ScriptLogicProcessing: [ CompletePages ]
+          $plainCopying: [ ExternalStyles ]
 
-        browserLiveReloadingSetupID: LocalGalleries
+        $browserLiveReloadingSetupID: LocalGalleries
 
       Distributions:
 
-        tasksAndSourceFilesSelection:
-          markupProcessing: [ CompletePages, PartialDemos ]
-          ECMA_ScriptLogicProcessing: [ CompletePages ]
-          plainCopying: [ ExternalStyles ]
+        $tasksAndSourceFilesSelection:
+          $markupProcessing: [ CompletePages, PartialDemos ]
+          $ECMA_ScriptLogicProcessing: [ CompletePages ]
+          $plainCopying: [ ExternalStyles ]
 
       PartialDemosSourceFiles:
 
-        tasksAndSourceFilesSelection:
-          plainCopying: [ PartialDemos ]
+        $tasksAndSourceFilesSelection:
+          $plainCopying: [ PartialDemos ]
 
 
-  # ━━━ Markup ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  markupProcessing:
+  # ━━━ Markup Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $markupProcessing:
 
-    common:
-      buildingModeDependent:
-        LOCAL_DEVELOPMENT: { mustResolveResourceReferencesToRelativePaths: true }
-        PRODUCTION: { mustResolveResourceReferencesToRelativePaths: true }
+    $common:
+      $buildingModeDependent:
+        $localDevelopment: { $mustResolveResourcesPointersToRelativePaths: true }
+        $production: { $mustResolveResourcesPointersToRelativePaths: true }
 
-    entryPointsGroups:
+    $entryPointsGroups:
 
       LocalGalleriesIndexPage:
 
-        singleEntryPointSourceFileRelativePath: Source/LocalGalleriesIndexPage.pug
-        buildingModeDependent:
-          LOCAL_DEVELOPMENT: { outputTopDirectoryRelativePath: LocalGalleriesBuild }
+        $singleEntryPointSourceFileRelativePath: Source/LocalGalleriesIndexPage.pug
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
 
       CompletePages:
 
-        sourceFilesTopDirectoryRelativePath: Source/CompletePages
+        $sourceFilesTopDirectoryRelativePath: Source/CompletePages
 
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
 
-        buildingModeDependent:
-          LOCAL_DEVELOPMENT: { outputTopDirectoryRelativePath: LocalGalleriesBuild }
-          PRODUCTION: { outputTopDirectoryRelativePath: Distributions }
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
+          $production: { $outputTopDirectoryRelativePath: Distributions }
 
       PartialDemos:
 
-        sourceFilesTopDirectoryRelativePath: Source/PartialDemos
+        $sourceFilesTopDirectoryRelativePath: Source/PartialDemos
 
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
 
-        buildingModeDependent: { PRODUCTION: { outputTopDirectoryRelativePath: Distributions } }
+        $buildingModeDependent: { $production: { $outputTopDirectoryRelativePath: Distributions } }
 
 
   # ━━━ ECMAScript Logic Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ECMA_ScriptLogicProcessing:
+  $ECMA_ScriptLogicProcessing:
 
-    entryPointsGroups:
+    $entryPointsGroups:
 
       CompletePages:
 
-        sourceFilesTopDirectoryRelativePath: Source/CompletePages
+        $sourceFilesTopDirectoryRelativePath: Source/CompletePages
 
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
 
-        targetRuntime:
-          type: BROWSER
+        $targetRuntime:
+          $type: BROWSER
 
-        buildingModeDependent:
-          LOCAL_DEVELOPMENT: { outputTopDirectoryRelativePath: LocalGalleriesBuild }
-          PRODUCTION: { outputTopDirectoryRelativePath: Distributions }
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
+          $production: { $outputTopDirectoryRelativePath: Distributions }
 
 
   # ━━━ Plain Copying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  plainCopying:
+  $plainCopying:
 
-    filesGroups:
+    $filesGroups:
 
       ExternalStyles:
-        sourceTopDirectoryRelativePath: node_modules/@yamato-daiwa/frontend-demos/Distributions
-        fileNameLastExtensions: [ "css" ]
-        buildingModeDependent:
-          LOCAL_DEVELOPMENT:
-            outputTopDirectoryRelativePath: LocalGalleriesBuild
-          PRODUCTION:
-            outputTopDirectoryRelativePath: Distributions/Demos
-            outputDirectoryPathTransformations: { segmentsCountRelativeToGroupTopDirectoryWhichMustBeRemoved: 1 }
+        $sourceTopDirectoryRelativePath: node_modules/@yamato-daiwa/frontend-demos/Distributions
+        $fileNameLastExtensions: [ "css" ]
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: LocalGalleriesBuild
+          $production:
+            $outputTopDirectoryRelativePath: Distributions/Demos
+            $outputDirectoryPathTransformations: { $segmentsCountRelativeToGroupTopDirectoryWhichMustBeRemoved: 1 }
 
       PartialDemos:
-        sourceTopDirectoryRelativePath: node_modules/@yamato-daiwa/frontend-demos/Source/PartialDemos
-        buildingModeDependent:
-          PRODUCTION: { outputTopDirectoryRelativePath: Source/PartialDemos }
+        $sourceTopDirectoryRelativePath: node_modules/@yamato-daiwa/frontend-demos/Source/PartialDemos
+        $buildingModeDependent:
+          $production: { $outputTopDirectoryRelativePath: Source/PartialDemos }
 
 
   # ━━━ Browser Live Reloading ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  browserLiveReloading:
+  $browserLiveReloading:
 
-    setups:
+    $setups:
 
       LocalGalleries:
 
-        localServer:
+        $localServer:
 
-          rootDirectoryRelativePath: LocalGalleriesBuild
-          customStartingFileNameWithExtension: LocalGalleriesIndexPage.html
+          $rootDirectoryRelativePath: LocalGalleriesBuild
+          $customStartingFileNameWithExtension: LocalGalleriesIndexPage.html
 
-        openInBrowsers: chrome
+        $openInBrowsers: chrome
+
 
   # ━━━ Files Watching ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  filesWatching:
+  $filesWatching:
 
-    relativePathsOfExcludeDirectories:
+    $relativePathsOfExcludeDirectories:
       - Distributions
       - LocalGalleriesBuild

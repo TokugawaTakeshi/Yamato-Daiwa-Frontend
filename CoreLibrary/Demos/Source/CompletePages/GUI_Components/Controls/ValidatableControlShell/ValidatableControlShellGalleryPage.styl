@@ -1,0 +1,22 @@
+@require "../../../../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+@require "../../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
+
+
+ValidatableControlShellDefaultPropertiesOverriding = {};
+
+// <==  [ Testing ] Comment out if need to display standard themes only
+//ValidatableControlShellDefaultPropertiesOverriding = {
+//
+//}
+// ==> =================================================================================================================
+
+generateValidatableControlShellYDF_GUI_ComponentStyles(
+  overridings: ValidatableControlShellDemoDefaultPropertiesOverriding
+)
+
+generateBadgeYDF_GUI_ComponentStyles()
+provideLinkYDF_Component()
+provideLoadingIndicatorYDF_Component()
+
+
+@require "../../../../Galleries/GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellGallery.styl"

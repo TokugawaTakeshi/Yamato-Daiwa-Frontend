@@ -2,7 +2,7 @@ import { InputtedValueValidation, NumberBox } from "../../../../../index";
 import { isNull } from "@yamato-daiwa/es-extensions";
 
 
-NumberBox.pickOneBySelector({
+NumberBox.initializeOne({
   rootElement: { selector: "#SAMPLE" },
   scenario: NumberBox.Scenarios.alwaysNonEmptyValue,
   validityHighlightingActivationMode: NumberBox.ValidityHighlightingActivationModes.onFocusOut,

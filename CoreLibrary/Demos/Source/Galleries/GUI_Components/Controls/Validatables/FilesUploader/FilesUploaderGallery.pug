@@ -1,0 +1,133 @@
+mixin FilesUploaderGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("FilesUploader__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("FilesUploader__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("FilesUploader__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData()
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) FilesUploader Component Demos
+
+  //-
+    //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+      h2.Heading2(
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      ) Minimal
+
+      +ThemesShowcase--YDF({
+        themes: FilesUploader__YDF.Themes,
+        geometricVariations: FilesUploader__YDF.GeometricVariations,
+        decorativeVariations: FilesUploader__YDF.DecorativeVariations,
+        iterationData: themeShowcaseCurrentIterationData
+      })
+
+        +FilesUploader--YDF({
+          label: "File",
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+    //- ━━━ No Drag & Drop ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noDragAndDrop]
+
+      h2.Heading2(
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      ) No Drag & Drop
+
+      +ThemesShowcase--YDF({
+        themes: FilesUploader__YDF.Themes,
+        geometricVariations: FilesUploader__YDF.GeometricVariations,
+        decorativeVariations: FilesUploader__YDF.DecorativeVariations,
+        iterationData: themeShowcaseCurrentIterationData
+      })
+
+        +FilesUploader--YDF({
+          label: "File",
+          noDragAndDropArea: true,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+    //- ━━━ No File Picking Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noFilePickingButton]
+
+      h2.Heading2(
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      ) No File Picking Button
+
+      +ThemesShowcase--YDF({
+        themes: FilesUploader__YDF.Themes,
+        geometricVariations: FilesUploader__YDF.GeometricVariations,
+        decorativeVariations: FilesUploader__YDF.DecorativeVariations,
+        iterationData: themeShowcaseCurrentIterationData
+      })
+
+        +FilesUploader--YDF({
+          label: "File",
+          noFilePickingButton: true,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+    //- ━━━ No File Picking Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.singleImagePreview]
+
+      h2.Heading2(
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      ) Single Image Preview
+
+      +ThemesShowcase--YDF({
+        themes: FilesUploader__YDF.Themes,
+        geometricVariations: FilesUploader__YDF.GeometricVariations,
+        decorativeVariations: FilesUploader__YDF.DecorativeVariations,
+        iterationData: themeShowcaseCurrentIterationData
+      })
+
+        +FilesUploader--YDF(
+          {
+            label: "File",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+          },
+          { singleImagePreview: true }
+        )
+
+
+    //- ━━━ Multiple Images Preview ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.multipleImagesPreview]
+
+      h2.Heading2(
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      ) Multiple Images Preview
+
+      +ThemesShowcase--YDF({
+        themes: FilesUploader__YDF.Themes,
+        geometricVariations: FilesUploader__YDF.GeometricVariations,
+        decorativeVariations: FilesUploader__YDF.DecorativeVariations,
+        iterationData: themeShowcaseCurrentIterationData
+      })
+
+        +FilesUploader--YDF(
+          {
+            label: "File",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+          },
+          { multipleImagesPreview: true }
+        )

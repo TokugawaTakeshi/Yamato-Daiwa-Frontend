@@ -121,29 +121,32 @@ export class CodeViewer {
 
       const currentTabPanelDataProcessingResult: RawObjectDataProcessor.ProcessingResult<CodeViewer.TabPanelData> =
           RawObjectDataProcessor.process(currentTabPanel.dataset, {
-            subtype: RawObjectDataProcessor.ObjectSubtypes.fixedKeyAndValuePairsObject,
+            subtype: RawObjectDataProcessor.ObjectSubtypes.fixedSchema,
             nameForLogging: "CodeViewerTabData",
             properties: {
               code_language_label: {
                 newName: "codeLanguageLabel",
                 type: String,
-                required: true
+                isUndefinedForbidden: true,
+                isNullForbidden: true
               },
               file_label: {
                 newName: "fileLabel",
                 type: String,
-                required: false
+                isUndefinedForbidden: false,
+                isNullForbidden: true
               },
               is_active: {
                 newName: "isActive",
                 preValidationModifications: (rawValue: unknown): unknown => (isEmptyString(rawValue) ? true : rawValue),
                 type: Boolean,
-                defaultValue: false
+                undefinedValueSubstitution: false,
+                isNullForbidden: true
               }
             }
           });
 
-      if (currentTabPanelDataProcessingResult.rawDataIsInvalid) {
+      if (currentTabPanelDataProcessingResult.isRawDataInvalid) {
 
         Logger.logError({
           errorType: InvalidExternalDataError.NAME,
@@ -273,19 +276,20 @@ export class CodeViewer {
 
     const clickedTabDataProcessingResult: RawObjectDataProcessor.ProcessingResult<{ listingIndex: number; }> =
         RawObjectDataProcessor.process(clickedTab.dataset, {
-          subtype: RawObjectDataProcessor.ObjectSubtypes.fixedKeyAndValuePairsObject,
+          subtype: RawObjectDataProcessor.ObjectSubtypes.fixedSchema,
           nameForLogging: "CodeViewerTabData",
           properties: {
             listingIndex: {
               preValidationModifications: convertPotentialStringToIntegerIfPossible,
               type: Number,
-              required: true,
-              numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger
+              numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+              isUndefinedForbidden: true,
+              isNullForbidden: true
             }
           }
         });
 
-    if (clickedTabDataProcessingResult.rawDataIsInvalid) {
+    if (clickedTabDataProcessingResult.isRawDataInvalid) {
       Logger.logError({
         errorType: InvalidExternalDataError.NAME,
         title: InvalidExternalDataError.localization.defaultTitle,
@@ -375,18 +379,19 @@ export class CodeViewer {
 
       const currentTabPanelDataProcessingResult: RawObjectDataProcessor.ProcessingResult<{ codeLanguage: string; }> =
           RawObjectDataProcessor.process(tabPanel.dataset, {
-            subtype: RawObjectDataProcessor.ObjectSubtypes.fixedKeyAndValuePairsObject,
+            subtype: RawObjectDataProcessor.ObjectSubtypes.fixedSchema,
             nameForLogging: "CodeViewerTabData",
             properties: {
               code_language: {
                 newName: "codeLanguage",
                 type: String,
-                required: true
+                isUndefinedForbidden: true,
+                isNullForbidden: true
               }
             }
           });
 
-      if (currentTabPanelDataProcessingResult.rawDataIsInvalid) {
+      if (currentTabPanelDataProcessingResult.isRawDataInvalid) {
         continue;
       }
 
