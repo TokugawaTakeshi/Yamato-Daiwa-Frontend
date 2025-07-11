@@ -1,0 +1,126 @@
+//- ━━━ Overview ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- const BadgeGUI_ComponentOverviewLocalization = generateOverviewLocalizationWorkpieceForSpecificGUI_Component();
+
+mixin BadgeComponent-Overview(properties)
+
+  -
+
+    const {
+      framework
+    } = properties?? {};
+
+    const localizedAssets = BadgeGUI_ComponentOverviewLocalization.getLocalizedAssets();
+
+  +GUI_ComponentOverview({
+    framework,
+    metadataClass: Badge__YDF,
+    intelliJ_IDEA_FamilyIDEsLiveTemplate: {
+      native: {
+        autocompleteLike: "Badge--YDF",
+        abbreviation: "bdg-ydf",
+        loadingPlaceholder: "Badge--YDF-LoadingPlaceholder"
+      },
+      vue: {
+        autocompleteLike: {
+          pugSyntax: "Badge--YDF-Vue-Pug",
+          HTML_Syntax: "Badge--YDF-Vue-HTML"
+        },
+        abbreviation: {
+          pugSyntax: "bdg-ydf-vue-pug",
+          HTML_Syntax: "bdg-ydf-vue-html"
+        },
+        loadingPlaceholder: {
+          pugSyntax: "Badge-LoadingPlaceholder--YDF-Vue-Pug",
+          HTML_Syntax: "Badge-LoadingPlaceholder--YDF-Vue-HTML"
+        }
+      },
+      react: {
+        autocompleteLike: "Badge--YDF-React",
+        abbreviation: "bdg-ydf-react",
+        loadingPlaceholder: "Badge--YDF-LoadingPlaceholder-React"
+      }
+    },
+    themesNamesTranslations: localizedAssets.themes,
+    geometricVariationsTranslations: localizedAssets.geometricVariations,
+    geometricModifiersNamesTranslations: localizedAssets.geometricModifiers,
+    decorativeVariationsTranslations: localizedAssets.decorativeVariations,
+    decorativeModifiersNamesTranslations: localizedAssets.decorativeModifiers
+  })
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+-
+
+  const BadgeComponentPugMixinOrClassSynopsisLocalization =
+      GUI_ComponentPugMixinOrClassSynopsisLocalization.generateInitialLocalizationObjectForSpecificGUI_Component();
+
+
+mixin BadgeComponent-PugMixinOrClassSynopsis(properties)
+
+  -
+
+    const {
+
+      framework
+
+    } = properties ?? {};
+
+    const propertiesSpecification = {
+      ...BadgeComponentPugMixinOrClassSynopsisLocalization.getLocalizedPropertiesSpecification(Badge__YDF, framework)
+    };
+
+
+    switch (framework) {
+
+      case SupportedFrameworks.react: {
+
+        propertiesSpecification.SVG_Icon = {
+          type: "React.ElementType<{ className: string; }>",
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          localizedInterpretation: BadgeComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.propertiesLocalizedInterpretations?.react?.SVG_Icons
+        };
+
+        propertiesSpecification.rootElementAttributes = {
+          type: "Omit<React.HTMLAttributes<HTMLDivElement>, \"className\">",
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          localizedInterpretation: BadgeComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.propertiesLocalizedInterpretations?.react?.rootElementAttributes
+        };
+
+      }
+
+    }
+
+
+  if framework
+
+    +ObjectTypeAbstract--YDF_DK({
+      typeName: `Badge.Properties`,
+      propertiesSpecification
+    })
+
+  else
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: isUndefined(framework) ? "Badge--YDF" : "Badge",
+      parametersSpecification: [
+        {
+          genericTechnicalName: "properties",
+          localizedName: BadgeComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.pugMixinParametersLocalization[0].
+              localizedName,
+          type: "Properties",
+          required: true
+        }
+      ],
+      hiddenReturnValue: true
+    })
+      +ObjectTypeAbstract--YDF_DK({
+        typeName: `Badge.propertiesSpecification`,
+        propertiesSpecification
+      }).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem

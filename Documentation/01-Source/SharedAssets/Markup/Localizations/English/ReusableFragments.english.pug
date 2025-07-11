@@ -106,6 +106,16 @@ mixin IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance(properties)
   block
 
 
-include ReusableFragments/Components/AdmonitionBlock-ReusableFragments.english.pug
-include ReusableFragments/Components/Badge-ReusableFragments.english.pug
-include ReusableFragments/Components/Button-ReusableFragments.english.pug
+-
+
+  GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables = {
+    componentProperties: "Parameters",
+    customThemingGuidanceGenerator: constantExpression => `Any of ones defined via \`${ constantExpression }\``
+  }
+
+
+include ReusableFragments/GUI_Components/AdmonitionBlock-ReusableFragments.english.pug
+include ReusableFragments/GUI_Components/Badge-ReusableFragments.english.pug
+include ReusableFragments/GUI_Components/Controls/Button-ReusableFragments.english.pug
+include ReusableFragments/GUI_Components/Controls/ValidatableControlShell-ReusableFragments.english.pug
+include ReusableFragments/GUI_Components/Controls/Validatables/TextBox-ReusableFragments.english.pug

@@ -14,6 +14,10 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
         mustSkipBordersApplying: {
           type: DataTypes--YDF.boolean,
           defaultValue: false
+        },
+        mustSkipPaddingsApplying: {
+          type: DataTypes--YDF.boolean,
+          defaultValue: false
         }
       }
     ),
@@ -48,84 +52,86 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
 
 
   // ━━━ Paddings ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  topBasicPadding = getFirstNonNullArrayElement(
-    arrayConstructor__POLYFILL(
-      getObjectValueByDotSeparatedPathSafely(properties.paddings, "all"),
-      getObjectValueByDotSeparatedPathSafely(properties.paddings, "verticalSymmetric"),
-      getObjectValueByDotSeparatedPathSafely(properties.paddings, "top")
+  if !properties.mustSkipPaddingsApplying
+
+    topBasicPadding = getFirstNonNullArrayElement(
+      arrayConstructor__POLYFILL(
+        getObjectValueByDotSeparatedPathSafely(properties.paddings, "all"),
+        getObjectValueByDotSeparatedPathSafely(properties.paddings, "verticalSymmetric"),
+        getObjectValueByDotSeparatedPathSafely(properties.paddings, "top")
+      )
     )
-  )
 
-  bottomBasicPadding = getFirstNonNullArrayElement(
-    arrayConstructor__POLYFILL(
-      getObjectValueByDotSeparatedPathSafely(properties.paddings, "all"),
-      getObjectValueByDotSeparatedPathSafely(properties.paddings, "verticalSymmetric"),
-      getObjectValueByDotSeparatedPathSafely(properties.paddings, "bottom")
+    bottomBasicPadding = getFirstNonNullArrayElement(
+      arrayConstructor__POLYFILL(
+        getObjectValueByDotSeparatedPathSafely(properties.paddings, "all"),
+        getObjectValueByDotSeparatedPathSafely(properties.paddings, "verticalSymmetric"),
+        getObjectValueByDotSeparatedPathSafely(properties.paddings, "bottom")
+      )
     )
-  )
 
-  isExplicitPaddingZeroDeclarationRequired = properties.isExplicitPaddingZeroDeclarationRequired
-  paddingsVerticalUpwardShifting = getObjectValueByDotSeparatedPathSafely(properties.paddings, "upwardShifting")
+    isExplicitPaddingZeroDeclarationRequired = properties.isExplicitPaddingZeroDeclarationRequired
+    paddingsVerticalUpwardShifting = getObjectValueByDotSeparatedPathSafely(properties.paddings, "upwardShifting")
 
-  extraSpaceCausedByLineHeightAtTopOrBottom = null
+    extraSpaceCausedByLineHeightAtTopOrBottom = null
 
-  if properties.mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight
+    if properties.mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight
 
-    extraSpaceCausedByLineHeightAtTopOrBottom = computeExtraSpaceCausedByLineHeightAtTopOrBottom({
-      fontSize: fontSize,
-      lineHeight: properties.lineHeight,
-      lineSpacing: properties.lineSpacing
-    })
+      extraSpaceCausedByLineHeightAtTopOrBottom = computeExtraSpaceCausedByLineHeightAtTopOrBottom({
+        fontSize: fontSize,
+        lineHeight: properties.lineHeight,
+        lineSpacing: properties.lineSpacing
+      })
 
 
-  if isNull(topBasicPadding) || removeUnitFromAmount(topBasicPadding) == 0
+    if isNull(topBasicPadding) || removeUnitFromAmount(topBasicPadding) == 0
 
-    if isExplicitPaddingZeroDeclarationRequired
+      if isExplicitPaddingZeroDeclarationRequired
 
-      padding-top 0
+        padding-top 0
 
-  else
+    else
 
-    correctedTopPaddings = buildCalcExpressionFromFragments({
-      topBasicPadding: nullToZero(topBasicPadding),
-      paddingsVerticalUpwardShifting: @() {
-        if (isNotNull(paddingsVerticalUpwardShifting)) {
-          return " - " + paddingsVerticalUpwardShifting
+      correctedTopPaddings = buildCalcExpressionFromFragments({
+        topBasicPadding: nullToZero(topBasicPadding),
+        paddingsVerticalUpwardShifting: @() {
+          if (isNotNull(paddingsVerticalUpwardShifting)) {
+            return " - " + paddingsVerticalUpwardShifting
+          }
         }
-      }
-      mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight: @() {
-        if (isNotNull(extraSpaceCausedByLineHeightAtTopOrBottom)) {
-          return " - " + extraSpaceCausedByLineHeightAtTopOrBottom
+        mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight: @() {
+          if (isNotNull(extraSpaceCausedByLineHeightAtTopOrBottom)) {
+            return " - " + extraSpaceCausedByLineHeightAtTopOrBottom
+          }
         }
-      }
-    })
+      })
 
-    padding-top correctedTopPaddings
+      padding-top correctedTopPaddings
 
 
-  if isNull(topBasicPadding) || removeUnitFromAmount(bottomBasicPadding) == 0
+    if isNull(topBasicPadding) || removeUnitFromAmount(bottomBasicPadding) == 0
 
-    if isExplicitPaddingZeroDeclarationRequired
+      if isExplicitPaddingZeroDeclarationRequired
 
-      padding-bottom 0
+        padding-bottom 0
 
-  else
+    else
 
-    correctedBottomPaddings = buildCalcExpressionFromFragments({
-      topBasicPadding: nullToZero(bottomBasicPadding),
-      paddingsVerticalUpwardShifting: @() {
-        if (isNotNull(paddingsVerticalUpwardShifting)) {
-          return " + " + paddingsVerticalUpwardShifting
+      correctedBottomPaddings = buildCalcExpressionFromFragments({
+        topBasicPadding: nullToZero(bottomBasicPadding),
+        paddingsVerticalUpwardShifting: @() {
+          if (isNotNull(paddingsVerticalUpwardShifting)) {
+            return " + " + paddingsVerticalUpwardShifting
+          }
         }
-      }
-      mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight: @() {
-        if (isNotNull(extraSpaceCausedByLineHeightAtTopOrBottom)) {
-          return " - " + extraSpaceCausedByLineHeightAtTopOrBottom
+        mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight: @() {
+          if (isNotNull(extraSpaceCausedByLineHeightAtTopOrBottom)) {
+            return " - " + extraSpaceCausedByLineHeightAtTopOrBottom
+          }
         }
-      }
-    })
+      })
 
-    padding-bottom correctedBottomPaddings
+      padding-bottom correctedBottomPaddings
 
 
   // ━━━ Borders ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

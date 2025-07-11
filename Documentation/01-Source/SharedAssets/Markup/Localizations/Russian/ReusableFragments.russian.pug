@@ -150,6 +150,57 @@ mixin IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance(properties)
   block
 
 
-include ReusableFragments/Components/AdmonitionBlock-ReusableFragments.russian.pug
-include ReusableFragments/Components/Badge-ReusableFragments.russian.pug
-include ReusableFragments/Components/Button-ReusableFragments.russian.pug
+-
+
+  GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables = {
+    componentProperties: "Входные параметры",
+    propertiesLocalizedInterpretations: {
+
+      required: "Является ли ввод обязательным",
+      disabled: "Находится ли в неактивном состоянии",
+      readonly: "Доступен ли только для чтения",
+      toggled: "Находится ли в постоянно нажатом состоянии",
+
+      label: "Заголовочная надпись",
+      guidance: "Комментарий",
+      accessibilityGuidance: "Текст для ассистивных технологий",
+      placeholder: "Текст отображающийся при пустом значении",
+      mustDisplayAppropriateBadgeIfInputIsRequired: "Нужно ли отображать надпись «обязательное» когда ввод обязателен",
+      mustDisplayAppropriateBadgeIfInputIsOptional: "Нужно ли отображать надпись «необязательное» когда ввод необязателен",
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: "Нужно ли добавлять невидимый значок для выравнивание высоты",
+
+      instanceID_UniqueDynamicPart: "Уникальная динамическая часть идентификатор экземпляра",
+      HTML_IDs: "HTML-идентификаторы",
+
+      theme: "Тема",
+      areThemesCSS_ClassesCommon: "Являются ли CSS-классы тем общими для всех компонентов",
+      geometricVariation: "Геометрическая вариация",
+      geometricModifiers: "Геометрические модификаторы",
+      decorativeVariation: "Декоративная вариация",
+      decorativeModifiers: "Декоративные модификаторы",
+      rootElementTag: "Тэг корневого элемента",
+
+      className: "Разделённые пробелом CSS-классы",
+
+      rootElementModifierCSS_Class: "CSS-класс-модификатор коревого элемента",
+      rootElementModifierCSS_Classes: "Массив CSS-классов-модификаторов коревого элемента",
+      rootElementSpaceSeparatedModifierCSS_Classes: "Разделённые пробелом CSS-классы-модификаторы коревого элемента"
+
+    },
+    statesSimulationsLocalizedInterpretations: {
+      invalidInputHighlightingIfAnyValidationErrorsMessages:
+          "Нужна ли подсветка невалидного ввода если есть хотя бы одно сообщение об ошибке валидации",
+      validValueHighlightingIfNoValidationErrorsMessages:
+          "Нужна ли подсветка валидного ввода нет ни одного сообщения об ошибке валидации",
+      validationErrorsMessages: "Сообщения об ошибках валидации",
+      asynchronousValidationsStatuses: "Статусы асинхронной валидации"
+    },
+    customThemingGuidanceGenerator: constantExpression => `Любые, определённые через \`${ constantExpression }\``
+  }
+
+
+include ReusableFragments/GUI_Components/AdmonitionBlock-ReusableFragments.russian.pug
+include ReusableFragments/GUI_Components/Badge-ReusableFragments.russian.pug
+include ReusableFragments/GUI_Components/Controls/Button-ReusableFragments.russian.pug
+include ReusableFragments/GUI_Components/Controls/ValidatableControlShell-ReusableFragments.russian.pug
+include ReusableFragments/GUI_Components/Controls/Validatables/TextBox-ReusableFragments.russian.pug

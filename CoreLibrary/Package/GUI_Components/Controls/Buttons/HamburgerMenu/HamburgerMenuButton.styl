@@ -1,63 +1,406 @@
-provideHamburgerMenuButtonYDF_Component()
+@require "Themes/Regular/GeometricVariations/HamburgerMenuButton-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/DecorativeVariations/HamburgerMenuButton-RegularTheme-RegularDecorativeVariation.styl"
 
-  .HamburgerMenuButton--YDF
 
-    ButtonLikeElementsPrimer()
+HamburgerMenuButton--YDF = {
 
-    display flex
-    flex-direction column
-    align-items center
+  CSS_NAMESPACE: "HamburgerMenuButton--YDF",
 
-    Paddings({
-      horizontalSymmetric: 8px,
-      verticalSymmetric: 6px
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF",
+
+        geometricVariations: {
+          regular: HamburgerMenuButton-RegularTheme-RegularGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          regular: HamburgerMenuButton-RegularTheme-RegularDecorativeVariation--YDF
+        }
+
+      }
+    }
+
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    themeIndependentGeometricVariations: true,
+    geometricModifiers: {
+      noRoundings: true
+    },
+    decorativeModifiers: {
+      bordersDisguising: true,
+      noBackground: true,
+      noBackgroundInDefaultState: true
+    }
+  }
+
+}
+
+
+HamburgerMenuButton--YDF-generateStyles(
+  preset = HamburgerMenuButton--YDF.defaultProperties,
+  overridings = {},
+  options = HamburgerMenuButton--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject(preset, overridings)
+
+  validateObjectTypeParameter({
+    mixinOrFunctionName: "HamburgerMenuButton--YDF-generateStyles",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: HamburgerMenuButton--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: HamburgerMenuButton--YDF.defaultOptions.externalThemes
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: HamburgerMenuButton--YDF.defaultOptions.themeIndependentGeometricVariations
+      },
+      geometricModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          noRoundings: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: HamburgerMenuButton--YDF.defaultOptions.geometricModifiers.noRoundings
+          }
+        },
+        defaultValue: HamburgerMenuButton--YDF.defaultOptions.geometricModifiers
+      },
+      decorativeModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          bordersDisguising: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: HamburgerMenuButton--YDF.defaultOptions.decorativeModifiers.bordersDisguising
+          },
+          noBackground: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: HamburgerMenuButton--YDF.defaultOptions.decorativeModifiers.noBackground
+          },
+          noBackgroundInDefaultState: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: HamburgerMenuButton--YDF.defaultOptions.decorativeModifiers.noBackgroundInDefaultState
+          }
+        },
+        defaultValue: HamburgerMenuButton--YDF.defaultOptions.decorativeModifiers
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .HamburgerMenuButton--YDF
+
+      ButtonLikeElementsPrimer()
+
+      display flex
+      flex-direction column
+      align-items center
+
+      cursor pointer
+
+
+      &:focus-visible
+
+        outline none
+
+
+      &-Icon
+
+        position relative
+        box-sizing content-box
+
+        background-clip content-box
+
+
+        &::before,
+        &::after
+
+          content ""
+
+          width 100%
+
+          position absolute
+          left 0
+
+
+        &::before
+
+          top: 0
+
+
+        &::after
+
+          bottom: 0
+
+
+      &-Label
+
+        line-height 1
+
+        flex-shrink 0
+
+
+        &__Uppercase
+
+          text-transform uppercase
+
+
+        &__Lowercase
+
+          text-transform lowercase
+
+
+        &__Capitalisation
+
+          text-transform capitalize
+
+
+  // ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "HamburgerMenuButton.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+
+    // ╍╍╍ Root Element ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +provideDefaultSelectorWhenRootAndApply("." + HamburgerMenuButton--YDF.CSS_NAMESPACE)
+
+      BordersSizing(variation.rootElement.borders)
+      Paddings(variation.rootElement.paddings)
+
+      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+
+
+    // ╍╍╍ Icon ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    .HamburgerMenuButton--YDF-Icon
+
+      lineThickness = extractAndValidateObjectProperties({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        extracts: {
+          lineThickness: { dotSeparatedPath: "icon.lineThickness", required: true },
+        }
+      }).lineThickness
+
+      validateAndAssignStoredInObjectCSS_Properties({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          width: { dotSeparatedPath: "icon.lineWidth", required: true },
+        }
+      })
+
+      height lineThickness
+
+      Paddings({
+        verticalSymmetric: extractAndValidateObjectProperties({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          extracts: {
+            spacingBetweenLines: { dotSeparatedPath: "icon.spacingBetweenLines", required: true },
+          }
+        }).spacingBetweenLines
+      })
+
+
+      &:before,
+      &:after
+
+        height lineThickness
+
+
+      applyMixinStoredInObjectIfItIsNotNull(variation.icon.customDeclarations)
+
+
+    // ╍╍╍ Label ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    .HamburgerMenuButton--YDF-Label
+
+      validateAndAssignStoredInObjectCSS_Properties({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          font-size: { dotSeparatedPath: "label.text.size", required: true },
+          margin-top: { dotSeparatedPath: "label.spacing.afterIcon", required: true },
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull(variation.label.customDeclarations)
+
+
+  //* [ Approach ] Being the modifiers, must be applied after theme-dependent styles. */
+  applyThemeIndependentGeometricModifiers()
+
+    if options.geometricModifiers.noRoundings
+
+      .HamburgerMenuButton--YDF__NoRoundingsGeometricModifier
+
+        border-radius 0
+
+
+  // ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "HamburgerMenuButton.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    StateDependentStyles(state)
+
+      Declarations()
+
+        ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED = selector() == "." + Button--YDF.CSS_NAMESPACE ? "/" : null
+
+
+        // ╍╍╍ Root Element ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+        validateAndAssignStoredInObjectCSS_Properties({
+          targetObject: variation[state].rootElement,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            background-color: { dotSeparatedPath: "background.color", required: false },
+            background-image: { dotSeparatedPath: "background.image", required: false },
+            border-style: { dotSeparatedPath: "borders.style", required: false },
+            border-color: { dotSeparatedPath: "borders.color", required: false },
+            outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition },
+            box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition }
+          }
+        })
+
+        applyMixinStoredInObjectIfItIsNotNull(variation[state].rootElement.customDeclarations)
+
+
+        // ┅┅┅ Icon ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+        { ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED }.HamburgerMenuButton--YDF-Icon
+
+          backgroundColor = extractAndValidateObjectProperties({
+            targetObject: variation[state].icon,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            extracts: {
+              backgroundColor: { dotSeparatedPath: "color", required: false }
+            }
+          }).backgroundColor
+
+          applyIfNotNull({ background-color: backgroundColor })
+
+
+          &::before,
+          &::after
+
+            applyIfNotNull({ background-color: backgroundColor })
+
+
+          applyMixinStoredInObjectIfItIsNotNull(variation[state].icon.customDeclarations)
+
+
+        // ┅┅┅ Label ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+        { ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED }.HamburgerMenuButton--YDF-Label
+
+          validateAndAssignStoredInObjectCSS_Properties({
+            targetObject: variation[state].label.text,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              font-weight: { dotSeparatedPath: "fontWeight", required: false },
+              color: { dotSeparatedPath: "color", required: false },
+              underline: { dotSeparatedPath: "underline", required: false, applier: applyObjectTypeUnderlineDefinition }
+            }
+          })
+
+          applyMixinStoredInObjectIfItIsNotNull(variation[state].label.customDeclarations)
+
+
+      +provideDefaultSelectorWhenRootAndApply("." + HamburgerMenuButton--YDF.CSS_NAMESPACE)
+
+        if (state == "defaultState")
+
+          Declarations(state)
+
+        else if (state == "hoverState")
+
+          &:hover
+
+            Declarations(state)
+
+        else if (state == "focusVisibleState")
+
+          &:focus-visible
+
+            Declarations(state)
+
+        else if (state == "activeState")
+
+          &:active,
+          &[aria-pressed="true"]
+
+            Declarations(state)
+
+        else if (state == "disabledState")
+
+          &:disabled
+
+            Declarations(state)
+
+
+    for state in variation
+
+      StateDependentStyles(state)
+
+
+  //* [ Approach ] Being the modifiers, must be applied after theme-dependent styles. */
+  applyThemeIndependentDecorativeModifiers()
+
+    if options.decorativeModifiers.bordersDisguising
+
+      .HamburgerMenuButton--YDF__BordersDisguisingDecorativeModifier
+
+        border-color transparent !important
+
+
+    if options.decorativeModifiers.noBackground
+
+      .HamburgerMenuButton--YDF__NoBackgroundDecorativeModifier
+
+        background none !important
+
+
+    if options.decorativeModifiers.noBackgroundInDefaultState
+
+      .HamburgerMenuButton--YDF__NoBackgroundInDefaultStateDecorativeModifier
+
+        background transparent
+
+
+  // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  if !options.themeIndependentStylesOnly
+
+    applyComponentThemes({
+      CSS_Namespace: HamburgerMenuButton--YDF.CSS_NAMESPACE,
+      themes: properties.themes,
+      areThemesCSS_ClassesCommon: options.externalThemes,
+      themeIndependentGeometricVariations: options.themeIndependentGeometricVariations,
+      applyGeometricVariation: applyGeometricVariation,
+      applyDecorativeVariation: applyDecorativeVariation
     })
 
-    cursor pointer
-
-
-    &:focus
-
-      outline outline 3px solid JQueryUI_BaseTheme.warning.borderColor
-
-
-    &-Icon
-
-      height 20px
-      flex-shrink 0
-
-      fill: white
-      //fill: JQueryUI_BaseTheme.clickableElements.defaultState.iconsColor
-
-
-      /.HamburgerMenuButton--YDF-Icon:hover &
-
-        fill: JQueryUI_BaseTheme.clickableElements.hoverState.iconsColor
-
-
-      /.HamburgerMenuButton--YDF-Icon:active &
-
-        fill: JQueryUI_BaseTheme.clickableElements.activeState.iconsColor
-
-
-    &-Label
-
-      font-size 10px
-      font-weight bold
-      user-select none
-
-      color: white
-      //color: JQueryUI_BaseTheme.clickableElements.defaultState.fontColor
-
-      flex-shrink 0
-      margin-top 4px
-
-
-      /.HamburgerMenuButton--YDF-Icon:hover &
-
-        fill: JQueryUI_BaseTheme.clickableElements.hoverState.fontColor
-
-
-      /.HamburgerMenuButton--YDF-Icon:active &
-
-        fill: JQueryUI_BaseTheme.clickableElements.activeState.fontColor
+  applyThemeIndependentGeometricModifiers()
+  applyThemeIndependentDecorativeModifiers()

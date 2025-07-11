@@ -256,37 +256,43 @@
 
       label: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       accessibilityGuidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       externalLabelHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       guidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       mode: {
         type: String,
-        required: true,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
         allowedAlternatives: Object.values(DateTimePicker__YDF.Modes)
       },
 
       value: {
-        type: RawObjectDataProcessor.ValuesTypesIDs.oneOf,
-        required: false,
+        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         alternatives: [
           {
             type: String,
@@ -294,56 +300,67 @@
           },
           {
             type: Number,
-            numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger
+            numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+            isNaN_Forbidden: true
           }
         ]
       },
 
       disabled: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       readonly: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       required: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsRequired: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsOptional: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       minimalCharactersCount: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
-        required: false
+        numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       maximalCharactersCount: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
-        required: false,
+        numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         customValidators: {
-          validationFunction: ({ currentPropertyValue: maximalCharactersCount, rawData__currentObjectDepth }) =>
+          validationFunction: ({ value: maximalCharactersCount, rawData__currentObjectDepth }) =>
               isUndefined(rawData__currentObjectDepth.minimalCharactersCount) ||
               (
-                Number.isInteger(rawData__currentObjectDepth.minimalCharactersCount) &&
+                isIntegerOfAnySign(rawData__currentObjectDepth.minimalCharactersCount) &&
                 maximalCharactersCount >= rawData__currentObjectDepth.minimalCharactersCount
               ),
           descriptionForLogging: "\"maximalCharactersCount\" could not be less than \"minimalCharactersCount\"."
@@ -352,19 +369,23 @@
 
       minimalNumericValue: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
-        required: false
+        numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       maximalNumericValue: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
-        required: false,
+        numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         customValidators: {
-          validationFunction: ({ currentPropertyValue: maximalNumericValue, rawData__currentObjectDepth }) =>
+          validationFunction: ({ value: maximalNumericValue, rawData__currentObjectDepth }) =>
               isUndefined(rawData__currentObjectDepth.minimalNumericValue) ||
               (
-                Number.isInteger(rawData__currentObjectDepth.minimalNumericValue) &&
+                isIntegerOfAnySign(rawData__currentObjectDepth.minimalNumericValue) &&
                 maximalNumericValue >= rawData__currentObjectDepth.minimalNumericValue
               ),
           descriptionForLogging: "\"maximalNumericValue\" could not be less than \"minimalNumericValue\"."
@@ -375,26 +396,30 @@
        * 1 minimal character is definitely not enough for unique string, but in MVC mode it could be the variable. */
       instanceID_UniqueDynamicPart: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       HTML_IDs: {
 
         type: Object,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
 
         properties: {
 
           input: {
             type: String,
-            required: false,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
             minimalCharactersCount: 1
           },
 
           label: {
             type: String,
-            required: false,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
             minimalCharactersCount: 1
           }
 
@@ -404,19 +429,22 @@
 
       nativeInputElementHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       labelElementHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       theme: {
         type: String,
-        defaultValue: DateTimePicker__YDF.Themes.regular,
+        undefinedValueSubstitution: DateTimePicker__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(DateTimePicker__YDF.Themes).
             map(([ key, value ]) => ({ key: `DateTimePicker__YDF.Themes.${ key }`, value }))
@@ -424,12 +452,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: DateTimePicker__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: DateTimePicker__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: DateTimePicker__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: DateTimePicker__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(DateTimePicker__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `DateTimePicker__YDF.GeometricVariations.${ key }`, value }))
@@ -437,7 +467,8 @@
 
       decorativeVariation: {
         type: String,
-        defaultValue: DateTimePicker__YDF.DecorativeVariations.regular,
+        undefinedValueSubstitution: DateTimePicker__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(DateTimePicker__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `DateTimePicker__YDF.DecorativeVariations.${ key }`, value }))
@@ -451,12 +482,14 @@
 
       expanded: {
         type: Boolean,
-        defaultValue: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       activeMatrix: {
         type: String,
-        defaultValue: DateTimePicker__YDF.Matrices.days,
+        undefinedValueSubstitution: DateTimePicker__YDF.Matrices.days,
+        isNullForbidden: true,
         allowedAlternatives: Object.values(DateTimePicker__YDF.Matrices)
       },
 
@@ -484,15 +517,15 @@
      * @type { import("./DateTimePickerLocalization").DateTimePickerLocalization }
      * @public
      */
-    static localization = dateTimePickerYDF_ComponentLocalization__english;
+    static localization = dateTimePickerYDF_GUI_ComponentLocalization__english;
 
 
     /* ━━━ DOM Access ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /**
-     * @type { import("./DateTimePickerDOM_Access").DateTimePickerYDF_GUI_ComponentDOM_Access }
+     * @type { import("./DateTimePickerDOM_Access").DateTimePickerYDF_GUI_ComponentDOM_AccessResources }
      * @readonly
      * @public
      */
-    static DOM_AccessResources = dateTimePickerYDF_GUI_ComponentDOM_Access;
+    static DOM_AccessResources = dateTimePickerYDF_GUI_ComponentDOM_AccessResources;
 
   }

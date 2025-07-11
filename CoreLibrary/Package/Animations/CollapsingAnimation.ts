@@ -1,69 +1,117 @@
-import { up as animateCollapsing } from "slide-element";
+import type TargetElementDefinition from "../Logic/Types/TargetElementDefinition";
+import {
+  getExpectedToBeSingleDOM_Element,
+  resolveContextDOM_ElementPolymorphicSpecification
+} from "@yamato-daiwa/es-extensions-browserjs";
 import {
   Logger,
   InvalidParameterValueError,
-  UnexpectedEventError,
-  isNumber,
   secondsToMilliseconds,
-  isNeitherUndefinedNorNull
+  roundUpToSpecificIntegerPlaceValue,
+  isNeitherUndefinedNorNull,
+  isNotNull
 } from "@yamato-daiwa/es-extensions";
 
 
 class CollapsingAnimation {
 
   public static animate(
+    options: CollapsingAnimation.Options.PromiseReturningConfiguration
+  ): Promise<void>;
+
+  public static animate(
+    options: CollapsingAnimation.Options.OptionalCallbackConfiguration
+  ): void;
+
+  public static animate(
     {
-      duration__milliseconds,
-      duration__seconds,
-      animatedElement,
-      mustReplaceWithOnComplete,
-      mustRemoveOnComplete,
-      callback
-    }: CollapsingAnimation.CompoundParameter
-  ): void {
+      callback,
+      mustReturnPromise,
+      mustReplaceWithElementOnceComplete,
+      mustRemoveOnceComplete,
+      ...options
+    }: CollapsingAnimation.Options
+  ): Promise<void> | void {
 
-    let animationDurations__milliseconds: number;
+    const contextElement: Element | ParentNode | null =
+        resolveContextDOM_ElementPolymorphicSpecification(options.contextElement);
 
-    if (isNumber(duration__milliseconds)) {
-      animationDurations__milliseconds = duration__milliseconds;
-    } else if (isNumber(duration__seconds)) {
-      animationDurations__milliseconds = secondsToMilliseconds(duration__seconds);
-    } else {
-      Logger.throwErrorAndLog({
+    const targetElement: Element = options.targetElement instanceof Element ?
+        options.targetElement :
+        getExpectedToBeSingleDOM_Element({
+          selector: options.targetElement.selector,
+          ...isNotNull(contextElement) ? { contextElement } : null
+        });
+
+    if (!(targetElement instanceof HTMLElement)) {
+      Logger.throwErrorWithFormattedMessage({
         errorInstance: new InvalidParameterValueError({
-          parameterName: "compoundParameter",
           parameterNumber: 1,
-          messageSpecificPart: "Either \"duration__seconds\" or \"duration__milliseconds\" must be specified with number."
-        }),
-        title: InvalidParameterValueError.localization.defaultTitle,
-        occurrenceLocation: "CollapsingAnimation.animate(compoundParameter)"
-      });
+          parameterName: "options",
+            messageSpecificPart:
+                "The animated element must be the instance of HTMLElement while the element referenced in options " +
+                  "is not such one."
+          }),
+          title: InvalidParameterValueError.localization.defaultTitle,
+          occurrenceLocation: "CollapsingAnimation.animate(options)"
+        });
     }
 
 
-    animateCollapsing(animatedElement, { duration: animationDurations__milliseconds }).
+    const animating: Promise<void> = new Promise<void>(
+      (resolve: () => void): void => {
 
-        then((): void => {
+        const offsetHeightOfAnimatedElement__pixels: number = targetElement.offsetHeight;
 
-          if (isNeitherUndefinedNorNull(mustReplaceWithOnComplete)) {
-            animatedElement.replaceWith(mustReplaceWithOnComplete);
-          } else if (mustRemoveOnComplete === true) {
-            animatedElement.remove();
+        const animation: Animation = targetElement.animate(
+          {
+            height: 0,
+            marginTop: 0,
+            marginBottom: 0,
+            paddingTop: 0,
+            paddingBottom: 0
+          },
+          {
+            duration:
+                "averageSpeed__pixelsPerSecond" in options ?
+                    roundUpToSpecificIntegerPlaceValue({
+                      targetNumber: secondsToMilliseconds(
+                          Math.round(offsetHeightOfAnimatedElement__pixels / options.averageSpeed__pixelsPerSecond)
+                      ),
+                      trailingZerosCount: 3
+                    }) :
+                    secondsToMilliseconds(options.duration__seconds)
           }
+        );
 
-          callback?.();
+        animation.addEventListener(
+          "finish",
+          (): void => {
 
-        }).
+            targetElement.style.removeProperty("height");
+            targetElement.style.removeProperty("margin-top");
+            targetElement.style.removeProperty("margin-bottom");
+            targetElement.style.removeProperty("padding-top");
+            targetElement.style.removeProperty("padding-bottom");
 
-        catch((error: unknown): void => {
-          Logger.logError({
-            errorType: UnexpectedEventError.NAME,
-            title: UnexpectedEventError.localization.defaultTitle,
-            description: "Unexpected error occurred during animation.",
-            occurrenceLocation: "CollapsingAnimation.animate(compoundParameter)",
-            caughtError: error
-          });
-        });
+            callback?.();
+            resolve();
+
+            if (isNeitherUndefinedNorNull(mustReplaceWithElementOnceComplete)) {
+                targetElement.replaceWith(mustReplaceWithElementOnceComplete);
+              } else if (mustRemoveOnceComplete === true) {
+                targetElement.remove();
+              }
+
+          }
+        );
+
+      }
+    );
+
+    if (mustReturnPromise) {
+      return animating;
+    }
 
   }
 
@@ -72,14 +120,35 @@ class CollapsingAnimation {
 
 namespace CollapsingAnimation {
 
-  export type CompoundParameter = Readonly<{
-    animatedElement: HTMLElement;
-    mustReplaceWithOnComplete?: ChildNode;
-    mustRemoveOnComplete?: boolean;
-    duration__seconds?: number;
-    duration__milliseconds?: number;
-    callback?: () => unknown;
-  }>;
+  export type Options =
+      Options.PromiseReturningConfiguration |
+      Options.OptionalCallbackConfiguration;
+
+  export namespace Options {
+
+    type Common =
+        TargetElementDefinition &
+        DurationDefinition &
+        Readonly<{
+          mustReplaceWithElementOnceComplete?: ChildNode;
+          mustRemoveOnceComplete?: boolean;
+          callback?: () => unknown;
+        }>;
+
+    export type DurationDefinition = Readonly<
+      { averageSpeed__pixelsPerSecond: number; } |
+      { duration__seconds: number; }
+    >;
+
+    export type PromiseReturningConfiguration =
+        Common &
+        Readonly<{ mustReturnPromise: true; }>;
+
+    export type OptionalCallbackConfiguration =
+        Common &
+        Readonly<{ mustReturnPromise: false; }>;
+
+  }
 
 }
 

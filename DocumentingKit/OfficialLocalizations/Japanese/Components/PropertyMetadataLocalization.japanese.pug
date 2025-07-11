@@ -1,13 +1,21 @@
 -
 
   const propertyMetadataYDF_DK_ComponentLocalization__japanese = {
+
     localizedInterpretation: "日本語名",
     type: "型",
     types: {
-      indexedArray: "指数配列",
-      associativeArrayLikeObject: "連想配列系オブジェクト"
+      [RawObjectDataProcessor.ValuesTypesIDs.number]: "数",
+      [RawObjectDataProcessor.ValuesTypesIDs.string]: "文字列",
+      [RawObjectDataProcessor.ValuesTypesIDs.boolean]: "ブーリアン",
+      [RawObjectDataProcessor.ValuesTypesIDs.fixedSchemaObject]: "固定スキーマのオブジェクト",
+      [RawObjectDataProcessor.ValuesTypesIDs.associativeArray]: "連想配列型のオブジェクト",
+      [RawObjectDataProcessor.ValuesTypesIDs.indexedArray]: "指数配列",
+      [RawObjectDataProcessor.ValuesTypesIDs.tuple]: "タプル",
+      [RawObjectDataProcessor.ValuesTypesIDs.ambiguousObject]: "曖昧オブジェクト",
+      [RawObjectDataProcessor.ValuesTypesIDs.ambiguousArray]: "曖昧配列",
+      [RawObjectDataProcessor.ValuesTypesIDs.polymorphic]: "多形性"
     },
-    polymorphicPropertyVariants: "選択肢",
 
     /* ━━━ Undefindability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     isUndefinedForbidden: "undefinedは不可か",
@@ -29,37 +37,56 @@
     requiredIf: "いつ必要",
 
     /* ━━━ By Types ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── Fixed Shema Objects ────────────────────────────────────────────────────────────────────────────────────── */
+    objectTypeSchema: "スキーマ",
+
     /* ─── Associative Array ──────────────────────────────────────────────────────────────────────────────────────── */
     areUndefinedTypeValuesForbidden: "undefinedバリューが不可か",
     areNullTypeValuesForbidden: "nullバリューが不可か",
     minimalEntriesCount: "最少キー・値組み数",
+    allowedKeys: "可能なキー",
+    associativeArrayValues: "連想配列の値",
 
     /* ─── Indexed Array Property ─────────────────────────────────────────────────────────────────────────────────── */
+    arrayElements: "配列の要素",
     minimalElementsCount: "最少要素数",
     areUndefinedElementsForbidden: "undefined要素可否",
     areNullElementsForbidden: "null要素可否",
 
-    yes: "はい",
-    no: "いいえ",
-    minimalCharactersCount: "最小文字数",
-    maximalCharactersCount: "最大文字数",
+    /* ─── Numbers ────────────────────────────────────────────────────────────────────────────────────────────────── */
     numbersSet: "数の集合",
-    minimalValue: "最小限",
-    maximalValue: "最大限",
     numbersSets: {
       [RawObjectDataProcessor.NumbersSets.naturalNumber]: "自然数",
-      [RawObjectDataProcessor.NumbersSets.nonNegativeInteger]: "正の整数",
+      [RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero]: "正の整数・0",
+      [RawObjectDataProcessor.NumbersSets.naturalNumberOrZero]: "自然数・0",
       [RawObjectDataProcessor.NumbersSets.negativeInteger]: "負の整数",
       [RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero]: "負の整数・0",
       [RawObjectDataProcessor.NumbersSets.anyInteger]: "正負不問の整数",
       [RawObjectDataProcessor.NumbersSets.positiveDecimalFraction]: "正の小数",
+      [RawObjectDataProcessor.NumbersSets.positiveDecimalFractionOrZero]: "正の小数・0",
       [RawObjectDataProcessor.NumbersSets.negativeDecimalFraction]: "負の小数",
-      [RawObjectDataProcessor.NumbersSets.decimalFractionOfAnySign]: "正負不問の小数",
-      [RawObjectDataProcessor.NumbersSets.anyRealNumber]: "実数"
+      [RawObjectDataProcessor.NumbersSets.negativeDecimalFractionOrZero]: "負の小数・0",
+      [RawObjectDataProcessor.NumbersSets.anyDecimalFraction]: "正負不問の整数小数",
+      [RawObjectDataProcessor.NumbersSets.anyDecimalFractionOrZero]: "正負不問の整数小数・0",
+      [RawObjectDataProcessor.NumbersSets.anyRealNumber]: "実数",
+      [RawObjectDataProcessor.NumbersSets.positiveRealNumber]: "正の実数",
+      [RawObjectDataProcessor.NumbersSets.negativeRealNumber]: "負の実数",
+      [RawObjectDataProcessor.NumbersSets.positiveRealNumberOrZero]: "正の実数・0",
+      [RawObjectDataProcessor.NumbersSets.negativeRealNumberOrZero]: "負の実数・0"
     },
-    allowedKeys: "可能なキー",
+    minimalValue: "最小限",
+    maximalValue: "最大限",
     allowedAlternatives: "利用可能な選択肢",
-    objectTypeSchema: "スキーマ",
-    associativeArrayValue: "連想配列の値",
-    arrayElements: "配列の要素"
+
+    /* ─── Strings ────────────────────────────────────────────────────────────────────────────────────────────────── */
+    minimalCharactersCount: "最小文字数",
+    maximalCharactersCount: "最大文字数",
+
+    /* ─── Polymorphic ────────────────────────────────────────────────────────────────────────────────────────────── */
+    polymorphicPropertyVariants: "選択肢",
+
+    /* ━━━ Other ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    yes: "はい",
+    no: "いいえ"
+
   };

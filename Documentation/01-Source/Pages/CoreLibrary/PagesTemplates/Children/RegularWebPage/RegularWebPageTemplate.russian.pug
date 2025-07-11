@@ -115,7 +115,7 @@ block append SpecificContent
         </html>
 
     p.Article-Paragraph
-      | Поскольку #[+Term--YDID аттрибут] #[+ImportantEntity__Code--YDID lang] у #[+Term--YDID тэга]
+      | Поскольку #[+Term--YDID атрибуты] #[+ImportantEntity__Code--YDID lang] у #[+Term--YDID тэга]
       |   #[+ImportantEntity__Code--YDID html] и #[+Term--YDID тэг] #[+ImportantEntity__Code--YDID title] являются
       |   #[+Keyword--YDID обязательными], то они были сгенерированы в соответствии с настройками по умолчанию.
       | Скорее всего, Вам потребуется их изменить, особенно если у Вас страница на русском или отличном от английского
@@ -170,13 +170,13 @@ block append SpecificContent
 
       dt metadata.locale
       dd.
-        Используется для заполнения #[+Term--YDID аттрибута] #[+ImportantEntity__Code--YDID lang] у #[+Term--YDID тэга]
+        Используется для заполнения #[+Term--YDID атрибута] #[+ImportantEntity__Code--YDID lang] у #[+Term--YDID тэга]
           #[+ImportantEntity__Code--YDID html].
-        Поскольку данный #[+Term--YDID аттрибут] является #[+Keyword--YDID обязательным]
+        Поскольку данный #[+Term--YDID атрибуты] является #[+Keyword--YDID обязательным]
           #[+Keyphrase--YDID для #[+Term--YDID тэга] #[+ImportantEntity__Code--YDID html]], то имеется значение по
           умолчанию — #[+ImportantEntity__Code--YDID "en"], которое #[+Keyword--YDID необходимо] заменить на другое
           #[+Keyphrase--YDID для неанглоязычных страниц].
-        Примечательно, но значение #[+Term--YDID аттрибута] #[+ImportantEntity__Code--YDID lang] официально называется
+        Примечательно, но значение #[+Term--YDID атрибута] #[+ImportantEntity__Code--YDID lang] официально называется
           #[+Term--YDID «language tag»], что запутывает, потому данное #[+Term--YDID свойство] и было названо
           #[+ImportantEntity__Code--YDID locale].
 
@@ -189,30 +189,30 @@ block append SpecificContent
       dt metadata.description
       dd.
         Если определено, то будет добавлен #[+Term--YDID тэг] #[+ImportantEntity__Code--YDID meta] c
-          #[+Term--YDID аттрибутами] #[+ImportantEntity__Code--YDID name="description"] и
+          #[+Term--YDID атрибутами] #[+ImportantEntity__Code--YDID name="description"] и
           #[+ImportantEntity__Code--YDID content], #[+Keyword--YDID последний] из которых будет заполнен
           указанным значением.
 
       dt metadata.keywords
       dd.
         Если определено, то будет добавлен #[+Term--YDID тэг] #[+ImportantEntity__Code--YDID meta] c
-          #[+Term--YDID аттрибутами] #[+ImportantEntity__Code--YDID name="keywords"] и
+          #[+Term--YDID атрибутами] #[+ImportantEntity__Code--YDID name="keywords"] и
           #[+ImportantEntity__Code--YDID content], #[+Keyword--YDID последний] из которых будет заполнен
           указанным значением.
 
       dt metadata.author
       dd.
         Если определено, то будет добавлен #[+Term--YDID тэг] #[+ImportantEntity__Code--YDID meta] c
-          #[+Term--YDID аттрибутами] #[+ImportantEntity__Code--YDID name="author"] и
+          #[+Term--YDID атрибутами] #[+ImportantEntity__Code--YDID name="author"] и
           #[+ImportantEntity__Code--YDID content], #[+Keyword--YDID последний] из которых удет заполнен
           указанным значением.
 
       dt faviconURI
       dd.
         Если определено, то будут добавлены #[+ImportantEntity--YDID 2] #[+Term--YDID тэга]
-          #[+ImportantEntity__Code--YDID link], один из которых имеет #[+Term--YDID аттрибут]
+          #[+ImportantEntity__Code--YDID link], один из которых имеет #[+Term--YDID атрибуты]
           #[+ImportantEntity__Code--YDID rel="icon"], другой — #[+ImportantEntity__Code--YDID rel="shortcut icon"],
-          при этом у #[+Keyword--YDID обоих] будет заполнен #[+Term--YDID аттрибут] #[+ImportantEntity__Code--YDID href]
+          при этом у #[+Keyword--YDID обоих] будет заполнен #[+Term--YDID атрибуты] #[+ImportantEntity__Code--YDID href]
           указанным значением.
         Это значение #[+Keyword--YDID должно] быть #[+Keyword--YDID валидным] #[+ImportantEntity--YDID URI], ссылающимся
           на файл иконки для отображения на вкладке браузера.
@@ -220,7 +220,7 @@ block append SpecificContent
       dt AMP_VersionURI
       dd.
         Если определено, то будет добавлен #[+Term--YDID тэг] #[+ImportantEntity__Code--YDID link] c
-          #[+Term--YDID аттрибутами] #[+ImportantEntity__Code--YDID rel="amphtml"] и
+          #[+Term--YDID атрибутами] #[+ImportantEntity__Code--YDID rel="amphtml"] и
           #[+ImportantEntity__Code--YDID href], #[+Keyword--YDID последний] из которых будет заполнен указанным
           значением.
         Это значение #[+Keyword--YDID должно] быть #[+Keyword--YDID валидным] #[+ImportantEntity--YDID URI], ссылающимся
@@ -229,7 +229,7 @@ block append SpecificContent
       dt stylesSheetsURIs
       dd.
         Если указан #[+Term--YDID массив], то #[+Keyphrase--YDID для каждого] его #[+Term--YDID элемента] будет добавлен
-          #[+Term--YDID тэг] #[+ImportantEntity__Code--YDID link] с #[+Term--YDID аттрибутами]
+          #[+Term--YDID тэг] #[+ImportantEntity__Code--YDID link] с #[+Term--YDID атрибутами]
           #[+ImportantEntity__Code--YDID rel="stylesheet"] и #[+ImportantEntity__Code--YDID href],
           #[+Keyword--YDID последний] из которых будет заполнен #[+Term--YDID элементом массива].
         #[+Keyword--YDID Каждый] из этих #[+Term--YDID элементов] #[+Keyword--YDID должен] иметь
@@ -242,7 +242,7 @@ block append SpecificContent
         p.Article-Paragraph.
           Если указан #[+Term--YDID массив], то #[+Keyphrase--YDID для каждого] его #[+Term--YDID элемента] в
             #[+Keyword--YDID конец] #[+Term--YDID тэга] #[+ImportantEntity__Code--YDID head] будет добавлен
-            #[+Term--YDID тэг] #[+ImportantEntity__Code--YDID script] с #[+Term--YDID аттрибутом]
+            #[+Term--YDID тэг] #[+ImportantEntity__Code--YDID script] с #[+Term--YDID атрибутом]
             #[+ImportantEntity__Code--YDID src], значение которого будет заполнено #[+Term--YDID элементом массива].
           #[+Keyword--YDID Каждый] из этих #[+Term--YDID элементов] #[+Keyword--YDID должен] иметь
             #[+Keyword--YDID строчный] #[+Term--YDID тип] и являться #[+Keyword--YDID валидным] #[+Term--YDID URI],
@@ -258,9 +258,9 @@ block append SpecificContent
 
           li.
             Добавленные таким образом #[+Term--YDID тэги] #[+ImportantEntity__Code--YDID script]
-              #[+Keyword--YDID не]&nbsp;будут иметь #[+Keyword--YDID никаких] #[+Term--YDID аттрибутов], кроме
+              #[+Keyword--YDID не]&nbsp;будут иметь #[+Keyword--YDID никаких] #[+Term--YDID атрибутов], кроме
               #[+ImportantEntity__Code--YDID src].
-            Если Вам нужно, чтобы были какие-либо другие #[+Term--YDID аттрибуты], то добавьте #[+Term--YDID тэг]
+            Если Вам нужно, чтобы были какие-либо другие #[+Term--YDID атрибуты], то добавьте #[+Term--YDID тэг]
               #[+ImportantEntity__Code--YDID script] скрипт вручную в с　использованием
               #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.block }) Pug-блока]
               #[+ImportantEntity__Code--YDID HeadScripts].
@@ -271,7 +271,7 @@ block append SpecificContent
         p.Article-Paragraph.
           Если указан #[+Term--YDID массив], то #[+Keyphrase--YDID для каждого] его #[+Term--YDID элемента] в
             #[+Keyword--YDID конец] #[+Term--YDID тэга] #[+ImportantEntity__Code--YDID body] будет добавлен
-            #[+Term--YDID тэг] #[+ImportantEntity__Code--YDID script] с #[+Term--YDID аттрибутом]
+            #[+Term--YDID тэг] #[+ImportantEntity__Code--YDID script] с #[+Term--YDID атрибутом]
             #[+ImportantEntity__Code--YDID src], значение которого будет заполнено #[+Term--YDID элементом массива].
           #[+Keyword--YDID Каждый] из этих #[+Term--YDID элементов] #[+Keyword--YDID должен] иметь
             #[+Keyword--YDID строчный] #[+Term--YDID тип] и являться #[+Keyword--YDID валидным] #[+Term--YDID URI],
@@ -285,9 +285,9 @@ block append SpecificContent
 
           li.
             Добавленные таким образом #[+Term--YDID тэги] #[+ImportantEntity__Code--YDID script]
-              #[+Keyword--YDID не]&nbsp;будут иметь #[+Keyword--YDID никаких] #[+Term--YDID аттрибутов], кроме
+              #[+Keyword--YDID не]&nbsp;будут иметь #[+Keyword--YDID никаких] #[+Term--YDID атрибутов], кроме
               #[+ImportantEntity__Code--YDID src].
-            Если Вам нужно, чтобы были какие-либо другие #[+Term--YDID аттрибуты], то добавьте #[+Term--YDID тэг]
+            Если Вам нужно, чтобы были какие-либо другие #[+Term--YDID атрибуты], то добавьте #[+Term--YDID тэг]
               #[+ImportantEntity__Code--YDID script] скрипт вручную в с　использованием
               #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.block }) Pug-блока]
               #[+ImportantEntity__Code--YDID EndBodyScripts].
@@ -720,8 +720,8 @@ block append SpecificContent
         #[+Term--YDID стили] прямо в #[+Term--YDID тэге] #[+ImportantEntity__Code--YDID head].
       В частности, поскольку #[+Term--YDID тэги] #[+ImportantEntity__Code--YDID link], которые будут сгенерированы при
         указанных в конфигурации ссылках на #[+Term--YDID стили] #[+Keyword--YDID не]&nbsp;имеют никаких
-        #[+Term--YDID аттрибутов] #[+Keyword--YDID кроме] #[+ImportantEntity__Code--YDID href] и
-        #[+ImportantEntity__Code--YDID rel="stylesheet"], то если нужны какие-то другие #[+Term--YDID аттрибуты], то
+        #[+Term--YDID атрибутов] #[+Keyword--YDID кроме] #[+ImportantEntity__Code--YDID href] и
+        #[+ImportantEntity__Code--YDID rel="stylesheet"], то если нужны какие-то другие #[+Term--YDID атрибуты], то
         добавьте #[+Term--YDID тэги] #[+ImportantEntity__Code--YDID link] в #[+Term--YDID блок]
         #[+ImportantEntity__Code--YDID Styles] вручную:
 
@@ -784,8 +784,8 @@ block append SpecificContent
         #[+Term--YDID скрипты] прямо в #[+Term--YDID тэге] #[+ImportantEntity__Code--YDID head].
       В частности, поскольку #[+Term--YDID тэги] #[+ImportantEntity__Code--YDID script], которые будут сгенерированы при
         указанных в конфигурации ссылках на #[+Term--YDID скрипты], #[+Keyword--YDID не]&nbsp;имеют никаких
-        #[+Term--YDID аттрибутов] #[+Keyword--YDID кроме] #[+ImportantEntity__Code--YDID src],
-        то если нужны какие-то другие #[+Term--YDID аттрибуты], то добавьте #[+Term--YDID тэги]
+        #[+Term--YDID атрибутов] #[+Keyword--YDID кроме] #[+ImportantEntity__Code--YDID src],
+        то если нужны какие-то другие #[+Term--YDID атрибуты], то добавьте #[+Term--YDID тэги]
         #[+ImportantEntity__Code--YDID script] в блок #[+ImportantEntity__Code--YDID HeadScripts] вручную:
 
     +CodeViewer--YDF
@@ -944,8 +944,8 @@ block append SpecificContent
           #[+Term--YDID скрипты] прямо в #[+Term--YDID тэге] #[+ImportantEntity__Code--YDID body].
       В частности, поскольку #[+Term--YDID тэги] #[+ImportantEntity__Code--YDID script], которые будут сгенерированы при
         указанных в конфигурации ссылках на #[+Term--YDID скрипты], #[+Keyword--YDID не]&nbsp;имеют никаких
-        #[+Term--YDID аттрибутов] #[+Keyword--YDID кроме] #[+ImportantEntity__Code--YDID src],
-        то если нужны какие-то другие #[+Term--YDID аттрибуты], то добавьте #[+Term--YDID тэги]
+        #[+Term--YDID атрибутов] #[+Keyword--YDID кроме] #[+ImportantEntity__Code--YDID src],
+        то если нужны какие-то другие #[+Term--YDID атрибуты], то добавьте #[+Term--YDID тэги]
         #[+ImportantEntity__Code--YDID script] в блок #[+ImportantEntity__Code--YDID EndBodyScripts] вручную:
 
     +CodeViewer--YDF

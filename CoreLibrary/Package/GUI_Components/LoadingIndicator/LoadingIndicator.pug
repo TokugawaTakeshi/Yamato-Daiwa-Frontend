@@ -6,52 +6,24 @@ mixin LoadingIndicator--YDF(properties, statesSimulations)
   -
 
     const {
-      type,
-      theme = LoadingIndicator__YDF.Themes.regular,
-      areThemesCSS_ClassesCommon =
-          ComponentsAuxiliaries.areComponentsThemesCommon || LoadingIndicator__YDF.areThemesCSS_ClassesCommon,
-      geometricVariation = LoadingIndicator__YDF.GeometricVariations.regular,
-      decorativeVariation = LoadingIndicator__YDF.DecorativeVariations.regular,
+
+      /** @type { LoadingIndicator__YDF.Types } */
+      type
+
     } = processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: LoadingIndicator__YDF.propertiesSpecification,
-      mixinName: "LoadingIndicator--YDF"
+      mixinName: LoadingIndicator__YDF.CSS_NAMESPACE
     });
 
-    const commonCSS_Classes = [
-
-      LoadingIndicator__YDF.CSS_NAMESPACE,
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: LoadingIndicator__YDF.Themes,
-        CSS_Namespace: LoadingIndicator__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: LoadingIndicator__YDF.GeometricVariations,
-        CSS_Namespace: LoadingIndicator__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: LoadingIndicator__YDF.DecorativeVariations,
-        CSS_Namespace: LoadingIndicator__YDF.CSS_NAMESPACE
-      })
-
-    ];
 
   case type
 
     when LoadingIndicator__YDF.Types.variableWidthArcSpinner
 
-      .LoadingIndicator--YDF__VariableWidthArcSpinnerType(
-        class=commonCSS_Classes
-      )&attributes(attributes)
+      .LoadingIndicator--YDF__VariableWidthArcSpinnerType&attributes(attributes)
         div
         div
         div
@@ -60,6 +32,4 @@ mixin LoadingIndicator--YDF(properties, statesSimulations)
 
     when LoadingIndicator__YDF.Types.twoConstantWidthArcsSpinner
 
-      .LoadingIndicator--YDF__TwoConstantWidthArcsSpinnerType(
-        class=commonCSS_Classes
-      )&attributes(attributes)
+      .LoadingIndicator--YDF__TwoConstantWidthArcsSpinnerType&attributes(attributes)

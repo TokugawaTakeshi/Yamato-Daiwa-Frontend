@@ -168,7 +168,7 @@ export class CodeViewer {
       const tabPanelID: string = `${ this.ID }-TAB_PANEL-${ currentTabPanelIndex }`;
 
       if (isNotNull(document.querySelector(tabID))) {
-        Logger.throwErrorAndLog({
+        Logger.throwErrorWithFormattedMessage({
           errorType: "HTML_ID_DuplicatingError",
           description: `The element with HTML ID '${ tabID }' which has been generated for the tab of one instance of the ` +
               "'CodeViewer' component is already presents in document. It will break both HTML validity and the accessibility.",
@@ -179,7 +179,7 @@ export class CodeViewer {
 
 
       if (isNotNull(document.querySelector(tabPanelID))) {
-        Logger.throwErrorAndLog({
+        Logger.throwErrorWithFormattedMessage({
           errorType: "HTML_ID_DuplicatingError",
           description: `The element with HTML ID '${ tabPanelID }' which has been generated for the tab panel of one ` +
               "instance of the 'CodeViewer' component is already presents in document. It will break both HTML validity " +
@@ -284,7 +284,8 @@ export class CodeViewer {
               type: Number,
               numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
               isUndefinedForbidden: true,
-              isNullForbidden: true
+              isNullForbidden: true,
+              isNaN_Forbidden: true
             }
           }
         });

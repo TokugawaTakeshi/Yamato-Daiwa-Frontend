@@ -1,3 +1,11 @@
-synopsis:
+overview:
 
   $heading: "Сводка"
+
+ButtonClass:
+
+  $heading: "Класс <code>Button</code>"
+
+  razorComponentParameters:
+
+    $heading: "Параметры Razor-компонента"

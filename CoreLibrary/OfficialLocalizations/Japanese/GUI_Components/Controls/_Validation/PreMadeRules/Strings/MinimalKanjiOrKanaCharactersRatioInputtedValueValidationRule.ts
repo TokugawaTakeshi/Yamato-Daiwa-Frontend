@@ -9,7 +9,7 @@ import {
 } from "@yamato-daiwa/es-extensions";
 
 
-class MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule implements InputtedValueValidation.Rule {
+class MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
 
   public static localization: MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule.Localization =
       minimalKanjiOrKanaCharactersRatioInputtedValueValidationRuleLocalization__japanese;

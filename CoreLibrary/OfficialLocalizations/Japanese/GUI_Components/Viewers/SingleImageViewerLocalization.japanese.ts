@@ -1,0 +1,14 @@
+import type { SingleImageViewerLocalization } from "@yamato-daiwa/frontend";
+
+
+export const singleImageViewerYDF_GUI_ComponentLocalization__japanese: SingleImageViewerLocalization = {
+  buttons: {
+    fullScreenViewActivating: { label: "全画面閲覧" },
+    fullScreenViewDeactivating: { label: "閉じる" },
+    zoomingIn: { label: "拡大" },
+    zoomingOut: { label: "縮小" },
+    widthFitting: { label: "幅を満たす" },
+    heightFitting: { label: "高さを満たす" },
+    fitting: { label: "幅高を満たす" }
+  }
+};

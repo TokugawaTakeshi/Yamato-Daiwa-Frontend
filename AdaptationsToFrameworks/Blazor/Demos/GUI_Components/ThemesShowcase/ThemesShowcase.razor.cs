@@ -37,6 +37,9 @@ public partial class ThemesShowcase : Microsoft.AspNetCore.Components.ComponentB
   [Microsoft.AspNetCore.Components.Parameter]
   public Microsoft.AspNetCore.Components.RenderFragment<ComponentSlotData> ComponentSlot { get; set; } = null!;
 
+  [Microsoft.AspNetCore.Components.Parameter]
+  public Func<ThemesShowcase.ComponentSlotData, bool> decorativeVariationSkippingCondition { get; set; } = (slotData) => false;
+
   private string innermostChildListClassAttributeValue =>
       String.Join(
         " ",

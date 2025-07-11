@@ -102,6 +102,54 @@ mixin IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance(properties)
   block
 
 
-include ReusableFragments/Components/AdmonitionBlock-ReusableFragments.japanese.pug
-include ReusableFragments/Components/Badge-ReusableFragments.japanese.pug
-include ReusableFragments/Components/Button-ReusableFragments.japanese.pug
+-
+
+  GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables = {
+    componentProperties: "引数",
+    propertiesLocalizedInterpretations: {
+
+      required: "入力が必須か",
+      disabled: "非活性状態の真偽",
+      readonly: "読み込み専用か",
+      toggled: "押したまま状態の真偽",
+
+      label: "キャプション",
+      guidance: "説明文",
+      accessibilityGuidance: "アクセシビリティ技術専用説明文",
+      placeholder: "空入力の時表示本文",
+      mustDisplayAppropriateBadgeIfInputIsRequired: "入力が必須な時「必須」バッジの表示が要るか",
+      mustDisplayAppropriateBadgeIfInputIsOptional: "入力が任意な時「任意」バッジの表示が要るか",
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: "バッジ表示が不要な時、高さ調整の為見えないバッジの追加が要るきあ",
+
+      instanceID_UniqueDynamicPart: "インスタンス識別子の唯一な動的部分",
+      HTML_IDs: "HTML識別子の揃い",
+
+      theme: "テーマ",
+      areThemesCSS_ClassesCommon: "テーマCSSクラスは共通真偽",
+      geometricVariation: "幾何学的変形",
+      geometricModifiers: "幾何学的改変",
+      decorativeVariation: "修飾的変形",
+      decorativeModifiers: "修飾的修飾子",
+
+      className: "空白で区切られた根要素の修飾子CSSクラス一覧",
+
+      rootElementModifierCSS_Class: "根要素の修飾子CSSクラス",
+      rootElementModifierCSS_Classes: "根要素の修飾子CSSクラスの配列",
+      rootElementSpaceSeparatedModifierCSS_Classes: "空白で区切られた根要素の修飾子CSSクラス一覧"
+
+    },
+    statesSimulationsLocalizedInterpretations: {
+      invalidInputHighlightingIfAnyValidationErrorsMessages: "入力妥当性確認のメッセージが１件以上の時不正入力ファイライトが要るか",
+      validValueHighlightingIfNoValidationErrorsMessages: "入力妥当性確認のメッセージが０件の時妥当入力ファイライトが要るか",
+      validationErrorsMessages: "入力妥当性確認エラーメッセージ",
+      asynchronousValidationsStatuses: "入力非同期妥当性確認状態"
+    },
+    customThemingGuidanceGenerator: constantExpression => `\`${ constantExpression }\`で定義された中から何れか`
+  }
+
+
+include ReusableFragments/GUI_Components/AdmonitionBlock-ReusableFragments.japanese.pug
+include ReusableFragments/GUI_Components/Badge-ReusableFragments.japanese.pug
+include ReusableFragments/GUI_Components/Controls/Button-ReusableFragments.japanese.pug
+include ReusableFragments/GUI_Components/Controls/ValidatableControlShell-ReusableFragments.japanese.pug
+include ReusableFragments/GUI_Components/Controls/Validatables/TextBox-ReusableFragments.japanese.pug

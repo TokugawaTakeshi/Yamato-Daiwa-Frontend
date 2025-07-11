@@ -1,15 +1,10 @@
 import type InputtedValueValidation from "../../InputtedValueValidation";
 import maximalElementsCountInputtedValueValidationRuleLocalization__english from
     "./MaximalElementsCountInputtedValueValidationRuleLocalization.english";
-import {
-  stringifyAndFormatArbitraryValue,
-  isNotUndefined,
-  Logger,
-  InvalidParameterValueError
-} from "@yamato-daiwa/es-extensions";
+import { stringifyAndFormatArbitraryValue, isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
-class MaximalElementsCountInputtedValueValidationRule implements InputtedValueValidation.Rule {
+class MaximalElementsCountInputtedValueValidationRule implements InputtedValueValidation.Rule<ReadonlyArray<unknown>> {
 
   public static localization: MaximalElementsCountInputtedValueValidationRule.Localization =
       maximalElementsCountInputtedValueValidationRuleLocalization__english;
@@ -50,22 +45,7 @@ class MaximalElementsCountInputtedValueValidationRule implements InputtedValueVa
   }
 
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
-
-    if (!Array.isArray(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: "Unable to execute this validation because the raw value is not the array " +
-            `and actually has type "${ typeof rawValue }".`,
-        occurrenceLocation: "MaximalElementsCountInputtedValueValidationRule.check(rawValue)"
-      });
-
-      return { isValid: true };
-
-    }
-
+  public check(rawValue: ReadonlyArray<unknown>): InputtedValueValidation.Rule.CheckingResult {
 
     const isValid: boolean = rawValue.length <= this.MAXIMAL_ELEMENTS_COUNT;
 

@@ -1,0 +1,44 @@
+DrawerMenu--YDF-generateStyles()
+
+  .DrawerMenu--YDF
+
+    &-Underlay
+
+      position fixed
+
+      top 0
+      bottom 0
+      left 0
+      right 0
+      z-index: YDF_Configuration.zIndexes.drawers
+
+      background rgba(black, 0.25)
+
+
+      &__HiddenState
+
+        display none
+
+
+    &-Body
+
+      max-width NARROWEST_SCREEN_WIDTH_UNIT--YDF
+      width 80%
+      height 100%
+      padding 6px
+
+      overflow-y auto
+
+      background white
+      box-shadow 0 4px 8px 4px rgba(black, 0.25)
+
+      transform translateX(-100%)
+
+
+    &-ClosingButton
+
+      position fixed
+      top 10px
+      right 10px
+
+      z-index: YDF_Configuration.zIndexes.drawers + 1

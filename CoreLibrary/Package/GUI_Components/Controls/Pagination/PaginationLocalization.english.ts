@@ -1,7 +1,7 @@
 import type { PaginationLocalization } from "./PaginationLocalization";
 
 
-export const paginationYDF_ComponentLocalization__english: PaginationLocalization = {
+export const paginationYDF_GUI_ComponentLocalization__english: PaginationLocalization = {
   buttons: {
     toFirstPage: { accessibilityGuidance: "To first page" },
     toPreviousPage: { accessibilityGuidance: "To previous page" },

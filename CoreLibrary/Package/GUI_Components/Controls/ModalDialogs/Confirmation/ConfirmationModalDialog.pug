@@ -1,4 +1,4 @@
-mixin ConfirmationModalDialog--YDF(properties)
+mixin ConfirmationModalDialog--YDF(properties, statesSimulations)
 
   -
 
@@ -9,11 +9,15 @@ mixin ConfirmationModalDialog--YDF(properties)
       cancellationButtonLabel = "No"
     } = properties ?? {};
 
+    const {
+      displaying = false
+    } = statesSimulations ?? {};
 
   +ModalDialog--YDF(
     {
       title,
-      noDismissingButton: true
+      noDismissingButton: true,
+      type: ModalDialog__YDF.Types.compact
     },
     statesSimulations
   ).ConfirmationModalDialog--YDF&attributes(attributes)

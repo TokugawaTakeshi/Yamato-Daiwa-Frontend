@@ -1,14 +1,14 @@
-synopsis:
+overview:
 
-  $heading: "Сводка"
+  $heading: "Краткий обзор"
 
 AdmonitionBlockClass:
 
   $heading: "Класс <code>AdmonitionBlockClass</code>"
 
-  blazorProperties:
+  razorComponentParameters:
 
-    $heading: "Свойства Blazor-компонента"
+    $heading: "Параметры Razor-компонента"
 
   examples:
 

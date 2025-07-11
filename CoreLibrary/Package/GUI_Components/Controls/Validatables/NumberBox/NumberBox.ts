@@ -9,6 +9,7 @@ import type InputtedValueValidation from "../../_Validation/InputtedValueValidat
 import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
+import type { RootElementDefinition } from "../../../../Logic/Types/RootElementDefinition";
 import {
   InvalidParameterValueError,
   isNumber,
@@ -25,6 +26,7 @@ import {
 import onDifferentValueAssigned from "../../../_Auxiliaries/Decorators/onDifferentValueAssigned";
 
 
+/** @beta */
 class NumberBox<
   ValidValue extends NumberBox.SupportedValidatablePayloadValuesTypes,
   InvalidValue extends NumberBox.SupportedValidatablePayloadValuesTypes,
@@ -79,7 +81,7 @@ class NumberBox<
 
     if (this.$mustHighlightInvalidInputIfAnyValidationErrorsMessages) {
 
-      this.shellComponent.$mustDisplayErrorsMessagesIfAny = true;
+      this.shellComponent.$mustDisplayValidationErrorsMessagesIfAny = true;
 
       if (this.payload.isInvalid) {
         this.shellComponent.rootElement.classList.add(NumberBox.INVALID_VALUE_STATE_CSS_CLASS);
@@ -91,7 +93,7 @@ class NumberBox<
 
 
     this.shellComponent.rootElement.classList.remove(NumberBox.INVALID_VALUE_STATE_CSS_CLASS);
-    this.shellComponent.$mustDisplayErrorsMessagesIfAny = false;
+    this.shellComponent.$mustDisplayValidationErrorsMessagesIfAny = false;
 
   }
 
@@ -194,7 +196,7 @@ class NumberBox<
   ) {
 
     if (rootElement.classList.contains(NumberBox.ROOT_ELEMENT_SELECTOR)) {
-      Logger.throwErrorAndLog({
+      Logger.throwErrorWithFormattedMessage({
         errorInstance: new InvalidParameterValueError({
           parameterNumber: 1,
           parameterName: "compoundParameter",
@@ -247,7 +249,8 @@ class NumberBox<
 
       payloadInitialValue = initializationProperties.overridingPreInputtedInitialValue;
 
-      this.nativeInputElement.value = isNumber(payloadInitialValue) ? payloadInitialValue.toString() : "";
+      this.nativeInputElement.value =
+          isNumber(payloadInitialValue, { mustConsiderNaN_AsNumber: true }) ? payloadInitialValue.toString() : "";
 
     } else {
 
@@ -405,7 +408,7 @@ class NumberBox<
     this.shellComponent.$validationErrorsMessages = this.payload.validationErrorsMessages;
 
     if (asynchronousValidationStatus.hasAtLeastOneInvalidValueBeenConfirmed) {
-      this.shellComponent.$mustDisplayErrorsMessagesIfAny = true;
+      this.shellComponent.$mustDisplayValidationErrorsMessagesIfAny = true;
     }
 
   }

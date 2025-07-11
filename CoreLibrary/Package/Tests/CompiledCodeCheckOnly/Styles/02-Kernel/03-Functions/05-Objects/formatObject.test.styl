@@ -1,0 +1,45 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/05-Objects/formatObject.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/05-Objects/formatObject.test.css `
+    --include Styles
+*/
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+p(formatObject({}))
+//p(formatObject("NON_OBJECT"))
+
+p(formatObject({ alpha: "ALPHA" }))
+
+p(formatObject({ alpha: "ALPHA", bravo: "BRAVO" }))
+
+p(formatObject({
+  alpha: "ALPHA",
+  bravo: "BRAVO",
+  charlie: {
+    charlie1: "CHARLIE_1",
+    charlie2: "CHARLIE_1"
+  }
+}))
+
+p(formatObject({
+  alpha: "ALPHA",
+  bravo: "BRAVO",
+  charlie: {
+    charlie1: "CHARLIE_1",
+    charlie2: "CHARLIE_1"
+  },
+  delta: "DELTA"
+}))
+
+p(formatObject({
+  geometry: {
+    fontSize: 40px,
+    lineHeight: 1.2
+  },
+  decoration: {
+    fontColor:  W3C_39_ShadesOfGray--YDF[4]
+  }
+}))

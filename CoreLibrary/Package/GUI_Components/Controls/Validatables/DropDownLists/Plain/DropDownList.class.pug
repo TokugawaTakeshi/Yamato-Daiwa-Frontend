@@ -1,0 +1,504 @@
+-
+
+  class DropDownList__YDF {
+
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
+    static CSS_NAMESPACE = "DropDownList--YDF";
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @type { { [themeName: string]: string } }
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
+    static Themes = { regular: "REGULAR" };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsThemesCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsThemesCorrespondence() {
+      return DropDownList__YDF._selfAndChildrenComponentsThemesCorrespondence ?? (
+        DropDownList__YDF._selfAndChildrenComponentsThemesCorrespondence = {
+          validatableControlShell: { [DropDownList__YDF.Themes.regular]: ValidatableControlShell__YDF.Themes.regular },
+          button: { [DropDownList__YDF.Themes.regular]: Button__YDF.Themes.regular }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellThemesDefinition
+     *
+     * @returns { typeof DropDownList__YDF }
+     *
+     * @example
+     * DropDownList__YDF.defineThemes({
+     *   redmond: {
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.redmond,
+     *     button: Button__YDF.Themes.redmond
+     *   },
+     *   cupertino: {
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.cupertino,
+     *     button: Button__YDF.Themes.cupertino
+     *   }
+     * });
+     */
+    static defineThemes(ownAndCorrespondingValidatableControlShellThemesDefinition) {
+      return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellThemesDefinition, DropDownList__YDF
+      );
+    }
+
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @public
+     * @returns { typeof DropDownList__YDF }
+     * */
+    static considerThemesAsCommon() {
+      DropDownList__YDF.areThemesCSS_ClassesCommon = true;
+      return DropDownList__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL"
+    };
+
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsGeometricVariationsCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsGeometricVariationsCorrespondence() {
+      return DropDownList__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence ?? (
+        DropDownList__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence = {
+          validatableControlShell: {
+            [DropDownList__YDF.GeometricVariations.regular]: ValidatableControlShell__YDF.GeometricVariations.regular,
+            [DropDownList__YDF.GeometricVariations.small]: ValidatableControlShell__YDF.GeometricVariations.small
+          },
+          button: {
+            [DropDownList__YDF.GeometricVariations.regular]: Button__YDF.GeometricVariations.regular,
+            [DropDownList__YDF.GeometricVariations.small]: Button__YDF.GeometricVariations.small
+          }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition
+     *
+     * @returns { typeof DropDownList__YDF }
+     *
+     * @example
+     * DropDownList__YDF.defineGeometricVariations({
+     *   large: {
+     *     validatableControlShell: ValidatableControlShell__YDF.GeometricVariation.large,
+     *     button: Button__YDF.GeometricVariations.large
+     *   },
+     *   extraLarge: {
+     *     validatableControlShell: ValidatableControlShell__YDF.GeometricVariation.extraLarge,
+     *     button: Button__YDF.GeometricVariations.extraLarge
+     *   }
+     * });
+     */
+    static defineGeometricVariations(ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition) {
+      return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition, DropDownList__YDF
+      );
+    }
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = { regular: "REGULAR" };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsDecorativeVariationsCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsDecorativeVariationsCorrespondence() {
+      return DropDownList__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
+        DropDownList__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
+          validatableControlShell: {
+            [DropDownList__YDF.DecorativeVariations.regular]: ValidatableControlShell__YDF.DecorativeVariations.regular
+          },
+          button: {
+            [DropDownList__YDF.DecorativeVariations.regular]: ValidatableControlShell__YDF.DecorativeVariations.regular
+          }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition
+     *
+     * @returns { typeof DropDownList__YDF }
+     *
+     * @example
+     * DropDownList__YDF.defineDecorativeVariations({
+     *   modest: {
+     *     validatableControlShell: ValidatableControlShell__YDF.DecorativeVariation.modest
+     *     button: Button__YDF.GeometricVariations.modest
+     *   },
+     *   catchy: {
+     *     validatableControlShell: ValidatableControlShell__YDF.DecorativeVariation.catchy,
+     *     button: Button__YDF.GeometricVariations.catchy
+     *   }
+     * });
+     */
+    static defineDecorativeVariations(ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition) {
+      return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition, DropDownList__YDF
+      );
+    }
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static propertiesSpecification = {
+
+      label: {
+        type: String,
+         isUndefinedForbidden: false,
+         isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      guidance: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      accessibilityGuidances: {
+
+        type: Object,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
+
+        properties: {
+
+          inputElement: {
+            type: String,
+            isUndefinedForbidden: true,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          },
+
+          button: {
+            type: String,
+            isUndefinedForbidden: true,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          },
+
+          listBox: {
+            type: String,
+            isUndefinedForbidden: true,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          }
+
+        }
+
+      },
+
+      externalLabelHTML_ID: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      placeholder: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      selectingOptions: {
+
+        type: Array,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+
+        element: {
+
+          type: Object,
+
+          properties: {
+
+            key: {
+              type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+              isUndefinedForbidden: true,
+              isNullForbidden: true,
+              alternatives: [
+                {
+                  type: String,
+                  minimalCharactersCount: 1
+                },
+                {
+                  type: Number,
+                  numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+                  isNaN_Forbidden: true
+                }
+              ]
+            },
+
+            label: {
+              type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+              isUndefinedForbidden: true,
+              isNullForbidden: true,
+              alternatives: [
+                {
+                  type: String,
+                  minimalCharactersCount: 1
+                },
+                {
+                  type: Number,
+                  numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+                  isNaN_Forbidden: true
+                }
+              ]
+            }
+
+          }
+
+        }
+
+      },
+
+      initiallySelectedOptionKey: {
+        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        alternatives: [
+          {
+            type: String,
+            minimalCharactersCount: 1
+          },
+          {
+            type: Number,
+            numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+            isNaN_Forbidden: true
+          }
+        ]
+      },
+
+      disabled: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      readonly: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      required: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustDisplayAppropriateBadgeIfInputIsRequired: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustDisplayAppropriateBadgeIfInputIsOptional: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      /** @description
+       * 1 minimal character is definitely not enough for unique string, but in MVC mode it can be a variable. */
+      instanceID_UniqueDynamicPart: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      HTML_IDs: {
+
+        type: Object,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+
+        properties: {
+
+          inputElement: {
+            type: String,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          },
+
+          label: {
+            type: String,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          },
+
+          button: {
+            type: String,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          },
+
+          listBox: {
+            type: String,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          }
+
+        }
+
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: DropDownList__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(DropDownList__YDF.Themes).
+            map(([ key, value ]) => ({ key: `DropDownList__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: DropDownList__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: DropDownList__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(DropDownList__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `DropDownList__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      decorativeVariation: {
+        type: String,
+        undefinedValueSubstitution: DropDownList__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(DropDownList__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `DropDownList__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    };
+
+
+    /* ━━━ State simulations specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static statesSimulationsSpecification = {
+
+      expanded: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      ...ComponentsAuxiliaries.generateValidatableControlGeneralStatesSimulationsSpecification({
+        invalidInputHighlightingIfAnyValidationErrorsMessages: true,
+        validValueHighlightingIfNoValidationErrorsMessages: true,
+        validationErrorsMessages: true,
+        asynchronousValidationsStatuses: true
+      })
+
+    };
+
+
+    /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static localization = dropDownListYDF_GUI_ComponentLocalization__english;
+
+
+    /* ━━━ ID Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @param { string } uniqueDynamicPart
+     * @default ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID
+     * @return { string } Generated ID
+     * */
+    static generateComponentID(uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()) {
+      return `DROP_DOWN_LIST--YDF-${ uniqueDynamicPart }`;
+    }
+
+  }

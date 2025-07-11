@@ -2,6 +2,7 @@ const YamatoDaiwaStyleGuides = require("@yamato-daiwa/style_guides/ECMAScript");
 
 
 module.exports = [
+
   {
     ignores: [
       "LogicDistributable/",
@@ -9,5 +10,22 @@ module.exports = [
       "Markup/InlineECMAScript/Temporary/"
     ]
   },
-  ...YamatoDaiwaStyleGuides
+
+  ...YamatoDaiwaStyleGuides,
+
+  /* Not actual for Browser JavaScript. */
+  {
+
+    files: [
+      "Animations/**",
+      "Logic/**",
+      "GUI_Components/**"
+    ],
+
+    rules: {
+      "n/no-unsupported-features/node-builtins": "off"
+    }
+
+  }
+
 ];

@@ -1,6 +1,3 @@
-include CodeViewerLocalization.english.pug
-
-
 -
 
   const CodeViewer__YDF = {
@@ -14,6 +11,7 @@ include CodeViewerLocalization.english.pug
       CSharp: "cs",
       Handlebars: "handlebars",
       HTML: "html",
+      HTTP: "http",
       Java: "java",
       JavaScript: "js",
       JSON: "json",
@@ -37,6 +35,7 @@ include CodeViewerLocalization.english.pug
         [this.SupportedCodesLanguages.CPP]: "C++",
         [this.SupportedCodesLanguages.CSharp]: "C#",
         [this.SupportedCodesLanguages.HTML]: "HTML",
+        [this.SupportedCodesLanguages.HTTP]: "HTTP",
         [this.SupportedCodesLanguages.Handlebars]: "Handlebars",
         [this.SupportedCodesLanguages.Java]: "Java",
         [this.SupportedCodesLanguages.JavaScript]: "JavaScript",
@@ -61,19 +60,22 @@ include CodeViewerLocalization.english.pug
 
       title: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       resultWebViewURI: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       defaultPaddingsInViewport: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       }
 
     },
@@ -84,25 +86,29 @@ include CodeViewerLocalization.english.pug
 
         fileLabel: {
           type: String,
-          required: false,
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
           minimalCharactersCount: 1
         },
 
         isActive: {
           type: Boolean,
-          required: false
+          isUndefinedForbidden: false,
+          isNullForbidden: true
         },
 
         codeLanguage: {
           type: String,
-          required: true,
-          allowedAlternatives: Object.values(this.SupportedCodesLanguages)
+          isUndefinedForbidden: true,
+          isNullForbidden: true,
+          allowedAlternatives: Object.values(CodeViewer__YDF.SupportedCodesLanguages)
         }
-      }
+
+      };
 
     },
 
     /* === Localization ============================================================================================= */
-    localization: codeViewerYDF_ComponentLocalization__english
+    localization: codeViewerYDF_GUI_ComponentLocalization__english
 
   };

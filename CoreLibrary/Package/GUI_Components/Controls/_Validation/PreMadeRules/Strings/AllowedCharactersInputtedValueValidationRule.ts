@@ -2,7 +2,6 @@ import type InputtedValueValidation from "../../InputtedValueValidation";
 import allowedCharactersInputtedValueValidationRuleLocalization__english from
     "./AllowedCharactersInputtedValueValidationRuleLocalization.english";
 import {
-  isString,
   splitString,
   Logger,
   InvalidParameterValueError,
@@ -12,7 +11,7 @@ import {
 } from "@yamato-daiwa/es-extensions";
 
 
-class AllowedCharactersInputtedValueValidationRule implements InputtedValueValidation.Rule {
+class AllowedCharactersInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
 
   public static localization: AllowedCharactersInputtedValueValidationRule.Localization =
       allowedCharactersInputtedValueValidationRuleLocalization__english;
@@ -42,11 +41,11 @@ class AllowedCharactersInputtedValueValidationRule implements InputtedValueValid
 
     if (
       compoundParameter.allowedCharacters.latinLowercase !== true &&
-      compoundParameter.allowedCharacters.latinUppercase !== true &&
-      compoundParameter.allowedCharacters.digits !== true &&
-      (compoundParameter.allowedCharacters.other ?? []).length === 0
+          compoundParameter.allowedCharacters.latinUppercase !== true &&
+          compoundParameter.allowedCharacters.digits !== true &&
+          (compoundParameter.allowedCharacters.other ?? []).length === 0
     ) {
-      Logger.throwErrorAndLog({
+      Logger.throwErrorWithFormattedMessage({
         errorInstance: new InvalidParameterValueError({
           parameterNumber: 1,
           parameterName: "compoundParameter",
@@ -66,34 +65,18 @@ class AllowedCharactersInputtedValueValidationRule implements InputtedValueValid
 
     this.errorMessageBuilder =
         compoundParameter.errorMessageBuilder ??
-        compoundParameter.localization?.errorMessageBuilder ??
-        AllowedCharactersInputtedValueValidationRule.localization.errorMessageBuilder;
+            compoundParameter.localization?.errorMessageBuilder ??
+            AllowedCharactersInputtedValueValidationRule.localization.errorMessageBuilder;
 
   }
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
+  public check(rawValue: string): InputtedValueValidation.Rule.CheckingResult {
 
-    if (!isString(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: `Unable to execute this validation because raw value has type '${ typeof rawValue }'.`,
-        occurrenceLocation: "AllowedCharactersInputtedValueValidationRule.check(rawValue)"
-      });
-
-      return { isValid: true };
-
-    }
-
-
-    const inputtedDisallowedCharacters: Set<string> = new Set<string>();
-
-    for (const character of splitString(rawValue, "")) {
-      if (!this.allowedCharacters.includes(character)) {
-        inputtedDisallowedCharacters.add(character);
-      }
-    }
+    const inputtedDisallowedCharacters: Set<string> = new Set<string>(
+      splitString(rawValue, "").filter(
+        (character: string): boolean => !this.allowedCharacters.includes(character)
+      )
+    );
 
     const isValid: boolean = inputtedDisallowedCharacters.size === 0;
 

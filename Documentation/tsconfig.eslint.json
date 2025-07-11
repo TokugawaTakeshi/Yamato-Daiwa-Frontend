@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "01-Source/**/*.ts",
+    "Automation/FilesGenerator.ts"
+  ]
+}

@@ -38,34 +38,6 @@ public abstract class YDF_ComponentsHelper
 
 
   /* ━━━ Stringifying & Assigning ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static void ValidateTheme<TStandardThemes>(object? value, Type? customThemes)
-  {
-
-    if (value is TStandardThemes standardTheme)
-    {
-      return;
-    }
-
-
-    string stringifiedThemeValue = value?.ToString() ?? "";
-
-    if (customThemes is not null)
-    {
-
-      Type customThemesType = customThemes;
-
-      if (customThemesType.IsEnum && Enum.GetNames(customThemesType).Contains(stringifiedThemeValue))
-      {
-        return;
-      }
-
-    }
-
-
-    throw new InvalidThemeParameterForYDF_ComponentException();
-
-  }
-
   public static void AssignThemeIfItIsValid<TStandardThemes>(object value, Type? customThemes, ref string _theme)
   {
 
@@ -164,95 +136,151 @@ public abstract class YDF_ComponentsHelper
 
   }
 
-  
+
   /* ━━━ Generating of CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public record SettingsForGeneratingOfClassAttributeValueForRootElement
+  {
+    
+    public required string CSS_Namespace { get; init; }
+    public bool needLoadingPlaceholderClass { get; init; }
+
+    public record Theme
+    {
+      public required string activeOne { get; init; }
+      public required Type standardOnes { get; init; }
+      public required Type? customOnes { get; init; }
+      public required bool areThemesCSS_ClassesCommon { get; init; }  
+    }
+    
+    public Theme? theme;
+    
+    public record GeometricVariation
+    {
+      public required string activeOne { get; init; }
+      public required Type standardOnes { get; init; }
+      public required Type? customOnes { get; init; }
+    }
+    
+    public GeometricVariation? geometricVariation;
+    public object? activeGeometricModifiers { get; init; }
+    
+    public record DecorativeVariation
+    {
+      public required string activeOne { get; init; }
+      public required Type standardOnes { get; init; }
+      public required Type? customOnes { get; init; }
+    }
+    
+    public DecorativeVariation? decorativeVariation;
+    public object? activeDecorativeModifiers { get; init; }
+    
+    public IEnumerable<string>? otherInternalCSS_Classes { get; init; }
+    public string? externalSpaceSeparatedCSS_Classes { get; init; }
+    public Dictionary<string, object>? rootElementHTML_Attributes { get; init; }
+    
+  }
+  
   public static string GenerateClassAttributeValueForRootElement(
-    string CSS_Namespace,
-    string activeTheme,
-    Type standardThemes,
-    Type? customThemes,
-    bool areThemesCSS_ClassesCommon,
-    string activeGeometricVariation,
-    Type standardGeometricVariations,
-    Type? customGeometricVariations,
-    object? activeGeometricModifiers,
-    string activeDecorativeVariation,
-    Type standardDecorativeVariations,
-    Type? customDecorativeVariations,
-    object? activeDecorativeModifiers,
-    string externalSpaceSeparatedCSS_Classes
+    SettingsForGeneratingOfClassAttributeValueForRootElement settings
   )
   {
+  
+    List<string> CSS_Classes = [ settings.CSS_Namespace ];
+  
+    CSS_Classes.AddElementToEndIf($"{ settings.CSS_Namespace }__LoadingPlaceholder", settings.needLoadingPlaceholderClass);
 
-    List<string> CSS_Classes = [ CSS_Namespace ];
-    
-    CSS_Classes.
-      
-        AddElementToEndIf(
-          YDF_ComponentsHelper.GenerateThemeModifierCSS_Class(CSS_Namespace, activeTheme),
-          YDF_ComponentsHelper.MustApplyThemeCSS_Class(
-            standardThemes, customThemes, areThemesCSS_ClassesCommon
-          )
-        ).
-
-        AddElementToEndIf(
-          YDF_ComponentsHelper.GenerateGeometricVariationModifierCSS_Class(CSS_Namespace, activeGeometricVariation),
-          YDF_ComponentsHelper.MustApplyGeometricVariationModifierCSS_Class(
-            standardGeometricVariations, customGeometricVariations
-          )
-        ).
-        
-        AddElementToEndIf(
-          YDF_ComponentsHelper.GenerateDecorativeVariationModifierCSS_Class(CSS_Namespace, activeDecorativeVariation),
-          YDF_ComponentsHelper.MustApplyDecorativeVariationModifierCSS_Class(
-            standardDecorativeVariations, customDecorativeVariations
-          )
-        );
-
-    if (activeGeometricModifiers is Array definedSelectedGeometricModifiers)
+    if (settings.theme is not null)
     {
-      CSS_Classes.AddRange(
-        from object selectedGeometricModifier 
-            in definedSelectedGeometricModifiers 
-            select $"{ CSS_Namespace }__{ selectedGeometricModifier.ToString().ToUpperCamelCase() }GeometricModifier"
+      CSS_Classes.AddElementToEndIf(
+        YDF_ComponentsHelper.
+            GenerateThemeModifierCSS_Class(settings.CSS_Namespace, settings.theme.activeOne),
+        YDF_ComponentsHelper.MustApplyThemeCSS_Class(
+          settings.theme.standardOnes, 
+          settings.theme.customOnes,
+          settings.theme.areThemesCSS_ClassesCommon
+        )
       );
     }
 
-    if (activeDecorativeModifiers is Array definedSelectedDecorativeModifiers)
+    if (settings.geometricVariation is not null)
+    {
+      CSS_Classes.AddElementToEndIf(
+        YDF_ComponentsHelper.
+            GenerateGeometricVariationModifierCSS_Class(settings.CSS_Namespace, settings.geometricVariation.activeOne),
+        YDF_ComponentsHelper.MustApplyGeometricVariationModifierCSS_Class(
+          settings.geometricVariation.standardOnes, 
+          settings.geometricVariation.customOnes
+        )
+      );
+    }
+    
+    if (settings.activeGeometricModifiers is Array definedSelectedGeometricModifiers)
     {
       CSS_Classes.AddRange(
-        from object selectedGeometricModifier 
-            in definedSelectedDecorativeModifiers 
-            select $"{ CSS_Namespace }__{ selectedGeometricModifier.ToString().ToUpperCamelCase() }DecorativeModifier"
+        from object selectedGeometricModifier
+            in definedSelectedGeometricModifiers
+            select $"{ settings.CSS_Namespace }__{ selectedGeometricModifier.ToString().ToUpperCamelCase() }GeometricModifier"
+      );
+    }
+    
+    if (settings.decorativeVariation is not null)
+    {
+      CSS_Classes.AddElementToEndIf(
+        YDF_ComponentsHelper.
+            GenerateDecorativeVariationModifierCSS_Class(settings.CSS_Namespace, settings.decorativeVariation.activeOne),
+        YDF_ComponentsHelper.MustApplyDecorativeVariationModifierCSS_Class(
+          settings.decorativeVariation.standardOnes, 
+          settings.decorativeVariation.customOnes
+        )
+      );
+    }
+  
+    if (settings.activeDecorativeModifiers is Array definedSelectedDecorativeModifiers)
+    {
+      CSS_Classes.AddRange(
+        from object selectedGeometricModifier
+            in definedSelectedDecorativeModifiers
+            select $"{ settings.CSS_Namespace }__{ selectedGeometricModifier.ToString().ToUpperCamelCase() }DecorativeModifier"
       );
     }
 
-    if (externalSpaceSeparatedCSS_Classes.IsNonEmpty())
+    CSS_Classes.AddRange(settings.otherInternalCSS_Classes ?? []);
+
+    if (!string.IsNullOrEmpty(settings.externalSpaceSeparatedCSS_Classes))
     {
-      CSS_Classes.Add(externalSpaceSeparatedCSS_Classes);
+      CSS_Classes.Add(settings.externalSpaceSeparatedCSS_Classes);
     }
+
+    object? rootElementClassAttributeRawValue = null;
     
+    settings.rootElementHTML_Attributes?.TryGetValue("class", out rootElementClassAttributeRawValue);
+    
+    if (rootElementClassAttributeRawValue is string rootElementClassAttributeValue) 
+    {
+      CSS_Classes.Add(rootElementClassAttributeValue);
+    }
+  
     return String.Join(" ", CSS_Classes);
-    
+  
   }
   
   public static string GenerateThemeModifierCSS_Class(string CSS_Namespace, string theme)
   {
     return $"{ CSS_Namespace }__{ theme.ToUpperCamelCase() }Theme";
   }
-  
+
   public static string GenerateGeometricVariationModifierCSS_Class(string CSS_Namespace, string geometricVariation)
   {
     return $"{ CSS_Namespace }__{ geometricVariation.ToUpperCamelCase() }GeometricVariation";
   }
-  
+
   public static string GenerateDecorativeVariationModifierCSS_Class(string CSS_Namespace, string decorativeVariation)
   {
     return $"{ CSS_Namespace }__{ decorativeVariation.ToUpperCamelCase() }DecorativeVariation";
   }
-  
-  
-  /* ━━━ Applying of CSS Classed ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+
+  /* ━━━ Applying of CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static bool MustApplyThemeCSS_Class(
     Type standardThemes,
     Type? customThemes,

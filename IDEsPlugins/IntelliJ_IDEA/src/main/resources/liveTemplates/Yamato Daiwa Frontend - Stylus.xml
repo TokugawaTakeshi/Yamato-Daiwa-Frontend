@@ -158,37 +158,6 @@
       <option name="CSS_DECLARATION_BLOCK" value="true" />
     </context>
   </template>
-  <template name="med3c" value="MAXIMAL_CONTENT_WIDTH = $MAXIMAL_CONTENT_WIDTH$px&#10;MINIMAL_SIDE_SYMMETRIC_PADDINGS__WIDE_SCREENS = 20px&#10;&#10;wideScreensConfigurationMinimalWidth = MAXIMAL_CONTENT_WIDTH + 2*MINIMAL_SIDE_SYMMETRIC_PADDINGS__WIDE_SCREENS&#10;MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 420px&#10;&#10;&#10;WideScreensConfiguration()&#10;  @media (min-width: wideScreensConfigurationMinimalWidth)&#10;    {block}&#10;&#10;MediumScreensConfiguration()&#10;  @media (min-width: MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH) and (max-width: wideScreensConfigurationMinimalWidth - 1)&#10;    {block}&#10;&#10;NarrowScreensConfiguration()&#10;  @media (max-width: MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;&#10;WideAndMediumScreensConfiguration()&#10;  @media (min-width: MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH)&#10;    {block}&#10;&#10;MediumAndNarrowScreensConfiguration()&#10;  @media (max-width: wideScreensConfigurationMinimalWidth - 1)&#10;    {block}&#10;&#10;&#10;+WideScreensConfiguration()&#10;&#10;  CenteredContentWithComputedHorizontalPaddings({ contentWidth: MAXIMAL_CONTENT_WIDTH })&#10;&#10;&#10;+MediumScreensConfiguration()&#10;&#10;  Paddings({ horizontalSymmetric: 20px })&#10;&#10;&#10;+NarrowScreensConfiguration()&#10;&#10;  Paddings({ horizontalSymmetric: 12px })&#10;// --- END OF AUTOMATICALLY GENERATED CODE -----------------------------------------------------------------------------" description="Media queries definitions for 3-patterns layout" toReformat="false" toShortenFQNames="true">
-    <variable name="MAXIMAL_CONTENT_WIDTH" expression="" defaultValue="&quot;920&quot;" alwaysStopAt="true" />
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
-  <template name="wsc" value="+WideScreensConfiguration()&#10;&#10;  $END$" description="`WideScreensConfiguration` media query" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
-  <template name="msc" value="+MediumScreensConfiguration()&#10;&#10;  $END$" description="`MediumScreensConfiguration` media query" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
-  <template name="wmsc" value="+WideAndMediumScreensConfiguration()&#10;&#10;  $END$" description="`WideAndMediumScreensConfiguration` media query" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
-  <template name="nsc" value="+NarrowScreensConfiguration()&#10;&#10;  $END$" description="`NarrowScreensConfiguration` media query" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
-  <template name="mnsc" value="+MediumAndNarrowScreensConfiguration()&#10;&#10;  $END$&#10;  " description="`MediumAndNarrowScreensConfiguration` media query" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
   <template name="ptr" value="placeToRight()&#10;$END$" description="`placeToRight` mixin" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="CSS_DECLARATION_BLOCK" value="true" />
@@ -636,21 +605,6 @@
       <option name="CSS_RULESET_LIST" value="true" />
     </context>
   </template>
-  <template name="med2c" value="WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 500px    &#10;    &#10;WideScreensConfiguration()&#10;  @media (min-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH)&#10;    {block}&#10;&#10;NarrowScreensConfiguration()&#10;  @media (max-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;    &#10;    &#10;+WideScreensConfiguration()&#10;&#10;  // ...&#10;  &#10;  &#10;+NarrowScreensConfiguration()&#10;&#10;  // ..." description="Media queries definitions for 2-pattern layout" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
-  <template name="med5c" value="EXTRA_WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 1024px&#10;WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 860px&#10;MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 680px&#10;NARROW_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 500px&#10;&#10;ExtraWideScreensLayout()&#10;  @media (min-width: EXTRA_WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH)&#10;    {block}&#10;&#10;WideScreensLayout()&#10;  @media (min-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH) and (max-width: EXTRA_WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;&#10;MediumScreensLayout()&#10;  @media (min-width: MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH) and (max-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;&#10;NarrowScreensLayout()&#10;  @media (min-width: NARROW_SCREENS_CONFIGURATION_MINIMAL_WIDTH) and (max-width: MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;&#10;ExtraNarrowScreensLayout()&#10;  @media (max-width: NARROW_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}" description="Media queries definitions for 5-patterns layout" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
-  <template name="med4c" value="EXTRA_WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 1024px&#10;WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 860px&#10;MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 680px&#10;NARROW_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 500px&#10;&#10;ExtraWideScreensLayout()&#10;  @media (min-width: EXTRA_WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH)&#10;    {block}&#10;&#10;WideScreensLayout()&#10;  @media (min-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH) and (max-width: EXTRA_WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;&#10;NarrowScreensLayout()&#10;  @media (min-width: NARROW_SCREENS_CONFIGURATION_MINIMAL_WIDTH) and (max-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;&#10;ExtraNarrowScreensLayout()&#10;  @media (max-width: NARROW_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}" description="Media queries definitions for 4-patterns layout" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
   <template name="ydfcp" value="YDF_ColorPalette.$HUE$.$LIGHTNESS$&#10;&#10;// Hues:&#10;// red deepOrange orange amber deepYellow yellow youngFoliage green mint cyan skyBlue deepSkyBlue blue indigo deepPurple&#10;// purple magenta pink deepPink&#10;&#10;// Lightnesses:&#10;// dark mediumDark slightlyDark    bright      &#10;// slightlyLight mediumLight light pastelBright pastelSlightlyLight pastelMediumLight pastelLight faded&#10;// pastelGradient lightGradient darkGradient glossyGradient" description="`YDF_ColorPalette` object" toReformat="false" toShortenFQNames="true">
     <variable name="HUE" expression="enum(&quot;red&quot;, &quot;deepOrange&quot;, &quot;orange&quot;, &quot;amber&quot;, &quot;deepYellow&quot;, &quot;yellow&quot;, &quot;youngFoliage&quot;, &quot;green&quot;, &quot;mint&quot;, &quot;cyan&quot;, &quot;skyBlue&quot;, &quot;deepSkyBlue&quot;, &quot;blue&quot;, &quot;indigo&quot;, &quot;deepPurple&quot;, &quot;purple&quot;, &quot;magenta&quot;, &quot;pink&quot;, &quot;deepPink&quot;)" defaultValue="" alwaysStopAt="true" />
     <variable name="LIGHTNESS" expression="enum(&quot;dark&quot;, &quot;mediumDark&quot;, &quot;slightlyDark&quot;, &quot;bright&quot;, &quot;slightlyLight&quot;, &quot;mediumLight&quot;, &quot;light&quot;, &quot;pastelBright&quot;, &quot;pastelSlightlyLight&quot;, &quot;pastelMediumLight&quot;, &quot;pastelLight&quot;, &quot;faded&quot;, &quot;pastelGradient&quot;, &quot;lightGradient&quot;, &quot;darkGradient&quot;, &quot;glossyGradient&quot;)" defaultValue="" alwaysStopAt="true" />
@@ -863,6 +817,20 @@
     <variable name="GROUP" expression="enum(&quot;fontsStacks&quot;, &quot;textGeometry&quot;, &quot;zIndexes&quot;)" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="CSS" value="true" />
+    </context>
+  </template>
+  <template name="CenteredContentWithDynamicInlinePaddings" value="CenteredContentWithDynamicInlinePaddings--YDF({&#10;  maximalContentWidth: $MINIMAL_CONTENT_WIDTH$,&#10;  minimalInlinePaddings: $MINIMAL_INLINE_PADDINGS$&#10;})" description="`CenteredContentWithDynamicInlinePaddings` mixin (YDF)" toReformat="false" toShortenFQNames="true">
+    <variable name="MINIMAL_CONTENT_WIDTH" expression="" defaultValue="&quot;3*NARROWEST_SCREEN_WIDTH_UNIT--YDF&quot;" alwaysStopAt="true" />
+    <variable name="MINIMAL_INLINE_PADDINGS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS_DECLARATION_BLOCK" value="true" />
+    </context>
+  </template>
+  <template name="ccwdip" value="CenteredContentWithDynamicInlinePaddings--YDF({&#10;  maximalContentWidth: $MINIMAL_CONTENT_WIDTH$,&#10;  minimalInlinePaddings: $MINIMAL_INLINE_PADDINGS$&#10;})" description="`CenteredContentWithDynamicInlinePaddings` mixin (YDF)" toReformat="false" toShortenFQNames="true">
+    <variable name="MINIMAL_CONTENT_WIDTH" expression="" defaultValue="&quot;3*NARROWEST_SCREEN_WIDTH_UNIT--YDF&quot;" alwaysStopAt="true" />
+    <variable name="MINIMAL_INLINE_PADDINGS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS_DECLARATION_BLOCK" value="true" />
     </context>
   </template>
 </templateSet>

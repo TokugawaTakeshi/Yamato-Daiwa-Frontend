@@ -1,6 +1,6 @@
-import type { SnackbarBlockLocalization } from "./SnackbarLocalization";
+import type { SnackbarLocalization } from "./SnackbarLocalization";
 
 
-export const snackbarYDF_ComponentLocalization__english: SnackbarBlockLocalization = {
+export const snackbarYDF_GUI_ComponentLocalization__english: SnackbarLocalization = {
   dismissingButton: { accessibilityGuidance: "Hide this message" }
 };

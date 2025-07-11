@@ -68,7 +68,7 @@ Chip--YDF = {
 }
 
 
-provideChipYDF_Component(
+Chip--YDF-generateStyles(
   preset = Chip--YDF.defaultProperties,
   overridings = {},
   options = Chip--YDF.defaultOptions,
@@ -78,7 +78,7 @@ provideChipYDF_Component(
   properties = deeplyCloneAndOverrideObject(preset, overridings)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "provideChipYDF_Component",
+    mixinOrFunctionName: "Chip--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {

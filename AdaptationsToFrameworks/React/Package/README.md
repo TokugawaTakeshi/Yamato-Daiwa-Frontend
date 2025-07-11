@@ -11,15 +11,15 @@ The [core package](https://www.npmjs.com/package/@yamato-daiwa/frontend) is stil
 ## Installation
 
 ```bash
-npm i @yamato-daiwa/frontend-react @yamato-daiwa/frontend@2.0.0-beta.6
+npm i @yamato-daiwa/frontend-react @yamato-daiwa/frontend@2.0.0-beta.11
 ```
 
 ### Peer Dependencies
 
-+ **@yamato-daiwa/frontend**: 2.0.0-beta.6
-+ **react**: ~19.0.0
-+ **react-dom**: ~19.0.0
-+ **react-router-dom**: ~7.2.0
++ **@yamato-daiwa/frontend**: 2.0.0-beta.11
++ **react**: ~19.2.0
++ **react-dom**: ~19.2.0
++ **react-router**: ~7.11.0
 
 
 ## Documentation
@@ -27,3 +27,9 @@ npm i @yamato-daiwa/frontend-react @yamato-daiwa/frontend@2.0.0-beta.6
 
 + [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/React/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-React.english.html)
 + [Badge](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/React/GUI_Components/Children/Badge/Badge-React.english.html)
+
+
+#### Controls
+
++ Buttons
+  + [Plain (Button)](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/Buttons/Plain/Button-React.english.html) 

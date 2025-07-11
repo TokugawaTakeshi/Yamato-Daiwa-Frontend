@@ -64,7 +64,6 @@ class FilesUploader<
   /* ─── Initialization on Demand ─────────────────────────────────────────────────────────────────────────────────── */
   protected static dynamicParts: DocumentFragment | null = null;
 
-  // ━━━ TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   protected static readonly NATIVE_INPUT_ELEMENT_SELECTOR: string = ".FilesUploader--YDF-HiddenInputElement";
 
   protected static readonly INVALID_VALUE_STATE_CSS_CLASS: string = "FilesUploader--YDF-FilesUploader__InvalidValueState";
@@ -136,7 +135,7 @@ class FilesUploader<
 
     if (this._mustHighlightInvalidInputIfAnyValidationErrorsMessages) {
 
-      this.shellComponent.$mustDisplayErrorsMessagesIfAny = true;
+      this.shellComponent.$mustDisplayValidationErrorsMessagesIfAny = true;
 
       if (this.payload.isInvalid) {
         this.shellComponent.rootElement.classList.add(FilesUploader.INVALID_VALUE_STATE_CSS_CLASS);
@@ -148,7 +147,7 @@ class FilesUploader<
 
 
     this.shellComponent.rootElement.classList.remove(FilesUploader.INVALID_VALUE_STATE_CSS_CLASS);
-    this.shellComponent.$mustDisplayErrorsMessagesIfAny = false;
+    this.shellComponent.$mustDisplayValidationErrorsMessagesIfAny = false;
 
   }
 
@@ -260,8 +259,6 @@ class FilesUploader<
   /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected constructor(
     {
-      rootElement,
-      contextElement,
       validation,
       localization = FilesUploader.localization,
       ...initializationProperties
@@ -279,9 +276,8 @@ class FilesUploader<
     }
 
     this.shellComponent = ValidatableControlShell.initializeOne({
-      rootElement,
-      contextElement,
-      mustDisplayErrorsMessagesIfAny: this.mustDisplayErrorsMessagesImmediatelyIfAny
+      mustDisplayErrorsMessagesIfAny: this.mustDisplayErrorsMessagesImmediatelyIfAny,
+      ...initializationProperties
     });
 
     const {
@@ -302,7 +298,8 @@ class FilesUploader<
           type: Number,
           numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
           isUndefinedForbidden: true,
-          isNullForbidden: true
+          isNullForbidden: true,
+          isNaN_Forbidden: true
         },
         maximal_files_count: {
           newName: "maximalFilesCount",
@@ -310,7 +307,8 @@ class FilesUploader<
           type: Number,
           numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
           isUndefinedForbidden: false,
-          isNullForbidden: true
+          isNullForbidden: true,
+          isNaN_Forbidden: true
         },
         initial_value: {
           newName: "pickedFromDOM_InitialValue",
@@ -438,7 +436,7 @@ class FilesUploader<
 
         if (!validation.isInputRequired()) {
 
-          Logger.throwErrorAndLog({
+          Logger.throwErrorWithFormattedMessage({
             errorInstance: new InvalidParameterValueError({
               parameterNumber: 1,
               parameterName: "initializationProperties",
@@ -467,7 +465,7 @@ class FilesUploader<
       case FilesUploader.Scenarios.singleOptionalFile: {
 
         if (validation.isInputRequired()) {
-          Logger.throwErrorAndLog({
+          Logger.throwErrorWithFormattedMessage({
             errorInstance: new InvalidParameterValueError({
               parameterNumber: 1,
               parameterName: "properties",
@@ -508,7 +506,7 @@ class FilesUploader<
 
           } catch (error: unknown) {
 
-            Logger.throwErrorAndLog({
+            Logger.throwErrorWithFormattedMessage({
               errorInstance: new InvalidExternalDataError({
                 customMessage:
                     "Invalid \"value\" property of \"FilesUploader--YDF\" pug mixin has been specified. " +
@@ -525,7 +523,7 @@ class FilesUploader<
 
           if (!isArrayOfCertainTypeElements(parsedPayloadInitialValuePassedViaRootElementDataset, isString)) {
 
-            Logger.throwErrorAndLog({
+            Logger.throwErrorWithFormattedMessage({
               errorInstance: new InvalidExternalDataError({
                 customMessage:
                     "Invalid \"value\" property of \"FilesUploader--YDF\" pug mixin has been specified. " +
@@ -609,6 +607,7 @@ class FilesUploader<
 
   /* ─── Uploading ────────────────────────────────────────────────────────────────────────────────────────────────── */
   /* eslint-disable-next-line n/no-unsupported-features/node-builtins --
+   * Waiting for the answer https://stackoverflow.com/q/79056215/4818123 */
   protected async issueFilesURIs(newFiles: ReadonlyArray<File>): Promise<void> {
 
     if (newFiles.length === 0) {
@@ -623,6 +622,7 @@ class FilesUploader<
       newBase64EncodedFiles = await Promise.all(
 
         /* eslint-disable-next-line n/no-unsupported-features/node-builtins --
+         * Waiting for the answer https://stackoverflow.com/q/79056215/4818123 */
         newFiles.map(async (file: File): Promise<string> => encodeFileToBase64(file))
 
       );
@@ -702,7 +702,7 @@ class FilesUploader<
           isUndefined(this.singleImagePreviewerImage) ||
           isUndefined(this.singleImagePreviewerMountingPoint)
         ) {
-          Logger.throwErrorAndLog({
+          Logger.throwErrorWithFormattedMessage({
             errorInstance: new UnexpectedEventError(
               "One or more required element for working with images has not been initialized."
             ),
@@ -743,7 +743,7 @@ class FilesUploader<
         isUndefined(this.singleImagePreviewer) ||
         isUndefined(this.singleImagePreviewerMountingPoint)
       ) {
-        Logger.throwErrorAndLog({
+        Logger.throwErrorWithFormattedMessage({
           errorInstance: new UnexpectedEventError(
             "One or more required element for working with images has not been initialized."
           ),

@@ -1,4 +1,4 @@
-type FilesUploaderLocalization = Readonly<{
+export type FilesUploaderLocalization = Readonly<{
 
   processingsStatusesTable: Readonly<{
     headers: Readonly<{
@@ -27,6 +27,3 @@ type FilesUploaderLocalization = Readonly<{
   }>;
 
 }>;
-
-
-export default FilesUploaderLocalization;

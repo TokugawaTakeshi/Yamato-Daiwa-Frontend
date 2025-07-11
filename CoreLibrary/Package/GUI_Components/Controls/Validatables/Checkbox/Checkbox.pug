@@ -23,13 +23,14 @@ mixin Checkbox--YDF(properties)
       instanceID_UniqueDynamicPart,
 
       /**
-       * @type { string }
-       * @description There is NO such property will be passed, but it is elegant to initialize it here.
+       * @type {
+       *   {
+       *     input?: string;
+       *     label?: string;
+       *   }
+       *  }
        * */
-      INSTANCE_ID = Checkbox__YDF.generateInstanceID(instanceID_UniqueDynamicPart),
-
-      /** @type { string } */
-      inputElementHTML_ID = `${ INSTANCE_ID }-INPUT`,
+      HTML_IDs,
 
       /**
        * @type { boolean }
@@ -87,6 +88,20 @@ mixin Checkbox--YDF(properties)
       mixinName: Checkbox__YDF.CSS_NAMESPACE
     });
 
+    /** @type { string } */
+    const INSTANCE_ID = Checkbox__YDF.generateInstanceID(instanceID_UniqueDynamicPart);
+
+    const {
+
+      /** @type { string } */
+      input: inputElementHTML_ID = `${ INSTANCE_ID }-INPUT`,
+
+      /** @type { string } */
+      label: labelElementHTML_ID = `${ INSTANCE_ID }-LABEL`
+
+    } = HTML_IDs ?? {};
+
+
     const {
 
       /**
@@ -124,9 +139,9 @@ mixin Checkbox--YDF(properties)
     /** @type { Array<string> } */
     const rootElementModifierCSS_Classes = [
 
-      ...checked ?
-        [ `${ Checkbox__YDF.CSS_NAMESPACE }__CheckedState` ] :
-        [ `${ Checkbox__YDF.CSS_NAMESPACE }__UncheckedState` ],
+      checked ?
+          `${ Checkbox__YDF.CSS_NAMESPACE }__CheckedState` :
+          `${ Checkbox__YDF.CSS_NAMESPACE }__UncheckedState`,
 
       ...disabled ? [ `${ Checkbox__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
       ...readonly ? [ `${ Checkbox__YDF.CSS_NAMESPACE }__ReadOnlyState` ] : [],
@@ -156,12 +171,10 @@ mixin Checkbox--YDF(properties)
     ];
 
 
-
   +ValidatableControlShell--YDF(
     {
 
       label,
-      guidance,
 
       required,
       mustDisplayAppropriateBadgeIfInputIsRequired,

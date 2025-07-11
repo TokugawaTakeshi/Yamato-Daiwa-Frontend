@@ -389,7 +389,7 @@ class AdmonitionBlockGallery extends Gallery<AdmonitionBlockGallery.PartialsFlag
     );
   }
 
-    private static readonly SampleThirdPartyIcon: React.FC<Readonly<{ className?: string; }>> =
+  private static readonly SampleThirdPartyIcon: React.FC<Readonly<{ className?: string; }>> =
       ({ className }: Readonly<{ className?: string; }>): React.ReactNode =>
           <svg
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"

@@ -1,5 +1,5 @@
 import { createApp as createVueApplication } from "vue";
-import AdmonitionBlockComponentTestSite from "./AdmonitionBlockComponentTestSite.vue";
+import AdmonitionBlockWorkbench from "./AdmonitionBlockWorkbench.vue";
 
 
-createVueApplication(AdmonitionBlockComponentTestSite).mount("#APPLICATION");
+createVueApplication(AdmonitionBlockWorkbench).mount("#APPLICATION");

@@ -1,0 +1,83 @@
+//- ━━━ Краткий обзор ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+mixin BadgeComponent-Abstract
+
+  p.Article-Paragraph.
+    В рамках #[+ImportantEntity--YDID YDF], #[+DefinableTerm--YDID значок (badge)] — #[+Keyword--YDID информационный]
+      #[+Keyword__Contrast--YDID неинтерактивный] компонент, отображающий внутри прямоугольника со скруглёнными углами
+      либо без таковых слово или другой набор символов наподобие даты и/или времени.
+    Возможно добавить иконку, однако она #[+Keyword--YDID не]&nbsp;является заменой надписи, а #[+Keyword--YDID дополняет]
+      её.
+
+  p.Article-Paragraph.
+    В UI/UX-фреймворках схожие компоненты могут иметь другие названия: #[+Term--YDID Chip], #[+Term--YDID Pill],
+      #[+Term--YDID Tag].
+    Официальных определений у этих компонентов, а также официально установленных чётких различий #[+Keyword--YDID нет]:
+      иногда в зависимости от фреймворка один и тот же компонент называется по-разному, а некоторые фреймворки
+      дают свои определения, право чего оставляет за собой и #[+ImportantEntity--YDID YDF], не&nbsp;позиционирующий себя
+      как фреймворк.
+
+  p.Article-Paragraph.
+    #[+Keyphrase--YDID В #[+ImportantEntity--YDID YDF]] #[+Term--YDID значком] называется (#[+Term--YDID «badge»]) именно
+      #[+Keyword--YDID неинтерактивный] компонент, который #[+Keyword--YDID лишь]
+      #[+Keyword__Contrast--YDID отображает] информацию.
+    Его следует отличать от внешне похожих компонентов, с которыми можно взаимодействовать: использовать в качестве
+      кнопки или ссылки, скрывать по клику на соответствующую внутреннюю кнопку и так далее.
+    Также, #[+ImportantEntity--YDID YDF]-значок поддерживает #[+Keyword--YDID две] надписи: ключ и значение, что очень важно
+      когда, например, надо указать дату, но по одной иконке календаря может быть непонятно, дата чего именно указана.
+
+
+//- ━━━ Сводка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+  BadgeGUI_ComponentOverviewLocalization.setLocalizer(
+    () => ({
+      themes: {
+        [Badge__YDF.Themes.regular]: "Базовая (по умолчанию)"
+      },
+      geometricVariations: {
+        [Badge__YDF.GeometricVariations.regular]: "Базовая (по умолчанию)",
+        [Badge__YDF.GeometricVariations.small]: "Маленькая"
+      },
+      geometricModifiers: {
+        [Badge__YDF.GeometricModifiers.pillShape]: "Максимальное скругление углов",
+        [Badge__YDF.GeometricModifiers.singleLine]: "Всегда одна строка с усечением текста при нехватке ширины",
+      },
+      decorativeVariations: {
+        [Badge__YDF.DecorativeVariations.veryCatchyBright]: "Очень броская яркая (красная по умолчанию)",
+        [Badge__YDF.DecorativeVariations.catchyBright]: "Броская яркая (оранжевая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.modestlyCatchyBright]: "Умеренно броская яркая (жёлтая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.neutralBright]: "Нейтральная яркая (голубая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.modestlyCalmingBright]: "Умеренно успокаивающая яркая (синяя по умолчанию)",
+        [Badge__YDF.DecorativeVariations.calmingBright]: "Успокаивающая яркая (зелёная по умолчанию)",
+        [Badge__YDF.DecorativeVariations.achromaticBright]: "Ахроматическая яркая (тёмно-серая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.veryCatchyPastel]: "Очень броская пастельная (красная по умолчанию)",
+        [Badge__YDF.DecorativeVariations.catchyPastel]: "Броская пастельная (оранжевая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.modestlyCatchyPastel]: "Умеренно броская пастельная (жёлтая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.neutralPastel]: "Нейтральная пастельная (голубая по умолчанию)",
+        [Badge__YDF.DecorativeVariations.modestlyCalmingPastel]: "Умеренно успокаивающая пастельная (синяя по умолчанию)",
+        [Badge__YDF.DecorativeVariations.calmingPastel]: "Успокаивающая пастельная (зелёная по умолчанию)",
+        [Badge__YDF.DecorativeVariations.achromaticPastel]: "Ахроматическая пастельная (светло-серая по умолчанию)"
+      },
+      decorativeModifiers: {
+        [Badge__YDF.DecorativeModifiers.bordersDisguising]: "Эффект отсутствия обводки без изменения размеров",
+        [Badge__YDF.DecorativeModifiers.noBackground]: "Без заливки"
+      }
+    })
+  );
+
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  BadgeComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources = {
+    pugMixinParametersLocalization: [ { localizedName: "Свойства" } ],
+    propertiesLocalizedInterpretations: {
+      keyLabel: "Надпись-ключ",
+      valueLabel: "Надпись-значение",
+      rootElementTag: "Тэг корневого элемента",
+      react: {
+        SVG_Icon: "SVG-иконка",
+        rootElementAttributes: "HTML-атрибуты корневого элемента"
+      }
+    }
+  };

@@ -64,7 +64,7 @@ Button--YDF = {
 }
 
 
-generateButtonYDF_GUI_ComponentStyles(
+Button--YDF-generateStyles(
   preset = Button--YDF.defaultProperties,
   overridings = {},
   options = Button--YDF.defaultOptions,
@@ -74,7 +74,7 @@ generateButtonYDF_GUI_ComponentStyles(
   properties = deeplyCloneAndOverrideObject(preset, overridings)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "generateButtonYDF_GUI_ComponentStyles",
+    mixinOrFunctionName: "Button--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {
@@ -348,7 +348,7 @@ generateButtonYDF_GUI_ComponentStyles(
         mustSkipBordersApplying: true,
         paddings: {
           top: cachedValidReusables.topSpacing,
-          bottom: cachedValidReusables.topSpacing,
+          bottom: cachedValidReusables.bottomSpacing,
           upwardShifting: cachedValidReusables.labelUpwardShifting
         },
         mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight: true
@@ -749,33 +749,33 @@ generateButtonYDF_GUI_ComponentStyles(
 
         if (state == "defaultState")
 
-          Declarations(state)
+          Declarations()
 
         else if (state == "hoverState")
 
           &:hover
 
-            Declarations(state)
+            Declarations()
 
         else if (state == "focusVisibleState")
 
           &:focus-visible
 
-            Declarations(state)
+            Declarations()
 
         else if (state == "activeState")
 
           &:active,
           &[aria-pressed="true"]
 
-            Declarations(state)
+            Declarations()
 
         else if (state == "disabledState")
 
           &:disabled,
           &.Button--YDF__DisabledState
 
-            Declarations(state)
+            Declarations()
 
 
     for state in variation

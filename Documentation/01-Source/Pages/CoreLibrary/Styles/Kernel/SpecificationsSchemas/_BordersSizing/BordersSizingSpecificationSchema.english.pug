@@ -11,34 +11,44 @@ block append Metadata
 
   -
 
-    HTML_PAGE_LANGUAGE = "en";
-    HTML_PAGE_TITLE = buildHTML_PageTitle("BordersSizingSpecificationSchema");
-    HTML_PageMetaData = {
-      description: "",
-      author: HTML_PAGE_AUTHOR
-    };
-
-    FAVICON_URI = "@MustBeInPublicRoot/favicon";
-
-    styleSheetsURIs = [
-      "$CommonStyles",
-      "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
-      "$PreMadesStyles",
-      "@CustomizedExternalComponents"
-    ];
-
-    scriptsURIs.endOfBody = [ "$CommonLogic" ];
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("BordersSizingSpecificationSchema"),
+        description: ""
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
 
     RoutingEmulator.setCurrentRoute("coreLibrary.styles.kernel.specificationsSchemas.bordersSizing");
 
     LanguageDropDownList__YDF_DK.setLinks({
-      japanese: "./BordersSizingSpecificationSchema.japanese.html",
-      russian: "./BordersSizingSpecificationSchema.russian.html"
+      japanese: routing.japanese.coreLibrary.$children.styles.$children.kernel.$children.specificationsSchemas.$children.
+          bordersSizing.$URI,
+      russian: routing.russian.coreLibrary.$children.styles.$children.kernel.$children.specificationsSchemas.$children.
+          bordersSizing.$URI
     });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: pageTopHeading
+    } = localizedRouting.coreLibrary.$children.styles.$children.kernel.$children.specificationsSchemas.
+        $children.bordersSizing;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
 
 
 block append SpecificContent
 
   article
 
-    h1 #[code BordersSizingSpecificationSchema]
+    h1!= pageTopHeading

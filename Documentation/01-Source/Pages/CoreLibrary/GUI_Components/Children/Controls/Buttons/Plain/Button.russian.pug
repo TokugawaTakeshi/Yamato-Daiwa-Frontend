@@ -5,7 +5,6 @@ block append Requirements
 
   include ../../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
   include ../../../../../../../SharedComponents/SharedComponents.russian.pug
-  include Data/ButtonComponentPropertiesSpecification.pug
 
 
 block append Metadata
@@ -20,7 +19,7 @@ block append Metadata
     RegularWebPageTemplate__YDF.configure({
       metadata: {
         title: buildHTML_PageTitle(topHeading),
-        description: MetaDescriptionTemplates.GUI_Components.buttons.plain
+        description: MetaDescriptionTemplates.GUI_Components.controls.buttons.Button
       },
       stylesSheetsURIs: [
         "$CommonStyles",
@@ -49,10 +48,10 @@ block append SpecificContent
 
   article
 
-    //- ━━━ Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ━━━ `Button` ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     h1.Article-Heading1!= topHeading
 
-    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
 
     +WebPageViewer--YDF({
       URI: "$Demos:CorePackage/GUI_Components/Controls/Buttons/Plain/ButtonGalleryPage.html",
@@ -64,60 +63,24 @@ block append SpecificContent
     +CompactTableOfContents--YDF_DK(localizedSectioning)
 
 
-    //- ━━━ Сводка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ━━━ Краткий обзор ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     +Heading--YDF({
       level: 2,
-      text: localizedSectioning.synopsis.$heading,
-      HTML_ID: localizedSectioning.synopsis.$anchor
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
     }).Article-Heading2
 
-    +GUI_ComponentSummaryViewer({
-      metadataClass: Button__YDF,
-      intelliJ_IDEA_FamilyIDEsLiveTemplateAbbreviation: "btn-ydf",
-      stylusMixinName: "provideButtonYDF_Component",
-      themesNamesTranslations: {
-        [Button__YDF.Themes.regular]: "Базовая (по умолчанию)"
-      },
-      geometricVariationsTranslations: {
-        [Button__YDF.GeometricVariations.regular]: "Базовая (по умолчанию)",
-        [Button__YDF.GeometricVariations.small]: "Компактная",
-        [Button__YDF.GeometricVariations.linkLike]: "Внешний вид обычной ссылки"
-      },
-      geometricModifiersNamesTranslations: {
-        [Button__YDF.GeometricModifiers.pillShape]: "Максимальное скругление углов",
-        [Button__YDF.GeometricModifiers.squareShape]: "Квадратная форма",
-        [Button__YDF.GeometricModifiers.squareShapeUnlessOverflowed]: "Квадратная форма покуда не переполнена",
-        [Button__YDF.GeometricModifiers.singleLine]: "Всегда одна строка с усечением текста при нехватке ширины",
-        [Button__YDF.GeometricModifiers.noLeftBorderAndRoundings]: "Отсутствие обводки и скруглений слева",
-        [Button__YDF.GeometricModifiers.noRightBorderAndRoundings]: "Отсутствие обводки и скруглений справа",
-        [Button__YDF.GeometricModifiers.noTopBorderAndRoundings]: "Отсутствие обводки и скруглений сверху",
-        [Button__YDF.GeometricModifiers.noBottomBorderAndRoundings]: "Отсутствие обводки и скруглений снизу",
-        [Button__YDF.GeometricModifiers.noRoundings]: "Отсутствие скруглений",
-        [Button__YDF.GeometricModifiers.horizontallyShrinkable]: "Сжимаема по горизонтали"
-      },
-      decorativeVariationsTranslations: {
-        [Button__YDF.DecorativeVariations.regular]: "Базовая (по умолчанию)",
-        [Button__YDF.DecorativeVariations.accented]: "Акцентированная",
-        [Button__YDF.DecorativeVariations.danger]: "Опасное действие",
-        [Button__YDF.DecorativeVariations.linkLike]: "Внешний вид обычной ссылки"
-      },
-      decorativeModifiersNamesTranslations: {
-        [Button__YDF.DecorativeModifiers.bordersDisguising]: "Эффект отсутствия обводки без изменения размеров",
-        [Button__YDF.DecorativeModifiers.noBackground]: "Без заливки",
-        [Button__YDF.DecorativeModifiers.noBackgroundInDefaultState]: "Нет заливки в начальном состоянии"
-      },
-      loadingPlaceholderPugMixinName: "Button--YDF__LoadingPlaceholder"
-    })
+    +ButtonComponent-Overview
 
 
-    //- ━━━ Использование ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ Использование ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.usage.$heading,
       HTML_ID: localizedSectioning.usage.$anchor
     }).Article-Heading2
 
-    //- ─── Разметка ───────────────────────────────────────────────────────────────────────────────────────────────────
+    //- ╍╍╍ Разметка ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     +Heading--YDF({
       level: 3,
       text: localizedSectioning.usage.$children.markup.$heading,
@@ -132,56 +95,18 @@ block append SpecificContent
     }).Article-Heading4
 
     +ComponentMarkupProvidingGuidanceFragment({ componentName: "Button" })
+
+
+    //- ─── Pug-примесь `Button--YDF` ──────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$anchor
+    }).Article-Heading4
+
+    +ButtonComponent-PugMixinOrClassSynopsis()
+
     //-
-      //- ─── Pug-примесь `Button--YDF` ──────────────────────────────────────────────────────────────────────────────────
-      +Heading--YDF({
-        level: 4,
-        innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$heading,
-        HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$anchor
-      }).Article-Heading4
-
-      -
-
-        ButtonComponentPropertiesSpecification.localizedDescriptiveHeading = "Свойства";
-
-        ButtonComponentPropertiesSpecification.setPropertiesLocalizedInterpretations({
-          HTML_Type: "HTML-тип",
-          label: "Надпись",
-          accessibilityGuidance: "Руководство для технологий доступности",
-          mustOpenLinkInNewTab: "Нужно ли открыть URI на новой вкладке",
-          mustRequestNotFollowLinkForCrawlingToSearchEngine:
-              "Нужно ли попросить поисковую систему не отдавать рейтинг ресурсу с указанным URI",
-          disabled: "Является ли неактивной",
-          toggled: "Являлся ли изначально нажатой",
-          theme: "Тема",
-          areThemesCSS_ClassesCommon: "Являются ли CSS-классы тем общими для всех компонентов",
-          geometricModifiers: "Геометрические модификаторы",
-          geometricVariation: "Геометрическая вариация",
-          decorativeVariation: "Декоративная вариация",
-          decorativeModifiers: "Декоративные модификаторы"
-        })
-
-        ButtonComponentPropertiesSpecification.propertiesSpecification.label.requiredIf.descriptionForLogging =
-            "Свойству `HTML_Type` указано `Button__YDF.HTML_Types.inputButton`, `Button__YDF.HTML_Types.inputSubmit` " +
-              "или `Button__YDF.HTML_Types.inputReset`"
-
-
-      +CallableExpressionScheme--YDF_DK({
-        technicalName: "Button--YDF",
-        parametersSpecification: [
-          {
-            genericTechnicalName: "properties",
-            localizedName: "Свойства",
-            type: "Properties",
-            required: true
-          }
-        ],
-        hiddenReturnValue: true
-      })
-        +ObjectTypeAbstract--YDF_DK(
-          ButtonComponentPropertiesSpecification
-          ).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem
-
 
       //- ─── Простое использование ──────────────────────────────────────────────────────────────────────────────────────
       +Heading--YDF({
@@ -221,7 +146,7 @@ block append SpecificContent
         Однако его не&nbsp;любят, потому вместо этого часто прибегают к усечению надписи.
         Усекать надпись #[+Keyword--YDID крайне]&nbsp;#[+Keyword__Contrast--YDID не]&nbsp;рекомендуется, поскольку
           пользователь может не&nbsp;понять, для чего нужна кнопка.
-        Добавление всплывающей подсказки при наведении курсора мыши (например, с помощью #[+Term--YDID аттрибута]
+        Добавление всплывающей подсказки при наведении курсора мыши (например, с помощью #[+Term--YDID атрибута]
           #[+ImportantEntity__Code--YDID title]) решением #[+Keyword--YDID не]&nbsp;является, поскольку эта функциональность
           #[+Keyword--YDID недоступна] для устройств с сенсорным дисплеем, да и на устройствах с мышью пользователи могут
           даже не&nbsp;знать, что для того, чтобы прочитать подсказку, нужно навести курсор мыши на кнопку и оставить его
@@ -260,7 +185,7 @@ block append SpecificContent
 
       //- TODO ссылка
       +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.guidance, SVG_Icon: true }).
-        Если кнопка имеет иконку, то #[+Term--YDID аттрибут] #[+ImportantEntity__Code--YDID label] указывать
+        Если кнопка имеет иконку, то #[+Term--YDID атрибут] #[+ImportantEntity__Code--YDID label] указывать
           #[+Keyword--YDID не]&nbsp;надо — вместо него добавьте дочерний элемент #[+ImportantEntity__Code--YDID span]
           с #[+Term--YDID CSS-классом] #[+ImportantEntity--YDID Button__YDF-Label].
         Это ограничение следует из отсутствия #[+Term--YDID слотов] (какие, например, есть в фреймворке Vue) в
@@ -292,16 +217,16 @@ block append SpecificContent
           не&nbsp;понять смысла иконки и просто не&nbsp;нажать её из-за страха что-либо поломать или утерять важные данные.
         Иными словами, это будет игра в "нажми меня, чтобы узнать, что произойдёт", а с точки зрения проектирования
           интерфейсов это не&nbsp;просто недостаток — это вопиющий изъян.
-        Добавление всплывающей подсказки при наведении курсора мыши (например, с помощью #[+Term--YDID аттрибута]
+        Добавление всплывающей подсказки при наведении курсора мыши (например, с помощью #[+Term--YDID атрибута]
           #[+ImportantEntity__Code--YDID title]) решением #[+Keyword--YDID не]&nbsp;является, поскольку эта функциональность
           #[+Keyword--YDID недоступна] для устройств с сенсорным дисплеем, да и на устройствах с мышью пользователи могут
           даже не&nbsp;знать что для того, чтобы прочитать подсказку, нужно навести курсор мыши на кнопку и оставить его
           в неподвижном положении порядка секунды.
 
       p.Article-Paragraph.
-        Тем не&nbsp;менее, если приведённые выше доводы Вас не&nbsp;останавливают, то можете указать инонку без надписи.
+        Тем не&nbsp;менее, если приведённые выше доводы Вас не&nbsp;останавливают, то можете указать иконку без надписи.
         Правда, если не указать свойства #[+ImportantEntity__Code--YDID accessibilityGuidance] (на его основе будет
-          сгенерирован #[+Term--YDID аттрибут] #[+ImportantEntity__Code--YDID aria-label]), то выходной
+          сгенерирован #[+Term--YDID атрибуты] #[+ImportantEntity__Code--YDID aria-label]), то выходной
           #[+Term--YDID HTML-код] не&nbsp;пройдёт проверку на доступность:
 
       //- TODO Код

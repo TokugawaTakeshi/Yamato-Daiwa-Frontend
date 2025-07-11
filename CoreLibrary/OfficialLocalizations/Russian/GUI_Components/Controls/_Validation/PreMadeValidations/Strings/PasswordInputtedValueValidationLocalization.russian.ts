@@ -11,7 +11,7 @@ export const passwordInputtedValueValidationLocalization__russian: PasswordInput
   requiredInputIsMissingValidationErrorMessage:
       "Пароль обязателен для ввода. Пожалуйста, введите пароль.",
 
-  disallowedCharactersFoundValidationErrorMessageBuilder: (
+  allowedCharactersValidationErrorMessageBuilder: (
     { inputtedDisallowedCharacters }: AllowedCharactersInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
       `Введённый пароль включает следующие запрещённые символы: ${ inputtedDisallowedCharacters.join(", ") }. ` +
@@ -22,7 +22,7 @@ export const passwordInputtedValueValidationLocalization__russian: PasswordInput
   ): string =>
       `Пароль слишком короткой. Пожалуйста, введите хотя бы ${ minimalCharactersCount } символов.`,
 
-  tooManyCharactersValidationErrorMessageBuilder: (
+  maximalCharactersCountValidationErrorMessageBuilder: (
     { maximalCharactersCount }: MaximalCharactersCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
       "Пароль содержит слишком много символов. " +

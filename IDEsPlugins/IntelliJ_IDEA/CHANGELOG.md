@@ -3,16 +3,43 @@
 
 # Yamato-Daiwa Frontend IntelliJ IDEA plugin changelog
 
+## [0.1.0]
+
+### Added 
+
++ **CenteredContentWithDynamicInlinePaddings**, alias **ccwdip**  - live template for `CenteredContentWithDynamicInlinePaddings--YDF` mixin
+
+### Removed
+
+The following Live templates has been removed because they actually not related with YDF, and the splitting to 
+  media queries methodology is organization-specific.
+
++ **med2c** - the media queries definitions for 2-pattern layout
++ **med3c** - the media queries definitions for 3-patterns layout
++ **med4c** - the media queries definitions for 4-patterns layout
++ **med3c** - the media queries definitions for 5-patterns layout
++ **wsc** - **+WideScreensConfiguration()** mixin (must be preliminarily defined) invocation.
++ **msc** - **+MediumScreensConfiguration()** mixin (must be preliminarily defined) invocation.
++ **nsc** - **+NarrowScreensConfiguration()** mixin (must be preliminarily defined) invocation.
++ **wmsc** - **+WideAndMediumScreensConfiguration()** mixin (must be preliminarily defined) invocation.
++ **mnsc** - **+MediumAndNarrowScreensConfiguration()** mixin (must be preliminarily defined) invocation.
+
+
 ## [0.0.11]
 
 ### Added
 
 - **bdg-ydf** — alias for **Badge--YDF** Live Template
+- The Live Templates for [Button](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/Button.english.html)
+  component (Core Package + Vue adaptation + React adaptation)
+- **Button.styl** — file template for providing and customizing styles of the [Button--YDF](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/Button.english.html)
 
 ### Changed
 
-- **Badge--YDF** and **Badge--YDF-LoadingPlaceholder** has been updated according the newest API
-- **Badge.styl** file template has been updated according the newest API
+- Rename Live Templates for **AdmonitionBlock** component for naming unification
+- Rename Live Templates for **Badge** component for naming unification
+- Rename Live Templates for **Badge** component has been updated according the newest API
+- Update **Badge.styl** file template according the newest API
 
 
 ## [0.0.10]
@@ -23,17 +50,17 @@
 - **PugEntryPointExtendedFromRegularWebPageTemplate** — Pug entry point extended from the
   [Regular WebPage Template](https://frontend.yamato-daiwa.com/CoreLibrary/PagesTemplates/Children/RegularWebPage/RegularWebPageTemplate.english.html).
 - **AdmonitionBlock--YDF** — Live template inserting the examples of 
-  [**AdmonitionBlock** component](https://frontend.yamato-daiwa.com/AdaptationsToJavaScriptFrameworks/React/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-React.english.html) 
+  [**AdmonitionBlock** component](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/React/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-React.english.html) 
   usage.
   Previously added **ab-ydf** one now is the alias of **AdmonitionBlock--YDF**. 
 - **AdmonitionBlock--YDF-V-P**, alias: **ab-ydf-vue-p** — Live template for 
-  [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToJavaScriptFrameworks/Vue/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-Vue.english.html)
+  [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-Vue.english.html)
   component (Vue framework, Pug syntax).
 - **AdmonitionBlock--YDF-V-H**, alias: **ab-ydf-vue-h** — Live template for 
-  [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToJavaScriptFrameworks/Vue/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-Vue.english.html)
+  [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-Vue.english.html)
   component (Vue framework, HTML syntax).
 - **AdmonitionBlock**, alias: **ab-ydf-react** — Live template for
-  [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToJavaScriptFrameworks/React/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-React.english.html)
+  [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/React/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-React.english.html)
   component.
 - **NARROWEST_SCREEN_WIDTH_UNIT--YDF** — autocomplete imitator type Live template for the [eponymous constant](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md#narrowest_screen_width_unit--ydf---the-narrowest-screen-width-unit).
   Previously added **nswu** one now is the alias of **NARROWEST_SCREEN_WIDTH_UNIT--YDF**. 
@@ -68,7 +95,6 @@
 - **nswu** Live template now adds `NARROWEST_SCREEN_WIDTH_UNIT--YDF` instead of `NARROWEST_SCREEN_WIDTH_UNIT`.
 - **dt** Live template now adds `DataTypes--YDF` instead of `DataTypes`
 - **sogw3c** Live template now adds `W3C_39_ShadesOfGray--YDF` instead of `ShadesOfGray__W3C_Palette`
-- **badge-ydf** and **badge-lp-ydf** Live templates has been renamed to **Badge--YDF** and **Badge--YDF-LoadingPlaceholder**
 - **badge-ydf** and **badge-lp-ydf** Live templates has been renamed to **Badge--YDF** and **Badge--YDF-LoadingPlaceholder**
    respectively.
 
@@ -314,17 +340,3 @@
 - <kbd>wija</kbd> - live template for [whenItJustAfter](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/03-UtilityMixins/03-PositionalRelationship.md#whenitjustafter) mixin
 - <kbd>wtgjai</kbd> - live template for [whenTargetGoingJustAfterIt](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/03-UtilityMixins/03-PositionalRelationship.md#whentargetgoingjustafterit) mixin
 - <kbd>wtwssgjat</kbd> - live template for [whenTargetWithSameSelectorGoingJustAfterIt](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/03-UtilityMixins/03-PositionalRelationship.md#whentargetwithsameselectorgoingjustafterit) mixin
-
-
-## [0.0.1]
-### Added
-
-- <kbd>prs</kbd> - live template for [PositionalRelationship](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/03-UtilityMixins/03-PositionalRelationship.md#positionalrelationship-mixin) mixin
-- <kbd>rf</kbd> - live template for [retireFrom](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/03-UtilityMixins/03-PositionalRelationship.md#retirefrom-mixin) mixin
-- <kbd>ptfs</kbd> - live template for [pushTargetFromSelf](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/03-UtilityMixins/03-PositionalRelationship.md#pushtargetfromself-mixin) mixin
-- <kbd>rfewss</kbd> - live template for [retireFromElementWithSameSelector](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/03-UtilityMixins/03-PositionalRelationship.md#retirefromelementwithsameselector-mixin) mixin
-
-
-## [0.0.0]
-### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)

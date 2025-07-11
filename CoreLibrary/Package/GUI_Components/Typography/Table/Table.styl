@@ -52,7 +52,7 @@ Table--YDF = {
 }
 
 
-provideTableYDF_Component(
+Table--YDF-generateStyles(
   preset = Table--YDF.defaultProperties,
   overridings = {},
   options = Table--YDF.defaultOptions,
@@ -62,7 +62,7 @@ provideTableYDF_Component(
   properties = deeplyCloneAndOverrideObject(preset, overridings)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "provideTableYDF_Component",
+    mixinOrFunctionName: "Table--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {

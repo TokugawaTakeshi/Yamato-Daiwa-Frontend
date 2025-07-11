@@ -8,10 +8,10 @@ block append Metadata
     StaticPreviewAnywherePage__YDF.configure({
 
       metadata: {
-        title: "Tests"
+        title: "Demos"
       },
 
-      topHeading: "Workbenches",
+      topHeading: "Demos",
 
       tableOfContents: [
 
@@ -70,7 +70,7 @@ block append Metadata
                 {
                   title: "ValidatableControlShell",
                   URI: "@CompletePages/GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellGalleryPage",
-                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
                 }
 
               ],
@@ -118,8 +118,20 @@ block append Metadata
                   pages: [
 
                     {
-                      title: "Button",
+                      title: "(Plain) Button",
                       URI: "@CompletePages/GUI_Components/Controls/Buttons/Plain/ButtonGalleryPage",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+                    },
+
+                    {
+                      title: "ClosingButton",
+                      URI: "@CompletePages/GUI_Components/Controls/Buttons/Closing/ClosingButtonGalleryPage",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    },
+
+                    {
+                      title: "HamburgerMenu",
+                      URI: "@CompletePages/GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButtonGalleryPage",
                       progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
                     }
 
@@ -129,22 +141,6 @@ block append Metadata
 
               ]
 
-            }
-
-          ]
-
-        },
-
-        {
-
-          heading: "Controls Groups",
-
-          pages: [
-
-            {
-              title: "Simple Integrated Controls Group",
-              URI: "@CompletePages/ControlsGroups/Simple/Integrated/SimpleIntegratedControlsGroup",
-              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
             }
 
           ]

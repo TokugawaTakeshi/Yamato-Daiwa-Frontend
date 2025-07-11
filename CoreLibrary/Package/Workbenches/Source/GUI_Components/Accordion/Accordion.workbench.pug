@@ -1,0 +1,26 @@
+extends ../../../../PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "Accordion Component Development"
+      },
+      stylesSheetsURIs: [ "@Workbenches/GUI_Components/Accordion/Accordion.workbench" ],
+      scriptsURIs: {
+        atEndOfBody: [ "@Workbenches/GUI_Components/Accordion/Accordion.workbench" ]
+      }
+    });
+
+
+block append Requirements
+
+  include ../../../../GUI_Components.pug
+
+
+block append PageContent
+
+  +Accordion--YDF({

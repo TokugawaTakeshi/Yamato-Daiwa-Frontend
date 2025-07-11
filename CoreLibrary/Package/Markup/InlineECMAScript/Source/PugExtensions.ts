@@ -7,26 +7,52 @@ export {
 
 
   /* ━━━ Arrays ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  addElementsToArray,
-  addElementsToArrayIfTheyAreNotPresentOtherwiseRemove,
+  /* ┅┅┅ Creating ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   createArrayOfNaturalNumbers,
-  cropArray,
+
+  /* ┅┅┅ Retrieving of Elements ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   getArrayElementSatisfiesThePredicateIfSuchElementIsExactlyOne,
+  getLastElementOfArray,
+
+  /* ┅┅┅ Retrieving of Indexes ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   getIndexesOfSatisfiesThePredicateArrayElements,
   getIndexOfArrayElementSatisfiesThePredicateIfSuchElementIsExactlyOne,
-  getLastElementOfArray,
-  moveArrayElementTo1Position,
-  removeArrayElementsByIndexes,
-  removeArrayElementsByPredicates,
+
+  /* ┅┅┅ Retrieving of Subarrays ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  cropArray,
+
+  /* ┅┅┅ Adding of Elements ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  addElementsToArray,
+
+  /* ┅┅┅ Replacing of Elements ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   replaceArrayElementsByIndexesImmutably,
   replaceArrayElementsByPredicates,
+
+  /* ┅┅┅ Permutations of Elements ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  moveArrayElementToOnePosition,
   swapArrayElements,
+
+  /* ┅┅┅ Removing of Elements ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  removeArrayElementsByIndexes,
+  removeArrayElementsByPredicates,
+
+  /* ┅┅┅ Restructuring ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   twoDimensionalizeArray,
+
+  /* ┅┅┅ Other ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  addElementsToArrayIfTheyAreNotPresentOtherwiseRemove,
 
 
   /* ━━━ Constants and enumerations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* ─── HTTP ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Re-exporting from "fundamental-constants" ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  /* ╍╍╍ Computer Networking ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+  HTTP_DEFAULT_PORT,
   HTTP_Methods,
+  HTTPS_DEFAULT_PORT,
+  NETWORK_PORT_MAXIMAL_VALUE,
+  NETWORK_PORT_MINIMAL_VALUE,
+
+  /* ─── HTTP Status Codes ────────────────────────────────────────────────────────────────────────────────────────── */
   HTTP_StatusCodes,
   InformationalResponsesHTTP_StatusCodes,
   SuccessfulResponsesHTTP_StatusCodes,
@@ -34,27 +60,32 @@ export {
   ClientErrorsHTTP_StatusCodes,
   ServerErrorsHTTP_StatusCodes,
 
-  /* ─── Re-exporting from "fundamental-constants" ────────────────────────────────────────────────────────────────── */
-  HTTP_DEFAULT_PORT,
-  HTTPS_DEFAULT_PORT,
-  NETWORK_PORT_MAXIMAL_VALUE,
-  NETWORK_PORT_MINIMAL_VALUE,
+  /* ┅┅┅ Data Types ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  IntegerDataTypes,
+
+  /* ┅┅┅ Date & Time ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   DAYS_COUNT_IN_WEEK,
   DaysOfWeekNames,
   HOURS_COUNT_IN_STELLAR_DAY,
   MAXIMAL_DAYS_IN_MONTH,
+  MAXIMAL_SUPPORTED_UNIX_MILLISECONDS_AMOUNT,
+  MINIMAL_SUPPORTED_UNIX_MILLISECONDS_AMOUNT,
   MINUTES_COUNT_IN_HOUR,
   MONTHS_COUNT_IN_YEAR,
   MonthsNames,
   SECONDS_COUNT_IN_MINUTE,
+
+  /* ─── ISO 8601 ─────────────────────────────────────────────────────────────────────────────────────────────────── */
   MAXIMAL_CHARACTERS_COUNT_IN_DATE_PART_OF_ISO8601_STRING,
   CHARACTERS_COUNT_IN_FULL_ISO8601_STRING,
+
+  /* ╍╍╍ Email Address ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
   EMAIL_ADDRESS_VALID_PATTERN,
   MAXIMAL_CHARACTERS_COUNT_OF_EMAIL_ADDRESS,
   MINIMAL_CHARACTERS_COUNT_OF_EMAIL_ADDRESS,
 
 
-  /* ━━━ Data mocking ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ━━━ Data Mocking ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   DataMocking,
   MockGatewayHelper,
   MockGatewayHelperLocalization__English,
@@ -62,9 +93,10 @@ export {
 
   /* ━━━ Date & Time ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   CalendarBuilder,
-  convert24HoursFormatTo12HoursFormat,
+  convert24_HoursFormatTo12_HoursFormat,
   DateWithoutTime,
   getDaysCountInSpecificMonth,
+  getISO8601_StringWithoutTimePart,
   getMonthNameByNumber,
   getMonthNumberByName,
   getNextMonthNumber,
@@ -72,91 +104,141 @@ export {
   getYearOfNextMonth,
   getYearOfPreviousMonth,
   hasTimeCome,
+  isValidNativeDate,
   millisecondsToSeconds,
   secondsToMilliseconds,
   TimePoint,
   Timer,
 
 
-  /* ━━━ Default value substituters ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ━━━ Default Value Substituters ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   substituteWhenNull,
   substituteWhenUndefined,
 
 
   /* ━━━ Errors ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ┅┅┅ Algorithm Mismatch ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   AlgorithmMismatchError,
   algorithmMismatchErrorLocalization__english,
+
+  /* ┅┅┅ Class Redundant Subsequent Initialization ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   ClassRedundantSubsequentInitializationError,
   classRedundantSubsequentInitializationErrorLocalization__english,
+
+  /* ┅┅┅ Class Required Initialization has not been Executed ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   ClassRequiredInitializationHasNotBeenExecutedError,
   classRequiredInitializationHasNotBeenExecutedErrorLocalization__english,
+
+  /* ┅┅┅ Config File not Found ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   ConfigFileNotFoundError,
   configFileNotFoundErrorLocalization__english,
+
+  /* ┅┅┅ Cross Browser Issue ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   CrossBrowserIssueError,
   crossBrowserIssueErrorLocalization__english,
-  DataRetrievingFailedError,
-  dataRetrievingFailedErrorLocalization__english,
-  DataSubmittingFailedError,
-  dataSubmittingFailedErrorLocalization__english,
+
+  /* ┅┅┅ DOM Element Retrieving Failed ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   DOM_ElementRetrievingFailedError,
   DOM_ElementRetrievingFailedErrorLocalization__english,
+
+  /* ┅┅┅ Data Retrieving Failed ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  DataRetrievingFailedError,
+  dataRetrievingFailedErrorLocalization__english,
+
+  /* ┅┅┅ Data Submitting Failed ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  DataSubmittingFailedError,
+  dataSubmittingFailedErrorLocalization__english,
+
+  /* ┅┅┅ File Reading Failed ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   FileReadingFailedError,
   fileReadingFailedErrorLocalization__english,
+
+  /* ┅┅┅ File Writing Failed ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   FileWritingFailedError,
   fileWritingFailedErrorLocalization__english,
+
+  /* ┅┅┅ Improper Usage ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   ImproperUsageError,
   improperUsageErrorLocalization__english,
+
+  /* ┅┅┅ Incompatible Properties in Object Type Parameter ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   IncompatiblePropertiesInObjectTypeParameterError,
   incompatiblePropertiesInObjectTypeParameterErrorLocalization__english,
+
+  /* ┅┅┅ Inter Process Interaction Failed ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   InterProcessInteractionFailedError,
   interProcessInteractionFailedErrorLocalization__english,
+
+  /* ┅┅┅ Invalid Config ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   InvalidConfigError,
   invalidConfigErrorLocalization__english,
+
+  /* ┅┅┅ Invalid External Data ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   InvalidExternalDataError,
   invalidExternalDataErrorLocalization__english,
+
+  /* ┅┅┅ Invalid Parameter Value ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   InvalidParameterValueError,
   invalidParameterValueErrorLocalization__english,
+
+  /* ┅┅┅ Module Dynamic Loading Failed ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   ModuleDynamicLoadingFailedError,
   moduleDynamicLoadingFailedErrorLocalization__english,
+
+  /* ┅┅┅ Unexpected Event ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   UnexpectedEventError,
   unexpectedEventErrorLocalization__english,
+
+  /* ┅┅┅ Unsupported Scenario ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   UnsupportedScenarioError,
   unsupportedScenarioErrorLocalization__english,
+
+  /* ┅┅┅ HTTP ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  /* ╍╍╍ HTTP Response Body Parsing Failure ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+  HTTP_ResponseBodyParsingFailureError,
+  HTTP_ResponseBodyParsingFailureErrorLocalization__english,
 
 
   /* ━━━ Files ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   encodeFileToBase64,
 
-  /* ━━━ Logging ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* ─── PoliteErrorsMessageBuilder ───────────────────────────────────────────────────────────────────────────────── */
-  PoliteErrorsMessagesBuilder,
-  PoliteErrorsMessagesBuilder__English,
 
-  /* ─── Rest ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ━━━ IDs Generators ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  StringTypeID_Generator,
+
+  /* ━━━ Logging ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   Logger,
   loggerLocalization__english,
+
+  /* ┅┅┅ PoliteErrorsMessageBuilder ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  PoliteErrorsMessagesBuilder,
+  PoliteErrorsMessagesBuilder__English,
 
 
   /* ━━━ Maps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   addEntriesToMap,
   createMapBasedOnOtherMap,
   filterMap,
+  getExpectedToBeNonUndefinedMapValue,
+  invertMapImmutably,
+  mergeMaps,
   removeEntriesFromMap,
   replaceValuesInMap,
 
 
   /* ━━━ Numbers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  formatNumberWith4KetaKanji,
+  formatNumberWith4_KetaKanji,
   getArithmeticMean,
   isStringifiedNonNegativeIntegerOfRegularNotation,
   limitMaximalValue,
+  limitMinimalAndMaximalValues,
   limitMinimalValue,
   roundDownToSpecificIntegerPlaceValue,
   roundToSpecificNearestIntegerPlaceValue,
   roundToSpecifiedNearestDecimalPlaceValue,
   roundUpToSpecificIntegerPlaceValue,
-  separateEach3DigitsGroupWithComma,
-  separateEach4DigitsGroupWithComma,
+  separateEach3_DigitsGroupWithComma,
+  separateEach4_DigitsGroupWithComma,
 
 
   /* ━━━ Objects ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -164,44 +246,50 @@ export {
 
 
   /* ━━━ Pagination ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  PaginationCollection,
   computeFirstItemNumberForSpecificPaginationPage,
   computeLastItemNumberForSpecificPaginationPage,
   getItemsOfPaginationPage,
-  PaginationCollection,
 
 
   /* ━━━ Promises ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   PromisesQueue,
 
 
-  /* ━━━ Random values generators ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  getRandomString,
-  RandomStringsGenerator,
+  /* ━━━ Random Values Generators ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   getRandomArrayElement,
   getRandomBoolean,
   getRandomInteger,
   getRandomLatinCharacter,
   getRandomObjectPropertyValue,
+  getRandomString,
+  RandomStringsGenerator,
+  gettingOfRandomStringLocalization__english,
   getRandomSubarray,
   getSpecificBooleanValueWithProbability,
   removeRandomArrayElement,
 
 
-  /* ━━━ Raw object data processor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ━━━ Raw Object Data Processor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   RawObjectDataProcessor,
   rawObjectDataProcessorLocalization__english,
+
+  /* ┅┅┅ Helpers ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   convertPotentialStringToNumberIfPossible,
   convertPotentialStringToIntegerIfPossible,
   convertPotentialStringToFloatIfPossible,
+  destringifyBooleanValueIfPossible,
 
 
   /* ━━━ Sets ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  addElementsToSet,
   createSetBasedOnOtherSet,
-  addMultipleElementsToSet,
+  mergeSets,
+  removeSetElementsByPredicates,
 
 
   /* ━━━ Strings ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* ─── Characters assets ────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Characters Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   EscapeCharacters,
   lowercaseLatinCharacters,
   SpaceCharacters,
@@ -209,35 +297,49 @@ export {
   stringifiedDigits,
   uppercaseLatinCharacters,
 
-  /* ─── Line separators ──────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Line Separators ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   getLineSeparatorType,
   LineSeparators,
 
-  /* ─── Regular expressions ──────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Regular Expressions ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   getMatchingWithFirstRegularExpressionCapturingGroup,
   extractMatchingsWithRegularExpression,
   replaceMatchesWithRegularExpressionToDynamicValue,
 
-  /* ─── URI ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
-  /* --- Files and directories -------------------------------------------------------------------------------------- */
+  /* ┅┅┅ URI ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  /* ╍╍╍ Files and Directories ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+  /* ─── File Name Extensions ─────────────────────────────────────────────────────────────────────────────────────── */
   appendLastFileNameExtension,
   extractAllFileNameExtensions,
-  extractFileNameWithAllExtensionsFromPath,
-  extractFileNameWithoutAnyExtensions,
-  extractFileNameWithoutLastExtension,
   extractLastExtensionOfFileName,
   removeAllFileNameExtensions,
 
-  /* --- Rest ------------------------------------------------------------------------------------------------------- */
+  /* ─── Stem ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+  extractFileNameWithoutAnyExtensions,
+
+  /* ─── Other ────────────────────────────────────────────────────────────────────────────────────────────────────── */
+  extractFileNameWithAllExtensionsFromPath,
+  extractFileNameWithoutLastExtension,
+
+  /* ╍╍╍ Fragment ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
   appendFragmentToURI,
-  explodeURI_PathToSegments,
   getURI_Fragment,
-  getURI_PartWithoutFragment,
-  removeSpecificSegmentsFromURI_Path,
+
+  /* ╍╍╍ Path Segments ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+  explodeURI_PathToSegments,
   replaceLastURI_PathSegment,
 
-  /* ─── Rest ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ╍╍╍ Other ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+  generateMailtoURI_Scheme,
+  getURI_PartWithoutFragment,
+  removeSpecificSegmentsFromURI_Path,
+
+
+  /* ┅┅┅ Other ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  adjustCharactersCount,
   appendCharacterIfItDoesNotPresentInLastPosition,
+  ArbitraryValueFormatter,
+  stringifyAndFormatArbitraryValue,
   capitalizeFirstCharacter,
   cropString,
   EmailAddress,
@@ -247,21 +349,21 @@ export {
   getLastCharacter,
   getPositionsOfAllSubstringOccurrences,
   hasStringOnlySpecificCharacters,
+  IndentationCoordinator,
   insertSubstring,
   insertSubstringIf,
-  isIPv4AddressLiesInRange,
+  isIPv4_AddressLiesInRange,
   isStringIncludingAtLeastOneOfSubstrings,
   removeAllSpecifiedCharacters,
   removeLastCharacter,
   removeNonDigitsCharacters,
   removeNthCharacter,
   removeSpecificCharacterFromCertainPosition,
-  replace2OrMoreSpacesTo1,
+  replace2_OrMoreSpacesTo1,
   replaceBrHTML_TagToNewLineEscapeSequence,
   replaceDoubleBackslashesWithForwardSlashes,
   reverseString,
   splitString,
-  stringifyAndFormatArbitraryValue,
   surroundLabelByOrnament,
   toLowerCamelCase,
   toScreamingSnakeCase,
@@ -269,23 +371,25 @@ export {
   trimSpaces,
 
 
-  /* ━━━ Type guards ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* ─── Arrays ───────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ━━━ Type Guards ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ┅┅┅ Arrays ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   isArrayOfCertainTypeElements,
   isArrayOfLength,
   isEmptyArray,
   isNonEmptyArray,
 
-  /* ─── Nullables ────────────────────────────────────────────────────────────────────────────────────────────────── */
-  isNeitherUndefinedNorNull,
+  /* ┅┅┅ Empty Types ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   isEitherUndefinedOrNull,
+  isNeitherUndefinedNorNull,
   isNotNull,
   isNotUndefined,
   isNull,
   isUndefined,
 
-  /* ─── Numbers ──────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Numbers ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  isBigInt,
   isDecimalFractionOfAnySign,
+  isIntegerOfAnySign,
   isNaturalNumber,
   isNaturalNumberOrZero,
   isNegativeDecimalFraction,
@@ -293,40 +397,47 @@ export {
   isNegativeIntegerOrZero,
   isNumber,
   isPositiveDecimalFraction,
+  isPositiveIntegerOrZero,
 
-  /* ─── Objects ──────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Objects ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   isArbitraryObject,
   isEmptyObject,
   isNonEmptyArbitraryObject,
   isNonEmptyObject,
   isNonNullObject,
 
-  /* ─── ParsedJSON ───────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ ParsedJSON ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   isPossiblyReadonlyParsedJSON,
   isPossiblyReadonlyParsedJSON_Object,
 
-  /* ─── Strings ──────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Strings ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   areStringifiedDigitsOnly,
   isEmptyString,
   isNonEmptyString,
   isString,
   isStringOfLength,
-  IsStringOfLengthCheckingOperation,
+  IsStringOfLengthCheck,
 
-  /* ─── Rest ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Rest ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   isBoolean,
   isElementOfEnumeration,
   isFunctionLike,
 
 
-  /* ━━━ Value transformers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ━━━ Value Transformers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   emptyStringToNull,
+  emptyStringToTrue,
+  emptyStringToUndefined,
   nullToEmptyString,
   nullToUndefined,
   nullToZero,
   undefinedToEmptyArray,
   undefinedToEmptyString,
-  undefinedToNull
+  undefinedToFalse,
+  undefinedToNull,
+
+  /* ━━━ Other ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  ValuesDeepCopier
 
 } from "@yamato-daiwa/es-extensions";
 
@@ -334,3 +445,5 @@ export { default as buildEmailLinkHrefAttributeValue } from "./PugExtensions/bui
 export { default as buildPhoneNumberLinkHrefAttributeValue } from "./PugExtensions/buildPhoneNumberLinkHrefAttributeValue";
 
 export { default as processObjectTypeParameterOfPugMixin } from "./PugExtensions/processObjectTypeParameterOfPugMixin";
+
+export { default as HeadingsLevelsCoordinator__YDF } from "./PugExtensions/HeadingsLevelsCoordinator";

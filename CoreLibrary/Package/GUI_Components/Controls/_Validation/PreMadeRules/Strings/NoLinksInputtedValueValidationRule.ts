@@ -3,10 +3,10 @@ import type InputtedValueValidation from "../../InputtedValueValidation";
 import noLinksInputtedValueValidationRuleLocalization__english from
     "./NoLinksInputtedValueValidationRuleLocalization.english";
 
-import { Logger, InvalidParameterValueError, isNotUndefined, isString } from "@yamato-daiwa/es-extensions";
+import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
-class NoLinksInputtedValueValidationRule implements InputtedValueValidation.Rule {
+class NoLinksInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
 
   public static localization: NoLinksInputtedValueValidationRule.Localization =
       noLinksInputtedValueValidationRuleLocalization__english;
@@ -54,30 +54,13 @@ class NoLinksInputtedValueValidationRule implements InputtedValueValidation.Rule
   }
 
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
-
-    if (!isString(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: "Unable to execute this validation because the raw value is not the string " +
-            `and actually has type "${ typeof rawValue }".`,
-        occurrenceLocation: "NoLinksInputtedValueValidationRule.check(rawValue)"
-      });
-
-      return { isValid: true };
-
-    }
-
-
+  public check(rawValue: string): InputtedValueValidation.Rule.CheckingResult {
     return this.regularExpressions.some((regularExpression: RegExp): boolean => regularExpression.test(rawValue)) ?
         {
           isValid: false,
           errorMessage: this.errorMessageBuilder({ rawValue })
         } :
         { isValid: true };
-
   }
 
 }

@@ -1,10 +1,13 @@
 import type InputtedValueValidation from "../../InputtedValueValidation";
 import nonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization__english from
     "./NonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization.english";
-import { isNumber, isString, isNotUndefined, Logger, InvalidParameterValueError } from "@yamato-daiwa/es-extensions";
+import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
-class NonNegativeIntegerOfRegularNotationInputtedValueValidationRule implements InputtedValueValidation.Rule {
+class NonNegativeIntegerOfRegularNotationInputtedValueValidationRule
+    implements InputtedValueValidation.Rule<number | bigint | string>
+/* eslint-disable-next-line @stylistic/brace-style -- Allow Allman style for square areas principle. */
+{
 
   public static localization: NonNegativeIntegerOfRegularNotationInputtedValueValidationRule.Localization =
       nonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization__english;
@@ -41,31 +44,13 @@ class NonNegativeIntegerOfRegularNotationInputtedValueValidationRule implements 
   }
 
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
-
-    if (!isNumber(rawValue) && !isString(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: "Unable to execute this validation because the raw value is neither number not stringified number " +
-            `and actually has type "${ typeof rawValue }".`,
-        occurrenceLocation: "NonNegativeIntegerOfRegularNotationInputtedValueValidationRule.check(rawValue)"
-      });
-
-
-      return { isValid: true };
-
-    }
-
-
+  public check(rawValue: number | bigint | string): InputtedValueValidation.Rule.CheckingResult {
     return (/^\d+$/u).test(String(rawValue)) ?
         { isValid: true } :
         {
           isValid: false,
           errorMessage: this.errorMessageBuilder({ rawValue })
         };
-
   }
 
 }
@@ -79,7 +64,7 @@ namespace NonNegativeIntegerOfRegularNotationInputtedValueValidationRule {
 
     export type Builder = (templateVariables: TemplateVariables) => string;
 
-    export type TemplateVariables = Readonly<{ rawValue: string | number; }>;
+    export type TemplateVariables = Readonly<{ rawValue: number | bigint | string; }>;
 
   }
 

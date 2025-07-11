@@ -1,0 +1,69 @@
+﻿@using YamatoDaiwa.Frontend.GUI_Components.Controls.ValidatableControlShell
+@using YamatoDaiwa.CSharpExtensions
+
+
+@inherits InputtableControl
+
+
+<ValidatableControlShell
+  rootElementModifierCSS_Class=@classAttributeValueForRootElement
+  label=@label
+  guidance=@guidance
+  required=@required
+  mustDisplayAppropriateBadgeIfInputIsRequired=@mustDisplayAppropriateBadgeIfInputIsRequired
+  mustDisplayAppropriateBadgeIfInputIsOptional=@mustDisplayAppropriateBadgeIfInputIsOptional
+  mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge=@mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge
+  coreElementHTML_ID=@INPUT_OR_TEXT_AREA_ELEMENT_HTML_ID
+  labelElementHTML_ID=@labelElementHTML_ID
+  mainSlotWrapperAdditionalCSS_Classes=@([ "TextBox-PositioningWrapper" ])
+  validationErrorsMessages=@payload.ValidationErrorsMessages
+  mustDisplayErrorsMessagesIfAny="invalidInputHighlightingIfAnyValidationErrorsMessages"
+  @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary
+  @ref=@validatableControlShell
+>
+ 
+  @if (multiline)
+  {
+
+    <textarea
+      class="TextBox--YDF-InputOrTextAreaElement"
+      placeholder=@placeholder
+      readonly=@(@readonly)
+      disabled=@disabled
+      required=@required
+      minlength=@minimalCharactersCount
+      maxlength=@maximalCharactersCount
+      id=@INPUT_OR_TEXT_AREA_ELEMENT_HTML_ID
+      aria-label=@accessibilityGuidance
+      aria-labelledby=@externalLabelHTML_ID
+      value=@rawValue
+      @oninput=@onInput
+      @onblur=@onFocusOut
+      @ref=@nativeInputAcceptingElement
+    ></textarea>  
+  }
+
+  else
+  {
+    <input
+      type="text"
+      class="TextBox--YDF-InputOrTextAreaElement"
+      placeholder=@placeholder
+      readonly=@(@readonly)
+      disabled=@disabled
+      required=@required
+      minlength=@minimalCharactersCount
+      maxlength=@maximalCharactersCount
+      min=@minimalNumericValue
+      max=@maximalNumericValue
+      id=@INPUT_OR_TEXT_AREA_ELEMENT_HTML_ID
+      aria-label=@accessibilityGuidance
+      aria-labelledby=@externalLabelHTML_ID
+      value=@rawValue
+      @oninput=@onInput
+      @onblur=@onFocusOut
+      @ref=@nativeInputAcceptingElement
+    />  
+  }
+  
+</ValidatableControlShell>

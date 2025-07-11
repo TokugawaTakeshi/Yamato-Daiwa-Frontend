@@ -55,13 +55,16 @@ ul.ThemesShowcase--YDF
 
 <script lang="ts">
 
-  import { Component as VueComponentOptions, Vue as VueComponent, Prop as VueProperty } from "vue-facing-decorator";
+  import {
+    Component as VueComponentOptions,
+    Vue as VueComponent,
+    Prop as VueProperty,
+    toNative as transformToOptionAPI_VueComponent
+  } from "vue-facing-decorator";
 
 
-  @VueComponentOptions({
-    name: "ThemesShowcase--YDF"
-  })
-  export default class ThemesShowcase extends VueComponent {
+  @VueComponentOptions({ name: "ThemesShowcase--YDF" })
+  class ThemesShowcase extends VueComponent {
 
     @VueProperty({
       type: Object,
@@ -114,5 +117,7 @@ ul.ThemesShowcase--YDF
     protected readonly decorativeVariationsWrapperAdditionalCSS_Classes?: ReadonlyArray<string>;
 
   }
+
+  export default transformToOptionAPI_VueComponent(ThemesShowcase);
 
 </script>

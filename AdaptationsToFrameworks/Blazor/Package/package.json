@@ -4,9 +4,9 @@
     "Build YDF Exports": "yda --mode PRODUCTION"
   },
   "dependencies": {
-    "@yamato-daiwa/frontend": "2.0.0-beta.6"
+    "@yamato-daiwa/frontend": "2.0.0-beta.11"
   },
   "devDependencies": {
-    "@yamato-daiwa/automation": "0.5.0"
+    "@yamato-daiwa/automation": "0.8.0"
   }
 }

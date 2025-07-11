@@ -58,6 +58,16 @@ computeTotalHeightByTextElementHeightSizingSpecification(properties, restParamet
     borders = substituteNull(properties.borders.thickness, {})
     paddings = properties.paddings
 
+    extraSpaceCausedByLineHeightAtTopOrBottom__nullIfNotDemanded = null
+
+    if properties.mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight
+
+      extraSpaceCausedByLineHeightAtTopOrBottom__nullIfNotDemanded = computeExtraSpaceCausedByLineHeightAtTopOrBottom({
+        fontSize: fontSize,
+        lineHeight: properties.lineHeight,
+        lineSpacing: properties.lineSpacing
+      })
+
 
     // ━━━ Sum ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     summands = YDF_Array-create()
@@ -71,6 +81,8 @@ computeTotalHeightByTextElementHeightSizingSpecification(properties, restParamet
       borders.bottom,
       isNotNull(paddings.all) ? 2 * paddings.all : null,
       isNotNull(paddings.verticalSymmetric) ? 2 * paddings.verticalSymmetric : null,
+      isNotNull(extraSpaceCausedByLineHeightAtTopOrBottom__nullIfNotDemanded) ?\
+          -2* extraSpaceCausedByLineHeightAtTopOrBottom__nullIfNotDemanded : null,
       paddings.top,
       paddings.bottom,
       heightOfAllLines

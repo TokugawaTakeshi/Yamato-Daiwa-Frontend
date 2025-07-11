@@ -1,6 +1,9 @@
+@using YamatoDaiwa.CSharpExtensions
+
+
 <span 
   class=@classAttributeValueForRootElement
-  @attributes=@rootElementHTML_Attributes
+  @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary
 >
 
   @if (PrependedSVG_Icon is not null)

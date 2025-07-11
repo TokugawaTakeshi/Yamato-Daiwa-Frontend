@@ -34,7 +34,7 @@ Link--YDF = {
 }
 
 
-provideLinkYDF_Component(
+Link--YDF-generateStyles(
   preset = Link--YDF.defaultProperties,
   overridings = {},
   options = Link--YDF.defaultOptions,
@@ -44,7 +44,7 @@ provideLinkYDF_Component(
   properties = deeplyCloneAndOverrideObject(preset, overridings)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "generateButtonYDF_GUI_ComponentStyles",
+    mixinOrFunctionName: "Link--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {

@@ -1,42 +1,58 @@
 /* eslint-disable max-classes-per-file --
 * This limitation is unsolicited for the namespaced classes, however, there is no ESLint option allowing this case. */
-import { isBoolean, Logger } from "@yamato-daiwa/es-extensions";
+import { InvalidParameterValueError, isBoolean, Logger } from "@yamato-daiwa/es-extensions";
 
 import inputtedValueValidationLocalization__english from "./InputtedValueValidationLocalization.english";
 
 
-abstract class InputtedValueValidation {
+abstract class InputtedValueValidation<NonEmptyValueType, EmptyValueType = NonEmptyValueType> {
 
+  /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static localization: InputtedValueValidation.Localization = inputtedValueValidationLocalization__english;
 
 
+  /* ━━━ Instance Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ┅┅┅ Instance ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  public readonly isValueOfSupportedType:
+      InputtedValueValidation.SupportedValueChecker<NonEmptyValueType, EmptyValueType>;
+
+  public readonly hasValueBeenOmitted:
+      InputtedValueValidation.OmittedValueChecker<NonEmptyValueType, EmptyValueType>;
+
   public readonly isInputRequired: InputtedValueValidation.InputRequirementChecker;
-  public readonly hasValueBeenOmitted: InputtedValueValidation.OmittedValueChecker;
 
   protected readonly requiredInputIsMissingValidationErrorMessage: string;
-  protected readonly staticRules: ReadonlyArray<InputtedValueValidation.Rule>;
-  protected readonly contextDependentRules: ReadonlyArray<InputtedValueValidation.Rule>;
-  protected readonly asynchronousRules: ReadonlyArray<InputtedValueValidation.AsynchronousRule>;
+  protected readonly staticRules: ReadonlyArray<InputtedValueValidation.Rule<NonEmptyValueType>>;
+  protected readonly contextDependentRules: ReadonlyArray<InputtedValueValidation.Rule<NonEmptyValueType>>;
+  protected readonly asynchronousRules: ReadonlyArray<InputtedValueValidation.AsynchronousRule<NonEmptyValueType>>;
 
 
-  protected constructor(compoundParameter: InputtedValueValidation.ConstructorCompoundParameter) {
+  /* ━━━ Constructor━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected constructor(
+    {
+      isValueOfSupportedType,
+      hasValueBeenOmitted,
+      isInputRequired,
+      requiredInputIsMissingValidationErrorMessage,
+      localization,
+      staticRules,
+      contextDependentRules,
+      asynchronousRules
+    }: InputtedValueValidation.ConstructorCompoundParameter<NonEmptyValueType, EmptyValueType>
+  ) {
 
-    this.hasValueBeenOmitted = compoundParameter.omittedValueChecker;
-
-    if (isBoolean(compoundParameter.isInputRequired)) {
-      const isInputRequired: boolean = compoundParameter.isInputRequired;
-      this.isInputRequired = (): boolean => isInputRequired;
-    } else {
-      this.isInputRequired = compoundParameter.isInputRequired;
-    }
+    this.isValueOfSupportedType = isValueOfSupportedType;
+    this.hasValueBeenOmitted = hasValueBeenOmitted;
+    this.isInputRequired = isBoolean(isInputRequired) ? (): boolean => isInputRequired : isInputRequired;
 
     this.requiredInputIsMissingValidationErrorMessage =
-        compoundParameter.requiredInputIsMissingValidationErrorMessage ??
+        requiredInputIsMissingValidationErrorMessage ??
+        localization?.requiredInputIsMissingValidationErrorMessage ??
         InputtedValueValidation.localization.requiredInputIsMissingValidationErrorMessage;
 
-    this.staticRules = compoundParameter.staticRules ?? [];
-    this.contextDependentRules = compoundParameter.contextDependentRules ?? [];
-    this.asynchronousRules = compoundParameter.asynchronousRules ?? [];
+    this.staticRules = staticRules ?? [];
+    this.contextDependentRules = contextDependentRules ?? [];
+    this.asynchronousRules = asynchronousRules ?? [];
 
   }
 
@@ -54,15 +70,32 @@ abstract class InputtedValueValidation {
     }> = {}
   ): InputtedValueValidation.Result {
 
-    const isInputRequired: boolean = this.isInputRequired();
+    if (!this.isValueOfSupportedType(rawValue)) {
+      Logger.throwErrorWithFormattedMessage({
+        errorInstance: new InvalidParameterValueError({
+          parameterNumber: 1,
+          parameterName: "rawValue",
+          messageSpecificPart: "The type of `rawValue` is incompatible with specified validators."
+        }),
+        title: InvalidParameterValueError.localization.defaultTitle,
+        occurrenceLocation: "inputtedValueValidation.validate(rawValue, options)",
+        additionalData: {
+          rawValue,
+          nativeTypeOfRawValue: typeof rawValue
+        }
+      });
+    }
+
 
     if (this.hasValueBeenOmitted(rawValue)) {
-      return isInputRequired ?
+
+      return this.isInputRequired() ?
           {
             isValid: false,
             errorsMessages: [ this.requiredInputIsMissingValidationErrorMessage ]
           } :
           { isValid: true };
+
     }
 
 
@@ -128,7 +161,7 @@ abstract class InputtedValueValidation {
   }
 
   public executeAsynchronousChecksIfAny(
-    rawValue: unknown,
+    rawValue: NonEmptyValueType,
     currentValidationResult: InputtedValueValidation.Result,
     asynchronousChecksCallback?: InputtedValueValidation.AsynchronousChecks.Callback
   ): void {
@@ -141,7 +174,7 @@ abstract class InputtedValueValidation {
     const asynchronousChecks: InputtedValueValidation.AsynchronousChecks = this.asynchronousRules.reduce(
       (
         accumulatingValue: InputtedValueValidation.AsynchronousChecks,
-        asynchronousValidationRule: InputtedValueValidation.AsynchronousRule
+        asynchronousValidationRule: InputtedValueValidation.AsynchronousRule<NonEmptyValueType>
       ): InputtedValueValidation.AsynchronousChecks => {
 
         accumulatingValue[asynchronousValidationRule.ID] = {
@@ -181,16 +214,16 @@ abstract class InputtedValueValidation {
 									checkingResult.errorMessage ?? validationRule.messages.invalidValueHasBeenConfirmed
 						};
 
-            const asynchronousChecksStatus: InputtedValueValidation.AsynchronousChecks.Status =
+            const asynchronousCheckStatus: InputtedValueValidation.AsynchronousChecks.Status =
                 new InputtedValueValidation.AsynchronousChecks.Status(asynchronousChecks);
 
             const errorsMessages: ReadonlyArray<string> = [
               ...currentValidationResult.isValid ? [] : currentValidationResult.errorsMessages,
-              ...asynchronousChecksStatus.errorsMessages
+              ...asynchronousCheckStatus.errorsMessages
             ];
 
 						asynchronousChecksCallback?.(
-              asynchronousChecksStatus,
+              asynchronousCheckStatus,
               {
                 isValid: errorsMessages.length === 0,
                 errorsMessages
@@ -202,10 +235,11 @@ abstract class InputtedValueValidation {
           catch((error: unknown): void => {
 
             Logger.logError({
-              errorType: "AsynchronousValidationFailure",
-              title: "Asynchronous validation failed",
+              errorType: "AsynchronousValidationFailedError",
+              title: "Asynchronous Validation Failed",
               description: `The asynchronous validation ${ validationRule.ID } has failed.`,
-              occurrenceLocation: "inputtedValueValidation.executeAsynchronousChecksIfAny(rawValue)",
+              occurrenceLocation: "inputtedValueValidation." +
+                  "executeAsynchronousChecksIfAny(rawValue, currentValidationResult, asynchronousChecksCallback)",
               caughtError: error
             });
 
@@ -233,32 +267,23 @@ abstract class InputtedValueValidation {
 
 namespace InputtedValueValidation {
 
-  export type Localization = Readonly<{
-    requiredInputIsMissingValidationErrorMessage: string;
-  }>;
+  export type Result = Readonly<
+    {
+      isValid: true;
+    } |
+    {
+      isValid: false;
+      errorsMessages: ReadonlyArray<string>;
+    }
+  >;
 
 
-  export type ConstructorCompoundParameter = Readonly<{
-    isInputRequired: boolean | InputRequirementChecker;
-    omittedValueChecker: OmittedValueChecker;
-    requiredInputIsMissingValidationErrorMessage?: string;
-    staticRules?: ReadonlyArray<Rule>;
-    contextDependentRules?: ReadonlyArray<Rule>;
-    asynchronousRules?: ReadonlyArray<AsynchronousRule>;
-    asynchronousValidationsCallback?: AsynchronousChecks.Callback;
-    localization?: Localization;
-  }>;
-
-
-  export type OmittedValueChecker = (rawValue: unknown) => boolean;
-  export type InputRequirementChecker = () => boolean;
-
-
-  export interface Rule {
+  /* ━━━ Rules ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  export interface Rule<NonEmptyValueType> {
 
     readonly mustFinishValidationIfValueIsInvalid: boolean;
 
-    readonly check: (rawValue: unknown) => Rule.CheckingResult;
+    readonly check: (rawValue: NonEmptyValueType) => Rule.CheckingResult;
 
   }
 
@@ -267,7 +292,8 @@ namespace InputtedValueValidation {
     export type CheckingResult = Readonly<
       {
         isValid: true;
-      } | {
+      } |
+      {
         isValid: false;
         errorMessage: string;
       }
@@ -280,10 +306,11 @@ namespace InputtedValueValidation {
   }
 
 
-  export interface AsynchronousRule {
+  /* ┅┅┅ Asynchronous ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  export interface AsynchronousRule<NonEmptyValueType> {
     readonly ID: string;
     readonly messages: AsynchronousRule.Messages;
-    readonly check: (rawValue: unknown) => Promise<AsynchronousRule.CheckingResult>;
+    readonly check: (rawValue: NonEmptyValueType) => Promise<AsynchronousRule.CheckingResult>;
   }
 
   export namespace AsynchronousRule {
@@ -303,16 +330,18 @@ namespace InputtedValueValidation {
   }
 
 
-  export type Result = Readonly<
-    {
-      isValid: true;
-    } |
-    {
-      isValid: false;
-      errorsMessages: ReadonlyArray<string>;
-    }
-  >;
+  /* ━━━ Asynchronous Checking ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  export namespace AsynchronousCheck {
 
+    export type Status = Readonly<{
+      message: string;
+      isPending: boolean;
+      hasValidValueBeenConfirmed: boolean;
+      hasInvalidValueBeenConfirmed: boolean;
+      hasErrorOccurred: boolean;
+    }>;
+
+  }
 
   export type AsynchronousChecks = { [validationRuleName: string]: AsynchronousCheck.Status; };
 
@@ -341,7 +370,6 @@ namespace InputtedValueValidation {
             this.hasAllChecksFinishedWithAnyOutcome = false;
           }
 
-
           if (checking.hasErrorOccurred) {
             this.hasAtLeastOneCheckErrorOccurred = true;
           }
@@ -360,17 +388,36 @@ namespace InputtedValueValidation {
 
   }
 
-  export namespace AsynchronousCheck {
 
-    export type Status = {
-      message: string;
-      isPending: boolean;
-      hasValidValueBeenConfirmed: boolean;
-      hasInvalidValueBeenConfirmed: boolean;
-      hasErrorOccurred: boolean;
-    };
+  /* ━━━ Constructor Parameter ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  export type ConstructorCompoundParameter<NonEmptyValueType, EmptyValueType = NonEmptyValueType> =
+      Readonly<{
+        isValueOfSupportedType: SupportedValueChecker<NonEmptyValueType, EmptyValueType>;
+        hasValueBeenOmitted: OmittedValueChecker<NonEmptyValueType, EmptyValueType>;
+        isInputRequired: boolean | InputRequirementChecker;
+        requiredInputIsMissingValidationErrorMessage?: string;
+        staticRules?: ReadonlyArray<Rule<NonEmptyValueType>>;
+        contextDependentRules?: ReadonlyArray<Rule<NonEmptyValueType>>;
+        asynchronousRules?: ReadonlyArray<AsynchronousRule<NonEmptyValueType>>;
+        asynchronousValidationsCallback?: AsynchronousChecks.Callback;
+        localization?: Localization;
+      }>;
 
-  }
+
+  /* ━━━ Worktypes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  export type SupportedValueChecker<NonEmptyValueType, EmptyValue = NonEmptyValueType> =
+      (rawValue: unknown) => rawValue is NonEmptyValueType | EmptyValue;
+
+  export type OmittedValueChecker<NonEmptyValueType, EmptyValue = NonEmptyValueType> =
+      (supportedButPossiblyEmptyValue: NonEmptyValueType | EmptyValue) => supportedButPossiblyEmptyValue is EmptyValue;
+
+  export type InputRequirementChecker = () => boolean;
+
+
+  /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  export type Localization = Readonly<{
+    requiredInputIsMissingValidationErrorMessage: string;
+  }>;
 
 }
 

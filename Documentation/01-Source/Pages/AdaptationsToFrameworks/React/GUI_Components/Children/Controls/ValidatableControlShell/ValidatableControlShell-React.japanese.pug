@@ -1,0 +1,94 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.japanese.pug
+  include ../../../../../../../SharedComponents/SharedComponents.japanese.pug
+
+
+block append Metadata
+
+  -
+
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = routing.japanese.adaptationsToFrameworks.$children.react.$children.GUI_Components.
+        $children.controls.$children.ValidatableControlShell;
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle(topHeading),
+        description: MetaDescriptionTemplates.GUI_Components.controls.ValidatableControlShell
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    RoutingEmulator.setCurrentRoute("adaptationsToFrameworks.react.GUI_Components.controls.ValidatableControlShell");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.
+          controls.$children.ValidatableControlShell.$URI,
+      russian: routing.russian.adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.
+          controls.$children.ValidatableControlShell.$URI
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ `ValidatableControlShell` (React) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
+
+    +WebPageViewer--YDF({
+      URI: "$Demos:React/GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.
+          generateDescription({ componentName: "ValidatableControlShell" })
+    })
+
+    +ValidatableControlShellComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ┅┅┅ 概要 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
+    }).Article-Heading2
+
+    +ValidatableControlShellComponent-Overview({ framework: SupportedFrameworks.react })
+
+
+    //- ┅┅┅ `ValidatableControlShell`クラス ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      innerHTML: localizedSectioning.ValidatableControlShellClass.$heading,
+      HTML_ID: localizedSectioning.ValidatableControlShellClass.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ Reactプロパティ ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.ValidatableControlShellClass.$children.reactProperties.$heading,
+      HTML_ID: localizedSectioning.ValidatableControlShellClass.$children.reactProperties.$anchor
+    }).Article-Heading3
+
+    +ValidatableControlShellComponent-PugMixinOrClassSynopsis({ framework: SupportedFrameworks.react })

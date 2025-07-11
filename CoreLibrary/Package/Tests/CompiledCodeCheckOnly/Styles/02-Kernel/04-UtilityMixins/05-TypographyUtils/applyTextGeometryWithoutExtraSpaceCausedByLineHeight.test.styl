@@ -1,0 +1,202 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-TypographyUtils/applyTextGeometryWithoutExtraSpaceCausedByLineHeight.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-TypographyUtils/applyTextGeometryWithoutExtraSpaceCausedByLineHeight.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+/* [ ClassesNaming ] [Input]-[Output] */
+
+/* === Specifying via line spacing ================================================================================== */
+/* --- [ Branch A1 ] 0 line spacing --------------------------------------------------------------------------------- */
+/*
+  Размер шрифта - 13px, межстрочный интервал - 0.
+  Данная ситуация является неоднозначной, потому что из нулевого межстрочного интервала не следует, что высота строки тоже
+    равно нулю.
+  Существует опция `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0`, которая предназначена для разрешения
+    этой неоднозначности, и в идеале её следовало бы сделать обязательной при условии, что указано `lineSpacing` (а не `lineHeight`).
+  Однако ввиду того, что нулевой межстрочный интервал в многострочных текстовых блоках, для которых и предназначена
+    примесь `applyTextGeometryWithoutExtraSpaceCausedByLineHeight` - экстраординарный частный случай, смысл которого
+    неочевиден, `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0` имеет значение по умолчанию, равное `true`.
+  При таком значении, как это и следует из прямого перевода, высота строки считается равной размеру шрифта, когда
+    `lineSpacing` равен нулю.
+  Таким образом никакого "ExtraSpaceCausedByLineHeight" не будет.
+
+ */
+.ZeroLineSpacing-RelativeLineHeight
+
+  /* Expected: line-height: 1 */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 13px,
+    lineSpacing: 0
+  })
+
+
+/* "px" и любые другие единицы изменения здесь ничего не меняют - результат будет полностью эквивалентен выше. */
+.ZeroPixelsLineSpacing-RelativeLineHeight
+
+  /* Expected: line-height: 1 */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 13px,
+    lineSpacing: 0px
+  })
+
+
+.ZeroLineSpacing-AbsoluteLineHeight
+
+  /* Expected: line-height: 13px */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 13px,
+    lineSpacing: 0,
+    mustApplyDimensionalLineHeightIfPossible: true
+  })
+
+
+/* "px" и любые другие единицы изменения здесь ничего не меняют - результат будет полностью эквивалентен выше. */
+.ZeroPixelsLineSpacing-AbsoluteLineHeight
+
+  /* Expected: line-height: 13px */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 13px,
+    lineSpacing: 0px,
+    mustApplyDimensionalLineHeightIfPossible: true
+  })
+
+
+/* --- [ Branch A2 ] Dimensionless line spacing --------------------------------------------------------------------- */
+/*
+  Размер шрифта - 10px (мелко, зато в рамках этого теста лего сравнить ...), межстрочный интервал - 0.4.
+  При настройках по умолчанию данная функция попытается вычислить безразмерную высоту строки, и в данном случае это будет 1.4.
+  Нетрудно также для проверки подсчитать, что из-за высоты строки сверху и снизу у нас будет в 2px.
+  Её и надо компенсировать. Таким образом, у нас будут before и after c -2px.
+ */
+.DimensionlessLineSpacing-DimensionlessLineHeight
+
+  /* Expected: line-height: 1.4, margin-top: -2px, margin-bottom: -2px */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 10px,
+    lineSpacing: 0.4
+  })
+
+
+
+/* --- [ Branch A3 ] Font size and line spacing of same unit -------------------------------------------------------- */
+
+/*
+  Размер шрифта - 10px (мелко, зато в рамках этого теста лего сравнить ...), межстрочный интервал - 4px.
+  Однако ввиду того, что согласно настройкам по умолчанию вычисляется безразмерная высота строки, это будет 1.4.
+  Нетрудно также для проверки подсчитать, что из-за высоты строки сверху и снизу у нас будет в 2px.
+  Её и надо компенсировать. Таким образом, у нас будут before и after c -2px.
+ */
+
+.FontSizeAndLineSpacingOfSameUnit-DimensionlessLineHeight
+
+  /* Expected: line-height: 1.4 */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 10px,
+    lineSpacing: 4px
+  })
+
+
+.FontSizeAndLineSpacingOfSameUnit-DimensionalLineHeight
+
+  /* Expected: line-height: 14px */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 10px,
+    lineSpacing: 4px,
+    mustApplyDimensionalLineHeightIfPossible: true
+  })
+
+
+/* --- [ Branch A4 ] Font size and line spacing of different units --------------------------------------------------- */
+.FontSizeAndLineSpacingOfSameUnit-DimensionlessLineHeight
+
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 1rem,
+    lineSpacing: 2px
+  })
+
+
+// === Specifying via line height ======================================================================================
+/* --- [ Branch B1 ] 0 line height --------------------------------------------------------------------------------- */
+.ZeroLineHeight
+
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 10px,
+    lineHeight: 0
+  })
+
+
+.ZeroPixelsLineHeight
+
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 10px,
+    lineHeight: 0
+  })
+
+
+/* --- [ Branch B2 ] Dimensional line height ----------------------------------------------------------------------- */
+.DimensionlessLineHeight-DimensionalLineHeight
+
+  /* Expected: line-height: 14px */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 10px,
+    lineHeight: 1.4,
+    mustApplyDimensionalLineHeightIfPossible: true
+  })
+
+
+.DimensionlessLineHeight-DimensionlessLineHeight
+
+  /* Expected: line-height: 1.4 */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 10px,
+    lineHeight: 1.4
+  })
+
+
+/* --- [ Branch B3 ] Dimensional line height ----------------------------------------------------------------------- */
+.FontSizeAndLineHeightOfSameUnit-DimensionlessLineHeight
+
+  /* Expected: line-height: 1.4 */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 10px,
+    lineHeight: 14px
+  })
+
+
+.FontSizeAndLineHeightOfSameUnit-DimensionalLineHeight
+
+  /* Expected: line-height: 14px */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 10px,
+    lineHeight: 14px,
+    mustApplyDimensionalLineHeightIfPossible: true
+  })
+
+
+/* --- [ Branch B4 ] Font size and line height of different units --------------------------------------------------- */
+.FontSizeAndLineHeightOfSameUnit-DimensionlessLineHeight
+
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 1rem,
+    lineHeight: 1.2em
+  })
+
+
+// =====================================================================================================================
+.AbsoluteFontSizeAndRelativeLineHeight-RelativeLineHeight-Paddings
+
+  /* Expected: line-height: 1.4 */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    fontSize: 10px,
+    lineSpacing: 0.4,
+    paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins: {
+      top: 6px,
+      bottom: 6px
+    }
+  })

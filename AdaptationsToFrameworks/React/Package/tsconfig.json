@@ -13,14 +13,10 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
-    "experimentalDecorators": true,
+    "experimentalDecorators": true
 
-    "baseUrl": "./",
-    "declaration": true,
-    "sourceMap": false
   },
   "include": [
-    "./Source/**/*",
-    "./Workbenches/Source/**/*"
+    "Source/**/*"
   ]
 }

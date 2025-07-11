@@ -1,6 +1,11 @@
 extends ../../../../../../PagesTemplates/RegularWebPageTemplate.pug
 
 
+block append Requirements
+
+  include ../../../../../../GUI_Components.pug
+
+
 block append Metadata
 
   -
@@ -16,14 +21,11 @@ block append Metadata
     });
 
 
-block append Requirements
-
-  include ../../../../../../GUI_Components.pug
-
-
 block append PageContent
 
   +TextBox--YDF({
     label: "Test",
-    multiline: true
+    hasPasswordDisplayingToggle: true,
+    HTML_Type: TextBox__YDF.HTML_Types.password,
+    value: "1ioasdfiohjsdf"
   })#TEXT_BOX-1

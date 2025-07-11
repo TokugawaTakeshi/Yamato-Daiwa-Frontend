@@ -4,6 +4,7 @@
 @using YamatoDaiwa.Frontend.SVG_Icons.MultiplicationSign
 @using YamatoDaiwa.Frontend.SVG_Icons.Pencil
 @using YamatoDaiwa.Frontend.SVG_Icons.QuestionMark
+@using YamatoDaiwa.CSharpExtensions;
 
 
 @if (!isDisplaying)
@@ -16,35 +17,32 @@
   class=@classAttributeValueForRootElement
   role="alert"
   id=@HTML_ID
-  @attributes=@rootElementHTML_Attributes
+  @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary
   @ref=@rootElement
 >
 
   @if (hasDefaultSVG_Icon)
   {
-    @if (_decorativeVariation == StandardDecorativeVariations.notice.ToString())
+    @switch (_decorativeVariation)
     {
-      <Pencil__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
-    }
-    else if (_decorativeVariation == StandardDecorativeVariations.error.ToString())
-    {
-      <ExclamationMarkIcon__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon" />
-    }
-    else if (_decorativeVariation == StandardDecorativeVariations.warning.ToString())
-    {
-      <ExclamationMarkIcon__Triangled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
-    }
-    else if (_decorativeVariation == StandardDecorativeVariations.success.ToString())
-    {
-      <Checkmark__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
-    }
-    else if (_decorativeVariation == StandardDecorativeVariations.guidance.ToString())
-    {
-      <InfoSignIcon__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
-    }
-    else if (_decorativeVariation == StandardDecorativeVariations.question.ToString())
-    {
-      <QuestionMark__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon" />
+      case nameof(StandardDecorativeVariations.notice):
+          <Pencil__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
+          break;
+      case nameof(StandardDecorativeVariations.error):
+          <ExclamationMarkIcon__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon" />
+          break;
+      case nameof(StandardDecorativeVariations.warning):
+          <ExclamationMarkIcon__Triangled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
+          break;
+      case nameof(StandardDecorativeVariations.success):
+          <Checkmark__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
+          break;
+      case nameof(StandardDecorativeVariations.guidance):
+          <InfoSignIcon__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
+          break;
+      case nameof(StandardDecorativeVariations.question):
+          <QuestionMark__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon" />
+          break;
     }
   } else if (CustomSVG_Icon is not null)
   {
@@ -63,6 +61,7 @@
 
   <div
     class="AdmonitionBlock--YDF-MainContent"
+    role="group"
     aria-labelledby=@(title is not null ? TITLE_HTML_ID : null)
   >
     

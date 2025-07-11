@@ -128,21 +128,21 @@
     /**
      * @param {
      *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
-     * } themesAndCorrespondenceDefinition
+     * } ownAndCorrespondingChildrenThemesDefinition
      * @param { Object } TargetComponentClass
      */
     static defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
-      themesAndCorrespondenceDefinition, TargetComponentClass
+      ownAndCorrespondingChildrenThemesDefinition, TargetComponentClass
     ){
 
-      ComponentsAuxiliaries.defineThemes(Object.keys(themesAndCorrespondenceDefinition), TargetComponentClass);
+      ComponentsAuxiliaries.defineThemes(Object.keys(ownAndCorrespondingChildrenThemesDefinition), TargetComponentClass);
 
       //- [ Approach ] Triggering the initialization of `_selfAndChildrenComponentsThemesCorrespondence`.
       TargetComponentClass.selfAndChildrenComponentsThemesCorrespondence;
 
       for (
         const [ ownThemeName, correspondenceWithThemesOfChildrenComponents ] of
-            Object.entries(themesAndCorrespondenceDefinition)
+            Object.entries(ownAndCorrespondingChildrenThemesDefinition)
       ) {
 
         const ownThemeName__screamingSnakeCase = toScreamingSnakeCase(ownThemeName);
@@ -173,15 +173,15 @@
     /**
      * @param {
      *   { [ ownGeometricVariationName: string ]: { [ childrenComponentName: string ]: string; } }
-     * } geometricVariationsAndCorrespondenceDefinition
+     * } ownAndCorrespondingChildrenGeometricVariationsDefinition
      * @param { Object } TargetComponentClass
      */
     static defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
-      geometricVariationsAndCorrespondenceDefinition, TargetComponentClass
+      ownAndCorrespondingChildrenGeometricVariationsDefinition, TargetComponentClass
     ){
 
       ComponentsAuxiliaries.defineGeometricVariations(
-        Object.keys(geometricVariationsAndCorrespondenceDefinition), TargetComponentClass
+        Object.keys(ownAndCorrespondingChildrenGeometricVariationsDefinition), TargetComponentClass
       );
 
       //- [ Approach ] Triggering the initialization of `_selfAndChildrenComponentsGeometricVariationsCorrespondence`.
@@ -189,7 +189,7 @@
 
       for (
         const [ ownGeometricVariationName, correspondenceWithGeometricVariationsOfChildrenComponents ] of
-            Object.entries(geometricVariationsAndCorrespondenceDefinition)
+            Object.entries(ownAndCorrespondingChildrenGeometricVariationsDefinition)
       ) {
 
         const ownGeometricVariationName__screamingSnakeCase = toScreamingSnakeCase(ownGeometricVariationName);
@@ -221,15 +221,15 @@
     /**
      * @param {
      *   { [ ownDecorativeVariationName: string ]: { [ childrenComponentName: string ]: string; } }
-     * } decorativeVariationsAndCorrespondenceDefinition
+     * } ownAndCorrespondingChildrenDecorativeVariationsDefinition
      * @param { Object } TargetComponentClass
      */
     static defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
-      decorativeVariationsAndCorrespondenceDefinition, TargetComponentClass
+      ownAndCorrespondingChildrenDecorativeVariationsDefinition, TargetComponentClass
     ){
 
       ComponentsAuxiliaries.defineDecorativeVariations(
-        Object.keys(decorativeVariationsAndCorrespondenceDefinition), TargetComponentClass
+        Object.keys(ownAndCorrespondingChildrenDecorativeVariationsDefinition), TargetComponentClass
       );
 
       //- [ Approach ] Triggering the initialization of `_selfAndChildrenComponentsDecorativeVariationsCorrespondence`.
@@ -237,7 +237,7 @@
 
       for (
         const [ ownDecorativeVariationName, correspondenceWithDecorativeVariationsOfChildrenComponents ] of
-            Object.entries(decorativeVariationsAndCorrespondenceDefinition)
+            Object.entries(ownAndCorrespondingChildrenDecorativeVariationsDefinition)
       ) {
 
         const ownDecorativeVariationName__screamingSnakeCase = toScreamingSnakeCase(ownDecorativeVariationName);

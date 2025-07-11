@@ -5,10 +5,10 @@ import type InputtedValueValidation from "../../InputtedValueValidation";
 import emailAddressInputtedValueValidationRuleLocalization__english from
     "./EmailAddressInputtedValueValidationRuleLocalization.english";
 
-import { EmailAddress, Logger, InvalidParameterValueError, isNotUndefined, isString } from "@yamato-daiwa/es-extensions";
+import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
-class EmailAddressInputtedValueValidationRule implements InputtedValueValidation.Rule {
+class EmailAddressInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
 
   public static localization: EmailAddressInputtedValueValidationRule.Localization =
       emailAddressInputtedValueValidationRuleLocalization__english;
@@ -48,30 +48,13 @@ class EmailAddressInputtedValueValidationRule implements InputtedValueValidation
   }
 
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
-
-    if (!isString(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: "Unable to execute this validation because the raw value is not the string " +
-            `and actually has type "${ typeof rawValue }".`,
-        occurrenceLocation: "EmailAddressInputtedValueValidationRule.check(rawValue)"
-      });
-
-      return { isValid: true };
-
-    }
-
-
-    return EmailAddress.isValid(rawValue) ?
+  public check(rawValue: string): InputtedValueValidation.Rule.CheckingResult {
+    return this.regularExpression.test(rawValue) ?
         { isValid: true } :
         {
           isValid: false,
           errorMessage: this.errorMessageBuilder({ rawValue })
         };
-
   }
 
 }

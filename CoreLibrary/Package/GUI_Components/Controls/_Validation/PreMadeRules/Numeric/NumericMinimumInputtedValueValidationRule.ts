@@ -1,10 +1,10 @@
 import type InputtedValueValidation from "../../InputtedValueValidation";
 import numericMinimumInputtedValueValidationRuleLocalization__english from
     "./NumericMinimumInputtedValueValidationRuleLocalization.english";
-import { isNumber, isNotUndefined, Logger, InvalidParameterValueError } from "@yamato-daiwa/es-extensions";
+import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
-class NumericMinimumInputtedValueValidationRule implements InputtedValueValidation.Rule {
+class NumericMinimumInputtedValueValidationRule implements InputtedValueValidation.Rule<number> {
 
   public static localization: NumericMinimumInputtedValueValidationRule.Localization =
       numericMinimumInputtedValueValidationRuleLocalization__english;
@@ -44,30 +44,13 @@ class NumericMinimumInputtedValueValidationRule implements InputtedValueValidati
   }
 
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
-
-    if (!isNumber(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: "Unable to execute this validation because the raw value is not number " +
-            `and actually has type "${ typeof rawValue }".`,
-        occurrenceLocation: "NumericMinimumInputtedValueValidationRule.check(rawValue)"
-      });
-
-      return { isValid: true };
-
-    }
-
-
+  public check(rawValue: number): InputtedValueValidation.Rule.CheckingResult {
     return rawValue >= this.MINIMAL_NUMERIC_VALUE ?
         { isValid: true } :
         {
           isValid: false,
           errorMessage: this.errorMessageBuilder({ rawValue, minimalValue: this.MINIMAL_NUMERIC_VALUE })
         };
-
   }
 
 }

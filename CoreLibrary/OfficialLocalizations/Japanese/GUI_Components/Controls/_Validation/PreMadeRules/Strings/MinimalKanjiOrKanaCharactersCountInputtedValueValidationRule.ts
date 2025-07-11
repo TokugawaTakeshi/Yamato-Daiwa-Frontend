@@ -11,7 +11,7 @@ import {
 } from "@yamato-daiwa/es-extensions";
 
 
-class MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule implements InputtedValueValidation.Rule {
+class MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
 
   public static localization: MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule.Localization =
       minimalKanjiOrKanaCharactersCountInputtedValueValidationRuleLocalization__japanese;

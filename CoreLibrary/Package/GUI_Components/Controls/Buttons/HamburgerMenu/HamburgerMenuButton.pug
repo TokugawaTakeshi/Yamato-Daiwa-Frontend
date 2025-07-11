@@ -12,14 +12,65 @@ mixin HamburgerMenuButton--YDF(properties)
 
     const {
 
+      /** @type { string | undefined } */
+      customLabel,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       noLabel,
-      alwaysEnglishLabel,
+
+      /**
+       * @type { string }
+       * @default HamburgerMenuButton__YDF.LabelLetterCases.lowercase
+       * */
       labelLetterCase,
 
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      alwaysEnglishLabel,
+
+      /** @type { string | undefined } */
+      accessibilityGuidance,
+
+      /**
+       * @type { string }
+       * @default HamburgerMenuButton__YDF.Themes.regular
+       * */
       theme,
-      areThemesExternal,
+
+      /**
+       * @type { boolean }
+       * @default HamburgerMenuButton__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default HamburgerMenuButton__YDF.GeometricVariations.regular
+       */
       geometricVariation,
-      decorativeVariation
+
+      /**
+       * @type { Array<HamburgerMenuButton__YDF.GeometricModifiers> }
+       * @default []
+       */
+      geometricModifiers,
+
+      /**
+       * @type { string }
+       * @default HamburgerMenuButton__YDF.DecorativeVariations.regular
+       * */
+      decorativeVariation,
+
+      /**
+       * @type { Array<HamburgerMenuButton__YDF.DecorativeModifiers> }
+       * @default []
+       */
+      decorativeModifiers
 
     } = processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
@@ -29,6 +80,8 @@ mixin HamburgerMenuButton--YDF(properties)
       mixinName: HamburgerMenuButton__YDF.CSS_NAMESPACE
     });
 
+
+    /** @type { Array<string> } */
     const rootElementModifierCSS_Classes = [
 
       ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
@@ -44,40 +97,41 @@ mixin HamburgerMenuButton--YDF(properties)
         CSS_Namespace: HamburgerMenuButton__YDF.CSS_NAMESPACE
       }),
 
+      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(
+        HamburgerMenuButton__YDF.CSS_NAMESPACE, geometricModifiers
+      ),
+
       ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
         decorativeVariation,
         allDecorativeVariations: HamburgerMenuButton__YDF.DecorativeVariations,
         CSS_Namespace: HamburgerMenuButton__YDF.CSS_NAMESPACE
-      })
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedDecorativeModifiersCSS_Classes(
+        HamburgerMenuButton__YDF.CSS_NAMESPACE, decorativeModifiers
+      )
 
     ];
 
-    let labelCSS_ModifierClass;
+    /** @type { string } */
+    const labelCSS_ModifierClass =
+        {
+          [HamburgerMenuButton__YDF.LabelLetterCases.uppercase]:
+              `${ HamburgerMenuButton__YDF.CSS_NAMESPACE }-Label__Uppercase`,
+          [HamburgerMenuButton__YDF.LabelLetterCases.lowercase]:
+              `${ HamburgerMenuButton__YDF.CSS_NAMESPACE }-Label__Lowercase`,
+          [HamburgerMenuButton__YDF.LabelLetterCases.capitalisation]:
+              `${ HamburgerMenuButton__YDF.CSS_NAMESPACE }-Label__Capitalisation`
+        }[labelLetterCase];
 
-    switch (labelLetterCase) {
-
-      case HamburgerMenuButton__YDF.LabelLetterCases.uppercase: {
-        labelCSS_ModifierClass = "HamburgerMenuButton--YDF-Label__Uppercase";
-        break;
-      }
-
-      case HamburgerMenuButton__YDF.LabelLetterCases.lowercase: {
-        labelCSS_ModifierClass = "HamburgerMenuButton--YDF-Label__Lowercase";
-        break;
-      }
-
-      case HamburgerMenuButton__YDF.LabelLetterCases.capitalisation: {
-        labelCSS_ModifierClass = "HamburgerMenuButton--YDF-Label__Capitalisation";
-      }
-
-    }
 
   button.HamburgerMenuButton--YDF(
     type="button"
-    class=rootElementModifierCSS_Class
+    class=rootElementModifierCSS_Classes
+    aria-label= (noLabel ? (accessibilityGuidance || HamburgerMenuButton__YDF.localization.defaultAccessibilityGuidance) : null)
   )&attributes(attributes)
 
-    +HamburgerMenu--YDF_Icon.HamburgerMenuButton--YDF-Icon
+    span.HamburgerMenuButton--YDF-Icon(role="presentation")
 
     if !noLabel
 
@@ -87,4 +141,4 @@ mixin HamburgerMenuButton--YDF(properties)
         if alwaysEnglishLabel
           | MENU
         else
-          | #{ HamburgerMenuButton__YDF.localization.menu }
+          | #{ customLabel || HamburgerMenuButton__YDF.localization.defaultLabel }

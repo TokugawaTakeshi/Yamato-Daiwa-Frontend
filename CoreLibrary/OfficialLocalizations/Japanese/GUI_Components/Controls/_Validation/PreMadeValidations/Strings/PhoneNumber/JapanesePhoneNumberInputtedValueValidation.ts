@@ -1,7 +1,8 @@
 import {
   InputtedValueValidation,
   MinimalCharactersCountInputtedValueValidationRule,
-  AllowedCharactersInputtedValueValidationRule
+  AllowedCharactersInputtedValueValidationRule,
+  isStringEmpty
 } from "@yamato-daiwa/frontend";
 import { MINIMAL_DIGITS_COUNT_IN_JAPANESE_PHONE_NUMBER } from "fundamental-constants-japan";
 import JapanesePhoneNumberInputtedValueValidationRule from
@@ -10,10 +11,10 @@ import JapanesePhoneNumberInputtedValueValidationRule from
 import japanesePhoneNumberInputtedValueValidationLocalization__japanese from
     "./JapanesePhoneNumberInputtedValueValidationLocalization.japanese";
 
-import { isEmptyString } from "@yamato-daiwa/es-extensions";
+import { isString } from "@yamato-daiwa/es-extensions";
 
 
-class JapanesePhoneNumberInputtedValueValidation extends InputtedValueValidation {
+class JapanesePhoneNumberInputtedValueValidation extends InputtedValueValidation<string> {
 
   public static localization: JapanesePhoneNumberInputtedValueValidation.Localization =
       japanesePhoneNumberInputtedValueValidationLocalization__japanese;
@@ -31,7 +32,7 @@ class JapanesePhoneNumberInputtedValueValidation extends InputtedValueValidation
           regularExpression__noNDashesRespected?: RegExp;
         }> &
         Pick<
-          InputtedValueValidation.ConstructorCompoundParameter,
+          InputtedValueValidation.ConstructorCompoundParameter<string>,
           "contextDependentRules" |
           "asynchronousRules" |
           "asynchronousValidationsCallback"
@@ -43,8 +44,9 @@ class JapanesePhoneNumberInputtedValueValidation extends InputtedValueValidation
         MINIMAL_DIGITS_COUNT_IN_JAPANESE_PHONE_NUMBER;
 
     super({
+      supportedValueTypeChecker: isString,
       isInputRequired: compoundParameter.isInputRequired,
-      omittedValueChecker: isEmptyString,
+      omittedValueChecker: isStringEmpty,
       requiredInputIsMissingValidationErrorMessage: JapanesePhoneNumberInputtedValueValidation.localization.
           requiredInputIsMissingValidationErrorMessage,
       staticRules: [

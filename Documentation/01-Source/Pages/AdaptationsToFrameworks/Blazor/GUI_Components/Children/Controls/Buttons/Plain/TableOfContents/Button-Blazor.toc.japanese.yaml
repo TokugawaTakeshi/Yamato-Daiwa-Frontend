@@ -1,3 +1,11 @@
-synopsis:
+overview:
 
-  $heading: "要約"
+  $heading: "概要"
+
+ButtonClass:
+
+  $heading: "<code>Button</code>クラス"
+
+  razorComponentParameters:
+
+    $heading: "Razorコンポーネントの引数"

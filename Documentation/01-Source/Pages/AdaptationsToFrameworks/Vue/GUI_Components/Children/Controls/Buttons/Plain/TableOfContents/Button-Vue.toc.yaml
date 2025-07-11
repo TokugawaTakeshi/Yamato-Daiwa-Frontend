@@ -1,4 +1,16 @@
-synopsis:
+overview:
 
-  $heading: `synopsis.$heading`
-  $anchor: SYNOPSIS--SECTION
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+ButtonClass:
+
+  $heading: `ButtonClass.$heading`
+  $anchor: BUTTON_CLASS--SECTION
+
+  $children:
+
+    vueProperties:
+
+      $heading: `ButtonClass.vueProperties.$heading`
+      $anchor: BUTTON_CLASS-VUE_PROPERTIES--SECTION

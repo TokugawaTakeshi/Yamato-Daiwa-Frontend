@@ -1,27 +1,26 @@
 {
-	"private": "true",
-	"name": "@yamato-daiwa/frontend-vue-demos",
-	"version": "0.0.0",
-	"dependencies": {
-		"@yamato-daiwa/es-extensions": "1.7.2",
-		"@yamato-daiwa/es-extensions-browserjs": "1.7.0",
-		"@yamato-daiwa/frontend": "../../../CoreLibrary/Package",
-		"@yamato-daiwa/frontend-demos": "../../../CoreLibrary/Demos",
-		"@yamato-daiwa/frontend-vue": "../Package",
-		"vue": "3.5.16",
-		"vue-facing-decorator": "3.0.4",
-		"vue3-slide-up-down": "2.1.0"
-	},
-	"devDependencies": {
-		"@yamato-daiwa/automation": "../../../../YamatoDaiwaAutomation/MainPackage",
-		"@yamato-daiwa/style_guides": "0.7.0",
-		"rimraf": "6.0.1",
-		"typescript": "5.8.3"
-	},
-	"scripts": {
-		"Watch Local Gallereys": "rimraf LocalGalleriesBuild && yda build --selectiveExecution LocalGalleries --mode LOCAL_DEVELOPMENT",
-		"Build Distributions": "rimraf Distributions && yda build --selectiveExecution Distributions --mode PRODUCTION && cd Distributions && git add .",
-		"Get Source Markup of Partial Demos": "yda build --selectiveExecution PartialDemosSourceFiles --mode PRODUCTION",
-		"Lint": "eslint ."
-	}
+  "private": "true",
+  "name": "@yamato-daiwa/frontend-vue-demos",
+  "version": "0.0.0",
+  "dependencies": {
+    "@yamato-daiwa/es-extensions": "1.8.4",
+    "@yamato-daiwa/es-extensions-browserjs": "1.8.4",
+    "@yamato-daiwa/frontend": "../../../CoreLibrary/Package",
+    "@yamato-daiwa/frontend-demos": "../../../CoreLibrary/Demos",
+    "@yamato-daiwa/frontend-vue": "../Package",
+    "vue": "3.5.26",
+    "vue-facing-decorator": "3.0.4",
+    "vue3-slide-up-down": "2.1.0"
+  },
+  "devDependencies": {
+    "@yamato-daiwa/style_guides": "0.11.2",
+    "rimraf": "6.1.2",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "Watch Local Galleries": "rimraf LocalGalleriesBuild && yda build --selectiveExecution LocalGalleries --mode LOCAL_DEVELOPMENT",
+    "Build Distributions": "rimraf Distributions && yda build --selectiveExecution Distributions --mode PRODUCTION && cd Distributions && git add .",
+    "Get Source Markup of Partial Demos": "yda build --selectiveExecution PartialDemosSourceFiles --mode PRODUCTION",
+    "Lint": "eslint ."
+  }
 }

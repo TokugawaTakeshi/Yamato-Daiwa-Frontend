@@ -1,5 +1,5 @@
 import { createApp as createVueApplication } from "vue";
-import BadgeBlockComponentTestSite from "./BadgeBlockComponentTestSite.vue";
+import BadgeBlockWorkbench from "./BadgeBlockWorkbench.vue";
 
 
-createVueApplication(BadgeBlockComponentTestSite).mount("#APPLICATION");
+createVueApplication(BadgeBlockWorkbench).mount("#APPLICATION");

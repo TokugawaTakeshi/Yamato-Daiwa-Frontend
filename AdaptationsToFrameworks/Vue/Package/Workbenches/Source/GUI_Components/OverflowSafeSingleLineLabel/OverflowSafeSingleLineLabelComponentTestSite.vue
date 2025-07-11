@@ -22,15 +22,22 @@
   import { OverflowSafeSingleLineLabel } from "../../../../Source";
 
   /* ─── Framework ────────────────────────────────────────────────────────────────────────────────────────────────── */
-  import { Component as VueComponentOptions, Vue as VueComponent } from "vue-facing-decorator";
+  import {
+    Component as VueComponentOptions,
+    Vue as VueComponent,
+    toNative as transformToOptionAPI_VueComponent
+  } from "vue-facing-decorator";
 
 
   @VueComponentOptions({
+    name: "OverflowSafeSingleLineLabelComponentTestSite",
     components: {
       OverflowSafeSingleLineLabel
     }
   })
-  export default class OverflowSafeSingleLineLabelComponentTestSite extends VueComponent {}
+  class OverflowSafeSingleLineLabelComponentTestSite extends VueComponent {}
+
+  export default transformToOptionAPI_VueComponent(OverflowSafeSingleLineLabelComponentTestSite);
 
 </script>
 
@@ -45,7 +52,7 @@
   InitialGlobalCSS_Rules()
 
 
-  provideOverflowSafeSingleLineLabelComponent()
+  OverflowSafeSingleLineLabel--YDF-generateStyles()
 
 
   .TestSite

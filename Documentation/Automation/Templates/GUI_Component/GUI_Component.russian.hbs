@@ -1,0 +1,111 @@
+extends {{ projectRootDirectoryPathRelativeToDirectoryForNativeImplementation }}/node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include {{ sourceDirectoryPathRelativeToDirectoryForNativeImplementation }}/SharedAssets/Markup/SharedAssets.russian.pug
+  include {{ sourceDirectoryPathRelativeToDirectoryForNativeImplementation }}/SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.{{ targetRouteForCoreLibraryWithChildrenPointers }};
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle(topHeading),
+        //- TODO ↓ ①　Редактировать полное квалификационное имя если оно не верно
+        description: MetaDescriptionTemplates.GUI_Components.{{ GUI_ComponentName__pascalCase }}
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    RoutingEmulator.setCurrentRoute("{{ targetRouteForCoreLibraryWithoutChildrenPointers }}");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.{{ targetRouteForCoreLibraryWithChildrenPointers }}.$URI,
+      japanese: routing.japanese.{{ targetRouteForCoreLibraryWithChildrenPointers }}.$URI
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- TODO ↓ ②　Редактировать длину линии
+    //- ━━━ `{{ GUI_ComponentName__pascalCase }}` ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
+
+    //- TODO ↓ ③　Редактировать URI
+    +WebPageViewer--YDF({
+      URI: "$Demos:CorePackage/GUI_Components/{{ GUI_ComponentName__pascalCase }}/{{ GUI_ComponentName__pascalCase }}GalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "{{ GUI_ComponentName__pascalCase }}" })
+    })
+
+    +{{ GUI_ComponentName__pascalCase }}Component-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ┅┅┅ Краткий обзор ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
+    }).Article-Heading2
+
+    +{{ GUI_ComponentName__pascalCase }}Component-Overview
+
+
+    //- ┅┅┅ Использование ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.usage.$heading,
+      HTML_ID: localizedSectioning.usage.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ Разметка ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.usage.$children.markup.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$anchor
+    }).Article-Heading3
+
+    //- ─── Подключение в проект ───────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.usage.$children.markup.$children.includingToProject.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.includingToProject.$anchor
+    }).Article-Heading4
+
+    +ComponentMarkupProvidingGuidanceFragment({ componentName: "{{ GUI_ComponentName__pascalCase }}" })
+
+
+    //- TODO ↓ ④　Редактировать длину линии
+    //- ─── Pug-примесь `{{ GUI_ComponentName__pascalCase }}--YDF` ─────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$anchor
+    }).Article-Heading4
+
+    +{{ GUI_ComponentName__pascalCase }}Component-PugMixinOrClassSynopsis()

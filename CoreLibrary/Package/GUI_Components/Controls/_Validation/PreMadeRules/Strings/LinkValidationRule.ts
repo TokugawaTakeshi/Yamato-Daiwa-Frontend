@@ -2,16 +2,10 @@ import type InputtedValueValidation from "../../InputtedValueValidation";
 
 import linkValidationRuleLocalization__english from "./LinkValidationRuleLocalization.english";
 
-import {
-  Logger,
-  InvalidParameterValueError,
-  isNotUndefined,
-  isString,
-  isNonEmptyString
-} from "@yamato-daiwa/es-extensions";
+import { isNotUndefined, isNonEmptyString } from "@yamato-daiwa/es-extensions";
 
 
-class LinkValidationRule implements InputtedValueValidation.Rule {
+class LinkValidationRule implements InputtedValueValidation.Rule<string> {
 
   public static localization: LinkValidationRule.Localization = linkValidationRuleLocalization__english;
 
@@ -61,29 +55,13 @@ class LinkValidationRule implements InputtedValueValidation.Rule {
   }
 
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
-
-    if (!isString(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: "Unable to execute this validation because the raw value is not the string " +
-            `and actually has type "${ typeof rawValue }".`,
-        occurrenceLocation: "LinkValidationRule.check(rawValue)"
-      });
-
-      return { isValid: true };
-
-    }
-
+  public check(rawValue: string): InputtedValueValidation.Rule.CheckingResult {
     return this.regularExpressions.every((regularExpression: RegExp): boolean => regularExpression.test(rawValue)) ?
         { isValid: true } :
         {
           isValid: false,
           errorMessage: this.errorMessageBuilder({ rawValue })
         };
-
   }
 
 }

@@ -21,7 +21,7 @@ block append Metadata
       return [
         "TextBox Component Demos",
         ...partialTitle ? [ ` — ${ partialTitle }` ] : [],
-        " — Yamato Daiwa Frontend Vue (YDF Vue)"
+        " — Yamato Daiwa Frontend (YDF)"
       ].join("");
     }
 
@@ -30,7 +30,10 @@ block append Metadata
         "@Partials/YDF-Demos-Primer",
         "@Partials/YDF-Demos-CommonRequirements",
         "@Pages/GUI_Components/Controls/Validatables/TextBox/TextBoxGalleryPage"
-      ]
+      ],
+      scriptsURIs: {
+        atEndOfBody: [ "@CompletePages/GUI_Components/Controls/Validatables/TextBox/TextBoxGalleryPage" ]
+      }
     });
 
 

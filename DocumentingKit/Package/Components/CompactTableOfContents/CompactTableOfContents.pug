@@ -6,7 +6,11 @@ mixin CompactTableOfContents--YDF_DK(localizedRouting, options, iterationData)
   if localizedRouting
 
     -
-      options = options ?? {};
+
+      options = options ?? {
+        mustApplyAnchorsInsteadOfURIs: false
+      };
+
       iterationData = iterationData ?? {
         currentDepthLevel__numerationFrom0: -1,
         currentRouteSegments: []
@@ -48,18 +52,20 @@ mixin CompactTableOfContents--YDF_DK(localizedRouting, options, iterationData)
             -
 
               const isCurrentRoute = route === RoutingEmulator.currentRoute;
-              const linkModifierCSS_CLasses = isCurrentRoute ? [ "CompactTableOfContents--YDF_DK-Item-Link__Current" ] : [];
+              const linkModifierCSS_Classes = isCurrentRoute ? [ "CompactTableOfContents--YDF_DK-Item-Link__Current" ] : [];
+
+              const anchorURI = options.mustApplyAnchorsInsteadOfURIs === true ? `#${ metadata.$anchor }` : metadata.$URI;
 
 
             a.CompactTableOfContents--YDF_DK-Item-Link(
-              href=metadata.$URI
-              class=linkModifierCSS_CLasses
+              href=anchorURI
+              class=linkModifierCSS_Classes
               aria-current=isCurrentRoute ? "page" : null
-            )!= metadata.$tableOfContentsTitle
+            )!= metadata.$heading
 
           else
 
-            span.CompactTableOfContents--YDF_DK-Item-Title!= metadata.$tableOfContentsTitle
+            span.CompactTableOfContents--YDF_DK-Item-Title!= metadata.$heading
 
           if children
 

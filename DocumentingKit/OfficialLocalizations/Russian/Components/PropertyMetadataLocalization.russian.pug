@@ -1,13 +1,21 @@
 -
 
   const propertyMetadataYDF_DK_ComponentLocalization__russian = {
+
     localizedInterpretation: "Русскоязычное наименование",
     type: "Тип",
     types: {
-      indexedArray: "Индексный массив",
-      associativeArrayLikeObject: "Объект типа «ассоциативный массив»"
+      [RawObjectDataProcessor.ValuesTypesIDs.number]: "число",
+      [RawObjectDataProcessor.ValuesTypesIDs.string]: "строка",
+      [RawObjectDataProcessor.ValuesTypesIDs.boolean]: "булевский",
+      [RawObjectDataProcessor.ValuesTypesIDs.fixedSchemaObject]: "объект фиксированной структуры",
+      [RawObjectDataProcessor.ValuesTypesIDs.associativeArray]: "объект типа «ассоциативный массив»",
+      [RawObjectDataProcessor.ValuesTypesIDs.indexedArray]: "индексный массив",
+      [RawObjectDataProcessor.ValuesTypesIDs.tuple]: "кортеж",
+      [RawObjectDataProcessor.ValuesTypesIDs.ambiguousObject]: "неоднозначный объект",
+      [RawObjectDataProcessor.ValuesTypesIDs.ambiguousArray]: "неоднозначный массив",
+      [RawObjectDataProcessor.ValuesTypesIDs.polymorphic]: "полиморфный"
     },
-    polymorphicPropertyVariants: "Варианты",
 
     /* ━━━ Undefindability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     isUndefinedForbidden: "Запрещён ли undefined",
@@ -29,37 +37,56 @@
     requiredIf: "Обязательное если",
 
     /* ━━━ By Types ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── Fixed Shema Objects ────────────────────────────────────────────────────────────────────────────────────── */
+    objectTypeSchema: "Структура объекта",
+
     /* ─── Associative Array ──────────────────────────────────────────────────────────────────────────────────────── */
     areUndefinedTypeValuesForbidden: "Запрещены ли значения типа undefined",
     areNullTypeValuesForbidden: "Запрещены ли значения типа null",
     minimalEntriesCount: "Минимум пар",
+    allowedKeys: "Допустимые ключи",
+    associativeArrayValues: "Значения ассоциативного массива",
 
     /* ─── Indexed Array Property ─────────────────────────────────────────────────────────────────────────────────── */
+    arrayElements: "Элементы массива",
     minimalElementsCount: "Минимум элементов",
     areUndefinedElementsForbidden: "Запрещены ли элементы типа undefined",
-    areNullElementsForbidden: "Запрещены ли этементы типа null",
+    areNullElementsForbidden: "Запрещены ли элементы типа null",
 
-    yes: "Да",
-    no: "Нет",
-    minimalCharactersCount: "Минимум символов",
-    maximalCharactersCount: "Максимум символов",
+    /* ─── Numbers ────────────────────────────────────────────────────────────────────────────────────────────────── */
     numbersSet: "Множество чисел",
+    numbersSets: {
+      [RawObjectDataProcessor.NumbersSets.naturalNumber]: "Натуральное число",
+      [RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero]: "Положительное целое число либо ноль",
+      [RawObjectDataProcessor.NumbersSets.naturalNumberOrZero]: "Натуральное число либо ноль",
+      [RawObjectDataProcessor.NumbersSets.negativeInteger]: "Отрицательное целое число",
+      [RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero]: "Отрицательное целое число либо ноль",
+      [RawObjectDataProcessor.NumbersSets.anyInteger]: "Любое целое число",
+      [RawObjectDataProcessor.NumbersSets.positiveDecimalFraction]: "Положительная десятичная дробь",
+      [RawObjectDataProcessor.NumbersSets.positiveDecimalFractionOrZero]: "Положительная десятичная дробь либо ноль",
+      [RawObjectDataProcessor.NumbersSets.negativeDecimalFraction]: "Отрицательная десятичная дробь",
+      [RawObjectDataProcessor.NumbersSets.negativeDecimalFractionOrZero]: "Отрицательная десятичная дробь либо ноль",
+      [RawObjectDataProcessor.NumbersSets.anyDecimalFraction]: "Любая десятичная дробь",
+      [RawObjectDataProcessor.NumbersSets.anyDecimalFractionOrZero]: "Любая десятичная дробь либо ноль",
+      [RawObjectDataProcessor.NumbersSets.anyRealNumber]: "Любое действительное число",
+      [RawObjectDataProcessor.NumbersSets.positiveRealNumber]: "Положительное действительное число",
+      [RawObjectDataProcessor.NumbersSets.negativeRealNumber]: "Отрицательное действительное число",
+      [RawObjectDataProcessor.NumbersSets.positiveRealNumberOrZero]: "Положительное действительное число либо ноль",
+      [RawObjectDataProcessor.NumbersSets.negativeRealNumberOrZero]: "Отрицательное действительное число либо ноль"
+    },
     minimalValue: "Минимальное значение",
     maximalValue: "Максимальное значение",
-    numbersSets: {
-      [RawObjectDataProcessor.NumbersSets.naturalNumber]: "Натуральные числа",
-      [RawObjectDataProcessor.NumbersSets.nonNegativeInteger]: "Неотрицательные целые числа",
-      [RawObjectDataProcessor.NumbersSets.negativeInteger]: "Отрицательный целый числа",
-      [RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero]: "Отрицательное целое число или ноль",
-      [RawObjectDataProcessor.NumbersSets.anyInteger]: "Целое число любого знака",
-      [RawObjectDataProcessor.NumbersSets.positiveDecimalFraction]: "Положительная десятичная дробь",
-      [RawObjectDataProcessor.NumbersSets.negativeDecimalFraction]: "Отрицательная десятичная дробь",
-      [RawObjectDataProcessor.NumbersSets.decimalFractionOfAnySign]: "Десятичная дробь любого знака",
-      [RawObjectDataProcessor.NumbersSets.anyRealNumber]: "Любое действительное число"
-    },
-    allowedKeys: "Допустимые ключи",
     allowedAlternatives: "Допустимые варианты",
-    objectTypeSchema: "Структура объекта",
-    associativeArrayValue: "Значения ассоциативного массива",
-    arrayElements: "Элементы массива"
+
+    /* ─── Strings ────────────────────────────────────────────────────────────────────────────────────────────────── */
+    minimalCharactersCount: "Минимум символов",
+    maximalCharactersCount: "Максимум символов",
+
+    /* ─── Polymorphic ────────────────────────────────────────────────────────────────────────────────────────────── */
+    polymorphicPropertyVariants: "Варианты",
+
+    /* ━━━ Other ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    yes: "Да",
+    no: "Нет"
+
   };

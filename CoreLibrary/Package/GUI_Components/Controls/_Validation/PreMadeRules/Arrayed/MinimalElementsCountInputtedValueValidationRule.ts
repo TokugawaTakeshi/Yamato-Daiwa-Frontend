@@ -1,15 +1,10 @@
 import type InputtedValueValidation from "../../InputtedValueValidation";
 import minimalElementsCountInputtedValueValidationRuleLocalization__english from
     "./MinimalElementsCountInputtedValueValidationRuleLocalization.english";
-import {
-  stringifyAndFormatArbitraryValue,
-  InvalidParameterValueError,
-  Logger,
-  isNotUndefined
-} from "@yamato-daiwa/es-extensions";
+import { stringifyAndFormatArbitraryValue, isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
-class MinimalElementsCountInputtedValueValidationRule implements InputtedValueValidation.Rule {
+class MinimalElementsCountInputtedValueValidationRule implements InputtedValueValidation.Rule<ReadonlyArray<unknown>> {
 
   public static localization: MinimalElementsCountInputtedValueValidationRule.Localization =
       minimalElementsCountInputtedValueValidationRuleLocalization__english;
@@ -50,22 +45,7 @@ class MinimalElementsCountInputtedValueValidationRule implements InputtedValueVa
   }
 
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
-
-    if (!Array.isArray(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: "Unable to execute this validation because the raw value is not the array " +
-            `and actually has type "${ typeof rawValue }".`,
-        occurrenceLocation: "MinimalElementsCountInputtedValueValidationRule.check(rawValue)"
-      });
-
-      return { isValid: true };
-
-    }
-
+  public check(rawValue: ReadonlyArray<unknown>): InputtedValueValidation.Rule.CheckingResult {
 
     const isValid: boolean = rawValue.length >= this.MINIMAL_ELEMENTS_COUNT;
 

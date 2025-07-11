@@ -14,7 +14,9 @@ mixin ObjectTypeAbstract--YDF_DK(propertiesObject)
 
   .ObjectTypeAbstract--YDF_DK&attributes(attributes)
 
-    .ObjectTypeAbstract--YDF_DK-TypeNameHeading= typeName
+    if typeName
+
+      .ObjectTypeAbstract--YDF_DK-TypeNameHeading= typeName
 
     if localizedDescriptiveHeading
 

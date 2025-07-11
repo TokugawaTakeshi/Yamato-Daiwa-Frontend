@@ -1,3 +1,19 @@
-synopsis:
+overview:
 
-  $heading: "Synopsis"
+  $heading: "Overview"
+
+BadgeClass:
+
+  $heading: "<code>Badge</code> Class"
+
+  reactProperties:
+
+    $heading: "React Properties"
+
+  examples:
+
+    $heading: "Examples"
+
+    minimal:
+
+      $heading: Minimal Example (Required Properties Only)

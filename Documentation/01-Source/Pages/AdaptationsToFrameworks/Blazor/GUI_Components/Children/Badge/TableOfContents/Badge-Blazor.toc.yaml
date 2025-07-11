@@ -1,4 +1,16 @@
-synopsis:
+overview:
 
-  $heading: `synopsis.$heading`
-  $anchor: SYNOPSIS--SECTION
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+BadgeClass:
+
+  $heading: `BadgeClass.$heading`
+  $anchor: BADGE_CLASS--SECTION
+
+  $children:
+
+    razorComponentParameters:
+
+      $heading: `BadgeClass.razorComponentParameters.$heading`
+      $anchor: BADGE_CLASS-RAZOR_COMPONENT_PARAMETERS--SECTION

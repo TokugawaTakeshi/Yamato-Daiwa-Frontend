@@ -24,6 +24,21 @@ module.exports = [
       "vue/valid-template-root": "off"
 
     }
+  },
+
+  {
+    files: [
+      "Source/GUI_Components/_VuePropertiesValidators/VuePropertyValidator.ts",
+      "Source/GUI_Components/Controls/Validatables/ValidatableControl.ts"
+    ],
+    rules: {
+
+      /* The merging of type/interface and namespace is completely valid TypeScript,
+       * but @typescript-eslint community does not wish to support it.
+       * https://github.com/eslint/eslint/issues/15504 */
+      "@typescript-eslint/no-redeclare": "off"
+
+    }
   }
 
 ];

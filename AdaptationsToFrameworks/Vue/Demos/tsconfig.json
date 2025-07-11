@@ -11,10 +11,7 @@
     "noUnusedParameters": false, /* Actual for Vue3; see https://github.com/vuejs/vue-next/issues/4668 */
     "experimentalDecorators": true,
     "allowJs": true, /* Actual for Vue3; */
-    "skipLibCheck": true,
-
-    "baseUrl": "./Source",
-
+    "skipLibCheck": true
   },
   "include": [
     "Project.d.ts",

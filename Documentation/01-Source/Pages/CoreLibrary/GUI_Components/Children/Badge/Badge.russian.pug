@@ -5,7 +5,6 @@ block append Requirements
 
   include ../../../../../SharedAssets/Markup/SharedAssets.russian.pug
   include ../../../../../SharedComponents/SharedComponents.russian.pug
-  include Data/BadgeComponentPropertiesSpecification.pug
 
 
 block append Metadata
@@ -49,10 +48,10 @@ block append SpecificContent
 
   article
 
-    //- ━━━ Badge ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ━━━ `Badge` ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     h1.Article-Heading1!= topHeading
 
-    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
 
     +WebPageViewer--YDF({
       URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage.html",
@@ -64,24 +63,24 @@ block append SpecificContent
     +CompactTableOfContents--YDF_DK(localizedSectioning)
 
 
-    //- ━━━ Сводка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ Краткий обзор ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
-      text: localizedSectioning.synopsis.$heading,
-      HTML_ID: localizedSectioning.synopsis.$anchor
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
     }).Article-Heading2
 
-    +BadgeComponent-Synopsis
+    +BadgeComponent-Overview
 
 
-    //- ━━━ Использование ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ Использование ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.usage.$heading,
       HTML_ID: localizedSectioning.usage.$anchor
     }).Article-Heading2
 
-    //- ─── Разметка ───────────────────────────────────────────────────────────────────────────────────────────────────
+    //- ╍╍╍ Разметка ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     +Heading--YDF({
       level: 3,
       text: localizedSectioning.usage.$children.markup.$heading,
@@ -96,27 +95,18 @@ block append SpecificContent
     }).Article-Heading4
 
     +ComponentMarkupProvidingGuidanceFragment({ componentName: "Badge" })
+
+
+    //- ─── Pug-примесь `Badge--YDF` ───────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$anchor
+    }).Article-Heading4
+
+    +BadgeComponent-PugMixinOrClassSynopsis()
+
     //-
-
-      h4.Article-Heading4 Программный интерфейс
-      h5.Article-Heading5 Pug-примесь #[code Badge--YDF]
-
-      +CallableExpressionScheme--YDF_DK({
-        technicalName: "Badge--YDF",
-        parametersSpecification: [
-          {
-            genericTechnicalName: "properties",
-            localizedName: "Свойства",
-            type: "Properties",
-            required: true
-          }
-        ],
-        hiddenReturnValue: true
-      })
-        +ObjectTypeAbstract--YDF_DK(
-          componentPropertiesSpecification
-        ).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem
-
 
       h6.Article-Heading6 Минимальный пример
 

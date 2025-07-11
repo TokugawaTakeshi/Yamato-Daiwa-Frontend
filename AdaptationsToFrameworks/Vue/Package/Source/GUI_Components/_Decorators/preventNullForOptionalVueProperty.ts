@@ -5,7 +5,7 @@ import ForbiddenNullValueOfOptionalVuePropertyError from
     "../_Errors/ForbiddenNullValueOfOptionalVueProperty/ForbiddenNullValueOfOptionalVuePropertyError";
 
 
-const preventNullForOptionalVueProperty: (_arguments: unknown, decoratorContext: (string | DecoratorContext)) => void =
+const preventNullForOptionalVueProperty: (_arguments: unknown, decoratorContext: string | DecoratorContext) => void =
     createDecorator(
       (componentOptions: ComponentOptions, key: string): void => {
 
@@ -42,7 +42,7 @@ function patchLifecycleHook(
 
     for (const nonNullOptionalProperty of nonNullOptionalProperties) {
       if (this[nonNullOptionalProperty] === null) {
-        Logger.throwErrorAndLog({
+        Logger.throwErrorWithFormattedMessage({
           errorInstance: new ForbiddenNullValueOfOptionalVuePropertyError({
             targetComponentName: componentOptions.name,
             targetPropertyName: nonNullOptionalProperty

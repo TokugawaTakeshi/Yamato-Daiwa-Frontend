@@ -210,50 +210,58 @@
     }
 
 
-    /* ━━━ Properties specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     static propertiesSpecification = {
 
       label: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       accessibilityGuidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       externalLabelHTML_ID: {
         type: String,
-        requiredIf: {
-          predicate: properties =>
+        undefinedForbiddenIf: {
+          predicate: ({ rawData__full: properties }) =>
               !isNonEmptyString(properties.label) &&
               !isNonEmptyString(properties.accessibilityGuidance),
           descriptionForLogging:
               "Neither \"label\" nor \"accessibilityGuidance\" has been specified with non-empty strings"
         },
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       guidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       selectingOptions: {
 
         type: Array,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
 
         element: {
           type: Object,
           properties: {
             key: {
-              type: RawObjectDataProcessor.ValuesTypesIDs.oneOf,
-              required: true,
+              type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+              isUndefinedForbidden: true,
+              isNullForbidden: true,
               alternatives: [
                 {
                   type: String,
@@ -261,13 +269,15 @@
                 },
                 {
                   type: Number,
-                  numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber
+                  numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+                  isNaN_Forbidden: true
                 }
               ]
             },
             label: {
-              type: RawObjectDataProcessor.ValuesTypesIDs.oneOf,
-              required: true,
+              type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+              isUndefinedForbidden: true,
+              isNullForbidden: true,
               alternatives: [
                 {
                   type: String,
@@ -275,7 +285,8 @@
                 },
                 {
                   type: Number,
-                  numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber
+                  numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+                  isNaN_Forbidden: true
                 }
               ]
             }
@@ -285,8 +296,9 @@
       },
 
       initiallySelectedOptionKey: {
-        type: RawObjectDataProcessor.ValuesTypesIDs.oneOf,
-        required: false,
+        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         alternatives: [
           {
             type: String,
@@ -294,56 +306,66 @@
           },
           {
             type: Number,
-            numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber
+            numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+            isNaN_Forbidden: true
           }
         ]
       },
 
       radioButtonsHTML_Name: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       disabled: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       readonly: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       required: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsRequired: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsOptional: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       labelElementHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       theme: {
         type: String,
-        defaultValue: RadioButtonsGroup__YDF.Themes.regular,
+        undefinedValueSubstitution: RadioButtonsGroup__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(RadioButtonsGroup__YDF.Themes).
             map(([ key, value ]) => ({ key: `RadioButtonsGroup__YDF.Themes.${ key }`, value }))
@@ -351,12 +373,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: RadioButtonsGroup__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: RadioButtonsGroup__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true,
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: RadioButtonsGroup__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: RadioButtonsGroup__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(RadioButtonsGroup__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `RadioButtonsGroup__YDF.GeometricVariations.${ key }`, value }))
@@ -364,7 +388,8 @@
 
       decorativeVariation: {
         type: String,
-        defaultValue: RadioButtonsGroup__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        undefinedValueSubstitution: RadioButtonsGroup__YDF.DecorativeVariations.regular,
         allowedAlternatives: Object.
             entries(RadioButtonsGroup__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `RadioButtonsGroup__YDF.DecorativeVariations.${ key }`, value }))

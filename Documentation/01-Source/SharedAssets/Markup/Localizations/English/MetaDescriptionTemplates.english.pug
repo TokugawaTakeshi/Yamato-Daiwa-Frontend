@@ -30,13 +30,36 @@
             "the \"Badge\" is the non-interactive component for the displaying of important metadata such as " +
             "the product category, the date and and time of some event etc.",
 
-      buttons: {
+      controls: {
 
-        plain:
+        ValidatableControlShell:
+            "The \"ValidatableControlShell\" component of \"Yamato Daiwa Frontend\" library (abbreviation: \"YDF\") and " +
+              "its adaptations to frameworks is intended to be used as a part of user data input components, " +
+              "especially for data that needs to be validated. " +
+            "This component provides such auxiliary elements as a header label, a \"required field\" mark, " +
+              "a list of validation messages, and so on.",
+
+        buttons: {
+
+          Button:
             "The \"Button\" component of \"Yamato Daiwa Frontend\" library (abbreviation: \"YDF\") is one of most " +
-              "popular control element reacting to mouse click or touch of touchscreen. " +
-            "Despite the apparent simplicity the button can have pretty complicated markup and styles, but YDF " +
+              "popular control. " +
+            "Reacting to mouse click or touch of a touchscreen. " +
+            "Despite the apparent simplicity the button may have pretty complicated markup and styles, but YDF " +
               "encapsulates this complexity as possible."
+
+        },
+
+        validatables: {
+
+          TextBox:
+            "The \"TextBox\" component of \"Yamato Daiwa Frontend\" library (abbreviation: \"YDF\") is one of most " +
+              "popular control. " +
+            "Accepts the keyboard input of a plain text or other data can be represented as a characters sequence " +
+              "such as a email address, password, URL, phone number etc. " +
+            "The multiline mode, inputted value copying button and other demanded additional functionality is available."
+
+        }
 
       }
 

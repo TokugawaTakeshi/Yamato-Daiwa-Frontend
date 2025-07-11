@@ -199,7 +199,7 @@ namespace ValidatableControl {
     public getExpectedToBeValidValue(): ValidValue {
 
       if (this.isInvalid) {
-        Logger.throwErrorAndLog({
+        Logger.throwErrorWithFormattedMessage({
           errorInstance: new UnexpectedEventError("Contrary to expectations, the value is still invalid."),
           title: UnexpectedEventError.localization.defaultTitle,
           occurrenceLocation: "ValidatableControl.Payload.getExpectedToBeValidValue()"

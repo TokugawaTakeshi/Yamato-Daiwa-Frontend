@@ -51,7 +51,7 @@ export default abstract class AdmonitionBlock {
         });
 
     if (!(rootElement instanceof HTMLElement)) {
-      Logger.throwErrorAndLog({
+      Logger.throwErrorWithFormattedMessage({
         errorInstance: new InvalidParameterValueError({
           parameterNumber: 1,
           parameterName: "initializationProperties",
@@ -71,7 +71,7 @@ export default abstract class AdmonitionBlock {
 
 
     if (!rootElement.classList.contains(AdmonitionBlock.ROOT_ELEMENT_CSS_CLASS)) {
-      Logger.throwErrorAndLog({
+      Logger.throwErrorWithFormattedMessage({
         errorInstance: new InvalidParameterValueError({
           parameterNumber: 1,
           parameterName: "initializationProperties",
@@ -100,9 +100,10 @@ export default abstract class AdmonitionBlock {
       handler(): void {
 
         CollapsingAnimation.animate({
-          animatedElement: rootElement,
-          mustRemoveOnComplete: true,
-          duration__seconds: 0.5
+          targetElement: rootElement,
+          mustRemoveOnceComplete: true,
+          duration__seconds: 0.5,
+          mustReturnPromise: false
         });
 
         leftClickEventListener.utilize();
@@ -151,7 +152,7 @@ export default abstract class AdmonitionBlock {
 
     } else {
 
-      Logger.throwErrorAndLog({
+      Logger.throwErrorWithFormattedMessage({
         errorInstance: new InvalidParameterValueError({
           parameterNumber: 1,
           parameterName: "initializationProperties",

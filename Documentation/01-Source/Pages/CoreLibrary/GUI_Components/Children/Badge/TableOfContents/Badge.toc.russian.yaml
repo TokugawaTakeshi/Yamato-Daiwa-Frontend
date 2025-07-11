@@ -1,6 +1,6 @@
-synopsis:
+overview:
 
-  $heading: "Сводка"
+  $heading: "Краткий обзор"
 
 usage:
 
@@ -17,11 +17,3 @@ usage:
     pugMixin:
 
       $heading: "Pug-примесь <code>Badge--YDF</code>"
-
-      minimalExample:
-
-        $heading: "Минимальный пример (только обязательные свойства)"
-
-  logic:
-
-    $heading: "Логика"

@@ -9,8 +9,8 @@ namespace YamatoDaiwa.Frontend.GUI_Components.AdmonitionBlock;
 [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 public partial class AdmonitionBlock :
     Microsoft.AspNetCore.Components.ComponentBase,
-    IHTML_AttributesFallthrough,
-    ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement,
+    YamatoDaiwa.Frontend.GUI_Components.Abstractions.IHTML_AttributesFallthrough,
+    YamatoDaiwa.Frontend.GUI_Components.Abstractions.IFlexibleExternalCSS_ClassesSpecifyingForRootElement,
     IAsyncDisposable
 {
 
@@ -18,7 +18,7 @@ public partial class AdmonitionBlock :
 
 
   [Microsoft.AspNetCore.Components.Parameter(CaptureUnmatchedValues = true)]
-  public IDictionary<string, object>? rootElementHTML_Attributes { get; set; }
+  public Dictionary<string, object>? rootElementHTML_Attributes { get; set; }
 
   [Microsoft.AspNetCore.Components.Parameter]
   public string? title { get; set; }
@@ -85,8 +85,8 @@ public partial class AdmonitionBlock :
   [Microsoft.AspNetCore.Components.Parameter]
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
-      "Microsoft.Performance",
-      "BL0007",
+      category: "Microsoft.Performance",
+      checkId: "BL0007",
       Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
     )
   ]
@@ -109,7 +109,7 @@ public partial class AdmonitionBlock :
       YDF_ComponentsHelper.areThemesCSS_ClassesCommon || AdmonitionBlock.mustConsiderThemesCSS_ClassesAsCommon;
 
 
-  /* ─── Geometry ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public enum StandardGeometricVariations
   {
     regular,
@@ -129,8 +129,8 @@ public partial class AdmonitionBlock :
   [Microsoft.AspNetCore.Components.Parameter]
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
-      "Microsoft.Performance",
-      "BL0007",
+      category: "Microsoft.Performance",
+      checkId: "BL0007",
       Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
     )
   ]
@@ -143,7 +143,7 @@ public partial class AdmonitionBlock :
   }
 
 
-  /* ─── Decoration ───────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public enum StandardDecorativeVariations
   {
     notice,
@@ -167,8 +167,8 @@ public partial class AdmonitionBlock :
   [Microsoft.AspNetCore.Components.EditorRequired]
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
-      "Microsoft.Performance",
-      "BL0007",
+      category: "Microsoft.Performance",
+      checkId: "BL0007",
       Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
     )
   ]
@@ -197,31 +197,42 @@ public partial class AdmonitionBlock :
   public string? rootElementSpaceSeparatedModifierCSS_Classes { get; set; } = null;
 
   private string classAttributeValueForRootElement => YDF_ComponentsHelper.GenerateClassAttributeValueForRootElement(
-    CSS_Namespace: AdmonitionBlock.CSS_NAMESPACE,
-    activeTheme: this._theme,
-    standardThemes: typeof(AdmonitionBlock.StandardThemes),
-    customThemes: AdmonitionBlock.CustomThemes,
-    areThemesCSS_ClassesCommon: this.areThemesCSS_ClassesCommon,
-    activeGeometricVariation: this._geometricVariation,
-    standardGeometricVariations: typeof(AdmonitionBlock.StandardGeometricVariations),
-    customGeometricVariations: AdmonitionBlock.CustomGeometricVariations,
-    activeDecorativeVariation: this._decorativeVariation,
-    standardDecorativeVariations: typeof(AdmonitionBlock.StandardDecorativeVariations),
-    customDecorativeVariations: AdmonitionBlock.CustomDecorativeVariations,
-    activeGeometricModifiers: null,
-    activeDecorativeModifiers: null,
-    externalSpaceSeparatedCSS_Classes:
-        ((ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes
+    new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement
+    {
+      CSS_Namespace = AdmonitionBlock.CSS_NAMESPACE,
+      theme = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.Theme
+      {
+        activeOne = this._theme,
+        standardOnes = typeof(AdmonitionBlock.StandardThemes),
+        customOnes = AdmonitionBlock.CustomThemes,
+        areThemesCSS_ClassesCommon = this.areThemesCSS_ClassesCommon 
+      },
+      geometricVariation = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.GeometricVariation
+      {
+        activeOne = this._geometricVariation,
+        standardOnes = typeof(AdmonitionBlock.StandardGeometricVariations),
+        customOnes = AdmonitionBlock.CustomGeometricVariations
+      },
+      decorativeVariation = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.DecorativeVariation
+      {
+        activeOne = this._decorativeVariation,
+        standardOnes = typeof(AdmonitionBlock.StandardDecorativeVariations),
+        customOnes = AdmonitionBlock.CustomDecorativeVariations
+      },
+      rootElementHTML_Attributes = this.rootElementHTML_Attributes,
+      externalSpaceSeparatedCSS_Classes =
+          ((IFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes
+    }
   );
-
+  
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public abstract class Localization
+  public abstract record Localization
   {
 
     public abstract DismissingButton dismissingButton { get; }
 
-    public struct DismissingButton
+    public record DismissingButton
     {
       public required string accessibilityGuidance { get; init; }
     }

@@ -118,25 +118,29 @@
 
       label: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       externalLabelHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       HTML_Name: {
         type: String,
-        required: true,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       HTML_Value: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
@@ -144,34 +148,40 @@
        * 1 minimal character is definitely not enough for unique string, but in MVC mode it could be the variable. */
       instanceID_UniqueDynamicPart: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       inputElementHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       checked: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       disabled: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       readonly: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       theme: {
         type: String,
-        defaultValue: RadioButton__YDF.Themes.regular,
+        undefinedValueSubstitution: RadioButton__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(RadioButton__YDF.Themes).
             map(([ key, value ]) => ({ key: `RadioButton__YDF.Themes.${ key }`, value }))
@@ -179,12 +189,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: RadioButton__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: RadioButton__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: RadioButton__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: RadioButton__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(RadioButton__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `RadioButton__YDF.GeometricVariations.${ key }`, value }))
@@ -192,7 +204,10 @@
 
       geometricModifiers: {
         type: Array,
-        defaultValue: [],
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
         element: {
           type: String,
           allowedAlternatives: Object.values(RadioButton__YDF.GeometricModifiers)
@@ -201,7 +216,8 @@
 
       decorativeVariation: {
         type: String,
-        defaultValue: RadioButton__YDF.DecorativeVariations.regular,
+        undefinedValueSubstitution: RadioButton__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(RadioButton__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `RadioButton__YDF.DecorativeVariations.${ key }`, value }))

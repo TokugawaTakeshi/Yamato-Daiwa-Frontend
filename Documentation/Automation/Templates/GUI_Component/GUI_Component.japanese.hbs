@@ -1,0 +1,111 @@
+extends {{ projectRootDirectoryPathRelativeToDirectoryForNativeImplementation }}/node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include {{ sourceDirectoryPathRelativeToDirectoryForNativeImplementation }}/SharedAssets/Markup/SharedAssets.japanese.pug
+  include {{ sourceDirectoryPathRelativeToDirectoryForNativeImplementation }}/SharedComponents/SharedComponents.japanese.pug
+
+
+block append Metadata
+
+  -
+
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.{{ targetRouteForCoreLibraryWithChildrenPointers }};
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle(topHeading),
+        //- TODO ↓ ①　完全名が正しくなければ、編集して下さい
+        description: MetaDescriptionTemplates.GUI_Components.{{ GUI_ComponentName__pascalCase }}
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    RoutingEmulator.setCurrentRoute("{{ targetRouteForCoreLibraryWithoutChildrenPointers }}");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.{{ targetRouteForCoreLibraryWithChildrenPointers }}.$URI,
+      russian: routing.russian.{{ targetRouteForCoreLibraryWithChildrenPointers }}.$URI
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- TODO ↓ ②　線の長さを編集してください
+    //- ━━━ `{{ GUI_ComponentName__pascalCase }}` ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
+
+    //- TODO ↓ ③　URIを編集してください
+    +WebPageViewer--YDF({
+      URI: "$Demos:CorePackage/GUI_Components/{{ GUI_ComponentName__pascalCase }}/{{ GUI_ComponentName__pascalCase }}GalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "{{ GUI_ComponentName__pascalCase }}" })
+    })
+
+    +{{ GUI_ComponentName__pascalCase }}Component-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ┅┅┅ 概要 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
+    }).Article-Heading2
+
+    +{{ GUI_ComponentName__pascalCase }}Component-Overview
+
+
+    //- ┅┅┅ 利用 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.usage.$heading,
+      HTML_ID: localizedSectioning.usage.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ マークアップ ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.usage.$children.markup.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$anchor
+    }).Article-Heading3
+
+    //- ─── プロジェクトへの取り組み ──────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.usage.$children.markup.$children.includingToProject.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.includingToProject.$anchor
+    }).Article-Heading4
+
+    +ComponentMarkupProvidingGuidanceFragment({ componentName: "{{ GUI_ComponentName__pascalCase }}" })
+
+
+    //- TODO ↓ ④　線の長さを編集してください
+    //- ─── Pug混入の`{{ GUI_ComponentName__pascalCase }}--YDF` ─────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$anchor
+    }).Article-Heading4
+
+    +{{ GUI_ComponentName__pascalCase }}Component-PugMixinOrClassSynopsis()

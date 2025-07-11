@@ -1,20 +1,24 @@
 import TextBox from "../../../../../../GUI_Components/Controls/Validatables/TextBox/TextBox";
 import InputtedValueValidation from "../../../../../../GUI_Components/Controls/_Validation/InputtedValueValidation";
-import { isEmptyString } from "@yamato-daiwa/es-extensions";
+import ValidatableControl from "../../../../../../GUI_Components/Controls/_Validation/ValidatableControl";
+import isStringEmpty from "../../../../../../GUI_Components/Controls/_Validation/OmittedValueCheckers/isStringEmpty";
+import { isString } from "@yamato-daiwa/es-extensions";
 
 
-class SimpleValidation extends InputtedValueValidation {
+class SimpleValidation extends InputtedValueValidation<string> {
   public constructor() {
     super({
+      isValueOfSupportedType: isString,
       isInputRequired: true,
-      omittedValueChecker: isEmptyString
+      hasValueBeenOmitted: isStringEmpty
     });
   }
 }
 
 
-TextBox.pickOne({
+TextBox.initializeOne({
   rootElement: { selector: "#TEXT_BOX-1" },
-  validityHighlightingActivationMode: TextBox.ValidityHighlightingActivationModes.onFocusOut,
+  validityHighlightingActivationMode:
+      ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes.onFocusOut,
   validation: new SimpleValidation()
 });

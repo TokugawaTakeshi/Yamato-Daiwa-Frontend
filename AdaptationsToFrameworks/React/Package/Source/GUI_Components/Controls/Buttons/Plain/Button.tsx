@@ -3,13 +3,15 @@ import React from "react";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import ComponentsAuxiliaries from "../../../ComponentsAuxiliaries";
-import { isNotUndefined } from "@yamato-daiwa/es-extensions";
+import checkForNonEmptyStringReactProperties from "../../../../_ReactPropertiesValidators/checkForNonEmptyStringReactProperties";
+import InvalidReactPropertyError from "../../../../_Errors/InvalidVueProperty/InvalidReactPropertyError";
+import { Logger, isNotUndefined, isString, isNumber } from "@yamato-daiwa/es-extensions";
 
 
 class Button extends React.Component<Button.Properties> {
 
+  /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static readonly CSS_NAMESPACE: string = "Button--YDF";
-
 
   public static get defaultProps(): Required<
     Pick<
@@ -44,10 +46,54 @@ class Button extends React.Component<Button.Properties> {
     };
   }
 
-  protected validateProps(): void {
 
+  /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public constructor(properties: Button.Properties) {
+    super(properties);
+    this.validateProperties();
   }
 
+  /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public override componentDidUpdate(): void {
+    this.validateProperties();
+  }
+
+
+  /* ━━━ Properties Validation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  private validateProperties(): void {
+    checkForNonEmptyStringReactProperties({
+      componentName: "Button",
+      propertiesData: [
+        ...isNumber(this.props.label, { mustConsiderNaN_AsNumber: false }) ?
+            [] :
+            [
+              {
+                name: "label",
+                isRequiredOrHasDefaultValue: false,
+                value: this.props.label
+              }
+            ],
+        {
+          name: "accessibilityGuidance",
+          isRequiredOrHasDefaultValue: false,
+          value: this.props.accessibilityGuidance
+        },
+        {
+          name: "externalURI",
+          isRequiredOrHasDefaultValue: false,
+          value: this.props.externalURI
+        },
+        {
+          name: "className",
+          isRequiredOrHasDefaultValue: false,
+          value: this.props.className
+        }
+      ]
+    });
+  }
+
+
+  /* ━━━ Link Rendered ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* [ Implementation example ] Next.js link (the type of `to` property is different with `href` of "react-router-dom"'s link).
    *  protected get customRouterLink(): React.ReactElement {
    *    return (
@@ -65,19 +111,34 @@ class Button extends React.Component<Button.Properties> {
    *    );
    * }
    * */
-
-  public static internalLinkRenderer: Button.InternalLinkRenderer =
+  public static internalLinkRenderer: Button.LinkRenderer =
       (
-        route: string,
+        route: string | object,
         requiredAttributes: React.RefAttributes<HTMLAnchorElement>,
         childrenElements: React.ReactNode
       ): React.ReactNode =>
-          <a
-            href={ route }
-            { ...requiredAttributes }
-          >
-            { childrenElements }
-          </a>;
+          (
+            isString(route) ?
+                 (
+                  <a
+                    href={ route }
+                    { ...requiredAttributes }
+                  >
+                    { childrenElements }
+                  </a>
+                ) :
+                ((): never => {
+                  Logger.throwErrorWithFormattedMessage({
+                    errorInstance: new InvalidReactPropertyError({
+                      componentName: "Button",
+                      propertyName: "route",
+                      messageSpecificPart: "Default link renderer does not support the object-type routes."
+                    }),
+                    title: InvalidReactPropertyError.localization.defaultTitle,
+                    occurrenceLocation: "Button.internalLinkRenderer(route, requiredAttributes, childrenElements)"
+                  });
+                })()
+          );
 
 
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -119,19 +180,13 @@ class Button extends React.Component<Button.Properties> {
   }
 
 
-  /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public componentDidMount(): void {
-    this.validateProps();
-  }
-
-  public componentDidUpdate(): void {
-    this.validateProps();
-  }
-
-
   /* ━━━ Root Element Attributes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected get typeAttributeValueOfButtonOrInputElement(): "button" | "submit" | "reset" {
 
+    /* eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check --
+     * Not intended to be used when `this.props.HTML_Type` is `undefined` (when the target HTML element is `a`), but
+     *   throwing of exception from `getter` is unsafe. Using `default` block instead.
+     * */
     switch (this.props.HTML_Type) {
 
       case Button.HTML_Types.submit:
@@ -189,7 +244,7 @@ class Button extends React.Component<Button.Properties> {
   /* ━━━ Events Handling ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected onClick(event: React.MouseEvent<HTMLButtonElement | HTMLInputElement>): void {
     event.preventDefault();
-    this.props.onClick?.();
+    this.props.onClickEventHandler?.(event);
   }
 
 
@@ -197,46 +252,18 @@ class Button extends React.Component<Button.Properties> {
   public render(): React.ReactNode {
 
     if (isNotUndefined(this.props.route)) {
-
-      this.props.internalLinkRenderer(
+      return (this.props.linkRenderer ?? Button.internalLinkRenderer)(
         this.props.route,
         {
           ...this.props.mustOpenLinkInNewTab ? { target: "_blank" } : null,
           "aria-label": this.props.accessibilityGuidance,
           "aria-disabled": this.props.disabled,
           "aria-pressed": this.props.toggled,
-          "tab-index": this.props.disabled ? -1 : 0,
-          "class-name": this.rootElementCSS_Classes.join(" ")
+          tabIndex: this.props.disabled ? -1 : 0,
+          className: this.rootElementCSS_Classes.join(" ")
         },
         this.childrenElements
       );
-
-      Button.internalLinkRenderer(
-        this.props.route,
-        {
-          ...this.props.mustOpenLinkInNewTab ? { target: "_blank" } : null,
-          "aria-label": this.props.accessibilityGuidance,
-          "aria-disabled": this.props.disabled,
-          "aria-pressed": this.props.toggled,
-          "tab-index": this.props.disabled ? -1 : 0,
-          "class-name": this.rootElementCSS_Classes.join(" ")
-        },
-        this.childrenElements
-      );
-
-      return (this.props.internalLinkRenderer ?? Button.internalLinkRenderer)<string | object>(
-        this.props.route,
-        {
-          ...this.props.mustOpenLinkInNewTab ? { target: "_blank" } : null,
-          "aria-label": this.props.accessibilityGuidance,
-          "aria-disabled": this.props.disabled,
-          "aria-pressed": this.props.toggled,
-          "tab-index": this.props.disabled ? -1 : 0,
-          "class-name": this.rootElementCSS_Classes.join(" ")
-        },
-        this.childrenElements
-      );
-
     }
 
 
@@ -344,7 +371,7 @@ namespace Button {
     label?: string | number;
     accessibilityGuidance?: string;
     route?: string | object;
-    internalLinkRenderer: InternalLinkRenderer;
+    linkRenderer?: LinkRenderer;
     externalURI?: string;
     mustOpenLinkInNewTab: boolean;
     mustRequestNotFollowLinkForCrawlingToSearchEngine: boolean;
@@ -360,13 +387,13 @@ namespace Button {
     appendedSVG_Icon?: React.ElementType<{ className: string; }>;
     loneSVG_Icon?: React.ElementType<{ className: string; }>;
     SVG_IconCSS_Classes?: ReadonlyArray<string> | string;
-    onClick?: () => unknown;
+    onClickEventHandler?: (event: React.MouseEvent<HTMLButtonElement | HTMLInputElement>) => unknown;
     className?: string;
   }>;
 
-  export type InternalLinkRenderer<Route = string | object> = (
+  export type LinkRenderer<Route = string | object> = (
     route: Route,
-    requiredAttributes: React.RefAttributes<HTMLAnchorElement>,
+    requiredAttributes: React.AnchorHTMLAttributes<HTMLAnchorElement> & React.RefAttributes<HTMLAnchorElement>,
     childrenElements: React.ReactNode
   ) => React.ReactNode;
 

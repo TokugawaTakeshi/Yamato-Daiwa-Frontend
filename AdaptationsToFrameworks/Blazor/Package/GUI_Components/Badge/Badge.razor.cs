@@ -8,19 +8,20 @@ namespace YamatoDaiwa.Frontend.GUI_Components.Badge;
 [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 public partial class Badge :
     Microsoft.AspNetCore.Components.ComponentBase,
-    IHTML_AttributesFallthrough,
-    ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement
+    YamatoDaiwa.Frontend.GUI_Components.Abstractions.IHTML_AttributesFallthrough,
+    YamatoDaiwa.Frontend.GUI_Components.Abstractions.IFlexibleExternalCSS_ClassesSpecifyingForRootElement
 {
 
   public const string CSS_NAMESPACE = "Badge--YDF";
 
   [Microsoft.AspNetCore.Components.Parameter(CaptureUnmatchedValues = true)]
-  public IDictionary<string, object>? rootElementHTML_Attributes { get; set; }
+  public Dictionary<string, object>? rootElementHTML_Attributes { get; set; }
 
   [Microsoft.AspNetCore.Components.Parameter]
   public string? keyLabel { get; set; }
-
+  
   [Microsoft.AspNetCore.Components.Parameter]
+  [Microsoft.AspNetCore.Components.EditorRequired]
   public required string valueLabel { get; set; }
 
   [Microsoft.AspNetCore.Components.Parameter]
@@ -43,8 +44,8 @@ public partial class Badge :
   [Microsoft.AspNetCore.Components.Parameter]
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
-      "Microsoft.Performance",
-      "BL0007",
+      category: "Microsoft.Performance",
+      checkId: "BL0007",
       Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
     )
   ]
@@ -66,7 +67,7 @@ public partial class Badge :
       YDF_ComponentsHelper.areThemesCSS_ClassesCommon || Badge.mustConsiderThemesCSS_ClassesAsCommon;
 
 
-  /* ─── Geometry ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public enum StandardGeometricVariations
   {
     regular,
@@ -86,8 +87,8 @@ public partial class Badge :
   [Microsoft.AspNetCore.Components.Parameter]
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
-      "Microsoft.Performance",
-      "BL0007",
+      category: "Microsoft.Performance",
+      checkId: "BL0007",
       Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
     )
   ]
@@ -109,7 +110,7 @@ public partial class Badge :
   public Badge.GeometricModifiers[] geometricModifiers { get; set; } = [];
 
 
-  /* ─── Decoration ───────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public enum StandardDecorativeVariations
   {
     veryCatchyBright,
@@ -141,8 +142,8 @@ public partial class Badge :
   [Microsoft.AspNetCore.Components.EditorRequired]
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
-      "Microsoft.Performance",
-      "BL0007",
+      category: "Microsoft.Performance",
+      checkId: "BL0007",
       Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
     )
   ]
@@ -175,21 +176,34 @@ public partial class Badge :
   public string? rootElementSpaceSeparatedModifierCSS_Classes { get; set; } = null;
 
   private string classAttributeValueForRootElement => YDF_ComponentsHelper.GenerateClassAttributeValueForRootElement(
-    CSS_Namespace: Badge.CSS_NAMESPACE,
-    activeTheme: this._theme,
-    standardThemes: typeof(Badge.StandardThemes),
-    customThemes: Badge.CustomThemes,
-    areThemesCSS_ClassesCommon: this.areThemesCSS_ClassesCommon,
-    activeGeometricVariation: this._geometricVariation,
-    standardGeometricVariations: typeof(Badge.StandardGeometricVariations),
-    customGeometricVariations: Badge.CustomGeometricVariations,
-    activeDecorativeVariation: this._decorativeVariation,
-    standardDecorativeVariations: typeof(Badge.StandardDecorativeVariations),
-    customDecorativeVariations: Badge.CustomDecorativeVariations,
-    activeGeometricModifiers: this.geometricModifiers,
-    activeDecorativeModifiers: this.decorativeModifiers,
-    externalSpaceSeparatedCSS_Classes:
-        ((ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes
+    new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement
+    {
+      CSS_Namespace = Badge.CSS_NAMESPACE,
+      theme = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.Theme
+      {
+        activeOne = this._theme,
+        standardOnes = typeof(Badge.StandardThemes),
+        customOnes = Badge.CustomThemes,
+        areThemesCSS_ClassesCommon = this.areThemesCSS_ClassesCommon 
+      },
+      geometricVariation = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.GeometricVariation
+      {
+        activeOne = this._geometricVariation,
+        standardOnes = typeof(Badge.StandardGeometricVariations),
+        customOnes = Badge.CustomGeometricVariations
+      },
+      activeGeometricModifiers = this.geometricModifiers,
+      decorativeVariation = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.DecorativeVariation
+      {
+        activeOne = this._decorativeVariation,
+        standardOnes = typeof(Badge.StandardDecorativeVariations),
+        customOnes = Badge.CustomDecorativeVariations
+      },
+      activeDecorativeModifiers = this.decorativeModifiers,
+      externalSpaceSeparatedCSS_Classes =
+          ((IFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes,
+      rootElementHTML_Attributes = this.rootElementHTML_Attributes
+    }
   );
 
 }

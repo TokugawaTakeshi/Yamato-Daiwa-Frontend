@@ -39,7 +39,7 @@ export default abstract class BlockingLoadingOverlay {
   protected static getExpectedToBeInitializedRootElement(): HTMLElement {
 
     if (isNull(BlockingLoadingOverlay.rootElement)) {
-      Logger.throwErrorAndLog({
+      Logger.throwErrorWithFormattedMessage({
         errorInstance: new ClassRequiredInitializationHasNotBeenExecutedError({
           customMessage:
               "\"BlockingLoadingOverlay\" need to capture the rendered (invisible is fine) DOM before be displayed. " +

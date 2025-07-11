@@ -1,0 +1,278 @@
+//- ━━━ Overview ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- const ButtonGUI_ComponentOverviewLocalization = generateOverviewLocalizationWorkpieceForSpecificGUI_Component();
+
+mixin ButtonComponent-Overview(properties)
+
+  -
+
+    const {
+      framework
+    } = properties?? {};
+
+    const localizedAssets = ButtonGUI_ComponentOverviewLocalization.getLocalizedAssets();
+
+  +GUI_ComponentOverview({
+    framework,
+    metadataClass: Button__YDF,
+    intelliJ_IDEA_FamilyIDEsLiveTemplate: {
+      native: {
+        autocompleteLike: "Button--YDF",
+        abbreviation: "btn-ydf",
+        loadingPlaceholder: "Button--YDF-LoadingPlaceholder"
+      },
+      vue: {
+        autocompleteLike: {
+          pugSyntax: "Button--YDF-Vue-Pug",
+          HTML_Syntax: "Button--YDF-Vue-HTML"
+        },
+        abbreviation: {
+          pugSyntax: "btn-ydf-vue-pug",
+          HTML_Syntax: "btn-ydf-vue-html"
+        },
+        loadingPlaceholder: {
+          pugSyntax: "Button-LoadingPlaceholder--YDF-Vue-Pug",
+          HTML_Syntax: "Button-LoadingPlaceholder--YDF-Vue-HTML"
+        }
+      },
+      react: {
+        autocompleteLike: "Button--YDF-React",
+        abbreviation: "btn-ydf-react",
+        loadingPlaceholder: "Button--YDF-LoadingPlaceholder-React"
+      }
+    },
+    themesNamesTranslations: localizedAssets.themes,
+    geometricVariationsTranslations: localizedAssets.geometricVariations,
+    geometricModifiersNamesTranslations: localizedAssets.geometricModifiers,
+    decorativeVariationsTranslations: localizedAssets.decorativeVariations,
+    decorativeModifiersNamesTranslations: localizedAssets.decorativeModifiers
+  })
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+-
+
+  const ButtonComponentPugMixinOrClassSynopsisLocalization =
+      GUI_ComponentPugMixinOrClassSynopsisLocalization.generateInitialLocalizationObjectForSpecificGUI_Component();
+
+
+mixin ButtonComponent-PugMixinOrClassSynopsis(properties)
+
+  -
+
+    const {
+
+      framework
+
+    } = properties ?? {};
+
+    const propertiesSpecification = {
+      ...ButtonComponentPugMixinOrClassSynopsisLocalization.getLocalizedPropertiesSpecification(Button__YDF, framework)
+    };
+
+
+    if (isNotUndefined(framework)) {
+
+      propertiesSpecification.HTML_Type.allowedAlternatives = propertiesSpecification.HTML_Type.allowedAlternatives.map(
+        ({ key, value }) => ({ key: key.replace("__YDF", "", value) })
+      );
+
+      if (framework === SupportedFrameworks.vue || framework === SupportedFrameworks.react) {
+        propertiesSpecification.HTML_Type.undefinedValueSubstitution =
+            new PropertyMetadata__YDF_DK.RawValue("Button.HTML_Types.regular");
+      }
+
+    }
+
+
+    switch (framework) {
+
+      case SupportedFrameworks.vue: {
+
+        delete propertiesSpecification.URI;
+
+        propertiesSpecification.route = {
+          type: "VueRouter.RouteLocationRaw",
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          localizedInterpretation: ButtonComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.propertiesLocalizedInterpretations?.vue?.route
+        };
+
+        propertiesSpecification.externalURI = {
+          type: String,
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          localizedInterpretation: ButtonComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.propertiesLocalizedInterpretations?.vue?.externalURI
+        };
+
+        break;
+
+      }
+
+      case SupportedFrameworks.react: {
+
+        delete propertiesSpecification.URI;
+
+        propertiesSpecification.route = {
+
+          type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          alternatives: [
+            {
+              type: String,
+              minimalCharactersCount: 1
+            },
+            {
+              type: Object,
+              properties: {}
+            }
+          ],
+          localizedInterpretation: ButtonComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources.
+              propertiesLocalizedInterpretations?.react?.route
+        };
+
+        propertiesSpecification.externalURI = {
+          type: String,
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          minimalCharactersCount: 1,
+          localizedInterpretation: ButtonComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources.
+              propertiesLocalizedInterpretations?.react?.externalURI
+        };
+
+        propertiesSpecification.prependedSVG_Icon = {
+          type: "React.ElementType<{ className: string; }>",
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          localizedInterpretation: BadgeComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources.
+              propertiesLocalizedInterpretations?.react?.prependedSVG_Icon
+        };
+
+        propertiesSpecification.appendedSVG_Icon = {
+          type: "React.ElementType<{ className: string; }>",
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          localizedInterpretation: BadgeComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources.
+              propertiesLocalizedInterpretations?.react?.appendedSVG_Icon
+        };
+
+        propertiesSpecification.loneSVG_Icon = {
+          type: "React.ElementType<{ className: string; }>",
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          localizedInterpretation: BadgeComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources.
+              propertiesLocalizedInterpretations?.react?.SVG_Icons
+        };
+
+        propertiesSpecification.SVG_IconCSS_Classes = {
+
+          type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          alternatives: [
+            {
+              type: Array,
+              areUndefinedElementsForbidden: true,
+              areNullElementsForbidden: true,
+              element: {
+                type: String,
+                minimalCharactersCount: 1
+              }
+            },
+            {
+              type: String,
+              minimalCharactersCount: 1
+            }
+          ],
+          localizedInterpretation: ButtonComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources.
+              propertiesLocalizedInterpretations?.react?.route
+        };
+
+        propertiesSpecification.onClickEventHandler = {
+          type: "(event: React.MouseEvent<HTMLButtonElement | HTMLInputElement>) => unknown",
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          localizedInterpretation: BadgeComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources.
+              propertiesLocalizedInterpretations?.react?.onClickEventHandler
+        };
+
+        propertiesSpecification.linkRenderer = {
+          type: "Button.LinkRenderer",
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          localizedInterpretation: BadgeComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources.
+              propertiesLocalizedInterpretations?.react?.linkRenderer
+        }
+
+        break;
+
+      }
+
+      case SupportedFrameworks.blazor: {
+
+        delete propertiesSpecification.HTML_Type.undefinedValueSubstitution;
+        propertiesSpecification.HTML_Type.defaultValue = new PropertyMetadata__YDF_DK.RawValue("Button.HTML_Types.regular");
+
+        delete propertiesSpecification.URI;
+
+        propertiesSpecification.internalURI = {
+          type: String,
+          required: false,
+          minimalCharactersCount: 1,
+          localizedInterpretation: ButtonComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.propertiesLocalizedInterpretations?.blazor?.internalURI
+        };
+
+        propertiesSpecification.externalURI = {
+          type: String,
+          required: false,
+          minimalCharactersCount: 1,
+          localizedInterpretation: ButtonComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.propertiesLocalizedInterpretations?.blazor?.externalURI
+        };
+
+        break;
+
+      }
+
+      default: {
+
+        propertiesSpecification.HTML_Type.undefinedValueSubstitution =
+            new PropertyMetadata__YDF_DK.RawValue("Button__YDF.HTML_Types.regular");
+
+      }
+
+    }
+
+
+  if framework
+
+    +ObjectTypeAbstract--YDF_DK({
+      typeName: `Button.Properties`,
+      propertiesSpecification
+    })
+
+  else
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: isUndefined(framework) ? "Button--YDF" : "Button",
+      parametersSpecification: [
+        {
+          genericTechnicalName: "properties",
+          localizedName: ButtonComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.pugMixinParametersLocalization[0].
+              localizedName,
+          type: "Properties",
+          required: true
+        }
+      ],
+      hiddenReturnValue: true
+    })
+      +ObjectTypeAbstract--YDF_DK({
+        typeName: `Button.propertiesSpecification`,
+        propertiesSpecification
+      }).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem

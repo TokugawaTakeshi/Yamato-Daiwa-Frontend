@@ -12,13 +12,13 @@ The [core package](https://www.npmjs.com/package/@yamato-daiwa/frontend) is stil
 ### .NET
 
 ```shell
-dotnet add package YamatoDaiwaFrontend --version 0.3.4
+dotnet add package YamatoDaiwaFrontend --version 0.7.0-alpha.1
 ```
 
 ### npm
 
 ```shell
-npm i @yamato-daiwa/frontend@2.0.0-beta.8
+npm i @yamato-daiwa/frontend@2.0.0-beta.12
 ```
 
 ## Documentation

@@ -71,7 +71,7 @@ block append Metadata
 Импортируйте файл `GUI_Components.pug` директивой `include`:
 
 ```
-//- В Вашем случае, относительный путь к "node_modules" может отличатьсяC
+//- В Вашем случае, относительный путь к "node_modules" может отличаться.
 extends ../../@yamato-daiwa/frontend-localization-russian/GUI_Components.pug
 ```
 

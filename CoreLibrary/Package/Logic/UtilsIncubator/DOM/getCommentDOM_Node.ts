@@ -49,7 +49,7 @@ export default function getCommentDOM_Node(
 
 
   if (mustThrowErrorIfCommentNotFound === true) {
-    Logger.throwErrorAndLog({
+    Logger.throwErrorWithFormattedMessage({
       errorInstance: new UnexpectedEventError(
         `Contrary to expectations, there is not comment with text content: "${ commentContent }" inside ` +
           "specified parent."

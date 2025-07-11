@@ -58,7 +58,7 @@
      *
      * @param {
      *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
-     * } ownAndCorrespondingCompoundControlShellThemesDefinition
+     * } ownAndCorrespondingChildrenThemesDefinition
      *
      * @returns { typeof ${NAME}__YDF }
      *
@@ -74,9 +74,9 @@
      *   }
      * });
      */
-    static defineThemes(ownAndCorrespondingCompoundControlShellThemesDefinition) {
+    static defineThemes(ownAndCorrespondingChildrenThemesDefinition) {
       return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
-        ownAndCorrespondingCompoundControlShellThemesDefinition, ${NAME}__YDF
+        ownAndCorrespondingChildrenThemesDefinition, ${NAME}__YDF
       );
     }
     // === > ===========================================================================================================
@@ -151,7 +151,7 @@
      *
      * @param {
      *   { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
-     * } ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition
+     * } ownAndCorrespondingChildrenGeometricVariationsDefinition
      *
      * @returns { typeof ${NAME}__YDF }
      *
@@ -167,9 +167,9 @@
      *   }
      * });
      */
-    static defineGeometricVariations(ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition) {
+    static defineGeometricVariations(ownAndCorrespondingChildrenGeometricVariationsDefinition) {
       return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
-        ownAndCorrespondingCompoundControlShellGeometricVariationsDefinition, ${NAME}__YDF
+        ownAndCorrespondingChildrenGeometricVariationsDefinition, ${NAME}__YDF
       );
     }
     // === > ===========================================================================================================
@@ -246,7 +246,7 @@
      *
      * @param {
      *   { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
-     * } ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition
+     * } ownAndCorrespondingChildrenDecorativeVariationsDefinition
      *
      * @returns { typeof ${NAME}__YDF }
      *
@@ -262,9 +262,9 @@
      *   }
      * });
      */
-    static defineDecorativeVariations(ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition) {
+    static defineDecorativeVariations(ownAndCorrespondingChildrenDecorativeVariationsDefinition) {
       return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
-        ownAndCorrespondingCompoundControlShellDecorativeVariationsDefinition, DropDownList__YDF
+        ownAndCorrespondingChildrenDecorativeVariationsDefinition, DropDownList__YDF
       );
     }
     // === > ===========================================================================================================

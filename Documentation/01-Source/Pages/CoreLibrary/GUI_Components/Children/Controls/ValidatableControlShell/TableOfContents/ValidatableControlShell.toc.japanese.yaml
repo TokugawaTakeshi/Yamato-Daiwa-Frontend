@@ -1,3 +1,19 @@
-synopsis:
+overview:
 
-  $heading: "要約"
+  $heading: "概要"
+
+usage:
+
+  $heading: "利用"
+
+  markup:
+
+    $heading: "マークアップ"
+
+    includingToProject:
+
+      $heading: "プロジェクトへの取り組み"
+
+    pugMixin:
+
+      $heading: "Pug混入の<code>ValidatableControlShell--YDF</code>"

@@ -35,7 +35,7 @@ const searchResultsForGalleryPageEntryPointFile: ReadonlyArray<string> =
 
 
 if (searchResultsForGalleryPageEntryPointFile.length !== 1) {
-  Logger.throwErrorAndLog({
+  Logger.throwErrorWithFormattedMessage({
     errorInstance: new FileNotFoundError({
       customMessage:
         `In the directory "${ TARGET_DIRECTORY_ABSOLUTE_PATH }" there must be exactly one "*.GalleryPage.partials.pug" ` +
@@ -50,11 +50,11 @@ if (searchResultsForGalleryPageEntryPointFile.length !== 1) {
 const partialsDeclarationsFileAbsolutePath: string = searchResultsForGalleryPageEntryPointFile[0];
 const partialsDeclarationsFileContent: string = FileSystem.readFileSync(partialsDeclarationsFileAbsolutePath).toString();
 
-const partialEnumerationValue__rawJavaScriptCode: string = getMatchingWithFirstRegularExpressionCapturingGroup({
-  targetString: partialsDeclarationsFileContent,
-  regularExpression: /setPartials\((?<enumerationValue>\{[\w\r\n\s:"',]+?\})/gmu,
-  mustThrowErrorIfZeroOrMoreThanOneMatchings: true
-}).replace("'", "\"");
+const partialEnumerationValue__rawJavaScriptCode: string = getMatchingWithFirstRegularExpressionCapturingGroup(
+  partialsDeclarationsFileContent,
+  /setPartials\((?<enumerationValue>\{[\w\r\n\s:"',]+?\})/gmu,
+  { mustExpectExactlyOneMatching: true }
+).replace("'", "\"");
 
 const partialEnumerationValue__normalizedJSON: string = replaceMatchesWithRegularExpressionToDynamicValue({
   targetString: partialEnumerationValue__rawJavaScriptCode,

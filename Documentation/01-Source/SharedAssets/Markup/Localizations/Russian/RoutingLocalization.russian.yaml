@@ -223,15 +223,19 @@ coreLibrary:
 
   GUI_Components:
 
-      $heading: "GUI-компоненты"
+    $heading: "GUI-компоненты"
 
-      controls:
+    controls:
 
-        $heading: "Управляющие"
+      $heading: "Управляющие"
 
-        buttons:
+      buttons:
 
-          $heading: "Кнопки"
+        $heading: "Кнопки"
+
+      validatables:
+
+        $heading: "Валидируемые"
 
 adaptationsToFrameworks:
 

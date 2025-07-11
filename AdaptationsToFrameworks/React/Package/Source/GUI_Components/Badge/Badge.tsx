@@ -3,13 +3,14 @@ import React from "react";
 
 /* ─── Utils ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import ComponentsAuxiliaries from "../ComponentsAuxiliaries";
+import checkForNonEmptyStringReactProperties from "../../_ReactPropertiesValidators/checkForNonEmptyStringReactProperties";
 import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
 class Badge extends React.Component<Badge.Properties> {
 
+  /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static CSS_NAMESPACE: string = "Badge--YDF";
-
 
   public static get defaultProps(): Required<
     Pick<
@@ -19,7 +20,8 @@ class Badge extends React.Component<Badge.Properties> {
       "geometricVariation" |
       "geometricModifiers" |
       "decorativeModifiers" |
-      "rootElementTag"
+      "rootElementTag" |
+      "rootElementAttributes"
     >
   > {
     return {
@@ -28,8 +30,52 @@ class Badge extends React.Component<Badge.Properties> {
       geometricVariation: Badge.GeometricVariations.regular,
       geometricModifiers: [],
       decorativeModifiers: [],
-      rootElementTag: "span"
+      rootElementTag: "span",
+      rootElementAttributes: {}
     };
+  }
+
+
+  /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public constructor(properties: Badge.Properties) {
+    super(properties);
+    this.validateProperties();
+  }
+
+
+  /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public override componentDidUpdate(): void {
+    this.validateProperties();
+  }
+
+
+  /* ━━━ Properties Validation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  private validateProperties(): void {
+    checkForNonEmptyStringReactProperties({
+      componentName: "Badge",
+      propertiesData: [
+        {
+          name: "keyLabel",
+          isRequiredOrHasDefaultValue: false,
+          value: this.props.keyLabel
+        },
+        {
+          name: "valueLabel",
+          isRequiredOrHasDefaultValue: true,
+          value: this.props.valueLabel
+        },
+        {
+          name: "rootElementTag",
+          isRequiredOrHasDefaultValue: true,
+          value: this.props.rootElementTag
+        },
+        {
+          name: "className",
+          isRequiredOrHasDefaultValue: false,
+          value: this.props.className
+        }
+      ]
+    });
   }
 
 
@@ -122,7 +168,7 @@ class Badge extends React.Component<Badge.Properties> {
     const SVG_Icon: React.ElementType<{ className: string; }> | undefined = this.props.SVG_Icon;
 
     /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
-    * Currently it is the only solution compatible with TypeScript for dynamic elements.
+    * Currently, it is the only solution compatible with TypeScript for dynamic elements.
     * @see https://stackoverflow.com/q/33471880 */
     const RootElement: keyof React.JSX.IntrinsicElements = this.props.rootElementTag as keyof React.JSX.IntrinsicElements;
 
@@ -132,7 +178,7 @@ class Badge extends React.Component<Badge.Properties> {
         className={ [ Badge.CSS_NAMESPACE, ...this.rootElementModifierCSS_Classes ].join(" ") }
       >
 
-        { isNotUndefined(SVG_Icon) && <SVG_Icon className="Badge--YDF-SVG_Icon"/> }
+        { isNotUndefined(SVG_Icon) && <SVG_Icon className="Badge--YDF-SVG_Icon" /> }
 
         { isNotUndefined(this.props.keyLabel) && <span className="Badge--YDF-KeyLabel">{ this.props.keyLabel }</span> }
 
@@ -161,6 +207,7 @@ namespace Badge {
     decorativeModifiers: ReadonlyArray<DecorativeModifiers>;
     rootElementTag: string;
     className?: string;
+    rootElementAttributes?: Omit<React.HTMLAttributes<HTMLElement>, "className">;
   }>;
 
   export type Themes = {

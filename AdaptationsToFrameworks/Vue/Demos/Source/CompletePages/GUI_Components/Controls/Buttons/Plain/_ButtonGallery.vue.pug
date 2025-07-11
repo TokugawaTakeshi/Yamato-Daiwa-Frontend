@@ -213,14 +213,14 @@ template(
         dd Unavailable
 
 
-//- ━━━ Lone Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//- ━━━ Lone SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 template(
   v-if="mustRenderAllPartials || partialsFlags.loneSVG_Icons"
 )
 
   h2.Heading2(
     :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
-  ) Lone Icons
+  ) Lone SVG Icons
 
   ThemesShowcase(
     :themes="Button.Themes"
@@ -412,7 +412,7 @@ template(
             :geometricVariation="geometricVariation.value"
             :geometricModifiers="[ Button.GeometricModifiers.squareShape ]"
             :decorativeVariation="decorativeVariation.value"
-          ): template(v-slot:prependedSVG_Icon): HeartIcon.Button--YDF-SVG_Icon
+          ): template(v-slot:loneSVG_Icon): HeartIcon.Button--YDF-SVG_Icon
 
         dt Link
         dd
@@ -423,7 +423,7 @@ template(
             :geometricVariation="geometricVariation.value"
             :geometricModifiers="[ Button.GeometricModifiers.squareShape ]"
             :decorativeVariation="decorativeVariation.value"
-          ): template(v-slot:prependedSVG_Icon): HeartIcon.Button--YDF-SVG_Icon
+          ): template(v-slot:loneSVG_Icon): HeartIcon.Button--YDF-SVG_Icon
 
         dt Input
         dd
@@ -472,7 +472,7 @@ template(
             :geometricVariation="geometricVariation.value"
             :geometricModifiers="[ Button.GeometricModifiers.squareShapeUnlessOverflowed ]"
             :decorativeVariation="decorativeVariation.value"
-          ): template(v-slot:prependedSVG_Icon): HeartIcon.Button--YDF-SVG_Icon
+          ): template(v-slot:loneSVG_Icon): HeartIcon.Button--YDF-SVG_Icon
 
           Button(
             label="Click 押下"
@@ -492,7 +492,7 @@ template(
             :geometricVariation="geometricVariation.value"
             :geometricModifiers="[ Button.GeometricModifiers.squareShapeUnlessOverflowed ]"
             :decorativeVariation="decorativeVariation.value"
-          ): template(v-slot:prependedSVG_Icon): HeartIcon.Button--YDF-SVG_Icon
+          ): template(v-slot:loneSVG_Icon): HeartIcon.Button--YDF-SVG_Icon
 
           Button(
             label="Click 押下"
@@ -932,7 +932,7 @@ template(
           )
 
 
-//- ━━━ Decorative modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//- ━━━ Decorative Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 h2.Heading2(
   v-if="!mustVisuallyHideAllHeadings && mustRenderAtLeastOnePartialRelatedWithDecorativeModifier"
 ) Decorative Modifiers
@@ -993,6 +993,7 @@ template(
             :decorativeVariation="decorativeVariation.value"
             :decorativeModifiers="[ Button.DecorativeModifiers.bordersDisguising ]"
           )
+
 
 //- ─── No Background ──────────────────────────────────────────────────────────────────────────────────────────────────
 template(

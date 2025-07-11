@@ -1,6 +1,6 @@
-synopsis:
+overview:
 
-  $heading: "要約"
+  $heading: "概要"
 
 usage:
 
@@ -12,16 +12,8 @@ usage:
 
     includingToProject:
 
-      $heading: "プロジェクトに含む方法"
+      $heading: "プロジェクトへの取り組み"
 
     pugMixin:
 
       $heading: "Pug混入の<code>Badge--YDF</code>"
-
-      minimalExample:
-
-        $heading: "最低限の例（必須プロパティのみ）"
-
-  logic:
-
-    $heading: "ロジック"

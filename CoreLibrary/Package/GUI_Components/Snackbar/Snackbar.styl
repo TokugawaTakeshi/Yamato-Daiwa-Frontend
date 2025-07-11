@@ -42,7 +42,7 @@ Snackbar--YDF = {
 }
 
 
-provideSnackbarYDF_Component(
+Snackbar--YDF-generateStyles(
   preset = Snackbar--YDF.defaultProperties,
   overrides = {},
   options = Snackbar--YDF.defaultOptions,
@@ -52,7 +52,7 @@ provideSnackbarYDF_Component(
   properties = deeplyCloneAndOverrideObject(preset, overrides)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "provideSnackbarYDF_Component",
+    mixinOrFunctionName: "Snackbar--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {

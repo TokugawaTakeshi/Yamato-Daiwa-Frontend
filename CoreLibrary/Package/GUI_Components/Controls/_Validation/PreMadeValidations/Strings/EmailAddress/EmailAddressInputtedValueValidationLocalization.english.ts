@@ -1,4 +1,5 @@
 import type EmailAddressInputtedValueValidation from "./EmailAddressInputtedValueValidation";
+
 import emailAddressInputtedValueValidationRuleLocalization__english from
     "../../../PreMadeRules/Strings/EmailAddressInputtedValueValidationRuleLocalization.english";
 import type MinimalCharactersCountInputtedValueValidationRule from
@@ -16,13 +17,13 @@ const emailAddressInputtedValueValidationLocalization__english: EmailAddressInpu
     { rawValue, minimalCharactersCount }: MinimalCharactersCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
       `${ rawValue.length } characters is not enough for the email address. ` +
-      `Please check the correct email address and input at least ${ minimalCharactersCount } characters.`,
+      `Please check the correct email address then input at least ${ minimalCharactersCount } characters.`,
 
   maximalCharactersCountValidationErrorMessageBuilder: (
     { rawValue, maximalCharactersCount }: MaximalCharactersCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
       `${ rawValue.length } characters is too many for the email address. ` +
-      `Please check the correct email address and input no more than ${ maximalCharactersCount } characters.`,
+      `Please check the correct email address then input no more than ${ maximalCharactersCount } characters.`,
 
   invalidEmailAddressErrorMessageBuilder: emailAddressInputtedValueValidationRuleLocalization__english.errorMessageBuilder
 

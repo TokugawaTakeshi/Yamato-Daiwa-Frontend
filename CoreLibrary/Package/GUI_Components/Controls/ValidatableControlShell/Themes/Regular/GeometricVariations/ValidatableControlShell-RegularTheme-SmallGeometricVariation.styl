@@ -7,7 +7,7 @@ ValidatableControlShell-RegularTheme-SmallGeometricVariation--YDF = {
   label: {
 
     text: {
-      size: 0.9rem,
+      size: 1rem,
       lineSpacing: 0.2rem,
       lineHeight: null
     },
@@ -46,64 +46,79 @@ ValidatableControlShell-RegularTheme-SmallGeometricVariation--YDF = {
   },
 
   mainSlot: {
+
     spacing: {
       afterHeaderWithoutBadge: 0.3rem,
       afterHeaderWithBadge: 0.3rem,
       afterGuidance: 0.3rem
-    }
+    },
+
+    customDeclarations: null
+
   },
 
-  errorsList: {
+  validationErrorsMessagesList: {
 
     wideContainersConfigurationMinimalWidth: 100px,
 
-    forWideScreens: {
+    forWideContainers: {
 
       spacing: {
         afterMainSlot: 0.4rem
       },
 
+      customDeclarations: null,
+
       item: {
 
         text: {
           size: 0.8rem,
-          lineSpacing: 0.3rem,
+          lineSpacing: 0.2rem,
           lineHeight: null
         },
 
         spacing: {
-          betweenSelfInstances: 0.2rem
-        }
+          betweenSelfInstances: 0.3rem
+        },
+
+        customDeclarations: null
 
       }
 
     },
 
-    forNarrowScreens: {
+    forNarrowContainers: {
 
-      width: 14rem,
+      width: 20ch,
 
       borders: specifyBordersSizing({
         radius: { all: 3px }
       }),
 
       paddings: specifyPaddings({
-        horizontalSymmetric: 0.5rem,
+        horizontalSymmetric: 0.4rem,
         verticalSymmetric: 0.3rem
       }),
 
+      zIndex: YDF_Configuration.zIndexes.floatingBelowModalsComponents,
+
       spacing: {
-        afterMainSlot: 0.4rem
+        betweenMainSlotAndArrow: 0.1rem
       },
+
+      customDeclarations: null,
 
       arrow: {
 
         triangleBaseWidth: 0.8rem,
         triangleHeight: 0.3rem,
+        zIndex: YDF_Configuration.zIndexes.floatingBelowModalsComponents + 1,
 
         spacing: {
           fromLeft: 1rem
-        }
+        },
+
+        customDeclarations: null
 
       },
 
@@ -111,13 +126,15 @@ ValidatableControlShell-RegularTheme-SmallGeometricVariation--YDF = {
 
         text: {
           size: 0.8rem,
-          lineSpacing: 0.3rem,
+          lineSpacing: 0.2rem,
           lineHeight: null
         },
 
         spacing: {
-          betweenSelfInstances: 0.2rem
-        }
+          betweenSelfInstances: 0.3rem
+        },
+
+        customDeclarations: null
 
       }
 
@@ -129,13 +146,27 @@ ValidatableControlShell-RegularTheme-SmallGeometricVariation--YDF = {
 
     wideContainersConfigurationMinimalWidth: 100px,
 
-    forWideScreens: {
+    forWideContainers: {
 
       spacing: {
-        afterMainSlot: 0.4rem
+        afterMainSlot: 0.4rem,
+        afterValidationErrorsList: 0.4rem
       },
 
+      customDeclarations: null,
+
       item: {
+
+        SVG_Icon: {
+          width: null,
+          height: 1.2rem,
+          customDeclarations: null
+        },
+
+        loadingIndicator: {
+          diameter: 1.2rem,
+          thickness: 0.3em
+        },
 
         text: {
           size: 0.8rem,
@@ -144,14 +175,17 @@ ValidatableControlShell-RegularTheme-SmallGeometricVariation--YDF = {
         },
 
         spacing: {
-          betweenSelfInstances: 0.4rem
-        }
+          betweenSelfInstances: 0.4rem,
+          betweenIconAndText: 0.4rem
+        },
+
+        customDeclarations: null
 
       }
 
     },
 
-    forNarrowScreens: {
+    forNarrowContainers: {
 
       width: 14rem,
 
@@ -165,13 +199,18 @@ ValidatableControlShell-RegularTheme-SmallGeometricVariation--YDF = {
       }),
 
       spacing: {
-        afterMainSlot: 0.4rem
+        betweenMainSlotAndArrow: 0.1rem,
+        afterValidationErrorsList: 0.1rem
       },
+
+      zIndex: YDF_Configuration.zIndexes.floatingBelowModalsComponents,
 
       arrow: {
 
         triangleBaseWidth: 0.8rem,
         triangleHeight: 0.3rem,
+        zIndex: YDF_Configuration.zIndexes.floatingBelowModalsComponents + 1,
+        customDeclarations: null,
 
         spacing: {
           fromLeft: 1rem
@@ -181,6 +220,17 @@ ValidatableControlShell-RegularTheme-SmallGeometricVariation--YDF = {
 
       item: {
 
+        SVG_Icon: {
+          width: null,
+          height: 1.2rem,
+          customDeclarations: null
+        },
+
+        loadingIndicator: {
+          diameter: 1.2rem,
+          thickness: 0.3em
+        },
+
         text: {
           size: 0.8rem,
           lineSpacing: 0.3rem,
@@ -188,8 +238,11 @@ ValidatableControlShell-RegularTheme-SmallGeometricVariation--YDF = {
         },
 
         spacing: {
-          betweenSelfInstances: 0.2rem
-        }
+          betweenSelfInstances: 0.2rem,
+          betweenIconAndText: 0.4rem
+        },
+
+        customDeclarations: null
 
       }
 

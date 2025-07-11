@@ -1,10 +1,30 @@
-Paddings(paddingsSpecification, restParameters__MUST_NOT_BE...)
+Paddings(paddingsSpecification, options = {}, restParameters__MUST_NOT_BE...)
+
+  //* [ Stylus Theory ] Explicit `null` will NOT be substituted. */
+  paddingsSpecification = isNotNull(paddingsSpecification) ? paddingsSpecification : {}
 
   validateObjectTypeParameter({
     mixinOrFunctionName: "Paddings",
     targetParameterNumber: 1,
     targetParameter: paddingsSpecification,
     schema: PaddingsSpecificationSchema--YDF,
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  validateObjectTypeParameter({
+    mixinOrFunctionName: "Paddings",
+    targetParameterNumber: 2,
+    targetParameter: options,
+    schema: {
+      mustSkipApplyingOfHorizontalPaddings: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+      mustSkipApplyingOfVerticalPaddings: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      }
+    },
     followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
   })
 
@@ -49,12 +69,19 @@ Paddings(paddingsSpecification, restParameters__MUST_NOT_BE...)
       )
 
 
-  applyIfNotNull({
-    padding-left: leftPadding,
-    padding-right: rightPadding,
-    padding-top: topPadding,
-    padding-bottom: bottomPadding
-  })
+  if !options.mustSkipApplyingOfHorizontalPaddings
+
+    applyIfNotNull({
+      padding-left: leftPadding,
+      padding-right: rightPadding
+    })
+
+  if !options.mustSkipApplyingOfVerticalPaddings
+
+    applyIfNotNull({
+      padding-top: topPadding,
+      padding-bottom: bottomPadding
+    })
 
 
 specifyPaddings(paddingsSpecification, restParameters__MUST_NOT_BE...)

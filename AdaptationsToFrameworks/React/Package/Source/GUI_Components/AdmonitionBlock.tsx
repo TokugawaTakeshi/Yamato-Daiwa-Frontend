@@ -1,8 +1,8 @@
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import {
-  CollapsingAnimation,
+  type AdmonitionBlockLocalization,
   admonitionBlockYDF_ComponentLocalization__english,
-  type AdmonitionBlockLocalization
+  CollapsingAnimation
 } from "@yamato-daiwa/frontend";
 import PencilIcon__Circled__Filled from "../SVG_Icons/Pencil/PencilIcon__Circled__Filled";
 import ExclamationMarkIcon__Circled__Filled from "../SVG_Icons/ExclamationMark/ExclamationMarkIcon__Circled__Filled";
@@ -17,11 +17,13 @@ import React from "react";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import ComponentsAuxiliaries from "./ComponentsAuxiliaries";
+import checkForNonEmptyStringReactProperties from "../_ReactPropertiesValidators/checkForNonEmptyStringReactProperties";
 import { isNotNull, isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
 class AdmonitionBlock extends React.Component<AdmonitionBlock.Properties, AdmonitionBlock.State> {
 
+  /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static CSS_NAMESPACE: string = "AdmonitionBlock--YDF";
 
   public static get defaultProps(): Required<
@@ -45,11 +47,46 @@ class AdmonitionBlock extends React.Component<AdmonitionBlock.Properties, Admoni
     };
   }
 
+  public static localization: AdmonitionBlockLocalization = admonitionBlockYDF_ComponentLocalization__english;
+
+
+  /* ━━━ State ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public readonly state: AdmonitionBlock.State = {
     isDisplaying: true
   };
 
-  public static localization: AdmonitionBlockLocalization = admonitionBlockYDF_ComponentLocalization__english;
+
+  /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public constructor(properties: AdmonitionBlock.Properties) {
+    super(properties);
+    this.validateProperties();
+  }
+
+
+  /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public override componentDidUpdate(): void {
+    this.validateProperties();
+  }
+
+
+  /* ━━━ Properties Validation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  private validateProperties(): void {
+    checkForNonEmptyStringReactProperties({
+      componentName: "AdmonitionBlock",
+      propertiesData: [
+        {
+          name: "title",
+          isRequiredOrHasDefaultValue: false,
+          value: this.props.title
+        },
+        {
+          name: "className",
+          isRequiredOrHasDefaultValue: false,
+          value: this.props.className
+        }
+      ]
+    });
+  }
 
 
   /* ━━━ Dismissing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -185,6 +222,7 @@ class AdmonitionBlock extends React.Component<AdmonitionBlock.Properties, Admoni
 
         <div
           className="AdmonitionBlock--YDF-MainContent"
+          role="group"
           { ...{ ...isNotUndefined(this.props.title) ? { "aria-labelledby": this.TITLE_HTML_ID } : null } }
         >
 

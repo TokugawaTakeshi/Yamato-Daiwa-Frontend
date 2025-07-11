@@ -5,7 +5,6 @@ block append Requirements
 
   include ../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
   include ../../../../../../SharedComponents/SharedComponents.russian.pug
-  include Data/AdmonitionBlockComponentPropertiesSpecification__React.pug
 
 
 block append Metadata
@@ -49,10 +48,10 @@ block append SpecificContent
 
   article
 
-    //- ━━━ AdmonitionBlock (React) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ━━━ `AdmonitionBlock` (React) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     h1.Article-Heading1!= topHeading
 
-    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
 
     +WebPageViewer--YDF({
       URI: "$Demos:React/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage.html",
@@ -64,79 +63,33 @@ block append SpecificContent
     +CompactTableOfContents--YDF_DK(localizedSectioning)
 
 
-    //- ━━━ Сводка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ Краткий обзор ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
-      text: localizedSectioning.synopsis.$heading,
-      HTML_ID: localizedSectioning.synopsis.$anchor
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
     }).Article-Heading2
 
-    +AdmonitionBlockComponent-Synopsis({ framework: SupportedFrameworks.react })
-    //- TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +AdmonitionBlockComponent-Overview({ framework: SupportedFrameworks.react })
+
+
+    //- ┅┅┅ Класс `AdmonitionBlock` ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      innerHTML: localizedSectioning.AdmonitionBlockClass.$heading,
+      HTML_ID: localizedSectioning.AdmonitionBlockClass.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ React-свойства ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.AdmonitionBlockClass.$children.reactProperties.$heading,
+      HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.reactProperties.$anchor
+    }).Article-Heading3
+
+    +AdmonitionBlockComponent-PugMixinOrClassSynopsis({ framework: SupportedFrameworks.react })
+
     //-
-      //- ━━━ Класс `AdmonitionBlock` ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      +Heading--YDF({
-        level: 2,
-        innerHTML: localizedSectioning.AdmonitionBlockClass.$heading,
-        HTML_ID: localizedSectioning.AdmonitionBlockClass.$anchor
-      }).Article-Heading2
-
-      //- ─── React-свойства ─────────────────────────────────────────────────────────────────────────────────────────────
-      +Heading--YDF({
-        level: 3,
-        text: localizedSectioning.AdmonitionBlockClass.$children.reactProperties.$heading,
-        HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.reactProperties.$anchor
-      }).Article-Heading3
-
-      -
-
-        AdmonitionBlockComponentPropertiesSpecification.localizedDescriptiveHeading = "Свойства";
-
-        AdmonitionBlockComponentPropertiesSpecification.setPropertiesLocalizedInterpretations({
-          title: "Заголовок",
-          SVG_Icon: "SVG-иконка",
-          dismissible: "Возможно ли убрать",
-          theme: "Тема",
-          areThemesCSS_ClassesCommon: "Являются ли CSS-классы тем общими для всех компонентов",
-          geometricVariation: "Геометрическая вариация",
-          decorativeVariation: "Декоративная вариация",
-          actionBarContent: "Содержимое панели действий",
-          className: "Разделённые пробелом CSS-классы",
-          rootElementAttributes: "Аттрибуты корневого элемента"
-        });
-
-        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives = [
-          ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.theme.allowedAlternatives,
-          [
-            { text: "(Любые, определённые через " },
-            { code: "AdmonitionBlock.defineThemes(themesNames)" },
-            { text: ")" }
-          ]
-        ];
-
-        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives = [
-          ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.geometricVariation.allowedAlternatives,
-          [
-            { text: "(Любые, определённые через " },
-            { code: "AdmonitionBlock.defineGeometricVariations(geometricVariationsNames)" },
-            { text: ")" }
-          ]
-        ];
-
-        AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives = [
-          ...AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.decorativeVariation.allowedAlternatives,
-          [
-            { text: "(Любые, определённые через " },
-            { code: "AdmonitionBlock.defineDecorativeVariations(decorativeVariationsNames)" },
-            { text: ")" }
-          ]
-        ];
-
-
-      +ObjectTypeAbstract--YDF_DK(
-        AdmonitionBlockComponentPropertiesSpecification
-      )
-
 
       //- ─── Примеры ────────────────────────────────────────────────────────────────────────────────────────────────────
       +Heading--YDF({

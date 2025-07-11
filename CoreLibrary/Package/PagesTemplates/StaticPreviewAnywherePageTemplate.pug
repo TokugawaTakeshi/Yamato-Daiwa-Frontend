@@ -143,13 +143,11 @@ block append Functionality
 
       }
 
-      static getPageDevelopmentProgressStatusDependentBadgeDecorativeVariation(
-        pageDevelopmentProgressStatus
-      ) {
+      static getPageDevelopmentProgressStatusDependentBadgeDecorativeVariation(pageDevelopmentProgressStatus) {
 
         switch (pageDevelopmentProgressStatus) {
 
-          case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationWaiting:
+          case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.waitingForImplementation:
               return Badge__YDF.DecorativeVariations.veryCatchyPastel;
 
           case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.improvementWaiting:

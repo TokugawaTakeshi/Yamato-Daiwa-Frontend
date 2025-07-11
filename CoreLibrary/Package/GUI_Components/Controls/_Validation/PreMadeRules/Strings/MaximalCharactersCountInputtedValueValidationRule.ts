@@ -1,10 +1,10 @@
 import type InputtedValueValidation from "../../InputtedValueValidation";
 import maximalCharactersCountInputtedValueValidationRuleLocalization__english from
     "./MaximalCharactersCountInputtedValueValidationRuleLocalization.english";
-import { isString, isNotUndefined, Logger, InvalidParameterValueError } from "@yamato-daiwa/es-extensions";
+import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
-class MaximalCharactersCountInputtedValueValidationRule implements InputtedValueValidation.Rule {
+class MaximalCharactersCountInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
 
   public static localization: MaximalCharactersCountInputtedValueValidationRule.Localization =
       maximalCharactersCountInputtedValueValidationRuleLocalization__english;
@@ -45,32 +45,13 @@ class MaximalCharactersCountInputtedValueValidationRule implements InputtedValue
   }
 
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
-
-    if (!isString(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: "Unable to execute this validation because the raw value is not the string " +
-            `and actually has type "${ typeof rawValue }".`,
-        occurrenceLocation: "MaximalCharactersCountInputtedValueValidationRule.check(rawValue)"
-      });
-
-      return { isValid: true };
-
-    }
-
-
-    const isValid: boolean = rawValue.length <= this.MAXIMAL_CHARACTERS_COUNT;
-
-    return isValid ?
+  public check(rawValue: string): InputtedValueValidation.Rule.CheckingResult {
+    return rawValue.length <= this.MAXIMAL_CHARACTERS_COUNT ?
         { isValid: true } :
         {
           isValid: false,
           errorMessage: this.errorMessageBuilder({ rawValue, maximalCharactersCount: this.MAXIMAL_CHARACTERS_COUNT })
         };
-
   }
 
 }

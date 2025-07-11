@@ -1,0 +1,119 @@
+@require "Themes/Regular/GeometricVariations/MenuList-RegularTheme-RegularGeometry.styl"
+@require "Themes/Regular/DecorativeVariations/MenuList-RegularTheme-RegularDecoration.styl"
+
+
+MenuList--YDF = {
+
+  CSS_NAMESPACE: "MenuList--YDF",
+  componentIndependentCSS_Class: "RegularTheme--YDF",
+
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        geometricVariations: {
+          regular: MenuList-RegularTheme-RegularGeometry--YDF
+        },
+
+        decorativeVariations: {
+          regular: MenuList-RegularTheme-RegularDecoration--YDF
+        }
+
+      }
+    }
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    themeIndependentGeometricVariations: true
+  }
+
+}
+
+
+MenuList--YDF-generateStyles(
+  preset = MenuList--YDF.defaultProperties,
+  overridings = {},
+  options = MenuList--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject(preset, overridings)
+
+  validateObjectTypeParameter({
+    mixinOrFunctionName: "MenuList--YDF-generateStyles",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: MenuList--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: MenuList--YDF.defaultOptions.externalThemes
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: MenuList--YDF.defaultOptions.themeIndependentGeometricVariations
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .MenuList--YDF
+
+      display flex
+      flex-direction column
+
+
+      &-Button
+
+        min-width 6rem
+
+
+  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "MenuList.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+    +provideDefaultSelectorWhenRootAndApply("." + MenuList--YDF.CSS_NAMESPACE)
+
+      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+
+
+  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "MenuList.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+    +provideDefaultSelectorWhenRootAndApply("." + MenuList--YDF.CSS_NAMESPACE)
+
+      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+
+
+  // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  applyComponentThemes({
+    CSS_Namespace: "MenuList--YDF",
+    themes: properties.themes,
+    applyGeometricVariation: applyGeometricVariation,
+    applyDecorativeVariation: applyDecorativeVariation
+  })

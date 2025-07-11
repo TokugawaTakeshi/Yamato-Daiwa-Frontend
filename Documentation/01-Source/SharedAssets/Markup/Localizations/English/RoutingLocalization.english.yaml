@@ -233,6 +233,10 @@ coreLibrary:
 
         $heading: "Buttons"
 
+      validatables:
+
+        $heading: "Validatables"
+
 adaptationsToFrameworks:
 
   $heading: "Adaptations to JavaScript Frameworks"

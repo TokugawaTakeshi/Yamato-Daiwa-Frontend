@@ -1,13 +1,21 @@
 -
 
   const propertyMetadataYDF_DK_ComponentLocalization__english = {
+
     localizedInterpretation: "Interpretation",
     type: "Type",
     types: {
-      indexedArray: "Indexed array",
-      associativeArrayLikeObject: "Associative array like object",
+      [RawObjectDataProcessor.ValuesTypesIDs.number]: "number",
+      [RawObjectDataProcessor.ValuesTypesIDs.string]: "string",
+      [RawObjectDataProcessor.ValuesTypesIDs.boolean]: "boolean",
+      [RawObjectDataProcessor.ValuesTypesIDs.fixedSchemaObject]: "Object of fixed schema",
+      [RawObjectDataProcessor.ValuesTypesIDs.associativeArray]: "Associative array type object",
+      [RawObjectDataProcessor.ValuesTypesIDs.indexedArray]: "Indexed array",
+      [RawObjectDataProcessor.ValuesTypesIDs.tuple]: "Tuple",
+      [RawObjectDataProcessor.ValuesTypesIDs.ambiguousObject]: "Ambiguous object",
+      [RawObjectDataProcessor.ValuesTypesIDs.ambiguousArray]: "Ambiguous array",
+      [RawObjectDataProcessor.ValuesTypesIDs.polymorphic]: "Polymorphic"
     },
-    polymorphicPropertyVariants: "Variants",
 
     /* ━━━ Undefindability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     isUndefinedForbidden: "Is Undefined Forbidden",
@@ -29,33 +37,56 @@
     requiredIf: "Required if",
 
     /* ━━━ By Types ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── Fixed Shema Objects ────────────────────────────────────────────────────────────────────────────────────── */
+    objectTypeSchema: "Schema",
+
     /* ─── Associative Array ──────────────────────────────────────────────────────────────────────────────────────── */
     areUndefinedTypeValuesForbidden: "Are Undefined Type Values Forbidden",
     areNullTypeValuesForbidden: "Are Null Type Values Forbidden",
     minimalEntriesCount: "Minimal Entries",
+    allowedKeys: "Allowed Keys",
+    associativeArrayValues: "Associative Array Values",
 
+    /* ─── Indexed Array Property ─────────────────────────────────────────────────────────────────────────────────── */
+    arrayElements: "Array Elements",
+    minimalElementsCount: "Minimal Elements",
+    areUndefinedElementsForbidden: "Are Undefined Elements Forbidden",
+    areNullElementsForbidden: "Are Null Elements Forbidden",
 
-    yes: "Yes",
-    no: "No",
-    minimalCharactersCount: "Minimal Characters",
-    maximalCharactersCount: "Maximum Characters",
+    /* ─── Numbers ────────────────────────────────────────────────────────────────────────────────────────────────── */
     numbersSet: "Numbers Set",
     numbersSets: {
-      [RawObjectDataProcessor.NumbersSets.naturalNumber]: "Natural Number",
-      [RawObjectDataProcessor.NumbersSets.nonNegativeInteger]: "Non-negative Integer",
-      [RawObjectDataProcessor.NumbersSets.negativeInteger]: "Negative Integer",
-      [RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero]: "Negative Integer of Zero",
-      [RawObjectDataProcessor.NumbersSets.anyInteger]: "Any Integer",
-      [RawObjectDataProcessor.NumbersSets.positiveDecimalFraction]: "Positive Decimal Fraction",
-      [RawObjectDataProcessor.NumbersSets.negativeDecimalFraction]: "Negative Decimal Fraction",
-      [RawObjectDataProcessor.NumbersSets.decimalFractionOfAnySign]: "Decimal Fraction of Any Sign",
-      [RawObjectDataProcessor.NumbersSets.anyRealNumber]: "Any Real Number"
+      [RawObjectDataProcessor.NumbersSets.naturalNumber]: "natural number",
+      [RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero]: "positive integer or zero",
+      [RawObjectDataProcessor.NumbersSets.naturalNumberOrZero]: "natural number or zero",
+      [RawObjectDataProcessor.NumbersSets.negativeInteger]: "negative integer",
+      [RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero]: "negative integer of zero",
+      [RawObjectDataProcessor.NumbersSets.anyInteger]: "any integer",
+      [RawObjectDataProcessor.NumbersSets.positiveDecimalFraction]: "positive decimal fraction",
+      [RawObjectDataProcessor.NumbersSets.positiveDecimalFractionOrZero]: "positive decimal fraction or zero",
+      [RawObjectDataProcessor.NumbersSets.negativeDecimalFraction]: "negative decimal fraction",
+      [RawObjectDataProcessor.NumbersSets.negativeDecimalFractionOrZero]: "negative decimal fraction or zero",
+      [RawObjectDataProcessor.NumbersSets.anyDecimalFraction]: "any decimal fraction",
+      [RawObjectDataProcessor.NumbersSets.anyDecimalFractionOrZero]: "any decimal fraction or zero",
+      [RawObjectDataProcessor.NumbersSets.anyRealNumber]: "any real number",
+      [RawObjectDataProcessor.NumbersSets.positiveRealNumber]: "positive real number",
+      [RawObjectDataProcessor.NumbersSets.negativeRealNumber]: "negative real number",
+      [RawObjectDataProcessor.NumbersSets.positiveRealNumberOrZero]: "positive real number or zero",
+      [RawObjectDataProcessor.NumbersSets.negativeRealNumberOrZero]: "negative real number or zero"
     },
     minimalValue: "Minimal Value",
     maximalValue: "Maximal Value",
-    allowedKeys: "Allowed Keys",
     allowedAlternatives: "Allowed Alternatives",
-    objectTypeSchema: "Schema",
-    associativeArrayValues: "Associative Array Values",
-    arrayElements: "Array Elements"
+
+    /* ─── Strings ────────────────────────────────────────────────────────────────────────────────────────────────── */
+    minimalCharactersCount: "Minimal Characters",
+    maximalCharactersCount: "Maximum Characters",
+
+    /* ─── Polymorphic ────────────────────────────────────────────────────────────────────────────────────────────── */
+    polymorphicPropertyVariants: "Variants",
+
+    /* ━━━ Other ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    yes: "Yes",
+    no: "No"
+
   };

@@ -83,7 +83,7 @@ class ConfirmationModalDialog extends ModalDialog {
     ].join(" ");
 
     if (mustThrowError) {
-      Logger.throwErrorAndLog({
+      Logger.throwErrorWithFormattedMessage({
         errorInstance: new UnexpectedEventError(errorMessage),
         title: UnexpectedEventError.localization.defaultTitle,
         occurrenceLocation: "ConfirmationModalDialog.checkHasBeenCaptured(compoundParameter)"
@@ -192,7 +192,7 @@ class ConfirmationModalDialog extends ModalDialog {
   /* ━━━ Private Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected static getExpectedToBeInitializedSelfSoleInstance(): ConfirmationModalDialog {
     return ConfirmationModalDialog.selfSoleInstance ??
-        Logger.throwErrorAndLog({
+        Logger.throwErrorWithFormattedMessage({
           errorInstance: new ClassRequiredInitializationHasNotBeenExecutedError({
             className: "ConfirmationModalDialog",
             initializingMethodName: "captureDOM_ButNotDisplayYet"

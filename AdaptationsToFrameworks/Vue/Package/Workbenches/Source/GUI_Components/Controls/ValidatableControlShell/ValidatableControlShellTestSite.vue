@@ -12,15 +12,22 @@
   import { ValidatableControlShell } from "../../../../../Source";
 
   /* ─── Framework ────────────────────────────────────────────────────────────────────────────────────────────────── */
-  import { Component as VueComponentOptions, Vue as VueComponent } from "vue-facing-decorator";
+  import {
+    Component as VueComponentOptions,
+    Vue as VueComponent,
+    toNative as transformToOptionAPI_VueComponent
+  } from "vue-facing-decorator";
 
 
   @VueComponentOptions({
+    name: "ValidatableControlShellTestSite",
     components: {
       ValidatableControlShell
     }
   })
-  export default class ValidatableControlShellTestSite extends VueComponent {}
+  class ValidatableControlShellTestSite extends VueComponent {}
+
+  export default transformToOptionAPI_VueComponent(ValidatableControlShellTestSite);
 
 </script>
 
@@ -35,7 +42,7 @@
   InitialGlobalCSS_Rules()
 
 
-  generateValidatableControlShellYDF_GUI_ComponentStyles()
+  ValidatableControlShell--YDF-generateStyles()
 
 
   .DummyCore

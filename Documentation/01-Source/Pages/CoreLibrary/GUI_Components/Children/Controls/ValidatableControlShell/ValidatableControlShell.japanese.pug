@@ -5,7 +5,6 @@ block append Requirements
 
   include ../../../../../../SharedAssets/Markup/SharedAssets.japanese.pug
   include ../../../../../../SharedComponents/SharedComponents.japanese.pug
-  include Data/ValidatableControlShellComponentPropertiesSpecification.pug
 
 
 block append Metadata
@@ -15,12 +14,12 @@ block append Metadata
     const {
       $heading: topHeading,
       $sectioning: localizedSectioning
-    } = localizedRouting.coreLibrary.$children.GUI_Components.$children.controls.$children.validatableControlShell;
+    } = localizedRouting.coreLibrary.$children.GUI_Components.$children.controls.$children.ValidatableControlShell;
 
     RegularWebPageTemplate__YDF.configure({
       metadata: {
         title: buildHTML_PageTitle(topHeading),
-        description: MetaDescriptionTemplates.GUI_Components.ValidatableControlShell
+        description: MetaDescriptionTemplates.GUI_Components.controls.ValidatableControlShell
       },
       stylesSheetsURIs: [
         "$CommonStyles",
@@ -30,11 +29,11 @@ block append Metadata
       ]
     });
 
-    RoutingEmulator.setCurrentRoute("coreLibrary.GUI_Components.controls.validatableControlShell");
+    RoutingEmulator.setCurrentRoute("coreLibrary.GUI_Components.controls.ValidatableControlShell");
 
     LanguageDropDownList__YDF_DK.setLinks({
-      english: routing.english.coreLibrary.$children.GUI_Components.$children.controls.$children.validatableControlShell.$URI,
-      russian: routing.russian.coreLibrary.$children.GUI_Components.$children.controls.$children.validatableControlShell.$URI
+      english: routing.english.coreLibrary.$children.GUI_Components.$children.controls.$children.ValidatableControlShell.$URI,
+      russian: routing.russian.coreLibrary.$children.GUI_Components.$children.controls.$children.ValidatableControlShell.$URI
     });
 
 
@@ -49,7 +48,61 @@ block append SpecificContent
 
   article
 
-    //- ━━━ ValidatableControlShell ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ━━━ `ValidatableControlShell` ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     h1.Article-Heading1!= topHeading
 
-    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
+
+    +WebPageViewer--YDF({
+      URI: "$Demos:CorePackage/GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.
+          generateDescription({ componentName: "ValidatableControlShell" })
+    })
+
+    +ValidatableControlShellComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ┅┅┅ 概要 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
+    }).Article-Heading2
+
+    +ValidatableControlShellComponent-Overview
+
+
+    //- ┅┅┅ 利用 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.usage.$heading,
+      HTML_ID: localizedSectioning.usage.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ マークアップ ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.usage.$children.markup.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$anchor
+    }).Article-Heading3
+
+    //- ─── プロジェクトへの取り組み ───────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.usage.$children.markup.$children.includingToProject.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.includingToProject.$anchor
+    }).Article-Heading4
+
+    +ComponentMarkupProvidingGuidanceFragment({ componentName: "ValidatableControlShell" })
+
+
+    //- ─── Pugミックスインの`ValidatableControlShell--YDF` ──────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$anchor
+    }).Article-Heading4
+
+    +ValidatableControlShellComponent-PugMixinOrClassSynopsis()

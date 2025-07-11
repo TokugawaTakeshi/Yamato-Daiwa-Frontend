@@ -8,7 +8,7 @@ mixin TextBox--YDF(properties, statesSimulations)
     const {
 
       /**
-       * @type { Button__YDF.HTML_Types }
+       * @type { TextBox__YDF.HTML_Types }
        * @default TextBox__YDF.HTML_Types.text
        * */
       HTML_Type,
@@ -100,6 +100,18 @@ mixin TextBox--YDF(properties, statesSimulations)
       /** @type { number } */
       maximalNumericValue,
 
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      hasValueCopyingButton,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      hasPasswordDisplayingToggle,
+
       /** @type { string | undefined } */
       instanceID_UniqueDynamicPart,
 
@@ -123,7 +135,7 @@ mixin TextBox--YDF(properties, statesSimulations)
        * @type { boolean }
        * @default TextBox__YDF.areThemesCSS_ClassesCommon
        * */
-      areThemesExternal,
+      areThemesCSS_ClassesCommon,
 
       /**
        * @type { TextBox__YDF.GeometricVariations }
@@ -198,17 +210,27 @@ mixin TextBox--YDF(properties, statesSimulations)
       mixinName: TextBox__YDF.CSS_NAMESPACE
     });
 
+
     /** @type { Array<string> } */
-    const rootElementModifierCSS_Classes = [
+    const rootCSS_Classes = [
+
+      TextBox__YDF.DOM_AccessResources.rootElement.CSS_NAMESPACE_CLASS,
 
       ...multiline ? [ `${ TextBox__YDF.CSS_NAMESPACE }__Multiline` ] : [],
 
       ...disabled ? [ `${ TextBox__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
 
-      ...invalidInputHighlightingIfAnyValidationErrorsMessages && validationErrorsMessages.length > 0 ?
-          [ `${ TextBox__YDF.CSS_NAMESPACE }__InvalidValueState` ] : [],
-      ...validValueHighlightingIfNoValidationErrorsMessages && validationErrorsMessages.length === 0 ?
-          [ `${ TextBox__YDF.CSS_NAMESPACE }__ValueState` ] : [],
+      ...(
+        invalidInputHighlightingIfAnyValidationErrorsMessages &&
+            (validationErrorsMessages === true || validationErrorsMessages.length > 0)
+      ) ?
+          [ `${ TextBox__YDF.CSS_NAMESPACE }__InvalidInputState` ] : [],
+
+      ...(
+        validValueHighlightingIfNoValidationErrorsMessages &&
+            (validationErrorsMessages === false || validationErrorsMessages.length === 0)
+      ) ?
+          [ `${ TextBox__YDF.CSS_NAMESPACE }__ValidInputState` ] : [],
 
       ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
         theme,
@@ -223,15 +245,19 @@ mixin TextBox--YDF(properties, statesSimulations)
         CSS_Namespace: TextBox__YDF.CSS_NAMESPACE
       }),
 
-      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(TextBox__YDF.TextBox__YDF, geometricModifiers),
+      ...ComponentsAuxiliaries.
+          generateDemandedGeometricModifiersCSS_Classes(TextBox__YDF.CSS_NAMESPACE, geometricModifiers),
 
       ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
         decorativeVariation,
         allDecorativeVariations: TextBox__YDF.DecorativeVariations,
         CSS_Namespace: TextBox__YDF.CSS_NAMESPACE
-      })
+      }),
+
+      ...attributes.class ? [ attributes.class ] : []
 
     ];
+
 
   +ValidatableControlShell--YDF(
     {
@@ -243,8 +269,11 @@ mixin TextBox--YDF(properties, statesSimulations)
       mustDisplayAppropriateBadgeIfInputIsRequired,
       mustDisplayAppropriateBadgeIfInputIsOptional,
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+
       coreElementHTML_ID: inputOrTextAreaHTML_ID,
-      labelElementHTML_ID: labelElementHTML_ID,
+      labelElementHTML_ID,
+
+      mainSlotWrapperAdditionalCSS_Classes: [ "TextBox--YDF-LinearFlow" ],
 
       theme: TextBox__YDF.selfAndChildrenComponentsThemesCorrespondence.validatableControlShell[theme],
       areThemesCSS_ClassesCommon,
@@ -258,41 +287,111 @@ mixin TextBox--YDF(properties, statesSimulations)
       validationErrorsMessages,
       asynchronousValidationsStatuses
     }
-  ).TextBox--YDF&attributes(attributes)(
-    class=rootElementModifierCSS_Classes
-    data-auto_resizing_for_multiline_mode=(multiline && autoResizingForMultilineMode)
+  )&attributes(
+    Object.assign(
+      attributes,
+      {
+        class: rootCSS_Classes,
+        [TextBox__YDF.DOM_AccessResources.rootElement.dataset.instanceID.DATA_ATTRIBUTE_KEY]: INSTANCE_ID,
+        [TextBox__YDF.DOM_AccessResources.rootElement.dataset.autoResizingForMultilineMode.DATA_ATTRIBUTE_KEY]:
+            multiline && autoResizingForMultilineMode
+      }
+    )
   )
 
-    if multiline
+    .TextBox--YDF-IconsPositioningWrapper
 
-      textarea.TextBox--YDF-InputOrTextAreaElement(
-        placeholder=placeholder
-        autocomplete=autocomplete
-        readonly=readonly
-        disabled=disabled
-        required=required
-        minlength=minimalCharactersCount
-        maxlength=maximalCharactersCount
-        id=inputOrTextAreaHTML_ID
-        aria-label=accessibilityGuidance
-        aria-labelledby=externalLabelHTML_ID
-      )= value
+      if multiline
 
-    else
+        textarea.TextBox--YDF-InputOrTextAreaElement(
+          placeholder=placeholder
+          autocomplete=autocomplete
+          readonly=readonly
+          disabled=disabled
+          required=required
+          minlength=minimalCharactersCount
+          maxlength=maximalCharactersCount
+          id=inputOrTextAreaHTML_ID
+          aria-label=accessibilityGuidance
+          aria-labelledby=externalLabelHTML_ID
+        )&attributes({
+          [TextBox__YDF.DOM_AccessResources.inputOrTextArea.DATA_ATTRIBUTE_KEY]: ""
+        })= value
 
-      input.TextBox--YDF-InputOrTextAreaElement(
-        type=HTML_Type
-        value=value
-        placeholder=placeholder
-        autocomplete=autocomplete
-        readonly=readonly
-        disabled=disabled
-        required=required
-        minlength=minimalCharactersCount
-        maxlength=maximalCharactersCount
-        min=minimalNumericValue
-        max=maximalNumericValue
-        id=inputOrTextAreaHTML_ID
-        aria-label=accessibilityGuidance
-        aria-labelledby=externalLabelHTML_ID
-      )
+      else
+
+        input.TextBox--YDF-InputOrTextAreaElement(
+          type=HTML_Type
+          value=value
+          placeholder=placeholder
+          autocomplete=autocomplete
+          readonly=readonly
+          disabled=disabled
+          required=required
+          minlength=minimalCharactersCount
+          maxlength=maximalCharactersCount
+          min=minimalNumericValue
+          max=maximalNumericValue
+          id=inputOrTextAreaHTML_ID
+          aria-label=accessibilityGuidance
+          aria-labelledby=externalLabelHTML_ID
+        )&attributes({
+          [TextBox__YDF.DOM_AccessResources.inputOrTextArea.DATA_ATTRIBUTE_KEY]: ""
+        })
+
+
+      block
+
+
+      if HTML_Type === TextBox__YDF.HTML_Types.password && hasPasswordDisplayingToggle
+
+        span.TextBox--YDF-PasswordDisplayingToggle(
+          role="checkbox"
+          aria-checked="false"
+          tabindex="0"
+          aria-label=TextBox__YDF.localization.passwordDisplayingToggle.displayingOfPassword.accessibilityGuidance
+          aria-readonly=readonly
+          aria-disabled=disabled
+        )&attributes({
+          [TextBox__YDF.DOM_AccessResources.passwordDisplayingToggle.DATA_ATTRIBUTE_KEY]: ""
+        })
+
+          +SigningIn--YDF_Icon&attributes({
+            class: [
+              "TextBox--YDF-PasswordDisplayingToggle-SVG_Icon",
+              "TextBox--YDF-PasswordDisplayingToggle-SVG_Icon__PasswordVisibleState"
+            ],
+            [TextBox__YDF.DOM_AccessResources.passwordDisplayingToggle.icons.passwordDisplayingState.DATA_ATTRIBUTE_KEY]: ""
+          })
+
+          +SigningOut--YDF_Icon&attributes({
+            class: [
+              "TextBox--YDF-PasswordDisplayingToggle-SVG_Icon",
+              "TextBox--YDF-PasswordDisplayingToggle-SVG_Icon__PasswordHiddenState"
+            ],
+            [TextBox__YDF.DOM_AccessResources.passwordDisplayingToggle.icons.passwordHiddenState.DATA_ATTRIBUTE_KEY]: ""
+          })
+
+
+    if hasValueCopyingButton
+
+      +Button--YDF({
+        accessibilityGuidance: TextBox__YDF.localization.valueCopyingButton.accessibilityGuidance,
+        HTML_Type: Button__YDF.HTML_Types.regular,
+        theme: TextBox__YDF.selfAndChildrenComponentsThemesCorrespondence.valueCopyingButton[theme],
+        areThemesCSS_ClassesCommon,
+        geometricVariation: TextBox__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
+            valueCopyingButton[geometricVariation],
+        geometricModifiers: [
+          Button__YDF.GeometricModifiers.squareShape,
+          Button__YDF.GeometricModifiers.noLeftBorderAndRoundings,
+          ...geometricModifiers.includes(TextBox__YDF.GeometricModifiers.noRoundings) ?
+              [ Button__YDF.GeometricModifiers.noRoundings ] : []
+        ],
+        decorativeVariation: TextBox__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.
+            valueCopyingButton[decorativeVariation]
+      }).TextBox--YDF-ValueCopyingButton&attributes({
+        [TextBox__YDF.DOM_AccessResources.valueCopyingButton.DATA_ATTRIBUTE_KEY]: ""
+      })
+
+        +Copying--YDF_Icon.Button--YDF-SVG_Icon

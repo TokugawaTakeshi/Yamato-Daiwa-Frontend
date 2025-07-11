@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/member-ordering -- The secondary members has been organized to the end of the class. */
 
-import type { InputtedValueValidation } from "@yamato-daiwa/frontend";
+import type { InputtedValueValidation, ValidatableControl as CorePackageValidatableControl } from "@yamato-daiwa/frontend";
 import type { ComponentPublicInstance as VueComponentPublicInstance } from "vue";
 import {
   Logger,
@@ -12,22 +12,10 @@ import {
 import VueComponentNotFoundError from "../../_Errors/VueComponentNotFound/VueComponentNotFoundError";
 
 
-interface ValidatableControl {
-
-  highlightInvalidInput: () => this;
-
-  getRootElementOffsetCoordinates: () => Element;
-
-  focus: () => this;
-
-  resetValidityHighlightingStateToInitial: () => ValidatableControl.RootElementOffsetCoordinates;
-
-}
+type ValidatableControl = CorePackageValidatableControl;
 
 
 namespace ValidatableControl {
-
-  export type RootElementOffsetCoordinates = Readonly<{ top: number; left: number; }>;
 
   export function isValidatableControl(potentialValidatableControl: unknown): potentialValidatableControl is ValidatableControl {
     return isArbitraryObject(potentialValidatableControl) &&
@@ -36,6 +24,7 @@ namespace ValidatableControl {
         isFunctionLike(potentialValidatableControl.focus) &&
         isFunctionLike(potentialValidatableControl.resetValidityHighlightingStateToInitial);
   }
+
 
   export function getValidatableControlInstanceByVueReferenceID(
     compoundParameter: Readonly<{
@@ -66,7 +55,7 @@ namespace ValidatableControl {
     if (isUndefined(potentialValidatableControl)) {
 
       if (compoundParameter.mustThrowErrorIsNotFoundOrNotValidatableControl === true) {
-        Logger.throwErrorAndLog({
+        Logger.throwErrorWithFormattedMessage({
           errorInstance: new VueComponentNotFoundError({ vueReferenceID: compoundParameter.vueReferenceID }),
           title: VueComponentNotFoundError.localization.defaultTitle,
           occurrenceLocation: "ValidatableControl.getValidatableControlInstanceByVueReferenceID(compoundParameter)"
@@ -82,7 +71,7 @@ namespace ValidatableControl {
     if (!isValidatableControl(potentialValidatableControl)) {
 
       if (compoundParameter.mustThrowErrorIsNotFoundOrNotValidatableControl === true) {
-        Logger.throwErrorAndLog({
+        Logger.throwErrorWithFormattedMessage({
           errorType: "VueReferenceValueIsNotValidatableControlError",
           title: "Vue Reference Value is not the Validatable Control",
           description:
@@ -219,7 +208,7 @@ namespace ValidatableControl {
     public getExpectedToBeValidValue(): ValidValue {
 
       if (this.isInvalid) {
-        Logger.throwErrorAndLog({
+        Logger.throwErrorWithFormattedMessage({
           errorInstance: new UnexpectedEventError("Contrary to expectations, the value is still invalid."),
           title: UnexpectedEventError.localization.defaultTitle,
           occurrenceLocation: "ValidatableControl.Payload.getExpectedToBeValidValue()"

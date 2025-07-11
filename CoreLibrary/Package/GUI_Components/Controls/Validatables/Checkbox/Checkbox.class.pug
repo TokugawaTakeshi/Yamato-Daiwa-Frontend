@@ -275,11 +275,30 @@
         minimalCharactersCount: 1
       },
 
-      inputElementHTML_ID: {
-        type: String,
+      HTML_IDs: {
+
+        type: Object,
         isUndefinedForbidden: false,
         isNullForbidden: true,
-        minimalCharactersCount: 1
+
+        properties: {
+
+          input: {
+            type: String,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          },
+
+          label: {
+            type: String,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          }
+
+        }
+
       },
 
       checked: {

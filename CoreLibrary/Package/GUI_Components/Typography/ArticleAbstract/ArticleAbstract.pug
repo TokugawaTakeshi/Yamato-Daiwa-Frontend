@@ -2,11 +2,9 @@ mixin ArticleAbstract--YDF(properties)
 
   -
 
-    properties = properties ?? {}
-
     const {
 
-    } = properties
+    } = properties ?? {};
 
   section.ArticleAbstract--YDF&attributes(attributes)(
     role="doc-abstract"

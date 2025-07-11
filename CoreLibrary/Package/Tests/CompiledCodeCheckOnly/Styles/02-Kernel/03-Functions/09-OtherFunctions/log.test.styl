@@ -1,0 +1,44 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/09-OtherFunctions/log.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/09-OtherFunctions/log.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+sample1 = {
+  alpha: "FOO",
+  bravo: 1,
+  charlie: {
+    delta: "BAR",
+    echo: 2
+  }
+}
+
+p(sample1)
+log(sample1)
+
+log({
+  alpha: "FOO",
+  bravo: 1,
+  charlie: {
+    delta: "BAR",
+    echo: 2
+  },
+  hotel: "BAZ"
+})
+
+log({
+  alpha: "FOO",
+  bravo: 1,
+  charlie: {
+    delta: ("asdf" 1) ("QWER" 3),
+    echo: 2
+  },
+  hotel: "FUGA"
+})
+
+log("test1", "test2")

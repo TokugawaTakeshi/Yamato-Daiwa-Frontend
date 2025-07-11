@@ -41,7 +41,7 @@ Accordion--YDF = {
 }
 
 
-provideAccordionYDF_Component(
+Accordion--YDF-generateStyles(
   preset = Accordion--YDF.defaultProperties,
   overridings = {},
   options = Accordion--YDF.defaultOptions,
@@ -51,7 +51,7 @@ provideAccordionYDF_Component(
   properties = deeplyCloneAndOverrideObject(preset, overridings)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "provideAccordionYDF_Component",
+    mixinOrFunctionName: "Accordion--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {

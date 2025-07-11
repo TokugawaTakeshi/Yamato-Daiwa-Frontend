@@ -1,22 +1,22 @@
-projectBuilding:
+$projectBuilding:
 
-  ECMA_ScriptLogicProcessing:
+  $ECMA_ScriptLogicProcessing:
 
-    entryPointsGroups:
+    $entryPointsGroups:
 
       Logic:
 
-        singleEntryPointSourceFileRelativePath: YDF.ts
+        $singleEntryPointSourceFileRelativePath: YDF.ts
 
-        targetRuntime:
-          type: BROWSER
+        $targetRuntime:
+          $type: BROWSER
 
-        distributing:
-          exposingOfExportsFromEntryPoints:
-            mustExpose: true
+        $distributing:
+          $exposingOfExportsFromEntryPoints:
+            $mustExpose: true
 
-        buildingModeDependent:
+        $buildingModeDependent:
 
-          PRODUCTION:
-            outputTopDirectoryRelativePath: ""
-            revisioning: { disable: true }
+          $production:
+            $outputTopDirectoryRelativePath: ""
+            $revisioning: { $disable: true }

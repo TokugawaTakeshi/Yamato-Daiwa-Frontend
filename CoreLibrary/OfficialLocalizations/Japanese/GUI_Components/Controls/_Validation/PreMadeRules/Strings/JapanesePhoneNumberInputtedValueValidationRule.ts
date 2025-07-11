@@ -14,7 +14,7 @@ import {
 } from "@yamato-daiwa/es-extensions";
 
 
-class JapanesePhoneNumberInputtedValueValidationRule implements InputtedValueValidation.Rule {
+class JapanesePhoneNumberInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
 
   public static localization: JapanesePhoneNumberInputtedValueValidationRule.Localization =
       japanesePhoneNumberInputtedValueValidationRuleLocalization__japanese;

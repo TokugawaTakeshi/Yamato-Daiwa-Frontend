@@ -1,12 +1,12 @@
 {
   "private": true,
   "devDependencies": {
-    "@yamato-daiwa/automation": "0.5.0"
+    "@yamato-daiwa/automation": "0.8.0"
   },
   "dependencies": {
     "@yamato-daiwa/frontend-demos": "../../../CoreLibrary/Demos"
   },
   "scripts": {
-    "Get external styles": "yda build --mode PRODUCTION"
+    "Get External Styles": "yda build --mode PRODUCTION"
   }
 }

@@ -19,7 +19,7 @@ export default function onDifferentValueAssigned():
 
       if (!isArbitraryObject(target)) {
 
-        Logger.throwErrorAndLog({
+        Logger.throwErrorWithFormattedMessage({
           errorInstance: new ImproperUsageError(
             "The decorator has been appended to something that is not an object thus not the ECMAScript class"
           ),

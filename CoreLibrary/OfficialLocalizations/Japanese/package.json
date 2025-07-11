@@ -1,6 +1,6 @@
 {
   "name": "@yamato-daiwa/frontend-localization-japanese",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "The Japanese localization for \"@yamato-daiwa/frontend\" package.",
   "keywords": [
     "frontend",
@@ -28,16 +28,19 @@
     "@yamato-daiwa/frontend": "2.0.0-beta.10"
   },
   "dependencies": {
-    "@yamato-daiwa/es-extensions": "1.8.0-alpha.10",
+    "@yamato-daiwa/es-extensions": "1.8.5",
     "fundamental-constants-japan": "0.0.1"
   },
   "devDependencies": {
-    "@yamato-daiwa/frontend": "2.0.0-beta.10",
-    "@yamato-daiwa/style_guides": "0.6.2",
-    "rimraf": "6.0.1"
+    "@yamato-daiwa/frontend": "../../Package",
+    "@yamato-daiwa/style_guides": "0.11.6",
+    "rimraf": "6.1.3"
   },
   "scripts": {
     "Production Building of Logic": "rimraf LogicDistributable && tsc",
-    "Linting": "eslint ."
+    "Linting": "eslint .",
+    "Project Structure Visualizing": "wsl tree -I \".git|.idea|node_modules|LogicDistributable\" || tree -I \".git|.idea|node_modules|LogicDistributable\"",
+    "build": "npm run \"Production Building of Logic\"",
+    "lint": "npm run \"Linting\""
   }
 }

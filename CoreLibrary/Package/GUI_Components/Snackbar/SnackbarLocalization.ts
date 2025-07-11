@@ -1,4 +1,4 @@
-export type SnackbarBlockLocalization = Readonly<{
+export type SnackbarLocalization = Readonly<{
   dismissingButton: Readonly<{
     accessibilityGuidance: string;
   }>;

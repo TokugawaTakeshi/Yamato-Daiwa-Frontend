@@ -2,10 +2,10 @@
  * The members of this class has been organized semantically. */
 
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
-import type DateTimePickerLocalization from "./DateTimePickerLocalization";
+import type { DateTimePickerLocalization } from "./DateTimePickerLocalization";
 import componentDynamicPartsHTML from "./DateTimePicker.parts.pug";
-import { dateTimePickerYDF_ComponentLocalization__english } from "./DateTimePickerLocalization.english";
-import { type DateTimePickerYDF_GUI_ComponentDOM_Access, dateTimePickerYDF_GUI_ComponentDOM_Access } from
+import { dateTimePickerYDF_GUI_ComponentLocalization__english } from "./DateTimePickerLocalization.english";
+import { type DateTimePickerYDF_GUI_ComponentDOM_AccessResources, dateTimePickerYDF_GUI_ComponentDOM_AccessResources } from
     "./DateTimePickerDOM_Access";
 import { DAYS_COUNT_IN_WEEK, MAXIMAL_DAYS_IN_MONTH, MONTHS_COUNT_IN_YEAR } from "fundamental-constants";
 
@@ -51,17 +51,21 @@ import setHTML_Attributes from "../../../../Logic/UtilsIncubator/DOM/setHTML_Att
 import onDifferentValueAssigned from "../../../_Auxiliaries/Decorators/onDifferentValueAssigned";
 
 
+/** @beta */
 class DateTimePicker<
-  ValidValue extends DateTimePicker.SupportedValidatablePayloadValuesTypes,
-  InvalidValue extends DateTimePicker.SupportedValidatablePayloadValuesTypes,
-  Validation extends InputtedValueValidation
+  IsInputRequired extends boolean,
+  NonEmptyValueType extends DateTimePicker.SupportedValidatablePayloadValuesTypes.NonEmpty,
+  EmptyValueType extends DateTimePicker.SupportedValidatablePayloadValuesTypes.Empty,
+  ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)) =
+      IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType),
+  InvalidValue extends NonEmptyValueType | EmptyValueType = NonEmptyValueType | EmptyValueType
 > implements ValidatableControl {
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static defaultLocalization: DateTimePickerLocalization = dateTimePickerYDF_ComponentLocalization__english;
+  public static defaultLocalization: DateTimePickerLocalization = dateTimePickerYDF_GUI_ComponentLocalization__english;
 
-  protected static readonly DOM_AccessResources: DateTimePickerYDF_GUI_ComponentDOM_Access =
-      dateTimePickerYDF_GUI_ComponentDOM_Access;
+  protected static readonly DOM_AccessResources: DateTimePickerYDF_GUI_ComponentDOM_AccessResources =
+      dateTimePickerYDF_GUI_ComponentDOM_AccessResources;
 
   protected static readonly YEARS_COUNT_AT_LEFT_OR_RIGHT_OF_CENTER_ONE_IN_MATRIX: number = 12;
 
@@ -110,7 +114,8 @@ class DateTimePicker<
 
 
   /* ━━━ Instance Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public readonly payload: ValidatableControl.Payload<ValidValue, InvalidValue, Validation>;
+  public readonly payload: ValidatableControl.
+      Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>;
 
   protected localization: DateTimePickerLocalization;
 
@@ -176,7 +181,7 @@ class DateTimePicker<
 
     if (this._mustHighlightInvalidInputIfAnyValidationErrorsMessages) {
 
-      this.shellComponent.$mustDisplayErrorsMessagesIfAny = true;
+      this.shellComponent.$mustDisplayValidationErrorsMessagesIfAny = true;
 
       if (this.payload.isInvalid) {
         this.shellComponent.rootElement.classList.add(DateTimePicker.INVALID_VALUE_STATE_CSS_CLASS);
@@ -188,7 +193,7 @@ class DateTimePicker<
 
 
     this.shellComponent.rootElement.classList.remove(DateTimePicker.INVALID_VALUE_STATE_CSS_CLASS);
-    this.shellComponent.$mustDisplayErrorsMessagesIfAny = false;
+    this.shellComponent.$mustDisplayValidationErrorsMessagesIfAny = false;
 
   }
 
@@ -276,6 +281,7 @@ class DateTimePicker<
                 numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
                 isUndefinedForbidden: true,
                 isNullForbidden: true,
+                isNaN_Forbidden: true,
                 minimalValue: 1,
                 maximalValue: MONTHS_COUNT_IN_YEAR
               }
@@ -396,13 +402,17 @@ class DateTimePicker<
 
   /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static initializeOne<
-    ValidValue extends DateTimePicker.SupportedValidatablePayloadValuesTypes,
-    InvalidValue extends DateTimePicker.SupportedValidatablePayloadValuesTypes,
-    Validation extends InputtedValueValidation
+    IsInputRequired extends boolean,
+    NonEmptyValueType extends DateTimePicker.SupportedValidatablePayloadValuesTypes.NonEmpty,
+    EmptyValueType extends DateTimePicker.SupportedValidatablePayloadValuesTypes.Empty,
+    ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)) =
+        IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType),
+    InvalidValue extends NonEmptyValueType | EmptyValueType = NonEmptyValueType | EmptyValueType
   >(
-    properties: DateTimePicker.InitializationProperties<ValidValue, InvalidValue, Validation>
-  ): DateTimePicker<ValidValue, InvalidValue, Validation> {
-    return new DateTimePicker<ValidValue, InvalidValue, Validation>(properties);
+    properties:
+      DateTimePicker.InitializationProperties<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>
+  ): DateTimePicker<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue> {
+    return new DateTimePicker<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>(properties);
   }
 
 
@@ -437,14 +447,13 @@ class DateTimePicker<
   /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected constructor(
     {
-      rootElement,
-      contextElement,
       nativeInputElementValueToValidatableValuePayloadTransformer,
       validation,
       displayingValueFormatter,
       dateSetter,
-      localization
-    }: DateTimePicker.InitializationProperties<ValidValue, InvalidValue, Validation>
+      localization,
+      ...initializationProperties
+    }: DateTimePicker.InitializationProperties<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>
   ) {
 
     this.localization = localization ?? DateTimePicker.defaultLocalization;
@@ -452,9 +461,8 @@ class DateTimePicker<
 
     /* ─── DOM ────────────────────────────────────────────────────────────────────────────────────────────────────── */
     this.shellComponent = ValidatableControlShell.initializeOne({
-      rootElement,
-      contextElement,
-      mustDisplayErrorsMessagesIfAny: this.mustDisplayErrorsMessagesImmediatelyIfAny
+      mustDisplayErrorsMessagesIfAny: this.mustDisplayErrorsMessagesImmediatelyIfAny,
+      ...initializationProperties
     });
 
     const {
@@ -511,6 +519,7 @@ class DateTimePicker<
     if (isUndefined(initialValue__ISO8601)) {
       initiallyDisplayingDatePossiblyWithTime = new Date();
     } else {
+      // FIXME ここで不正HTMLが発生しがち
       this.nativeInputElement.value = initialValue__ISO8601;
       initiallyDisplayingDatePossiblyWithTime = new Date(initialValue__ISO8601);
     }
@@ -580,10 +589,12 @@ class DateTimePicker<
 
 
         /* --- Other ------------------------------------------------------------------------------------------------ */
-        [DateTimePicker.MONTH_SELECTING_BUTTON_SELECTOR]: this.onClickSpecificMonthDisplayingButton.bind(this),
-        [DateTimePicker.YEAR_SELECTING_BUTTON_SELECTOR]: this.onClickYearSelectingButton.bind(this),
         [DateTimePicker.DOM_AccessResources.dialog.bottomActionBar.buttons.unselecting.INTERNALLY_UNIQUE_SELECTOR]:
-            this.onClickDateTimeUnselectingButton.bind(this)
+            this.onClickDateTimeUnselectingButton.bind(this),
+
+        [DateTimePicker.DATE_SELECTING_BUTTON_SELECTOR]: this.onClickDateSelectingButton.bind(this),
+        [DateTimePicker.MONTH_SELECTING_BUTTON_SELECTOR]: this.onClickSpecificMonthDisplayingButton.bind(this),
+        [DateTimePicker.YEAR_SELECTING_BUTTON_SELECTOR]: this.onClickYearSelectingButton.bind(this)
 
       }
     });
@@ -684,7 +695,7 @@ class DateTimePicker<
     this.dateSetter = dateSetter;
     this.displayingValueFormatter = displayingValueFormatter;
 
-    this.payload = new ValidatableControl.Payload<ValidValue, InvalidValue, Validation>({
+    this.payload = new ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>({
       initialValue: nativeInputElementValueToValidatableValuePayloadTransformer(initialValue__ISO8601),
       getComponentInstance: (): ValidatableControl => this,
       validation,
@@ -730,7 +741,10 @@ class DateTimePicker<
 
   /* ━━━ Events Handling ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected onPayloadInitializedOrChanged(): void {
+
+    /* @ts-ignore: TS2394 Acceptable during α/β versions of this component but must and will be fixed before official release. */
     this.indicatorButtonLabelElement.textContent = this.displayingValueFormatter(this.payload.value);
+    
   }
 
   protected onClickIndicatorButton(): void {
@@ -754,7 +768,8 @@ class DateTimePicker<
           type: Number,
           numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
           isUndefinedForbidden: true,
-          isNullForbidden: true
+          isNullForbidden: true,
+          isNaN_Forbidden: true
         },
         month_number__numeration_from0: {
           newName: "monthNumber__numerationFrom0",
@@ -763,7 +778,7 @@ class DateTimePicker<
           numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
           isUndefinedForbidden: true,
           isNullForbidden: true,
-          minimalValue: 0,
+          isNaN_Forbidden: true,
           maximalValue: MONTHS_COUNT_IN_YEAR - 1
         },
         month_number__numeration_from1: {
@@ -773,6 +788,7 @@ class DateTimePicker<
           numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
           isUndefinedForbidden: true,
           isNullForbidden: true,
+          isNaN_Forbidden: true,
           minimalValue: 1,
           maximalValue: MONTHS_COUNT_IN_YEAR
         },
@@ -790,7 +806,7 @@ class DateTimePicker<
           numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
           isUndefinedForbidden: true,
           isNullForbidden: true,
-          minimalValue: 1,
+          isNaN_Forbidden: true,
           maximalValue: MAXIMAL_DAYS_IN_MONTH
         },
         day_of_week_number__numeration_from_0_from_sunday: {
@@ -800,7 +816,7 @@ class DateTimePicker<
           numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
           isUndefinedForbidden: true,
           isNullForbidden: true,
-          minimalValue: 1,
+          isNaN_Forbidden: true,
           maximalValue: DAYS_COUNT_IN_WEEK - 1
         },
         day_of_week_name: {
@@ -894,7 +910,7 @@ class DateTimePicker<
               numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
               isUndefinedForbidden: true,
               isNullForbidden: true,
-              minimalValue: 1,
+              isNaN_Forbidden: true,
               maximalValue: MONTHS_COUNT_IN_YEAR
             }
           }
@@ -943,7 +959,8 @@ class DateTimePicker<
               type: Number,
               numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
               isUndefinedForbidden: true,
-              isNullForbidden: true
+              isNullForbidden: true,
+              isNaN_Forbidden: true
             }
           }
         });
@@ -1060,7 +1077,8 @@ class DateTimePicker<
               type: Number,
               numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
               isUndefinedForbidden: false,
-              isNullForbidden: true
+              isNullForbidden: true,
+              isNaN_Forbidden: true
             }
           }
         });
@@ -1353,7 +1371,14 @@ class DateTimePicker<
 
 namespace DateTimePicker {
 
-  export type SupportedValidatablePayloadValuesTypes = DateWithoutTime | TimePoint | null;
+  export type SupportedValidatablePayloadValuesTypes =
+      SupportedValidatablePayloadValuesTypes.NonEmpty |
+      SupportedValidatablePayloadValuesTypes.Empty;
+
+   export namespace SupportedValidatablePayloadValuesTypes {
+    export type NonEmpty = TimePoint | DateWithoutTime;
+    export type Empty = null;
+  }
 
   export type DisplayingValueFormatter<
     ValidValue extends SupportedValidatablePayloadValuesTypes,
@@ -1361,9 +1386,11 @@ namespace DateTimePicker {
   > = (value: ValidValue | InvalidValue) => string;
 
   export type InitializationProperties<
-    ValidValue extends SupportedValidatablePayloadValuesTypes,
-    InvalidValue extends SupportedValidatablePayloadValuesTypes,
-    Validation extends InputtedValueValidation
+    IsInputRequired extends boolean,
+    NonEmptyValueType extends SupportedValidatablePayloadValuesTypes.NonEmpty,
+    EmptyValueType extends SupportedValidatablePayloadValuesTypes.Empty,
+    ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)),
+    InvalidValue extends NonEmptyValueType | EmptyValueType
   > = Readonly<
     (
       {
@@ -1376,7 +1403,7 @@ namespace DateTimePicker {
       }
     ) &
     {
-      validation: Validation;
+      validation: InputtedValueValidation<NonEmptyValueType, EmptyValueType>;
       nativeInputElementValueToValidatableValuePayloadTransformer: (value?: string) => ValidValue | InvalidValue;
       displayingValueFormatter: DisplayingValueFormatter<ValidValue, InvalidValue>;
       dateSetter: DateSetter<ValidValue, InvalidValue>;

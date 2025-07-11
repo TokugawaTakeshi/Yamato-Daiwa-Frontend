@@ -2,7 +2,8 @@ import {
   toUpperCamelCase,
   toLowerCamelCase,
   toScreamingSnakeCase,
-  isUndefined
+  isUndefined,
+  isNotUndefined
 } from "@yamato-daiwa/es-extensions";
 
 
@@ -18,48 +19,6 @@ export default abstract class YDF_ComponentsCoordinator {
     for (const themeName of themesNames) {
       TargetComponentClass.Themes[toLowerCamelCase(themeName)] = toScreamingSnakeCase(themeName);
     }
-
-    return TargetComponentClass;
-
-  }
-
-  public static defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents<
-    ComponentClass extends {
-      Themes: { [themeName: string]: string; };
-      selfAndChildrenComponentsThemesCorrespondence: { [badge: string]: { [ownThemeValue: string]: string; }; };
-    }
-  >(
-    themesAndCorrespondenceDefinition: { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; }; },
-    TargetComponentClass: ComponentClass
-  ): ComponentClass {
-
-    YDF_ComponentsCoordinator.defineThemes(Object.keys(themesAndCorrespondenceDefinition), TargetComponentClass);
-
-    for (
-      const [ ownThemeName, correspondenceWithThemesOfChildrenComponents ] of
-          Object.entries(themesAndCorrespondenceDefinition)
-    ) {
-
-        const ownThemeName__screamingSnakeCase: string = toScreamingSnakeCase(ownThemeName);
-
-        for (
-          const [ childComponentName, childComponent_sThemeName ] of
-              Object.entries(correspondenceWithThemesOfChildrenComponents)
-        ) {
-
-          if (isUndefined(TargetComponentClass.selfAndChildrenComponentsThemesCorrespondence[childComponentName])) {
-            TargetComponentClass.selfAndChildrenComponentsThemesCorrespondence[childComponentName] = {
-              [ownThemeName__screamingSnakeCase]: toScreamingSnakeCase(childComponent_sThemeName)
-            };
-          } else {
-            TargetComponentClass.
-                selfAndChildrenComponentsThemesCorrespondence[childComponentName][ownThemeName__screamingSnakeCase] =
-                    toScreamingSnakeCase(childComponent_sThemeName);
-          }
-
-        }
-
-      }
 
     return TargetComponentClass;
 
@@ -97,6 +56,151 @@ export default abstract class YDF_ComponentsCoordinator {
 
   }
 
+  public static defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents<
+    ComponentClass extends {
+      Themes: { [themeKey: string]: string; };
+      selfAndChildrenComponentsThemesCorrespondence: { [childrenComponentKey: string]: { [ownThemeValue: string]: string; }; };
+    }
+  >(
+    ownAndChildrenThemesCorrespondenceDefinition: { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; }; },
+    TargetComponentClass: ComponentClass
+  ): ComponentClass {
+
+    YDF_ComponentsCoordinator.defineThemes(Object.keys(ownAndChildrenThemesCorrespondenceDefinition), TargetComponentClass);
+
+    for (
+      const [ ownThemeKey, correspondenceWithThemesOfChildrenComponents ] of
+          Object.entries(ownAndChildrenThemesCorrespondenceDefinition)
+    ) {
+
+      const ownThemeNameValue: string = toScreamingSnakeCase(ownThemeKey);
+
+      for (
+        const [ childComponentName, childComponent_sThemeName ] of
+            Object.entries(correspondenceWithThemesOfChildrenComponents)
+      ) {
+
+        if (isUndefined(TargetComponentClass.selfAndChildrenComponentsThemesCorrespondence[childComponentName])) {
+          TargetComponentClass.selfAndChildrenComponentsThemesCorrespondence[childComponentName] = {
+            [ownThemeNameValue]: toScreamingSnakeCase(childComponent_sThemeName)
+          };
+        } else {
+          TargetComponentClass.
+              selfAndChildrenComponentsThemesCorrespondence[childComponentName][ownThemeNameValue] =
+                  toScreamingSnakeCase(childComponent_sThemeName);
+        }
+
+      }
+
+    }
+
+    return TargetComponentClass;
+
+  }
+
+  public static defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents<
+    ComponentClass extends {
+      GeometricVariations: { [geometricVariationKey: string]: string; };
+      selfAndChildrenComponentsGeometricVariationsCorrespondence:
+          { [childrenComponentKey: string]: { [ownGeometricVariationValue: string]: string; }; };
+    }
+  >(
+    geometricVariationsCorrespondenceDefinition:
+        { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; }; },
+    TargetComponentClass: ComponentClass
+  ): ComponentClass {
+
+    YDF_ComponentsCoordinator.defineGeometricVariations(
+      Object.keys(geometricVariationsCorrespondenceDefinition), TargetComponentClass
+    );
+
+    for (
+      const [ ownGeometricVariationKey, correspondenceWithGeometricVariationsOfChildrenComponents ] of
+          Object.entries(geometricVariationsCorrespondenceDefinition)
+    ) {
+
+      const ownGeometricVariationValue: string = toScreamingSnakeCase(ownGeometricVariationKey);
+
+      for (
+        const [ childComponentName, childComponent_sGeometricVariationsNames ] of
+            Object.entries(correspondenceWithGeometricVariationsOfChildrenComponents)
+      ) {
+
+        if (isUndefined(TargetComponentClass.selfAndChildrenComponentsGeometricVariationsCorrespondence[childComponentName])) {
+          TargetComponentClass.selfAndChildrenComponentsGeometricVariationsCorrespondence[childComponentName] = {
+            [ownGeometricVariationValue]: toScreamingSnakeCase(childComponent_sGeometricVariationsNames)
+          };
+        } else {
+          TargetComponentClass.
+              selfAndChildrenComponentsGeometricVariationsCorrespondence
+                  /* eslint-disable no-unexpected-multiline --
+                   * Allow line breaks for bracket notation and long fully qualified names. */
+                  [childComponentName]
+                  [ownGeometricVariationValue] =
+                  /* eslint-enable no-unexpected-multiline */
+                      toScreamingSnakeCase(childComponent_sGeometricVariationsNames);
+
+        }
+
+      }
+
+    }
+
+    return TargetComponentClass;
+
+  }
+
+  public static defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents<
+    ComponentClass extends {
+      DecorativeVariations: { [decorativeVariationKey: string]: string; };
+      selfAndChildrenComponentsDecorativeVariationsCorrespondence:
+          { [childrenComponentKey: string]: { [ownDecorativeVariationValue: string]: string; }; };
+    }
+  >(
+    decorativeVariationsCorrespondenceDefinition:
+        { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; }; },
+    TargetComponentClass: ComponentClass
+  ): ComponentClass {
+
+    YDF_ComponentsCoordinator.defineDecorativeVariations(
+      Object.keys(decorativeVariationsCorrespondenceDefinition), TargetComponentClass
+    );
+
+    for (
+      const [ ownDecorativeVariationKey, correspondenceWithDecorativeVariationsOfChildrenComponents ] of
+          Object.entries(decorativeVariationsCorrespondenceDefinition)
+    ) {
+
+      const ownDecorativeVariationValue: string = toScreamingSnakeCase(ownDecorativeVariationKey);
+
+      for (
+        const [ childComponentName, childComponent_sDecorativeVariationsNames ] of
+            Object.entries(correspondenceWithDecorativeVariationsOfChildrenComponents)
+      ) {
+
+        if (isUndefined(TargetComponentClass.selfAndChildrenComponentsDecorativeVariationsCorrespondence[childComponentName])) {
+          TargetComponentClass.selfAndChildrenComponentsDecorativeVariationsCorrespondence[childComponentName] = {
+            [ownDecorativeVariationValue]: toScreamingSnakeCase(childComponent_sDecorativeVariationsNames)
+          };
+        } else {
+          TargetComponentClass.
+              selfAndChildrenComponentsDecorativeVariationsCorrespondence
+                  /* eslint-disable no-unexpected-multiline --
+                   * Allow line breaks for bracket notation and long fully qualified names. */
+                  [childComponentName]
+                  [ownDecorativeVariationValue] =
+                  /* eslint-enable no-unexpected-multiline */
+                      toScreamingSnakeCase(childComponent_sDecorativeVariationsNames);
+        }
+
+      }
+
+    }
+
+    return TargetComponentClass;
+
+  }
+
   public static generateRootElementModifierCSS_Classes(
     {
       CSS_Namespace,
@@ -107,7 +211,7 @@ export default abstract class YDF_ComponentsCoordinator {
       allGeometricVariations,
       activeGeometricModifiers = [],
       activeDecorativeVariation,
-      allDecorativeVariations,
+      allDecorativeVariations = {},
       activeDecorativeModifiers = [],
       other = []
     }: Readonly<{
@@ -118,8 +222,8 @@ export default abstract class YDF_ComponentsCoordinator {
       activeGeometricVariation: string;
       allGeometricVariations: Readonly<{ [geometricVariationKey: string]: string; }>;
       activeGeometricModifiers?: ReadonlyArray<string>;
-      activeDecorativeVariation: string;
-      allDecorativeVariations: Readonly<{ [decorativeVariationKey: string]: string; }>;
+      activeDecorativeVariation?: string;
+      allDecorativeVariations?: Readonly<{ [decorativeVariationKey: string]: string; }>;
       activeDecorativeModifiers?: ReadonlyArray<string>;
       other?: ReadonlyArray<string>;
     }>
@@ -133,7 +237,7 @@ export default abstract class YDF_ComponentsCoordinator {
         (geometricModifier: string): string =>
             `${ CSS_Namespace }__${ toUpperCamelCase(geometricModifier) }GeometricModifier`
       ),
-      ...Object.entries(allDecorativeVariations).length > 1 ?
+      ...Object.entries(allDecorativeVariations).length > 1 && isNotUndefined(activeDecorativeVariation) ?
           [ `${ CSS_Namespace }__${ toUpperCamelCase(activeDecorativeVariation) }DecorativeVariation` ] : [],
       ...activeDecorativeModifiers.map(
         (activeDecorativeModifier: string): string =>

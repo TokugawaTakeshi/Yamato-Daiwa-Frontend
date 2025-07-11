@@ -1,0 +1,207 @@
+mixin ClosingButtonGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("ClosingButton__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("ClosingButton__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("ClosingButton__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) Closing Component Demos
+
+
+  //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Minimal
+
+    +ThemesShowcase--YDF({
+      themes: ClosingButton__YDF.Themes,
+      geometricVariations: ClosingButton__YDF.GeometricVariations,
+      decorativeVariations: ClosingButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "ClosingButtonGallery-ButtonsFlow"
+    })
+
+      each labelLetterCase in ClosingButton__YDF.LabelLetterCases
+
+        +ClosingButton--YDF({
+          labelLetterCase,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+  //- ━━━ Custom Label ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Custom Label
+
+    +ThemesShowcase--YDF({
+      themes: ClosingButton__YDF.Themes,
+      geometricVariations: ClosingButton__YDF.GeometricVariations,
+      decorativeVariations: ClosingButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "ClosingButtonGallery-ButtonsFlow"
+    })
+
+      each labelLetterCase in ClosingButton__YDF.LabelLetterCases
+
+        +ClosingButton--YDF({
+          customLabel: "Dismiss",
+          labelLetterCase,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+  //- ━━━ No Label ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) No Label
+
+    +ThemesShowcase--YDF({
+      themes: ClosingButton__YDF.Themes,
+      geometricVariations: ClosingButton__YDF.GeometricVariations,
+      decorativeVariations: ClosingButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+
+      +ClosingButton--YDF({
+        noLabel: true,
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      })
+
+
+  //- ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.mustRenderGeometricModifiersSection
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Geometric Modifiers
+
+
+  //- ─── No Roundings ─────────────────────────────────────────────────────────────────────────────────────────────────
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noRoundingsGeometricModifier]
+
+    h3.Heading3(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) No Roundings
+
+    +ThemesShowcase--YDF({
+      themes: ClosingButton__YDF.Themes,
+      geometricVariations: ClosingButton__YDF.GeometricVariations,
+      decorativeVariations: ClosingButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "ClosingButtonGallery-ButtonsFlow"
+    })
+
+      each labelLetterCase in ClosingButton__YDF.LabelLetterCases
+
+        +ClosingButton--YDF({
+          labelLetterCase,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          geometricModifiers: [ ClosingButton__YDF.GeometricModifiers.noRoundings ],
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+  //- ━━━ Decorative Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.mustRenderDecorativeModifiersSection
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Decorative Modifiers
+
+    //- ─── Borders Disguising ─────────────────────────────────────────────────────────────────────────────────────────
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.bordersDisguisingDecorativeModifier]
+
+      h3.Heading3(
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      ) Borders Disguising
+
+      +ThemesShowcase--YDF({
+        themes: ClosingButton__YDF.Themes,
+        geometricVariations: ClosingButton__YDF.GeometricVariations,
+        decorativeVariations: ClosingButton__YDF.DecorativeVariations,
+        iterationData: themeShowcaseCurrentIterationData,
+        decorativeVariationsListItemAdditionalCSS_Classes: "ClosingButtonGallery-ButtonsFlow"
+      })
+
+        each labelLetterCase in ClosingButton__YDF.LabelLetterCases
+
+          +ClosingButton--YDF({
+            labelLetterCase,
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            decorativeModifiers: [ ClosingButton__YDF.DecorativeModifiers.bordersDisguising ]
+          })
+
+
+  //- ─── No Background ────────────────────────────────────────────────────────────────────────────────────────────────
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noBackgroundDecorativeModifier]
+
+    h3.Heading3(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) No Background
+
+    +ThemesShowcase--YDF({
+      themes: ClosingButton__YDF.Themes,
+      geometricVariations: ClosingButton__YDF.GeometricVariations,
+      decorativeVariations: ClosingButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "ClosingButtonGallery-ButtonsFlow"
+    })
+
+      each labelLetterCase in ClosingButton__YDF.LabelLetterCases
+
+        +ClosingButton--YDF({
+          labelLetterCase,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          decorativeModifiers: [ ClosingButton__YDF.DecorativeModifiers.noBackground ]
+        })
+
+
+  //- ─── No Background in Default State Decorative Modifier ───────────────────────────────────────────────────────────
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noBackgroundInDefaultStateDecorativeModifier]
+
+    h3.Heading3(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) No Background in Default State Decorative Modifier
+
+    +ThemesShowcase--YDF({
+      themes: ClosingButton__YDF.Themes,
+      geometricVariations: ClosingButton__YDF.GeometricVariations,
+      decorativeVariations: ClosingButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "ClosingButtonGallery-ButtonsFlow"
+    })
+
+      each labelLetterCase in ClosingButton__YDF.LabelLetterCases
+
+        +ClosingButton--YDF({
+          labelLetterCase,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          decorativeModifiers: [ ClosingButton__YDF.DecorativeModifiers.noBackgroundInDefaultState ]
+        })

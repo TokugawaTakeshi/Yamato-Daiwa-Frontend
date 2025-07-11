@@ -1,3 +1,11 @@
-synopsis:
+overview:
 
-  $heading: "Synopsis"
+  $heading: "Overview"
+
+BadgeClass:
+
+  $heading: "<code>Badge</code> Class"
+
+  vueProperties:
+
+    $heading: "Vue Properties"

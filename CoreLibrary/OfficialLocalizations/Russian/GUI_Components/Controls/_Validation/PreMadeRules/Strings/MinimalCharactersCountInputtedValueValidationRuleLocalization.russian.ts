@@ -7,6 +7,6 @@ export const minimalCharactersCountInputtedValueValidationRuleLocalization__russ
       errorMessageBuilder: (
         { minimalCharactersCount }: MinimalCharactersCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
       ): string =>
-          "Введённое количество символов меньше минимального. " +
+          "Введённое количество символов меньше минимально требуемого. " +
           `Пожалуйста, введите хотя бы ${ minimalCharactersCount } символов.`
     };

@@ -1,3 +1,11 @@
-synopsis:
+overview:
 
   $heading: "Сводка"
+
+BadgeClass:
+
+  $heading: "Класс <code>Badge</code>"
+
+  vueProperties:
+
+    $heading: "Vue-свойства"

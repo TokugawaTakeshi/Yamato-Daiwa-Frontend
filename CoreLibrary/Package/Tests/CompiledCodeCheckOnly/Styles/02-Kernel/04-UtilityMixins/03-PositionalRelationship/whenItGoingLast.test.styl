@@ -1,0 +1,42 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-PositionalRelationship/whenItGoingLast.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-PositionalRelationship/whenItGoingLast.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.Test1
+
+  +whenItGoingLast()
+
+    border-bottom 1px solid gray
+
+
+.Test2
+
+  +whenItGoingLast({ verticalSpaceBelow: 36px })
+
+    border-bottom 2px solid gray
+
+
+.Test3
+
+  whenItGoingLast({ verticalSpaceBelow: 4px })
+
+
+.UsersListPage
+
+  &-CardsFlow
+
+    whenItGoingLast({ verticalSpaceBelow: 32px })
+
+
+  &-Pagination
+
+    retireFrom({ targetElementSelector: ".UsersListPage-CardsFlow", y: 12px })
+
+    whenItGoingLast({ verticalSpaceBelow: 28px })

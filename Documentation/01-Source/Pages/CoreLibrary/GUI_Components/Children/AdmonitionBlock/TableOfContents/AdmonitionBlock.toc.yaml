@@ -1,7 +1,7 @@
-synopsis:
+overview:
 
-  $heading: `synopsis.$heading`
-  $anchor: YDA--SECTION
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
 
 
 usage:
@@ -26,39 +26,39 @@ usage:
 
           $heading: `usage.markup.pugMixin.$heading`
           $anchor: PUG_MIXIN--SECTION
-
-          $children:
-
-            minimalExample:
-
-              $heading: `usage.markup.pugMixin.minimalExample.$heading`
-              $anchor: USAGE-MINIMAL--SECTION
-
-            title:
-
-              $heading: `usage.markup.pugMixin.title.$heading`
-              $anchor: USAGE-TITLE--SECTION
-
-            SVG_Icon:
-
-              $heading: `usage.markup.pugMixin.SVG_Icon.$heading`
-              $anchor: USAGE-SVG_ICON--SECTION
-
-              $children:
-
-                custom:
-
-                  $heading: `usage.markup.pugMixin.SVG_Icon.custom.$heading`
-                  $anchor: EXAMPLE-SVG_ICON-CUSTOM--SECTION
-
-            buttons:
-              $heading: `usage.markup.pugMixin.buttons.$heading`
-              $anchor: BUTTONS--SECTION
-
-            dismissing:
-              $heading: `usage.markup.pugMixin.dismissing.$heading`
-              $anchor: USAGE-DISMISSING--SECTION
-
-    logic:
-      $heading: `usage.logic.$heading`
-      $anchor: LOGIC--SECTION
+#
+#          $children:
+#
+#            minimalExample:
+#
+#              $heading: `usage.markup.pugMixin.minimalExample.$heading`
+#              $anchor: USAGE-MINIMAL--SECTION
+#
+#            title:
+#
+#              $heading: `usage.markup.pugMixin.title.$heading`
+#              $anchor: USAGE-TITLE--SECTION
+#
+#            SVG_Icon:
+#
+#              $heading: `usage.markup.pugMixin.SVG_Icon.$heading`
+#              $anchor: USAGE-SVG_ICON--SECTION
+#
+#              $children:
+#
+#                custom:
+#
+#                  $heading: `usage.markup.pugMixin.SVG_Icon.custom.$heading`
+#                  $anchor: EXAMPLE-SVG_ICON-CUSTOM--SECTION
+#
+#            buttons:
+#              $heading: `usage.markup.pugMixin.buttons.$heading`
+#              $anchor: BUTTONS--SECTION
+#
+#            dismissing:
+#              $heading: `usage.markup.pugMixin.dismissing.$heading`
+#              $anchor: USAGE-DISMISSING--SECTION
+#
+#    logic:
+#      $heading: `usage.logic.$heading`
+#      $anchor: LOGIC--SECTION

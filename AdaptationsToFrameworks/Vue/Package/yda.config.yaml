@@ -75,7 +75,7 @@ $projectBuilding:
         $distributing:
           $exposingOfExportsFromEntryPoints:
             $mustExpose: true
-          $externalizingDependencies: [ @yamato-daiwa/frontend, vue, vue-router ]
+          $externalizingDependencies: [ @yamato-daiwa/frontend, vue, vue-facing-decorator, vue-router ]
           $typeScriptTypesDeclarations:
             $mustGenerate: true
 

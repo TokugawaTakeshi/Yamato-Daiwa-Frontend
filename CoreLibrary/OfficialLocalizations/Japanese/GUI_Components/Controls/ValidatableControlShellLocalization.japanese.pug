@@ -1,6 +1,6 @@
 -
 
-  const validatableControlShellYDF_ComponentLocalization__japanese = {
+  const validatableControlShellYDF_GUI_ComponentLocalization__japanese = {
 
     requirementBadges: {
       required: "必須",
@@ -20,20 +20,26 @@
 
     sampleAsynchronousValidationsStatuses: [
       {
-        ID: "IN_PROGRESS",
+        ID: AsynchronousValidations__YDF.Statuses.inProgress,
         message: "ユーザー名のご利用可否を確認中・・・"
       },
       {
-        ID: "FINISHED_AND_VALID",
+        ID: AsynchronousValidations__YDF.Statuses.finishedAndValid,
         message: "入力されたユーザー名がご利用いただけます。"
       },
       {
-        ID: "MALFUNCTION",
+        ID: AsynchronousValidations__YDF.Statuses.finishedButInvalid,
         message:
-                "恐れ入りますが、ユーザー名のご利用可否の確認中不具合が発生しました。" +
-                "インターネット切断が発生した場合、お手数ですが、復帰次第次第もう一度入力して下さいませんでしょうか。" +
-                "インターネット接続に問題無い場合、大変申し訳ございませんが、システムの不具合が発生しました。" +
-                "恐れ入りますが、、お客様のサポートと連絡してくださいませんでしょうか。"
+          "恐れ入りますが、入力されたユーザー名は卑語を含めています。" +
+          "卑語を含めていない別の名前をお選び下さい。"
+      },
+      {
+        ID: AsynchronousValidations__YDF.Statuses.malfunction,
+        message:
+            "恐れ入りますが、ユーザー名のご利用可否の確認中不具合が発生しました。" +
+            "インターネット切断が発生した場合、お手数ですが、復帰次第次第もう一度入力して下さいませんでしょうか。" +
+            "インターネット接続に問題無い場合、大変申し訳ございませんが、システムの不具合が発生しました。" +
+            "恐れ入りますが、、お客様のサポートと連絡してくださいませんでしょうか。"
       }
     ]
 

@@ -12,6 +12,6 @@ public interface IHTML_AttributesFallthrough
       Justification = "Can not be the auto property because `CaptureUnmatchedValues = true` specification is required."
     )
   ]
-  public IDictionary<string, object>? rootElementHTML_Attributes { get; set; }
+  public Dictionary<string, object>? rootElementHTML_Attributes { get; set; }
   
 }

@@ -2,7 +2,7 @@ import React from "react";
 import type SVG_IconComponent from "../SVG_IconComponent";
 
 
-const HeardIcon__Filled: SVG_IconComponent = ({ className }: SVG_IconComponent.Properties): React.ReactElement => (
+const HeartIcon__Filled: SVG_IconComponent = ({ className }: SVG_IconComponent.Properties): React.ReactElement => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 17.78"
@@ -13,4 +13,4 @@ const HeardIcon__Filled: SVG_IconComponent = ({ className }: SVG_IconComponent.P
 );
 
 
-export default HeardIcon__Filled;
+export default HeartIcon__Filled;

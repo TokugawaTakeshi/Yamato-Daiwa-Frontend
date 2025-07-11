@@ -1,0 +1,34 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/02-ValueTransformers/nullToZero.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/02-ValueTransformers/nullToZero.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+testForEquality(
+  "Null has been transformed to zero",
+  nullToZero(null),
+  0
+)
+
+testForEquality(
+  "Empty string has been left as is",
+  nullToZero(""),
+  ""
+)
+
+testForEquality(
+  "Non-empty string has been left as is",
+  nullToZero("ABC"),
+  "ABC"
+)
+
+testForEquality(
+  "Number has been left as is",
+  nullToZero(1),
+  1
+)

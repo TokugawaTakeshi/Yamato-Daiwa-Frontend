@@ -5,3 +5,51 @@
     display flex
     flex-direction column
     row-gap 0.6rem
+
+
+  &-Table
+
+    table-layout fixed
+    border-collapse separate
+    border-spacing 12px 8px
+
+
+    th
+
+      &:first-child
+
+        text-align right
+
+
+      &:last-child
+
+        text-align left
+
+
+    thead
+
+      th:first-child
+
+        width 80px
+
+
+    tbody th
+
+      vertical-align top
+
+
+    td:first-child
+
+      width 30%
+      vertical-align middle
+
+      font-weight bold
+
+
+  &-GridFlow
+
+    display grid
+    grid-template-columns repeat(2, minmax(0, 1fr));
+
+    column-gap 12px
+    row-gap 6px

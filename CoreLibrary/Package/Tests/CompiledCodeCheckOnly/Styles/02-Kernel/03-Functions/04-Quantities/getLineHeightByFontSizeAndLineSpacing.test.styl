@@ -1,0 +1,97 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/04-Quantities/getLineHeightByFontSizeAndLineSpacing.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/04-Quantities/getLineHeightByFontSizeAndLineSpacing.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+testForEquality(
+  "If the `lineSpacing` is 0, the computing of line height is ambiguous. " +\
+  "With botn `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0` and `mustOutputDimensionalQuantityIfPossible` " +\
+    "set to true, the line height is being assumed equal to specified font size.",
+  getLineHeightByFontSizeAndLineSpacing({
+    fontSize: 10px,
+    lineSpacing: 0,
+    mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true,
+    mustOutputDimensionalQuantityIfPossible: true
+  }),
+  10px
+)
+
+testForEquality(
+  "If the `lineSpacing` is 0, the computing of line height is ambiguous. " +\
+    "With truthy `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0` and falsy `mustOutputDimensionalQuantityIfPossible`, " +\
+    "the line height is being assumed equal to specified font size but the return value will be dimensionless.",
+  getLineHeightByFontSizeAndLineSpacing({
+    fontSize: 10px,
+    lineSpacing: 0,
+    mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true,
+    mustOutputDimensionalQuantityIfPossible: false
+  }),
+  1
+)
+
+testForEquality(
+  "If the `lineSpacing` is 0, the computing of line height is ambiguous. " +\
+  "With falsy `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0` and truthy `mustOutputDimensionalQuantityIfPossible`, " +\
+    "the return value will be `0px`.",
+  getLineHeightByFontSizeAndLineSpacing({
+    fontSize: 10px,
+    lineSpacing: 0,
+    mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: false,
+    mustOutputDimensionalQuantityIfPossible: true
+  }),
+  0px
+)
+
+testForEquality(
+  "If the `lineSpacing` is 0, the computing of line height is ambiguous. " +\
+  "With falsy `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0` and truthy `mustOutputDimensionalQuantityIfPossible`, " +\
+    "the return value will be `0`.",
+  getLineHeightByFontSizeAndLineSpacing({
+    fontSize: 10px,
+    lineSpacing: 0,
+    mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: false,
+    mustOutputDimensionalQuantityIfPossible: false
+  }),
+  0
+)
+
+testForEquality(
+  "With `fontSize: 10px`, `lineSpacing: 4px`, truthy `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0` and truthy" +\
+    "`mustOutputDimensionalQuantityIfPossible`, the return value will be `14px`.",
+  getLineHeightByFontSizeAndLineSpacing({
+    fontSize: 10px,
+    lineSpacing: 4px,
+    mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true,
+    mustOutputDimensionalQuantityIfPossible: true
+  }),
+  14px
+)
+
+testForEquality(
+    "With `fontSize: 10px`, `lineSpacing: 4px`, truthy `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0` and falsy" +\
+      "`mustOutputDimensionalQuantityIfPossible`, the return value will be `1.4`.",
+  getLineHeightByFontSizeAndLineSpacing({
+    fontSize: 10px,
+    lineSpacing: 4px,
+    mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true,
+    mustOutputDimensionalQuantityIfPossible: false
+  }),
+  1.4
+)
+
+testForEquality(
+  "If the units of `fontSize` and `lineSpacing` are different, the calc expression will be returned.",
+  getLineHeightByFontSizeAndLineSpacing({
+    fontSize: 1rem,
+    lineSpacing: 4px,
+    mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true,
+    mustOutputDimensionalQuantityIfPossible: false
+  }),
+  "calc(1rem + 4px)"
+)

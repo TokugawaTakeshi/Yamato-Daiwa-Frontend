@@ -18,7 +18,7 @@ export default function BooleanVuePropertyValidator(
     messageSpecificPart:
         isPropertyRequired ?
             "Must be the boolean." :
-            "Must be either boolean string or undefined (explicit or omitted).",
+            "Must be either boolean or undefined (explicit or omitted).",
     propertyName,
     componentName
   });

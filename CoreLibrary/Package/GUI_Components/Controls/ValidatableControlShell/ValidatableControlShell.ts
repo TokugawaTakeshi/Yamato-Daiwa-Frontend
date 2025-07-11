@@ -3,6 +3,7 @@
 
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import componentDynamicPartsHTML from "./ValidatableControlShell.parts.pug";
+import validatableControlShellYDF_GUI_ComponentDOM_AccessResources from "./ValidatableControlShellDOM_AccessResources";
 import ExpandingAnimation from "../../../Animations/ExpandingAnimation";
 import CollapsingAnimation from "../../../Animations/CollapsingAnimation";
 
@@ -11,6 +12,7 @@ import type InputtedValueValidation from "../_Validation/InputtedValueValidation
 import type ValidatableControl from "../_Validation/ValidatableControl";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
+import type { RootElementDefinition } from "../../../Logic/Types/RootElementDefinition";
 import onDifferentValueAssigned from "../../_Auxiliaries/Decorators/onDifferentValueAssigned";
 import {
   getExpectedToBeSingleDOM_Element,
@@ -21,49 +23,29 @@ import {
 import {
   Logger,
   InvalidParameterValueError,
-  isNull,
-  isNotNull,
-  isUndefined
+  isUndefined,
+  isNull
 } from "@yamato-daiwa/es-extensions";
 
 
-export default class ValidatableControlShell {
+class ValidatableControlShell {
 
-  /* ━━━ Static fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* ─── Accessing to DOM ─────────────────────────────────────────────────────────────────────────────────────────── */
-  protected static readonly ROOT_ELEMENT_CSS_CLASS: string = "ValidatableControlShell__YDF";
+  /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ┅┅┅ Accessing to DOM ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  protected static DOM_AccessResources: ValidatableControlShell.DOM_AccessResources =
+      validatableControlShellYDF_GUI_ComponentDOM_AccessResources;
 
-  /* [ Theory ] Nested components wrapped by `ValidatableControlShell` is completely normal scenario which mut be
-   *   respected during picking of DOM elements. */
-  protected static readonly VALIDATION_ERRORS_MESSAGES_LIST_MOUNTING_POINT_SELECTOR: string =
-      ":scope > .ValidatableControlShell__YDF-ValidationErrorsMessagesListMountingPoint";
-  protected static readonly VALIDATION_ERRORS_MESSAGES_LIST_SELECTOR: string =
-      ".ValidatableControlShell__YDF-ValidationErrorsMessagesList";
-  protected static readonly VALIDATION_ERRORS_MESSAGES_LIST_ITEM_SELECTOR: string =
-      ".ValidatableControlShell__YDF-ValidationErrorMessage";
-
-  protected static readonly ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_MOUNTING_POINT_SELECTOR: string =
-      ":scope > .ValidatableControlShell__YDF-AsynchronousValidationsStatusesListMountingPoint";
-  protected static readonly ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_SELECTOR: string =
-      ".ValidatableControlShell__YDF-AsynchronousValidationsStatusesList";
-  protected static readonly ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ITEM_SELECTOR: string =
-      ".ValidatableControlShell__YDF-AsynchronousValidationsStatusesList-Item-Text";
-  protected static readonly ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_IN_PROGRESS_STATE_ITEM_TEMPLATE_SELECTOR: string =
-      ".ValidatableControlShell__YDF-AsynchronousValidationsStatusesList-Item__InProgressState";
-  protected static readonly ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_SUCCEEDED_AND_VALID_STATE_ITEM_TEMPLATE_SELECTOR: string =
-      ".ValidatableControlShell__YDF-AsynchronousValidationsStatusesList-Item__SucceededAndValidState";
-  protected static readonly ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_MALFUNCTION_STATE_ITEM_TEMPLATE_SELECTOR: string =
-      ".ValidatableControlShell__YDF-AsynchronousValidationsStatusesList-Item__MalfunctionState";
+  protected static readonly ROOT_ELEMENT_CSS_CLASS: string = "ValidatableControlShell--YDF";
 
 
-  /* ─── Others Constants ─────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Others Constants ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   protected static readonly ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS: number = 0.2;
-  protected static readonly ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS: number = 0.2;
+  protected static readonly ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS: number = 0.1;
   protected static readonly ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ANIMATION_DURATION_PER_ONE_ITEM__SECONDS: number = 0.2;
 
 
-  /* ─── Initialization on Demand ─────────────────────────────────────────────────────────────────────────────────── */
-  protected static dynamicParts: DocumentFragment | null = null;
+  /* ┅┅┅ Initialization on Demand ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  protected static dynamicPartsMasterCopy: DocumentFragment | null = null;
 
   protected static validationErrorsMessagesCollapsableList: HTMLElement;
   protected static validationErrorsMessagesCollapsableListEmptyItem: Element;
@@ -75,8 +57,11 @@ export default class ValidatableControlShell {
 
 
   /* ━━━ Instance Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ┅┅┅ DOM Access ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public readonly rootElement: HTMLElement;
 
+
+  /* ╍╍╍ Validation Errors Messages List ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
   protected readonly validationErrorsMessagesCollapsableListMountingPoint: Element;
 
   protected readonly validationErrorsMessagesCollapsableList: HTMLElement = cloneDOM_Element({
@@ -89,6 +74,8 @@ export default class ValidatableControlShell {
     mustCopyAllChildren: false
   });
 
+
+  /* ╍╍╍ Asynchronous Validations Statuses List ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
   protected readonly asynchronousValidationsStatusesCollapsableListMountingPoint: Element;
 
   protected readonly asynchronousValidationsStatusesCollapsableList: HTMLElement = cloneDOM_Element({
@@ -98,21 +85,29 @@ export default class ValidatableControlShell {
 
 
   /* ─── Must be Changed Only via Setters or Constructor ──────────────────────────────────────────────────────────── */
-  protected _mustDisplayErrorsMessagesIfAny: boolean = false;
+  /* [ Approach ] ❶ Pre-initialized Reactive Fields ➝　❷ DOM Initialization ➝ ❸ DOM Manipulations via setters
+   * Respective setters refer to each other and eponymous getters, thus the associated fields must be pre-initialized.
+   * In constructor, only ❷ and ❸ steps will be executed. */
+  protected _mustDisplayValidationErrorsMessagesIfAny: boolean = false;
   protected _validationErrorsMessages: ReadonlyArray<string> = [];
 
 
   /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static initializeOne(
-    initializationProperties: Readonly<{
-      rootElement: Element | Readonly<{ selector: string; }>;
-      contextElement?: ParentNode | Readonly<{ selector: string; }>;
-      mustDisplayErrorsMessagesIfAny: boolean;
-      initialValidationErrorsMessages?: ReadonlyArray<string>;
-    }>
+    {
+      mustDisplayErrorsMessagesIfAny,
+      initialValidationErrorsMessages,
+      ...initializationProperties
+    }: Readonly<
+      {
+        mustDisplayErrorsMessagesIfAny: boolean;
+        initialValidationErrorsMessages?: ReadonlyArray<string>;
+      } &
+      RootElementDefinition
+    >
   ): ValidatableControlShell {
 
-    if (isNull(ValidatableControlShell.dynamicParts)) {
+    if (isNull(ValidatableControlShell.dynamicPartsMasterCopy)) {
       ValidatableControlShell.initializeCommonDOM_Parts();
     }
 
@@ -124,17 +119,17 @@ export default class ValidatableControlShell {
         initializationProperties.rootElement :
         getExpectedToBeSingleDOM_Element({
           selector: initializationProperties.rootElement.selector,
-          ...isNotNull(contextElement) ? { contextElement } : null
+          contextElement
         });
 
     if (!(rootElement instanceof HTMLElement)) {
-      Logger.throwErrorAndLog({
+      Logger.throwErrorWithFormattedMessage({
         errorInstance: new InvalidParameterValueError({
           parameterNumber: 1,
           parameterName: "initializationProperties",
           messageSpecificPart:
-              "The root element passed directly or via selector must be the instance of HTMLElement while actually " +
-                "it does not."
+              "The following root element definitely not belong to ValidatableControlShell, the YDF GUI component.\n" +
+              cloneDOM_Element({ targetElement: rootElement, mustCopyAllChildren: false }).outerHTML
         }),
         title: InvalidParameterValueError.localization.defaultTitle,
         occurrenceLocation: "ValidatableControlShell.initializeOne(initializationProperties)"
@@ -143,13 +138,13 @@ export default class ValidatableControlShell {
 
 
     if (!rootElement.classList.contains(ValidatableControlShell.ROOT_ELEMENT_CSS_CLASS)) {
-      Logger.throwErrorAndLog({
+      Logger.throwErrorWithFormattedMessage({
         errorInstance: new InvalidParameterValueError({
           parameterNumber: 1,
           parameterName: "initializationProperties",
           messageSpecificPart:
               "The root element passed directly or via selector must have the namespace CSS class " +
-                `"${ ValidatableControlShell.ROOT_ELEMENT_CSS_CLASS }" while actually it has not.`
+                `"${ ValidatableControlShell.ROOT_ELEMENT_CSS_CLASS }" while actually it has no.`
         }),
         title: InvalidParameterValueError.localization.defaultTitle,
         occurrenceLocation: "ValidatableControlShell.initializeOne(initializationProperties)"
@@ -159,15 +154,15 @@ export default class ValidatableControlShell {
 
     return new ValidatableControlShell({
       rootElement,
-      mustDisplayErrorsMessagesIfAny: initializationProperties.mustDisplayErrorsMessagesIfAny,
-      initialValidationErrorsMessages: initializationProperties.initialValidationErrorsMessages
+      mustDisplayErrorsMessagesIfAny,
+      initialValidationErrorsMessages
     });
 
   }
 
 
   /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  private constructor(
+  protected constructor(
     {
       rootElement,
       mustDisplayErrorsMessagesIfAny,
@@ -179,25 +174,25 @@ export default class ValidatableControlShell {
     }>
   ) {
 
-    /* ─── DOM ────────────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ┅┅┅ DOM ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
     this.rootElement = rootElement;
 
     this.validationErrorsMessagesCollapsableListMountingPoint = getExpectedToBeSingleDOM_Element({
       selector: ValidatableControlShell.DOM_AccessResources.
-          validationErrorsMessagesListMountingPoint.INTERNALLY_UNIQUE_SELECTOR,
+          validationErrorsMessagesList.mountingPoint.INTERNALLY_UNIQUE_SELECTOR,
       contextElement: this.rootElement
     });
 
     this.asynchronousValidationsStatusesCollapsableListMountingPoint = getExpectedToBeSingleDOM_Element({
       selector: ValidatableControlShell.DOM_AccessResources.
-          asynchronousValidationsStatusesListMountingPoint.INTERNALLY_UNIQUE_SELECTOR,
+          asynchronousValidationsStatusesList.mountingPoint.INTERNALLY_UNIQUE_SELECTOR,
       contextElement: this.rootElement
     });
 
 
-    /* ─── Reactivity ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    /* ┅┅┅ Reactivity ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
     this.$validationErrorsMessages = initialValidationErrorsMessages ?? [];
-    this.$mustDisplayErrorsMessagesIfAny = mustDisplayErrorsMessagesIfAny;
+    this.$mustDisplayValidationErrorsMessagesIfAny = mustDisplayErrorsMessagesIfAny;
 
   }
 
@@ -212,14 +207,15 @@ export default class ValidatableControlShell {
 
 
   /* ━━━ Reactivity ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public get $mustDisplayErrorsMessagesIfAny(): boolean {
-    return this._mustDisplayErrorsMessagesIfAny;
+  /* ┅┅┅ Validation Errors Displaying Flag ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  public get $mustDisplayValidationErrorsMessagesIfAny(): boolean {
+    return this._mustDisplayValidationErrorsMessagesIfAny;
   }
 
   @onDifferentValueAssigned()
-  public set $mustDisplayErrorsMessagesIfAny(_value: boolean) {
+  public set $mustDisplayValidationErrorsMessagesIfAny(_value: boolean) {
 
-    if (this.$mustDisplayErrorsMessagesIfAny) {
+    if (this.$mustDisplayValidationErrorsMessagesIfAny) {
 
       if (!this.validationErrorsMessagesCollapsableList.isConnected) {
 
@@ -240,6 +236,8 @@ export default class ValidatableControlShell {
 
   }
 
+
+  /* ┅┅┅ Validation Errors Messages ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public get $validationErrorsMessages(): ReadonlyArray<string> {
     return this._validationErrorsMessages;
   }
@@ -247,7 +245,7 @@ export default class ValidatableControlShell {
   @onDifferentValueAssigned()
   public set $validationErrorsMessages(_validationErrorsMessages: ReadonlyArray<string>) {
 
-    if (!this.$mustDisplayErrorsMessagesIfAny) {
+    if (!this.$mustDisplayValidationErrorsMessagesIfAny) {
       this.updateValidationErrorsMessagesCollapsableList();
       return;
     }
@@ -273,6 +271,8 @@ export default class ValidatableControlShell {
 
   }
 
+
+  /* ┅┅┅ Asynchronous Validations Status ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public set $asynchronousValidationsStatus(asynchronousValidationsStatus: InputtedValueValidation.AsynchronousChecks.Status) {
 
     this.asynchronousValidationsStatusesCollapsableList.innerHTML = "";
@@ -307,15 +307,15 @@ export default class ValidatableControlShell {
       }
 
       /* [ Approach ]
-       * If invalid value confirmed (omitted `else`-block), the error message will be displayed at
-       * `$validationErrorsMessages`, not need to duplicate it here.  */
+       * If an invalid value is confirmed (omitted `else`-block), the error message will be displayed at
+       * `$validationErrorsMessages` instead, no need to duplicate it here.  */
       if (isUndefined(asynchronousValidationsStatusesCollapsableListItemElement)) {
         continue;
       }
 
 
       getExpectedToBeSingleDOM_Element({
-        selector: ValidatableControlShell.ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ITEM_SELECTOR,
+        selector: ValidatableControlShell.DOM_AccessResources.asynchronousValidationsStatusesList.item.text.SELECTOR,
         contextElement: asynchronousValidationsStatusesCollapsableListItemElement
       }).textContent = asynchronousCheck.message;
 
@@ -332,10 +332,12 @@ export default class ValidatableControlShell {
       this.asynchronousValidationsStatusesCollapsableList.style.display = "none";
 
       ExpandingAnimation.replaceNodeAndAnimate({
-        replacedNode: this.asynchronousValidationsStatusesCollapsableListMountingPoint,
-        animatedElement: this.asynchronousValidationsStatusesCollapsableList,
-        duration__seconds: ValidatableControlShell.ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ANIMATION_DURATION_PER_ONE_ITEM__SECONDS *
-            Object.entries(asynchronousValidationsStatus.checks).length
+        nodeToReplace: this.asynchronousValidationsStatusesCollapsableListMountingPoint,
+        targetElement: this.asynchronousValidationsStatusesCollapsableList,
+        duration__seconds:
+            ValidatableControlShell.ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ANIMATION_DURATION_PER_ONE_ITEM__SECONDS *
+                Object.entries(asynchronousValidationsStatus.checks).length,
+        mustReturnPromise: false
       });
 
     }
@@ -365,10 +367,11 @@ export default class ValidatableControlShell {
 
   protected mountAndSlideDownErrorsMessagesList(): void {
     ExpandingAnimation.replaceNodeAndAnimate({
-      replacedNode: this.validationErrorsMessagesCollapsableListMountingPoint,
-      animatedElement: this.validationErrorsMessagesCollapsableList,
+      nodeToReplace: this.validationErrorsMessagesCollapsableListMountingPoint,
+      targetElement: this.validationErrorsMessagesCollapsableList,
       duration__seconds: ValidatableControlShell.ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS *
-          this.$validationErrorsMessages.length
+          this.$validationErrorsMessages.length,
+      mustReturnPromise: false
     });
   }
 
@@ -378,67 +381,173 @@ export default class ValidatableControlShell {
     }: Readonly<{ mustClearValidationErrorsMessagesCollapsableListOnceAnimated: boolean; }>
   ): void {
     CollapsingAnimation.animate({
-      animatedElement: this.validationErrorsMessagesCollapsableList,
-      mustReplaceWithOnComplete: this.validationErrorsMessagesCollapsableListMountingPoint,
+      targetElement: this.validationErrorsMessagesCollapsableList,
+      mustReplaceWithElementOnceComplete: this.validationErrorsMessagesCollapsableListMountingPoint,
       duration__seconds: ValidatableControlShell.ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS,
-      ...mustClearValidationErrorsMessagesCollapsableListOnceAnimated ? {
-        callback: this.updateValidationErrorsMessagesCollapsableList.bind(this)
-      } : null
+      mustReturnPromise: false,
+      ...mustClearValidationErrorsMessagesCollapsableListOnceAnimated ?
+          { callback: this.updateValidationErrorsMessagesCollapsableList.bind(this) } : null
     });
   }
 
   protected static initializeCommonDOM_Parts(): void {
 
-    ValidatableControlShell.dynamicParts = createDOM_ElementFromHTML_Code({
+    ValidatableControlShell.dynamicPartsMasterCopy = createDOM_ElementFromHTML_Code({
       HTML_Code: componentDynamicPartsHTML,
       rootDOM_ElementSubtype: HTMLTemplateElement
     }).content;
 
 
+    /* ┅┅┅ Validation Errors Messages Collapsable List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
     ValidatableControlShell.validationErrorsMessagesCollapsableList = getExpectedToBeSingleDOM_Element({
-      selector: ValidatableControlShell.VALIDATION_ERRORS_MESSAGES_LIST_SELECTOR,
-      contextElement: ValidatableControlShell.dynamicParts,
+      selector: ValidatableControlShell.DOM_AccessResources.validationErrorsMessagesList.INTERNALLY_UNIQUE_SELECTOR,
+      contextElement: ValidatableControlShell.dynamicPartsMasterCopy,
       expectedDOM_ElementSubtype: HTMLElement
     });
 
+    ValidatableControlShell.validationErrorsMessagesCollapsableList.removeAttribute(
+      ValidatableControlShell.DOM_AccessResources.validationErrorsMessagesList.DATA_ATTRIBUTE_KEY
+    );
+
     ValidatableControlShell.validationErrorsMessagesCollapsableListEmptyItem = getExpectedToBeSingleDOM_Element({
-      selector: ValidatableControlShell.VALIDATION_ERRORS_MESSAGES_LIST_ITEM_SELECTOR,
+      selector: ValidatableControlShell.DOM_AccessResources.validationErrorsMessagesList.item.SELECTOR,
       contextElement: ValidatableControlShell.validationErrorsMessagesCollapsableList
     });
+
+    ValidatableControlShell.validationErrorsMessagesCollapsableListEmptyItem.removeAttribute(
+      ValidatableControlShell.DOM_AccessResources.validationErrorsMessagesList.item.DATA_ATTRIBUTE_KEY
+    );
+
     ValidatableControlShell.validationErrorsMessagesCollapsableListEmptyItem.remove();
 
 
+    /* ┅┅┅ Asynchronous Validations Statuses Collapsable List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
     ValidatableControlShell.asynchronousValidationsStatusesCollapsableList = getExpectedToBeSingleDOM_Element({
-      selector: ValidatableControlShell.ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_SELECTOR,
-      contextElement: ValidatableControlShell.dynamicParts,
+      selector: ValidatableControlShell.DOM_AccessResources.asynchronousValidationsStatusesList.INTERNALLY_UNIQUE_SELECTOR,
+      contextElement: ValidatableControlShell.dynamicPartsMasterCopy,
       expectedDOM_ElementSubtype: HTMLElement
     });
 
+    ValidatableControlShell.asynchronousValidationsStatusesCollapsableList.removeAttribute(
+      ValidatableControlShell.DOM_AccessResources.asynchronousValidationsStatusesList.DATA_ATTRIBUTE_KEY
+    );
+
+
+    /* ─── Items ──────────────────────────────────────────────────────────────────────────────────────────────────── */
     ValidatableControlShell.asynchronousValidationsStatusesCollapsableListInProgressStateEmptyItem =
         getExpectedToBeSingleDOM_Element({
-          selector: ValidatableControlShell.ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_IN_PROGRESS_STATE_ITEM_TEMPLATE_SELECTOR,
+          selector: ValidatableControlShell.DOM_AccessResources.asynchronousValidationsStatusesList.item.byStates.
+              inProgress.SELECTOR,
           contextElement: ValidatableControlShell.asynchronousValidationsStatusesCollapsableList
         });
+
+    ValidatableControlShell.asynchronousValidationsStatusesCollapsableListInProgressStateEmptyItem.
+        removeAttribute(
+          ValidatableControlShell.DOM_AccessResources.asynchronousValidationsStatusesList.item.byStates.
+              inProgress.DATA_ATTRIBUTE_KEY
+        );
+
     ValidatableControlShell.asynchronousValidationsStatusesCollapsableListInProgressStateEmptyItem.remove();
 
     ValidatableControlShell.asynchronousValidationsStatusesCollapsableListInProgressSucceededAndValidStateEmptyItem =
         getExpectedToBeSingleDOM_Element({
-          selector: ValidatableControlShell.
-              ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_SUCCEEDED_AND_VALID_STATE_ITEM_TEMPLATE_SELECTOR,
+          selector: ValidatableControlShell.DOM_AccessResources.asynchronousValidationsStatusesList.item.byStates.
+              succeededAndValid.SELECTOR,
           contextElement: ValidatableControlShell.asynchronousValidationsStatusesCollapsableList
         });
+
+    ValidatableControlShell.asynchronousValidationsStatusesCollapsableListInProgressSucceededAndValidStateEmptyItem.
+        removeAttribute(
+          ValidatableControlShell.DOM_AccessResources.asynchronousValidationsStatusesList.item.byStates.
+              succeededAndValid.DATA_ATTRIBUTE_KEY
+        );
+
     ValidatableControlShell.asynchronousValidationsStatusesCollapsableListInProgressSucceededAndValidStateEmptyItem.remove();
 
     ValidatableControlShell.asynchronousValidationsStatusesCollapsableListInProgressMalfunctionStateEmptyItem =
         getExpectedToBeSingleDOM_Element({
-          selector: ValidatableControlShell.
-              ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_MALFUNCTION_STATE_ITEM_TEMPLATE_SELECTOR,
+          selector: ValidatableControlShell.DOM_AccessResources.asynchronousValidationsStatusesList.item.byStates.
+              malfunction.SELECTOR,
           contextElement: ValidatableControlShell.asynchronousValidationsStatusesCollapsableList
         });
+
+    ValidatableControlShell.asynchronousValidationsStatusesCollapsableListInProgressMalfunctionStateEmptyItem.
+        removeAttribute(
+          ValidatableControlShell.DOM_AccessResources.asynchronousValidationsStatusesList.item.byStates.
+              malfunction.DATA_ATTRIBUTE_KEY
+        );
+
     ValidatableControlShell.asynchronousValidationsStatusesCollapsableListInProgressMalfunctionStateEmptyItem.remove();
 
-    ValidatableControlShell.dynamicParts.replaceChildren();
+    ValidatableControlShell.dynamicPartsMasterCopy.replaceChildren();
 
   }
 
 }
+
+
+namespace ValidatableControlShell {
+
+  export type DOM_AccessResources = Readonly<{
+
+    validationErrorsMessagesList: Readonly<{
+
+      DATA_ATTRIBUTE_KEY: string;
+      INTERNALLY_UNIQUE_SELECTOR: string;
+
+      item: Readonly<{
+        DATA_ATTRIBUTE_KEY: string;
+        SELECTOR: string;
+      }>;
+
+      mountingPoint: Readonly<{
+        DATA_ATTRIBUTE_KEY: string;
+        INTERNALLY_UNIQUE_SELECTOR_WITHOUT_SCOPE_PSEUDO_CLASS: string;
+        INTERNALLY_UNIQUE_SELECTOR: string;
+      }>;
+
+    }>;
+
+    asynchronousValidationsStatusesList: Readonly<{
+
+      DATA_ATTRIBUTE_KEY: string;
+      INTERNALLY_UNIQUE_SELECTOR: string;
+
+      item: Readonly<{
+
+        DATA_ATTRIBUTE_KEY: string;
+        SELECTOR: string;
+
+        byStates: Readonly<{
+          [
+            keys in
+                "inProgress" |
+                "succeededAndValid" |
+                "malfunction"
+          ]: Readonly<{
+            DATA_ATTRIBUTE_KEY: string;
+            SELECTOR: string;
+          }>;
+        }>;
+
+        text: Readonly<{
+          DATA_ATTRIBUTE_KEY: string;
+          SELECTOR: string;
+        }>;
+
+      }>;
+
+      mountingPoint: Readonly<{
+        DATA_ATTRIBUTE_KEY: string;
+        INTERNALLY_UNIQUE_SELECTOR_WITHOUT_SCOPE_PSEUDO_CLASS: string;
+        INTERNALLY_UNIQUE_SELECTOR: string;
+      }>;
+
+    }>;
+
+  }>;
+
+}
+
+
+export default ValidatableControlShell;

@@ -235,7 +235,7 @@ class Button {
     }
 
 
-    Logger.throwErrorAndLog({
+    Logger.throwErrorWithFormattedMessage({
       errorInstance: new InvalidParameterValueError({
         parameterNumber: 1,
         parameterName: "properties",

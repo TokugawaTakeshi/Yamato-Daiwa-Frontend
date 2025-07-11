@@ -237,42 +237,50 @@
 
       label: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       accessibilityGuidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       externalLabelHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+
         minimalCharactersCount: 1
       },
 
       guidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       placeholder: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       /** @description Could be something like "{{ foo }}" in the MVC case. */
       initialValue: {
-        type: RawObjectDataProcessor.ValuesTypesIDs.oneOf,
-        defaultValue: 0,
+        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        undefinedValueSubstitution: 0,
+        isNullForbidden: true,
         alternatives: [
           {
             type: Number,
-            numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber
+            numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+            isNaN_Forbidden: true
           },
           {
             type: String,
@@ -283,56 +291,68 @@
 
       disabled: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       readonly: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       required: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsRequired: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsOptional: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       step: {
         type: Number,
         numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
-        defaultValue: 1
+        isNaN_Forbidden: true,
+        undefinedValueSubstitution: 1,
+        isNullForbidden: true
       },
 
       minimalValue: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
-        defaultValue: Number.MIN_SAFE_INTEGER
+        numbersSet: RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero,
+        isNaN_Forbidden: true,
+        undefinedValueSubstitution: Number.MIN_SAFE_INTEGER,
+        isNullForbidden: true
       },
 
       maximalValue: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
-        defaultValue: Number.MAX_SAFE_INTEGER,
+        numbersSet: RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero,
+        isNaN_Forbidden: true,
+        undefinedValueSubstitution: Number.MAX_SAFE_INTEGER,
+        isNullForbidden: true,
         customValidators: {
-          validationFunction: ({ currentPropertyValue: maximalValue, rawData__currentObjectDepth }) =>
+          validationFunction: ({ value: maximalValue, rawData__currentObjectDepth }) =>
               isUndefined(rawData__currentObjectDepth.minimalValue) ||
               (
-                Number.isInteger(rawData__currentObjectDepth.minimalValue) &&
-                maximalValue > rawData__currentObjectDepth.minimalValue
+                isNumber(rawData__currentObjectDepth.minimalValue, { mustConsiderNaN_AsNumber: false }) &&
+                    maximalValue > rawData__currentObjectDepth.minimalValue
               ),
           descriptionForLogging: "\"maximalValue\" could not be less than \"minimalValue\"."
         }
@@ -340,25 +360,29 @@
 
       instanceID_UniqueDynamicPart: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 10
       },
 
       nativeInputElementHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       labelElementHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       theme: {
         type: String,
-        defaultValue: NumberBox__YDF.Themes.regular,
+        undefinedValueSubstitution: NumberBox__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(NumberBox__YDF.Themes).
             map(([ key, value ]) => ({ key: `NumberBox__YDF.Themes.${ key }`, value }))
@@ -366,12 +390,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: NumberBox__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: NumberBox__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: NumberBox__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: NumberBox__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(NumberBox__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `NumberBox__YDF.GeometricVariations.${ key }`, value }))
@@ -379,13 +405,15 @@
 
       orientation: {
         type: String,
-        defaultValue: NumberBox__YDF.Orientations.horizontal,
+        undefinedValueSubstitution: NumberBox__YDF.Orientations.horizontal,
+        isNullForbidden: true,
         allowedAlternatives: Object.values(NumberBox__YDF.Orientations)
       },
 
       decorativeVariation: {
         type: String,
-        defaultValue: NumberBox__YDF.DecorativeVariations.regular,
+        undefinedValueSubstitution: NumberBox__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(NumberBox__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `NumberBox__YDF.DecorativeVariations.${ key }`, value }))
@@ -420,6 +448,6 @@
 
     /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /** @type { NumberBoxLocalization } */
-    static localization = numberBoxYDF_ComponentLocalization__english;
+    static localization = numberBoxYDF_GUI_ComponentLocalization__english;
 
   }

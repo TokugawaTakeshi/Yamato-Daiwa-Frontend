@@ -1,0 +1,161 @@
+//- ━━━ Overview ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- const AdmonitionBlockGUI_ComponentOverviewLocalization = generateOverviewLocalizationWorkpieceForSpecificGUI_Component();
+
+mixin AdmonitionBlockComponent-Overview(properties)
+
+  -
+
+    const {
+      framework
+    } = properties?? {};
+
+    const localizedAssets = AdmonitionBlockGUI_ComponentOverviewLocalization.getLocalizedAssets();
+
+  +GUI_ComponentOverview({
+    framework,
+    metadataClass: AdmonitionBlock__YDF,
+    intelliJ_IDEA_FamilyIDEsLiveTemplate: {
+      native: {
+        autocompleteLike: "AdmonitionBlock--YDF",
+        abbreviation: "ab-ydf"
+      },
+      vue: {
+        autocompleteLike: {
+          pugSyntax: "AdmonitionBlock--YDF-Vue-Pug",
+          HTML_Syntax: "AdmonitionBlock--YDF-Vue-HTML"
+        },
+        abbreviation: {
+          pugSyntax: "ab-ydf-vue-pug",
+          HTML_Syntax: "ab-ydf-vue-html"
+        }
+      },
+      react: {
+        autocompleteLike: "AdmonitionBlock--YDF-React",
+        abbreviation: "ab-ydf-react"
+      }
+    },
+    themesNamesTranslations: localizedAssets.themes,
+    geometricVariationsTranslations: localizedAssets.geometricVariations,
+    decorativeVariationsTranslations: localizedAssets.decorativeVariations
+  })
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  const AdmonitionBlockComponentPugMixinOrClassSynopsisLocalization =
+      GUI_ComponentPugMixinOrClassSynopsisLocalization.generateInitialLocalizationObjectForSpecificGUI_Component();
+
+
+mixin AdmonitionBlockComponent-PugMixinOrClassSynopsis(properties)
+
+  -
+
+    const {
+
+      framework
+
+    } = properties ?? {};
+
+    const propertiesSpecification = {
+      ...AdmonitionBlockComponentPugMixinOrClassSynopsisLocalization.
+          getLocalizedPropertiesSpecification(AdmonitionBlock__YDF, framework)
+    };
+
+    switch (framework) {
+
+      case SupportedFrameworks.vue: {
+
+        delete propertiesSpecification.SVG_Icon;
+
+        propertiesSpecification.hasDefaultSVG_Icon = {
+          type: Boolean,
+          undefinedValueSubstitution: false,
+          isNullForbidden: true
+        };
+
+        break;
+
+      }
+
+      case SupportedFrameworks.react: {
+
+        delete propertiesSpecification.SVG_Icon.isUndefinedForbidden;
+        propertiesSpecification.SVG_Icon.undefinedValueSubstitution = false;
+
+        delete propertiesSpecification.SVG_Icon.alternatives[1].properties;
+        propertiesSpecification.SVG_Icon.alternatives[1].type = "React.ElementType<{ className: string; }>";
+
+        propertiesSpecification.actionBarContent = {
+          type: "React.ReactNode",
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          localizedInterpretation: AdmonitionBlockComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.propertiesLocalizedInterpretations?.react?.actionBarContent
+        };
+
+        propertiesSpecification.rootElementAttributes = {
+          type: "Omit<React.HTMLAttributes<HTMLDivElement>, \"className\">",
+          isUndefinedForbidden: false,
+          isNullForbidden: false,
+          localizedInterpretation: AdmonitionBlockComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.propertiesLocalizedInterpretations?.react?.rootElementAttributes
+        };
+
+        break;
+
+      }
+
+      case SupportedFrameworks.blazor: {
+
+        delete propertiesSpecification.SVG_Icon;
+
+        propertiesSpecification.hasDefaultSVG_Icon = {
+          type: Boolean,
+          defaultValue: false,
+          localizedInterpretation: AdmonitionBlockComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.propertiesLocalizedInterpretations?.blazor?.hasDefaultSVG_Icon
+        };
+
+        propertiesSpecification.HTML_ID = {
+          type: String,
+          required: false,
+          minimalCharactersCount: 1,
+          localizedInterpretation: AdmonitionBlockComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.propertiesLocalizedInterpretations?.blazor?.HTML_ID
+        };
+
+      }
+
+    }
+
+
+  if framework
+
+    +ObjectTypeAbstract--YDF_DK({
+      typeName: `AdmonitionBlock.Properties`,
+      propertiesSpecification
+    })
+
+  else
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: isUndefined(framework) ? "AdmonitionBlock--YDF" : "AdmonitionBlock",
+      parametersSpecification: [
+        {
+          genericTechnicalName: "properties",
+          localizedName: AdmonitionBlockComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.
+              pugMixinParametersLocalization[0].
+              localizedName,
+          type: "Properties",
+          required: true
+        }
+      ],
+      hiddenReturnValue: true
+    })
+      +ObjectTypeAbstract--YDF_DK({
+        typeName: `AdmonitionBlock.propertiesSpecification`,
+        propertiesSpecification
+      }).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem

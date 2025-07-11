@@ -18,47 +18,81 @@ Adds the [live templates](https://www.jetbrains.com/help/idea/using-live-templat
 ### Markup (Pug)
 #### Inline JavaScript
 
-- **buildEmailLinkHREF_AttributeValue** — Autocomplete imitator for [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildEmailLinkHrefAttributeValue/buildEmailLinkHrefAttributeValue.english.html)
-- **buildPhoneNumberLinkHrefAttributeValue** — Autocomplete imitator for [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildPhoneNumberLinkHrefAttributeValue/buildPhoneNumberLinkHrefAttributeValue.english.html)
-- **processObjectTypeParameterOfPugMixin** —Autocomplete imitator for [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/processObjectTypeParameterOfPugMixin.english.html)
-- **tost** — Autocomplete imitator for [`textOverflowSafetyTest` constant](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Markup/ConstantsAssets/textOverflowSafetyTest/textOverflowSafetyTest.md)
-- **dius** — Autocomplete imitator for [`DummyImagesURIs` enumeration](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/DummyImagesURIs/DummyImagesURIs.english.html) 
++ **buildEmailLinkHREF_AttributeValue** — Autocomplete imitator for [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildEmailLinkHrefAttributeValue/buildEmailLinkHrefAttributeValue.english.html)
++ **buildPhoneNumberLinkHrefAttributeValue** — Autocomplete imitator for [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildPhoneNumberLinkHrefAttributeValue/buildPhoneNumberLinkHrefAttributeValue.english.html)
++ **processObjectTypeParameterOfPugMixin** —Autocomplete imitator for [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/processObjectTypeParameterOfPugMixin.english.html)
++ **tost** — Autocomplete imitator for [`textOverflowSafetyTest` constant](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Markup/ConstantsAssets/textOverflowSafetyTest/textOverflowSafetyTest.md)
++ **dius** — Autocomplete imitator for [`DummyImagesURIs` enumeration](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/DummyImagesURIs/DummyImagesURIs.english.html) 
 
 
 #### GUI Components
 
-- **AdmonitionBlock--YDF**, alias: **ab-ydf** — 
-  [AdmonitionBlock--YDF](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock.english.html)
-  component.
-- **Badge--YDF**, alias: **bdg-ydf**  —
-  [Badge--YDF](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Badge/Badge.english.html)
-  component. The loading placeholder version **Badge--YDF-LoadingPlaceholder** is also available.
-- **Button--YDF**, alias **btn-ydf** —
-  [Button--YDF](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/Button.english.html)
-  component. The loading placeholder version **Button--YDF-LoadingPlaceholder** is also available.
++ [AdmonitionBlock](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock.english.html)
+  + **AdmonitionBlock--YDF** — autocomplete-like Live Template for the component itself
+  + **ab-ydf** — abbreviated Live Template for the component itself
++ [Badge](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Badge/Badge.english.html)
+  + **Badge--YDF** — autocomplete-like Live Template for the component itself
+  + **bdg-ydf** — abbreviated Live Template for the component itself
+  + **Badge--YDF-LoadingPlaceholder** — autocomplete-like Live Template for loading placeholder
++ [Button](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/Button.english.html)
+  + **Button--YDF** — autocomplete-like Live Template for the component itself
+  + **btn-ydf** — abbreviated Live Template for the component itself
+  + **Button--YDF-LoadingPlaceholder** — autocomplete-like Live Template for loading placeholder
 
 
-### Adaptations to JavaScript frameworks
+### Adaptations to Frameworks
 
 #### Vue
 
 ##### GUI Components
 
-- **AdmonitionBlock--YDF-V-P**, alias: **ab-ydf-vue-p** — Live template for 
-  [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToJavaScriptFrameworks/Vue/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-Vue.english.html)
-  component (Pug syntax).
-- **AdmonitionBlock--YDF-V-H**, alias: **ab-ydf-vue-h** — Live template for 
-  [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToJavaScriptFrameworks/Vue/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-Vue.english.html)
-  component (HTML syntax).
++ [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-Vue.english.html)
+  + Pug Syntax
+    + **AdmonitionBlock--YDF-Vue-Pug** — autocomplete-like Live Template
+    + **ab-ydf-vue-pug** — abbreviated Live Template
+  + HTML Syntax   
+    + **AdmonitionBlock--YDF-Vue-HTML** — autocomplete-like Live Template
+    + **ab-ydf-vue-html** — abbreviated Live Template
++ [Badge](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/Badge/Badge-Vue.english.html)
+  + Component Itself
+    + Pug Syntax 
+      + **Badge--YDF-Vue-Pug** — autocomplete-like Live Template
+      + **bdg-ydf-vue-pug** — abbreviated Live Template
+    + HTML Syntax
+      + **Badge--YDF-Vue-HTML** — autocomplete-like Live Template
+      + **bdg-ydf-vue-html** — abbreviated Live Template
+  + Loading Placeholder
+    + **Badge-LoadingPlaceholder--YDF-Vue-Pug** — Pug syntax
+    + **Badge-LoadingPlaceholder--YDF-Vue-HTML** — HTML syntax
++ [Button](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Buttons/Plain/Button-Vue.english.html)
+  + Component Itself
+    + Pug Syntax 
+      + **Button--YDF-Vue-Pug** — autocomplete-like Live Template
+      + **btn-ydf-vue-pug** — abbreviated Live Template
+    + HTML Syntax
+      + **Button--YDF-Vue-HTML** — autocomplete-like Live Template
+      + **btn-ydf-vue-html** — abbreviated Live Template
+  + Loading Placeholder
+    + **Button-LoadingPlaceholder--YDF-Vue-Pug** — Pug syntax
+    + **Button-LoadingPlaceholder--YDF-Vue-HTML** — HTML syntax
 
 
 #### React
 
 ##### GUI Components
 
-- **AdmonitionBlock**, alias: **ab-ydf-react** — Live template for
-  [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToJavaScriptFrameworks/React/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-React.english.html)
-  component.
++ [AdmonitionBlock](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/React/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock-React.english.html)
+  + **AdmonitionBlock--YDF-React** — autocomplete-like Live Template for the component itself
+  + **ab-ydf-react** — abbreviated Live Template for the component itself
++ [Badge](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/React/GUI_Components/Children/Badge/Badge-React.english.html)
+  + **Badge--YDF-React** — autocomplete-like Live Template for the component itself
+  + **bdg-ydf-react** — abbreviated Live Template for the component itself
+  + **Badge--YDF-LoadingPlaceholder-React** — autocomplete-like Live Template for loading placeholder
++ [Button](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/Buttons/Plain/Button-React.english.html)
+  + **Button--YDF-React** — autocomplete-like Live Template for the component itself
+  + **btn-ydf-react** — abbreviated Live Template for the component itself
+  + **Button--YDF-LoadingPlaceholder-React** — autocomplete-like Live Template for loading placeholder
+
 
 ### Styles (Stylus)
 
@@ -66,28 +100,28 @@ Adds the [live templates](https://www.jetbrains.com/help/idea/using-live-templat
 
 ##### Fundamental Constants and Enumerations
 
-- **DataTypes--YDF**, alias: **dt** — Live template for 
++ **DataTypes--YDF**, alias: **dt** — Live template for 
   [`DataTypes--YDF` enumeration](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md#datatypes--ydf---stylus-data-types)
-- **NARROWEST_SCREEN_WIDTH_UNIT--YDF**, alias: **nswu** — The Live template for the 
++ **NARROWEST_SCREEN_WIDTH_UNIT--YDF**, alias: **nswu** — The Live template for the 
   [`NARROWEST_SCREEN_WIDTH_UNIT--YDF` constant](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md#narrowest_screen_width_unit--ydf---the-narrowest-screen-width-unit)
-- **SMALLEST_DIVISION_OF_CSS_PIXEL--YDF**, alias: **sdocp** — Live template for
++ **SMALLEST_DIVISION_OF_CSS_PIXEL--YDF**, alias: **sdocp** — Live template for
   [`SMALLEST_DIVISION_OF_CSS_PIXEL--YDF`](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md#smallest_division_of_css_pixel--ydf---the-smallest-division-of-css-pixel)
  
 ##### Colors
 
-- **PracticalColorCoordinateSystem--YDF**, alias: **pccs** — Live template for 
++ **PracticalColorCoordinateSystem--YDF**, alias: **pccs** — Live template for 
   [`PracticalColorCoordinateSystem--YDE` two-level object](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/02-Colors/PracticalColorCoordinateSystem.md)
-- **TemporarySemitransparentHighlighting--YDF**, alias: **tsh** — Live template for the 
++ **TemporarySemitransparentHighlighting--YDF**, alias: **tsh** — Live template for the 
   [`TemporarySemitransparentHighlighting--YDF` object-type constant](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/02-Colors/TemporarySemitransparentHighlighting.md)
   There is also the **bgc-tsh** pasting same content with `background-color` key at once.
-- **W3C_39_ShadesOfGray--YDF**, alias: **sogw3c** — Live template for the
++ **W3C_39_ShadesOfGray--YDF**, alias: **sogw3c** — Live template for the
   [`W3C_39_ShadesOfGray--YDF` array](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/02-Colors/W3C_39_ShadesOfGray.md)
-- **YDF_ColorPalette**, alias: **ydfcp** — Live template for the
++ **YDF_ColorPalette**, alias: **ydfcp** — Live template for the
   [`YDF_ColorPalette` object](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Styles/01-Assets/02-Colors/YDF_ColorPalette.styl).
   The related ones which allows to input some value of `YDF_ColorPalette` along with CSS properties:
-  - `c-ydfcp` — with `color` property
-  - `bgc-ydfcs` — with `background-color` property
-  - `bgi-ydfcp` — with `background-image` property (in this case, the value of gradient group must be inputted)
+  + `c-ydfcp` — with `color` property
+  + `bgc-ydfcs` — with `background-color` property
+  + `bgi-ydfcp` — with `background-image` property (in this case, the value of gradient group must be suggested)
 
 [//]: # (* <kbd>fuic</kbd> The Live template for the [`FlatUI_Colors` enumeration]&#40;https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/03-BuildInPlugins/ColorPalettes/FlatUI/FlatUI_ColorsPalette.md&#41;)
 [//]: # (* <kbd>mdc</kbd> The Live template for the [`MaterialDesignColors` object]&#40;https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/03-BuildInPlugins/ColorPalettes/MaterialDesign/MaterialDesignColorsPalette.md&#41;)
@@ -253,6 +287,7 @@ Adds the [live templates](https://www.jetbrains.com/help/idea/using-live-templat
     * <kbd>wtwssgjat</kbd> - live template for  [whenTargetWithSameSelectorGoingJustAfterIt](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/03-UtilityMixins/03-PositionalRelationship.md#whentargetwithsameselectorgoingjustafterit) mixin
 
   * Layout
+    * <kbd>CenteredContentWithDynamicInlinePaddings</kbd>, alias <kbd>ccwdip</kbd>  - live template for `CenteredContentWithDynamicInlinePaddings--YDF` mixin 
     * <kbd>ccwchp</kbd> - live template for [CenteredContentWithComputedHorizontalPaddings](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/03-UtilityMixins/05-Layout/CenteredContentWithComputedHorizontalPaddings.md) mixin
     * <kbd>cnt</kbd> - live template for [Centerer](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/03-UtilityMixins/05-Layout/Centerer.md) mixin
     * <kbd>fbv</kbd> - live template for [fillBodyVertically](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/03-UtilityMixins/05-Layout/fillBodyVertically.md) mixin
@@ -274,18 +309,6 @@ Adds the [live templates](https://www.jetbrains.com/help/idea/using-live-templat
 
 ##### Idioms templates
 
-* Media queries definitions 
-  * <kbd>med2c</kbd> - the media queries definitions for 2-pattern layout
-  * <kbd>med3c</kbd> - the media queries definitions for 3-patterns layout
-  * <kbd>med4c</kbd> - the media queries definitions for 4-patterns layout
-  * <kbd>med3c</kbd> - the media queries definitions for 5-patterns layout
-* Media queries
-  * <kbd>wsc</kbd> - **+WideScreensConfiguration()** mixin (must be preliminarily defined) invocation.
-  * <kbd>msc</kbd> - **+MediumScreensConfiguration()** mixin (must be preliminarily defined) invocation.
-  * <kbd>nsc</kbd> - **+NarrowScreensConfiguration()** mixin (must be preliminarily defined) invocation.
-  * <kbd>wmsc</kbd> - **+WideAndMediumScreensConfiguration()** mixin (must be preliminarily defined) invocation.
-  * <kbd>mnsc</kbd> - **+MediumAndNarrowScreensConfiguration()** mixin (must be preliminarily defined) invocation.
-
 * Typography
   * <kbd>hd</kbd> - live template inserting the heading tag and dedicated CSS class provided by <code>provideYDF_Typography</code> Stylus mixin
   * <kbd>shd</kbd> - live template inserting the <code>div</code> tag with subheading CSS class provided by <code>provideYDF_Typography</code> Stylus mixin
@@ -305,11 +328,13 @@ Adds the [live templates](https://www.jetbrains.com/help/idea/using-live-templat
 - **PugEntryPointExtendedFromRegularWebPageTemplate** — Pug entry point extended from the 
   [Regular WebPage Template](https://frontend.yamato-daiwa.com/CoreLibrary/PagesTemplates/Children/RegularWebPage/RegularWebPageTemplate.english.html).
 
-### Styles customizing
+### Styles Customizing
+
 
 - [**AdmonitionBlock** component](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Components/Children/AdmonitionBlock/AdmonitionBlock.english.html):
   `Files and Code Templates/Other/YDF GUI Components/AdmonitionBlock.styl`
-- **Badge** component: `Files and Code Templates/Other/YDF GUI Components/Badge.styl`
+- [**Badge** component](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Badge/Badge.english.html): `Files and Code Templates/Other/YDF GUI Components/Badge.styl`
+- [**Button.styl**](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/Button.english.html): `Files and Code Templates/Other/YDF GUI Components/Button.styl`
 
 <!-- Plugin description end -->
 

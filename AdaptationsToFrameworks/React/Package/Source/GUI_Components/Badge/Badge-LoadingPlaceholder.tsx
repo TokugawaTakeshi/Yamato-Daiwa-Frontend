@@ -7,32 +7,60 @@ import ComponentsAuxiliaries from "../ComponentsAuxiliaries";
 import React, { type ReactNode } from "react";
 
 /* ─── Utils ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── */
+import checkForNonEmptyStringReactProperties from "../../_ReactPropertiesValidators/checkForNonEmptyStringReactProperties";
 import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
 class BadgeLoadingPlaceholder extends React.Component<BadgeLoadingPlaceholder.Properties> {
 
+  /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static readonly defaultProps: Required<
     Pick<
       BadgeLoadingPlaceholder.Properties,
       "theme" |
       "areThemesCSS_ClassesCommon" |
       "geometricVariation" |
-      "geometricModifiers"
+      "geometricModifiers" |
+      "rootElementAttributes"
     >
   > = {
     theme: Badge.Themes.regular,
     areThemesCSS_ClassesCommon: Badge.areThemesCSS_ClassesCommon,
     geometricVariation: Badge.GeometricVariations.regular,
-    geometricModifiers: []
+    geometricModifiers: [],
+    rootElementAttributes: {}
   };
 
-  public render(): ReactNode {
-    return (
-      <span className={ [ "Badge--YDF", "Badge--YDF__LoadingPlaceholder", ...this.rootElementModifierCSS_Classes ].join(" ") }/>
-    );
+
+  /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public constructor(properties: BadgeLoadingPlaceholder.Properties) {
+    super(properties);
+    this.validateProperties();
   }
 
+
+  /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public override componentDidUpdate(): void {
+    this.validateProperties();
+  }
+
+
+  /* ━━━ Properties Validation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  private validateProperties(): void {
+    checkForNonEmptyStringReactProperties({
+      componentName: "BadgeLoadingPlaceholder",
+      propertiesData: [
+        {
+          name: "className",
+          isRequiredOrHasDefaultValue: false,
+          value: this.props.className
+        }
+      ]
+    });
+  }
+
+
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected get rootElementModifierCSS_Classes(): ReadonlyArray<string> {
     return [
 
@@ -57,6 +85,22 @@ class BadgeLoadingPlaceholder extends React.Component<BadgeLoadingPlaceholder.Pr
     ];
   }
 
+
+  /* ━━━ Rendering ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public render(): ReactNode {
+    return (
+      <span
+        className={
+          [
+            "Badge--YDF",
+            "Badge--YDF__LoadingPlaceholder",
+            ...this.rootElementModifierCSS_Classes
+          ].join(" ")
+        }
+      />
+    );
+  }
+
 }
 
 
@@ -68,7 +112,8 @@ namespace BadgeLoadingPlaceholder {
     "areThemesCSS_ClassesCommon" |
     "geometricVariation" |
     "geometricModifiers" |
-    "className"
+    "className" |
+    "rootElementAttributes"
   >;
 
 }

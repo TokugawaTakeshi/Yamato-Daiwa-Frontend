@@ -1,4 +1,4 @@
-type DateTimePickerLocalization = Readonly<{
+export type DateTimePickerLocalization = Readonly<{
 
   dialog: Readonly<{
 
@@ -139,6 +139,3 @@ type DateTimePickerLocalization = Readonly<{
   }>;
 
 }>;
-
-
-export default DateTimePickerLocalization;

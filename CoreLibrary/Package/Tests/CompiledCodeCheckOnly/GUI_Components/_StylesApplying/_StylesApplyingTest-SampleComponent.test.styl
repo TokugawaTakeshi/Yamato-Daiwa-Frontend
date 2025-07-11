@@ -1,0 +1,169 @@
+Sample--YDF = {
+
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        componentIndependentCSS_Class: "SampleTheme1--YDF"
+
+        geometricVariations: {
+
+          regular: {
+            rootElement: {
+              borderWidth: 1px
+            },
+            child: {
+              fontSize: 14px
+            }
+          }
+
+        },
+
+        decorativeVariations: {
+          regular: {
+
+          }
+        }
+
+      }
+    }
+
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true,
+    geometricModifiers: {
+      pillShape: true,
+      singleLine: true
+    },
+    decorativeModifiers: {
+      bordersDisguising: true
+    }
+  }
+
+}
+
+
+provideSampleYDF_Component(
+  preset = Sample--YDF.defaultProperties,
+  overrides = {},
+  options = Sample--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject(preset, overrides)
+
+  validateObjectTypeParameter({
+    mixinOrFunctionName: "provideSampleYDF_Component",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Sample--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Sample--YDF.defaultOptions.externalThemes
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Sample--YDF.defaultOptions.themeIndependentGeometricVariations
+      },
+      geometricModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          pillShape: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Sample--YDF.defaultOptions.geometricModifiers.pillShape
+          },
+          singleLine: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Sample--YDF.defaultOptions.geometricModifiers.singleLine
+          }
+        },
+        defaultValue: Sample--YDF.defaultOptions.geometricModifiers
+      },
+      decorativeModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          bordersDisguising: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Sample--YDF.defaultOptions.decorativeModifiers.bordersDisguising
+          }
+        },
+        defaultValue: Sample--YDF.defaultOptions.decorativeModifiers.bordersDisguising
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  applyBasicRules()
+
+    .Sample--YDF
+
+      display inline-flex
+
+
+    .Sample--YDF-ChildElement
+
+      flex-shrink 0
+
+
+  /* --- Geometry --------------------------------------------------------------------------------------------------- */
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "Sample.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+
+    +applyStylesToRootElementOfYDF_Component(defaultSelector: ".Sample--YDF", options.areThemesCSS_ClassesCommon, properties.themes)
+
+      border-width: variation.rootElement.borderWidth
+
+
+    if options.geometricModifiers.pillShape
+
+      &.Sample--YDF__PillShapeGeometricModifier
+
+        border-radius 50%
+
+
+    .Sample--YDF-ChildElement
+
+      font-size: variation.child.fontSize
+
+
+  // --- Decoration ----------------------------------------------------------------------------------------------------
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+      "Sample.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+
+  // === Applying ======================================================================================================
+  applyBasicRules()
+
+  if !options.themeIndependentStylesOnly
+
+    log(options.areThemesCSS_ClassesCommon)
+
+    applyComponentThemes({
+      CSS_Namespace: "Sample--YDF",
+      themes: properties.themes,
+      areThemesCSS_ClassesCommon: options.areThemesCSS_ClassesCommon,
+      themeIndependentGeometricVariations: options.themeIndependentGeometricVariations,
+      applyGeometricVariation: applyGeometricVariation,
+      applyDecorativeVariation: applyDecorativeVariation
+    })

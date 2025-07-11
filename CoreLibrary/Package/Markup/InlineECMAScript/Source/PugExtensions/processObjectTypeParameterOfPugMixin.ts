@@ -37,7 +37,7 @@ export default function processObjectTypeParameterOfPugMixin(
   if (isEitherUndefinedOrNull(rawMixinParameter)) {
 
     if (mixinParameterRequiredPropertiesNames.length > 0) {
-      Logger.throwErrorAndLog({
+      Logger.throwErrorWithFormattedMessage({
         errorInstance: new InvalidParameterValueError({
           parameterName: mixinName,
           parameterNumber: 1,
@@ -75,7 +75,7 @@ export default function processObjectTypeParameterOfPugMixin(
 
 
   if (!isArbitraryObject(rawMixinParameter)) {
-    Logger.throwErrorAndLog({
+    Logger.throwErrorWithFormattedMessage({
       errorInstance: new InvalidParameterValueError({
         parameterName: mixinParameterName,
         parameterNumber: 1,
@@ -98,11 +98,12 @@ export default function processObjectTypeParameterOfPugMixin(
           nameForLogging: `Parameter No. ${ mixinParameterNumber } of "${ mixinName }" mixin`,
           subtype: RawObjectDataProcessor.ObjectSubtypes.fixedSchema,
           properties: mixinParameterPropertiesSpecification
-        }
+        },
+        { processingApproach: RawObjectDataProcessor.ProcessingApproaches.manipulationsWithSourceObject }
       );
 
   if (mixinParameterProcessingResult.isRawDataInvalid) {
-    Logger.throwErrorAndLog({
+    Logger.throwErrorWithFormattedMessage({
       errorInstance: new InvalidParameterValueError({
         customMessage:
             `Object-type parameter No. ${ mixinParameterNumber } (named as "${ mixinParameterName }") ` +

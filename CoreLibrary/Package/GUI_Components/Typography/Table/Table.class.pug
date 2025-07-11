@@ -124,12 +124,14 @@
 
       horizontalScrollingOnOverflow: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       theme: {
         type: String,
-        defaultValue: Table__YDF.Themes.regular,
+        undefinedValueSubstitution: Table__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Table__YDF.Themes).
             map(([ key, value ]) => ({ key: `Table__YDF.Themes.${ key }`, value }))
@@ -137,12 +139,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: Table__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: Table__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: Table__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: Table__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Table__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `Table__YDF.GeometricVariations.${ key }`, value }))
@@ -150,7 +154,10 @@
 
       geometricModifiers: {
         type: Array,
-        defaultValue: [],
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
         element: {
           type: String,
           allowedAlternatives: Object.values(Table__YDF.GeometricModifiers)
@@ -159,7 +166,8 @@
 
       decorativeVariation: {
         type: String,
-        required: true,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(Table__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `Table__YDF.DecorativeVariations.${ key }`, value }))
@@ -167,7 +175,10 @@
 
       decorativeModifiers: {
         type: Array,
-        defaultValue: [],
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
         element: {
           type: String,
           allowedAlternatives: Object.values(Table__YDF.DecorativeModifiers)

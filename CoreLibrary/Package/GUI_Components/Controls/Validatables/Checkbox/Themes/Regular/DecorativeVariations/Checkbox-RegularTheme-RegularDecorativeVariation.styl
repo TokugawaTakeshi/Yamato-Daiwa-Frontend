@@ -6,11 +6,6 @@ Checkbox-RegularTheme-RegularDecorativeVariation--YDF = {
 
       buttonLikeWrapper: {
 
-        text: {
-          color: JQueryUI_BaseTheme.clickableElements.defaultState.fontColor,
-          underline: null
-        },
-
         background: {
           color: JQueryUI_BaseTheme.clickableElements.defaultState.background,
           image: null
@@ -41,6 +36,7 @@ Checkbox-RegularTheme-RegularDecorativeVariation--YDF = {
         },
 
         outline: null,
+
         shadow: {
           inset: true,
           XOffset: 1px,
@@ -50,6 +46,13 @@ Checkbox-RegularTheme-RegularDecorativeVariation--YDF = {
 
         customDeclarations: null
 
+      },
+
+      label: {
+        text: {
+          color: JQueryUI_BaseTheme.clickableElements.defaultState.fontColor,
+          underline: null
+        }
       }
 
     },
@@ -199,11 +202,6 @@ Checkbox-RegularTheme-RegularDecorativeVariation--YDF = {
 
       buttonLikeWrapper: {
 
-        text: {
-          color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor,
-          underline: null
-        },
-
         background: {
           color: JQueryUI_BaseTheme.clickableElements.activeState.background,
           image: null
@@ -221,9 +219,41 @@ Checkbox-RegularTheme-RegularDecorativeVariation--YDF = {
 
       },
 
-      SVG_Icon: {
-        color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor,
+      frameForCheckmark: {
+
+        background: {
+          color: white,
+          image: null
+        },
+
+        borders: {
+          style: null,
+          color: null
+        },
+
+        outline: null,
+
+        shadow: {
+          inset: true,
+          XOffset: 1px,
+          YOffset: 1px,
+          color: alpha(black, 25%)
+        },
+
         customDeclarations: null
+
+      },
+
+      checkmark: {
+        color: JQueryUI_BaseTheme.clickableElements.activeState.background,
+        customDeclarations: null
+      },
+
+      label: {
+        text: {
+          color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor,
+          underline: null
+        }
       }
 
     },

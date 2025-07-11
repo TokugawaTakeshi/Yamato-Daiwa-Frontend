@@ -1,0 +1,114 @@
+//- ━━━ Summary ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- const ValidatableControlShellGUI_ComponentOverviewLocalization = generateOverviewLocalizationWorkpieceForSpecificGUI_Component();
+
+
+mixin ValidatableControlShellComponent-Overview(properties)
+
+  -
+
+    const {
+      framework
+    } = properties?? {};
+
+    const localizedAssets = ValidatableControlShellGUI_ComponentOverviewLocalization.getLocalizedAssets();
+
+  +GUI_ComponentOverview({
+    framework,
+    metadataClass: ValidatableControlShell__YDF,
+    intelliJ_IDEA_FamilyIDEsLiveTemplate: {
+      native: {
+        autocompleteLike: "ValidatableControlShell--YDF",
+        abbreviation: "vsc-ydf"
+      },
+      vue: {
+        autocompleteLike: {
+          pugSyntax: "ValidatableControlShell--YDF-Vue-Pug",
+          HTML_Syntax: "ValidatableControlShell--YDF-Vue-HTML"
+        },
+        abbreviation: {
+          pugSyntax: "vsc-ydf-vue-pug",
+          HTML_Syntax: "vsc-ydf-vue-html"
+        }
+      },
+      react: {
+        autocompleteLike: "ValidatableControlShell--YDF-React",
+        abbreviation: "vsc-ydf-react"
+      }
+    },
+    themesNamesTranslations: localizedAssets.themes,
+    geometricVariationsTranslations: localizedAssets.geometricVariations,
+    decorativeVariationsTranslations: localizedAssets.decorativeVariations
+  })
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  const ValidatableControlShellComponentPugMixinOrClassSynopsisLocalization =
+      GUI_ComponentPugMixinOrClassSynopsisLocalization.generateInitialLocalizationObjectForSpecificGUI_Component();
+
+
+mixin ValidatableControlShellComponent-PugMixinOrClassSynopsis(properties)
+
+  -
+
+    const {
+
+      framework
+
+    } = properties ?? {};
+
+    const propertiesSpecification = {
+      ...ValidatableControlShellComponentPugMixinOrClassSynopsisLocalization.
+          getLocalizedPropertiesSpecification(ValidatableControlShell__YDF, framework)
+    };
+
+    const statesSimulations = {
+      ...ValidatableControlShellComponentPugMixinOrClassSynopsisLocalization.
+          getLocalizedStatesSimulationsSpecification(ValidatableControlShell__YDF)
+    };
+
+  if framework
+
+    +ObjectTypeAbstract--YDF_DK({
+      typeName: `ValidatableControlShell.Properties`,
+      propertiesSpecification
+    })
+
+  else
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: isUndefined(framework) ? "ValidatableControlShell--YDF" : "ValidatableControlShell",
+      parametersSpecification: [
+        {
+          genericTechnicalName: "properties",
+          localizedName: ValidatableControlShellComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.
+              pugMixinParametersLocalization[0].
+              localizedName,
+          type: "Properties",
+          required: true
+        },
+        {
+          genericTechnicalName: "statesSimulations",
+          localizedName: ValidatableControlShellComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.
+              pugMixinParametersLocalization[1].
+              localizedName,
+          type: "StatesSimulations",
+          required: false
+        }
+      ],
+      hiddenReturnValue: true
+    })
+
+      +ObjectTypeAbstract--YDF_DK({
+        typeName: `ValidatableControlShell.propertiesSpecification`,
+        propertiesSpecification
+      }).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem
+
+      +ObjectTypeAbstract--YDF_DK({
+        typeName: `ValidatableControlShell.statesSimulations`,
+        propertiesSpecification: statesSimulations
+      }).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem

@@ -122,42 +122,49 @@
 
       label: {
         type: String,
-        required: false,
+         isUndefinedForbidden: false,
+         isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       accessibilityGuidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       externalLabelHTML_ID: {
         type: String,
-        requiredIf: {
-          predicate: properties => !isNonEmptyString(properties.label) && !isNonEmptyString(properties.accessibilityGuidance),
+        undefinedForbiddenIf: {
+          predicate: ({ rawData__full: properties }) =>
+              !isNonEmptyString(properties.label) && !isNonEmptyString(properties.accessibilityGuidance),
           descriptionForLogging: "Neither \"label\" nor \"accessibilityGuidance\" has been specified with non-empty strings"
         },
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       guidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       value: {
-        type: RawObjectDataProcessor.ValuesTypesIDs.oneOf,
-        defaultValue: null,
+        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         alternatives: [
           {
             type: String,
-            minimalCharactersCount: 1,
-            nullable: true
+            minimalCharactersCount: 1
           },
           {
             type: Array,
+            areUndefinedElementsForbidden: true,
+            areNullElementsForbidden: true,
             element: {
               type: String,
               minimalCharactersCount: 1
@@ -168,49 +175,59 @@
 
       disabled: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       readonly: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       required: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsRequired: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsOptional: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       minimalFilesCount: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
-        defaultValue: 1
+        numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+        isNaN_Forbidden: true,
+        undefinedValueSubstitution: 1,
+        isNullForbidden: true
       },
 
       maximalFilesCount: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
-        required: false,
+        numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         customValidators: {
-          validationFunction: ({ currentPropertyValue: maximalFilesCount, rawData__currentObjectDepth }) =>
+          validationFunction: ({ value: maximalFilesCount, rawData__currentObjectDepth }) =>
               isUndefined(rawData__currentObjectDepth.minimalFilesCount) ||
               (
-                Number.isInteger(rawData__currentObjectDepth.minimalFilesCount) &&
+                isNumber(rawData__currentObjectDepth.minimalFilesCount, { mustConsiderNaN_AsNumber: false }) &&
                 maximalFilesCount >= rawData__currentObjectDepth.minimalFilesCount
               ),
           descriptionForLogging: "\"maximalFilesCount\" could not be less than \"minimalFilesCount\""
@@ -219,7 +236,10 @@
 
       supportedFilesNamesExtensions__leadingDotsAreOptional: {
         type: Array,
-        defaultValue: [],
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
         element: {
           type: String,
           minimalCharactersCount: 1
@@ -228,14 +248,16 @@
 
       noFilePickingButton: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       noDragAndDropArea: {
         type: Boolean,
-        defaultValue: false,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true,
         customValidators: {
-          validationFunction: ({ currentPropertyValue: noDragAndDropArea, rawData__currentObjectDepth }) =>
+          validationFunction: ({ value: noDragAndDropArea, rawData__currentObjectDepth }) =>
               noDragAndDropArea === false ||
                   (noDragAndDropArea === true && rawData__currentObjectDepth.noFilePickingButton !== true),
           descriptionForLogging:
@@ -246,12 +268,14 @@
 
       noDragAndDropAreaOnTouchScreens: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       initialImageAspectRatio: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 3
       },
 
@@ -259,25 +283,29 @@
        * 1 minimal character is definitely not enough for unique string, but in MVC mode it could be the variable. */
       instanceID_UniqueDynamicPart: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       inputElementHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       labelElementHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       theme: {
         type: String,
-        defaultValue: FilesUploader__YDF.Themes.regular,
+        undefinedValueSubstitution: FilesUploader__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(FilesUploader__YDF.Themes).
             map(([ key, value ]) => ({ key: `FilesUploader__YDF.Themes.${ key }`, value }))
@@ -285,12 +313,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: FilesUploader__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: FilesUploader__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: FilesUploader__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: FilesUploader__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(FilesUploader__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `FilesUploader__YDF.GeometricVariations.${ key }`, value }))
@@ -298,7 +328,8 @@
 
       decorativeVariation: {
         type: String,
-        defaultValue: FilesUploader__YDF.DecorativeVariations.regular,
+        undefinedValueSubstitution: FilesUploader__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(FilesUploader__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `FilesUploader__YDF.DecorativeVariations.${ key }`, value }))
@@ -312,12 +343,14 @@
 
       filesProcessingStatuses: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       singleImagePreview: {
-        type: RawObjectDataProcessor.ValuesTypesIDs.oneOf,
-        defaultValue: false,
+        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true,
         alternatives: [
           {
             type: Boolean,
@@ -332,17 +365,20 @@
 
       multipleImagesPreview: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       dragOver: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       busy: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       ...ComponentsAuxiliaries.generateValidatableControlGeneralStatesSimulationsSpecification({

@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle --
- * There are eponymous protected fields and public accessors in "ValidatableControlsGroup" class. */
+ * There are eponymous protected fields and public accessors in the "ValidatableControlsGroup" class. */
 
 import type ValidatableControl from "./ValidatableControl";
 import type InputtedValueValidation from "./InputtedValueValidation";
@@ -135,7 +135,7 @@ class ValidatableControlsGroup<
   public getExpectedToBeValidInputtedValues(): InputtedValidValues {
 
     if (this._isInvalid) {
-      Logger.throwErrorAndLog({
+      Logger.throwErrorWithFormattedMessage({
         errorInstance: new UnexpectedEventError("Contrary to expectations, the payload is still invalid."),
         title: UnexpectedEventError.localization.defaultTitle,
         occurrenceLocation: "validatableControlsGroup.getExpectedToBeValidInputtedValues()"
@@ -279,6 +279,8 @@ class ValidatableControlsGroup<
         some((isCurrentControlPayloadValid: boolean): boolean => !isCurrentControlPayloadValid);
   }
 
+  /* eslint-enable @typescript-eslint/member-ordering */
+
 }
 
 
@@ -286,7 +288,7 @@ namespace ValidatableControlsGroup {
 
   export type GeneralizedControlsPayload = Readonly<{ [controlKey: string]: GeneralizedControlPayload; }>;
 
-  export type GeneralizedControlPayload = ValidatableControl.Payload<unknown, unknown, InputtedValueValidation>;
+  export type GeneralizedControlPayload = ValidatableControl.Payload<boolean, unknown>;
 
   export type GeneralizedEventHandler = () => void;
 

@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "概要"
+
+TextBoxClass:
+
+  $heading: "<code>TextBox</code>クラス"
+
+  vueProperties:
+
+    $heading: "Vueプロパティ"

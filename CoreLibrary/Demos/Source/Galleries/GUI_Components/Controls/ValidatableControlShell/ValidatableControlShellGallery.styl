@@ -52,3 +52,19 @@
     &-NarrowContainer
 
       width 60px
+
+
+  &-LoadingPlaceholderSection
+
+    &-LinearFlow
+
+      display flex
+      flex-wrap wrap
+      align-items flex-end
+
+      column-gap 12px
+      row-gap 6px
+
+
+      retireFrom({ targetElementSelector: ".Heading2", y: 0.8rem })
+      retireFromElementWithSameSelector({ y: 8px })

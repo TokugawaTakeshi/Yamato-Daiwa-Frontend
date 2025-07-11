@@ -17,13 +17,13 @@ export const emailAddressInputtedValueValidationLocalization__russian: EmailAddr
     { rawValue, minimalCharactersCount }: MinimalCharactersCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
       `${ rawValue.length } символов недостаточно для электронного адреса. ` +
-      `Пожалуйста, проверьте электронный адрес и введите не менее ${ minimalCharactersCount } символов.`,
+      `Пожалуйста, проверьте адрес электронной почты и введите не менее ${ minimalCharactersCount } символов.`,
 
   maximalCharactersCountValidationErrorMessageBuilder: (
     { rawValue, maximalCharactersCount }: MaximalCharactersCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
       `${ rawValue.length } символов слишком много для электронного адреса. ` +
-      `Пожалуйста, проверьте электронный адрес и введите не более ${ maximalCharactersCount } символов.`,
+      `Пожалуйста, проверьте адрес электронной почты и введите не более ${ maximalCharactersCount } символов.`,
 
   invalidEmailAddressErrorMessageBuilder: emailAddressInputtedValueValidationRuleLocalization__russian.errorMessageBuilder
 

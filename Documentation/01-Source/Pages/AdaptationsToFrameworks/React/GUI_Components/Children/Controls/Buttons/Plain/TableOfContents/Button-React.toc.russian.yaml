@@ -1,3 +1,11 @@
-synopsis:
+overview:
 
   $heading: "Сводка"
+
+ButtonClass:
+
+  $heading: "<code>Button</code> Class"
+
+  reactProperties:
+
+    $heading: "React Properties"

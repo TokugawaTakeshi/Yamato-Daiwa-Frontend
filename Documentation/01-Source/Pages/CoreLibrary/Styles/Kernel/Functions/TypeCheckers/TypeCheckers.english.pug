@@ -1,0 +1,637 @@
+extends ../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../SharedAssets/Markup/SharedAssets.english.pug
+  include ../../../../../../SharedComponents/SharedComponents.english.pug
+
+
+block append Metadata
+
+  -
+
+    const {
+      $heading: pageTopHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.typeCheckers;
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle(pageTopHeading),
+        description:
+          "The library \"Yamato Daiwa Frontend\" (abbreviation: \"YDF\") for the frontend development suggests the " +
+            "Stylus-functions for the checking of values' types allowing to get more information about value than the " +
+            "standard \"typeof\" function."
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    RoutingEmulator.setCurrentRoute("coreLibrary.styles.kernel.functions.typeCheckers");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      japanese: routing.japanese.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.
+          typeCheckers.$URI,
+      russian: routing.russian.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.
+          typeCheckers.$URI
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ Values Types Checkers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= pageTopHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.notCheckedByNativeSpeakers })
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ┅┅┅ Strings ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.strings.$heading,
+      HTML_ID: localizedSectioning.strings.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ `isEmptyString` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.strings.$children.isEmptyString.$heading,
+      HTML_ID: localizedSectioning.strings.$children.isEmptyString.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] #[+Keyphrase--YDID if and only if] the #[+Term--YDID parameter's]
+        #[+Term__Contrast--YDID value] is an #[+Keyword--YDID empty] #[+Term--YDID string], otherwise returns
+        #[+ImportantEntity__Code--YDID false].
+
+    p.Article-Paragraph.
+      Nothing notable, but this #[+Term--YDID function] may be demanded for the development of other
+        #[+ImportantEntity--YDID Stylus] #[+Term--YDID functions] and #[+Term--YDID mixins].
+      This #[+Term--YDID function] has been used even for the implementation of
+        #[+ImportantEntity__Code--YDID isDimensionlessQuantity], another value type checking #[+Term--YDID function]:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }): :code_listing--yda
+        isDimensionlessQuantity(value)
+
+          return typeof(value) == "unit" && isEmptyString(unit(value))
+
+
+    //- ╍╍╍ `isNonEmptyString` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.strings.$children.isNonEmptyString.$heading,
+      HTML_ID: localizedSectioning.strings.$children.isNonEmptyString.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] #[+Keyphrase--YDID if and only if] the #[+Term--YDID parameter's]
+        #[+Term__Contrast--YDID value] is a #[+Keyword--YDID non-empty] #[+Term--YDID string], otherwise returns
+        #[+ImportantEntity__Code--YDID false].
+
+    +AdmonitionBlock--YDF({
+        SVG_Icon: true,
+        geometricVariation: AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike,
+        decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning
+    }).
+      #[+ImportantEntity__Code--YDID isNonEmptyString(X)] is #[+Keyword--YDID not]&nbsp;equivalent to
+        #[+ImportantEntity__Code--YDID !isEmptyString(X)] because in the #[+Keyword--YDID first] case
+        #[+ImportantEntity__Code--YDID true] will be returned #[+Keyword--YDID only] when the #[+Term--YDID string] is
+        #[+Keyword__Contrast--YDID non-empty] while in the #[+Keyword--YDID second] case #[+Keyword--YDID also] when
+        the value is a #[+Keyword--YDID non-string].
+
+    p.Article-Paragraph.
+      The usage of #[+ImportantEntity__Code--YDID !isNonEmptyString(X)] is rather demanded.
+      Although the double negation may confuse, this filtering out of everything #[+Keyword--YDID except]
+        #[+Keyword__Contrast--YDID non-empty] #[+Term--YDID strings] functionality may be useful.
+
+
+    //- ╍╍╍ `isString` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.strings.$children.isString.$heading,
+      HTML_ID: localizedSectioning.strings.$children.isString.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] if the #[+Term--YDID parameter's] #[+Term__Contrast--YDID value] is a
+        #[+Term--YDID string] (#[+Keyword--YDID either] empty #[+Keyword--YDID or] no), otherwise returns
+        #[+ImportantEntity__Code--YDID false].
+      The #[+Keyword--YDID shorthand] of #[+ImportantEntity__Code--YDID typeof(value) == "string"].
+
+
+    //- ┅┅┅ Quantities ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.quantities.$heading,
+      HTML_ID: localizedSectioning.quantities.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph.
+      Unlike the majority of programming languages, #[+ImportantEntity--YDID Stylus] being the
+        #[+Term--YDID CSS preprocessor] work with #[+Keyword--YDID dimensional] and #[+Keyword--YDID dimensionless]
+        #[+Keyword__Contrast--YDID quantities], not&nbsp;only with plain numbers.
+      For #[+Keyword--YDID both] of them #[+ImportantEntity__Code--YDID typeof()] check will return
+        #[+ImportantEntity--YDID "unit"] thus when the dimension presence or absence is critical, the additional
+        check will required.
+      For such target, among the following #[+Term--YDID functions] there are
+        #[+ImportantEntity__Code--YDID isDimensionalQuantity] and #[+ImportantEntity__Code--YDID isDimensionlessQuantity]
+        ones.
+      Also, although the а #[+ImportantEntity__Code--YDID isDimensionalOrDimensionlessQuantity] is the
+        #[+Keyword--YDID equivalent] of #[+ImportantEntity__Code--YDID typeof(x) == "unit"], it has the name from which
+        it is clear that #[+ImportantEntity__Code--YDID true] will be returned for #[+Keyword--YDID both]
+        #[+Term--YDID dimensional] and #[+Term--YDID dimensionless quantities].
+
+
+    //- ╍╍╍ `isDimensionalOrDimensionlessQuantity` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.quantities.$children.isDimensionalOrDimensionlessQuantity.$heading,
+      HTML_ID: localizedSectioning.quantities.$children.isDimensionalOrDimensionlessQuantity.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] #[+Keyphrase--YDID if and only if] the #[+Term--YDID parameter's]
+       #[+Term__Contrast--YDID value] is #[+Keyword--YDID either] #[+Keyword__Contrast--YDID dimensional]
+       #[+Keyword--YDID or] #[+Keyword__Contrast--YDID dimensionless] #[+Term--YDID quantity], otherwise returns
+       #[+ImportantEntity__Code--YDID false].
+      Works #[+Keyphrase--YDID same as] #[+ImportantEntity__Code--YDID typeof(value) == "unit"] and, although has the
+        long name, disambiguates about for #[+Term--YDID dimensional] or #[+Term--YDID dimensionless quantity]
+        check performed (in this case for #[+Keyword--YDID both]).
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }): :code_listing--yda
+        log(isDimensionalOrDimensionlessQuantity(2px)) // true
+        log(isDimensionalOrDimensionlessQuantity(2))   // true
+
+
+    //- ╍╍╍ `isDimensionalQuantity` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.quantities.$children.isDimensionalQuantity.$heading,
+      HTML_ID: localizedSectioning.quantities.$children.isDimensionalQuantity.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] if the #[+Term--YDID parameter's] #[+Term__Contrast--YDID value] is a
+        #[+Keyword--YDID dimensional] #[+Term--YDID quantity], otherwise returns #[+ImportantEntity__Code--YDID false],
+        herewith it is #[+Keyword--YDID required] to specify via #[+Keyword--YDID second] parameter must the
+        #[+Term--YDID function] consider the #[+ImportantEntity__Code--YDID 0] as #[+Keyword--YDID dimensional]
+        #[+Term--YDID quantity] or no.
+      As known from #[+ImportantEntity--YDID CSS] fundamentals, this styles definition language #[+Keyword--YDID allows]
+        to #[+Keyword__Contrast--YDID omit] the units if the #[+Term--YDID quantity] is
+        #[+ImportantEntity__Code--YDID 0] (by other words, #[+ImportantEntity--YDID 0] is #[+Keyword--YDID equivalent] to
+        #[+ImportantEntity--YDID 0px], #[+ImportantEntity--YDID 0rem] and combinations of #[+ImportantEntity--YDID 0]
+        with #[+Keyword--YDID any] #[+Keyword__Contrast--YDID other] #[+Term--YDID units]
+        #[+Keyphrase--YDID currently supported by #[+ImportantEntity--YDID CSS]]).
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }): :code_listing--yda
+        isDimensionalQuantity(2px, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY") // true
+        isDimensionalQuantity(2, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY")   // false
+        isDimensionalQuantity(0, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY")   // true
+        isDimensionalQuantity(0, "MUST_NOT_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY") // false
+
+    +AdmonitionBlock--YDF({
+      title: "The Second Parameter is Required",
+      SVG_Icon: true,
+      geometricVariation: AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike,
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning
+    }).
+      The #[+Keyword--YDID second] #[+Term--YDID parameter] #[+Keyword--YDID must] be specified #[+Keyword--YDID always]
+        #[+Keyphrase--YDID regardless of value of the #[+Keyword--YDID first] one].
+
+    p.Article-Paragraph.
+      In the above example the values of #[+Keyword--YDID first] #[+Term--YDID parameter] are hardcoded ones, but in
+        practice commonly the value will #[+Keyword--YDID dynamic] (it means
+        #[+Keyword--YDID unknown] #[+Keyphrase--YDID at advance]), that is why the #[+Keyword--YDID second] is
+        #[+Keyword--YDID always] #[+Keyword__Contrast--YDID required].
+
+
+    //- ╍╍╍ `isDimensionlessQuantity` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.quantities.$children.isDimensionlessQuantity.$heading,
+      HTML_ID: localizedSectioning.quantities.$children.isDimensionlessQuantity.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] if the #[+Term--YDID parameter's] #[+Term__Contrast--YDID value] is a
+        #[+Keyword--YDID dimensionless] #[+Term--YDID quantity], otherwise returns #[+ImportantEntity__Code--YDID false],
+        herewith the #[+ImportantEntity--YDID 0] will #[+Keyword--YDID always] be considered as a
+        #[+Keyword--YDID dimensionless] #[+Term--YDID quantity].
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }): :code_listing--yda
+        isDimensionlessQuantity(2px) // false
+        isDimensionlessQuantity(2)   // true
+        isDimensionlessQuantity(0)   // true
+
+
+    //- ╍╍╍ `isNaturalNumber` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.quantities.$children.isNaturalNumber.$heading,
+      HTML_ID: localizedSectioning.quantities.$children.isNaturalNumber.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] #[+Keyphrase--YDID if and only if] #[+Term--YDID parameter's] value
+        is a #[+Keyword--YDID dimensionless] #[+Term--YDID quantity] representing the #[+Keyword--YDID natural]
+        #[+Term--YDID number].
+
+    +AdmonitionBlock--YDF({
+      SVG_Icon: true,
+      geometricVariation: AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike,
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning
+    }) Recall that #[+ImportantEntity--YDID 0] is&nbsp;#[+Keyword--YDID not]&nbsp;a&nbsp;#[+Term--YDID natural number].
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }): :code_listing--yda
+        p(isNaturalNumber(1))    // true
+        p(isNaturalNumber(0))    // false
+        p(isNaturalNumber(1.1))  // false
+        p(isNaturalNumber(1e+1)) // false
+        p(isNaturalNumber(-1))   // false
+
+
+    //- ┅┅┅ Булевские значения ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.booleans.$heading,
+      HTML_ID: localizedSectioning.booleans.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph.
+      Being the language #[+Keyword--YDID without] built-in #[+Term--YDID type safety],　#[+ImportantEntity--YDID Stylus]
+        has the #[+Keyword--YDID automatic] #[+Term--YDID coercion] of　#[+Keyword--YDID non-boolean] values to
+        #[+Term--YDID booleans] (for example in　#[+Term--YDID conditional expressions]).
+      However sometimes #[+ImportantEntity--YDID Stylus] behaviour is different with
+        #[+ImportantEntity--YDID JavaScript]-like to which web programmers are accustomed.
+      For example, the #[+SecondaryEntity__Code--YDID if someVariable] check will be #[+Keyword--YDID truthy]
+        (#[+Keyphrase--YDID in #[+ImportantEntity--YDID Stylus] language]) even if
+        #[+SecondaryEntity__Code--YDID someVariable] has #[+Keyword--YDID not]&nbsp;been initialized.
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }): :code_listing--yda
+        definedVariable = true
+
+        if definedVariable
+
+          p("Obviously, it will be printed to console.")
+
+
+        if undefinedVariable
+
+          p("It will be printed too because 'typeof(undefinedVariable)' is 'ident' what will not be coerced to false.")
+
+
+    p.Article-Paragraph.
+      To avoid the unexpected bugs, the #[+Keyword--YDID explicit] checking like
+        #[+ImportantEntity__Code--YDID someVariable == true] or #[+ImportantEntity__Code--YDID someVariable == false]
+        checking is recommended, but #[+ImportantEntity__Code--YDID isTrue(someVariable)] and
+        #[+ImportantEntity__Code--YDID isFalse(someVariable)] suggesting by this library are the
+        #[+Keyword--YDID alternatives].
+
+
+    //- ╍╍╍ `isBoolean` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.booleans.$children.isBoolean.$heading,
+      HTML_ID: localizedSectioning.booleans.$children.isBoolean.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      The short #[+Keyword--YDID alternative] of a #[+Term--YDID comparing expression]
+        #[+ImportantEntity__Code--YDID typeof(x) == "boolean"], where #[+SecondaryEntity__Code--YDID x] is an
+        #[+Keyword--YDID arbitrary] #[+Term--YDID variable] even it has not&nbsp;been initialized.
+
+
+    //- ╍╍╍ `isFalse` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+     level: 3,
+     innerHTML: localizedSectioning.booleans.$children.isFalse.$heading,
+     HTML_ID: localizedSectioning.booleans.$children.isFalse.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      The #[+Keyword--YDID alternative] of a #[+Term--YDID comparing expression] #[+ImportantEntity__Code--YDID x == false],
+        where #[+SecondaryEntity__Code--YDID x] is and #[+Keyword--YDID arbitrary] #[+Term--YDID variable] even it has
+        not&nbsp;been initialized.
+
+
+    //- ╍╍╍ `isTrue` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.booleans.$children.isTrue.$heading,
+      HTML_ID: localizedSectioning.booleans.$children.isTrue.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      The #[+Keyword--YDID alternative] of a #[+Term--YDID comparing expression] #[+ImportantEntity__Code--YDID x == true],
+        where #[+SecondaryEntity__Code--YDID x] is and #[+Keyword--YDID arbitrary] #[+Term--YDID variable] even it has
+        not&nbsp;been initialized.
+
+
+    //- ┅┅┅ Nullables ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      innerHTML: localizedSectioning.nullables.$heading,
+      HTML_ID: localizedSectioning.nullables.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      The nullability has the shortcomings in #[+ImportantEntity--YDID Stylus].
+      This #[+Term--YDID functions] group gives the higher safety level when working with potentially
+        #[+Term--YDID null values].
+      For more specific information, see the theoretical reference below.
+
+
+    //- ╍╍╍ Theoretical Minimum: Nullability in Stylus ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.nullables.$children.theoreticalMinimum.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.theoreticalMinimum.$anchor
+    }).Article-Heading3
+
+    //- ─── `null` Keyword ─────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.nullables.$children.theoreticalMinimum.$children.nullKeyword.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.theoreticalMinimum.$children.nullKeyword.$anchor
+    }).Article-Heading4
+
+    p.Article-Paragraph.
+      Consider the following code:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }): :code_listing--yda
+        sample1 = null
+        p(sample1)
+        p(typeof(sample1))
+        p(sample1 == null)
+        p(typeof(sample1) == "null")
+
+    p.Article-Paragraph.
+      #[+Keyphrase--YDID For now], the #[+ImportantEntity--YDID Stylus] works as expected:
+
+    +ConsoleOutput--YDF: :html_special_characters_to_html_entities
+      inspect: ()
+      inspect: 'null'
+      inspect: false
+      inspect: true
+
+
+    //- ─── Non-existing Object Property ───────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.nullables.$children.theoreticalMinimum.$children.nonExistingObjectProperty.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.theoreticalMinimum.$children.nonExistingObjectProperty.$anchor
+    }).Article-Heading4
+
+    p.Article-Paragraph.
+      Consider the following code:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }): :code_listing--yda
+        sample2 =  {}
+        p(sample2.nonExistingProperty)
+        p(typeof(sample2.nonExistingProperty))
+        p(sample2.nonExistingProperty == null)
+        p(typeof(sample2.nonExistingProperty) == "null")
+
+    p.Article-Paragraph.
+      #[+Keyphrase--YDID For now], the #[+ImportantEntity--YDID Stylus] works as expected:
+
+    +ConsoleOutput--YDF: :html_special_characters_to_html_entities
+      inspect: null
+      inspect: 'null'
+      inspect: true
+      inspect: true
+
+
+    //- ─── Function/Mixin with Rest Parameters Only ─────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.nullables.$children.theoreticalMinimum.$children.
+          functionOrMixinWithRestParametersOnly.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.theoreticalMinimum.$children.
+          functionOrMixinWithRestParametersOnly.$anchor
+    }).Article-Heading4
+
+    p.Article-Paragraph.
+      Consider the following code:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }): :code_listing--yda
+        sampleFunction1(parameters...)
+
+          sample3 = parameters
+
+          p(sample3)
+          p(typeof(sample3))
+          p(sample3 == null)
+          p(typeof(sample3) == "null")
+
+        sampleFunction1()
+
+    p.Article-Paragraph.
+      The anomalies are starting here.
+      Although #[+ImportantEntity__Code--YDID sample3 == null] is #[+Keyword--YDID falsy], the
+        #[+ImportantEntity__Code--YDID typeof(sample3) == "null"] is #[+Keyword--YDID truthy]:
+
+    +ConsoleOutput--YDF: :html_special_characters_to_html_entities
+      inspect: ()
+      inspect: 'null'
+      inspect: false
+      inspect: true
+
+
+    //- ─── Function/Mixin with Rest Parameters in Subsequent Position ─────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.nullables.$children.theoreticalMinimum.$children.
+          functionOrMixinWithRestParametersInSubsequentPosition.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.theoreticalMinimum.$children.
+          functionOrMixinWithRestParametersInSubsequentPosition.$anchor
+    }).Article-Heading4
+
+    p.Article-Paragraph.
+      Consider the following code:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }): :code_listing--yda
+        sampleFunction2(parameter, restParameters...)
+
+          sample4 = restParameters
+
+          p("Checkpoint1")
+          p(sample4)
+          p("Checkpoint2")
+          p(typeof(sample4))
+          p(sample4 == null)
+          p(typeof(sample4) == "null")
+
+        sampleFunction2("TEST")
+
+    p.Article-Paragraph.
+      The output is:
+
+    +ConsoleOutput--YDF: :html_special_characters_to_html_entities
+      inspect: "Checkpoint1"
+      inspect: "Checkpoint2"
+      inspect: 'null'
+      inspect: false
+      inspect: true
+
+    p.Article-Paragraph.
+      There are the following #[+Keyword--YDID anomalies]:
+
+    ul.Article-UnorderedList
+
+      li The #[+SecondaryEntity__Code--YDID p(sample4)] has been #[+Keyword--YDID ignored].
+
+      li.
+        The #[+SecondaryEntity__Code--YDID typeof(sample4) == "null"] is #[+Keyword--YDID truthy] but
+          #[+SecondaryEntity__Code--YDID sample4 == null] is #[+Keyword--YDID falsy].
+
+    p.Article-Paragraph.
+      From above experiments we can conclude that the direct comparison with #[+ImportantEntity__Code--YDID null] is
+        #[+Keyword--YDID unsafe].
+      #[+Keyword__Contrast--YDID Instead], the #[+ImportantEntity__Code--YDID typeof(x) == "null] or
+        #[+ImportantEntity__Code--YDID typeof(x) == "null] comparisons should be used, but
+        #[+ImportantEntity__Code--YDID isNull]/#[+ImportantEntity__Code--YDID isNotNull] #[+Term--YDID functions]
+        suggested by #[+ImportantEntity--YDID YDF] are the #[+Keyword--YDID shorter]
+        #[+Keyword__Contrast--YDID alternatives].
+
+
+    //- ╍╍╍ `isNotNull`╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.nullables.$children.isNotNull.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.isNotNull.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] for any values of #[+Term--YDID parameter]
+        #[+Keyword--YDID except] #[+ImportantEntity__Code--YDID null], thus returns
+        #[+ImportantEntity__Code--YDID false] #[+Keyphrase--YDID if and only if] the value of #[+Term--YDID parameter]
+        is #[+ImportantEntity__Code--YDID null].
+      It is&nbsp;#[+Keyword--YDID not]&nbsp;the equivalent ot #[+ImportantEntity__Code--YDID x != null], because
+        at it has been shown above the direct comparison with  #[+ImportantEntity__Code--YDID null]
+        #[+Keyword--YDID not]&nbsp;always works as expected.
+
+    //- ╍╍╍ `isNull`╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.nullables.$children.isNull.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.isNull.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] #[+Keyphrase--YDID if and only if] the #[+Term--YDID parameter's]
+        value is #[+ImportantEntity__Code--YDID null], thus returns #[+ImportantEntity__Code--YDID false] for
+        #[+Keyword--YDID any] #[+Keyword__Contrast--YDID other] values of #[+Term--YDID parameter].
+      It is&nbsp;#[+Keyword--YDID not]&nbsp;the equivalent ot #[+ImportantEntity__Code--YDID x != null], because
+        at it has been shown above the direct comparison with  #[+ImportantEntity__Code--YDID null]
+        #[+Keyword--YDID not]&nbsp;always works as expected.
+
+
+    //- ━━━ Others ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.others.$heading,
+      HTML_ID: localizedSectioning.others.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ `isCalcExpression` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.others.$children.isCalcExpression.$heading,
+      HTML_ID: localizedSectioning.others.$children.isCalcExpression.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] #[+Keyphrase--YDID if and only if] the passed #[+Term--YDID parameter]
+        is a #[+Term--YDID Stylus literal] (satisfies to #[+ImportantEntity__Code--YDID typeof(value) == "literal"]),
+        herewith starts from #[+ImportantEntity__Code--YDID calc(], otherwise returns #[+ImportantEntity__Code--YDID false].
+      Although there is&nbsp;no specific data type for #[+Term--YDID calc expressions] it is possible to analyze
+        does the literal represents the #[+Term--YDID calc expression] or no, it is what this #[+Term--YDID function]
+        does.
+
+
+    //- ╍╍╍ `isFunction` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.others.$children.isFunction.$heading,
+      HTML_ID: localizedSectioning.others.$children.isFunction.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] #[+Keyphrase--YDID if and only if] #[+Term--YDID parameter's] value
+        is a #[+Term--YDID function], otherwise returns #[+ImportantEntity__Code--YDID false].
+      The #[+Keyword--YDID shorthand] of #[+ImportantEntity__Code--YDID typeof(x) == "function"].
+
+
+    //- ╍╍╍ `isIdentifier` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.others.$children.isIdentifier.$heading,
+      HTML_ID: localizedSectioning.others.$children.isIdentifier.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] #[+Keyphrase--YDID if and only if] #[+Term--YDID parameter's] value
+        is an #[+Term--YDID identifier], otherwise returns #[+ImportantEntity__Code--YDID false].
+      The #[+Keyword--YDID equivalent] of #[+ImportantEntity__Code--YDID typeof(x) == "ident"].
+
+
+    //- ╍╍╍ `isObject` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.others.$children.isObject.$heading,
+      HTML_ID: localizedSectioning.others.$children.isObject.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Returns #[+ImportantEntity__Code--YDID true] #[+Keyphrase--YDID if and only if] #[+Term--YDID parameter's] value
+        is an #[+Term--YDID object], otherwise returns #[+ImportantEntity__Code--YDID false].
+      The #[+Keyword--YDID shorthand] of #[+ImportantEntity__Code--YDID typeof(x) == "object"].
+
+
+    //- ━━━ External Links ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.externalLinks.$heading,
+      HTML_ID: localizedSectioning.externalLinks.$anchor
+    }).Article-Heading2
+
+    +LinksCardsFlow--YDF
+
+      +LinksCardsFlow-ItemWithSVG_Icon--YDF({
+        unendorsedExternalURI: GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/Styles/02-Kernel/03-Functions/01-TypeCheckers",
+        title: "Source code"
+      }): +File__SourceCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
+
+      +LinksCardsFlow-ItemWithSVG_Icon--YDF({
+        unendorsedExternalURI: GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/01-TypeCheckers",
+        title: "Tests code"
+      }): +File__TestCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon

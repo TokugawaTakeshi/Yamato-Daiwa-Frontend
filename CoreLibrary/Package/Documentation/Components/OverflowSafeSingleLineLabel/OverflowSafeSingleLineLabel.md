@@ -35,7 +35,7 @@ CrossBrowserStylesReset()
 InitialGlobalCSS_Rules()
 
 
-provideOverflowSafeSingleLineLabelComponent()
+OverflowSafeSingleLineLabel--YDF-generateStyles()
 
 
 .Example1
@@ -145,7 +145,7 @@ Note that just these requires will not produce any CSS.
 To provide the common styles, call below mixin:
 
 ```stylus
-provideOverflowSafeSingleLineLabelComponent()
+OverflowSafeSingleLineLabel--YDF-generateStyles()
 ```
 
 Then apply the individual styles to desired selector by mixin `OverflowSafeSingleLineLabel`:

@@ -1,4 +1,4 @@
-type ValidatableControlShellLocalization = Readonly<{
+export type ValidatableControlShellLocalization = Readonly<{
 
   requirementBadges: Readonly<{
     [
@@ -8,14 +8,4 @@ type ValidatableControlShellLocalization = Readonly<{
     ]: string;
   }>;
 
-  sampleValidationErrorsMessages: ReadonlyArray<string>;
-
-  sampleAsynchronousValidationsStatuses: ReadonlyArray<{
-    ID: "IN_PROGRESS" | "FINISHED_AND_VALID" | "MALFUNCTION";
-    message: string;
-  }>;
-
 }>;
-
-
-export default ValidatableControlShellLocalization;

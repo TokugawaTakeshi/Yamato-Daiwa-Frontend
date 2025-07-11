@@ -1,7 +1,7 @@
-synopsis:
+overview:
 
-  $heading: `synopsis.$heading`
-  $anchor: YDA--SECTION
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
 
 
 usage:

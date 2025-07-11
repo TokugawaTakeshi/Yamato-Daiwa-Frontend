@@ -8,7 +8,7 @@ namespace YamatoDaiwa.Frontend.GUI_Components.LoadingIndicator;
 
 public partial class LoadingIndicator : 
     Microsoft.AspNetCore.Components.ComponentBase,
-    ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement 
+    IFlexibleExternalCSS_ClassesSpecifyingForRootElement 
 {
 
   /* ━━━ Type ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -56,7 +56,7 @@ public partial class LoadingIndicator :
       YDF_ComponentsHelper.areThemesCSS_ClassesCommon || LoadingIndicator.mustConsiderThemesCSS_ClassesAsCommon;
   
   
-  /* ─── Geometry ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public enum StandardGeometricVariations
   {
     regular, 
@@ -83,7 +83,7 @@ public partial class LoadingIndicator :
   }
 
   
-  /* ─── Decoration ───────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public enum StandardDecorativeVariations { regular }
 
   protected internal static Type? CustomDecorativeVariations;
@@ -144,7 +144,7 @@ public partial class LoadingIndicator :
       ).
 
       AddElementToEndIf(
-        ((ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes,
+        ((IFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes,
         rootElementSpaceSeparatedExternalCSS_Classes =>
           !String.IsNullOrEmpty(rootElementSpaceSeparatedExternalCSS_Classes)
       ).

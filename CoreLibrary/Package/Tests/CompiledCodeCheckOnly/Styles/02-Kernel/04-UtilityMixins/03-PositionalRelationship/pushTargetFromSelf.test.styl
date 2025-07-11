@@ -1,0 +1,59 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-PositionalRelationship/pushTargetFromSelf.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-PositionalRelationship/pushTargetFromSelf.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.Example1
+
+  &-ElementA
+
+    // ...
+
+
+  &-ElementB
+
+    pushTargetFromSelf({ targetElementSelector: ".Example1-ElementA", y: 4px })
+
+
+.Example2
+
+  h2
+
+    // ...
+
+
+  p
+
+    pushTargetFromSelf({
+      targetElementSelector: "h2",
+      y: 24px,
+      referenceElementSelector: "p",
+      contextSelector: ".Example2"
+    })
+
+
+.Example3
+
+  &-ElementA
+
+    // ...
+
+
+  &-ElementB
+
+    // ...
+
+
+  &-ElementC
+
+    pushTargetFromSelf({
+      definitions:\
+        (".Example3-ElementA" { x: 2px, y: 4px })\
+        (".Example3-ElementB" { x: 6px, y: 8px, usePaddingsInsteadOfMargins: true })
+    })

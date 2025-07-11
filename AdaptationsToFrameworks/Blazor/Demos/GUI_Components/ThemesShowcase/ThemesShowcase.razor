@@ -28,12 +28,45 @@
               @foreach (string decorativeVariationKey in Enum.GetNames(decorativeVariations))
               {
                 
-                @if (this.decorativeVariationsWrapperTag == "dl")
+                @if (
+                  !this.decorativeVariationSkippingCondition(
+                    new ThemesShowcase.ComponentSlotData
+                    {
+                      themeKey = themeKey,
+                      themeValue = Enum.Parse(themes, themeKey),
+                      geometricVariationKey = geometricVariationKey,
+                      geometricVariationValue = Enum.Parse(geometricVariations, geometricVariationKey),
+                      decorativeVariationKey = decorativeVariationKey,
+                      decorativeVariationValue = Enum.Parse(decorativeVariations, decorativeVariationKey)
+                    }
+                  )
+                ) 
                 {
 
-                  <dt class="ThemesShowcase--YDF-KeyLabel">@($"{ decorativeVariationLabelPrefix }{ decorativeVariationKey }")</dt>
-                  <dd class=@($"ThemesShowcase--YDF-ValueSection { String.Join(" ", this.decorativeVariationsListItemAdditionalCSS_Classes) }")>
+                  @if (this.decorativeVariationsWrapperTag == "dl")
+                  {
 
+                    <dt class="ThemesShowcase--YDF-KeyLabel">@($"{ decorativeVariationLabelPrefix }{ decorativeVariationKey }")</dt>
+                    <dd class=@($"ThemesShowcase--YDF-ValueSection { String.Join(" ", this.decorativeVariationsListItemAdditionalCSS_Classes) }")>
+
+                      @ComponentSlot(
+                        new ComponentSlotData
+                          {
+                          themeKey = themeKey,
+                          themeValue = Enum.Parse(themes, themeKey),
+                          geometricVariationKey = geometricVariationKey,
+                          geometricVariationValue = Enum.Parse(geometricVariations, geometricVariationKey),
+                          decorativeVariationKey = decorativeVariationKey,
+                          decorativeVariationValue = Enum.Parse(decorativeVariations, decorativeVariationKey)
+                        }
+                      )
+                              
+                    </dd>
+
+                  }
+                  else
+                  {
+                
                     @ComponentSlot(
                       new ComponentSlotData
                         {
@@ -45,25 +78,9 @@
                         decorativeVariationValue = Enum.Parse(decorativeVariations, decorativeVariationKey)
                       }
                     )
-                            
-                  </dd>
+                    
+                  }
 
-                }
-                else
-                {
-              
-                  @ComponentSlot(
-                    new ComponentSlotData
-                      {
-                      themeKey = themeKey,
-                      themeValue = Enum.Parse(themes, themeKey),
-                      geometricVariationKey = geometricVariationKey,
-                      geometricVariationValue = Enum.Parse(geometricVariations, geometricVariationKey),
-                      decorativeVariationKey = decorativeVariationKey,
-                      decorativeVariationValue = Enum.Parse(decorativeVariations, decorativeVariationKey)
-                    }
-                  )
-                  
                 }
               
               }

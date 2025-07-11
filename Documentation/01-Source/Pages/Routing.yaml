@@ -270,10 +270,13 @@ coreLibrary:
 
                 typeCheckers:
                   $heading: `coreLibrary.styles.kernel.functions.typeCheckers.$heading`
-#                  $URI: `@All/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.${ fileNameLocalizationExtensions }`
-                  $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/02-Functions/01-ValueCheckers.md"
-#                  $sectioning:
-#                    $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/Styles/Kernel/Functions/_TypeCheckers/TableOfContents/TableOfContents.toc.yaml
+                  $URI: `@All/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.${ fileNameLocalizationExtensions }`
+                  $sectioning:
+                    $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TableOfContents/TypeCheckers.toc.yaml
+                    $localizations:
+                      english: 01-Source/Pages/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TableOfContents/TypeCheckers.toc.english.yaml
+                      japanese: 01-Source/Pages/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TableOfContents/TypeCheckers.toc.japanese.yaml
+                      russian: 01-Source/Pages/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TableOfContents/TypeCheckers.toc.russian.yaml
 
                 valueTransformers:
                   $heading: `coreLibrary.styles.kernel.functions.valueTransformers.$heading`
@@ -700,6 +703,16 @@ coreLibrary:
               japanese: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Badge/TableOfContents/Badge.toc.japanese.yaml
               russian: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Badge/TableOfContents/Badge.toc.russian.yaml
 
+#        LoadingIndicator:
+#          $heading: "<code>LoadingIndicator</code>"
+#          $URI: `@All/CoreLibrary/GUI_Components/Children/LoadingIndicator/LoadingIndicator.${ fileNameLocalizationExtensions }`
+#          $sectioning:
+#            $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/GUI_Components/Children/LoadingIndicator/TableOfContents/LoadingIndicator.toc.yaml
+#            $localizations:
+#              english: 01-Source/Pages/CoreLibrary/GUI_Components/Children/LoadingIndicator/TableOfContents/LoadingIndicator.toc.english.yaml
+#              japanese: 01-Source/Pages/CoreLibrary/GUI_Components/Children/LoadingIndicator/TableOfContents/LoadingIndicator.toc.japanese.yaml
+#              russian: 01-Source/Pages/CoreLibrary/GUI_Components/Children/LoadingIndicator/TableOfContents/LoadingIndicator.toc.russian.yaml
+
         controls:
 
           $heading: `coreLibrary.GUI_Components.controls.$heading`
@@ -720,7 +733,7 @@ coreLibrary:
                       japanese: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button.toc.japanese.yaml
                       russian: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button.toc.russian.yaml
 
-            validatableControlShell:
+            ValidatableControlShell:
               $heading: "<code>ValidatableControlShell</code>"
               $URI: `@All/CoreLibrary/GUI_Components/Children/Controls/ValidatableControlShell/ValidatableControlShell.${ fileNameLocalizationExtensions }`
               $sectioning:
@@ -740,6 +753,28 @@ coreLibrary:
                   english: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.toc.english.yaml
                   japanese: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.toc.japanese.yaml
                   russian: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.toc.russian.yaml
+
+              $children:
+#
+#                CheckBox:
+#                  $heading: "<code>CheckBox</code>"
+#                  $URI:  `@All/CoreLibrary/GUI_Components/Children/Controls/Validatables/Children/CheckBox/CheckBox.${ fileNameLocalizationExtensions }`
+#                  $sectioning:
+#                    $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/CheckBox/CheckBox.toc.yaml
+#                    $localizations:
+#                      english: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/CheckBox/TableOfContents/CheckBox.toc.english.yaml
+#                      japanese: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/CheckBox/TableOfContents/CheckBox.toc.japanese.yaml
+#                      russian: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/CheckBox/TableOfContents/CheckBox.toc.russian.yaml
+#
+                TextBox:
+                  $heading: "<code>TextBox</code>"
+                  $URI: `@All/CoreLibrary/GUI_Components/Children/Controls/Validatables/Children/TextBox/TextBox.${ fileNameLocalizationExtensions }`
+                  $sectioning:
+                    $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox.toc.yaml
+                    $localizations:
+                      english: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox.toc.english.yaml
+                      japanese: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox.toc.japanese.yaml
+                      russian: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox.toc.russian.yaml
 
         OverflowSafeSingleLineLabel:
           $heading: "<code>OverflowSafeSingleLineLabel</code>"
@@ -803,6 +838,39 @@ adaptationsToFrameworks:
                           japanese: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button-Vue.toc.japanese.yaml
                           russian: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button-Vue.toc.russian.yaml
 
+                ValidatableControlShell:
+                  $heading: "<code>ValidatableControlShell</code> (Vue)"
+                  $URI: `@All/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/ValidatableControlShell/ValidatableControlShell-Vue.${ fileNameLocalizationExtensions }`
+                  $sectioning:
+                    $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell-Vue.toc.yaml
+                    $localizations:
+                      english: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell-Vue.toc.english.yaml
+                      japanese: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell-Vue.toc.japanese.yaml
+                      russian: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell-Vue.toc.russian.yaml
+
+                validatables:
+
+                  $heading: `coreLibrary.GUI_Components.controls.validatables.$heading`
+#                  $URI: `@All/CoreLibrary/GUI_Components/Children/Controls/Validatables/ValidatableGUI_Components.${ fileNameLocalizationExtensions }`
+#                  $sectioning:
+#                    $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.yaml
+#                    $localizations:
+#                      english: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.toc.english.yaml
+#                      japanese: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.toc.japanese.yaml
+#                      russian: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.toc.russian.yaml
+
+                  $children:
+
+                    TextBox:
+                      $heading: "<code>TextBox</code> (Vue)"
+                      $URI: `@All/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Validatables/Children/TextBox/TextBox-Vue.${ fileNameLocalizationExtensions }`
+                      $sectioning:
+                        $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox-Vue.toc.yaml
+                        $localizations:
+                          english: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox-Vue.toc.english.yaml
+                          japanese: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox-Vue.toc.japanese.yaml
+                          russian: 01-Source/Pages/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox-Vue.toc.russian.yaml
+
     react:
 
       $heading: React
@@ -854,6 +922,39 @@ adaptationsToFrameworks:
                           japanese: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button-React.toc.japanese.yaml
                           russian: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button-React.toc.russian.yaml
 
+                ValidatableControlShell:
+                  $heading: "<code>ValidatableControlShell</code> (React)"
+                  $URI: `@All/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/ValidatableControlShell/ValidatableControlShell-React.${ fileNameLocalizationExtensions }`
+                  $sectioning:
+                    $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell-React.toc.yaml
+                    $localizations:
+                      english: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell-React.toc.english.yaml
+                      japanese: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell-React.toc.japanese.yaml
+                      russian: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell-React.toc.russian.yaml
+
+                validatables:
+
+                  $heading: `coreLibrary.GUI_Components.controls.validatables.$heading`
+#                  $URI: `@All/CoreLibrary/GUI_Components/Children/Controls/Validatables/ValidatableGUI_Components.${ fileNameLocalizationExtensions }`
+#                  $sectioning:
+#                    $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.yaml
+#                    $localizations:
+#                      english: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.toc.english.yaml
+#                      japanese: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.toc.japanese.yaml
+#                      russian: 01-Source/Pages/CoreLibrary/GUI_Components/Children/Controls/Validatables/TableOfContents/ValidatableGUI_Components.toc.russian.yaml
+
+                  $children:
+
+                    TextBox:
+                      $heading: "<code>TextBox</code> (React)"
+                      $URI: `@All/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/Validatables/Children/TextBox/TextBox-React.${ fileNameLocalizationExtensions }`
+                      $sectioning:
+                        $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox-React.toc.yaml
+                        $localizations:
+                          english: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox-React.toc.english.yaml
+                          japanese: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox-React.toc.japanese.yaml
+                          russian: 01-Source/Pages/AdaptationsToFrameworks/React/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox-React.toc.russian.yaml
+
     blazor:
 
       $heading: Blazor
@@ -904,6 +1005,32 @@ adaptationsToFrameworks:
                           english: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button-Blazor.toc.english.yaml
                           japanese: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button-Blazor.toc.japanese.yaml
                           russian: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/Buttons/Plain/TableOfContents/Button-Blazor.toc.russian.yaml
+
+                ValidatableControlShell:
+                  $heading: "<code>ValidatableControlShell</code> (Blazor)"
+                  $URI: `@All/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/ValidatableControlShell/ValidatableControlShell-Blazor.${ fileNameLocalizationExtensions }`
+                  $sectioning:
+                    $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell-Blazor.toc.yaml
+                    $localizations:
+                      english: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell-Blazor.toc.english.yaml
+                      japanese: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell-Blazor.toc.japanese.yaml
+                      russian: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/ValidatableControlShell/TableOfContents/ValidatableControlShell-Blazor.toc.russian.yaml
+
+                validatables:
+
+                  $heading: `coreLibrary.GUI_Components.controls.validatables.$heading`
+
+                  $children:
+
+                    TextBox:
+                      $heading: "<code>TextBox</code> (Blazor)"
+                      $URI: `@All/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/Validatables/Children/TextBox/TextBox-Blazor.${ fileNameLocalizationExtensions }`
+                      $sectioning:
+                        $specificationFileRelativePath: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox-Blazor.toc.yaml
+                        $localizations:
+                          english: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox-Blazor.toc.english.yaml
+                          japanese: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox-Blazor.toc.japanese.yaml
+                          russian: 01-Source/Pages/AdaptationsToFrameworks/Blazor/GUI_Components/Children/Controls/Validatables/Children/TextBox/TableOfContents/TextBox-Blazor.toc.russian.yaml
 
 
 realiseNotes:

@@ -58,7 +58,7 @@ class RadioButtonsGroup<
 
     if (this._mustHighlightInvalidInputIfAnyValidationErrorsMessages) {
 
-      this.shellComponent.$mustDisplayErrorsMessagesIfAny = true;
+      this.shellComponent.$mustDisplayValidationErrorsMessagesIfAny = true;
 
       if (this.payload.isInvalid) {
         this.shellComponent.rootElement.classList.add(RadioButtonsGroup.INVALID_VALUE_STATE_CSS_CLASS);
@@ -70,7 +70,7 @@ class RadioButtonsGroup<
 
 
     this.shellComponent.rootElement.classList.remove(RadioButtonsGroup.INVALID_VALUE_STATE_CSS_CLASS);
-    this.shellComponent.$mustDisplayErrorsMessagesIfAny = false;
+    this.shellComponent.$mustDisplayValidationErrorsMessagesIfAny = false;
 
   }
   /* eslint-enable no-underscore-dangle */
@@ -147,9 +147,8 @@ class RadioButtonsGroup<
     this.mustDisplayErrorsMessagesImmediatelyIfAny = initializationProperties.mustDisplayErrorsMessagesImmediatelyIfAny;
 
     this.shellComponent = ValidatableControlShell.initializeOne({
-      rootElement: initializationProperties.rootElement,
-      contextElement: initializationProperties.contextElement,
-      mustDisplayErrorsMessagesIfAny: this.mustDisplayErrorsMessagesImmediatelyIfAny
+      mustDisplayErrorsMessagesIfAny: this.mustDisplayErrorsMessagesImmediatelyIfAny,
+      ...initializationProperties
     });
 
     let selectedOptionRawKey: string | null = null;
@@ -182,7 +181,7 @@ class RadioButtonsGroup<
     }
 
     if (radioButtons.length < 2) {
-      Logger.throwErrorAndLog({
+      Logger.throwErrorWithFormattedMessage({
         errorType: "NotEnoughSelectingOptionsError",
         title: "Not Enough Selecting Options",
         description: `It must be at least two radio buttons per group while ${ radioButtons.length } found.`,
@@ -329,7 +328,7 @@ class RadioButtonsGroup<
     this.shellComponent.$validationErrorsMessages = this.payload.validationErrorsMessages;
 
     if (asynchronousValidationStatus.hasAtLeastOneInvalidValueBeenConfirmed) {
-      this.shellComponent.$mustDisplayErrorsMessagesIfAny = true;
+      this.shellComponent.$mustDisplayValidationErrorsMessagesIfAny = true;
     }
 
   }

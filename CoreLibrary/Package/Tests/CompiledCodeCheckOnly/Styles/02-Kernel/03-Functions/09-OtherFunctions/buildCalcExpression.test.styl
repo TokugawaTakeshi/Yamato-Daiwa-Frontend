@@ -1,0 +1,14 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/09-OtherFunctions/buildCalcExpression.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/09-OtherFunctions/buildCalcExpression.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.Example
+
+  width: buildCalcExpression("${a} - ${b}", { a: 100%, b: 30px })

@@ -1,6 +1,6 @@
-synopsis:
+overview:
 
-  $heading: "Synopsis"
+  $heading: "Overview"
 
 usage:
 
@@ -16,12 +16,4 @@ usage:
 
     pugMixin:
 
-      $heading: "Pug mixin <code>Badge--YDF</code>"
-
-      minimalExample:
-
-        $heading: "Minimal Example (Required Properties Only)"
-
-  logic:
-
-    $heading: "Logic"
+      $heading: "Pug Mixin <code>Badge--YDF</code>"

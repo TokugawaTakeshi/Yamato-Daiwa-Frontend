@@ -1,50 +1,55 @@
 {
-	"name": "@yamato-daiwa/frontend-vue",
-	"version": "0.3.0",
-	"description": "The adaptation of \"@yamato-daiwa/frontend\" package for Vue framework and also some additional functionality.",
-	"keywords": [
-		"frontend",
-		"vue"
-	],
-	"author": {
-		"name": "Yamato Daiwa Co., Ltd.",
-		"email": "frontend-es-info@yamato-daiwa.com"
-	},
-	"license": "MIT",
-	"homepage": "https://frontend.yamato-daiwa.com/",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/TokugawaTakeshi/yamato_daiwa-frontend.git"
-	},
-	"bugs": {
-		"url": "https://github.com/TokugawaTakeshi/yamato_daiwa-frontend/issues",
-		"email": "frontend-es-info@yamato-daiwa.com"
-	},
-	"module": "./Distributable/index.js",
-	"types": "./Distributable/index.d.ts",
-	"peerDependencies": {
-		"@yamato-daiwa/frontend": "2.0.0-beta.10",
-		"vue": "~3.5.0",
-		"vue-router": "~4.5.0"
-	},
-	"dependencies": {
-		"@yamato-daiwa/es-extensions": "1.7.2",
-		"vue-facing-decorator": "3.0.4",
-		"vue3-slide-up-down": "2.1.0"
-	},
-	"devDependencies": {
-		"@yamato-daiwa/automation": "0.7.0-alpha.4",
-		"@yamato-daiwa/frontend": "2.0.0-beta.10",
-		"@yamato-daiwa/style_guides": "0.6.9",
-		"rimraf": "6.0.1",
-		"typescript": "5.8.3",
-		"vue": "3.5.14",
-		"vue-router": "4.5.1"
-	},
-	"scripts": {
-		"Rebuild Distributable": "yda build --selectiveExecution Distributable --mode PRODUCTION & npm run \"Generate TypeScript Types\"",
-		"Generate TypeScript Types": "tsc --project tsconfig.declarations.json --declaration --emitDeclarationOnly --outDir Distributable",
-		"Start Workbenches": "rimraf Workbenches/Output && yda build --selectiveExecution Workbenches --mode LOCAL_DEVELOPMENT",
-		"Lint": "eslint ."
-	}
+  "name": "@yamato-daiwa/frontend-vue",
+  "version": "2.0.0-experimental.5",
+  "description": "The adaptation of \"@yamato-daiwa/frontend\" package for Vue framework and also some additional functionality.",
+  "keywords": [
+    "frontend",
+    "vue"
+  ],
+  "author": {
+    "name": "Yamato Daiwa Co., Ltd.",
+    "email": "frontend-es-info@yamato-daiwa.com"
+  },
+  "license": "MIT",
+  "homepage": "https://frontend.yamato-daiwa.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TokugawaTakeshi/yamato_daiwa-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TokugawaTakeshi/yamato_daiwa-frontend/issues",
+    "email": "frontend-es-info@yamato-daiwa.com"
+  },
+  "module": "./Distributable/index.js",
+  "types": "./Distributable/index.d.ts",
+  "files": [
+    "Distributable"
+  ],
+  "peerDependencies": {
+    "@yamato-daiwa/frontend": ">=2.0.0-beta.11",
+    "vue": "~3.5.0",
+    "vue-facing-decorator": "~3.0.0",
+    "vue-router": "~4.6.0"
+  },
+  "dependencies": {
+    "@yamato-daiwa/es-extensions": "1.8.7",
+    "@yamato-daiwa/es-extensions-browserjs": "1.8.7",
+    "vue3-slide-up-down": "2.1.0"
+  },
+  "devDependencies": {
+    "@yamato-daiwa/automation": "../../../../../../IntelliJ IDEA/InHouseDevelopment/YamatoDaiwaAutomation/MainPackage",
+    "@yamato-daiwa/frontend": "../../../CoreLibrary/Package",
+    "@yamato-daiwa/style_guides": "0.12.2",
+    "rimraf": "6.1.3",
+    "typescript": "5.9.3",
+    "vue": "3.5.30",
+    "vue-facing-decorator": "3.0.4",
+    "vue-router": "4.6.4"
+  },
+  "scripts": {
+    "Rebuild Distributable": "yda build --selectiveExecution Distributable --mode PRODUCTION & npm run \"Generate TypeScript Types\"",
+    "Generate TypeScript Types": "tsc --project tsconfig.declarations.json --declaration --emitDeclarationOnly --outDir Distributable",
+    "Start Workbenches": "rimraf Workbenches/Output && yda build --selectiveExecution Workbenches --mode LOCAL_DEVELOPMENT",
+    "Lint": "eslint ."
+  }
 }

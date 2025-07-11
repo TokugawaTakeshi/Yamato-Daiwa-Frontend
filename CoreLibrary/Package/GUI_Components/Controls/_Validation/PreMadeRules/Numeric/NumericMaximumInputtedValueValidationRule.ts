@@ -1,10 +1,10 @@
 import type InputtedValueValidation from "../../InputtedValueValidation";
 import numericMaximumInputtedValueValidationRuleLocalization__english from
     "./NumericMaximumInputtedValueValidationRuleLocalization.english";
-import { isNumber, isNotUndefined, Logger, InvalidParameterValueError } from "@yamato-daiwa/es-extensions";
+import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
-class NumericMaximumInputtedValueValidationRule implements InputtedValueValidation.Rule {
+class NumericMaximumInputtedValueValidationRule implements InputtedValueValidation.Rule<number> {
 
   public static localization: NumericMaximumInputtedValueValidationRule.Localization =
       numericMaximumInputtedValueValidationRuleLocalization__english;
@@ -45,30 +45,13 @@ class NumericMaximumInputtedValueValidationRule implements InputtedValueValidati
   }
 
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
-
-    if (!isNumber(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: "Unable to execute this validation because the raw value is not number " +
-            `and actually has type "${ typeof rawValue }".`,
-        occurrenceLocation: "NumericMaximumInputtedValueValidationRule.check(rawValue)"
-      });
-
-      return { isValid: true };
-
-    }
-
-
+  public check(rawValue: number): InputtedValueValidation.Rule.CheckingResult {
     return rawValue <= this.MAXIMAL_NUMERIC_VALUE ?
         { isValid: true } :
         {
           isValid: false,
           errorMessage: this.errorMessageBuilder({ rawValue, maximalValue: this.MAXIMAL_NUMERIC_VALUE })
         };
-
   }
 
 }

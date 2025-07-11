@@ -1,62 +1,231 @@
-import { down as animateExpanding } from "slide-element";
+import type TargetElementDefinition from "../Logic/Types/TargetElementDefinition";
+import {
+  getExpectedToBeSingleDOM_Element,
+  resolveContextDOM_ElementPolymorphicSpecification
+} from "@yamato-daiwa/es-extensions-browserjs";
 import {
   Logger,
   InvalidParameterValueError,
-  UnexpectedEventError,
-  isNumber,
+  roundUpToSpecificIntegerPlaceValue,
   secondsToMilliseconds
 } from "@yamato-daiwa/es-extensions";
 
 
 class ExpandingAnimation {
 
+  /* ━━━ Public Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  /* ┅┅┅ Replace Node and Animate ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  public static replaceNodeAndAnimate(
+    options:
+        ExpandingAnimation.Options.PromiseAPI &
+        ExpandingAnimation.Options.Common &
+        ExpandingAnimation.Options.NodeReplacement &
+        TargetElementDefinition &
+        ExpandingAnimation.Options.DurationDefinition
+  ): Promise<void>;
+
+  public static replaceNodeAndAnimate(
+    options:
+        ExpandingAnimation.Options.CallbackAPI &
+        ExpandingAnimation.Options.Common &
+        ExpandingAnimation.Options.NodeReplacement &
+        TargetElementDefinition &
+        ExpandingAnimation.Options.DurationDefinition
+  ): void;
+
   public static replaceNodeAndAnimate(
     {
-      duration__milliseconds,
-      duration__seconds,
-      callback,
-      animatedElement,
-      replacedNode
-    }: ExpandingAnimation.CompoundParameter
+      nodeToReplace,
+      mustReturnPromise,
+      ...options
+    }:
+        Readonly<{ mustReturnPromise: boolean; }> &
+        ExpandingAnimation.Options.Common &
+        ExpandingAnimation.Options.NodeReplacement &
+        TargetElementDefinition &
+        ExpandingAnimation.Options.DurationDefinition
   ): Promise<void> | void {
 
-    let animationDurations__milliseconds: number;
+    const targetElement: HTMLElement = ExpandingAnimation.resolveTargetElement(options);
 
-    if (isNumber(duration__milliseconds)) {
-      animationDurations__milliseconds = duration__milliseconds;
-    } else if (isNumber(duration__seconds)) {
-      animationDurations__milliseconds = secondsToMilliseconds(duration__seconds);
-    } else {
-      Logger.throwErrorAndLog({
-        errorInstance: new InvalidParameterValueError({
-          parameterName: "compoundParameter",
-          parameterNumber: 1,
-          messageSpecificPart: "Either \"duration__seconds\" or \"duration__milliseconds\" must be specified with number."
-        }),
-        title: InvalidParameterValueError.localization.defaultTitle,
-        occurrenceLocation: "ExpandingAnimation.replaceNodeAndAnimate(compoundParameter)"
+    targetElement.style.visibility = "hidden";
+    targetElement.removeAttribute("hidden");
+
+    nodeToReplace.replaceWith(targetElement);
+
+    if (mustReturnPromise) {
+      return ExpandingAnimation.animate({
+        ...options,
+        mustReturnPromise: true,
+        targetElement,
+        /* eslint-disable-next-line no-void -- Need to set the context element to empty somehow. Better than `undefined`. */
+        contextElement: void 0
       });
     }
 
 
-    animatedElement.style.display = "none";
-    animatedElement.removeAttribute("hidden");
+    ExpandingAnimation.animate({
+      ...options,
+      mustReturnPromise: false,
+      targetElement,
+      /* eslint-disable-next-line no-void -- Need to set the context element to empty somehow. Better than `undefined`. */
+      contextElement: void 0
+    });
 
-    replacedNode.replaceWith(animatedElement);
+  }
 
-    animateExpanding(animatedElement, { duration: animationDurations__milliseconds }).
 
-        then((): void => { callback?.(); }).
+  /* ┅┅┅ Animate ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  public static animate(
+    options:
+        ExpandingAnimation.Options.PromiseAPI &
+        ExpandingAnimation.Options.Common &
+        TargetElementDefinition &
+        ExpandingAnimation.Options.DurationDefinition
+  ): Promise<void>;
 
-        catch((error: unknown): void => {
-          Logger.logError({
-            errorType: UnexpectedEventError.NAME,
-            title: UnexpectedEventError.localization.defaultTitle,
-            description: "Unexpected error occurred during animation.",
-            occurrenceLocation: "ExpandingAnimation.replaceNodeAndAnimate(compoundParameter)",
-            caughtError: error
-          });
+  public static animate(
+    options:
+        ExpandingAnimation.Options.CallbackAPI &
+        ExpandingAnimation.Options.Common &
+        TargetElementDefinition &
+        ExpandingAnimation.Options.DurationDefinition
+  ): void;
+
+  public static animate(
+    {
+      mustReturnPromise,
+      callback,
+      ...options
+    }:
+        Readonly<{ mustReturnPromise: boolean; }> &
+        ExpandingAnimation.Options.Common &
+        TargetElementDefinition &
+        ExpandingAnimation.Options.DurationDefinition
+  ): Promise<void> | void {
+
+    const targetElement: HTMLElement = ExpandingAnimation.resolveTargetElement(options);
+
+    const animating: Promise<void> = new Promise<void>(
+      (resolve: () => void): void => {
+        ExpandingAnimation.animateTargetElement({
+          ...options,
+          targetElement,
+          callback(): void {
+            callback?.();
+            resolve();
+          }
         });
+      }
+    );
+
+    if (mustReturnPromise) {
+      return animating;
+    }
+
+  }
+
+
+  /* ━━━ Private Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  private static resolveTargetElement(targetElementDefinition: TargetElementDefinition): HTMLElement {
+
+    const contextElement: Element | ParentNode | null =
+        resolveContextDOM_ElementPolymorphicSpecification(targetElementDefinition.contextElement);
+
+    const targetElement: Element = targetElementDefinition.targetElement instanceof Element ?
+        targetElementDefinition.targetElement :
+        getExpectedToBeSingleDOM_Element({
+          selector: targetElementDefinition.targetElement.selector,
+          contextElement
+        });
+
+    if (!(targetElement instanceof HTMLElement)) {
+      Logger.throwErrorWithFormattedMessage({
+        errorInstance: new InvalidParameterValueError({
+          parameterNumber: 1,
+          parameterName: "options",
+            messageSpecificPart:
+                "The animated element must be the instance of HTMLElement while the element referenced in options " +
+                  "is not such one."
+          }),
+          title: InvalidParameterValueError.localization.defaultTitle,
+          occurrenceLocation: "ExpandingAnimation.resolveTargetElement(targetElementDefinition)"
+        });
+     }
+
+
+     return targetElement;
+
+  }
+
+  private static animateTargetElement(
+    {
+      targetElement,
+      callback,
+      ...options
+    }:
+      Readonly<{
+        targetElement: HTMLElement;
+        callback: () => void;
+      }> &
+      ExpandingAnimation.Options.DurationDefinition
+  ): void {
+
+    targetElement.style.position = "absolute";
+    targetElement.style.visibility = "hidden";
+    targetElement.hidden = false;
+
+    const computedStylesOfAnimatedElement: CSSStyleDeclaration = getComputedStyle(targetElement);
+    const offsetHeightOfAnimatedElement__pixels: number = targetElement.offsetHeight;
+
+    targetElement.style.removeProperty("position");
+    targetElement.style.visibility = "visible";
+    targetElement.style.overflow = "hidden";
+    targetElement.style.height = "0";
+    targetElement.style.marginTop = "0";
+    targetElement.style.marginBottom = "0";
+    targetElement.style.paddingTop = "0";
+    targetElement.style.paddingBottom = "0";
+
+    const animation: Animation = targetElement.animate(
+      {
+        height: `${ offsetHeightOfAnimatedElement__pixels }px`,
+        marginTop: computedStylesOfAnimatedElement.marginTop,
+        marginBottom: computedStylesOfAnimatedElement.marginBottom,
+        paddingTop: computedStylesOfAnimatedElement.paddingTop,
+        paddingBottom: computedStylesOfAnimatedElement.paddingBottom
+      },
+      {
+        duration:
+            "averageSpeed__pixelsPerSecond" in options ?
+                roundUpToSpecificIntegerPlaceValue({
+                  targetNumber: secondsToMilliseconds(
+                      Math.round(offsetHeightOfAnimatedElement__pixels / options.averageSpeed__pixelsPerSecond)
+                  ),
+                  trailingZerosCount: 3
+                }) :
+                secondsToMilliseconds(options.duration__seconds)
+      }
+    );
+
+    animation.addEventListener(
+      "finish",
+      (): void => {
+
+        targetElement.style.removeProperty("visibility");
+        targetElement.style.removeProperty("overflow");
+        targetElement.style.removeProperty("height");
+        targetElement.style.removeProperty("margin-top");
+        targetElement.style.removeProperty("margin-bottom");
+        targetElement.style.removeProperty("padding-top");
+        targetElement.style.removeProperty("padding-bottom");
+
+        callback();
+
+      }
+    );
 
   }
 
@@ -65,14 +234,30 @@ class ExpandingAnimation {
 
 namespace ExpandingAnimation {
 
-  export type CompoundParameter = Readonly<{
-    replacedNode: ChildNode;
-    animatedElement: HTMLElement;
-    duration__seconds?: number;
-    duration__milliseconds?: number;
-    callback?: () => unknown;
-    mustReturnPromise?: boolean;
-  }>;
+  export namespace Options {
+
+    export type NodeReplacement = Readonly<{
+      nodeToReplace: ChildNode;
+    }>;
+
+    export type DurationDefinition = Readonly<
+      { averageSpeed__pixelsPerSecond: number; } |
+      { duration__seconds: number; }
+    >;
+
+    export type CallbackAPI = Readonly<{
+      mustReturnPromise: false;
+    }>;
+
+    export type PromiseAPI = Readonly<{
+      mustReturnPromise: true;
+    }>;
+
+    export type Common = Readonly<{
+      callback?: () => unknown;
+    }>;
+
+  }
 
 }
 

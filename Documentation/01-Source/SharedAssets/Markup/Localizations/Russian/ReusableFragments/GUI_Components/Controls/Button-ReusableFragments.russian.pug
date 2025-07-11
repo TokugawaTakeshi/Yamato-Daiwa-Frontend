@@ -1,0 +1,260 @@
+//- ━━━ Краткий обзор ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+mixin ButtonComponent-Abstract
+
+  p.Article-Paragraph.
+    Кнопка имеет репутацию простейшего #[+Term--YDID GUI-компонента], с которого обычно начинают изучение
+      #[+Term--YDID UI/UX-фреймворков].
+    Однако, несмотря на свой неприметный вид прямоугольника с надписью, этот компонент #[+Keyword--YDID очень]
+      #[+Keyword__Contrast--YDID обманчив] своей #[+Keyword--YDID кажущейся] простотой.
+
+  p.Article-Paragraph.
+    Его вид могу принимают целых #[+ImportantEntity--YDID 3] #[+Term--YDID HTML-элемента]:
+      #[+ImportantEntity__Code--YDID button], #[+ImportantEntity__Code--YDID input] и #[+ImportantEntity__Code--YDID a],
+      причём при работе с каждым из них есть свои особенности.
+    Например иметь вложенные #[+Term--YDID тэги] могут иметь #[+Keyword--YDID только]
+      #[+ImportantEntity__Code--YDID button] и #[+ImportantEntity__Code--YDID a], а #[+Term--YDID атрибуты]
+      #[+ImportantEntity__Code--YDID disabled] может быть добавлен только для #[+ImportantEntity__Code--YDID button] и
+      #[+ImportantEntity__Code--YDID input].
+
+  p.Article-Paragraph.
+    Что же со #[+Term--YDID стилями]?
+    Да, поменять цвет обводки или фона очень просто, но по мере приближения требований к функциональности кнопки к
+      уровню спроса на современном рынке, количество переменных в уравнении #[+Keyword--YDID резко]
+      #[+Keyword__Contrast--YDID возрастает].
+    Во-первых, будучи элементом управления, кнопка имеет множество состояний, такие как
+      #[+ImportantEntity__Code--YDID hover], #[+ImportantEntity__Code--YDID focus], #[+ImportantEntity__Code--YDID active],
+      #[+ImportantEntity__Code--YDID disabled].
+    Все эти состояния должны быть визуально различимы, причём если есть #[+Term--YDID темы], то
+      #[+Keyphrase--YDID для каждой их них] (тут даже неважно, #[+Term--YDID темы] в понимании
+      #[+ImportantEntity--YDID YDF] или нет).
+    Некоторые из этих состояний взаимоисключающие, а некоторые могут возникать одновременно, потому #[+Term--YDID стили]
+      для каждого из этих состояний нужно применять в таком порядке, чтобы они не конфликтовали между собой.
+
+  p.Article-Paragraph.
+    А если надпись на кнопке не помещается?
+    А если нужно добавить к надписи SVG-иконку?
+    А у всех иконок разные размеры, и поля в SVG-холсте тоже у всех разные!
+    Способ изменения цвета иконки зависит от её #[+Term--YDID SVG-кода], а иконка должна менять свой цвет в зависимости
+      от конкретных состояний!
+    А если нужно, чтобы кнопка была квадратной, когда на ней одна иконка без надписи?
+    (Хотя мы обычно не&nbsp;рекомендуем иконки без надписей в силу того что они могут быть непонятны пользователями с малым
+      опытом, не&nbsp;всегда удаётся переубедить заказчика добавить надпись).
+    По мере поддержке всех этих запросов выходной #[+Term--YDID CSS-код] стремительно увеличивается как в объёме, так
+      и по сложности.
+
+  p.Article-Paragraph.
+    Со своей стороны, мы сделали всё возможное, чтобы инкапсулировать эти сложности в понятный API.
+    Тем не&nbsp;менее, создавая валидный #[+Term--YDID HTML] с учётом #[+Term--YDID доступности] и, когда необходимо,
+      #[+Term--YDID поисковой оптимизации], необходимо понимать, какой #[+Term--YDID HTML-код] получится на выходе.
+
+
+//- ━━━ Сводка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  ButtonGUI_ComponentOverviewLocalization.setLocalizer(
+    () => ({
+      themes: {
+        [Button__YDF.Themes.regular]: "Базовая (по умолчанию)"
+      },
+      geometricVariations: {
+        [Button__YDF.GeometricVariations.regular]: "Базовая (по умолчанию)",
+        [Button__YDF.GeometricVariations.small]: "Компактная",
+        [Button__YDF.GeometricVariations.linkLike]: "Внешний вид обычной ссылки"
+      },
+      geometricModifiers: {
+        [Button__YDF.GeometricModifiers.pillShape]: "Максимальное скругление углов",
+        [Button__YDF.GeometricModifiers.squareShape]: "Квадратная форма",
+        [Button__YDF.GeometricModifiers.squareShapeUnlessOverflowed]: "Квадратная форма покуда не переполнена",
+        [Button__YDF.GeometricModifiers.singleLine]: "Всегда одна строка с усечением текста при нехватке ширины",
+        [Button__YDF.GeometricModifiers.noLeftBorderAndRoundings]: "Отсутствие обводки и скруглений слева",
+        [Button__YDF.GeometricModifiers.noRightBorderAndRoundings]: "Отсутствие обводки и скруглений справа",
+        [Button__YDF.GeometricModifiers.noTopBorderAndRoundings]: "Отсутствие обводки и скруглений сверху",
+        [Button__YDF.GeometricModifiers.noBottomBorderAndRoundings]: "Отсутствие обводки и скруглений снизу",
+        [Button__YDF.GeometricModifiers.noRoundings]: "Отсутствие скруглений",
+        [Button__YDF.GeometricModifiers.horizontallyShrinkable]: "Сжимаема по горизонтали"
+      },
+      decorativeVariations: {
+        [Button__YDF.DecorativeVariations.regular]: "Базовая (по умолчанию)",
+        [Button__YDF.DecorativeVariations.accented]: "Акцентированная",
+        [Button__YDF.DecorativeVariations.danger]: "Опасное действие",
+        [Button__YDF.DecorativeVariations.linkLike]: "Внешний вид обычной ссылки"
+      },
+      decorativeModifiers: {
+        [Button__YDF.DecorativeModifiers.bordersDisguising]: "Эффект отсутствия обводки без изменения размеров",
+        [Button__YDF.DecorativeModifiers.noBackground]: "Без заливки",
+        [Button__YDF.DecorativeModifiers.noBackgroundInDefaultState]: "Нет заливки в начальном состоянии"
+      }
+    })
+  );
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  ButtonComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources = {
+    pugMixinParametersLocalization: [ { localizedName: "Properties" } ],
+    propertiesLocalizedInterpretations: {
+      HTML_Type: "HTML-тип",
+      label: "Надпись",
+      accessibilityGuidance: "Руководство для технологий доступности",
+      mustOpenLinkInNewTab: "Нужно ли открыть URI на новой вкладке",
+      mustRequestNotFollowLinkForCrawlingToSearchEngine:
+          "Нужно ли попросить поисковую систему не отдавать рейтинг ресурсу с указанным URI",
+      vue: {
+        route: "Маршрут",
+        externalURI: "Внешний URI"
+      },
+      react: {
+        route: "Маршрут",
+        externalURI: "Внешний URI",
+        prependedSVG_Icon: "Иконка в левой части",
+        appendedSVG_Icon: "Иконка в правой части",
+        loneSVG_Icon: "Иконка без надписи",
+        onClickEventHandler: "Обработчик события «клик»",
+        linkRenderer: "Рендерер компонента или элемента «ссылка»"
+      },
+      blazor: {
+        internalURI: "Внутренний URI (маршрут)",
+        externalURI: "Внешний URI"
+      }
+    },
+    propertiesConditionalRequirementDescriptions: {
+      label:
+          "Свойству `HTML_Type` указано `Button__YDF.HTML_Types.inputButton`, `Button__YDF.HTML_Types.inputSubmit` " +
+            "или `Button__YDF.HTML_Types.inputReset`"
+    }
+  };
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+mixin ButtonComponent-MinimalExampleDescription(properties)
+
+  -
+
+    const { framework } = properties ?? {};
+
+    const exampleURI = (() => {
+
+      switch (framework) {
+
+        case SupportedFrameworks.vue:
+            return "$Demos:Vue/GUI_Components/Controls/Buttons/Plain/ButtonGalleryPage-Minimal.html"
+
+        default:
+            return "$Demos:CorePackage/GUI_Components/Controls/Buttons/Plain/ButtonGalleryPage-Minimal.html"
+
+      }
+
+    })();
+
+    const exampleTitle = [
+      "Примеры отображения компонента «Button» (библиотека: «Yamato Daiwa Frontend",
+      ...isNotUndefined(framework) ? [ ` ${ toUpperCamelCase(framework) }` ] : [],
+      "», сокращённо: «YDF",
+      ...isNotUndefined(framework) ? [ ` ${ toUpperCamelCase(framework) }` ] : [],
+      "»."
+    ].join("");
+
+  +WebPageViewer--YDF({ URI: exampleURI, title: exampleTitle })
+
+  +CodeViewer--YDF
+
+    +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+
+      +CodeViewer-PartialListing--YDF
+
+        if framework
+
+          :code_listing--yda
+
+            <Button/>
+
+        else
+
+          | +Button--YDF
+      +CodeViewer-Explanation--YDF.
+        Использовать компонент #[+ImportantEntity__Code--YDID Button] без&nbsp;указания #[+Term--YDID свойств] можно,
+          однако согласно требованиям #[+Term--YDID доступности], у кнопки должно быть
+          #[+Keyword--YDID либо] #[+Keyphrase--YDID включающее текст] дочернее содержимое, либо указан один из
+          следующих #[+Term--YDID атрибутов]: #[+ImportantEntity__Code--YDID aria-label],
+          #[+ImportantEntity__Code--YDID aria-labelledby], #[+ImportantEntity__Code--YDID title].
+        Поэтому в данном случае хотя выходной #[+Term--YDID HTML-код] и будет сгенерирован, использование компонента
+          без&nbsp;указания дополнительных #[+Term--YDID свойств], #[+Term--YDID HTML-атрибутов] или дочернего
+          содержимого крайне #[+Keyword--YDID не]&nbsp;рекомендуется.
+
+      +CodeViewer-PartialListing--YDF
+
+        if framework
+
+          :code_listing--yda
+
+            <Button>Click</Button>
+
+        else
+
+          | +Button--YDF({ label: "Click" })
+      +CodeViewer-Explanation--YDF.
+        Если не&nbsp;указано #[+Term--YDID свойства] #[+ImportantEntity__Code--YDID HTML_Type], то будет сгенерирован
+          #[+Term--YDID тэг] #[+ImportantEntity__Code--YDID button] с #[+Term--YDID атрибутом]
+          #[+ImportantEntity__Code--YDID type="button"] и текстовым содержимым, указанным через
+          #[+Term--YDID свойство] #[+ImportantEntity__Code--YDID label].
+        Такая кнопка #[+Keyword--YDID никак] #[+Keyword__Contrast--YDID не]&nbsp;взаимодействует с
+          #[+Term--YDID HTML-формой], если таковая имеется в качестве родительского элемента.
+
+      +CodeViewer-PartialListing--YDF: :code_listing--yda
+        +Button--YDF({
+          label: "Documentation",
+          URI: "https://frontend.yamato-daiwa.com/"
+        })
+      +CodeViewer-Explanation--YDF.
+        Если Вы хотите, чтобы был сгенерирован код ссылки #[+Keyphrase--YDID с внешнем видом кнопки], то укажите
+          #[+Term--YDID свойство] #[+ImportantEntity--YDID URI].
+        Будьте осторожны, если для Вашего сайта или приложения актуальна #[+Term--YDID поисковая оптимизация],
+          поскольку такая #[+Term--YDID ссылка] может отдать часть рейтинга тому сайту или приложению, который
+          соответствует указанному #[+ImportantEntity--YDID URI].
+        Можно попытаться смягчить последствия, указав #[+Term--YDID свойство]
+          #[+ImportantEntity__Code--YDID mustRequestNotFollowLinkForCrawlingToSearchEngine], что приведёт к добавлению
+          #[+Term--YDID атрибута] #[+ImportantEntity__Code--YDID rel] с нужными значениями, однако, как это следует
+          из названия #[+Term--YDID свойства], это лишь «просьба» поисковому роботу не&nbsp;учитывать эту ссылку,
+          а реальное поведение робота не&nbsp;под нашим контролем.
+
+      +CodeViewer-PartialListing--YDF: :code_listing--yda
+        +Button--YDF({
+          label: "Documentation",
+          HTML_Type: Button__YDF.HTML_Types.inputSubmit
+        })
+      +CodeViewer-Explanation--YDF
+
+        p.Article-Paragraph.
+          Если имеется #[+Keyword--YDID родительский] элемент #[+ImportantEntity__Code--YDID form], то согласно
+            требованиям #[+Term--YDID доступности], кнопка отправки данных должна быть либо #[+Term--YDID тэгом]
+            #[+ImportantEntity__Code--YDID input] со #[+Term--YDID атрибутом]
+            #[+ImportantEntity__Code--YDID type="submit"], либо
+            #[+Term--YDID тэгом] #[+ImportantEntity__Code--YDID button] с этим же #[+Term--YDID атрибутом].
+          В зависимости от указанного значения #[+Term--YDID свойства] #[+ImportantEntity__Code--YDID HTML_Type] будет
+            сгенерирована следующая комбинация #[+Term--YDID тэгов] и #[+Term--YDID атрибутов]:
+
+        dl.Article-DescriptionList
+
+          dt Button__YDF.HTML_Types.regular
+          dd #[+ImportantEntity__Code--YDID &lt;button type="button"&gt;&lt;button&gt;] (по умолчанию)
+
+          dt Button__YDF.HTML_Types.submit
+          dd #[+ImportantEntity__Code--YDID &lt;button type="submit"&gt;&lt;button&gt;]
+
+          dt Button__YDF.HTML_Types.inputButton
+          dd #[+ImportantEntity__Code--YDID &lt;input type="button"/&gt;]
+
+          dt Button__YDF.HTML_Types.inputSubmit
+          dd #[+ImportantEntity__Code--YDID &lt;input type="submit"/&gt;]
+
+          dt Button__YDF.HTML_Types.inputReset
+          dd #[+ImportantEntity__Code--YDID &lt;input type="reset"/&gt;]
+
+        p.Article-Paragraph.
+          В современности отправка данных часто осуществляется с помощью #[+ImportantEntity--YDID JavaScript] и
+            технологии #[+ImportantEntity--YDID AJAX], а тэг #[+ImportantEntity__Code--YDID form] используется лишь для
+            понятной семантики и #[+Term--YDID доступности].
+          #[+Keyphrase--YDID В таких случаях] можно обойтись только #[+Keyword--YDID двумя] типами:
+            #[+ImportantEntity__Code--YDID Button__YDF.HTML_Types.regular] (#[+Keyword--YDID не]&nbsp;обязательно явно
+            указывать, так это значение по умолчанию) и #[+ImportantEntity__Code--YDID Button__YDF.HTML_Types.submit].

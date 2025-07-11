@@ -2,27 +2,64 @@ export { default as YDF_ComponentsCoordinator } from "./GUI_Components/YDF_Compo
 
 /* ━━━ Officially Realized ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* ━━━ GUI Components ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ╍╍╍ Admonition Block ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+export { default as AdmonitionBlockLogic } from "./GUI_Components/AdmonitionBlock/AdmonitionBlockLogic.vue";
 export { default as AdmonitionBlock } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock.vue";
 
+/* ╍╍╍ Badge ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+export { default as BadgeLogic } from "./GUI_Components/Badge/BadgeLogic.vue";
 export { default as Badge } from "./GUI_Components/Badge/Badge.vue";
 export { default as BadgeLoadingPlaceholder } from "./GUI_Components/Badge/LoadingPlaceholder/Badge-LoadingPlaceholder.vue";
+export { default as BadgeLoadingPlaceholderLogic } from
+    "./GUI_Components/Badge/LoadingPlaceholder/Badge-LoadingPlaceholderLogic.vue";
 
-/* ─── Controls ───────────────────────────────────────────────────────────────────────────────────────────────────── */
-/* ┄┄┄ Validatable Control Shell ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+/* ┅┅┅ Controls ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 export { default as ValidatableControlShell } from
     "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell.vue";
+export { default as ValidatableControlShellLogic } from
+    "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellLogic.vue";
+export { default as ValidatableControlShellLoadingPlaceholder } from
+    "./GUI_Components/Controls/ValidatableControlShell/LoadingPlaceholder/ValidatableControlShellLoadingPlaceholder.vue";
+export { default as ValidatableControlShellLoadingPlaceholderLogic } from
+    "./GUI_Components/Controls/ValidatableControlShell/LoadingPlaceholder/ValidatableControlShellLoadingPlaceholderLogic.vue";
 
-/* ┄┄┄ Buttons ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+/* ╍╍╍ Buttons ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+/* ─── Plain ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
+export { default as ButtonLogic } from "./GUI_Components/Controls/Buttons/Plain/ButtonLogic.vue";
 export { default as Button } from "./GUI_Components/Controls/Buttons/Plain/Button.vue";
 export { default as ButtonLoadingPlaceholder } from
-    "./GUI_Components/Controls/Buttons/Plain/LoadingPlaceholder/Button-LoadingPlaceholder.vue";
+    "./GUI_Components/Controls/Buttons/Plain/LoadingPlaceholder/Button-LoadingPlaceholderLogic.vue";
+export { default as ButtonLoadingPlaceholderLogic } from
+    "./GUI_Components/Controls/Buttons/Plain/LoadingPlaceholder/Button-LoadingPlaceholderLogic.vue";
+
+/* ─── Closing ────────────────────────────────────────────────────────────────────────────────────────────────────── */
+export { default as ClosingButtonLogic } from "./GUI_Components/Controls/Buttons/Closing/ClosingButtonLogic.vue";
+export { default as ClosingButton } from "./GUI_Components/Controls/Buttons/Closing/ClosingButton.vue";
+
+/* ─── Hamburger Menu ─────────────────────────────────────────────────────────────────────────────────────────────── */
+export { default as HamburgerMenuButtonLogic } from
+    "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButtonLogic.vue";
+export { default as HamburgerMenuButton } from "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton.vue";
+
+/* ╍╍╍ Validatables ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+export { default as InputtableControl } from "./GUI_Components/Controls/Validatables/InputtableControl.vue";
+export { default as ValidatableControl } from "./GUI_Components/Controls/Validatables/ValidatableControl";
+export { default as ValidatableControlsGroup } from "./GUI_Components/Controls/Validatables/ValidatableControlsGroup";
+
+/* ─── TextBox ────────────────────────────────────────────────────────────────────────────────────────────────────── */
+export { default as TextBoxLogic } from "./GUI_Components/Controls/Validatables/TextBox/TextBoxLogic.vue";
+export { default as TextBox } from "./GUI_Components/Controls/Validatables/TextBox/TextBox.vue";
 
 
 /* ━━━ Alpha / Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+export { default as DummyLogoLink } from "./GUI_Components/Prototyping/DummyLogoLink/DummyLogoLink.vue";
+export { default as LanguageDropDownList } from "./GUI_Components/Controls/DropDownLists/Language/LanguageDropDownList.vue";
+export { default as AccessibleFromTemplateAsNonReactive } from "./GUI_Components/_Decorators/AccessibleFromTemplateAsNonReactive";
+export { default as NonReactiveVueData } from "./GUI_Components/_Decorators/NonReactiveVueData";
+export { default as preventNullForOptionalVueProperty } from "./GUI_Components/_Decorators/preventNullForOptionalVueProperty";
+
 export { default as OverflowSafeSingleLineLabel } from "./GUI_Components/OverflowSafeSingleLineLabel.vue";
-
 export { default as ThemesShowcase } from "./GUI_Components/ThemesShowcase.vue";
-
 
 /* ━━━ Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export { default as AchievementIcon__Filled } from "./SVG_Icons/Achievement/AchievementIcon__Filled.vue";

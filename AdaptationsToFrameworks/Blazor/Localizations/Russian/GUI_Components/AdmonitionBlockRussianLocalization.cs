@@ -1,13 +1,12 @@
 ﻿using YamatoDaiwa.Frontend.GUI_Components.AdmonitionBlock;
 
+namespace YamatoDaiwa.Frontend.Localizations.Russian.GUI_Components;
 
-namespace YamatoDaiwa.Frontend.Russian.GUI_Components;
 
-
-public class AdmonitionBlockRussianLocalization
+public record AdmonitionBlockRussianLocalization : AdmonitionBlock.Localization
 {
   
-  public AdmonitionBlock.Localization.DismissingButton dismissingButton { get; } = new()
+  public override AdmonitionBlock.Localization.DismissingButton dismissingButton { get; } = new()
   {
     accessibilityGuidance = "Убрать это сообщение"
   };

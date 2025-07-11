@@ -1,10 +1,23 @@
-# Yamato Daiwa Frontend 〔YDF〕
+# Yamato Daiwa Frontend (YDF)
+
+[![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/@yamato-daiwa/frontend)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/README.md)
+![MIT](https://img.shields.io/badge/MIT-green?style=for-the-badge)
+
+![Pug](https://img.shields.io/badge/Pug-E3C29B?style=for-the-badge&logo=pug&logoColor=black)
+![Stylus](https://img.shields.io/badge/Stylus-333333?style=for-the-badge&logo=stylus&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+[![IntelliJ IDEA plugin](https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 [![NPM Version](https://img.shields.io/npm/v/@yamato-daiwa/frontend)](https://www.npmjs.com/package/@yamato-daiwa/frontend)
-[![IntelliJ IDEA plugin](https://img.shields.io/badge/IntelliJ_IDEA-Official_Plugin-088BF8.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
+![No any type](https://img.shields.io/badge/Type_safety-No_any-brightgreen.svg?style=flat)
 
-The toolkit for the frontend development with [Pug](https://pugjs.org/api/getting-started.html) and 
-[Stylus](https://github.com/stylus/stylus/) pre-processors.
+[![GitHub Sponsors](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend?sponsor=1)
+[![PAYPAL](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/paypalme/tokugawatakeshi)
+[![LIBERAPAY](	https://img.shields.io/badge/Liberapay-F6C915?style=for-the-badge&logo=liberapay&logoColor=black)](https://liberapay.com/TokugawaT-YD)
+
+The toolkit for the high-quality frontend development with [Pug](https://pugjs.org/api/getting-started.html), 
+  [Stylus](https://github.com/stylus/stylus/) pre-processors and [TypeScript](https://www.typescriptlang.org/).
 
 ![Hero image of @yamato-daiwa/frontend](https://repository-images.githubusercontent.com/376180981/885d8a83-98a8-47d0-b2e2-5abf042ef184)
 
@@ -12,23 +25,28 @@ The toolkit for the frontend development with [Pug](https://pugjs.org/api/gettin
 ## Installation
 
 ```
-npm i @yamato-daiwa/frontend@2.0.0-beta.7
+npm i @yamato-daiwa/frontend@2.0.0-beta.12
 ```
+
 
 ## Documentation
 
 ### Pug Markup
+
 #### Functionality
+
 ##### Inline JavaScript 
 
 + [YDEE Integration](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/YDEE_Integration/YDEE_Integration.english.html)
+
 
 ###### Functions and Classes
 
 + [`buildEmailLinkHrefAttributeValue`](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildEmailLinkHrefAttributeValue/buildEmailLinkHrefAttributeValue.english.html)
 + [`buildPhoneNumberLinkHrefAttributeValue`](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildPhoneNumberLinkHrefAttributeValue/buildPhoneNumberLinkHrefAttributeValue.english.html)
 + [`processObjectTypeParameterOfPugMixin`](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/processObjectTypeParameterOfPugMixin.english.html)
-  
+
+
 ###### Assets
 
 + [`DummyImageURLs`](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/DummyImagesURIs/DummyImagesURIs.english.html)
@@ -66,59 +84,72 @@ npm i @yamato-daiwa/frontend@2.0.0-beta.7
 + [Configuration](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Styles/02-Kernel/01-Configuration.styl)
 
 
+###### Functions
+
+###### Value Checkers
+
+<dl>
+
+  <dt>Strings</dt>
+  <dd>
+    <ul>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isEmptyString--SECTION"><code>isEmptyString</code></a></li>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isNonEmptyString--SECTION"><code>isNonEmptyString</code></a></li>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isString--SECTION"><code>isString</code></a></li>
+    </ul>
+  </dd>
+
+  <dt>Quantities</dt>
+  <dd>
+    <ul>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isDimensionalOrDimensionlessQuantity--SECTION"><code>isDimensionalOrDimensionlessQuantity</code></a></li>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isDimensionalQuantity--SECTION"><code>isDimensionalQuantity</code></a></li>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isDimensionlessQuantity--SECTION"><code>isDimensionlessQuantity</code></a></li>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isNaturalNumber--SECTION"><code>isNaturalNumber</code></a></li>
+    </ul>
+  </dd>
+
+  <dt>Booleans</dt>
+  <dd>
+    <ul>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isBoolean--SECTION"><code>isBoolean</code></a></li>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isFalse--SECTION"><code>isFalse</code></a></li>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isTrue--SECTION"><code>isTrue</code></a></li>
+    </ul>
+  </dd>
+
+  <dt>Nullables</dt>
+  <dd>
+    <ul>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isNotNull--SECTION"><code>isNotNull</code></a></li>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isNull--SECTION"><code>isNull</code></a></li>
+    </ul>
+  </dd>
+
+  <dt>Others</dt>
+  <dd>
+    <ul>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isCalcExpression--SECTION"><code>isCalcExpression</code></a></li>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isFunction--SECTION"><code>isFunction</code></a></li>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isIdentifier--SECTION"><code>isIdentifier</code></a></li>
+      <li><a href="https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/Functions/TypeCheckers/TypeCheckers.english.html#isObject--SECTION"><code>isObject</code></a></li>
+    </ul>
+  </dd>
+
+</dl>
+
+
 ##### GUI Components
 
-* [AdmonitionBlock](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock.english.html)
-* [Badge](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Badge/Badge.english.html)
-* Controls
-  * Buttons 
-    * [Plain (Button)](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/Button.english.html)
++ [AdmonitionBlock](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/AdmonitionBlock/AdmonitionBlock.english.html)
++ [Badge](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Badge/Badge.english.html)
+
+###### Controls
+
++ Buttons 
+  + [Plain (Button)](https://frontend.yamato-daiwa.com/CoreLibrary/GUI_Components/Children/Controls/Buttons/Plain/Button.english.html)
 
 [//]: # (TODO ===================================================================================================================)
-[//]: # (###### Functions)
-
-[//]: # ()
-[//]: # (<ul>)
-
-[//]: # ()
-[//]: # (  <li>)
-
-[//]: # (    <b>Value checkers</b>)
-
-[//]: # (    <ul>)
-
-[//]: # (      <li><a href="https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/02-Functions/01-ValueCheckers.md#isnull--isnotnull">isNull</a></li>)
-
-[//]: # (      <li><a href="https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/02-Functions/01-ValueCheckers.md#isnull--isnotnull">isNotNull</a></li>)
-
-[//]: # (      <li>isString</li>    )
-
-[//]: # (      <li>isEmptyString</li>    )
-
-[//]: # (      <li>isNonEmptyString</li>)
-
-[//]: # (      <li><a href="https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/02-Functions/01-ValueCheckers.md#isdimensionalamount--isdimensionlessamount--isDimensionalOrDimensionlessQuantity">isDimensionalOrDimensionlessQuantity</a></li>)
-
-[//]: # (      <li><a href="https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/02-Functions/01-ValueCheckers.md#isdimensionalamount--isdimensionlessamount--isdimensionalordimensionlessamount">isDimensionalAmount</a></li>)
-
-[//]: # (      <li><a href="https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/02-Functions/01-ValueCheckers.md#isdimensionalamount--isdimensionlessamount--isdimensionalordimensionlessamount">isDimensionlessAmount</a></li>)
-
-[//]: # (      <li><a href="https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/02-Functions/01-ValueCheckers.md#isnaturalnumber">isNaturalNumber</a></li>)
-
-[//]: # (      <li><a href="https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/02-Functions/01-ValueCheckers.md#istrue--isfalse">isTrue</a></li>)
-
-[//]: # (      <li><a href="https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/02-Kernel/02-Functions/01-ValueCheckers.md#istrue--isfalse">isFalse</a></li>)
-
-[//]: # (      <li>isBoolean</li>  )
-
-[//]: # (      <li>isObject</li>  )
-
-[//]: # (      <li>isIdentifier</li>  )
-
-[//]: # (    </ul>)
-
-[//]: # (  </li>)
-
 [//]: # ()
 [//]: # (  <li>)
 

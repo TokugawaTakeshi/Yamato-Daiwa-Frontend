@@ -1,0 +1,40 @@
+extends ../../../../PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Requirements
+
+  include ../../../../GUI_Components.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "Snackbar Component Testing"
+      },
+      stylesSheetsURIs: [ "@Workbenches/GUI_Components/Snackbar/Snackbar.workbench" ],
+      scriptsURIs: {
+        atEndOfBody: [ "@Workbenches/GUI_Components/Snackbar/Snackbar.workbench" ]
+      }
+    });
+
+
+block append PageContent
+
+  //-
+    +Snackbar--YDF(
+      {
+        textOrHTML: "Sample",
+        decorativeVariation: Snackbar__YDF.DecorativeVariations.success,
+        position: Snackbar__YDF.Positions.topMiddle
+      },
+      {
+        hidden: false
+      }
+    )
+
+  button#SNACKBAR_DISPLAYING_BUTTON(
+    type="button"
+  ) Display Snackbar

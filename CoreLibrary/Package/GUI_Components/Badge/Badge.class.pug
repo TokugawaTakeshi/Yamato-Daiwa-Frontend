@@ -143,13 +143,15 @@
       keyLabel: {
         type: String,
         isUndefinedForbidden: false,
-        isNullForbidden: true
+        isNullForbidden: true,
+        minimalCharactersCount: 1
       },
 
       valueLabel: {
         type: String,
         isUndefinedForbidden: true,
-        isNullForbidden: true
+        isNullForbidden: true,
+        minimalCharactersCount: 1
       },
 
       theme: {
@@ -184,7 +186,9 @@
         areNullElementsForbidden: true,
         element: {
           type: String,
-          allowedAlternatives: Object.values(Badge__YDF.GeometricModifiers)
+          allowedAlternatives: Object.
+              entries(Badge__YDF.GeometricModifiers).
+              map(([ key, value ]) => ({ key: `Badge__YDF.GeometricModifiers.${ key }`, value }))
         }
       },
 
@@ -205,7 +209,9 @@
         areNullElementsForbidden: true,
         element: {
           type: String,
-          allowedAlternatives: Object.values(Badge__YDF.DecorativeModifiers)
+          allowedAlternatives: Object.
+            entries(Badge__YDF.DecorativeModifiers).
+            map(([ key, value ]) => ({ key: `Badge__YDF.DecorativeModifiers.${ key }`, value }))
         }
       },
 

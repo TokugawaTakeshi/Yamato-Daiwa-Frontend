@@ -231,7 +231,11 @@ coreLibrary:
 
       buttons:
 
-        $heading: "ボタン"
+        $heading: "ボタン系"
+
+      validatables:
+
+        $heading: "妥当性確認機能付き"
 
 adaptationsToFrameworks:
 

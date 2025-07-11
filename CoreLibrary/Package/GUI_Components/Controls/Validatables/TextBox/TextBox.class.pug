@@ -58,7 +58,8 @@
     static get selfAndChildrenComponentsThemesCorrespondence() {
       return TextBox__YDF._selfAndChildrenComponentsThemesCorrespondence ?? (
         TextBox__YDF._selfAndChildrenComponentsThemesCorrespondence = {
-          validatableControlShell: { [TextBox__YDF.Themes.regular]: ValidatableControlShell__YDF.Themes.regular }
+          validatableControlShell: { [TextBox__YDF.Themes.regular]: ValidatableControlShell__YDF.Themes.regular },
+          valueCopyingButton: { [TextBox__YDF.Themes.regular]: Button__YDF.Themes.regular }
         }
       );
     }
@@ -68,7 +69,7 @@
      *
      * @param {
      *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
-     * } ownAndCorrespondingValidatableControlShellThemesDefinition
+     * } ownAndCorrespondingChildrenThemesDefinition
      *
      * @returns { typeof TextBox__YDF }
      *
@@ -82,9 +83,9 @@
      *   }
      * });
      */
-    static defineThemes(ownAndCorrespondingValidatableControlShellThemesDefinition) {
+    static defineThemes(ownAndCorrespondingChildrenThemesDefinition) {
       return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
-        ownAndCorrespondingValidatableControlShellThemesDefinition, TextBox__YDF
+        ownAndCorrespondingChildrenThemesDefinition, TextBox__YDF
       );
     }
 
@@ -112,7 +113,8 @@
      */
     static GeometricVariations = {
       regular: "REGULAR",
-      small: "SMALL"
+      small: "SMALL",
+      labelLike: "LABEL_LIKE"
     };
 
     /**
@@ -132,7 +134,13 @@
         TextBox__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence = {
           validatableControlShell: {
             [TextBox__YDF.GeometricVariations.regular]: ValidatableControlShell__YDF.GeometricVariations.regular,
-            [TextBox__YDF.GeometricVariations.small]: ValidatableControlShell__YDF.GeometricVariations.small
+            [TextBox__YDF.GeometricVariations.small]: ValidatableControlShell__YDF.GeometricVariations.small,
+            [TextBox__YDF.GeometricVariations.labelLike]: ValidatableControlShell__YDF.GeometricVariations.regular
+          },
+          valueCopyingButton: {
+            [TextBox__YDF.GeometricVariations.regular]: Button__YDF.GeometricVariations.regular,
+            [TextBox__YDF.GeometricVariations.small]: Button__YDF.GeometricVariations.small,
+            [TextBox__YDF.GeometricVariations.labelLike]: Button__YDF.GeometricVariations.linkLike
           }
         }
       );
@@ -143,7 +151,7 @@
      *
      * @param {
      *   { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
-     * } ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition
+     * } ownAndCorrespondingChildrenGeometricVariationsDefinition
      *
      * @returns { typeof TextBox__YDF }
      *
@@ -157,9 +165,9 @@
      *   }
      * });
      */
-    static defineGeometricVariations(ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition) {
+    static defineGeometricVariations(ownAndCorrespondingChildrenGeometricVariationsDefinition) {
       return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
-        ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition, TextBox__YDF
+        ownAndCorrespondingChildrenGeometricVariationsDefinition, TextBox__YDF
       );
     }
 
@@ -183,7 +191,10 @@
      * @type { { [decorativeVariationsName: string]: string } }
      * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
      */
-    static DecorativeVariations = { regular: "REGULAR" };
+    static DecorativeVariations = {
+      regular: "REGULAR",
+      labelLike: "LABEL_LIKE"
+    };
 
     /**
      * @private
@@ -201,7 +212,12 @@
       return TextBox__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
         TextBox__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
           validatableControlShell: {
-            [TextBox__YDF.DecorativeVariations.regular]: ValidatableControlShell__YDF.DecorativeVariations.regular
+            [TextBox__YDF.DecorativeVariations.regular]: ValidatableControlShell__YDF.DecorativeVariations.regular,
+            [TextBox__YDF.DecorativeVariations.labelLike]: ValidatableControlShell__YDF.DecorativeVariations.regular
+          },
+          valueCopyingButton: {
+            [TextBox__YDF.DecorativeVariations.regular]: Button__YDF.DecorativeVariations.regular,
+            [TextBox__YDF.DecorativeVariations.labelLike]: Button__YDF.DecorativeVariations.linkLike
           }
         }
       );
@@ -212,7 +228,7 @@
      *
      * @param {
      *   { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
-     * } ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition
+     * } ownAndCorrespondingChildrenDecorativeVariationsDefinition
      *
      * @returns { typeof TextBox__YDF }
      *
@@ -226,9 +242,9 @@
      *   }
      * });
      */
-    static defineDecorativeVariations(ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition) {
+    static defineDecorativeVariations(ownAndCorrespondingChildrenDecorativeVariationsDefinition) {
       return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
-        ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition, TextBox__YDF
+        ownAndCorrespondingChildrenDecorativeVariationsDefinition, TextBox__YDF
       );
     }
 
@@ -243,108 +259,129 @@
 
       HTML_Type: {
         type: String,
-        defaultValue: TextBox__YDF.HTML_Types.text,
-        allowedAlternatives: Object.values(TextBox__YDF.HTML_Types)
+        undefinedValueSubstitution: TextBox__YDF.HTML_Types.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.entries(TextBox__YDF.HTML_Types).
+            map(([key, value]) => ({ key: `TextBox__YDF.HTML_Types.${ key }`, value }))
       },
 
       label: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       guidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       accessibilityGuidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       externalLabelHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       placeholder: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       /** @see https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill */
       autocomplete: {
         type: String,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       value: {
-        preValidationModifications: rawValue => isNumber(rawValue) ? String(rawValue) : rawValue,
+        preValidationModifications: rawValue => isNumber(rawValue, { mustConsiderNaN_AsNumber: false }) ? String(rawValue) : rawValue,
         type: String,
-        defaultValue: ""
+        undefinedValueSubstitution: "",
+        isNullForbidden: true
       },
 
       multiline: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       autoResizingForMultilineMode: {
         type: Boolean,
-        defaultValue: true
+        undefinedValueSubstitution: true,
+        isNullForbidden: true
       },
 
       disabled: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       readonly: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       required: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsRequired: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsOptional: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       minimalCharactersCount: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
-        required: false
+        numbersSet: RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       maximalCharactersCount: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
-        required: false,
+        numbersSet: RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         customValidators: {
-          validationFunction: ({ currentPropertyValue: maximalCharactersCount, rawData__currentObjectDepth }) =>
+          validationFunction: ({ value: maximalCharactersCount, rawData__currentObjectDepth }) =>
               isUndefined(rawData__currentObjectDepth.minimalCharactersCount) ||
               (
-                Number.isInteger(rawData__currentObjectDepth.minimalCharactersCount) &&
-                maximalCharactersCount >= rawData__currentObjectDepth.minimalCharactersCount
+                isNumber(rawData__currentObjectDepth.minimalCharactersCount, { mustConsiderNaN_AsNumber: false }) &&
+                    maximalCharactersCount >= rawData__currentObjectDepth.minimalCharactersCount
               ),
           descriptionForLogging: "\"maximalCharactersCount\" can not be less than \"minimalCharactersCount\"."
         }
@@ -352,49 +389,69 @@
 
       minimalNumericValue: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
-        required: false
+        numbersSet: RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       maximalNumericValue: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeInteger,
-        required: false,
+        numbersSet: RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         customValidators: {
-          validationFunction: ({ currentPropertyValue: maximalNumericValue, rawData__currentObjectDepth }) =>
+          validationFunction: ({ value: maximalNumericValue, rawData__currentObjectDepth }) =>
               isUndefined(rawData__currentObjectDepth.minimalNumericValue) ||
               (
-                Number.isInteger(rawData__currentObjectDepth.minimalNumericValue) &&
-                maximalNumericValue >= rawData__currentObjectDepth.minimalNumericValue
+                isNumber(rawData__currentObjectDepth.minimalNumericValue, { mustConsiderNaN_AsNumber: false }) &&
+                    maximalNumericValue >= rawData__currentObjectDepth.minimalNumericValue
               ),
           descriptionForLogging: "\"maximalNumericValue\" can not be less than \"minimalNumericValue\"."
         }
       },
 
+      hasValueCopyingButton: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      hasPasswordDisplayingToggle: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
       /** @description
-       * 1 minimal character is definitely not enough for unique string, but in MVC mode it can be the variable. */
+       * 1 minimal character is definitely not enough for unique string, but in MVC mode it can be a variable. */
       instanceID_UniqueDynamicPart: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       HTML_IDs: {
 
         type: Object,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
 
         properties: {
 
           inputOrTextArea: {
             type: String,
-            required: false,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
             minimalCharactersCount: 1
           },
 
           label: {
             type: String,
-            required: false,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
             minimalCharactersCount: 1
           }
 
@@ -404,7 +461,8 @@
 
       theme: {
         type: String,
-        defaultValue: TextBox__YDF.Themes.regular,
+        undefinedValueSubstitution: TextBox__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(TextBox__YDF.Themes).
             map(([ key, value ]) => ({ key: `TextBox__YDF.Themes.${ key }`, value }))
@@ -412,12 +470,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: TextBox__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: TextBox__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: TextBox__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: TextBox__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(TextBox__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `TextBox__YDF.GeometricVariations.${ key }`, value }))
@@ -425,17 +485,25 @@
 
       geometricModifiers: {
         type: Array,
-        defaultValue: [],
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
         element: {
           type: String,
-          allowedAlternatives: Object.values(TextBox__YDF.GeometricModifiers)
+          allowedAlternatives: Object.
+              entries(Button__YDF.GeometricModifiers).
+              map(([ key, value ]) => ({ key: `TextBox__YDF.GeometricModifiers.${ key }`, value }))
         }
       },
 
       decorativeVariation: {
         type: String,
-        defaultValue: TextBox__YDF.DecorativeVariations.regular,
-        allowedAlternatives: Object.values(TextBox__YDF.DecorativeVariations)
+        undefinedValueSubstitution: TextBox__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(TextBox__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `Button__YDF.DecorativeVariations.${ key }`, value }))
       }
 
     };
@@ -453,14 +521,15 @@
       validValueHighlightingIfNoValidationErrorsMessages: true,
       validationErrorsMessages: true,
       asynchronousValidationsStatuses: true
-    })
+    });
 
 
-    /* ━━━ ID generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ━━━ ID Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /**
      * @public
-     * @param { string } [ uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID ]
-     * @returns string
+     * @param { string } uniqueDynamicPart
+     * @default ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID
+     * @return { string } Generated ID
      * */
     static generateInstanceID(uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()) {
       return `TEXT_BOX--YDF-${ uniqueDynamicPart }`;
@@ -474,5 +543,13 @@
      * @type { ValidatableControlShell.DOM_AccessResources }
      * */
     static DOM_AccessResources = textBoxYDF_GUI_ComponentDOM_AccessResources;
+
+
+    /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @type { TextBoxLocalization }
+     * */
+    static localization = textBoxYDF_GUI_ComponentLocalization__english;
 
   }

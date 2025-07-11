@@ -1,6 +1,6 @@
-synopsis:
+overview:
 
-  $heading: "Synopsis"
+  $heading: "Overview"
 
 AdmonitionBlockClass:
 
@@ -8,7 +8,7 @@ AdmonitionBlockClass:
 
   reactProperties:
 
-    $heading: "React Component Properties"
+    $heading: "React Properties"
 
   examples:
 

@@ -9,8 +9,8 @@ namespace YamatoDaiwa.Frontend.GUI_Components.Controls.Buttons.Plain;
 [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 public partial class Button :
   Microsoft.AspNetCore.Components.ComponentBase,
-  IHTML_AttributesFallthrough,
-  ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement
+  YamatoDaiwa.Frontend.GUI_Components.Abstractions.IHTML_AttributesFallthrough,
+  YamatoDaiwa.Frontend.GUI_Components.Abstractions.IFlexibleExternalCSS_ClassesSpecifyingForRootElement
 {
   
   public const string CSS_NAMESPACE = "Button--YDF";
@@ -18,7 +18,7 @@ public partial class Button :
   protected Microsoft.AspNetCore.Components.ElementReference rootElement;
   
   [Microsoft.AspNetCore.Components.Parameter(CaptureUnmatchedValues = true)]
-  public IDictionary<string, object>? rootElementHTML_Attributes { get; set; }
+  public Dictionary<string, object>? rootElementHTML_Attributes { get; set; }
   
   
   /* ━━━ HTML Type ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -143,8 +143,8 @@ public partial class Button :
   [Microsoft.AspNetCore.Components.Parameter]
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
-      "Microsoft.Performance", 
-      "BL0007", 
+      category: "Microsoft.Performance", 
+      checkId: "BL0007", 
       Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
     )
   ]
@@ -167,7 +167,7 @@ public partial class Button :
       YDF_ComponentsHelper.areThemesCSS_ClassesCommon || Button.mustConsiderThemesCSS_ClassesAsCommon;
 
 
-  /* ─── Geometry ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public enum StandardGeometricVariations
   {
     regular,
@@ -188,8 +188,8 @@ public partial class Button :
   [Microsoft.AspNetCore.Components.Parameter]
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
-      "Microsoft.Performance", 
-      "BL0007", 
+      category: "Microsoft.Performance", 
+      checkId: "BL0007", 
       Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
     )
   ]
@@ -219,7 +219,7 @@ public partial class Button :
   public Button.GeometricModifiers[] geometricModifiers { get; set; } = [];
   
   
-  /* ─── Decoration ───────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public enum StandardDecorativeVariations
   {
     regular,
@@ -240,8 +240,8 @@ public partial class Button :
   [Microsoft.AspNetCore.Components.Parameter]
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
-      "Microsoft.Performance", 
-      "BL0007", 
+      category: "Microsoft.Performance", 
+      checkId: "BL0007", 
       Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
     )
   ]
@@ -285,21 +285,34 @@ public partial class Button :
   public string? rootElementSpaceSeparatedModifierCSS_Classes { get; set; } = null;
 
   private string classAttributeValueForRootElement => YDF_ComponentsHelper.GenerateClassAttributeValueForRootElement(
-    CSS_Namespace: Button.CSS_NAMESPACE,
-    activeTheme: this._theme,
-    standardThemes: typeof(Button.StandardThemes),
-    customThemes: Button.CustomThemes,
-    areThemesCSS_ClassesCommon: this.areThemesCSS_ClassesCommon,
-    activeGeometricVariation: this._geometricVariation,
-    standardGeometricVariations: typeof(Button.StandardGeometricVariations),
-    customGeometricVariations: Button.CustomGeometricVariations,
-    activeDecorativeVariation: this._decorativeVariation,
-    standardDecorativeVariations: typeof(Button.StandardDecorativeVariations),
-    customDecorativeVariations: Button.CustomDecorativeVariations,
-    activeGeometricModifiers: this.geometricModifiers,
-    activeDecorativeModifiers: this.decorativeModifiers,
-    externalSpaceSeparatedCSS_Classes: 
-        ((ISupportsFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes
+    new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement
+    {
+      CSS_Namespace = Button.CSS_NAMESPACE,
+      theme = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.Theme
+      {
+        activeOne = this._theme,
+        standardOnes = typeof(Button.StandardThemes),
+        customOnes = Button.CustomThemes,
+        areThemesCSS_ClassesCommon = this.areThemesCSS_ClassesCommon 
+      },
+      geometricVariation = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.GeometricVariation
+      {
+        activeOne = this._geometricVariation,
+        standardOnes = typeof(Button.StandardGeometricVariations),
+        customOnes = Button.CustomGeometricVariations
+      },
+      activeGeometricModifiers = this.geometricModifiers,
+      decorativeVariation = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.DecorativeVariation
+      {
+        activeOne = this._decorativeVariation,
+        standardOnes = typeof(Button.StandardDecorativeVariations),
+        customOnes = Button.CustomDecorativeVariations
+      },
+      activeDecorativeModifiers = this.decorativeModifiers,
+      rootElementHTML_Attributes = this.rootElementHTML_Attributes,
+      externalSpaceSeparatedCSS_Classes =
+          ((IFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes
+    }
   );
   
   

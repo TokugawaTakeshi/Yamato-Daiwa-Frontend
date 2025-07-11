@@ -1,7 +1,7 @@
-import type FilesUploaderLocalization from "./FilesUploaderLocalization";
+import type { FilesUploaderLocalization } from "./FilesUploaderLocalization";
 
 
-export const filesUploaderYDF_ComponentLocalization__english: FilesUploaderLocalization = {
+export const filesUploaderYDF_GUI_ComponentLocalization__english: FilesUploaderLocalization = {
 
   processingsStatusesTable: {
     headers: {

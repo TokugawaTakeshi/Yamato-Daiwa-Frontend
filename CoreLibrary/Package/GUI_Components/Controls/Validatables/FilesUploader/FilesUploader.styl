@@ -38,7 +38,7 @@ FilesUploader--YDF = {
 }
 
 
-provideFilesUploaderYDF_Component(
+FilesUploader--YDF-generateStyles(
   preset = FilesUploader--YDF.defaultProperties,
   overrides = {},
   options = FilesUploader--YDF.defaultOptions,
@@ -48,7 +48,7 @@ provideFilesUploaderYDF_Component(
   properties = deeplyCloneAndOverrideObject(preset, overrides)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "provideFilesUploaderYDF_Component",
+    mixinOrFunctionName: "FilesUploader--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {

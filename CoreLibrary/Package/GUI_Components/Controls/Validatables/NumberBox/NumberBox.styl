@@ -36,7 +36,7 @@ NumberBox--YDF = {
 }
 
 
-provideNumberBoxYDF_Component(
+NumberBox--YDF-generateStyles(
   preset = NumberBox--YDF.defaultProperties,
   overridings = {},
   options = NumberBox--YDF.defaultOptions,
@@ -46,7 +46,7 @@ provideNumberBoxYDF_Component(
   properties = deeplyCloneAndOverrideObject(preset, overridings)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "provideNumberBoxYDF_Component",
+    mixinOrFunctionName: "NumberBox--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {

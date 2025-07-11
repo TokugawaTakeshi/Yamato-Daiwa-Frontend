@@ -13,7 +13,7 @@ const passwordInputtedValueValidationLocalization__english: PasswordInputtedValu
   requiredInputIsMissingValidationErrorMessage:
       "The password is required. Please input the password.",
 
-  disallowedCharactersFoundValidationErrorMessageBuilder: (
+  allowedCharactersValidationErrorMessageBuilder: (
     { inputtedDisallowedCharacters }: AllowedCharactersInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
       `The password is including the following disallowed characters: ${ inputtedDisallowedCharacters.join(", ") }. ` +
@@ -21,9 +21,10 @@ const passwordInputtedValueValidationLocalization__english: PasswordInputtedValu
 
   minimalCharactersCountValidationErrorMessageBuilder: (
     { minimalCharactersCount }: MinimalCharactersCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
-  ): string => `Not enough characters for the password. Please input at least ${ minimalCharactersCount } characters.`,
+  ): string =>
+      `Not enough characters for the password. Please input at least ${ minimalCharactersCount } characters.`,
 
-  tooManyCharactersValidationErrorMessageBuilder: (
+  maximalCharactersCountValidationErrorMessageBuilder: (
     { maximalCharactersCount }: MaximalCharactersCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
       "The password has more characters than allowed. " +

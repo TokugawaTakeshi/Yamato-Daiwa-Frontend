@@ -18,15 +18,11 @@ ValidatableControlShell-RegularTheme-RegularDecorativeVariation--YDF = {
   badge: {
 
     required: {
-
       customDeclarations: null
-
     },
 
     optional: {
-
       customDeclarations: null
-
     }
 
   },
@@ -47,9 +43,9 @@ ValidatableControlShell-RegularTheme-RegularDecorativeVariation--YDF = {
 
   },
 
-  errorsList: {
+  validationErrorsMessagesList: {
 
-    forWideScreens: {
+    forWideContainers: {
 
       borders: {
         style: null,
@@ -72,7 +68,7 @@ ValidatableControlShell-RegularTheme-RegularDecorativeVariation--YDF = {
 
     },
 
-    forNarrowScreens: {
+    forNarrowContainers: {
 
       borders: {
         style: null,
@@ -105,7 +101,7 @@ ValidatableControlShell-RegularTheme-RegularDecorativeVariation--YDF = {
 
   asynchronousValidationsStatusesList: {
 
-    forWideScreens: {
+    forWideContainers: {
 
       borders: {
         style: null,
@@ -115,11 +111,49 @@ ValidatableControlShell-RegularTheme-RegularDecorativeVariation--YDF = {
       background: {
         color: null,
         image: null
+      },
+
+      item: {
+
+        loadingIndicator: {
+          color: YDF_ColorPalette.deepSkyBlue.slightlyDark
+        },
+
+        SVG_Icons: {
+
+          succeededAndValidState: {
+            color: YDF_ColorPalette.mint.slightlyDark
+          },
+
+          malfunctionState: {
+            color: YDF_ColorPalette.red.slightlyDark
+          }
+
+        },
+
+        text: {
+
+          fontWeight: bold,
+
+          inProgressState: {
+            color: YDF_ColorPalette.deepSkyBlue.slightlyDark
+          },
+
+          succeededAndValidState: {
+            color: YDF_ColorPalette.mint.slightlyDark
+          },
+
+          malfunctionState: {
+            color: YDF_ColorPalette.red.slightlyDark
+          }
+
+        }
+
       }
 
     },
 
-    forNarrowScreens: {
+    forNarrowContainers: {
 
       borders: {
         style: null,
@@ -135,6 +169,44 @@ ValidatableControlShell-RegularTheme-RegularDecorativeVariation--YDF = {
         blurRadius: 4px,
         spreadRadius: 2px,
         color: alpha(black, 50%)
+      },
+
+      item: {
+
+        loadingIndicator: {
+          color: YDF_ColorPalette.deepSkyBlue.slightlyDark
+        },
+
+        SVG_Icons: {
+
+          succeededAndValidState: {
+            color: YDF_ColorPalette.mint.slightlyDark
+          },
+
+          malfunctionState: {
+            color: YDF_ColorPalette.red.slightlyDark
+          }
+
+        },
+
+        text: {
+
+          fontWeight: bold,
+
+          inProgressState: {
+            color: YDF_ColorPalette.deepSkyBlue.slightlyDark
+          },
+
+          succeededAndValidState: {
+            color: YDF_ColorPalette.mint.slightlyDark
+          },
+
+          malfunctionState: {
+            color: YDF_ColorPalette.red.slightlyDark
+          }
+
+        }
+
       }
 
     }

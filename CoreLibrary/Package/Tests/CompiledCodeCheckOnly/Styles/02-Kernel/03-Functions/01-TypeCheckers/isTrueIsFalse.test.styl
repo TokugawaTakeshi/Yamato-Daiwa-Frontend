@@ -1,0 +1,39 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/01-TypeCheckers/isTrueIsFalse.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/01-TypeCheckers/isTrueIsFalse.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+definedVariable = true
+
+
+if definedVariable
+
+  p("Obviously, it will be printed to console.")
+
+
+if undefinedVariable
+
+  p("It will be printed too because 'typeof(undefinedVariable)' is 'ident' it means not falsy.")
+
+
+if (isTrue(undefinedVariable))
+
+  p("It will not be printed because 'undefinedVariable' is not true.")
+  error("Test has been failed.")
+
+
+else if (isFalse(undefinedVariable))
+
+  p("It will not be printed because 'undefinedVariable' is not false.")
+  error("Test has been failed.")
+
+
+else
+
+  p("It will be printed if 'undefinedVariable' is neither true nor false")

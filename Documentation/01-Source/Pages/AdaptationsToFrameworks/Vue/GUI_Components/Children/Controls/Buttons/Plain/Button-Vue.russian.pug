@@ -20,7 +20,7 @@ block append Metadata
     RegularWebPageTemplate__YDF.configure({
       metadata: {
         title: buildHTML_PageTitle(topHeading),
-        description: MetaDescriptionTemplates.GUI_Components.buttons.plain
+        description: MetaDescriptionTemplates.GUI_Components.controls.buttons.Button
       },
       stylesSheetsURIs: [
         "$CommonStyles",
@@ -51,10 +51,10 @@ block append SpecificContent
 
   article
 
-    //- ━━━ Button (Vue) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ━━━ `Button` (Vue) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     h1.Article-Heading1!= topHeading
 
-    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
 
     +WebPageViewer--YDF({
       URI: "$Demos:Vue/GUI_Components/Controls/Buttons/Plain/ButtonGalleryPage.html",
@@ -69,44 +69,25 @@ block append SpecificContent
     //- ━━━ Сводка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     +Heading--YDF({
       level: 2,
-      text: localizedSectioning.synopsis.$heading,
-      HTML_ID: localizedSectioning.synopsis.$anchor
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
     }).Article-Heading2
 
-    +GUI_ComponentSummaryViewer({
-      framework: SupportedFrameworks.vue,
-      metadataClass: Badge__YDF,
-      stylusMixinName: "generateButtonYDF_GUI_ComponentStyles",
-      themesNamesTranslations: {
-        [Button__YDF.Themes.regular]: "Базовая (по умолчанию)"
-      },
-      geometricVariationsTranslations: {
-        [Button__YDF.GeometricVariations.regular]: "Базовая (по умолчанию)",
-        [Button__YDF.GeometricVariations.small]: "Компактная",
-        [Button__YDF.GeometricVariations.linkLike]: "Внешний вид обычной ссылки"
-      },
-      geometricModifiersNamesTranslations: {
-        [Button__YDF.GeometricModifiers.pillShape]: "Максимальное скругление углов",
-        [Button__YDF.GeometricModifiers.squareShape]: "Квадратная форма",
-        [Button__YDF.GeometricModifiers.squareShapeUnlessOverflowed]: "Квадратная форма покуда не переполнена",
-        [Button__YDF.GeometricModifiers.singleLine]: "Всегда одна строка с усечением текста при нехватке ширины",
-        [Button__YDF.GeometricModifiers.noLeftBorderAndRoundings]: "Отсутствие обводки и скруглений слева",
-        [Button__YDF.GeometricModifiers.noRightBorderAndRoundings]: "Отсутствие обводки и скруглений справа",
-        [Button__YDF.GeometricModifiers.noTopBorderAndRoundings]: "Отсутствие обводки и скруглений сверху",
-        [Button__YDF.GeometricModifiers.noBottomBorderAndRoundings]: "Отсутствие обводки и скруглений снизу",
-        [Button__YDF.GeometricModifiers.noRoundings]: "Отсутствие скруглений",
-        [Button__YDF.GeometricModifiers.horizontallyShrinkable]: "Сжимаема по горизонтали"
-      },
-      decorativeVariationsTranslations: {
-        [Button__YDF.DecorativeVariations.regular]: "Базовая (по умолчанию)",
-        [Button__YDF.DecorativeVariations.accented]: "Акцентированная",
-        [Button__YDF.DecorativeVariations.danger]: "Опасное действие",
-        [Button__YDF.DecorativeVariations.linkLike]: "Внешний вид обычной ссылки"
-      },
-      decorativeModifiersNamesTranslations: {
-        [Button__YDF.DecorativeModifiers.bordersDisguising]: "Эффект отсутствия обводки без изменения размеров",
-        [Button__YDF.DecorativeModifiers.noBackground]: "Без заливки",
-        [Button__YDF.DecorativeModifiers.noBackgroundInDefaultState]: "Нет заливки в начальном состоянии"
-      },
-      loadingPlaceholder: true
-    })
+    +ButtonComponent-Overview({ framework: SupportedFrameworks.vue })
+
+
+    //- ┅┅┅ Класс `Button` ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      innerHTML: localizedSectioning.ButtonClass.$heading,
+      HTML_ID: localizedSectioning.ButtonClass.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ Vue-свойства ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.ButtonClass.$children.vueProperties.$heading,
+      HTML_ID: localizedSectioning.ButtonClass.$children.vueProperties.$anchor
+    }).Article-Heading3
+
+    +ButtonComponent-PugMixinOrClassSynopsis({ framework: SupportedFrameworks.vue })

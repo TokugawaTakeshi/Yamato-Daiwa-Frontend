@@ -38,6 +38,12 @@ block append Metadata
           pages: [
 
             {
+              title: "Accordion",
+              URI: "@Workbenches/GUI_Components/Accordion/Accordion.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+            },
+
+            {
               title: "AdmonitionBlock",
               URI: "@Workbenches/GUI_Components/AdmonitionBlock/AdmonitionBlock.workbench",
               progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
@@ -47,6 +53,18 @@ block append Metadata
               title: "Badge",
               URI: "@Workbenches/GUI_Components/Badge/Badge.workbench",
               progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            },
+
+            {
+              title: "BlockingLoadingOverlay",
+              URI: "@Workbenches/GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+            },
+
+            {
+              title: "LoadingIndicator",
+              URI: "@Workbenches/GUI_Components/LoadingIndicator/LoadingIndicator.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
             }
 
           ],
@@ -62,12 +80,30 @@ block append Metadata
                 {
                   title: "Button",
                   URI: "@Workbenches/GUI_Components/Controls/Buttons/Plain/Button.workbench",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+                },
+
+                {
+                  title: "ClosingButton",
+                  URI: "@Workbenches/GUI_Components/Controls/Buttons/Closing/ClosingButton.workbench",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                },
+
+                {
+                  title: "HamburgerMenuButton",
+                  URI: "@Workbenches/GUI_Components/Controls/Buttons/Hamburger/HamburgerMenuButton.workbench.pug",
                   progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
                 },
 
                 {
                   title: "DateTimePicker",
                   URI: "@Workbenches/GUI_Components/Controls/DateTimePicker/DateTimePicker.workbench",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                },
+
+                {
+                  title: "MenuList",
+                  URI: "@Workbenches/GUI_Components/Controls/MenuList/MenuList.workbench",
                   progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
                 },
 
@@ -79,33 +115,53 @@ block append Metadata
 
               ],
 
-              sections:
+              sections: [
 
-                [
+                {
 
-                  {
+                  heading: "Validatables",
 
-                    heading: "Validatables",
+                  pages: [
 
-                    pages: [
+                    {
+                      title: "Checkbox",
+                      URI: "@Workbenches/GUI_Components/Controls/Validatables/Checkbox/Checkbox.workbench",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    },
 
-                      {
-                        title: "Checkbox",
-                        URI: "@Workbenches/GUI_Components/Controls/Validatables/Checkbox/Checkbox.workbench",
-                        progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
-                      },
+                    {
+                      title: "NumberBox",
+                      URI: "@Workbenches/GUI_Components/Controls/Validatables/NumberBox/NumberBox.workbench",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    },
 
-                      {
-                        title: "TextBox",
-                        URI: "@Workbenches/GUI_Components/Controls/Validatables/TextBox/TextBox.workbench",
-                        progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
-                      }
+                    {
+                      title: "TextBox",
+                      URI: "@Workbenches/GUI_Components/Controls/Validatables/TextBox/TextBox.workbench",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    }
 
-                    ]
+                  ]
 
-                  }
+                },
 
-                ]
+                {
+
+                  heading: "Validatables",
+
+                  pages: [
+
+                    {
+                      title: "Table",
+                      URI: "@Workbenches/GUI_Components/Typography/Table/Table.workbench",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    }
+
+                  ]
+
+                }
+
+              ]
 
             }
 

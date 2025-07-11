@@ -1,3 +1,6 @@
+include ValidatableControlShellLocalizationIncludingStaticPreview.english.pug
+
+
 -
 
   class ValidatableControlShell__YDF {
@@ -44,7 +47,7 @@
      *
      * @param {
      *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
-     * } ownAndCorrespondingValidatableControlShellThemesDefinition
+     * } ownAndCorrespondingChildrenThemesDefinition
      *
      * @returns { typeof ValidatableControlShell__YDF }
      *
@@ -58,9 +61,9 @@
      *   }
      * });
      */
-    static defineThemes(ownAndCorrespondingValidatableControlShellThemesDefinition) {
+    static defineThemes(ownAndCorrespondingChildrenThemesDefinition) {
       return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
-        ownAndCorrespondingValidatableControlShellThemesDefinition, ValidatableControlShell__YDF
+        ownAndCorrespondingChildrenThemesDefinition, ValidatableControlShell__YDF
       );
     }
 
@@ -124,7 +127,7 @@
      *
      * @param {
      *   { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
-     * } ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition
+     * } ownAndCorrespondingChildrenGeometricVariationsDefinition
      *
      * @returns { typeof ValidatableControlShell__YDF }
      *
@@ -138,9 +141,9 @@
      *   }
      * });
      */
-    static defineGeometricVariations(ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition) {
+    static defineGeometricVariations(ownAndCorrespondingChildrenGeometricVariationsDefinition) {
       return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
-        ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition, ValidatableControlShell__YDF
+        ownAndCorrespondingChildrenGeometricVariationsDefinition, ValidatableControlShell__YDF
       );
     }
 
@@ -184,7 +187,7 @@
      *
      * @param {
      *   { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
-     * } ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition
+     * } ownAndCorrespondingChildrenDecorativeVariationsDefinition
      *
      * @returns { typeof ValidatableControlShell__YDF }
      *
@@ -200,9 +203,9 @@
      *   }
      * });
      */
-    static defineDecorativeVariations(ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition) {
+    static defineDecorativeVariations(ownAndCorrespondingChildrenDecorativeVariationsDefinition) {
       return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
-        ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition, ValidatableControlShell__YDF
+        ownAndCorrespondingChildrenDecorativeVariationsDefinition, ValidatableControlShell__YDF
       );
     }
 
@@ -217,51 +220,62 @@
 
       label: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       guidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       required: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsRequired: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsOptional: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: {
         type: Boolean,
-        defaultValue: false
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
       },
 
       coreElementHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       labelElementHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       mainSlotWrapperAdditionalCSS_Classes: {
         type: Array,
-        defaultValue: [],
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
         element: {
           type: String,
           minimalCharactersCount: 1
@@ -270,7 +284,8 @@
 
       theme: {
         type: String,
-        defaultValue: ValidatableControlShell__YDF.Themes.regular,
+        undefinedValueSubstitution: ValidatableControlShell__YDF.Themes.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(ValidatableControlShell__YDF.Themes).
             map(([ key, value ]) => ({ key: `ValidatableControlShell__YDF.Themes.${ key }`, value }))
@@ -278,12 +293,14 @@
 
       areThemesCSS_ClassesCommon: {
         type: Boolean,
-        defaultValue: ValidatableControlShell__YDF.areThemesCSS_ClassesCommon
+        undefinedValueSubstitution: ValidatableControlShell__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        defaultValue: ValidatableControlShell__YDF.GeometricVariations.regular,
+        undefinedValueSubstitution: ValidatableControlShell__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(ValidatableControlShell__YDF.GeometricVariations).
             map(([ key, value ]) => ({ key: `ValidatableControlShell__YDF.GeometricVariations.${ key }`, value }))
@@ -291,10 +308,74 @@
 
       decorativeVariation: {
         type: String,
-        defaultValue: ValidatableControlShell__YDF.DecorativeVariations.regular,
+        undefinedValueSubstitution: ValidatableControlShell__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
         allowedAlternatives: Object.
             entries(ValidatableControlShell__YDF.DecorativeVariations).
             map(([ key, value ]) => ({ key: `ValidatableControlShell__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    };
+
+    /**
+     * @public
+     * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * */
+    static loadingPlaceholderPropertiesSpecification = {
+
+      label: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      guidance: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      badge: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mainSlotWrapperAdditionalCSS_Classes: {
+        type: Array,
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+        element: {
+          type: String,
+          minimalCharactersCount: 1
+        }
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: ValidatableControlShell__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(ValidatableControlShell__YDF.Themes).
+            map(([ key, value ]) => ({ key: `ValidatableControlShell__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: ValidatableControlShell__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: ValidatableControlShell__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(ValidatableControlShell__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `ValidatableControlShell__YDF.GeometricVariations.${ key }`, value }))
       }
 
     };
@@ -309,7 +390,7 @@
     static statesSimulationsSpecification = ComponentsAuxiliaries.generateValidatableControlGeneralStatesSimulationsSpecification({
       validationErrorsMessages: true,
       asynchronousValidationsStatuses: true
-    })
+    });
 
 
     /* ━━━ Guidance ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -326,12 +407,12 @@
         ),
         ({ URI, anchorText }) =>
             `<a ` +
-              `class="ValidatableControlShell--YDF-Guidance-Link" ` +
+              `class="Link--YDF ValidatableControlShell--YDF-Guidance-Link" ` +
               `href="${ URI }" ` +
               `target="_blank" ` +
               `rel="noopener noreferrer nofollow"` +
             `>` +
-              `${ anchorText }` +
+              anchorText +
             `</a>`
       )
     }
@@ -351,6 +432,6 @@
      * @public
      * @type { ValidatableControlShellLocalization }
      * */
-    static localization = validatableControlShellYDF_ComponentLocalization__english;
+    static localization = validatableControlShellYDF_GUI_ComponentLocalization__english;
 
   }

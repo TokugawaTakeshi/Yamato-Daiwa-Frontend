@@ -169,7 +169,7 @@ mixin ValidatableControlShell--YDF(properties, statesSimulations)
             valueLabel: ValidatableControlShell__YDF.localization.requirementBadges.required,
             theme: ValidatableControlShell__YDF.selfAndChildrenComponentsThemesCorrespondence.badge[theme],
             geometricVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
-                badge[decorativeVariation],
+                badge[geometricVariation],
             geometricModifiers: [ Badge__YDF.GeometricModifiers.pillShape ],
             decorativeVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.
                 requiredInputBadge[decorativeVariation]
@@ -181,7 +181,7 @@ mixin ValidatableControlShell--YDF(properties, statesSimulations)
             valueLabel: ValidatableControlShell__YDF.localization.requirementBadges.optional,
             theme: ValidatableControlShell__YDF.selfAndChildrenComponentsThemesCorrespondence.badge[theme],
             geometricVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
-                badge[decorativeVariation],
+                badge[geometricVariation],
             geometricModifiers: [ Badge__YDF.GeometricModifiers.pillShape ],
             decorativeVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.
                 optionalInputBadge[decorativeVariation]
@@ -193,7 +193,7 @@ mixin ValidatableControlShell--YDF(properties, statesSimulations)
             valueLabel: ValidatableControlShell__YDF.localization.requirementBadges.optional,
             theme: ValidatableControlShell__YDF.selfAndChildrenComponentsThemesCorrespondence.badge[theme],
             geometricVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
-                badge[decorativeVariation],
+                badge[geometricVariation],
             geometricModifiers: [ Badge__YDF.GeometricModifiers.pillShape ],
             decorativeVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.
                 optionalInputBadge[decorativeVariation]
@@ -218,16 +218,23 @@ mixin ValidatableControlShell--YDF(properties, statesSimulations)
     if validationErrorsMessages === true
       ul.ValidatableControlShell--YDF-ValidationErrorsMessagesList
         each sampleValidationErrorMessage in ValidatableControlShell__YDF.localization.sampleValidationErrorsMessages
-          li.ValidatableControlShell--YDF-ValidationErrorMessage= sampleValidationErrorMessage
+          li.ValidatableControlShell--YDF-ValidationErrorsMessagesList-Item= sampleValidationErrorMessage
 
     else if Array.isArray(validationErrorsMessages) && validationErrorsMessages.length > 0
       ul.ValidatableControlShell--YDF-ValidationErrorsMessagesList
         each validationErrorMessage in validationErrorsMessages
-          li.ValidatableControlShell--YDF-ValidationErrorMessage= validationErrorMessage
+          li.ValidatableControlShell--YDF-ValidationErrorsMessagesList-Item= validationErrorMessage
 
-    template&attributes({
-      [ValidatableControlShell__YDF.DOM_AccessResources.validationErrorsMessagesListMountingPoint.DATA_ATTRIBUTE_KEY]: ""
-    })
+    else
+
+      //- 【　Specification　】
+        The usage of states simulations from there `validationErrorsMessages` comes assumes the usage for static preview
+          where there is no the JavaScript dynamics thus the above "template" element is not required.
+        Additionally, the simultaneous rendering of "ValidationErrorsMessagesList" element and below template requires
+          additional styles which are completely useless on production mode.
+      template&attributes({
+        [ValidatableControlShell__YDF.DOM_AccessResources.validationErrorsMessagesList.mountingPoint.DATA_ATTRIBUTE_KEY]: ""
+      })
 
 
     //- ━━━ Asynchronous Validations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -249,8 +256,7 @@ mixin ValidatableControlShell--YDF(properties, statesSimulations)
                 class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__InProgressState"
               )
                 +LoadingIndicator--YDF({
-                  type: LoadingIndicator__YDF.Types.variableWidthArcSpinner,
-                  geometricVariation: LoadingIndicator__YDF.GeometricVariations.small
+                  type: LoadingIndicator__YDF.Types.variableWidthArcSpinner
                 }).ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-LoadingIndicator
                 p.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text= asynchronousValidationsStatus.message
 
@@ -270,6 +276,122 @@ mixin ValidatableControlShell--YDF(properties, statesSimulations)
                 +MultiplicationSign__Boxed__Filled--YDF_Icon.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon
                 p.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text= asynchronousValidationsStatus.message
 
-    template&attributes({
-      [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesListMountingPoint.DATA_ATTRIBUTE_KEY]: ""
-    })
+    else
+
+      //- 【　Specification　】
+        The usage of states simulations from there `asynchronousValidationsStatuses` comes assumes the usage for static
+          preview where there is no the JavaScript dynamics thus the above "template" element is not required.
+        Additionally, the simultaneous rendering of "AsynchronousValidationsStatusesList" element and below template
+          requires additional styles which are completely useless on production mode.
+      template&attributes({
+        [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesList.mountingPoint.DATA_ATTRIBUTE_KEY]: ""
+      })
+
+
+mixin ValidatableControlShell--YDF-LoadingPlaceholder(properties)
+
+  -
+
+    const {
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      label,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      guidance,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      badge,
+
+      /**
+       * @type { Array<string> }
+       * @default []
+       * */
+      mainSlotWrapperAdditionalCSS_Classes,
+
+      /**
+       * @type { string }
+       * @default ValidatableControlShell__YDF.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default ValidatableControlShell__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default ValidatableControlShell__YDF.GeometricVariations.regular
+       */
+      geometricVariation
+
+    } = processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: ValidatableControlShell__YDF.loadingPlaceholderPropertiesSpecification,
+      mixinName: `${ ValidatableControlShell__YDF.CSS_NAMESPACE }-LoadingPlaceholder`
+    });
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes = [
+
+      "ValidatableControlShell--YDF__LoadingPlaceholder",
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: ValidatableControlShell__YDF.Themes,
+        CSS_Namespace: ValidatableControlShell__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: ValidatableControlShell__YDF.GeometricVariations,
+        CSS_Namespace: ValidatableControlShell__YDF.CSS_NAMESPACE
+      }),
+
+    ];
+
+  .ValidatableControlShell--YDF(
+    class=rootElementModifierCSS_Classes
+  )&attributes(attributes)
+
+    if label || badge
+
+      .ValidatableControlShell--YDF-Header
+
+        if label
+
+          .ValidatableControlShell--YDF-Label.ValidatableControlShell--YDF-Label__LoadingPlaceholder
+
+        if badge
+
+          +Badge--YDF-LoadingPlaceholder({
+            theme: ValidatableControlShell__YDF.selfAndChildrenComponentsThemesCorrespondence.
+                badge[theme],
+            geometricVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
+                badge[decorativeVariation],
+            geometricModifiers: [ Badge__YDF.GeometricModifiers.pillShape ]
+          }).ValidatableControlShell--YDF-Badge
+
+    if guidance
+
+      .ValidatableControlShell--YDF-Guidance.ValidatableControlShell--YDF-Guidance__LoadingPlaceholder
+
+    .ValidatableControlShell--YDF-MainSlotCustomizableWrapper(
+      class= mainSlotWrapperAdditionalCSS_Classes
+    )
+
+      block

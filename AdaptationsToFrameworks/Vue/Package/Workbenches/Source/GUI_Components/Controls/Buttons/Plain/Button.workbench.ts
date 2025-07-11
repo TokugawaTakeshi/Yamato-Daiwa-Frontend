@@ -1,5 +1,5 @@
 import { createApp as createVueApplication } from "vue";
-import ButtonComponentTestSite from "./ButtonComponentTestSite.vue";
+import ButtonWorkbench from "./ButtonWorkbench.vue";
 
 
-createVueApplication(ButtonComponentTestSite).mount("#APPLICATION");
+createVueApplication(ButtonWorkbench).mount("#APPLICATION");

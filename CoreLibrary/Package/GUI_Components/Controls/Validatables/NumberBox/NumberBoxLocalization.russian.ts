@@ -1,7 +1,7 @@
 import type { NumberBoxLocalization } from "./NumberBoxLocalization";
 
 
-export const numberBoxYDF_ComponentLocalization__english: NumberBoxLocalization = {
+export const numberBoxYDF_GUI_ComponentLocalization__english: NumberBoxLocalization = {
   buttons: {
     incrementing: {
       generateAccessibilityGuidance: ({ step }: Readonly<{ step: number; }>): string => `Увеличить значение на ${ step }`

@@ -52,7 +52,7 @@ Checkbox--YDF = {
 }
 
 
-generateCheckboxYDF_GUI_ComponentStyles(
+Checkbox--YDF-generateStyles(
   preset = Checkbox--YDF.defaultProperties,
   overridings = {},
   options = Checkbox--YDF.defaultOptions,
@@ -62,7 +62,7 @@ generateCheckboxYDF_GUI_ComponentStyles(
   properties = deeplyCloneAndOverrideObject(preset, overridings)
 
   validateObjectTypeParameter({
-    mixinOrFunctionName: "generateCheckboxYDF_GUI_ComponentStyles",
+    mixinOrFunctionName: "Checkbox--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
     schema: {
@@ -130,6 +130,7 @@ generateCheckboxYDF_GUI_ComponentStyles(
 
         cursor pointer
 
+
       &:has(.Checkbox--YDF-HiddenInputElement:disabled)
 
         cursor not-allowed
@@ -157,12 +158,13 @@ generateCheckboxYDF_GUI_ComponentStyles(
 
           display none
 
+
       &-HiddenInputElement
 
         display none
 
 
-  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  // ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
   applyGeometricVariation(themeName, variationName, variation)
 
     VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
@@ -183,18 +185,23 @@ generateCheckboxYDF_GUI_ComponentStyles(
     })
 
 
+    // ╍╍╍ Root Element ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     +provideDefaultSelectorWhenRootAndApply("." + Checkbox--YDF.CSS_NAMESPACE)
 
       applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
 
 
+    // ╍╍╍ Button-Like Wrapper ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     .Checkbox--YDF-ButtonLikeWrapper
 
       validateAndAssignStoredInObjectCSS_Properties({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
-          min-width: { dotSeparatedPath: "buttonLikeWrapper.minimalWidth", required: false },
+          min-width: {
+            dotSeparatedPath: "buttonLikeWrapper.minimalWidth",
+            required: false
+          },
           borders: {
             dotSeparatedPath: "buttonLikeWrapper.borders",
             required: false,
@@ -208,7 +215,10 @@ generateCheckboxYDF_GUI_ComponentStyles(
         }
       })
 
+      applyMixinStoredInObjectIfItIsNotNull(variation.buttonLikeWrapper.customDeclarations)
 
+
+    // ╍╍╍ Frame for Checkmark ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     .Checkbox--YDF-FrameForCheckmark
 
       validateAndAssignStoredInObjectCSS_Properties({
@@ -250,20 +260,25 @@ generateCheckboxYDF_GUI_ComponentStyles(
       applyMixinStoredInObjectIfItIsNotNull(variation.frameForCheckmark.customDeclarations)
 
 
+    // ╍╍╍ Checkmark ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     .Checkbox--YDF-Checkmark
+
+      thickness = extractAndValidateObjectProperties({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        extracts: {
+          border-bottom-width: { dotSeparatedPath: "checkmark.thickness", required: true },
+          border-left-width: { dotSeparatedPath: "checkmark.thickness", required: true }
+        }
+      }).thickness
+
+      border-bottom-width thickness
+      border-left-width thickness
 
       validateAndAssignStoredInObjectCSS_Properties({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
-          border-bottom-width: {
-            dotSeparatedPath: "checkmark.thickness",
-            required: true
-          },
-          border-left-width: {
-            dotSeparatedPath: "checkmark.thickness",
-            required: true
-          },
           width: {
             dotSeparatedPath: "checkmark.logSegmentWidth",
             required: true
@@ -284,6 +299,7 @@ generateCheckboxYDF_GUI_ComponentStyles(
         transform rotate(-45deg) translateY(-(variation.checkmark.upwardShifting))
 
 
+    // ╍╍╍ Label ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     .Checkbox--YDF-Label
 
       // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight`.
@@ -334,6 +350,19 @@ generateCheckboxYDF_GUI_ComponentStyles(
           mustAllowWordsBreakingAnywhere: !options.geometricModifiers.singleLine
         })
 
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+          fontSize: cachedValidReusables.labelTextSize,
+          lineSpacing: cachedValidReusables.labelLineSpacing,
+          lineHeight: cachedValidReusables.labelLineHeight,
+          paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins: {
+
+            top: cachedValidReusables.topSpacing,
+            bottom: cachedValidReusables.topSpacing,
+            upwardShifting: cachedValidReusables.labelUpwardShifting
+          },
+          mustAllowWordsBreakingAnywhere: !options.geometricModifiers.singleLine
+        })
+
 
       if options.geometricModifiers.singleLine
 
@@ -366,22 +395,40 @@ generateCheckboxYDF_GUI_ComponentStyles(
 
       Declarations()
 
-        validateAndAssignStoredInObjectCSS_Properties({
-          targetObject: substateSettings.rootElement,
-          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-          assigments: {
-            color: { dotSeparatedPath: "text.color", required: false },
-            underline: { dotSeparatedPath: "text.underline", required: false, applier: applyObjectTypeUnderlineDefinition },
-            background-color: { dotSeparatedPath: "background.color", required: false },
-            background-image: { dotSeparatedPath: "background.image", required: false },
-            border-style: { dotSeparatedPath: "borders.style", required: false },
-            border-color: { dotSeparatedPath: "borders.color", required: false },
-            outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition },
-            box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition }
-          }
-        })
+        .Checkbox--YDF-ButtonLikeWrapper
 
-        applyMixinStoredInObjectIfItIsNotNull(substateSettings.rootElement.customDeclarations)
+          validateAndAssignStoredInObjectCSS_Properties({
+            targetObject: substateSettings.buttonLikeWrapper,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              color: { dotSeparatedPath: "text.color", required: false },
+              underline: { dotSeparatedPath: "text.underline", required: false, applier: applyObjectTypeUnderlineDefinition },
+              background-color: { dotSeparatedPath: "background.color", required: false },
+              background-image: { dotSeparatedPath: "background.image", required: false },
+              border-style: { dotSeparatedPath: "borders.style", required: false },
+              border-color: { dotSeparatedPath: "borders.color", required: false },
+              outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition },
+              box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition }
+            }
+          })
+
+          applyMixinStoredInObjectIfItIsNotNull(substateSettings.buttonLikeWrapper.customDeclarations)
+
+
+        .Checkbox--YDF-FrameForCheckmark
+
+          validateAndAssignStoredInObjectCSS_Properties({
+            targetObject: substateSettings.frameForCheckmark,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              background-color: { dotSeparatedPath: "background.color", required: false },
+              background-image: { dotSeparatedPath: "background.image", required: false },
+              border-style: { dotSeparatedPath: "borders.style", required: false },
+              border-color: { dotSeparatedPath: "borders.color", required: false },
+              outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition },
+              box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition }
+            }
+          })
 
 
       if (substateKey == "defaultState")
@@ -441,21 +488,3 @@ generateCheckboxYDF_GUI_ComponentStyles(
       applyGeometricVariation: applyGeometricVariation,
       applyDecorativeVariation: applyDecorativeVariation
     })
-
-  .Checkbox--YDF
-
-    &-FrameForCheckmark
-
-      background-color white
-      box-shadow inset 1px 1px 0 0 alpha(black, 25%)
-
-
-      ../.Checkbox--YDF__CheckedState &
-
-        &:after
-
-          border-top-style none
-          border-bottom-style solid
-          border-left-style solid
-          border-right-style none
-          border-color #454545

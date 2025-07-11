@@ -632,6 +632,7 @@ mixin ButtonGallery
             decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
           })
 
+
   //- ─── No Top Border and Roundings ──────────────────────────────────────────────────────────────────────────────────
   if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noTopBorderAndRoundingsGeometricModifier]
 
@@ -783,6 +784,7 @@ mixin ButtonGallery
             geometricModifiers: [ Button__YDF.GeometricModifiers.noRoundings ],
             decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
           })
+
 
   //- ─── Horizontally Shrinkable ────────────────────────────────────────────────────────────────────────────────────
   if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.horizontallyShrinkableGeometricModifier]
@@ -1024,6 +1026,6 @@ mixin ButtonGallery
           +Button--YDF-LoadingPlaceholder({ geometricVariation: geometricVariation })
 
           +Button--YDF-LoadingPlaceholder({
-            geometricVariation: geometricVariation,
+            geometricVariation,
             geometricModifiers: [ Button__YDF.GeometricModifiers.pillShape ]
           })

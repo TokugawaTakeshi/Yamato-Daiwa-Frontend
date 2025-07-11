@@ -12,9 +12,6 @@
     "experimentalDecorators": true,
     "allowJs": true, /* Actual for Vue3; */
     "skipLibCheck": true,
-
-    "baseUrl": "./",
-    "declaration": true
   },
   "include": [
     "Project.d.ts",

@@ -2,58 +2,101 @@
  * https://github.com/Microsoft/TypeScript/issues/15479 */
 
 /* ━━━ GUI Components ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* ─── AdmonitionBlock ────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ AdmonitionBlock ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 export { default as AdmonitionBlock } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock";
-export type { default as AdmonitionBlockLocalization } from "./GUI_Components/AdmonitionBlock/AdmonitionBlockLocalization";
-export { default as admonitionBlockYDF_ComponentLocalization__english } from
+export type { AdmonitionBlockLocalization } from "./GUI_Components/AdmonitionBlock/AdmonitionBlockLocalization";
+export { default as admonitionBlockYDF_GUI_ComponentLocalization__english } from
     "./GUI_Components/AdmonitionBlock/AdmonitionBlockLocalization.english";
 
-/* ─── BlockingLoadingOverlay ─────────────────────────────────────────────────────────────────────────────────────── */
-export { default as BlockingLoadingOverlay } from "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay";
 
-/* ─── Buttons ────────────────────────────────────────────────────────────────────────────────────────────────────── */
-export { default as Button } from "./GUI_Components/Controls/Buttons/Plain/Button";
-export { default as HamburgerMenuButton } from "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton";
-
-/* ┄┄┄ ValidatableControlShell ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+/* ┅┅┅ Controls ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+/* ╍╍╍ ValidatableControlShell ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
 export { default as ValidatableControlShell } from "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell";
-export type { default as ValidatableControlShellLocalization } from
+export type { ValidatableControlShellLocalization } from
     "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellLocalization";
-export { default as validatableControlShellYDF_ComponentLocalization__english } from
+export { default as validatableControlShellYDF_GUI_ComponentLocalization__english } from
     "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellLocalization.english";
 
-/* ┄┄┄ Validatables ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
+
+/* ╍╍╍ Buttons ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+/* ─── Plain ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
+export { default as Button } from "./GUI_Components/Controls/Buttons/Plain/Button";
+
+/* ─── Closing ────────────────────────────────────────────────────────────────────────────────────────────────────── */
+export type { ClosingButtonLocalization } from "./GUI_Components/Controls/Buttons/Closing/ClosingButtonLocalization";
+export { default as closingButtonYDF_GUI_ComponentLocalization__english } from
+    "./GUI_Components/Controls/Buttons/Closing/ClosingButtonLocalization.english";
+
+/* ─── Hamburger Menu ─────────────────────────────────────────────────────────────────────────────────────────────── */
+export { default as HamburgerMenuButton } from "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton";
+export type { HamburgerMenuButtonLocalization } from
+    "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButtonLocalization";
+export { default as hamburgerMenuButtonYDF_GUI_ComponentLocalization__english } from
+    "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButtonLocalization.english";
+
+
+/* ╍╍╍ Validatables ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+/* ─── Text Box ───────────────────────────────────────────────────────────────────────────────────────────────────── */
 export { default as TextBox } from "./GUI_Components/Controls/Validatables/TextBox/TextBox";
+export type { TextBoxLocalization } from "./GUI_Components/Controls/Validatables/TextBox/TextBoxLocalization";
+export { default as textBoxYDF_GUI_ComponentLocalization__english } from
+    "./GUI_Components/Controls/Validatables/TextBox/TextBoxLocalization.english";
 
 
 /* ━━━ Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ┅┅┅ BlockingLoadingOverlay ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { default as BlockingLoadingOverlay } from "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay";
+
+export type { DropDownListLocalization } from
+    "./GUI_Components/Controls/Validatables/DropDownLists/Plain/DropDownListLocalization";
+
 export { default as DateTimePicker } from "./GUI_Components/Controls/Validatables/DateTimePicker/DateTimePicker";
-export type { default as DateTimePickerLocalization } from
+export type { DateTimePickerLocalization } from
     "./GUI_Components/Controls/Validatables/DateTimePicker/DateTimePickerLocalization";
 
 export { default as FilesUploader } from "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploader";
-export type { default as FilesUploaderLocalization } from
-    "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploaderLocalization";
-export { filesUploaderYDF_ComponentLocalization__english } from
+export type { FilesUploaderLocalization } from "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploaderLocalization";
+export { filesUploaderYDF_GUI_ComponentLocalization__english } from
     "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploaderLocalization.english";
 
 export { default as ModalDialog } from "./GUI_Components/Controls/ModalDialogs/Common/ModalDialog";
 export { default as ConfirmationModalDialog } from "./GUI_Components/Controls/ModalDialogs/Confirmation/ConfirmationModalDialog";
 
 export { default as NumberBox } from "./GUI_Components/Controls/Validatables/NumberBox/NumberBox";
+export type { NumberBoxLocalization } from "./GUI_Components/Controls/Validatables/NumberBox/NumberBoxLocalization";
 
 export { default as RadioButton } from "./GUI_Components/Controls/RadioButton/RadioButton";
 export { default as RadioButtonsGroup } from "./GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup";
 
 
 export { default as CodeViewer } from "./GUI_Components/Viewers/Code/CodeViewer";
+export type { CodeViewerLocalization } from "./GUI_Components/Viewers/Code/CodeViewerLocalization";
 export { default as SingleImageViewer } from "./GUI_Components/Viewers/SingleImage/SingleImageViewer";
+export type { SingleImageViewerLocalization } from "./GUI_Components/Viewers/SingleImage/SingleImageViewerLocalization";
 
 export { default as Snackbar } from "./GUI_Components/Snackbar/Snackbar";
+export type { SnackbarLocalization } from "./GUI_Components/Snackbar/SnackbarLocalization";
+export { snackbarYDF_GUI_ComponentLocalization__english } from "./GUI_Components/Snackbar/SnackbarLocalization.english";
+
+export type { QuestionAndAnswerBoxLocalization } from
+    "./GUI_Components/Typography/QuestionAndAnswerBox/QuestionAndAnswerBoxLocalization";
 
 export { default as InputtedValueValidation } from "./GUI_Components/Controls/_Validation/InputtedValueValidation";
 export { default as ValidatableControl } from "./GUI_Components/Controls/_Validation/ValidatableControl";
 export { default as ValidatableControlsGroup } from "./GUI_Components/Controls/_Validation/ValidatableControlsGroup";
+
+export { default as alwaysNonEmptyValue } from "./GUI_Components/Controls/_Validation/OmittedValueCheckers/alwaysNonEmptyValue";
+export { default as isArrayEmpty } from "./GUI_Components/Controls/_Validation/OmittedValueCheckers/isArrayEmpty";
+export { default as isDateWithoutTimeOrNull } from
+    "./GUI_Components/Controls/_Validation/OmittedValueCheckers/isDateWithoutTimeOrNull";
+export { default as isNotNaN_Number } from "./GUI_Components/Controls/_Validation/OmittedValueCheckers/isNotNaN_Number";
+export { default as isNumberZero } from "./GUI_Components/Controls/_Validation/OmittedValueCheckers/isNumberZero";
+export { default as isStringEmpty } from "./GUI_Components/Controls/_Validation/OmittedValueCheckers/isStringEmpty";
+export { default as isTimePointOrNull } from
+    "./GUI_Components/Controls/_Validation/OmittedValueCheckers/isTimePointOrNull";
+
+export { default as isStringOrNull } from "./GUI_Components/Controls/_Validation/SupportedValuesCheckers/isStringOrNull";
+export { default as isNumberOrNull } from "./GUI_Components/Controls/_Validation/SupportedValuesCheckers/isNumberOrNull";
 
 export { default as MaximalElementsCountInputtedValueValidationRule } from
     "./GUI_Components/Controls/_Validation/PreMadeRules/Arrayed/MaximalElementsCountInputtedValueValidationRule";
@@ -112,7 +155,11 @@ export { default as passwordInputtedValueValidationLocalization__english } from
 export { default as CollapsingAnimation } from "./Animations/CollapsingAnimation";
 export { default as ExpandingAnimation } from "./Animations/ExpandingAnimation";
 
+export type { PaginationLocalization } from "./GUI_Components/Controls/Pagination/PaginationLocalization";
+
 export { default as onDifferentValueAssigned } from "./GUI_Components/_Auxiliaries/Decorators/onDifferentValueAssigned";
 
 export { replaceMarkdownBold } from "./Logic/Utils/Markdown/replaceMarkdownBold";
 export { replaceMarkdownLink } from "./Logic/Utils/Markdown/replaceMarkdownLink";
+
+export type { RootElementDefinition } from "./Logic/Types/RootElementDefinition";

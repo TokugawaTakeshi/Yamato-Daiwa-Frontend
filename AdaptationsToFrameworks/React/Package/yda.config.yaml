@@ -1,128 +1,124 @@
-projectBuilding:
+$projectBuilding:
 
-  commonSettings:
+  $commonSettings:
 
-    selectiveExecutions:
+    $selectiveExecutions:
 
       Distributable:
 
-        tasksAndSourceFilesSelection:
+        $tasksAndSourceFilesSelection:
 
-          ECMA_ScriptLogicProcessing: [ Distributable ]
-
-      Workbenches:
-
-        tasksAndSourceFilesSelection:
-
-          markupProcessing: [ Workbenches ]
-          stylesProcessing: [ Workbenches ]
-          ECMA_ScriptLogicProcessing: [ Workbenches ]
-
-        browserLiveReloadingSetupID: Workbenches
-
-
-  # ━━━ Markup ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  markupProcessing:
-
-    common:
-      buildingModeDependent:
-        LOCAL_DEVELOPMENT: { mustResolveResourceReferencesToRelativePaths: true }
-
-    entryPointsGroups:
+          $ECMA_ScriptLogicProcessing: [ Distributable ]
 
       Workbenches:
 
-        sourceFilesTopDirectoryRelativePath: Workbenches/Source
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
+        $tasksAndSourceFilesSelection:
 
-        buildingModeDependent:
-          LOCAL_DEVELOPMENT:
-            outputTopDirectoryRelativePath: Workbenches/Build
+          $markupProcessing: [ Workbenches ]
+          $stylesProcessing: [ Workbenches ]
+          $ECMA_ScriptLogicProcessing: [ Workbenches ]
+
+        $browserLiveReloadingSetupID: Workbenches
 
 
-  # ━━━ Styles ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  stylesProcessing:
+  # ━━━ Markup Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $markupProcessing:
 
-    entryPointsGroups:
+    $common:
+      $buildingModeDependent:
+        $localDevelopment: { $mustResolveResourcesPointersToRelativePaths: true }
+
+    $entryPointsGroups:
 
       Workbenches:
 
-        sourceFilesTopDirectoryRelativePath: Workbenches/Source
+        $sourceFilesTopDirectoryRelativePath: Workbenches/Source
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
 
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Workbenches/Build
 
-        buildingModeDependent:
-          LOCAL_DEVELOPMENT:
-            outputTopDirectoryRelativePath: Workbenches/Build
+
+  # ━━━ Styles Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $stylesProcessing:
+
+    $entryPointsGroups:
+
+      Workbenches:
+
+        $sourceFilesTopDirectoryRelativePath: Workbenches/Source
+
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
+
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Workbenches/Build
 
 
   # ━━━ ECMAScript Logic Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ECMA_ScriptLogicProcessing:
+  $ECMA_ScriptLogicProcessing:
 
-    entryPointsGroups:
+    $entryPointsGroups:
 
       Distributable:
 
-        singleEntryPointSourceFileRelativePath: Source/index.ts
+        $singleEntryPointSourceFileRelativePath: Source/index.ts
 
-        targetRuntime:
-          type: BROWSER
+        $targetRuntime:
+          $type: BROWSER
 
-        distributing:
-          exposingOfExportsFromEntryPoints:
-            mustExpose: true
-          externalizingDependencies: [ @yamato-daiwa/frontend, react, react-router, react-dom ]
-          typeScriptTypesDeclarations:
-            mustGenerate: true
+        $typeScriptConfigurationFileRelativePath: "tsconfig.build.json"
 
-        buildingModeDependent:
+        $distributing:
+          $exposingOfExportsFromEntryPoints:
+            $mustExpose: true
+          $externalizingDependencies: [ @yamato-daiwa/frontend, react, react-dom, react-router ]
+          $typeScriptTypesDeclarations:
+            $mustGenerate: true
 
-          LOCAL_DEVELOPMENT:
-            outputTopDirectoryRelativePath: Distributable
+        $buildingModeDependent:
 
-          PRODUCTION:
-            outputTopDirectoryRelativePath: Distributable
-            revisioning: { disable: true }
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Distributable
+
+          $production:
+            $outputTopDirectoryRelativePath: Distributable
+            $revisioning: { $disable: true }
 
 
       Workbenches:
 
-        sourceFilesTopDirectoryRelativePath: Workbenches/Source
+        $sourceFilesTopDirectoryRelativePath: Workbenches/Source
 
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
 
-        targetRuntime:
-          type: BROWSER
+        $targetRuntime:
+          $type: BROWSER
 
-        buildingModeDependent:
-          LOCAL_DEVELOPMENT:
-            outputTopDirectoryRelativePath: Workbenches/Build
+        $typeScriptConfigurationFileRelativePath: "tsconfig.workbenches.json"
+
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Workbenches/Build
 
 
-  # ━━━ Development Server ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  browserLiveReloading:
+  # ━━━ Browser Live Reloading ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $browserLiveReloading:
 
-    setups:
+    $setups:
 
       Workbenches:
 
-        localServer:
+        $localServer:
 
-          rootDirectoryRelativePath: Workbenches/Build
-          customStartingFileNameWithExtension: Workbenches.html
+          $rootDirectoryRelativePath: Workbenches/Build
+          $customStartingFileNameWithExtension: Workbenches.html
 
-        openInBrowsers: chrome
-
-
-  # ━━━ Files Watching ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  filesWatching:
-
-    relativePathsOfExcludeDirectories:
-      - Distributable
-      - LocalDatabase
+        $openInBrowsers: chrome

@@ -132,7 +132,7 @@ mixin Badge--YDF-LoadingPlaceholder(properties)
         geometricModifiers: Badge__YDF.propertiesSpecification.geometricModifiers
       },
       mixinName: `${ Badge__YDF.CSS_NAMESPACE }-LoadingPlaceholder`
-    })
+    });
 
     /** @type { Array<string> } */
     const rootElementModifierCSS_Classes = [
@@ -150,7 +150,7 @@ mixin Badge--YDF-LoadingPlaceholder(properties)
         CSS_Namespace: Badge__YDF.CSS_NAMESPACE
       }),
 
-      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(Badge__YDF.CSS_NAMESPACE, geometricModifiers),
+      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(Badge__YDF.CSS_NAMESPACE, geometricModifiers)
 
     ];
 

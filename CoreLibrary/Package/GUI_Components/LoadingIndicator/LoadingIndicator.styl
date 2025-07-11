@@ -6,197 +6,131 @@
 
 LoadingIndicator--YDF = {
 
+  CSS_NAMESPACE: "LoadingIndicator--YDF",
+
   componentIndependentCSS_Class: "RegularTheme--YDF",
 
   Types: {
     variableWidthArcSpinner: "VARIABLE_WIDTH_ARC_SPINNER",
     twoConstantWidthArcsSpinner: "TWO_CONSTANT_WIDTH_ARCS_SPINNER"
-  },
-
-  defaultProperties: {
-
-    themes: {
-      regular: {
-
-        geometricVariations: {
-          regular: LoadingIndicator-RegularTheme-RegularGeometricVariation--YDF,
-          small: LoadingIndicator-RegularTheme-SmallGeometricVariation--YDF
-        },
-
-        decorativeVariations: {
-          dark: LoadingIndicator-RegularTheme-DarkDecorativeVariation--YDF
-        }
-      }
-    }
-  },
-
-  defaultOptions: {
-    themeIndependentStylesOnly: false,
-    areThemesCSS_ClassesCommon: false,
-    themeIndependentGeometricVariations: true
   }
 
 }
 
 
-provideLoadingIndicatorYDF_Component(
-  preset = LoadingIndicator--YDF.defaultProperties,
-  overridings = {},
-  options = LoadingIndicator--YDF.defaultOptions,
-  restParameters__MUST_NOT_BE...
-)
+LoadingIndicator--YDF-generateStyles()
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  .LoadingIndicator--YDF__VariableWidthArcSpinnerType
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "provideLoadingIndicatorYDF_Component",
-    targetParameterNumber: 3,
-    targetParameter: options,
-    schema: {
-      themeIndependentStylesOnly: {
-        type: DataTypes--YDF.boolean,
-        defaultValue: LoadingIndicator--YDF.defaultOptions.themeIndependentStylesOnly
-      },
-      areThemesCSS_ClassesCommon: {
-        type: DataTypes--YDF.boolean,
-        defaultValue: LoadingIndicator--YDF.defaultOptions.externalThemes
-      },
-      themeIndependentGeometricVariations: {
-        type: DataTypes--YDF.boolean,
-        defaultValue: LoadingIndicator--YDF.defaultOptions.themeIndependentGeometricVariations
+    @keyframes LoadingIndicator--YDF__VariableWidthArcSpinnerType
+
+      0%
+
+        transform: rotate(0deg);
+
+
+      100%
+
+        transform: rotate(360deg)
+
+
+    position relative
+    aspect-ratio 1/1
+
+    height 4rem
+
+
+    div
+
+      box-sizing border-box
+      border-radius 50%
+
+      border-style solid
+
+      position absolute
+
+      aspect-ratio 1/1
+
+      width 100%
+      height 100%
+      border-width 0.5em
+
+      animation: LoadingIndicator--YDF__VariableWidthArcSpinnerType 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite
+      border-color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor transparent transparent transparent
+
+
+      &:nth-child(1)
+
+        animation-delay -0.45s;
+
+
+      &:nth-child(2)
+
+        animation-delay -0.3s;
+
+
+      &:nth-child(3)
+
+        animation-delay -0.15s;
+
+
+LoadingIndicator--YDF-customizeGeometry(settingsByTypes)
+
+  iterateAssociativeArray(
+    settingsByTypes,
+    @(type, settings) {
+      LoadingIndicator--YDF-customizeGeometryOfSpecificType(type, settings)
+    }
+  )
+
+
+LoadingIndicator--YDF-customizeGeometryOfSpecificType(type, settings)
+
+  if (type == LoadingIndicator--YDF.Types.variableWidthArcSpinner) {
+
+    &.LoadingIndicator--YDF__VariableWidthArcSpinnerType {
+
+      applyIfNotNull({ height: getObjectValueByDotSeparatedPathSafely(settings, "diameter") })
+
+      div {
+
+        applyIfNotNull({ border-width: getObjectValueByDotSeparatedPathSafely(settings, "thickness") })
+
       }
-    },
-    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
-  })
+
+    }
+
+  }
 
 
-  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  applyBasicRules()
+LoadingIndicator--YDF-customizeDecoration(settingsByTypes)
 
-    .LoadingIndicator--YDF__VariableWidthArcSpinnerType
-
-      @keyframes LoadingIndicator--YDF__VariableWidthArcSpinnerType
-
-        0%
-
-          transform: rotate(0deg);
+  iterateAssociativeArray(
+    settingsByTypes,
+    @(type, settings) {
+      LoadingIndicator--YDF-customizeDecorationOfSpecificType(type, settings)
+    }
+  )
 
 
-        100%
+LoadingIndicator--YDF-customizeDecorationOfSpecificType(type, settings)
 
-          transform: rotate(360deg)
+  if (type == LoadingIndicator--YDF.Types.variableWidthArcSpinner) {
 
+    &.LoadingIndicator--YDF__VariableWidthArcSpinnerType {
 
-      position relative
+      div {
 
+        border-color: settings.color transparent transparent transparent
 
-      div
-
-        box-sizing border-box
-        border-radius 50%
-
-        border-style solid
-
-        position absolute
-
-
-  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
-  applyGeometricVariation(themeName, variationName, variation)
-
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
-      "LoadingIndicator.${ themeName }Theme.${ variationName }Geometry",
-      { themeName: themeName, variationName: variationName }
-    )
-
-    cachedValidReusables = extractAndValidateObjectProperties({
-      targetObject: variation,
-      targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-      extracts: {
-        diameter: {
-          dotSeparatedPath: "variableWidthArcSpinnerType.diameter", required: false
-        },
-        radius: {
-          dotSeparatedPath: "variableWidthArcSpinnerType.radius", mustBeInsteadOf: "variableWidthArcSpinnerType.diameter"
-        },
       }
-    })
 
-    DIAMETER = substituteNull(cachedValidReusables.diameter, cachedValidReusables.radius)
+    }
 
-
-    &.LoadingIndicator--YDF__VariableWidthArcSpinnerType
-
-      width DIAMETER
-      height DIAMETER
+  }
 
 
-      div
+LoadingIndicator--YDF-customize(settingsByTypes)
 
-        width DIAMETER
-        height DIAMETER
-
-        validateAndAssignStoredInObjectCSS_Properties({
-          targetObject: variation,
-          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-          assigments: {
-            border-width: { dotSeparatedPath: "variableWidthArcSpinnerType.thickness", required: false }
-          }
-        })
-
-
-  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
-  applyDecorativeVariation(themeName, variationName, variation)
-
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
-      "LoadingIndicator.${ themeName }Theme.${ variationName }Decoration",
-      {
-        themeName: themeName,
-        variationName: variationName
-      }
-    )
-
-
-    &.LoadingIndicator--YDF__VariableWidthArcSpinnerType
-
-      div
-
-        animation: LoadingIndicator--YDF__VariableWidthArcSpinnerType 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        border-color: variation.color transparent transparent transparent
-
-
-        &:nth-child(1)
-
-          animation-delay -0.45s;
-
-
-        &:nth-child(2)
-
-          animation-delay -0.3s;
-
-
-        &:nth-child(3)
-
-          animation-delay -0.15s;
-
-
-
-  // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  applyBasicRules()
-
-  applyComponentThemes({
-    CSS_Namespace: "LoadingIndicator--YDF",
-    themes: properties.themes,
-    applyGeometricVariation: applyGeometricVariation,
-    applyDecorativeVariation: applyDecorativeVariation
-  })
-
-
-LoadingIndicator--YDF-setCustomColor(type, COLOR)
-
-  if type == LoadingIndicator--YDF.Types.variableWidthArcSpinner
-
-    &.LoadingIndicator--YDF__VariableWidthArcSpinnerType
-
-      div
-
-        border-color: COLOR transparent transparent transparent
+  LoadingIndicator--YDF-customizeGeometry(settingsByTypes)
+  LoadingIndicator--YDF-customizeDecoration(settingsByTypes)

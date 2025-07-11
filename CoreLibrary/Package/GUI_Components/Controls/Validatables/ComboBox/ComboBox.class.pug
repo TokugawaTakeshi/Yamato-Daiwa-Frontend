@@ -110,96 +110,113 @@
 
       label: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       accessibilityGuidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       externalLabelHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       guidance: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       nothingSelectedText: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       disabled: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       readonly: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       required: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsRequired: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       mustDisplayAppropriateBadgeIfInputIsOptional: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       labelElementHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       listBoxElementHTML_ID: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         minimalCharactersCount: 1
       },
 
       listBoxElementAccessibilityGuidance: {
         type: String,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       theme: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         allowedAlternatives: Object.values(ComboBox__YDF.Themes)
       },
 
       areThemesExternal: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       geometricVariation: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         allowedAlternatives: Object.values(ComboBox__YDF.GeometricVariations)
       },
 
       decorativeVariation: {
         type: String,
-        required: false,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
         allowedAlternatives: Object.values(ComboBox__YDF.DecorativeVariations)
       }
 
@@ -211,7 +228,8 @@
 
       expanded: {
         type: Boolean,
-        required: false
+        isUndefinedForbidden: false,
+        isNullForbidden: true
       },
 
       ...ComponentsAuxiliaries.generateValidatableControlGeneralStatesSimulationsSpecification({

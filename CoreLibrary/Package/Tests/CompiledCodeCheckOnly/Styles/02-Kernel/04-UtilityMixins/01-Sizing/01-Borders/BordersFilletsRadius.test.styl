@@ -1,0 +1,31 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/01-Sizing/01-Borders/BordersFilletsRadius.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/01-Sizing/01-Borders/BordersFilletsRadius.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.BordersFilletsRadius
+
+  &-Top
+
+    BorderTopFilletsRadius(2px)
+
+
+  &-Bottom
+
+    BorderBottomFilletsRadius(3px)
+
+
+  &-Left
+
+    BorderLeftFilletsRadius(4px)
+
+
+  &-Right
+
+    BorderRightFilletsRadius(5px)

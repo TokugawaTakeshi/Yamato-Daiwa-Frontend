@@ -1,26 +1,18 @@
-﻿using System.Diagnostics;
-
-
-namespace YamatoDaiwa.Frontend.GUI_Components.Controls.Validation;
+﻿namespace YamatoDaiwa.Frontend.GUI_Components.Controls.Validation;
 
 
 public abstract class InputtedValueValidation
 {
 
-  public interface ILocalization
+  public record Result
   {
-    public string RequiredInputIsMissingValidationErrorMessage { get; }
+    public required string[] ErrorsMessages { get; init; }
+    public bool IsValid => this.ErrorsMessages.Length > 0;
   }
-
-  public static ILocalization Localization = new InputtedValueValidationEnglishLocalization();
-
   
-  public readonly Func<bool> IsInputtingRequirementChecker;
-  public readonly Func<object?, bool> HasValueBeenOmitted;
   
-  protected readonly string requiredInputIsMissingValidationErrorMessage;
-
-  
+  /* ━━━ Rules ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ┅┅┅ Interfaces ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public interface IRule
   {
   
@@ -28,7 +20,7 @@ public abstract class InputtedValueValidation
   
     public IRule.CheckingResult Check(object rawValue);
 
-    public readonly struct CheckingResult
+    public record CheckingResult
     {
       public string? ErrorMessage { get; init; }
       public bool IsValid => this.ErrorMessage is not null;
@@ -40,102 +32,199 @@ public abstract class InputtedValueValidation
   {
   
     public string ID { get; init; }
-    public IAsynchronousRule.Messages messages { get; init; }
+  
     
-    public Task<CheckingResult> Check(object rawValue);
-    
-    public struct Messages
+    /* ╍╍╍ Messages ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+    public record Messages
     {
-      public string CheckingInProgress { get; internal set; }
-      public string ValidValueHasBeenConfirmed { get; internal set; }
-      public string InvalidValueHasBeenConfirmed { get; internal set; }
-      public string ErrorHasOccurred { get; internal set; }
+      public required string CheckingInProgress { get; set; }
+      public required string ValidValueHasBeenConfirmed { get; set; }
+      public required string InvalidValueHasBeenConfirmed { get; set; }
+      public required string ErrorHasOccurred { get; set; }
     }
     
-    public struct CheckingResult
+    public IAsynchronousRule.Messages messages { get; init; }
+    
+  
+    /* ╍╍╍ Checking ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+    public record CheckingResult
     {
       public string? ErrorMessage { get; init; }
       public bool IsValid => this.ErrorMessage is not null;
     }
-  
+    
+    public Task<CheckingResult> Check(object rawValue);
+    
   }
   
+  
+  /* ━━━ Asynchronous Checking ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public static class AsynchronousCheck
+  {
+
+    public record Status
+    {
+      public required string Message { get; init; }
+      public required bool IsPending { get; init; }
+      public required bool HasValidValueBeenConfirmed { get; init; } 
+      public required bool HasInvalidValueBeenConfirmed { get; init; }
+      public required bool HasErrorOccurred { get; init; }
+    }
+    
+  }
+  
+  public static class AsynchronousChecks
+  {
+
+    public record Status
+    {
+
+      public readonly Dictionary<string, AsynchronousCheck.Status> Checks;
+      public readonly bool HasAtLeastOneCheckNotFinishedYet = false;
+      public readonly bool HasAllChecksFinishedWithAnyOutcome = true;
+      public readonly bool HasAtLeastOneCheckErrorOccurred = false;
+      public readonly bool HasNoInvalidValuesBeenConfirmed = true;
+      public readonly bool HasAtLeastOneInvalidValueBeenConfirmed = false;
+      public readonly string[] ErrorsMessages;
+
+      public Status(Dictionary<string, AsynchronousCheck.Status> checks)
+      {
+        
+        this.Checks = checks;
+
+        List<string> errorsMessages = [];
+
+        foreach ((string _, AsynchronousCheck.Status checking) in checks)
+        {
+
+          if (checking.IsPending)
+          {
+            this.HasAtLeastOneCheckNotFinishedYet = true;
+            this.HasAllChecksFinishedWithAnyOutcome = false;
+          }
+
+          if (checking.HasErrorOccurred)
+          {
+            this.HasAtLeastOneCheckErrorOccurred = true;
+          }
+
+          if (checking.HasInvalidValueBeenConfirmed)
+          {
+            this.HasNoInvalidValuesBeenConfirmed = false;
+            this.HasAtLeastOneInvalidValueBeenConfirmed = true;
+            errorsMessages.Add(checking.Message);
+          }
+
+        }
+        
+        this.ErrorsMessages = errorsMessages.ToArray();
+        
+      }
+    }
+    
+  }
+  
+  
+  /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public interface ILocalization
+  {
+    public string RequiredInputIsMissingValidationErrorMessage { get; }
+  }
+
+  public static ILocalization Localization = new InputtedValueValidationEnglishLocalization();
+  
+
+  /* ━━━ Instance Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public readonly Func<object?, bool> IsValueOfSupportedType;
+  public readonly Func<object?, bool> HasValueBeenOmitted;
+  public readonly Func<bool> IsInputRequired;
+
+  protected readonly string RequiredInputIsMissingValidationErrorMessage;
+
   protected IRule[] StaticRules;
   protected IRule[] ContextDependentRules;
   protected IAsynchronousRule[] AsynchronousRules;
   
+  protected Action<string>? asynchronousValidationFailureLogger;
+  
   
   /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected InputtedValueValidation(
-    Func<object?, bool> omittedValueChecker,
-    bool? isInputRequired = null,
-    Func<bool>? inputtingRequirementChecker = null,
+    Func<object?, bool> isValueOfSupportedType,
+    Func<object?, bool> hasValueBeenOmitted,
+    bool? inputRequiredFlag = null,
+    Func<bool>? isInputRequired = null,
     string? requiredInputIsMissingValidationErrorMessage = null,
     IRule[]? staticRules = null,
     IRule[]? contextDependentRules = null,
-    IAsynchronousRule[]? asynchronousRules = null 
+    IAsynchronousRule[]? asynchronousRules = null,
+    Action<string>? asynchronousValidationFailureLogger = null
   )
   {
-    
-    this.HasValueBeenOmitted = omittedValueChecker;
 
-    if (isInputRequired is not null)
+    this.IsValueOfSupportedType = isValueOfSupportedType;
+    this.HasValueBeenOmitted = hasValueBeenOmitted;
+    
+    if (inputRequiredFlag is not null)
     {
       
-      if (inputtingRequirementChecker is not null)
+      if (isInputRequired is not null)
       {
         throw new ArgumentException(
-          "The \"isInputRequired\" and \"inputtingRequirementChecker\" parameters are incompatible. " +
+          "The \"inputRequiredFlag\" and \"isInputRequired\" parameters are incompatible. " +
           "Please specify one of them."
         );
       }
       
+      this.IsInputRequired = () => inputRequiredFlag.Value;
       
-      this.IsInputtingRequirementChecker = () => (bool)isInputRequired;
-      
-    } else if (inputtingRequirementChecker is not null)
+    } else if (isInputRequired is not null)
     {
-      this.IsInputtingRequirementChecker = inputtingRequirementChecker;
+      this.IsInputRequired = isInputRequired;
     } else
     {
       throw new ArgumentException(
-      "Either \"isInputRequired\" or \"inputtingRequirementChecker\" must be specified but not both."
+        "The value requirement not specified. " +
+        "Specify \"inputRequiredFlag\" or \"isInputRequired\" but not both."
       );
     }
     
-    this.requiredInputIsMissingValidationErrorMessage =
+    this.RequiredInputIsMissingValidationErrorMessage =
         requiredInputIsMissingValidationErrorMessage ??
         InputtedValueValidation.Localization.RequiredInputIsMissingValidationErrorMessage;
 
-    
-    this.StaticRules = staticRules ?? Array.Empty<IRule>();
-    this.ContextDependentRules = contextDependentRules ?? Array.Empty<IRule>();
-    this.AsynchronousRules = asynchronousRules ?? Array.Empty<IAsynchronousRule>();
+
+    this.StaticRules = staticRules ?? [];
+    this.ContextDependentRules = contextDependentRules ?? [];
+    this.AsynchronousRules = asynchronousRules ?? [];
 
   }
+
   
-  
-  public struct Result
-  {
-    public string[] ErrorsMessages { get; init; }
-    public bool IsValid => this.ErrorsMessages.Length > 0;
-  }
-  
+  /* ━━━ Public Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public Result Validate(
     object rawValue,
     bool mustPostponeAsynchronousValidation = false,
     Action<AsynchronousChecks.Status, Result>? asynchronousChecksCallback = null,
-    string[]? messagesOfExternallyDetectedValidationErrors = null
+    IEnumerable<string>? messagesOfExternallyDetectedValidationErrors = null
   )
   {
 
-    bool isInputRequired = this.IsInputtingRequirementChecker();
+    if (!this.IsValueOfSupportedType(rawValue))
+    {
+      throw new ArgumentException(
+        $"The type \"{ rawValue.GetType() }\" of `rawValue` is incompatible with specified validators."
+      );
+    }
+    
+    
+    bool isInputRequired = this.IsInputRequired();
     
     if (this.HasValueBeenOmitted(rawValue))
     {
       return new Result
       {
-        ErrorsMessages = isInputRequired ? [ this.requiredInputIsMissingValidationErrorMessage ] : [] 
+        ErrorsMessages = isInputRequired ? [ this.RequiredInputIsMissingValidationErrorMessage ] : [] 
       };
     }
     
@@ -198,8 +287,7 @@ public abstract class InputtedValueValidation
     }
 
 
-    Result validationResult = new Result { ErrorsMessages = Array.Empty<string>() };
- 
+    Result validationResult = new() { ErrorsMessages = [] };
     
     if (!mustPostponeAsynchronousValidation)
     {
@@ -210,77 +298,6 @@ public abstract class InputtedValueValidation
 
   }
 
-
-  /* ━━━ Asynchronous validation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public abstract class AsynchronousChecks
-  {
-
-    public readonly struct Status
-    {
-
-      public readonly Dictionary<string, AsynchronousCheck.Status> Checks;
-      public readonly bool HasAtLeastOneCheckNotFinishedYet = false;
-      public readonly bool HasAllChecksFinishedWithAnyOutcome = true;
-      public readonly bool HasAtLeastOneCheckErrorOccurred = false;
-      public readonly bool HasNoInvalidValuesBeenConfirmed = true;
-      public readonly bool HasAtLeastOneInvalidValueBeenConfirmed = false;
-      public readonly string[] ErrorsMessages;
-
-      public Status(Dictionary<string, AsynchronousCheck.Status> checks)
-      {
-        
-        this.Checks = checks;
-
-        List<string> errorsMessages = new();
-
-        foreach ((string _, AsynchronousCheck.Status checking) in checks)
-        {
-
-          if (checking.IsPending)
-          {
-            this.HasAtLeastOneCheckNotFinishedYet = true;
-            this.HasAllChecksFinishedWithAnyOutcome = false;
-          }
-
-
-          if (checking.HasErrorOccurred)
-          {
-            this.HasAtLeastOneCheckErrorOccurred = true;
-          }
-
-
-          if (checking.HasInvalidValueBeenConfirmed)
-          {
-            this.HasNoInvalidValuesBeenConfirmed = false;
-            this.HasAtLeastOneInvalidValueBeenConfirmed = true;
-            errorsMessages.Add(checking.Message);
-          }
-
-        }
-        
-        this.ErrorsMessages = errorsMessages.ToArray();
-        
-      }
-    }
-    
-  }
-  
-  
-  public abstract class AsynchronousCheck
-  {
-
-    public struct Status
-    {
-      public required string Message { get; set; }
-      public required bool IsPending { get; set; }
-      public required bool HasValidValueBeenConfirmed { get; set; } 
-      public required bool HasInvalidValueBeenConfirmed { get; set; }
-      public required bool HasErrorOccurred { get; set; }
-    }
-    
-  }
-  
-  
   public void executeAsynchronousChecksIfAny(
     object rawValue, 
     Result currentValidationResult, 
@@ -324,10 +341,9 @@ public abstract class InputtedValueValidation
         catch (Exception exception)
         {
 
-          Debug.WriteLine(
-            "AsynchronousValidationFailedException: Asynchronous validation failed\n" +
+          this.asynchronousValidationFailureLogger?.Invoke(
             $"The asynchronous validation { validationRule.ID } has failed.\n" +
-            new System.Diagnostics.StackTrace()
+            exception.Message
           );
           
           asynchronousChecks[validationRule.ID] = new AsynchronousCheck.Status

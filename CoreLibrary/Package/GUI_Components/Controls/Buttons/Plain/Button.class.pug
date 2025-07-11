@@ -195,7 +195,8 @@
           },
           {
             type: Number,
-            numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber
+            numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+            isNaN_Forbidden: true
           }
         ]
       },
@@ -271,7 +272,9 @@
         areNullElementsForbidden: true,
         element: {
           type: String,
-          allowedAlternatives: Object.values(Button__YDF.GeometricModifiers)
+          allowedAlternatives: Object.
+              entries(Button__YDF.GeometricModifiers).
+              map(([ key, value ]) => ({ key: `Button__YDF.GeometricModifiers.${ key }`, value }))
         }
       },
 
@@ -292,7 +295,9 @@
         areNullElementsForbidden: true,
         element: {
           type: String,
-          allowedAlternatives: Object.values(Button__YDF.DecorativeModifiers)
+          allowedAlternatives: Object.
+            entries(Button__YDF.DecorativeModifiers).
+            map(([ key, value ]) => ({ key: `Button__YDF.DecorativeModifiers.${ key }`, value }))
         }
       }
 

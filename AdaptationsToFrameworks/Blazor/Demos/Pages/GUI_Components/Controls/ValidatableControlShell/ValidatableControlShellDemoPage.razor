@@ -1,0 +1,449 @@
+﻿@page "/ValidatableControlShell"
+
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.ValidatableControlShell
+@using Demos.GUI_Components.ThemesShowcase
+
+
+<div class="YDF_Gallery">
+  
+  <h1 class="Heading1">ValidatableControlShell Component Demos</h1>
+  
+  @* ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Minimal</h2>
+  
+  <ThemesShowcase
+    themes=@typeof(ValidatableControlShell.StandardThemes)
+    themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <ValidatableControlShell
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+      </ValidatableControlShell>
+    </ComponentSlot>
+  </ThemesShowcase>
+
+
+  @* ━━━ Labels ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Labels</h2>
+  
+  <ThemesShowcase
+    themes=@typeof(ValidatableControlShell.StandardThemes)
+    themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <ValidatableControlShell
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        label="Full Name"
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+      </ValidatableControlShell>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Guidances ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Guidances</h2>
+  
+  <ThemesShowcase
+    themes=@typeof(ValidatableControlShell.StandardThemes)
+    themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <ValidatableControlShell
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        guidance="Please input the full name within **100** characters. See [here](#) for details."
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+      </ValidatableControlShell>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Labels and Guidances ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Labels and Guidances</h2>
+  
+  <ThemesShowcase
+    themes=@typeof(ValidatableControlShell.StandardThemes)
+    themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <ValidatableControlShell
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        label="Full Name"
+        guidance="Please input the full name within **100** characters. See [here](#) for details."
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+      </ValidatableControlShell>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Badges ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Requirement Badges</h2>
+  
+  <ThemesShowcase
+    themes=@typeof(ValidatableControlShell.StandardThemes)
+    themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ValidatableControlShellGallery-RequirementBadgesSection" ])
+  >
+    <ComponentSlot>
+  
+      @* ─── Badges Only ──────────────────────────────────────────────────────────────────────────────────────────── *@
+      <div class="ValidatableControlShellGallery-RequirementBadgesSection-HorizontalFlow">
+        <ValidatableControlShell
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          required=@true
+          mustDisplayAppropriateBadgeIfInputIsRequired=@true
+        >
+          <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+        </ValidatableControlShell>
+  
+        <ValidatableControlShell
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          required=@false
+          mustDisplayAppropriateBadgeIfInputIsOptional=@true
+        >
+          <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+        </ValidatableControlShell>
+  
+        <ValidatableControlShell
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          required=@false
+          mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge=@true
+        >
+          <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+        </ValidatableControlShell>
+      </div>
+  
+      @* ─── Labels and Badges ────────────────────────────────────────────────────────────────────────────────────── *@
+      <div class="ValidatableControlShellGallery-RequirementBadgesSection-HorizontalFlow">
+        <ValidatableControlShell
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          label="Full Name"
+          required=@true
+          mustDisplayAppropriateBadgeIfInputIsRequired=@true
+        >
+          <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+        </ValidatableControlShell>
+  
+        <ValidatableControlShell
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          label="Full Name"
+          required=@false
+          mustDisplayAppropriateBadgeIfInputIsOptional=@true
+        >
+          <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+        </ValidatableControlShell>
+  
+        <ValidatableControlShell
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          label="Full Name"
+          required=@false
+          mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge=@true
+        >
+          <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+        </ValidatableControlShell>
+      </div>
+  
+      @* ─── Guidances and Badges ─────────────────────────────────────────────────────────────────────────────────── *@
+      <div class="ValidatableControlShellGallery-RequirementBadgesSection-HorizontalFlow">
+        <ValidatableControlShell
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          guidance="Please input the full name within **100** characters. See [here](#) for details."
+          required=@true
+          mustDisplayAppropriateBadgeIfInputIsRequired=@true
+        >
+          <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+        </ValidatableControlShell>
+  
+        <ValidatableControlShell
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          guidance="Please input the full name within **100** characters. See [here](#) for details."
+          required=@false
+          mustDisplayAppropriateBadgeIfInputIsOptional=@true
+        >
+          <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+        </ValidatableControlShell>
+  
+        <ValidatableControlShell
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          guidance="Please input the full name within **100** characters. See [here](#) for details."
+          required=@false
+          mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge=@true
+        >
+          <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+        </ValidatableControlShell>
+      </div>
+  
+      @* ─── Labels, Guidances and Badges ─────────────────────────────────────────────────────────────────────────── *@
+      <div class="ValidatableControlShellGallery-RequirementBadgesSection-HorizontalFlow">
+        <ValidatableControlShell
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          label="Full Name"
+          guidance="Please input the full name within **100** characters. See [here](#) for details."
+          required=@true
+          mustDisplayAppropriateBadgeIfInputIsRequired=@true
+        >
+          <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+        </ValidatableControlShell>
+  
+        <ValidatableControlShell
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          label="Full Name"
+          guidance="Please input the full name within **100** characters. See [here](#) for details."
+          required=@false
+          mustDisplayAppropriateBadgeIfInputIsOptional=@true
+        >
+          <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+        </ValidatableControlShell>
+  
+        <ValidatableControlShell
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          label="Full Name"
+          guidance="Please input the full name within **100** characters. See [here](#) for details."
+          required=@false
+          mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge=@true
+        >
+          <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+        </ValidatableControlShell>
+      </div>
+  
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Validation Errors Messages ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Validation Errors Messages</h2>
+  
+  @* ─── One Message ──────────────────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">One Message</h3>
+  
+  <ThemesShowcase
+    themes=@typeof(ValidatableControlShell.StandardThemes)
+    themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <ValidatableControlShell
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        label="User Name"
+        mustDisplayErrorsMessagesIfAny=@true
+        validationErrorsMessages=@([ "The user name must have at least 3 characters. Please input more characters." ])
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+      </ValidatableControlShell>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ─── Two Messages ─────────────────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">Two Messages</h3>
+  
+  <ThemesShowcase
+    themes=@typeof(ValidatableControlShell.StandardThemes)
+    themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <ValidatableControlShell
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        label="User Name"
+        mustDisplayErrorsMessagesIfAny=@true
+        validationErrorsMessages=@([ 
+          "The user name must have at least 3 characters. Please input more characters.", 
+          "Inputted user name is including the following forbidden characters: \"$\", \"'\". " +
+            "Please input the other user name without next characters: \"$\", \"&\", \"'\", \"\"\"." 
+        ])
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+      </ValidatableControlShell>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ─── Narrow Containers ────────────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">Narrow Containers</h3>
+  
+  <ThemesShowcase
+    themes=@typeof(ValidatableControlShell.StandardThemes)
+    themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ValidatableControlShellGallery-ValidationErrorsMessagesSection-NarrowContainer" ])
+  >
+    <ComponentSlot>
+      <ValidatableControlShell
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        mustDisplayErrorsMessagesIfAny=@true
+        validationErrorsMessages=@([ 
+          "The user name must have at least 3 characters. Please input more characters.", 
+          "Inputted user name is including the following forbidden characters: \"$\", \"'\". " +
+            "Please input the other user name without next characters: \"$\", \"&\", \"'\", \"\"\"." 
+        ])
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core</div>
+      </ValidatableControlShell>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  @* *@
+  @* $1$ ━━━ Asynchronous Validations Statuses ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #1# *@
+  @* <h2 class="Heading2">Asynchronous Validations Statuses</h2> *@
+  @* *@
+  @* <h3 class="Heading3">Wide Containers</h3> *@
+  @* <ThemesShowcase *@
+  @*   themes=@typeof(ValidatableControlShell.StandardThemes) *@
+  @*   themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX *@
+  @*   geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations) *@
+  @*   geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX *@
+  @*   decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations) *@
+  @*   decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX *@
+  @* > *@
+  @*   <ComponentSlot> *@
+  @*     <ValidatableControlShell *@
+  @*       theme=@context.themeValue *@
+  @*       geometricVariation=@context.geometricVariationValue *@
+  @*       decorativeVariation=@context.decorativeVariationValue *@
+  @*       asynchronousChecksCheckStatus=@asynchronousChecksCheckStatus *@
+  @*     > *@
+  @*       <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div> *@
+  @*     </ValidatableControlShell> *@
+  @*   </ComponentSlot> *@
+  @* </ThemesShowcase> *@
+  @* *@
+  @* <ThemesShowcase *@
+  @*   themes=@typeof(ValidatableControlShell.StandardThemes) *@
+  @*   themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX *@
+  @*   geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations) *@
+  @*   geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX *@
+  @*   decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations) *@
+  @*   decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX *@
+  @* > *@
+  @*   <ComponentSlot> *@
+  @*     <ValidatableControlShell *@
+  @*       theme=@context.themeValue *@
+  @*       geometricVariation=@context.geometricVariationValue *@
+  @*       decorativeVariation=@context.decorativeVariationValue *@
+  @*       invalidInputHighlightingIfAnyValidationErrorsMessages=@true *@
+  @*       validationErrorsMessages=@([ "Message 1", "Message 2" ]) *@
+  @*       asynchronousChecksCheckStatus=@asynchronousChecksCheckStatus *@
+  @*     > *@
+  @*       <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div> *@
+  @*     </ValidatableControlShell> *@
+  @*   </ComponentSlot> *@
+  @* </ThemesShowcase> *@
+  @* *@
+  @* <h3 class="Heading3">Narrow Containers</h3> *@
+  @* <ThemesShowcase *@
+  @*   themes=@typeof(ValidatableControlShell.StandardThemes) *@
+  @*   themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX *@
+  @*   geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations) *@
+  @*   geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX *@
+  @*   decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations) *@
+  @*   decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX *@
+  @*   decorativeVariationsListItemAdditionalCSS_Classes=@([ "ValidatableControlShellGallery-ValidationErrorsMessagesSection-NarrowContainer" ]) *@
+  @* > *@
+  @*   <ComponentSlot> *@
+  @*     <ValidatableControlShell *@
+  @*       theme=@context.themeValue *@
+  @*       geometricVariation=@context.geometricVariationValue *@
+  @*       decorativeVariation=@context.decorativeVariationValue *@
+  @*       asynchronousChecksCheckStatus=@asynchronousChecksCheckStatus *@
+  @*     > *@
+  @*       <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core</div> *@
+  @*     </ValidatableControlShell> *@
+  @*   </ComponentSlot> *@
+  @* </ThemesShowcase> *@
+  @* *@
+  @* <ThemesShowcase *@
+  @*   themes=@typeof(ValidatableControlShell.StandardThemes) *@
+  @*   themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX *@
+  @*   geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations) *@
+  @*   geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX *@
+  @*   decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations) *@
+  @*   decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX *@
+  @*   decorativeVariationsListItemAdditionalCSS_Classes=@([ "ValidatableControlShellGallery-ValidationErrorsMessagesSection-NarrowContainer" ]) *@
+  @* > *@
+  @*   <ComponentSlot> *@
+  @*     <ValidatableControlShell *@
+  @*       theme=@context.themeValue *@
+  @*       geometricVariation=@context.geometricVariationValue *@
+  @*       decorativeVariation=@context.decorativeVariationValue *@
+  @*       invalidInputHighlightingIfAnyValidationErrorsMessages=@true *@
+  @*       validationErrorsMessages=@([ "Message 1", "Message 2" ]) *@
+  @*       asynchronousChecksCheckStatus=@asynchronousChecksCheckStatus *@
+  @*     > *@
+  @*       <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core</div> *@
+  @*     </ValidatableControlShell> *@
+  @*   </ComponentSlot> *@
+  @* </ThemesShowcase> *@
+
+</div>
