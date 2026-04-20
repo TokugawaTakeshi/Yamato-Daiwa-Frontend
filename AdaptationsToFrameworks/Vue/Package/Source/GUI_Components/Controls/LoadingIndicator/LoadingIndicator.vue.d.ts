@@ -5,6 +5,8 @@ class LoadingIndicator extends VueComponent {
 
   public static readonly CSS_NAMESPACE: string;
 
+  public static Types: LoadingIndicator.Types;
+
   public static readonly Themes: LoadingIndicator.Themes;
 
   public static defineThemes(themesNames: ReadonlyArray<string>): typeof LoadingIndicator;
@@ -21,6 +23,11 @@ class LoadingIndicator extends VueComponent {
 
 
 namespace LoadingIndicator {
+
+  export type Types = Readonly<{
+    variableWidthArcSpinner: "VARIABLE_WIDTH_ARC_SPINNER";
+    twoConstantWidthArcsSpinner: "TWO_CONSTANT_WIDTH_ARCS_SPINNER";
+  }>;
 
   export type Themes = {
     readonly regular: "REGULAR";

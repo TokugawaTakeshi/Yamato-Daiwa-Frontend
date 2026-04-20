@@ -1,7 +1,7 @@
 import type { DateTimePickerLocalization } from "@yamato-daiwa/frontend";
 
 
-export const dateTimePickerYDF_GUI_ComponentLocalization__russian: DateTimePickerLocalization = {
+export const DateTimePickerYDF_GUI_ComponentLocalization__Russian: DateTimePickerLocalization = {
 
   dialog: {
 

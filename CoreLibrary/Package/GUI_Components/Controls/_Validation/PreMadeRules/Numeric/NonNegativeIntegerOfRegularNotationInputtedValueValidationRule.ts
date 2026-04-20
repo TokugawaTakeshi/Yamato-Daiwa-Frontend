@@ -5,8 +5,7 @@ import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
 class NonNegativeIntegerOfRegularNotationInputtedValueValidationRule
-    implements InputtedValueValidation.Rule<number | bigint | string>
-/* eslint-disable-next-line @stylistic/brace-style -- Allow Allman style for square areas principle. */
+    implements InputtedValueValidation.Rule<number | bigint>
 {
 
   public static localization: NonNegativeIntegerOfRegularNotationInputtedValueValidationRule.Localization =
@@ -44,7 +43,7 @@ class NonNegativeIntegerOfRegularNotationInputtedValueValidationRule
   }
 
 
-  public check(rawValue: number | bigint | string): InputtedValueValidation.Rule.CheckingResult {
+  public check(rawValue: number | bigint): InputtedValueValidation.Rule.CheckingResult {
     return (/^\d+$/u).test(String(rawValue)) ?
         { isValid: true } :
         {
@@ -64,7 +63,7 @@ namespace NonNegativeIntegerOfRegularNotationInputtedValueValidationRule {
 
     export type Builder = (templateVariables: TemplateVariables) => string;
 
-    export type TemplateVariables = Readonly<{ rawValue: number | bigint | string; }>;
+    export type TemplateVariables = Readonly<{ rawValue: number | bigint; }>;
 
   }
 

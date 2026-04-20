@@ -1,7 +1,7 @@
 import type { QuestionAndAnswerBoxLocalization } from "./QuestionAndAnswerBoxLocalization";
 
 
-const questionAndAnswerBoxYDF_GUI_ComponentLocalization__english: QuestionAndAnswerBoxLocalization = {
+const QuestionAndAnswerBoxYDF_GUI_ComponentLocalization__English: QuestionAndAnswerBoxLocalization = {
   question: "Question",
   objection: "Objection",
   criticism: "Criticism",
@@ -9,4 +9,4 @@ const questionAndAnswerBoxYDF_GUI_ComponentLocalization__english: QuestionAndAns
 };
 
 
-export default questionAndAnswerBoxYDF_GUI_ComponentLocalization__english;
+export default QuestionAndAnswerBoxYDF_GUI_ComponentLocalization__English;

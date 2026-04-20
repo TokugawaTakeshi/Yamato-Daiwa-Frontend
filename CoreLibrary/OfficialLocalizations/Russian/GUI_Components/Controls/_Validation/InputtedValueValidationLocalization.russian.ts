@@ -1,6 +1,6 @@
 import type { InputtedValueValidation } from "@yamato-daiwa/frontend";
 
 
-export const inputtedValueValidationLocalization__russian: InputtedValueValidation.Localization = {
+export const InputtedValueValidationLocalization__Russian: InputtedValueValidation.Localization = {
   requiredInputIsMissingValidationErrorMessage: "Данное поле является обязательным. Пожалуйста, заполните это поле."
 };

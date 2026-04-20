@@ -5,7 +5,7 @@
 /* ┅┅┅ AdmonitionBlock ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 export { default as AdmonitionBlock } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock";
 export type { AdmonitionBlockLocalization } from "./GUI_Components/AdmonitionBlock/AdmonitionBlockLocalization";
-export { default as admonitionBlockYDF_GUI_ComponentLocalization__english } from
+export { default as AdmonitionBlockYDF_GUI_ComponentLocalization__English } from
     "./GUI_Components/AdmonitionBlock/AdmonitionBlockLocalization.english";
 
 
@@ -14,7 +14,7 @@ export { default as admonitionBlockYDF_GUI_ComponentLocalization__english } from
 export { default as ValidatableControlShell } from "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell";
 export type { ValidatableControlShellLocalization } from
     "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellLocalization";
-export { default as validatableControlShellYDF_GUI_ComponentLocalization__english } from
+export { default as ValidatableControlShellYDF_GUI_ComponentLocalization__English } from
     "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellLocalization.english";
 
 
@@ -24,14 +24,14 @@ export { default as Button } from "./GUI_Components/Controls/Buttons/Plain/Butto
 
 /* ─── Closing ────────────────────────────────────────────────────────────────────────────────────────────────────── */
 export type { ClosingButtonLocalization } from "./GUI_Components/Controls/Buttons/Closing/ClosingButtonLocalization";
-export { default as closingButtonYDF_GUI_ComponentLocalization__english } from
+export { default as ClosingButtonYDF_GUI_ComponentLocalization__English } from
     "./GUI_Components/Controls/Buttons/Closing/ClosingButtonLocalization.english";
 
 /* ─── Hamburger Menu ─────────────────────────────────────────────────────────────────────────────────────────────── */
 export { default as HamburgerMenuButton } from "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton";
 export type { HamburgerMenuButtonLocalization } from
     "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButtonLocalization";
-export { default as hamburgerMenuButtonYDF_GUI_ComponentLocalization__english } from
+export { default as HamburgerMenuButtonYDF_GUI_ComponentLocalization__English } from
     "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButtonLocalization.english";
 
 
@@ -39,7 +39,7 @@ export { default as hamburgerMenuButtonYDF_GUI_ComponentLocalization__english } 
 /* ─── Text Box ───────────────────────────────────────────────────────────────────────────────────────────────────── */
 export { default as TextBox } from "./GUI_Components/Controls/Validatables/TextBox/TextBox";
 export type { TextBoxLocalization } from "./GUI_Components/Controls/Validatables/TextBox/TextBoxLocalization";
-export { default as textBoxYDF_GUI_ComponentLocalization__english } from
+export { default as TextBoxYDF_GUI_ComponentLocalization__English } from
     "./GUI_Components/Controls/Validatables/TextBox/TextBoxLocalization.english";
 
 
@@ -56,14 +56,13 @@ export type { DateTimePickerLocalization } from
 
 export { default as FilesUploader } from "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploader";
 export type { FilesUploaderLocalization } from "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploaderLocalization";
-export { filesUploaderYDF_GUI_ComponentLocalization__english } from
+export { FilesUploaderYDF_GUI_ComponentLocalization__English } from
     "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploaderLocalization.english";
 
 export { default as ModalDialog } from "./GUI_Components/Controls/ModalDialogs/Common/ModalDialog";
 export { default as ConfirmationModalDialog } from "./GUI_Components/Controls/ModalDialogs/Confirmation/ConfirmationModalDialog";
 
 export { default as NumberBox } from "./GUI_Components/Controls/Validatables/NumberBox/NumberBox";
-export type { NumberBoxLocalization } from "./GUI_Components/Controls/Validatables/NumberBox/NumberBoxLocalization";
 
 export { default as RadioButton } from "./GUI_Components/Controls/RadioButton/RadioButton";
 export { default as RadioButtonsGroup } from "./GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup";
@@ -76,7 +75,7 @@ export type { SingleImageViewerLocalization } from "./GUI_Components/Viewers/Sin
 
 export { default as Snackbar } from "./GUI_Components/Snackbar/Snackbar";
 export type { SnackbarLocalization } from "./GUI_Components/Snackbar/SnackbarLocalization";
-export { snackbarYDF_GUI_ComponentLocalization__english } from "./GUI_Components/Snackbar/SnackbarLocalization.english";
+export { SnackbarYDF_GUI_ComponentLocalization__English } from "./GUI_Components/Snackbar/SnackbarLocalization.english";
 
 export type { QuestionAndAnswerBoxLocalization } from
     "./GUI_Components/Typography/QuestionAndAnswerBox/QuestionAndAnswerBoxLocalization";

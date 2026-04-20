@@ -12,7 +12,6 @@ import { isString } from "@yamato-daiwa/es-extensions";
 
 abstract class PasswordInputtedValueValidation<EmptyValue extends PasswordInputtedValueValidation.SupportedEmptyValues = string>
     extends InputtedValueValidation<string, EmptyValue>
-/* eslint-disable-next-line @stylistic/brace-style -- Allow Allman style for square areas principle. */
 {
 
   public static localization: PasswordInputtedValueValidation.Localization;

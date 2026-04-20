@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/member-ordering -- The members of this class are grouped semantically. */
 
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
-import textBoxYDF_GUI_ComponentDOM_AccessResources from "./TextBoxDOM_AccessResources";
+import TextBoxYDF_GUI_ComponentDOM_AccessResources from "./TextBoxDOM_AccessResources";
 import YDF_BUG_REPORTING_PAGE_URI from "../../../_Auxiliaries/YDF_BUG_REPORTING_PAGE_URI";
 
 /* ─── Validation ─────────────────────────────────────────────────────────────────────────────────────────────────── */
@@ -50,7 +50,7 @@ class TextBox<
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ┅┅┅ Accessing to DOM ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  protected static DOM_AccessResources: TextBox.DOM_AccessResources = textBoxYDF_GUI_ComponentDOM_AccessResources;
+  protected static DOM_AccessResources: TextBox.DOM_AccessResources = TextBoxYDF_GUI_ComponentDOM_AccessResources;
 
   public static get ROOT_ELEMENT_SELECTOR(): string {
     return TextBox.DOM_AccessResources.rootElement.SELECTOR_BY_CSS_NAMESPACE_CLASS;
@@ -75,8 +75,11 @@ class TextBox<
   protected readonly validityHighlightingActivationMode:
       ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes;
 
+  protected readonly initialValidityHighlightingActivationMode:
+      ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes;
+
   /* [ Approach ]
-   * Unline the invalid value highlighting, the library user may not wish the specific highlighting (usually green-color
+   * Unlike the invalid value highlighting, the library user may not wish the specific highlighting (usually green-color
    *   based) for inputted valid value, thus the additional flag is required. */
   protected readonly mustHighlightValidInputWhenItIsValid: boolean;
 
@@ -282,7 +285,7 @@ class TextBox<
 
   public resetValidityHighlightingStateToInitial(): void {
     this.$mustHighlightInputtedValueValidity =
-        this.validityHighlightingActivationMode ===
+        this.initialValidityHighlightingActivationMode ===
             ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes.immediate;
   }
 
@@ -458,6 +461,8 @@ class TextBox<
                 ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>
               )
             );
+
+    this.initialValidityHighlightingActivationMode = this.validityHighlightingActivationMode;
 
     this.mustHighlightValidInputWhenItIsValid = mustHighlightValidInputWhenItIsValid;
 

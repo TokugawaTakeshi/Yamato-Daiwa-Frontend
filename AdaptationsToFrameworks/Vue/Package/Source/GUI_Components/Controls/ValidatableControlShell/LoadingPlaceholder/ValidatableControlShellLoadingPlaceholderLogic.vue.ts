@@ -78,6 +78,7 @@ export default class ValidatableControlShellLoadingPlaceholder extends VueCompon
   protected readonly mainSlotWrapperAdditionalCSS_Classes!: ReadonlyArray<string>;
 
   @VueProperty({
+    type: String,
     default: ValidatableControlShell.Themes.regular,
     validator: ThemeVuePropertyValidator({
       Themes: ValidatableControlShell.Themes,
@@ -91,20 +92,12 @@ export default class ValidatableControlShellLoadingPlaceholder extends VueCompon
     return ValidatableControlShell.selfAndChildrenComponentsThemesCorrespondence.badge[this.theme];
   }
 
-  @VueProperty({
-    default: ValidatableControlShell.areThemesCSS_ClassesCommon,
-    get validator(): VuePropertyValidator {
-      return BooleanVuePropertyValidator({
-        propertyName: "areThemesCSS_ClassesCommon",
-        componentName: ValidatableControlShell.name,
-        isPropertyRequired: this.required === true
-      });
-    }
-  })
+  @VueProperty({ type: Boolean, default: ValidatableControlShell.areThemesCSS_ClassesCommon })
   @preventNullForOptionalVueProperty
   protected readonly areThemesCSS_ClassesCommon!: boolean;
 
   @VueProperty({
+    type: String,
     default: ValidatableControlShell.GeometricVariations.regular,
     validator: GeometricVariationVuePropertyValidator({
       GeometricVariations: ValidatableControlShell.GeometricVariations,
@@ -127,7 +120,8 @@ export default class ValidatableControlShellLoadingPlaceholder extends VueCompon
       allThemes: ValidatableControlShell.Themes,
       areThemesCSS_ClassesCommon: this.areThemesCSS_ClassesCommon,
       activeGeometricVariation: this.geometricVariation,
-      allGeometricVariations: ValidatableControlShell.GeometricVariations
+      allGeometricVariations: ValidatableControlShell.GeometricVariations,
+      allDecorativeVariations: ValidatableControlShell.DecorativeVariations
     });
   }
 

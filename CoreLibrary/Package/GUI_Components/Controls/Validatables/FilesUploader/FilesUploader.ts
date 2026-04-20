@@ -3,8 +3,8 @@
 
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import componentDynamicPartsHTML from "./FilesUploader.parts.pug";
-import type FilesUploaderLocalization from "./FilesUploaderLocalization";
-import { filesUploaderYDF_ComponentLocalization__english } from "./FilesUploaderLocalization.english";
+import type { FilesUploaderLocalization } from "./FilesUploaderLocalization";
+import { FilesUploaderYDF_GUI_ComponentLocalization__English } from "./FilesUploaderLocalization.english";
 
 /* ─── Validation ─────────────────────────────────────────────────────────────────────────────────────────────────── */
 import ValidatableControl from "../../_Validation/ValidatableControl";
@@ -43,10 +43,14 @@ import {
 import setHTML_Attributes from "../../../../Logic/UtilsIncubator/DOM/setHTML_Attributes";
 
 
+/** @beta */
 class FilesUploader<
-  ValidValue extends FilesUploader.SupportedValidatablePayloadValuesTypes,
-  InvalidValue extends FilesUploader.SupportedValidatablePayloadValuesTypes,
-  Validation extends InputtedValueValidation
+  IsInputRequired extends boolean,
+  NonEmptyValueType extends FilesUploader.SupportedValidatablePayloadValuesTypes.NonEmpty,
+  EmptyValueType extends FilesUploader.SupportedValidatablePayloadValuesTypes.Empty,
+  ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)) =
+      IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType),
+  InvalidValue extends NonEmptyValueType | EmptyValueType = NonEmptyValueType | EmptyValueType
 > implements ValidatableControl {
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -84,11 +88,12 @@ class FilesUploader<
 
 
   /* ─── Settings ─────────────────────────────────────────────────────────────────────────────────────────────────── */
-  public static localization: FilesUploaderLocalization = filesUploaderYDF_ComponentLocalization__english;
+  public static localization: FilesUploaderLocalization = FilesUploaderYDF_GUI_ComponentLocalization__English;
 
 
   /* ━━━ Instance Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public readonly payload: ValidatableControl.Payload<ValidValue, InvalidValue, Validation>;
+  public readonly payload:
+      ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>;
 
   protected readonly scenario: FilesUploader.Scenarios;
 
@@ -174,26 +179,41 @@ class FilesUploader<
 
 
   /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static pickOneBySelector<Validation extends InputtedValueValidation>(
-    initializationProperties: FilesUploader.InitializationProperties.SingleRequiredFileScenario<Validation>
-  ): FilesUploader<string, string | null, Validation>;
+  /* @ts-ignore: TS2394 Acceptable during α/β versions of this component but must and will be fixed before official release. */
+  public static pickOneBySelector(
+    initializationProperties: FilesUploader.InitializationProperties.SingleRequiredFileScenario
+  ): FilesUploader<true, string, null, string, string>;
 
-  public static pickOneBySelector<Validation extends InputtedValueValidation>(
-    initializationProperties: FilesUploader.InitializationProperties.SingleOptionalFileScenario<Validation>
-  ): FilesUploader<string | null, string | null, Validation>;
+  public static pickOneBySelector(
+    initializationProperties: FilesUploader.InitializationProperties.SingleOptionalFileScenario
+  ): FilesUploader<false, string, null, string | null, string | null>;
 
-  public static pickOneBySelector<Validation extends InputtedValueValidation>(
-    initializationProperties: FilesUploader.InitializationProperties.ArbitraryFilesCountScenario<Validation>
-  ): FilesUploader<Array<string>, Array<string>, Validation>;
+  public static pickOneBySelector<IsInputRequired extends boolean>(
+    initializationProperties: FilesUploader.InitializationProperties.ArbitraryFilesCountScenario
+  ): FilesUploader<IsInputRequired, Array<string>, Array<string>, Array<string>, Array<string>>;
 
-  public static pickOneBySelector<
-    ValidValue extends FilesUploader.SupportedValidatablePayloadValuesTypes,
-    InvalidValue extends FilesUploader.SupportedValidatablePayloadValuesTypes,
-    Validation extends InputtedValueValidation
-  >(
-    properties: FilesUploader.InitializationProperties<Validation>
-  ): FilesUploader<ValidValue, InvalidValue, Validation> {
-    return new FilesUploader<ValidValue, InvalidValue, Validation>(properties);
+  public static pickOneBySelector<IsInputRequired extends boolean>(
+    initializationProperties: FilesUploader.InitializationProperties
+  ): FilesUploader<
+      IsInputRequired,
+      FilesUploader.SupportedValidatablePayloadValuesTypes.NonEmpty,
+      FilesUploader.SupportedValidatablePayloadValuesTypes.Empty,
+      IsInputRequired extends true ?
+          FilesUploader.SupportedValidatablePayloadValuesTypes.NonEmpty :
+          FilesUploader.SupportedValidatablePayloadValuesTypes.NonEmpty |
+              FilesUploader.SupportedValidatablePayloadValuesTypes.Empty,
+      FilesUploader.SupportedValidatablePayloadValuesTypes.NonEmpty | FilesUploader.SupportedValidatablePayloadValuesTypes.Empty
+    > {
+    return new FilesUploader<
+      IsInputRequired,
+      FilesUploader.SupportedValidatablePayloadValuesTypes.NonEmpty,
+      FilesUploader.SupportedValidatablePayloadValuesTypes.Empty,
+      IsInputRequired extends true ?
+          FilesUploader.SupportedValidatablePayloadValuesTypes.NonEmpty :
+          FilesUploader.SupportedValidatablePayloadValuesTypes.NonEmpty |
+              FilesUploader.SupportedValidatablePayloadValuesTypes.Empty,
+      FilesUploader.SupportedValidatablePayloadValuesTypes.NonEmpty | FilesUploader.SupportedValidatablePayloadValuesTypes.Empty
+    >(initializationProperties);
   }
 
   public static addNamesExtensionsOfFilesWithMustBeRecognizedAsImages__leadingDotsAreOptional(
@@ -262,7 +282,7 @@ class FilesUploader<
       validation,
       localization = FilesUploader.localization,
       ...initializationProperties
-    }: FilesUploader.InitializationProperties<Validation>
+    }: FilesUploader.InitializationProperties
   ) {
 
     this.localization = localization;
@@ -546,14 +566,17 @@ class FilesUploader<
 
     }
 
-    this.payload = new ValidatableControl.Payload<ValidValue, InvalidValue, Validation>({
+    /* @ts-ignore: TS2322 Acceptable during α/β versions of this component but must and will be fixed before official release. */
+    this.payload = new ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>({
       /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
        * TypeScript complains that "Type null is not assignable to type ValidValue | InvalidValue" while both `ValidValue`
        *   and `InvalidValue` are constrained to polymorphic type `FilesUploader.SupportedValidatablePayloadValuesTypes`
        *   which could be `null`. */
       initialValue: payloadInitialValue as ValidValue | InvalidValue,
       getComponentInstance: (): ValidatableControl => this,
-      validation,
+      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+       * Acceptable during α/β versions of this component but must and will be fixed before official release. */
+      validation: validation as unknown as InputtedValueValidation<NonEmptyValueType, EmptyValueType>,
       onAnyChangeEventHandler: this.synchronizePreviewWithNewestValues.bind(this)
     });
 
@@ -770,7 +793,14 @@ class FilesUploader<
 
 namespace FilesUploader {
 
-  export type SupportedValidatablePayloadValuesTypes = string | Array<string> | null;
+  export type SupportedValidatablePayloadValuesTypes =
+      SupportedValidatablePayloadValuesTypes.NonEmpty |
+      SupportedValidatablePayloadValuesTypes.Empty;
+
+  export namespace SupportedValidatablePayloadValuesTypes {
+    export type NonEmpty = string | Array<string>;
+    export type Empty = Array<string> | null;
+  }
 
   export enum Scenarios {
     singleRequiredFile = "SINGLE_REQUIRED_FILE",
@@ -778,14 +808,17 @@ namespace FilesUploader {
     arbitraryFilesCount = "ARBITRARY_FILES_COUNT"
   }
 
-  export type InitializationProperties<Validation extends InputtedValueValidation> =
-      InitializationProperties.SingleRequiredFileScenario<Validation> |
-      InitializationProperties.SingleOptionalFileScenario<Validation> |
-      InitializationProperties.ArbitraryFilesCountScenario<Validation>;
+  export type InitializationProperties =
+      InitializationProperties.SingleRequiredFileScenario |
+      InitializationProperties.SingleOptionalFileScenario |
+      InitializationProperties.ArbitraryFilesCountScenario;
 
   export namespace InitializationProperties {
 
-    export type Common<Validation extends InputtedValueValidation> = Readonly<
+    export type Common<
+      NonEmptyValueType extends SupportedValidatablePayloadValuesTypes.NonEmpty,
+      EmptyValueType extends SupportedValidatablePayloadValuesTypes.Empty
+    > = Readonly<
       (
         {
           rootElement: Readonly<{ selector: string; }>;
@@ -801,32 +834,32 @@ namespace FilesUploader {
           minimalFilesCount?: number;
           maximalFilesCount?: number;
         }>;
-        validation: Validation;
+        validation: InputtedValueValidation<NonEmptyValueType, EmptyValueType>;
         mustHighlightInvalidInputIfAnyValidationErrorsMessagesImmediately: boolean;
         onBase64EncodingOfAllFilesDoneEventHandler?: OnBase64EncodingOfAllFilesDoneEventHandler;
         localization?: FilesUploaderLocalization;
       }>;
 
-    export type SingleRequiredFileScenario<Validation extends InputtedValueValidation> =
+    export type SingleRequiredFileScenario =
         Readonly<{
           initialFileURI?: string;
           scenario: Scenarios.singleRequiredFile;
         }> &
-        Common<Validation>;
+        Common<string, null>;
 
-    export type SingleOptionalFileScenario<Validation extends InputtedValueValidation> =
+    export type SingleOptionalFileScenario =
         Readonly<{
           initialFileURI?: string;
           scenario: Scenarios.singleOptionalFile;
         }> &
-        Common<Validation>;
+        Common<string, null>;
 
-    export type ArbitraryFilesCountScenario<Validation extends InputtedValueValidation> =
+    export type ArbitraryFilesCountScenario =
         Readonly<{
           initialFilesURIs?: Array<string>;
           scenario: Scenarios.arbitraryFilesCount;
         }> &
-        Common<Validation>;
+        Common<Array<string>, Array<string>>;
 
   }
 

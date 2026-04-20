@@ -1,20 +1,15 @@
 import type { InputtedValueValidation } from "@yamato-daiwa/frontend";
 
-import minimalKanjiOrKanaCharactersCountInputtedValueValidationRuleLocalization__japanese from
-      "./MinimalKanjiOrKanaCharactersCountInputtedValueValidationRuleLocalization.japanese";
+import { MinimalKanjiOrKanaCharactersCountInputtedValueValidationRuleLocalization__Japanese } from
+    "./MinimalKanjiOrKanaCharactersCountInputtedValueValidationRuleLocalization.japanese";
 
-import {
-  Logger,
-  InvalidParameterValueError,
-  isNotUndefined,
-  isString
-} from "@yamato-daiwa/es-extensions";
+import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
-class MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
+export class MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
 
   public static localization: MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule.Localization =
-      minimalKanjiOrKanaCharactersCountInputtedValueValidationRuleLocalization__japanese;
+      MinimalKanjiOrKanaCharactersCountInputtedValueValidationRuleLocalization__Japanese;
 
   public readonly mustFinishValidationIfValueIsInvalid: boolean;
 
@@ -48,7 +43,7 @@ class MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule implements In
     if (isNotUndefined(compoundParameter.errorMessageBuilder)) {
       this.errorMessageBuilder = compoundParameter.errorMessageBuilder;
     } else if (isNotUndefined(compoundParameter.errorMessage)) {
-      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions, @typescript-eslint/no-unsafe-type-assertion --
+      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
        * It was proved that "errorMessage" is non-undefined, and it will not change. */
       this.errorMessageBuilder = (): string => compoundParameter.errorMessage as string;
     } else {
@@ -58,22 +53,7 @@ class MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule implements In
 
   }
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
-
-    if (!isString(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: "Unable to execute this validation because the raw value is not the string " +
-            `and actually has type "${ typeof rawValue }".`,
-        occurrenceLocation: "MinimalKanjiKanaCharactersInputtedValueValidationRule.check(rawValue)"
-      });
-
-      return { isValid: true };
-
-    }
-
+  public check(rawValue: string): InputtedValueValidation.Rule.CheckingResult {
 
     const isKanjiOrKanaCharactersCountLessThanRequiredMinimum: boolean =
         this.isKanjiOrKanaCharactersCountLessThanRequiredMinimum?.({
@@ -114,7 +94,7 @@ class MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule implements In
 }
 
 
-namespace MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule {
+export namespace MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule {
 
   export type Localization = Readonly<{ errorMessageBuilder: ErrorMessage.Builder; }>;
 
@@ -130,6 +110,3 @@ namespace MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule {
   }
 
 }
-
-
-export default MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule;

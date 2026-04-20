@@ -1,7 +1,7 @@
 import type { NoLinksInputtedValueValidationRule } from "@yamato-daiwa/frontend";
 
 
-export const noLinksInputtedValueValidationRuleLocalization__japanese:
+export const NoLinksInputtedValueValidationRuleLocalization__Japanese:
     NoLinksInputtedValueValidationRule.Localization =
     {
       errorMessageBuilder: (): string =>

@@ -2,6 +2,7 @@
 
 import type { InputtedValueValidation, ValidatableControl as CorePackageValidatableControl } from "@yamato-daiwa/frontend";
 import type { ComponentPublicInstance as VueComponentPublicInstance } from "vue";
+import type { VueCons as VueClassComponent } from "vue-facing-decorator";
 import {
   Logger,
   UnexpectedEventError,
@@ -28,14 +29,14 @@ namespace ValidatableControl {
 
   export function getValidatableControlInstanceByVueReferenceID(
     compoundParameter: Readonly<{
-      parentVueComponentInstance: VueComponentPublicInstance;
+      parentVueComponentInstance: VueComponentPublicInstance | VueClassComponent;
       vueReferenceID: string;
     }>
   ): ValidatableControl | null;
 
   export function getValidatableControlInstanceByVueReferenceID(
     compoundParameter: Readonly<{
-      parentVueComponentInstance: VueComponentPublicInstance;
+      parentVueComponentInstance: VueComponentPublicInstance | VueClassComponent;
       vueReferenceID: string;
       mustThrowErrorIsNotFoundOrNotValidatableControl: true;
     }>
@@ -43,14 +44,17 @@ namespace ValidatableControl {
 
   export function getValidatableControlInstanceByVueReferenceID(
     compoundParameter: Readonly<{
-      parentVueComponentInstance: VueComponentPublicInstance;
+      parentVueComponentInstance: VueComponentPublicInstance | VueClassComponent;
       vueReferenceID: string;
       mustThrowErrorIsNotFoundOrNotValidatableControl?: true;
     }>
   ): ValidatableControl | null {
 
-    const potentialValidatableControl: unknown = compoundParameter.parentVueComponentInstance.
-        $refs[compoundParameter.vueReferenceID];
+    const potentialValidatableControl: unknown =
+        /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+         * Types which `vue-facing-decorator` imports are not compatible with `VueComponentPublicInstance`, but actually
+         *   class components will be transformed to valid option API.  */
+        (compoundParameter.parentVueComponentInstance as VueComponentPublicInstance).$refs[compoundParameter.vueReferenceID];
 
     if (isUndefined(potentialValidatableControl)) {
 
@@ -92,14 +96,21 @@ namespace ValidatableControl {
   }
 
 
-  export class Payload<ValidValue, InvalidValue, Validation extends InputtedValueValidation> {
+  export class Payload<
+    IsInputRequired extends boolean,
+    NonEmptyValueType,
+    EmptyValueType = NonEmptyValueType,
+    ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)) =
+        IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType),
+    InvalidValue extends NonEmptyValueType | EmptyValueType = NonEmptyValueType | EmptyValueType
+  > {
 
     /* ━━━ Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     public readonly ID: string;
     public readonly VUE_REFERENCE_ID: string;
 
     public readonly value: ValidValue | InvalidValue;
-    public readonly validation: Validation;
+    public readonly validation: InputtedValueValidation<NonEmptyValueType, EmptyValueType>;
     public readonly lastChangeSourceID?: string;
 
     protected readonly validationResult: InputtedValueValidation.Result;
@@ -107,18 +118,25 @@ namespace ValidatableControl {
 
 
     /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    public static createInitialInstance<ValidValue, InvalidValue, Validation extends InputtedValueValidation>(
+    public static createInitialInstance<
+      IsInputRequired extends boolean,
+      NonEmptyValueType,
+      EmptyValueType = NonEmptyValueType,
+      ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)) =
+          IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType),
+      InvalidValue extends NonEmptyValueType | EmptyValueType = NonEmptyValueType | EmptyValueType
+    >(
       {
         initialValue,
         validation,
         vueReferenceID
       }: Readonly<{
-        initialValue: ValidValue | InvalidValue;
-        validation: Validation;
+        initialValue: NonEmptyValueType | EmptyValueType;
+        validation: InputtedValueValidation<NonEmptyValueType, EmptyValueType>;
         vueReferenceID?: string;
       }>
-    ): Payload<ValidValue, InvalidValue, Validation> {
-      return new Payload<ValidValue, InvalidValue, Validation>({
+    ): Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue> {
+      return new Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>({
         value: initialValue,
         validation,
         vueReferenceID
@@ -138,8 +156,8 @@ namespace ValidatableControl {
       }: Readonly<{
 
         /** @description Immutable for each instance. */
-        value: ValidValue | InvalidValue;
-        validation: Validation;
+        value: NonEmptyValueType | EmptyValueType;
+        validation: InputtedValueValidation<NonEmptyValueType, EmptyValueType>;
 
         summarizingValidationErrorsMessages?: ReadonlyArray<string>;
         lastChangeSourceID?: string;
@@ -154,6 +172,8 @@ namespace ValidatableControl {
       this.ID = ID ?? Payload.generateSelfID();
       this.VUE_REFERENCE_ID = vueReferenceID ?? Payload.generateVueReferenceID_ForAssociatedComponent();
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- TEMPORARY
+      // @ts-ignore
       this.value = value;
       this.validation = validation;
       this.lastChangeSourceID = lastChangeSourceID;
@@ -191,13 +211,9 @@ namespace ValidatableControl {
 
     /* ─── Other ──────────────────────────────────────────────────────────────────────────────────────────────────── */
     public updateImmutably(
-      {
-        newValue
-      }: {
-        newValue: ValidValue | InvalidValue;
-      }
-    ): Payload<ValidValue, InvalidValue, Validation> {
-      return new Payload<ValidValue, InvalidValue, Validation>({
+      newValue: NonEmptyValueType | EmptyValueType
+    ): Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue> {
+      return new Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>({
         value: newValue,
         validation: this.validation
       });
@@ -256,6 +272,34 @@ namespace ValidatableControl {
 
   export function VModelChecker(rawVModel: unknown, valueChecker: (rawValue: unknown) => boolean): boolean {
     return isArbitraryObject(rawVModel) ? valueChecker(rawVModel.value) : false;
+  }
+
+
+  export namespace CharactersInputtingType {
+
+    export enum ValidityHighlightingActivationModes {
+      immediate = "IMMEDIATE",
+      onFirstInputtedCharacter = "ON_FIRST_INPUTTED_CHARACTER",
+      onFocusOut = "ON_FOCUS_OUT"
+    }
+
+    export type ValidityHighlightingActivationModeDefinition<
+      IsRequired extends boolean,
+      NonEmptyValueType,
+      EmptyValueType,
+      ValidValue extends (IsRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)),
+      InvalidValue extends NonEmptyValueType | EmptyValueType
+    > = Readonly<
+      {
+        validityHighlightingActivationMode: ValidityHighlightingActivationModes;
+      } |
+      {
+        decideValidityHighlightingActivationMode:
+            (payload: Payload<IsRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>) =>
+                ValidityHighlightingActivationModes;
+      }
+    >;
+
   }
 
 }

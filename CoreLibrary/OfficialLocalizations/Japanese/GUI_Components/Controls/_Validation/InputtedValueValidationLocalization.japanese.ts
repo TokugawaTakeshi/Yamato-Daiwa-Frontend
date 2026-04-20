@@ -1,6 +1,6 @@
 import type { InputtedValueValidation } from "@yamato-daiwa/frontend";
 
 
-export const inputtedValueValidationLocalization__japanese: InputtedValueValidation.Localization = {
+export const InputtedValueValidationLocalization__Japanese: InputtedValueValidation.Localization = {
   requiredInputIsMissingValidationErrorMessage: "この項目は必須です。ご入力をお願いいたします。"
 };

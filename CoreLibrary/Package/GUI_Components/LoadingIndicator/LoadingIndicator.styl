@@ -79,7 +79,7 @@ LoadingIndicator--YDF-customizeGeometry(settingsByTypes)
   iterateAssociativeArray(
     settingsByTypes,
     @(type, settings) {
-      LoadingIndicator--YDF-customizeGeometryOfSpecificType(type, settings)
+      LoadingIndicator--YDF-customizeGeometryOfSpecificType(type, settings.geometry)
     }
   )
 
@@ -108,7 +108,7 @@ LoadingIndicator--YDF-customizeDecoration(settingsByTypes)
   iterateAssociativeArray(
     settingsByTypes,
     @(type, settings) {
-      LoadingIndicator--YDF-customizeDecorationOfSpecificType(type, settings)
+      LoadingIndicator--YDF-customizeDecorationOfSpecificType(type, settings.decoration)
     }
   )
 

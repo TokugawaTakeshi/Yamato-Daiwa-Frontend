@@ -47,9 +47,57 @@
 
       imageURI: {
         type: String,
-        isUndefinedForbidden: true,
+        isUndefinedForbidden: false,
         isNullForbidden: true,
         minimalCharactersCount: 1
+      },
+
+      imagesSet: {
+
+        type: Array,
+        undefinedForbiddenIf: {
+          predicate: ({ rawData__full: properties }) => isUndefined(properties.imageURI),
+          descriptionForLogging: "`imageURI` is not defined"
+        },
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+
+        element: {
+          type: Object,
+          properties: {
+
+            isMain: {
+              type: Boolean,
+              undefinedValueSubstitution: false,
+              isNullForbidden: true
+            },
+
+            URI: {
+              type: String,
+              isUndefinedForbidden: true,
+              isNullForbidden: true
+            },
+
+            minimalViewportsWidth__pixels: {
+              type: Number,
+              numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
+              isNaN_Forbidden: true,
+              isUndefinedForbidden: false,
+              isNullForbidden: true
+            },
+
+            maximalViewportWidth__pixels: {
+              type: Number,
+              numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
+              isNaN_Forbidden: true,
+              isUndefinedForbidden: false,
+              isNullForbidden: true
+            }
+
+          }
+        }
+
       },
 
       imageAlternateText: {
@@ -139,6 +187,6 @@
 
 
     /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    static localization = singleImageViewerYDF_GUI_ComponentLocalization__english;
+    static localization = SingleImageViewerYDF_GUI_ComponentLocalization__English;
 
   };

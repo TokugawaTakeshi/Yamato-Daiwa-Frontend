@@ -120,5 +120,6 @@ export default class RadioButton {
     this.rootElement.classList.add(RadioButton.ROOT_ELEMENT_UNSELECTED_STATE_MODIFIER_CSS_CLASS);
 
   }
+  /* eslint-enable no-underscore-dangle */
 
 }

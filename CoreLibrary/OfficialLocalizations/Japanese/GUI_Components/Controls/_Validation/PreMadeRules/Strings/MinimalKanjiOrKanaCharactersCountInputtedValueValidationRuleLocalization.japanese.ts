@@ -1,8 +1,8 @@
-import type MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule from
+import type { MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule } from
       "./MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule";
 
 
-const minimalKanjiOrKanaCharactersCountInputtedValueValidationRuleLocalization__japanese:
+export const MinimalKanjiOrKanaCharactersCountInputtedValueValidationRuleLocalization__Japanese:
     MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: (
@@ -12,6 +12,3 @@ const minimalKanjiOrKanaCharactersCountInputtedValueValidationRuleLocalization__
   ): string =>
       `入力された文字列は「日本語ではない」可能性があります。漢字・カタカナ・ひらがなを${ minimalKanjiOrKanaCharactersCount }文字以上ご使用ください。`
 };
-
-
-export default minimalKanjiOrKanaCharactersCountInputtedValueValidationRuleLocalization__japanese;

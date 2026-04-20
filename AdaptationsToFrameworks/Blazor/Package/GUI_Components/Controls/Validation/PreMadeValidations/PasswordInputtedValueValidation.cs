@@ -20,7 +20,7 @@ public class PasswordInputtedValueValidation(
     
     isValueOfSupportedType: (object? rawValue) => rawValue is string,
     
-    hasValueBeenOmitted: (object? rawValue) => !String.IsNullOrEmpty((string?) rawValue),
+    hasValueBeenOmitted: (object? rawValue) => String.IsNullOrEmpty((string?) rawValue),
     
     inputRequiredFlag,
     
@@ -35,7 +35,7 @@ public class PasswordInputtedValueValidation(
         
           new AllowedCharactersInputtedValueValidationRule
           {
-            AllowedCharactersGroups = new AllowedCharactersInputtedValueValidationRule.AllowedCharactersSpecification()
+            AllowedCharactersGroups = new AllowedCharactersInputtedValueValidationRule.AllowedCharactersSpecification
             {
               latinUppercase = true,
               latinLowercase = true,

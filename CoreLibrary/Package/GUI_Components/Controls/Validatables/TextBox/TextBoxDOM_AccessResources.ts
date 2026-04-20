@@ -1,7 +1,7 @@
 import type TextBox from "./TextBox";
 
 
-const textBoxYDF_GUI_ComponentDOM_AccessResources: TextBox.DOM_AccessResources = {
+const TextBoxYDF_GUI_ComponentDOM_AccessResources: TextBox.DOM_AccessResources = {
 
   rootElement: {
 
@@ -63,4 +63,4 @@ const textBoxYDF_GUI_ComponentDOM_AccessResources: TextBox.DOM_AccessResources =
 };
 
 
-export default textBoxYDF_GUI_ComponentDOM_AccessResources;
+export default TextBoxYDF_GUI_ComponentDOM_AccessResources;

@@ -3,7 +3,7 @@
 namespace YamatoDaiwa.Frontend.GUI_Components.Controls.Validation.PreMadeRules.Strings;
 
 
-public class EmailAddressInputtedValueValidationRule : 
+public partial class EmailAddressInputtedValueValidationRule : 
     YamatoDaiwa.Frontend.GUI_Components.Controls.Validation.InputtedValueValidation.IRule
 {
 
@@ -33,7 +33,10 @@ public class EmailAddressInputtedValueValidationRule :
   
   
   /* ━━━ Specific Properties ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public Regex regularExpression { get; init; } = Fundamentals.Email.VALID_PATTERN;
+  [GeneratedRegex(Fundamentals.EmailAddress.VALID_PATTERN)]
+  private static partial Regex DEFAULT_EMAIL_ADDRESS_REGULAR_EXPRESSION();
+  
+  public Regex regularExpression { get; init; } = DEFAULT_EMAIL_ADDRESS_REGULAR_EXPRESSION();
   
   public Func<ILocalization.ErrorMessage.TemplateVariables, string>? ErrorMessageBuilder { get; init; }
   public string? ErrorMessage { get; init; }
@@ -59,5 +62,5 @@ public class EmailAddressInputtedValueValidationRule :
          this.ErrorMessage ??
          EmailAddressInputtedValueValidationRule.Localization.ErrorMessageBuilder(templateVariables);
   }
-  
+
 }

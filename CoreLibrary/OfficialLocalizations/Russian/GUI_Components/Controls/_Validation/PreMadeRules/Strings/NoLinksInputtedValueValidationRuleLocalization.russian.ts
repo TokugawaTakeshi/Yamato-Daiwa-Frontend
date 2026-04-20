@@ -1,10 +1,9 @@
 import type { NoLinksInputtedValueValidationRule } from "@yamato-daiwa/frontend";
 
 
-export const noLinksInputtedValueValidationRuleLocalization__russian:
-    NoLinksInputtedValueValidationRule.Localization =
+export const NoLinksInputtedValueValidationRuleLocalization__Russian: NoLinksInputtedValueValidationRule.Localization =
     {
       errorMessageBuilder: (): string =>
-          "Похоже, последовательность символов содержит ссылку, в то время как ссылки не допускаются. " +
+          "Обнаружена похожая на ссылку последовательность символов в то время как ссылки не допускаются. " +
           "Пожалуйста, удалите ссылку."
     };

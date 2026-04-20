@@ -329,11 +329,11 @@ Checkbox--YDF-generateStyles(
             required: false,
             incompatibleWith: "label.spacing.verticalSymmetric"
           },
-          "margin-left": {
+          margin-left: {
             dotSeparatedPath: "label.spacing.left",
             required: true
           },
-          "margin-right": {
+          margin-right: {
             dotSeparatedPath: "label.spacing.right",
             required: false
           }
@@ -401,8 +401,6 @@ Checkbox--YDF-generateStyles(
             targetObject: substateSettings.buttonLikeWrapper,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             assigments: {
-              color: { dotSeparatedPath: "text.color", required: false },
-              underline: { dotSeparatedPath: "text.underline", required: false, applier: applyObjectTypeUnderlineDefinition },
               background-color: { dotSeparatedPath: "background.color", required: false },
               background-image: { dotSeparatedPath: "background.image", required: false },
               border-style: { dotSeparatedPath: "borders.style", required: false },
@@ -427,6 +425,29 @@ Checkbox--YDF-generateStyles(
               border-color: { dotSeparatedPath: "borders.color", required: false },
               outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition },
               box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition }
+            }
+          })
+
+
+        .Checkbox--YDF-Checkmark
+
+          validateAndAssignStoredInObjectCSS_Properties({
+            targetObject: substateSettings.checkmark,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              border-color: { dotSeparatedPath: "color", required: false }
+            }
+          })
+
+
+        .Checkbox--YDF-Label
+
+          validateAndAssignStoredInObjectCSS_Properties({
+            targetObject: substateSettings.label,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              color: { dotSeparatedPath: "text.color", required: false },
+              underline: { dotSeparatedPath: "text.underline", required: false }
             }
           })
 

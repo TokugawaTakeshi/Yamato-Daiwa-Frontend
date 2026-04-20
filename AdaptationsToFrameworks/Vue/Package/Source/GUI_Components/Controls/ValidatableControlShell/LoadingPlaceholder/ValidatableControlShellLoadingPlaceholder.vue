@@ -16,6 +16,7 @@
         v-if="badge"
        :theme="badgeTheme"
        :geometricVariation="badgeGeometricVariation"
+       :decorativeVariation="badgeDecorativeVariation"
        :geometricModifiers="[ Badge.GeometricModifiers.pillShape ]"
       )
 
@@ -34,15 +35,21 @@
 
 <script lang="ts">
 
-  import BadgeLoadingPlaceholder from "./ValidatableControlShellLoadingPlaceholderLogic.vue";
+  import ValidatableControlShellLoadingPlaceholderLogic from "./ValidatableControlShellLoadingPlaceholderLogic.vue";
+  import BadgeLoadingPlaceholder from "../../../Badge/LoadingPlaceholder/Badge-LoadingPlaceholder.vue";
   import {
     ComponentBase as VueComponentConfiguration,
     toNative as transformToOptionAPI_VueComponent
   } from "vue-facing-decorator";
 
 
-  @VueComponentConfiguration({ name: "ValidatableControlShell--YDF__LoadingPlaceholder" })
-  class ValidatableControlShellLoadingPlaceholder extends BadgeLoadingPlaceholder {}
+  @VueComponentConfiguration({
+    name: "ValidatableControlShell--YDF__LoadingPlaceholder",
+    components: {
+      BadgeLoadingPlaceholder
+    }
+  })
+  class ValidatableControlShellLoadingPlaceholder extends ValidatableControlShellLoadingPlaceholderLogic {}
 
 
   export default transformToOptionAPI_VueComponent(ValidatableControlShellLoadingPlaceholder);

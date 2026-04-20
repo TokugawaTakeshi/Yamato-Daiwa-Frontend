@@ -1,7 +1,7 @@
 import type { FilesUploaderLocalization } from "@yamato-daiwa/frontend";
 
 
-export const filesUploaderYDF_GUI_ComponentLocalization__russian: FilesUploaderLocalization = {
+export const FilesUploaderYDF_GUI_ComponentLocalization__Russian: FilesUploaderLocalization = {
 
   processingsStatusesTable: {
     headers: {

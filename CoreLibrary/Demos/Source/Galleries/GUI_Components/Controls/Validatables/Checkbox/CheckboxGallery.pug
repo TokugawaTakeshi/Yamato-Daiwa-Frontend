@@ -58,25 +58,384 @@ mixin CheckboxGallery
       })
 
 
-    //- ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    if GalleryConfigurator.mustRenderGeometricModifiersSection
+  //-
+    //- ━━━ Long Labels ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.longLabels]
 
-    h2.Heading2(
-      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
-    ) Geometric Modifiers
-
-
-    //- ─── Square Shape ───────────────────────────────────────────────────────────────────────────────────────────────
-    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.squareShapeGeometricModifier]
-
-      h3.Heading3(
+      h2.Heading2(
         class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
-      ) Square Shape
+      ) Long Labels
 
       +ThemesShowcase--YDF({
         themes: Checkbox__YDF.Themes,
         geometricVariations: Checkbox__YDF.GeometricVariations,
         decorativeVariations: Checkbox__YDF.DecorativeVariations,
         iterationData: themeShowcaseCurrentIterationData,
+        decorativeVariationsListItemAdditionalCSS_Classes: [ "CheckboxGallery-PairFlow" ],
         skipDecorativeVariationIf
       })
+
+        +Checkbox--YDF({
+          label: "I am a very long label that should probably wrap into multiple lines if the container is narrow enough",
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          checked: false
+        })
+
+        +Checkbox--YDF({
+          label: "I am a very long label that should probably wrap into multiple lines if the container is narrow enough",
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          checked: true
+        })
+
+
+    //- ━━━ Disabled ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.disabled]
+
+      h2.Heading2(
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      ) Disabled
+
+      +ThemesShowcase--YDF({
+        themes: Checkbox__YDF.Themes,
+        geometricVariations: Checkbox__YDF.GeometricVariations,
+        decorativeVariations: Checkbox__YDF.DecorativeVariations,
+        iterationData: themeShowcaseCurrentIterationData,
+        decorativeVariationsListItemAdditionalCSS_Classes: [ "CheckboxGallery-PairFlow" ],
+        skipDecorativeVariationIf
+      })
+
+        +Checkbox--YDF({
+          label: "I am O'K",
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          checked: false,
+          disabled: true
+        })
+
+        +Checkbox--YDF({
+          label: "I am O'K",
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          checked: true,
+          disabled: true
+        })
+
+
+    //- ━━━ Readonly ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.readonly]
+
+      h2.Heading2(
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      ) Readonly
+
+      +ThemesShowcase--YDF({
+        themes: Checkbox__YDF.Themes,
+        geometricVariations: Checkbox__YDF.GeometricVariations,
+        decorativeVariations: Checkbox__YDF.DecorativeVariations,
+        iterationData: themeShowcaseCurrentIterationData,
+        decorativeVariationsListItemAdditionalCSS_Classes: [ "CheckboxGallery-PairFlow" ],
+        skipDecorativeVariationIf
+      })
+
+        +Checkbox--YDF({
+          label: "I am O'K",
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          checked: false,
+          readonly: true
+        })
+
+        +Checkbox--YDF({
+          label: "I am O'K",
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          checked: true,
+          readonly: true
+        })
+
+
+    //- ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if GalleryConfigurator.mustRenderGeometricModifiersSection
+
+      h2.Heading2(
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      ) Geometric Modifiers
+
+
+      //- ─── Square Shape ───────────────────────────────────────────────────────────────────────────────────────────────
+      if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.squareShapeGeometricModifier]
+
+        h3.Heading3(
+          class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        ) Square Shape
+
+        +ThemesShowcase--YDF({
+          themes: Checkbox__YDF.Themes,
+          geometricVariations: Checkbox__YDF.GeometricVariations,
+          decorativeVariations: Checkbox__YDF.DecorativeVariations,
+          iterationData: themeShowcaseCurrentIterationData,
+          decorativeVariationsListItemAdditionalCSS_Classes: [ "CheckboxGallery-PairFlow" ],
+          skipDecorativeVariationIf
+        })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.squareShape ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: false
+          })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.squareShape ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: true
+          })
+
+
+      //- ─── Single Line ────────────────────────────────────────────────────────────────────────────────────────────────
+      if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.singleLineGeometricModifier]
+
+        h3.Heading3(
+          class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        ) Single Line
+
+        +ThemesShowcase--YDF({
+          themes: Checkbox__YDF.Themes,
+          geometricVariations: Checkbox__YDF.GeometricVariations,
+          decorativeVariations: Checkbox__YDF.DecorativeVariations,
+          iterationData: themeShowcaseCurrentIterationData,
+          decorativeVariationsListItemAdditionalCSS_Classes: [ "CheckboxGallery-PairFlow" ],
+          skipDecorativeVariationIf
+        })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.singleLine ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: false
+          })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.singleLine ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: true
+          })
+
+
+      //- ─── No Left Border and Roundings ───────────────────────────────────────────────────────────────────────────────
+      if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noLeftBorderAndRoundingsGeometricModifier]
+
+        h3.Heading3(
+          class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        ) No Left Border and Roundings
+
+        +ThemesShowcase--YDF({
+          themes: Checkbox__YDF.Themes,
+          geometricVariations: Checkbox__YDF.GeometricVariations,
+          decorativeVariations: Checkbox__YDF.DecorativeVariations,
+          iterationData: themeShowcaseCurrentIterationData,
+          decorativeVariationsListItemAdditionalCSS_Classes: [ "CheckboxGallery-PairFlow" ],
+          skipDecorativeVariationIf
+        })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.noLeftBorderAndRoundings ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: false
+          })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.noLeftBorderAndRoundings ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: true
+          })
+
+
+      //- ─── No Right Border and Roundings ──────────────────────────────────────────────────────────────────────────────
+      if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noRightBorderAndRoundingsGeometricModifier]
+
+        h3.Heading3(
+          class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        ) No Right Border and Roundings
+
+        +ThemesShowcase--YDF({
+          themes: Checkbox__YDF.Themes,
+          geometricVariations: Checkbox__YDF.GeometricVariations,
+          decorativeVariations: Checkbox__YDF.DecorativeVariations,
+          iterationData: themeShowcaseCurrentIterationData,
+          decorativeVariationsListItemAdditionalCSS_Classes: [ "CheckboxGallery-PairFlow" ],
+          skipDecorativeVariationIf
+        })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.noRightBorderAndRoundings ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: false
+          })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.noRightBorderAndRoundings ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: true
+          })
+
+
+      //- ─── No Top Border and Roundings ────────────────────────────────────────────────────────────────────────────────
+      if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noTopBorderAndRoundingsGeometricModifier]
+
+        h3.Heading3(
+          class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        ) No Top Border and Roundings
+
+        +ThemesShowcase--YDF({
+          themes: Checkbox__YDF.Themes,
+          geometricVariations: Checkbox__YDF.GeometricVariations,
+          decorativeVariations: Checkbox__YDF.DecorativeVariations,
+          iterationData: themeShowcaseCurrentIterationData,
+          decorativeVariationsListItemAdditionalCSS_Classes: [ "CheckboxGallery-PairFlow" ],
+          skipDecorativeVariationIf
+        })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.noTopBorderAndRoundings ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: false
+          })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.noTopBorderAndRoundings ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: true
+          })
+
+
+      //- ─── No Bottom Border and Roundings ─────────────────────────────────────────────────────────────────────────────
+      if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noBottomBorderAndRoundingsGeometricModifier]
+
+        h3.Heading3(
+          class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        ) No Bottom Border and Roundings
+
+        +ThemesShowcase--YDF({
+          themes: Checkbox__YDF.Themes,
+          geometricVariations: Checkbox__YDF.GeometricVariations,
+          decorativeVariations: Checkbox__YDF.DecorativeVariations,
+          iterationData: themeShowcaseCurrentIterationData,
+          decorativeVariationsListItemAdditionalCSS_Classes: [ "CheckboxGallery-PairFlow" ],
+          skipDecorativeVariationIf
+        })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.noBottomBorderAndRoundings ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: false
+          })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.noBottomBorderAndRoundings ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: true
+          })
+
+
+      //- ─── No Roundings ───────────────────────────────────────────────────────────────────────────────────────────────
+      if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noRoundingsGeometricModifier]
+
+        h3.Heading3(
+          class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+        ) No Roundings
+
+        +ThemesShowcase--YDF({
+          themes: Checkbox__YDF.Themes,
+          geometricVariations: Checkbox__YDF.GeometricVariations,
+          decorativeVariations: Checkbox__YDF.DecorativeVariations,
+          iterationData: themeShowcaseCurrentIterationData,
+          decorativeVariationsListItemAdditionalCSS_Classes: [ "CheckboxGallery-PairFlow" ],
+          skipDecorativeVariationIf
+        })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.noRoundings ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: false
+          })
+
+          +Checkbox--YDF({
+            label: "I am O'K",
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            geometricModifiers: [ Checkbox__YDF.GeometricModifiers.noRoundings ],
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            checked: true
+          })
+
+
+    //- ━━━ Loading Placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.loadingPlaceholder]
+
+      h2.Heading2(
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      ) Loading Placeholder
+
+      +ThemesShowcase--YDF({
+        themes: Checkbox__YDF.Themes,
+        geometricVariations: Checkbox__YDF.GeometricVariations,
+        decorativeVariations: Checkbox__YDF.DecorativeVariations,
+        iterationData: themeShowcaseCurrentIterationData,
+        decorativeVariationsListItemAdditionalCSS_Classes: [ "CheckboxGallery-PairFlow" ],
+        skipDecorativeVariationIf
+      })
+
+        +ValidatableControlShell--YDF-LoadingPlaceholder({
+          label: true,
+          theme: Checkbox__YDF.selfAndChildrenComponentsThemesCorrespondence.validatableControlShell[themeShowcaseCurrentIterationData.theme.value],
+          geometricVariation: Checkbox__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.validatableControlShell[themeShowcaseCurrentIterationData.geometricVariation.value]
+        })
+          .Checkbox--YDF-ButtonLikeWrapper
+            span.Checkbox--YDF-FrameForCheckmark.Checkbox--YDF-FrameForCheckmark__LoadingPlaceholder
+            span.Checkbox--YDF-Label.Checkbox--YDF-Label__LoadingPlaceholder

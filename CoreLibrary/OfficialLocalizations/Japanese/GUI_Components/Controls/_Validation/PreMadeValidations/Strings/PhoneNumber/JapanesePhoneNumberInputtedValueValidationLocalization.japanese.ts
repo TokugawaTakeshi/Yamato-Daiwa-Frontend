@@ -1,9 +1,9 @@
-import type JapanesePhoneNumberInputtedValueValidation from "./JapanesePhoneNumberInputtedValueValidation";
-import japanesePhoneNumberInputtedValueValidationRuleLocalization__japanese from
+import type { JapanesePhoneNumberInputtedValueValidation } from "./JapanesePhoneNumberInputtedValueValidation";
+import { JapanesePhoneNumberInputtedValueValidationRuleLocalization__Japanese } from
     "../../../PreMadeRules/Strings/JapanesePhoneNumberInputtedValueValidationRuleLocalization.japanese";
 
 
-const japanesePhoneNumberInputtedValueValidationLocalization__japanese:
+export const JapanesePhoneNumberInputtedValueValidationLocalization__Japanese:
     JapanesePhoneNumberInputtedValueValidation.Localization = {
 
   requiredInputIsMissingValidationErrorMessage:
@@ -16,9 +16,6 @@ const japanesePhoneNumberInputtedValueValidationLocalization__japanese:
       "入力された電話番号は「文字数が少なすぎる」可能性があります。正しい電話番号かどうかご確認ください。",
 
   invalidPhoneNumberErrorMessageBuilder:
-      japanesePhoneNumberInputtedValueValidationRuleLocalization__japanese.errorMessageBuilder
+      JapanesePhoneNumberInputtedValueValidationRuleLocalization__Japanese.errorMessageBuilder
 
 };
-
-
-export default japanesePhoneNumberInputtedValueValidationLocalization__japanese;

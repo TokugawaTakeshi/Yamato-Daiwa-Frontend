@@ -8,13 +8,25 @@
      *   Readonly<{
      *     componentProperties: string;
      *     propertiesLocalizedInterpretations: Readonly<{
-     *       theme: string;
-     *       areThemesCSS_ClassesCommon: string;
-     *       geometricVariation: string;
-     *       geometricModifiers: string;
-     *       decorativeVariation: string;
-     *       decorativeModifiers: string;
-     *       rootElementTag: string;
+     *       [
+     *         keys in
+     *             "theme" |
+     *             "areThemesCSS_ClassesCommon" |
+     *             "geometricVariation" |
+     *             "geometricModifiers" |
+     *             "decorativeVariation" |
+     *             "decorativeModifiers" |
+     *             "rootElementTag"
+     *       ]: string;
+     *     }>;
+     *     statesSimulationsLocalizedInterpretations: Readonly<{
+     *       [
+     *         keys in
+     *             "invalidInputHighlightingIfAnyValidationErrorsMessages" |
+     *             "validValueHighlightingIfNoValidationErrorsMessages" |
+     *             "validationErrorsMessages" |
+     *             "asynchronousValidationsStatuses"
+     *        ]: string;
      *     }>;
      *     customThemingGuidanceGenerator: (constantExpression: string) => string;
      *   }>

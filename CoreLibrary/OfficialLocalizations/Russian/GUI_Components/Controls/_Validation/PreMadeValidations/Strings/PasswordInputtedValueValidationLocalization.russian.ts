@@ -6,7 +6,7 @@ import type {
 } from "@yamato-daiwa/frontend";
 
 
-export const passwordInputtedValueValidationLocalization__russian: PasswordInputtedValueValidation.Localization = {
+export const PasswordInputtedValueValidationLocalization__Russian: PasswordInputtedValueValidation.Localization = {
 
   requiredInputIsMissingValidationErrorMessage:
       "Пароль обязателен для ввода. Пожалуйста, введите пароль.",

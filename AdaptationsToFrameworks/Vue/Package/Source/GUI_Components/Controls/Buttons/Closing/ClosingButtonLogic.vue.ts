@@ -1,5 +1,5 @@
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
-import { type ClosingButtonLocalization, closingButtonYDF_GUI_ComponentLocalization__english } from "@yamato-daiwa/frontend";
+import { type ClosingButtonLocalization, ClosingButtonYDF_GUI_ComponentLocalization__English } from "@yamato-daiwa/frontend";
 
 /* ─── Validations ────────────────────────────────────────────────────────────────────────────────────────────────── */
 import type VuePropertyValidator from "../../../_VuePropertiesValidators/VuePropertyValidator";
@@ -183,7 +183,7 @@ class ClosingButton extends VueComponent {
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   @AccessibleFromTemplateAsNonReactive
-  public static localization: ClosingButtonLocalization = closingButtonYDF_GUI_ComponentLocalization__english;
+  public static localization: ClosingButtonLocalization = ClosingButtonYDF_GUI_ComponentLocalization__English;
 
 
   /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

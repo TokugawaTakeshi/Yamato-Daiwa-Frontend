@@ -139,7 +139,6 @@ Adds the [live templates](https://www.jetbrains.com/help/idea/using-live-templat
   - **ydfc-z** — accessing to selected value of [`YDF_Configuration.zIndexes` associative array](https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/YDF_Configuration/YDF_Configuration.english.html#PROPERTIES-Z_INDEXES--SECTION)
 - **oydfc** — YDF configuration overriding
 
-[//]: # (=== TODO ===================================================================================================)
 
 ##### Specification schemas
 

@@ -5,7 +5,7 @@
     guidance="Please input something"
     inputOrTextareaElementHTML_ID="BLA"
     v-model="textBoxPayload"
-    :validityHighlightingActivationMode="TextBox.ValidityHighlightingActivationModes.onFocusOut"
+    :validityHighlightingActivationMode="ValidityHighlightingActivationModes.onFocusOut"
     :mustDisplayAppropriateBadgeIfInputIsRequired="true"
     :required="textBoxPayload.validation.isInputRequired()"
     :ref="TEXT_BOX_VUE_REFERENCE_ID"
@@ -27,8 +27,12 @@
     toNative as transformToOptionAPI_VueComponent
   } from "vue-facing-decorator";
   import { ValidatableControl, NonReactiveVueData, AccessibleFromTemplateAsNonReactive } from "../../../../../../Source";
-  import { InputtedValueValidation, MinimalCharactersCountInputtedValueValidationRule } from "@yamato-daiwa/frontend";
-  import { isEmptyString } from "@yamato-daiwa/es-extensions";
+  import {
+    InputtedValueValidation,
+    isStringEmpty,
+    MinimalCharactersCountInputtedValueValidationRule
+  } from "@yamato-daiwa/frontend";
+  import { isString } from "@yamato-daiwa/es-extensions";
 
 
   @VueComponentOptions({
@@ -43,15 +47,18 @@
     protected readonly TEXT_BOX_VUE_REFERENCE_ID!: string;
 
     @AccessibleFromTemplateAsNonReactive
-    protected static readonly TextBox: typeof TextBox = TextBox;
+    protected static readonly ValidityHighlightingActivationModes:
+        typeof ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes =
+            ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes;
 
-    protected textBoxPayload: ValidatableControl.Payload<string, string, InputtedValueValidation> =
+    protected textBoxPayload: ValidatableControl.Payload<true, string> =
         ValidatableControl.Payload.createInitialInstance({
           initialValue: "",
-          validation: new class extends InputtedValueValidation {
+          validation: new class extends InputtedValueValidation<string> {
             public constructor() {
               super({
-                omittedValueChecker: isEmptyString,
+                isValueOfSupportedType: isString,
+                hasValueBeenOmitted: isStringEmpty,
                 isInputRequired: true,
                 staticRules: [
                   new MinimalCharactersCountInputtedValueValidationRule({ minimalCharactersCount: 3 })
@@ -82,5 +89,6 @@
   ValidatableControlShell--YDF-generateStyles()
   TextBox--YDF-generateStyles()
   Badge--YDF-generateStyles()
+  Button--YDF-generateStyles()
 
 </style>

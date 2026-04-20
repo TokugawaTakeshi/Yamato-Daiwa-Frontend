@@ -6,17 +6,17 @@
 @using YamatoDaiwa.CSharpExtensions
 
 
-<div 
+<div
   class=@classAttributeValueForRootElement
   @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary
   @ref=@rootElement
 >
-  
+
   @* ━━━ Header ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
   @if (mustDisplayHeader)
   {
     <div class="ValidatableControlShell--YDF-Header">
-    
+
       @if(label is not null)
       {
         <label
@@ -25,9 +25,9 @@
           id=@labelElementHTML_ID
         >
           @(label)
-        </label>  
+        </label>
       }
-      
+
       @if (mustDisplayRequiredInputBadge)
       {
         <Badge
@@ -91,11 +91,11 @@
   
   
   @* ━━━ (Non-asynchronous) validations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
-  @if (mustDisplayErrorsMessagesIfAny && validationErrorsMessages.Any())
+  @if (mustDisplayErrorsMessagesIfAny && validationErrorsMessagesCopyForAnimating.Any())
   {
     <ul class="ValidatableControlShell--YDF-ValidationErrorsMessagesList">
-  
-      @foreach (string validationErrorMessage in validationErrorsMessages)
+
+      @foreach (string validationErrorMessage in validationErrorsMessagesCopyForAnimating)
       {
         <li 
           class="ValidatableControlShell--YDF-ValidationErrorsMessagesList-Item"

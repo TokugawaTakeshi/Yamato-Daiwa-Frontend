@@ -1,7 +1,7 @@
 import type { NumericMaximumInputtedValueValidationRule } from "@yamato-daiwa/frontend";
 
 
-export const numericMaximumInputtedValueValidationRuleLocalization__japanese:
+export const NumericMaximumInputtedValueValidationRuleLocalization__Japanese:
     NumericMaximumInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: ({ maximalValue }: NumericMaximumInputtedValueValidationRule.ErrorMessage.TemplateVariables): string =>

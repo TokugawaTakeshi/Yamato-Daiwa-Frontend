@@ -71,7 +71,7 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
     )
 
     isExplicitPaddingZeroDeclarationRequired = properties.isExplicitPaddingZeroDeclarationRequired
-    paddingsVerticalUpwardShifting = getObjectValueByDotSeparatedPathSafely(properties.paddings, "upwardShifting")
+    paddingsUpwardShifting = getObjectValueByDotSeparatedPathSafely(properties.paddings, "upwardShifting")
 
     extraSpaceCausedByLineHeightAtTopOrBottom = null
 
@@ -94,9 +94,9 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
 
       correctedTopPaddings = buildCalcExpressionFromFragments({
         topBasicPadding: nullToZero(topBasicPadding),
-        paddingsVerticalUpwardShifting: @() {
-          if (isNotNull(paddingsVerticalUpwardShifting)) {
-            return " - " + paddingsVerticalUpwardShifting
+        paddingsUpwardShifting: @() {
+          if (isNotNull(paddingsUpwardShifting)) {
+            return " - " + paddingsUpwardShifting
           }
         }
         mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight: @() {
@@ -119,9 +119,9 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
 
       correctedBottomPaddings = buildCalcExpressionFromFragments({
         topBasicPadding: nullToZero(bottomBasicPadding),
-        paddingsVerticalUpwardShifting: @() {
-          if (isNotNull(paddingsVerticalUpwardShifting)) {
-            return " + " + paddingsVerticalUpwardShifting
+        paddingsUpwardShifting: @() {
+          if (isNotNull(paddingsUpwardShifting)) {
+            return " + " + paddingsUpwardShifting
           }
         }
         mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight: @() {

@@ -55,7 +55,7 @@ class ValidatableControlsGroup<
     this.validDataConstructor =
         compoundParameter.validDataConstructor ??
         /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
-        * Looks like there is no way to tell typescript that if `validDataConstructor` is not defined, the `ValidData`
+        * Looks like there is no way to tell TypeScript that if `validDataConstructor` is not defined, the `ValidData`
         *   will be even with `InputtedValidValues`. Tried constructor overloading.  */
         ((inputtedValidValues: InputtedValidValues): ValidData => inputtedValidValues as unknown as ValidData);
 
@@ -288,7 +288,40 @@ namespace ValidatableControlsGroup {
 
   export type GeneralizedControlsPayload = Readonly<{ [controlKey: string]: GeneralizedControlPayload; }>;
 
-  export type GeneralizedControlPayload = ValidatableControl.Payload<boolean, unknown>;
+  export type GeneralizedControlPayload =
+
+      /* [ Approach ]
+       * Omit or generalize some properties to avoid TS2344 "NNN does not satisfy the constraint XXX" error at
+       *   consuming class. */
+      Omit<
+        ValidatableControl.Payload<boolean, unknown>,
+            "validation" |
+            "setOnValueAnyChangeEventHandler" |
+            "setOnHasBecomeValidEventHandler" |
+            "setOnHasBecomeInvalidEventHandler" |
+            "setOnAsynchronousValidationStatusChangedEventHandler"
+      > &
+
+      {
+
+        setOnValueAnyChangeEventHandler:
+            (
+              polymorphicParameter:
+                  ValidatableControl.Payload.GeneralizedEventHandler |
+                  Readonly<{ handler: ValidatableControl.Payload.GeneralizedEventHandler; ID: string; }>
+            ) => unknown;
+
+        setOnAsynchronousValidationStatusChangedEventHandler:
+            (
+              polymorphicParameter:
+                  ValidatableControl.Payload.OnAsynchronousValidationStatusChangedEventHandler |
+                  Readonly<{
+                    handler: ValidatableControl.Payload.OnAsynchronousValidationStatusChangedEventHandler;
+                    ID: string;
+              }>
+            ) => unknown;
+
+      };
 
   export type GeneralizedEventHandler = () => void;
 

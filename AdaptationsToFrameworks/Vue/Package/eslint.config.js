@@ -39,6 +39,20 @@ module.exports = [
       "@typescript-eslint/no-redeclare": "off"
 
     }
+  },
+
+  /* Not actual for Browser JavaScript. */
+  {
+
+    files: [
+      "Source/**",
+      "Workbenches/**"
+    ],
+
+    rules: {
+      "n/no-unsupported-features/node-builtins": "off"
+    }
+
   }
 
 ];

@@ -1,7 +1,7 @@
 import type ValidatableControlShell from "./ValidatableControlShell";
 
 
-const validatableControlShellYDF_GUI_ComponentDOM_AccessResources: ValidatableControlShell.DOM_AccessResources = {
+const ValidatableControlShellYDF_GUI_ComponentDOM_AccessResources: ValidatableControlShell.DOM_AccessResources = {
 
   validationErrorsMessagesList: {
 
@@ -72,4 +72,4 @@ const validatableControlShellYDF_GUI_ComponentDOM_AccessResources: ValidatableCo
 };
 
 
-export default validatableControlShellYDF_GUI_ComponentDOM_AccessResources;
+export default ValidatableControlShellYDF_GUI_ComponentDOM_AccessResources;

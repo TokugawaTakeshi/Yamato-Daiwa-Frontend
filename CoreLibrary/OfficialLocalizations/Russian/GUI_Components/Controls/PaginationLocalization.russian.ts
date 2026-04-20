@@ -1,7 +1,7 @@
 import type { PaginationLocalization } from "@yamato-daiwa/frontend";
 
 
-export const paginationYDF_GUI_ComponentLocalization__russian: PaginationLocalization = {
+export const PaginationYDF_GUI_ComponentLocalization__Russian: PaginationLocalization = {
   buttons: {
     toFirstPage: { accessibilityGuidance: "На первую страницу" },
     toPreviousPage: { accessibilityGuidance: "На предыдущую страницу" },

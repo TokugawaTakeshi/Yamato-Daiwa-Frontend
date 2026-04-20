@@ -3,12 +3,11 @@ import type {
   MinimalCharactersCountInputtedValueValidationRule,
   MaximalCharactersCountInputtedValueValidationRule
 } from "@yamato-daiwa/frontend";
-import {
-  emailAddressInputtedValueValidationRuleLocalization__russian
-} from "../../PreMadeRules/Strings/EmailAddressInputtedValueValidationRuleLocalization.russian";
+import { EmailAddressInputtedValueValidationRuleLocalization__Russian } from
+    "../../PreMadeRules/Strings/EmailAddressInputtedValueValidationRuleLocalization.russian";
 
 
-export const emailAddressInputtedValueValidationLocalization__russian: EmailAddressInputtedValueValidation.Localization = {
+export const EmailAddressInputtedValueValidationLocalization__Russian: EmailAddressInputtedValueValidation.Localization = {
 
   requiredInputIsMissingValidationErrorMessage:
       "Ввод электронного адреса обязателен. Пожалуйста, введите адрес электронной почты.",
@@ -25,6 +24,6 @@ export const emailAddressInputtedValueValidationLocalization__russian: EmailAddr
       `${ rawValue.length } символов слишком много для электронного адреса. ` +
       `Пожалуйста, проверьте адрес электронной почты и введите не более ${ maximalCharactersCount } символов.`,
 
-  invalidEmailAddressErrorMessageBuilder: emailAddressInputtedValueValidationRuleLocalization__russian.errorMessageBuilder
+  invalidEmailAddressErrorMessageBuilder: EmailAddressInputtedValueValidationRuleLocalization__Russian.errorMessageBuilder
 
 };

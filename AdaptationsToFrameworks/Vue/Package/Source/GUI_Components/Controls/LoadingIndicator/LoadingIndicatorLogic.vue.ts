@@ -129,7 +129,9 @@ class LoadingIndicator extends VueComponent {
         Types: { value: LoadingIndicator.Types },
         Themes: { value: LoadingIndicator.Themes },
         defineThemes: { value: LoadingIndicator.defineThemes },
+        GeometricVariations: { value: LoadingIndicator.GeometricVariations },
         defineGeometricVariations: { value: LoadingIndicator.defineGeometricVariations },
+        DecorativeVariations: { value: LoadingIndicator.DecorativeVariations },
         defineDecorativeVariations: { value: LoadingIndicator.defineDecorativeVariations }
       }
     );

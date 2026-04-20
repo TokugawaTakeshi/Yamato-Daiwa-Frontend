@@ -1,12 +1,12 @@
 import type { MaximalElementsCountInputtedValueValidationRule } from "@yamato-daiwa/frontend";
 
 
-export const maximalElementsCountInputtedValueValidationRuleLocalization__russian:
+export const MaximalElementsCountInputtedValueValidationRuleLocalization__Russian:
     MaximalElementsCountInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: (
     { maximalElementsCount }: MaximalElementsCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
-      "Указано слишком много пунктов. " +
-      `Пожалуйста, укажите не более ${ maximalElementsCount }.`
+      "Указанное количество пунктов превышает максимально допустимое. " +
+      `Пожалуйста, укажите не более ${ maximalElementsCount } пунктов.`
 };

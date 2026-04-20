@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "Source/**/*",
+    "Project.d.ts",
+    "YDF_VueAdaptationPackageDebuggingProvider.ts"
+  ]
+}

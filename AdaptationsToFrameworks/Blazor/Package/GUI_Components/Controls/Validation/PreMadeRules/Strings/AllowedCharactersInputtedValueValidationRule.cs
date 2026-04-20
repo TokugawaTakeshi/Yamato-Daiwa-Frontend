@@ -91,7 +91,7 @@ public class AllowedCharactersInputtedValueValidationRule :
    
     List<char> inputtedDisallowedCharacters = ((string)rawValue).EnumerateRunes().
         Select((System.Text.Rune rune) => (char) rune.Value).
-        Where((char character) => this.AllowedCharacters.Contains(character)).
+        Where((char character) => !this.AllowedCharacters.Contains(character)).
         ToList();
 
     return new InputtedValueValidation.IRule.CheckingResult

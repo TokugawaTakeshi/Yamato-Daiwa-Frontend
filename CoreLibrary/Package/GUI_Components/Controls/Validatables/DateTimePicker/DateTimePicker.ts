@@ -4,8 +4,8 @@
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import type { DateTimePickerLocalization } from "./DateTimePickerLocalization";
 import componentDynamicPartsHTML from "./DateTimePicker.parts.pug";
-import { dateTimePickerYDF_GUI_ComponentLocalization__english } from "./DateTimePickerLocalization.english";
-import { type DateTimePickerYDF_GUI_ComponentDOM_AccessResources, dateTimePickerYDF_GUI_ComponentDOM_AccessResources } from
+import { DateTimePickerYDF_GUI_ComponentLocalization__English } from "./DateTimePickerLocalization.english";
+import { DateTimePickerYDF_GUI_ComponentDOM_AccessResources } from
     "./DateTimePickerDOM_Access";
 import { DAYS_COUNT_IN_WEEK, MAXIMAL_DAYS_IN_MONTH, MONTHS_COUNT_IN_YEAR } from "fundamental-constants";
 
@@ -62,10 +62,10 @@ class DateTimePicker<
 > implements ValidatableControl {
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static defaultLocalization: DateTimePickerLocalization = dateTimePickerYDF_GUI_ComponentLocalization__english;
+  public static defaultLocalization: DateTimePickerLocalization = DateTimePickerYDF_GUI_ComponentLocalization__English;
 
-  protected static readonly DOM_AccessResources: DateTimePickerYDF_GUI_ComponentDOM_AccessResources =
-      dateTimePickerYDF_GUI_ComponentDOM_AccessResources;
+  protected static readonly DOM_AccessResources: DateTimePicker.DOM_AccessResources =
+      DateTimePickerYDF_GUI_ComponentDOM_AccessResources;
 
   protected static readonly YEARS_COUNT_AT_LEFT_OR_RIGHT_OF_CENTER_ONE_IN_MATRIX: number = 12;
 
@@ -519,9 +519,11 @@ class DateTimePicker<
     if (isUndefined(initialValue__ISO8601)) {
       initiallyDisplayingDatePossiblyWithTime = new Date();
     } else {
-      // FIXME ここで不正HTMLが発生しがち
+
+      /* [ Temporary ] May cause invalid HTML Value, must be fixed in final version. */
       this.nativeInputElement.value = initialValue__ISO8601;
       initiallyDisplayingDatePossiblyWithTime = new Date(initialValue__ISO8601);
+
     }
 
 
@@ -744,7 +746,7 @@ class DateTimePicker<
 
     /* @ts-ignore: TS2394 Acceptable during α/β versions of this component but must and will be fixed before official release. */
     this.indicatorButtonLabelElement.textContent = this.displayingValueFormatter(this.payload.value);
-    
+
   }
 
   protected onClickIndicatorButton(): void {
@@ -1446,6 +1448,193 @@ namespace DateTimePicker {
     dayOfWeekNumber__numerationFrom0ForSunday = "data-day_of_week_number__numeration_from_0_from_sunday",
     dayOfWeekName = "data-day_of_week_name"
   }
+
+  export type DOM_AccessResources = Readonly<{
+
+    rootElement: Readonly<{
+      states: Readonly<{
+        invalid: Readonly<{
+          CSS_CLASS: string;
+        }>;
+      }>;
+    }>;
+
+    dialog: Readonly<{
+
+      topActionBar: Readonly<{
+
+        reusableButtons: Readonly<{
+
+          [
+            keys in
+                "switchingToDateSelectingPanel" |
+                "switchingToMonthSelectingPanel" |
+                "switchingToYearSelectingPanel"
+            ]: Readonly<{
+              DATA_ATTRIBUTE_KEY: string;
+              COMMON_SELECTOR: string;
+            }>
+
+        }>;
+
+        daysActions: Readonly<{
+
+          DATA_ATTRIBUTE_KEY: string;
+          INTERNALLY_UNIQUE_SELECTOR: string;
+
+          columnsTitles: {
+
+            [
+              keys in
+                  "closestMonths" |
+                  "selectingPanels"
+            ]: Readonly<{
+              DATA_ATTRIBUTE_KEY: string;
+              INTERNALLY_UNIQUE_SELECTOR: string;
+            }>;
+
+          };
+
+          buttons: Readonly<{
+
+            [
+              keys in
+                  "switchingToPreviousMonth" |
+                  "switchingToNextMonth"
+              ]: Readonly<{
+                DATA_ATTRIBUTE_KEY: string;
+                INTERNALLY_UNIQUE_SELECTOR: string;
+              }>
+
+          }>;
+
+        }>;
+
+        monthsActions: Readonly<{
+
+          DATA_ATTRIBUTE_KEY: string;
+          INTERNALLY_UNIQUE_SELECTOR: string;
+
+          columnsTitles: {
+
+            [
+              keys in
+                  "closestYears" |
+                  "selectingPanels"
+            ]: Readonly<{
+              DATA_ATTRIBUTE_KEY: string;
+              INTERNALLY_UNIQUE_SELECTOR: string;
+            }>;
+
+          };
+
+          buttons: Readonly<{
+
+            [
+              keys in
+                  "switchingToPreviousYear" |
+                  "switchingToNextYear"
+              ]: Readonly<{
+                DATA_ATTRIBUTE_KEY: string;
+                INTERNALLY_UNIQUE_SELECTOR: string;
+              }>
+
+          }>;
+
+        }>;
+
+        yearsActions: Readonly<{
+
+          DATA_ATTRIBUTE_KEY: string;
+          INTERNALLY_UNIQUE_SELECTOR: string;
+
+          columnsTitles: {
+
+            [
+              keys in
+                  "adjacentYearsSets" |
+                  "selectingPanels"
+            ]: Readonly<{
+              DATA_ATTRIBUTE_KEY: string;
+              INTERNALLY_UNIQUE_SELECTOR: string;
+            }>;
+
+          };
+
+          buttons: Readonly<{
+
+            [
+              keys in
+                  "switchingToPreviousYearsSet" |
+                  "switchingToNextYearsSet"
+              ]: Readonly<{
+                DATA_ATTRIBUTE_KEY: string;
+                INTERNALLY_UNIQUE_SELECTOR: string;
+              }>
+
+          }>;
+
+        }>;
+
+      }>;
+
+      header: Readonly<{
+        [
+          key in
+              "currentScopeLabel" |
+              "guidance"
+        ]: Readonly<{
+          DATA_ATTRIBUTE_KEY: string;
+          INTERNALLY_UNIQUE_SELECTOR: string;
+        }>
+      }>;
+
+      matrices: Readonly<{
+
+        days: Readonly<{
+          columnTitleCell: Readonly<{
+            DATA_ATTRIBUTE_KEY: string;
+            COMMON_SELECTOR: string;
+          }>;
+        }>;
+        years: Readonly<{
+          yearSelectingButton: Readonly<{
+            DATASET_KEY: string;
+            DATA_ATTRIBUTE_KEY: string;
+          }>;
+        }>;
+      }>;
+
+      bottomActionBar: Readonly<{
+
+        buttons: Readonly<{
+
+          [
+            key in
+                "unselecting"
+          ]: Readonly<{
+            DATA_ATTRIBUTE_KEY: string;
+            INTERNALLY_UNIQUE_SELECTOR: string;
+          }>;
+
+        }>;
+
+      }>;
+
+    }>;
+
+    nativeInput: Readonly<{
+      UNIQUE_SELECTOR: string;
+    }>;
+
+    indicatorButton: Readonly<{
+      UNIQUE_SELECTOR: string;
+      label: Readonly<{
+        UNIQUE_SELECTOR: string;
+      }>;
+    }>;
+
+  }>;
 
 }
 

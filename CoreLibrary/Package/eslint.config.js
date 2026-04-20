@@ -7,6 +7,7 @@ module.exports = [
     ignores: [
       "LogicDistributable/",
       "Tests/Build/",
+      "Workbenches/Build/",
       "Markup/InlineECMAScript/Temporary/"
     ]
   },

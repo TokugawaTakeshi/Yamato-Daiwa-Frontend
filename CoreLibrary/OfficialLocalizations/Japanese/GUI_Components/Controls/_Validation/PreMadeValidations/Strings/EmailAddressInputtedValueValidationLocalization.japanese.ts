@@ -1,9 +1,9 @@
 import type { EmailAddressInputtedValueValidation } from "@yamato-daiwa/frontend";
-import { emailAddressInputtedValueValidationRuleLocalization__japanese } from
+import { EmailAddressInputtedValueValidationRuleLocalization__Japanese } from
     "../../PreMadeRules/Strings/EmailAddressInputtedValueValidationRuleLocalization.japanese";
 
 
-export const emailAddressInputtedValueValidationLocalization__japanese: EmailAddressInputtedValueValidation.Localization = {
+export const EmailAddressInputtedValueValidationLocalization__Japanese: EmailAddressInputtedValueValidation.Localization = {
 
   requiredInputIsMissingValidationErrorMessage: "メールアドレスは必須です。ご入力をお願いいたします。",
 
@@ -13,6 +13,6 @@ export const emailAddressInputtedValueValidationLocalization__japanese: EmailAdd
   maximalCharactersCountValidationErrorMessageBuilder: (): string =>
       "入力されたメールアドレスは「文字数が多すぎる」可能性があります。正しいメールアドレスかどうかご確認ください。",
 
-  invalidEmailAddressErrorMessageBuilder: emailAddressInputtedValueValidationRuleLocalization__japanese.errorMessageBuilder
+  invalidEmailAddressErrorMessageBuilder: EmailAddressInputtedValueValidationRuleLocalization__Japanese.errorMessageBuilder
 
 };

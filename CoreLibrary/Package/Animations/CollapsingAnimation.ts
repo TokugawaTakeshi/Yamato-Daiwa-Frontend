@@ -1,4 +1,4 @@
-import type TargetElementDefinition from "../Logic/Types/TargetElementDefinition";
+import type { TargetElementDefinition } from "../Logic/Types/TargetElementDefinition";
 import {
   getExpectedToBeSingleDOM_Element,
   resolveContextDOM_ElementPolymorphicSpecification
@@ -8,8 +8,7 @@ import {
   InvalidParameterValueError,
   secondsToMilliseconds,
   roundUpToSpecificIntegerPlaceValue,
-  isNeitherUndefinedNorNull,
-  isNotNull
+  isNeitherUndefinedNorNull
 } from "@yamato-daiwa/es-extensions";
 
 
@@ -21,7 +20,7 @@ class CollapsingAnimation {
 
   public static animate(
     options: CollapsingAnimation.Options.OptionalCallbackConfiguration
-  ): void;
+  ): number;
 
   public static animate(
     {
@@ -31,7 +30,7 @@ class CollapsingAnimation {
       mustRemoveOnceComplete,
       ...options
     }: CollapsingAnimation.Options
-  ): Promise<void> | void {
+  ): Promise<void> | number {
 
     const contextElement: Element | ParentNode | null =
         resolveContextDOM_ElementPolymorphicSpecification(options.contextElement);
@@ -40,7 +39,7 @@ class CollapsingAnimation {
         options.targetElement :
         getExpectedToBeSingleDOM_Element({
           selector: options.targetElement.selector,
-          ...isNotNull(contextElement) ? { contextElement } : null
+          contextElement
         });
 
     if (!(targetElement instanceof HTMLElement)) {
@@ -58,10 +57,25 @@ class CollapsingAnimation {
     }
 
 
+    const offsetHeightOfAnimatedElement__pixels: number = targetElement.offsetHeight;
+
+    targetElement.style.height = `${ offsetHeightOfAnimatedElement__pixels }px`;
+    targetElement.style.overflow = "hidden";
+    targetElement.style.visibility = "hidden";
+
+    const duration__milliseconds: number =
+        "averageSpeed__pixelsPerSecond" in options ?
+            roundUpToSpecificIntegerPlaceValue({
+              targetNumber: secondsToMilliseconds(
+                  Math.round(offsetHeightOfAnimatedElement__pixels / options.averageSpeed__pixelsPerSecond)
+              ),
+              trailingZerosCount: 3
+            }) :
+            secondsToMilliseconds(options.duration__seconds);
+
+
     const animating: Promise<void> = new Promise<void>(
       (resolve: () => void): void => {
-
-        const offsetHeightOfAnimatedElement__pixels: number = targetElement.offsetHeight;
 
         const animation: Animation = targetElement.animate(
           {
@@ -72,15 +86,7 @@ class CollapsingAnimation {
             paddingBottom: 0
           },
           {
-            duration:
-                "averageSpeed__pixelsPerSecond" in options ?
-                    roundUpToSpecificIntegerPlaceValue({
-                      targetNumber: secondsToMilliseconds(
-                          Math.round(offsetHeightOfAnimatedElement__pixels / options.averageSpeed__pixelsPerSecond)
-                      ),
-                      trailingZerosCount: 3
-                    }) :
-                    secondsToMilliseconds(options.duration__seconds)
+            duration: duration__milliseconds
           }
         );
 
@@ -88,11 +94,14 @@ class CollapsingAnimation {
           "finish",
           (): void => {
 
+            targetElement.style.height = "0";
             targetElement.style.removeProperty("height");
             targetElement.style.removeProperty("margin-top");
             targetElement.style.removeProperty("margin-bottom");
             targetElement.style.removeProperty("padding-top");
             targetElement.style.removeProperty("padding-bottom");
+            targetElement.style.removeProperty("overflow");
+            targetElement.style.removeProperty("visibility");
 
             callback?.();
             resolve();
@@ -109,9 +118,7 @@ class CollapsingAnimation {
       }
     );
 
-    if (mustReturnPromise) {
-      return animating;
-    }
+    return mustReturnPromise ? animating : duration__milliseconds;
 
   }
 

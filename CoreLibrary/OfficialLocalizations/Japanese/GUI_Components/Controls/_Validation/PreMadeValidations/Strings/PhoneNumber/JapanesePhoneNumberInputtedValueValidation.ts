@@ -1,23 +1,27 @@
+import { MINIMAL_DIGITS_COUNT_IN_JAPANESE_PHONE_NUMBER } from "fundamental-constants-japan";
+
 import {
   InputtedValueValidation,
   MinimalCharactersCountInputtedValueValidationRule,
-  AllowedCharactersInputtedValueValidationRule,
-  isStringEmpty
+  AllowedCharactersInputtedValueValidationRule
 } from "@yamato-daiwa/frontend";
-import { MINIMAL_DIGITS_COUNT_IN_JAPANESE_PHONE_NUMBER } from "fundamental-constants-japan";
-import JapanesePhoneNumberInputtedValueValidationRule from
-    "../../../PreMadeRules/Strings/JapanesePhoneNumberInputtedValueValidationRule";
 
-import japanesePhoneNumberInputtedValueValidationLocalization__japanese from
+import { JapanesePhoneNumberInputtedValueValidationRule } from
+    "../../../PreMadeRules/Strings/JapanesePhoneNumberInputtedValueValidationRule";
+import { JapanesePhoneNumberInputtedValueValidationLocalization__Japanese } from
     "./JapanesePhoneNumberInputtedValueValidationLocalization.japanese";
 
 import { isString } from "@yamato-daiwa/es-extensions";
 
 
-class JapanesePhoneNumberInputtedValueValidation extends InputtedValueValidation<string> {
+export class JapanesePhoneNumberInputtedValueValidation<
+  EmptyValue extends JapanesePhoneNumberInputtedValueValidation.SupportedEmptyValues
+>
+    extends InputtedValueValidation<string, EmptyValue>
+{
 
   public static localization: JapanesePhoneNumberInputtedValueValidation.Localization =
-      japanesePhoneNumberInputtedValueValidationLocalization__japanese;
+      JapanesePhoneNumberInputtedValueValidationLocalization__Japanese;
 
   /* [ Approach ] Although YDF library can suggest the minimal characters count for the email address,
   *    in the applications with good architecture this value must be taken from the business rules and
@@ -25,31 +29,46 @@ class JapanesePhoneNumberInputtedValueValidation extends InputtedValueValidation
   public readonly MINIMAL_CHARACTERS_COUNT: number;
 
   public constructor(
-    compoundParameter:
-        Readonly<{
-          isInputRequired: boolean;
-          minimalCharactersCount?: number;
-          regularExpression__noNDashesRespected?: RegExp;
-        }> &
-        Pick<
-          InputtedValueValidation.ConstructorCompoundParameter<string>,
-          "contextDependentRules" |
-          "asynchronousRules" |
-          "asynchronousValidationsCallback"
-        >
+    {
+      minimalCharactersCount,
+      isInputRequired,
+      localization,
+      contextDependentRules,
+      asynchronousRules,
+      asynchronousValidationsCallback,
+      ...compoundParameter
+    }: JapanesePhoneNumberInputtedValueValidation.ConstructorParameter<EmptyValue>
   ) {
 
-    const MINIMAL_CHARACTERS_COUNT: number =
-        compoundParameter.minimalCharactersCount ??
-        MINIMAL_DIGITS_COUNT_IN_JAPANESE_PHONE_NUMBER;
+    const MINIMAL_CHARACTERS_COUNT: number = minimalCharactersCount ?? MINIMAL_DIGITS_COUNT_IN_JAPANESE_PHONE_NUMBER;
 
     super({
-      supportedValueTypeChecker: isString,
-      isInputRequired: compoundParameter.isInputRequired,
-      omittedValueChecker: isStringEmpty,
-      requiredInputIsMissingValidationErrorMessage: JapanesePhoneNumberInputtedValueValidation.localization.
-          requiredInputIsMissingValidationErrorMessage,
+
+      isValueOfSupportedType:
+          "isValueOfSupportedType" in compoundParameter ?
+              compoundParameter.isValueOfSupportedType :
+              isString,
+
+      hasValueBeenOmitted:
+          "hasValueBeenOmitted" in compoundParameter ?
+              compoundParameter.hasValueBeenOmitted :
+              /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+              * It is unlikely that overloading functionality in TypeScript allows expressing: "When `omittedValueChecker`
+              *   is specified, the return type will the `EmailAddressInputtedValueValidation<EmptyValue>`, otherwise
+              *   it will be `EmailAddressInputtedValueValidation<string>`", so maybe have no choice except casting. */
+              (
+                (supportedButPossiblyEmptyValue: string): supportedButPossiblyEmptyValue is string =>
+                    supportedButPossiblyEmptyValue.length === 0
+              ) as InputtedValueValidation.OmittedValueChecker<string, EmptyValue>,
+
+      isInputRequired,
+
+      requiredInputIsMissingValidationErrorMessage:
+          (localization ?? JapanesePhoneNumberInputtedValueValidation.localization).
+              requiredInputIsMissingValidationErrorMessage,
+
       staticRules: [
+
         new AllowedCharactersInputtedValueValidationRule({
           allowedCharacters: {
             digits: true,
@@ -57,24 +76,34 @@ class JapanesePhoneNumberInputtedValueValidation extends InputtedValueValidation
             latinUppercase: false,
             other: [ "-" ]
           },
-          errorMessageBuilder: JapanesePhoneNumberInputtedValueValidation.localization.
-              disallowedCharactersFoundErrorMessageBuilder
+          errorMessageBuilder:
+              (localization ?? JapanesePhoneNumberInputtedValueValidation.localization).
+                  disallowedCharactersFoundErrorMessageBuilder
         }),
+
         new MinimalCharactersCountInputtedValueValidationRule({
           minimalCharactersCount: MINIMAL_CHARACTERS_COUNT,
-          errorMessageBuilder: JapanesePhoneNumberInputtedValueValidation.localization.
-              minimalCharactersCountValidationErrorMessageBuilder,
+          errorMessageBuilder:
+              (localization ?? JapanesePhoneNumberInputtedValueValidation.localization).
+                  minimalCharactersCountValidationErrorMessageBuilder,
           mustFinishValidationIfValueIsInvalid: true
         }),
+
         new JapanesePhoneNumberInputtedValueValidationRule({
           regularExpression__noNDashesRespected: compoundParameter.regularExpression__noNDashesRespected,
-          errorMessageBuilder: JapanesePhoneNumberInputtedValueValidation.localization.
-              invalidPhoneNumberErrorMessageBuilder
+          errorMessageBuilder:
+              (localization ?? JapanesePhoneNumberInputtedValueValidation.localization).
+                  invalidPhoneNumberErrorMessageBuilder
         })
+
       ],
-      contextDependentRules: compoundParameter.contextDependentRules,
-      asynchronousRules: compoundParameter.asynchronousRules,
-      asynchronousValidationsCallback: compoundParameter.asynchronousValidationsCallback
+
+      contextDependentRules,
+
+      asynchronousRules,
+
+      asynchronousValidationsCallback
+
     });
 
     this.MINIMAL_CHARACTERS_COUNT = MINIMAL_CHARACTERS_COUNT;
@@ -84,7 +113,42 @@ class JapanesePhoneNumberInputtedValueValidation extends InputtedValueValidation
 }
 
 
-namespace JapanesePhoneNumberInputtedValueValidation {
+export namespace JapanesePhoneNumberInputtedValueValidation {
+
+  export type SupportedEmptyValues = string | null | undefined;
+
+  export type ConstructorParameter<EmptyValueType extends SupportedEmptyValues> =
+      ConstructorParameter.EmptyValueIsString |
+      ConstructorParameter.EmptyValueIsNonString<EmptyValueType>;
+
+  export namespace ConstructorParameter {
+
+    export type EmptyValueIsString =
+
+        Readonly<{
+          isInputRequired: boolean | InputtedValueValidation.InputRequirementChecker;
+          minimalCharactersCount?: number;
+          regularExpression__noNDashesRespected?: RegExp;
+          localization?: Localization;
+        }> &
+
+        Pick<
+          InputtedValueValidation.ConstructorCompoundParameter<string>,
+          "contextDependentRules" |
+          "asynchronousRules" |
+          "asynchronousValidationsCallback"
+        >;
+
+    export type EmptyValueIsNonString<EmptyValueType extends SupportedEmptyValues> =
+
+        EmptyValueIsString &
+
+        Readonly<{
+          isValueOfSupportedType: InputtedValueValidation.SupportedValueChecker<string, EmptyValueType>;
+          hasValueBeenOmitted: InputtedValueValidation.OmittedValueChecker<string, EmptyValueType>;
+        }>;
+
+  }
 
   export type Localization =
       InputtedValueValidation.Localization &
@@ -98,6 +162,3 @@ namespace JapanesePhoneNumberInputtedValueValidation {
       }>;
 
 }
-
-
-export default JapanesePhoneNumberInputtedValueValidation;

@@ -1,5 +1,6 @@
 {
   "private": true,
+  "sideEffects": false,
   "scripts": {
     "Build YDF Exports": "yda --mode PRODUCTION"
   },
@@ -7,6 +8,7 @@
     "@yamato-daiwa/frontend": "2.0.0-beta.11"
   },
   "devDependencies": {
-    "@yamato-daiwa/automation": "0.8.0"
+    "@yamato-daiwa/style_guides": "0.13.0",
+    "typescript": "6.0.3"
   }
 }

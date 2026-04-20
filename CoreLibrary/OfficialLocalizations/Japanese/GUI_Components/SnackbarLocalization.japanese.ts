@@ -1,6 +1,6 @@
 import type { SnackbarLocalization } from "@yamato-daiwa/frontend";
 
 
-export const snackbarYDF_GUI_ComponentLocalization__japanese: SnackbarLocalization = {
+export const SnackbarYDF_GUI_ComponentLocalization__Japanese: SnackbarLocalization = {
   dismissingButton: { accessibilityGuidance: "このメッセージを隠す" }
 };

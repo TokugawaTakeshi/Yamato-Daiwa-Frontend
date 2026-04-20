@@ -1,7 +1,7 @@
 import type { PaginationLocalization } from "@yamato-daiwa/frontend";
 
 
-export const paginationYDF_GUI_ComponentLocalization__japanese: PaginationLocalization = {
+export const PaginationYDF_GUI_ComponentLocalization__Japanese: PaginationLocalization = {
   buttons: {
     toFirstPage: { accessibilityGuidance: "一ページ目へ" },
     toPreviousPage: { accessibilityGuidance: "前のページへ" },

@@ -13,6 +13,14 @@ module.exports = [
   ...YamatoDaiwaStyleGuides,
 
   {
+    languageOptions: {
+      parserOptions: {
+        project: "tsconfig.eslint.json"
+      }
+    }
+  },
+
+  {
     files: [ "eslint.config.js" ],
     rules: {
       "n/no-unpublished-require": "off"
@@ -20,9 +28,16 @@ module.exports = [
   },
 
   {
-    files: [ "PartialDemosGenerator.ts" ],
+    files: [ "YDF_VueAdaptationPackageDebuggingProvider.ts" ],
     rules: {
-      "n/no-unpublished-import": "off"
+
+      "n/no-unpublished-import": "off",
+
+      "n/no-unsupported-features/node-builtins": [
+        "error",
+        { version: ">=22.3.0" }
+      ]
+
     }
   }
 

@@ -1,4 +1,5 @@
-/* ─── Validations ─────────────────────────────────────────────────────────────────────────────────────── */
+/* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ┅┅┅ Validations ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import VuePropertyValidator from "../../../_VuePropertiesValidators/VuePropertyValidator";
 import BooleanVuePropertyValidator from "../../../_VuePropertiesValidators/BooleanVuePropertyValidator";
 import ElementOfEnumerationVuePropertyValidator from "../../../_VuePropertiesValidators/ElementOfEnumerationVuePropertyValidator";
@@ -6,27 +7,37 @@ import NonEmptyStringVuePropertyValidator from "../../../_VuePropertiesValidator
 import NaturalNumberOrZeroVuePropertyValidator from "../../../_VuePropertiesValidators/NaturalNumberOrZeroVuePropertyValidator";
 import ThemeVuePropertyValidator from "../../../_VuePropertiesValidators/ThemeVuePropertyValidator";
 import GeometricVariationVuePropertyValidator from "../../../_VuePropertiesValidators/GeometricVariationVuePropertyValidator";
+import GeometricModifiersVuePropertyValidator from "../../../_VuePropertiesValidators/GeometricModifiersVuePropertyValidator";
 import DecorativeVariationVuePropertyValidator from "../../../_VuePropertiesValidators/DecorativeVariationVuePropertyValidator";
 import preventNullForOptionalVueProperty from "../../../_Decorators/preventNullForOptionalVueProperty";
 
-/* ─── GUI Components ─────────────────────────────────────────────────────────────────────────────────────────────── */
-import InputtableControl from "../InputtableControl.vue";
-import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell.vue";
+/* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+import {
+  type TextBoxLocalization,
+  TextBoxYDF_GUI_ComponentLocalization__English
+} from "@yamato-daiwa/frontend";
 
-/* ─── Framework ──────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ GUI Components ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+import InputtableControl from "../InputtableControl.vue";
+import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShellLogic.vue";
+import Button from "../../Buttons/Plain/ButtonLogic.vue";
+
+/* ┅┅┅ Framework ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import {
   ComponentBase as VueComponentConfiguration,
   Prop as VueProperty,
   Model as VModel,
-  Emit as emitVueEvent
+  Emit as emitVueEvent,
+  Watch as onVueDataOrPropertyChanged
 } from "vue-facing-decorator";
 
-/* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import ValidatableControl from "../ValidatableControl";
 import InvalidVuePropertyError from "../../../_Errors/InvalidVueProperty/InvalidVuePropertyError";
 import YDF_ComponentsCoordinator from "../../../YDF_ComponentsCoordinator";
 import getElementByVueReference from "../../../../Functions/getElementByVueReference";
 import AccessibleFromTemplateAsNonReactive from "../../../_Decorators/AccessibleFromTemplateAsNonReactive";
+import NonReactiveVueData from "../../../_Decorators/NonReactiveVueData";
 import {
   type ElementOfPseudoEnumeration,
   Logger,
@@ -35,10 +46,18 @@ import {
   isNull,
   isNotUndefined
 } from "@yamato-daiwa/es-extensions";
+/* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 
 @VueComponentConfiguration({ name: TextBox.CSS_NAMESPACE })
-class TextBox extends InputtableControl implements ValidatableControl {
+class TextBox<
+  IsInputRequired extends boolean,
+  NonEmptyValueType extends TextBox.SupportedValidatablePayloadValuesTypes.NonEmpty,
+  EmptyValueType extends TextBox.SupportedValidatablePayloadValuesTypes.Empty = NonEmptyValueType,
+  ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)) =
+      IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType),
+  InvalidValue extends NonEmptyValueType | EmptyValueType = NonEmptyValueType | EmptyValueType
+> extends InputtableControl implements ValidatableControl {
 
   /* ━━━ Common Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static CSS_NAMESPACE: string = "TextBox--YDF";
@@ -50,12 +69,6 @@ class TextBox extends InputtableControl implements ValidatableControl {
     password: "password",
     phoneNumber: "tel",
     URI: "url"
-  };
-
-  public static ValidityHighlightingActivationModes: TextBox.ValidityHighlightingActivationModes = {
-    immediate: "IMMEDIATE",
-    onFirstInputtedCharacter: "ON_FIRST_INPUTTED_CHARACTER",
-    onFocusOut: "ON_FOCUS_OUT"
   };
 
 
@@ -188,28 +201,27 @@ class TextBox extends InputtableControl implements ValidatableControl {
     default: false,
     get validator(): VuePropertyValidator {
       return BooleanVuePropertyValidator({
-        propertyName: "valueMustBeTheNonNegativeIntegerOfRegularNotation",
+        propertyName: "isInputtingOnlyOfNonNegativeIntegersOfRegularNotationAllowed",
         componentName: TextBox.CSS_NAMESPACE,
         isPropertyRequired: this.required === true
       });
     }
   })
   @preventNullForOptionalVueProperty
-  protected readonly valueMustBeTheNonNegativeIntegerOfRegularNotation!: boolean;
-
+  protected readonly isInputtingOnlyOfNonNegativeIntegersOfRegularNotationAllowed!: boolean;
 
   @VueProperty({
     default: false,
     get validator(): VuePropertyValidator {
       return BooleanVuePropertyValidator({
-        propertyName: "valueMustBeTheDigitsSequence",
+        propertyName: "mustValueBeTheDigitsSequence",
         componentName: TextBox.CSS_NAMESPACE,
         isPropertyRequired: this.required === true
       });
     }
   })
   @preventNullForOptionalVueProperty
-  protected readonly valueMustBeTheDigitsSequence!: boolean;
+  protected readonly mustValueBeTheDigitsSequence!: boolean;
 
 
   /* ┅┅┅ Converting of Inputted Values ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
@@ -241,50 +253,43 @@ class TextBox extends InputtableControl implements ValidatableControl {
   protected readonly mustConvertEmptyValueToNull!: boolean;
 
 
-  /* ━━━ Public Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* ┅┅┅ Implementation of `ValidatableControl` interface ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-
-  public focus(): this {
-
-    getElementByVueReference({
-      vueReferenceID: TextBox.INPUT_OR_TEXT_AREA_ELEMENT_VUE_REFERENCE_ID,
-      parentVueComponent: this,
-      expectedDOM_ElementSubtype: HTMLElement,
-      mustExpectExactlyOneElement: true
-    }).focus();
-
-    return this;
-
-  }
-  /* ━━━ Actions Handling ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-  /* [ Theory ] Action Handing in Vue: "keydown" → "input" → "keyup" */
-  protected rawInput: string = "";
-
-  protected invalidInputHighlightingIfAnyValidationErrorsMessages: boolean = false;
-  protected validInputHighlightingIfNoErrorsMessages: boolean = false;
-
+  /* ┅┅┅ Buttons ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   @VueProperty({
-    required: true,
+    default: false,
     get validator(): VuePropertyValidator {
-      return ElementOfEnumerationVuePropertyValidator({
-        enumerationFullyQualifiedName: "TextBox.ValidityHighlightingActivationModes",
-        enumeration: TextBox.ValidityHighlightingActivationModes,
-        propertyName: "validityHighlightingActivationMode",
+      return BooleanVuePropertyValidator({
+        propertyName: "hasValueCopyingButton",
         componentName: TextBox.CSS_NAMESPACE,
         isPropertyRequired: this.required === true
       });
     }
   })
-  protected validityHighlightingActivationMode!: ElementOfPseudoEnumeration<typeof TextBox.ValidityHighlightingActivationModes>;
+  @preventNullForOptionalVueProperty
+  protected readonly hasValueCopyingButton!: boolean;
 
+  @VueProperty({
+    default: false,
+    get validator(): VuePropertyValidator {
+      return BooleanVuePropertyValidator({
+        propertyName: "hasPasswordDisplayingToggle",
+        componentName: TextBox.CSS_NAMESPACE,
+        isPropertyRequired: this.required === true
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
+  protected readonly hasPasswordDisplayingToggle!: boolean;
+
+
+  /* ━━━ Input & Validation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   @VModel({
     type: ValidatableControl.Payload,
     required: true,
     validator: VuePropertyValidator.create({
       checker: (rawVModel: unknown): boolean =>
           ValidatableControl.VModelChecker(
-            rawVModel, (rawValue: unknown): boolean =>
+            rawVModel,
+            (rawValue: unknown): boolean =>
                 isString(rawValue) ||
                 isNumber(rawValue, { mustConsiderNaN_AsNumber: false }) ||
                 isNull(rawValue)
@@ -294,24 +299,84 @@ class TextBox extends InputtableControl implements ValidatableControl {
       componentName: TextBox.CSS_NAMESPACE
     })
   })
-  protected readonly validatablePayload!: ValidatableControl.Payload<
-    TextBox.SupportedValidatablePayloadValuesTypes,
-    TextBox.SupportedValidatablePayloadValuesTypes,
-    InputtedValueValidation
-  >;
+  protected readonly validatablePayload!:
+      ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>;
+
+  protected rawInput: string = "";
+
+
+  /* ┅┅┅ Highlighting ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  @VueProperty({
+    required: true,
+    get validator(): VuePropertyValidator {
+      return ElementOfEnumerationVuePropertyValidator({
+        enumerationFullyQualifiedName: "TextBox.ValidityHighlightingActivationModes",
+        enumeration: ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes,
+        propertyName: "validityHighlightingActivationMode",
+        componentName: TextBox.CSS_NAMESPACE,
+        isPropertyRequired: this.required === true
+      });
+    }
+  })
+  protected validityHighlightingActivationMode!:
+      ElementOfPseudoEnumeration<typeof ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes>;
+
+  @NonReactiveVueData(null)
+  protected initialValidityHighlightingActivationMode!:
+      ElementOfPseudoEnumeration<typeof ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes>;
+
+  /* [ Theory ] Need initial value to be reactive but actual initial value will be set in `beforeCreate` lifecycle hook. */
+  protected mustHighlightInputtedValueValidity: boolean = false;
+
+  protected get mustHighlightInvalidInputtedValue(): boolean {
+    return this.validatablePayload.isInvalid && this.mustHighlightInputtedValueValidity;
+  }
+
+  protected get mustHighlightValidInputtedValue(): boolean {
+    return this.mustHighlightValidInputWhenItIsValid &&
+        !this.validatablePayload.isInvalid &&
+        this.mustHighlightInputtedValueValidity;
+  }
+
+
+  /* ━━━ Public Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ┅┅┅ Implementation of `ValidatableControl` interface ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  public focus(): this {
+
+    getElementByVueReference({
+      vueReferenceID: TextBox.INPUT_OR_TEXT_AREA_ELEMENT_VUE_REFERENCE_ID,
+      parentVueComponent: this,
+      expectedDOM_ElementSubtype: HTMLElement,
+      mustExpectExactlyOneElement: true
+    }).
+        focus();
+
+    return this;
+
+  }
+
+  public resetValidityHighlightingStateToInitial(): void {
+    this.mustHighlightInputtedValueValidity =
+        this.initialValidityHighlightingActivationMode ===
+            ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes.immediate;
+  }
+
+
+  /* ━━━ Actions Handling ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* [ Theory ] Action Handing in Vue: "keydown" → "input" → "keyup" */
 
   /* [ Theory ]
-   * Being fired first, "keydown" can be used for preventing of inputting of forbidden characters, but filtering out
-   *   except allowed character is challenging because it is required to respect the "Enter", "Backspace", arrow keys
-   *   etc. */
+   * Being fired first, "keydown" can be used for the filtering of inputting of forbidden characters.
+   * However, the full preventing of the invalid input by this method is impossible at least because besides the
+   *   keyboard, the input may be performed by the screen-dependent browsers buttons near the textbox. */
   protected onKeyDown(event: KeyboardEvent): void {
 
     if (
       (
-        this.valueMustBeTheNonNegativeIntegerOfRegularNotation ||
-        this.valueMustBeTheDigitsSequence
+        this.isInputtingOnlyOfNonNegativeIntegersOfRegularNotationAllowed ||
+            this.mustValueBeTheDigitsSequence
       ) &&
-      (/^[+\-e.]$/u).test(event.key)
+          (/^[+\-e.]$/u).test(event.key)
     ) {
       event.preventDefault();
     }
@@ -325,72 +390,79 @@ class TextBox extends InputtableControl implements ValidatableControl {
     if (rawValue.length === 0) {
 
       if (this.mustConvertEmptyValueToZero) {
-        this.$emit(TextBox.Events.input, this.validatablePayload.updateImmutably({ newValue: 0 }));
+        this.updateVModel(0);
         this.rawInput = "0";
         return;
       }
 
 
       if (this.mustConvertEmptyValueToNull) {
-        this.$emit(TextBox.Events.input, this.validatablePayload.updateImmutably({ newValue: null }));
+        this.updateVModel(null);
         return;
       }
-
-    }
-
-
-    if (
-      this.HTML_Type === TextBox.HTML_Types.number &&
-      this.mustConvertEmptyValueToZero &&
-      this.rawInput.startsWith("0")
-    ) {
-
-      const inputtedValueWithoutPrependedZeros: string = this.rawInput.replace(/^0+/u, "");
-
-      if (inputtedValueWithoutPrependedZeros.length === 0) {
-        this.$emit(TextBox.Events.input, this.validatablePayload.updateImmutably({ newValue: 0 }));
-        return;
-      }
-
-
-      this.rawInput = inputtedValueWithoutPrependedZeros;
-
-      this.$emit(
-        TextBox.Events.input,
-        this.validatablePayload.updateImmutably({
-          newValue: Number(inputtedValueWithoutPrependedZeros)
-        })
-      );
-
-      return;
 
     }
 
 
     if (this.HTML_Type === TextBox.HTML_Types.number) {
 
-      this.$emit(TextBox.Events.input, this.validatablePayload.updateImmutably({ newValue: Number(rawValue) }));
+      if (this.mustConvertEmptyValueToZero && this.rawInput.startsWith("0")) {
+
+        const inputtedValueWithoutLeadingZeros: string = this.rawInput.replace(/^0+/u, "");
+
+        if (inputtedValueWithoutLeadingZeros.length === 0) {
+          this.updateVModel(0);
+          return;
+        }
+
+
+        this.rawInput = inputtedValueWithoutLeadingZeros;
+        this.updateVModel(Number(inputtedValueWithoutLeadingZeros));
+
+        return;
+
+      }
+
+
+      this.updateVModel(Number(rawValue));
 
       return;
 
     }
 
 
-    this.$emit(TextBox.Events.input, this.validatablePayload.updateImmutably({ newValue: rawValue }));
+    this.updateVModel(rawValue);
 
   }
+
+  @emitVueEvent(TextBox.Events.input)
+  protected updateVModel(newValue: TextBox.SupportedValidatablePayloadValuesTypes):
+      ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>
+  {
+    /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+    * It is unlikely that there is a way to specify the correspondence between each waw inputted value and
+    *   `NonEmptyValueType | EmptyValueType`. */
+    return this.validatablePayload.updateImmutably(newValue as NonEmptyValueType | EmptyValueType);
+  }
+
+  @emitVueEvent(TextBox.Events.blur)
   protected onFocusOut(): void {
-    this.invalidInputHighlightingIfAnyValidationErrorsMessages = true;
-    this.validInputHighlightingIfNoErrorsMessages = true;
+    this.mustHighlightInputtedValueValidity = true;
   }
 
 
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static readonly Themes: ValidatableControlShell.Themes = { regular: "REGULAR" };
+  public static readonly Themes: TextBox.Themes = { regular: "REGULAR" };
 
   public static readonly selfAndChildrenComponentsThemesCorrespondence:
-      { validatableControlShell: { [ownThemeValue: string]: string; }; } =
-          { validatableControlShell: { [TextBox.Themes.regular]: ValidatableControlShell.Themes.regular } };
+      {
+        validatableControlShell: { [ownThemeValue: string]: string; };
+        valueCopyingButton: { [ownThemeValue: string]: string; };
+      } =
+          {
+            validatableControlShell: { [TextBox.Themes.regular]: ValidatableControlShell.Themes.regular },
+            valueCopyingButton: { [TextBox.Themes.regular]: Button.Themes.regular }
+          };
 
   @VueProperty({
     default: TextBox.Themes.regular,
@@ -403,20 +475,29 @@ class TextBox extends InputtableControl implements ValidatableControl {
     return TextBox.selfAndChildrenComponentsThemesCorrespondence.validatableControlShell[this.theme];
   }
 
+  protected get valueCopyingButtonTheme(): string {
+    return TextBox.selfAndChildrenComponentsThemesCorrespondence.valueCopyingButton[this.theme];
+  }
+
+
   public static defineThemes(
     themesAndCorrespondenceDefinition: Readonly<{
-      [ownThemeKey: string]: Readonly<{ validatableControlShell: string; }>;
+      [ownThemeKey: string]:
+          Readonly<{
+            validatableControlShell: string;
+            valueCopyingButton: string;
+          }>;
     }>
-  ): typeof ValidatableControlShell {
+  ): typeof TextBox {
     return YDF_ComponentsCoordinator.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
-      themesAndCorrespondenceDefinition, ValidatableControlShell
+      themesAndCorrespondenceDefinition, TextBox
     );
   }
 
   public static areThemesCSS_ClassesCommon: boolean = YDF_ComponentsCoordinator.areThemesCSS_ClassesCommon;
 
   public static considerThemesAsCommon(): void {
-    ValidatableControlShell.areThemesCSS_ClassesCommon = true;
+    TextBox.areThemesCSS_ClassesCommon = true;
   }
 
   @VueProperty({
@@ -430,21 +511,31 @@ class TextBox extends InputtableControl implements ValidatableControl {
     }
   })
   @preventNullForOptionalVueProperty
-  private readonly areThemesCSS_ClassesCommon!: boolean;
+  protected readonly areThemesCSS_ClassesCommon!: boolean;
 
 
-  /* ─── Geometry ─────────────────────────────────────────────────────────────────────────────────────────────────── */
-  public static readonly GeometricVariations: ValidatableControlShell.GeometricVariations = {
+  /* ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  public static readonly GeometricVariations: TextBox.GeometricVariations = {
     regular: "REGULAR",
-    small: "SMALL"
+    small: "SMALL",
+    labelLike: "LABEL_LIKE"
   };
 
   public static readonly selfAndChildrenComponentsGeometricVariationsCorrespondence:
-      { validatableControlShell: { [ownGeometricVariationValue: string]: string; }; } =
+      {
+        validatableControlShell: { [ownGeometricVariationValue: string]: string; };
+        valueCopyingButton: { [ownGeometricVariationValue: string]: string; };
+      } =
           {
             validatableControlShell: {
               [TextBox.GeometricVariations.regular]: ValidatableControlShell.GeometricVariations.regular,
-              [TextBox.GeometricVariations.small]: ValidatableControlShell.GeometricVariations.small
+              [TextBox.GeometricVariations.small]: ValidatableControlShell.GeometricVariations.small,
+              [TextBox.GeometricVariations.labelLike]: ValidatableControlShell.GeometricVariations.regular
+            },
+            valueCopyingButton: {
+              [TextBox.GeometricVariations.regular]: Button.GeometricVariations.regular,
+              [TextBox.GeometricVariations.small]: Button.GeometricVariations.small,
+              [TextBox.GeometricVariations.labelLike]: Button.GeometricVariations.linkLike
             }
           };
 
@@ -455,13 +546,21 @@ class TextBox extends InputtableControl implements ValidatableControl {
   @preventNullForOptionalVueProperty
   protected readonly geometricVariation!: string;
 
-  protected validatableControlGeometricVariation(): string {
+  protected get validatableControlGeometricVariation(): string {
     return TextBox.selfAndChildrenComponentsGeometricVariationsCorrespondence.validatableControlShell[this.geometricVariation];
+  }
+
+  protected get valueCopyingButtonGeometricVariation(): string {
+    return TextBox.selfAndChildrenComponentsGeometricVariationsCorrespondence.valueCopyingButton[this.geometricVariation];
   }
 
   public static defineGeometricVariations(
     ownAndChildrenGeometricVariationsAndCorrespondenceDefinition: Readonly<{
-      [ownGeometricVariationKey: string]: Readonly<{ badge: string; }>;
+      [ownGeometricVariationKey: string]:
+          Readonly<{
+            validatableControlShell: string;
+            valueCopyingButton: string;
+          }>;
     }>
   ): typeof TextBox {
     return YDF_ComponentsCoordinator.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
@@ -469,17 +568,37 @@ class TextBox extends InputtableControl implements ValidatableControl {
     );
   }
 
+  public static readonly GeometricModifiers: TextBox.GeometricModifiers = {
+    noRoundings: "NO_ROUNDINGS"
+  };
 
-  /* ─── Decoration ───────────────────────────────────────────────────────────────────────────────────────────────── */
-  public static readonly DecorativeVariations: ValidatableControlShell.DecorativeVariations = {
-    regular: "REGULAR"
+  @VueProperty({
+    default: (): ReadonlyArray<ElementOfPseudoEnumeration<Button.GeometricModifiers>> => [],
+    validator: GeometricModifiersVuePropertyValidator(Button)
+  })
+  @preventNullForOptionalVueProperty
+  protected readonly geometricModifiers!: ReadonlyArray<ElementOfPseudoEnumeration<Button.GeometricModifiers>>;
+
+
+  /* ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  public static readonly DecorativeVariations: TextBox.DecorativeVariations = {
+    regular: "REGULAR",
+    labelLike: "LABEL_LIKE"
   };
 
   public static readonly selfAndChildrenComponentsDecorativeVariationsCorrespondence:
-      { validatableControlShell: { [ownDecorativeVariationValue: string]: string; }; } =
+      {
+        validatableControlShell: { [ownDecorativeVariationValue: string]: string; };
+        valueCopyingButton: { [ownGeometricVariationValue: string]: string; };
+      } =
           {
             validatableControlShell: {
-              [TextBox.DecorativeVariations.regular]: ValidatableControlShell.DecorativeVariations.regular
+              [TextBox.DecorativeVariations.regular]: ValidatableControlShell.DecorativeVariations.regular,
+              [TextBox.DecorativeVariations.labelLike]: ValidatableControlShell.DecorativeVariations.regular
+            },
+            valueCopyingButton: {
+              [TextBox.DecorativeVariations.regular]: Button.DecorativeVariations.regular,
+              [TextBox.DecorativeVariations.labelLike]: Button.DecorativeVariations.linkLike
             }
           };
 
@@ -489,13 +608,26 @@ class TextBox extends InputtableControl implements ValidatableControl {
   })
   protected readonly decorativeVariation!: string;
 
-  protected validatableControlDecorativeVariation(): string {
-    return TextBox.selfAndChildrenComponentsDecorativeVariationsCorrespondence.
-        validatableControlShell[this.decorativeVariation];
+  protected get validatableControlDecorativeVariation(): string {
+    return TextBox.selfAndChildrenComponentsDecorativeVariationsCorrespondence.validatableControlShell[this.decorativeVariation];
   }
 
-  public static defineDecorativeVariations(decorativeVariationsNames: ReadonlyArray<string>): typeof ValidatableControlShell {
-    return YDF_ComponentsCoordinator.defineDecorativeVariations(decorativeVariationsNames, ValidatableControlShell);
+  protected get valueCopyingButtonDecorativeVariation(): string {
+    return TextBox.selfAndChildrenComponentsDecorativeVariationsCorrespondence.valueCopyingButton[this.decorativeVariation];
+  }
+
+  public static defineDecorativeVariations(
+     ownAndChildrenDecorativeVariationsAndCorrespondenceDefinition: Readonly<{
+      [ownGeometricVariationKey: string]:
+          Readonly<{
+            validatableControlShell: string;
+            valueCopyingButton: string;
+          }>;
+    }>
+  ): typeof TextBox {
+    return YDF_ComponentsCoordinator.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+      ownAndChildrenDecorativeVariationsAndCorrespondenceDefinition, TextBox
+    );
   }
 
 
@@ -508,63 +640,24 @@ class TextBox extends InputtableControl implements ValidatableControl {
       areThemesCSS_ClassesCommon: this.areThemesCSS_ClassesCommon,
       activeGeometricVariation: this.geometricVariation,
       allGeometricVariations: TextBox.GeometricVariations,
+      activeGeometricModifiers: this.geometricModifiers,
       activeDecorativeVariation: this.decorativeVariation,
       allDecorativeVariations: TextBox.DecorativeVariations,
       other: [
         ...this.multiline ? [ `${ TextBox.CSS_NAMESPACE }__Multiline` ] : [],
         ...this.disabled ? [ `${ TextBox.CSS_NAMESPACE }__DisabledState` ] : [],
-        ...this.invalidInputHighlightingIfAnyValidationErrorsMessages && this.validatablePayload.isInvalid ?
-            [ "TextBox--YDF__InvalidInputState" ] : [],
-        ...this.validInputHighlightingIfNoErrorsMessages && !this.validatablePayload.isInvalid ?
-            [ "TextBox--YDF__ValidInputState" ] : []
+        ...this.mustHighlightInvalidInputtedValue ? [ "TextBox--YDF__InvalidInputState" ] : [],
+        ...this.mustHighlightValidInputtedValue ? [ "TextBox--YDF__ValidInputState" ] : []
       ]
     });
   }
 
 
-  /* ━━━ Properties Additional Validations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /** @descriptioin
-   * Validation with referencing of multiple properties is possible only via lifecycle hooks.
-   * This method is static because non-static methods are not accessible from the viewpoint of "vue-facing-decorator" */
-  protected static override validateProperties(instance: TextBox): void {
-
-    if (
-      isNotUndefined(instance.minimalNumericValue) &&
-      isNotUndefined(instance.maximalNumericValue) &&
-      instance.minimalNumericValue > instance.maximalNumericValue
-    ) {
-      Logger.throwErrorWithFormattedMessage({
-        errorInstance: new InvalidVuePropertyError({
-          componentName: TextBox.CSS_NAMESPACE,
-          propertyName: "minimalNumericValue",
-          messageSpecificPart: "`minimalNumericValue` is greater than `maximalNumericValue`."
-        }),
-        title: InvalidVuePropertyError.localization.defaultTitle,
-        occurrenceLocation: "TextBox.validateProperties(instance)"
-      });
-    }
+  /* ━━━ IDs ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  @AccessibleFromTemplateAsNonReactive
+  protected static readonly INPUT_OR_TEXT_AREA_ELEMENT_VUE_REFERENCE_ID: string = "INPUT_OR_TEXT_AREA_ELEMENT";
 
 
-    if (
-      isNotUndefined(instance.minimalCharactersCount) &&
-      isNotUndefined(instance.maximalCharactersCount) &&
-      instance.minimalCharactersCount > instance.maximalCharactersCount
-    ) {
-      Logger.throwErrorWithFormattedMessage({
-        errorInstance: new InvalidVuePropertyError({
-          componentName: TextBox.CSS_NAMESPACE,
-          propertyName: "minimalCharactersCount",
-          messageSpecificPart: "`minimalCharactersCount` is greater than `maximalCharactersCount`."
-        }),
-        title: InvalidVuePropertyError.localization.defaultTitle,
-        occurrenceLocation: "TextBox.validateProperties(instance)"
-      });
-    }
-
-  }
-
-
-  /* ━━━ ID Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ┅┅┅ Instance ID ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   protected readonly INSTANCE_ID: string = TextBox.generateInstanceID();
   protected static counterForInstanceID_Generating: number = 0;
@@ -576,10 +669,29 @@ class TextBox extends InputtableControl implements ValidatableControl {
 
 
   /* ┅┅┅ HTML IDs ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  @VueProperty({ type: String })
+  @VueProperty({
+    required: false,
+    get validator(): VuePropertyValidator {
+      return NonEmptyStringVuePropertyValidator({
+        propertyName: "placeholder",
+        isPropertyRequired: this.required === true,
+        componentName: TextBox.CSS_NAMESPACE
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
   protected readonly inputOrTextareaElementHTML_ID?: string;
 
-  @VueProperty({ type: String, required: false })
+  @VueProperty({
+    required: false,
+    get validator(): VuePropertyValidator {
+      return NonEmptyStringVuePropertyValidator({
+        propertyName: "placeholder",
+        isPropertyRequired: this.required === true,
+        componentName: TextBox.CSS_NAMESPACE
+      });
+    }
+  })
   protected readonly labelElementHTML_ID?: string;
 
   /* [ Performance Optimization ] Intended to be non-reactive and thus must be assigned in `create` lifecycle hook. */
@@ -589,15 +701,60 @@ class TextBox extends InputtableControl implements ValidatableControl {
   }>;
 
 
+  /* ━━━ Additional Validations of Properties ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  @onVueDataOrPropertyChanged("minimalNumericValue", { immediate: true })
+  @onVueDataOrPropertyChanged("maximalNumericValue", { immediate: true })
+  protected validateNumericValueLimitations(): void {
+
+    if (
+      isNotUndefined(this.minimalNumericValue) &&
+          isNotUndefined(this.maximalNumericValue) &&
+          this.minimalNumericValue > this.maximalNumericValue
+    ) {
+      Logger.throwErrorWithFormattedMessage({
+        errorInstance: new InvalidVuePropertyError({
+          componentName: TextBox.CSS_NAMESPACE,
+          propertyName: "minimalNumericValue",
+          messageSpecificPart: "`minimalNumericValue` is greater than `maximalNumericValue`."
+        }),
+        title: InvalidVuePropertyError.localization.defaultTitle,
+        occurrenceLocation: "textBox.validateNumericValueLimitations()"
+      });
+    }
+
+  }
+
+  @onVueDataOrPropertyChanged("minimalNumericValue", { immediate: true })
+  @onVueDataOrPropertyChanged("maximalNumericValue", { immediate: true })
+  protected validateCharactersCountLimitationsValueLimitations(): void {
+
+    if (
+      isNotUndefined(this.minimalCharactersCount) &&
+          isNotUndefined(this.maximalCharactersCount) &&
+          this.minimalCharactersCount > this.maximalCharactersCount
+    ) {
+      Logger.throwErrorWithFormattedMessage({
+        errorInstance: new InvalidVuePropertyError({
+          componentName: TextBox.CSS_NAMESPACE,
+          propertyName: "minimalCharactersCount",
+          messageSpecificPart: "`minimalCharactersCount` is greater than `maximalCharactersCount`."
+        }),
+        title: InvalidVuePropertyError.localization.defaultTitle,
+        occurrenceLocation: "textBox.validateCharactersCountLimitationsValueLimitations()"
+      });
+    }
+
+  }
+
+
   /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected beforeCreate(): void {
 
-    TextBox.validateProperties(this);
+    this.mustHighlightInputtedValueValidity =
+        this.validityHighlightingActivationMode ===
+            ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes.immediate;
 
-    this.invalidInputHighlightingIfAnyValidationErrorsMessages =
-        this.validityHighlightingActivationMode === TextBox.ValidityHighlightingActivationModes.immediate;
-
-    this.validInputHighlightingIfNoErrorsMessages = this.invalidInputHighlightingIfAnyValidationErrorsMessages;
+    this.initialValidityHighlightingActivationMode = this.validityHighlightingActivationMode;
 
   }
 
@@ -618,9 +775,10 @@ class TextBox extends InputtableControl implements ValidatableControl {
 
   }
 
-  protected beforeUpdate(): void {
-    TextBox.validateProperties(this);
-  }
+
+  /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  @AccessibleFromTemplateAsNonReactive
+  public static localization: TextBoxLocalization = textBoxYDF_GUI_ComponentLocalization__english;
 
 
   /* ━━━ Transforming to Options API ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -630,13 +788,14 @@ class TextBox extends InputtableControl implements ValidatableControl {
       {
         CSS_NAMESPACE: { value: TextBox.CSS_NAMESPACE },
         HTML_Types: { value: TextBox.HTML_Types },
-        ValidityHighlightingActivationModes: { value: TextBox.ValidityHighlightingActivationModes },
         Themes: { value: TextBox.Themes },
         defineThemes: { value: TextBox.defineThemes },
         GeometricVariations: { value: TextBox.GeometricVariations },
         defineGeometricVariations: { value: TextBox.defineGeometricVariations },
+        geometricModifiers: { value: TextBox.GeometricModifiers },
         DecorativeVariations: { value: TextBox.DecorativeVariations },
-        defineDecorativeVariations: { value: TextBox.defineDecorativeVariations }
+        defineDecorativeVariations: { value: TextBox.defineDecorativeVariations },
+        localization: { value: TextBox.localization }
       }
     );
   }
@@ -655,15 +814,14 @@ namespace TextBox {
     URI: "url";
   }>;
 
-  export type SupportedValidatablePayloadValuesTypes = string | number | null;
+  export type SupportedValidatablePayloadValuesTypes =
+      SupportedValidatablePayloadValuesTypes.NonEmpty |
+      SupportedValidatablePayloadValuesTypes.Empty;
 
+  export namespace SupportedValidatablePayloadValuesTypes {
+    export type NonEmpty = string | number;
+    export type Empty = string | number | null;
   }
-
-  export type ValidityHighlightingActivationModes = Readonly<{
-    immediate: "IMMEDIATE";
-    onFirstInputtedCharacter: "ON_FIRST_INPUTTED_CHARACTER";
-    onFocusOut: "ON_FOCUS_OUT";
-  }>;
 
   export type Themes = {
     readonly regular: "REGULAR";
@@ -673,11 +831,17 @@ namespace TextBox {
   export type GeometricVariations = {
     readonly regular: "REGULAR";
     readonly small: "SMALL";
+    readonly labelLike: "LABEL_LIKE";
     [geometricVariationName: string]: string;
   };
 
+  export type GeometricModifiers = Readonly<{
+    noRoundings: "NO_ROUNDINGS";
+  }>;
+
   export type DecorativeVariations = {
     readonly regular: "REGULAR";
+    readonly labelLike: "LABEL_LIKE";
     [decorativeVariationName: string]: string;
   };
 

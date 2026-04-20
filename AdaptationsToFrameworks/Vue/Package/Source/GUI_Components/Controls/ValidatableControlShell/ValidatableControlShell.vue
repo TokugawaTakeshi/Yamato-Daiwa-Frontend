@@ -55,7 +55,7 @@
 
 
     VerticallySlidingAlwaysMountedContainer.ValidatableControlShell--YDF-ValidationErrorsMessagesList(
-      :modelValue="mustDisplayErrorsMessagesIfAny && validationErrorsMessages.length > 0"
+      :modelValue="mustDisplayErrorsMessagesIfAny && validationErrorsMessagesCopyForAnimating.length > 0"
       tag="ul"
       :duration="errorsListAnimationDuration__milliseconds"
     )
@@ -64,6 +64,35 @@
         v-for="validationErrorMessage of validationErrorsMessagesCopyForAnimating"
         :key="validationErrorMessage"
       ) {{ validationErrorMessage }}
+
+    VerticallySlidingAlwaysMountedContainer.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList(
+      v-if="asynchronousChecksStatus"
+      :modelValue="Object.entries(asynchronousChecksActualForDisplaying).length > 0"
+      tag="ul"
+      :duration="asynchronousValidationsStatusesListAnimationDurationPerOneItem__milliseconds"
+    )
+
+      li.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item(
+        v-for="(asynchronousCheckStatus, asynchronousCheckName) of actualForDisplayingAsynchronousChecksCopyForAnimating"
+        :key="asynchronousCheckName"
+        :class="asynchronousValidationsStatusesListItemSpecificCSS_Class(asynchronousCheckStatus)"
+      )
+
+        LoadingIndicator.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-LoadingIndicator(
+          v-if="asynchronousCheckStatus.isPending"
+          :type="LoadingIndicator.Types.variableWidthArcSpinner"
+          :geometricVariation="LoadingIndicator.GeometricVariations.small"
+        )
+
+        CheckmarkIcon__Circled__Filled.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon(
+          v-else-if="asynchronousCheckStatus.hasValidValueBeenConfirmed"
+        )
+
+        MultiplicationSignIcon__Boxed__Filled.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon(
+          v-else-if="asynchronousCheckStatus.hasErrorOccurred"
+        )
+
+        p.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text {{ asynchronousCheckStatus.message }}
 
 </template>
 

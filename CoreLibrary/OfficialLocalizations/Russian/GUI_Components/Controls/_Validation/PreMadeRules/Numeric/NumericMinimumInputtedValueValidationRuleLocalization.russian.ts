@@ -1,7 +1,7 @@
 import type { NumericMinimumInputtedValueValidationRule } from "@yamato-daiwa/frontend";
 
 
-export const numericMinimumInputtedValueValidationRuleLocalization__russian:
+export const NumericMinimumInputtedValueValidationRuleLocalization__Russian:
     NumericMinimumInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: ({ minimalValue }: NumericMinimumInputtedValueValidationRule.ErrorMessage.TemplateVariables): string =>

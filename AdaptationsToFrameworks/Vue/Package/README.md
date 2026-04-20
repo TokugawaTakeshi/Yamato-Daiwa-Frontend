@@ -33,7 +33,9 @@ npm i @yamato-daiwa/frontend-vue @yamato-daiwa/frontend@2.0.0-beta.10
 
 + Buttons
   + [Plain (Button)](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Buttons/Plain/Button-Vue.english.html) 
-  
++ [ValidatableControlShell](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/ValidatableControlShell/ValidatableControlShell-Vue.english.html)
+
 
 #### Validatables
 
++ [TextBox](https://frontend.yamato-daiwa.com/AdaptationsToFrameworks/Vue/GUI_Components/Children/Controls/Validatables/Children/TextBox/TextBox-Vue.english.html)

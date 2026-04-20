@@ -1,6 +1,6 @@
 -
 
-  const dateTimePickerYDF_GUI_ComponentLocalization__russian = {
+  const DateTimePickerYDF_GUI_ComponentLocalization__Russian = {
 
     dialog: {
 
@@ -32,9 +32,6 @@
 
             /** @see https://gramota.ru/spravka/vopros/242637 */
             generateLabel({ monthNumber__numerationFrom1 }) {
-              /* eslint-disable @typescript-eslint/no-magic-numbers --
-               * In this case nothing will become readable if to store each value to constant.
-               * Also, the importing of third-party libraries is extremely undesirable for localization bundle. */
               switch (monthNumber__numerationFrom1) {
                 case 1: return "Янв.";
                 case 2: return "Февр.";
@@ -49,7 +46,6 @@
                 case 11: return "Нояб.";
                 default: return "Дек.";
               }
-              /* eslint-enable @typescript-eslint/no-magic-numbers */
             }
 
           }

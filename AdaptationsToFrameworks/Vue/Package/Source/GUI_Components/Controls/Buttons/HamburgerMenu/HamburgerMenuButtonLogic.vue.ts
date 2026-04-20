@@ -1,7 +1,7 @@
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import {
   type HamburgerMenuButtonLocalization,
-  hamburgerMenuButtonYDF_GUI_ComponentLocalization__english
+  HamburgerMenuButtonYDF_GUI_ComponentLocalization__English
 } from "@yamato-daiwa/frontend";
 
 
@@ -200,7 +200,7 @@ class HamburgerMenuButton extends VueComponent {
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   @AccessibleFromTemplateAsNonReactive
-  public static localization: HamburgerMenuButtonLocalization = hamburgerMenuButtonYDF_GUI_ComponentLocalization__english;
+  public static localization: HamburgerMenuButtonLocalization = HamburgerMenuButtonYDF_GUI_ComponentLocalization__English;
 
   /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected get rootElementModifierCSS_Classes(): ReadonlyArray<string> {

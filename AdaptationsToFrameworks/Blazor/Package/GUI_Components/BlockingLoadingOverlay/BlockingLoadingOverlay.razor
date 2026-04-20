@@ -1,0 +1,14 @@
+﻿@using YamatoDaiwa.Frontend.GUI_Components.LoadingIndicator
+
+
+<div 
+  class="BlockingLoadingOverlay--YDF"
+  hidden=@(!this.isDisplaying)
+>
+
+  <LoadingIndicator
+    type=@this.loadingIndicatorType
+    rootElementModifierCSS_Class="BlockingLoadingOverlay--YDF-LoadingIndicator"
+  />
+
+</div>

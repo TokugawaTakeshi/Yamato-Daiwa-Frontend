@@ -1,7 +1,7 @@
 import type { SingleImageViewerLocalization } from "./SingleImageViewerLocalization";
 
 
-const singleImageViewerYDF_GUI_ComponentLocalization__english: SingleImageViewerLocalization = {
+const SingleImageViewerYDF_GUI_ComponentLocalization__English: SingleImageViewerLocalization = {
   buttons: {
     fullScreenViewActivating: { label: "Full screen view" },
     fullScreenViewDeactivating: { label: "Close" },
@@ -14,4 +14,4 @@ const singleImageViewerYDF_GUI_ComponentLocalization__english: SingleImageViewer
 };
 
 
-export default singleImageViewerYDF_GUI_ComponentLocalization__english;
+export default SingleImageViewerYDF_GUI_ComponentLocalization__English;

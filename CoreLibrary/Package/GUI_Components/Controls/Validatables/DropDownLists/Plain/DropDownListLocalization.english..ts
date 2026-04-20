@@ -1,10 +1,10 @@
 import type { DropDownListLocalization } from "./DropDownListLocalization";
 
 
-const dropDownListYDF_GUI_ComponentLocalization__english: DropDownListLocalization = {
+const DropDownListYDF_GUI_ComponentLocalization__English: DropDownListLocalization = {
   button: { accessibilityGuidance: "Display or hide options list" },
   listBox: { accessibilityGuidance: "Selecting options" }
 };
 
 
-export default dropDownListYDF_GUI_ComponentLocalization__english;
+export default DropDownListYDF_GUI_ComponentLocalization__English;

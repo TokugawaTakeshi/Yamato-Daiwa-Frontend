@@ -1,18 +1,13 @@
 import type { InputtedValueValidation } from "@yamato-daiwa/frontend";
-import minimalKanjiOrKanaCharactersRatioInputtedValueValidationRuleLocalization__japanese from
+import { MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRuleLocalization__Japanese } from
     "./MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRuleLocalization.japanese";
-import {
-  Logger,
-  InvalidParameterValueError,
-  isNotUndefined,
-  isString
-} from "@yamato-daiwa/es-extensions";
+import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
-class MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
+export class MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
 
   public static localization: MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule.Localization =
-      minimalKanjiOrKanaCharactersRatioInputtedValueValidationRuleLocalization__japanese;
+      MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRuleLocalization__Japanese;
 
   public readonly mustFinishValidationIfValueIsInvalid: boolean;
 
@@ -46,7 +41,7 @@ class MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule implements In
     if (isNotUndefined(compoundParameter.errorMessageBuilder)) {
       this.errorMessageBuilder = compoundParameter.errorMessageBuilder;
     } else if (isNotUndefined(compoundParameter.errorMessage)) {
-      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions, @typescript-eslint/no-unsafe-type-assertion --
+      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
        * It was proved that "errorMessage" is non-undefined, and it will not change. */
       this.errorMessageBuilder = (): string => compoundParameter.errorMessage as string;
     } else {
@@ -56,22 +51,7 @@ class MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule implements In
 
   }
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
-
-    if (!isString(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: "Unable to execute this validation because the raw value is not the string " +
-            `and actually has type "${ typeof rawValue }".`,
-        occurrenceLocation: "MinimalKanjiKanaCharactersInputtedValueValidationRule.check(rawValue)"
-      });
-
-      return { isValid: true };
-
-    }
-
+  public check(rawValue: string): InputtedValueValidation.Rule.CheckingResult {
 
     const isKanjiOrKanaCharactersRatioLessThanRequiredMinimum: boolean =
         this.isKanjiOrKanaCharactersRatioLessThanRequiredMinimum?.({
@@ -81,24 +61,24 @@ class MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule implements In
         ((): boolean => {
 
           let kanjiOrKanaCharactersCount: number = 0;
-          let kanjiOrKanaCharactersRatio: number;
 
-          for (const character of rawValue) {
+            for (const character of rawValue) {
 
-            if ((/[ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠]/u).test(character)) {
+              if ((/[ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠]/u).test(character)) {
 
-              kanjiOrKanaCharactersCount++;
-              kanjiOrKanaCharactersRatio = kanjiOrKanaCharactersCount / rawValue.length;
+                kanjiOrKanaCharactersCount++;
 
-              if (kanjiOrKanaCharactersRatio < this.MINIMAL_KANJI_OR_KANA_CHARACTERS_RATIO) {
-                return true;
+                const kanjiOrKanaCharactersRatio: number = kanjiOrKanaCharactersCount / rawValue.length;
+
+                if (kanjiOrKanaCharactersRatio >= this.MINIMAL_KANJI_OR_KANA_CHARACTERS_RATIO) {
+                  return false;
+                }
+
               }
 
             }
 
-          }
-
-          return false;
+            return true;
 
         })();
 
@@ -116,7 +96,7 @@ class MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule implements In
 }
 
 
-namespace MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule {
+export namespace MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule {
 
   export type Localization = Readonly<{ errorMessageBuilder: ErrorMessage.Builder; }>;
 
@@ -132,6 +112,3 @@ namespace MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule {
   }
 
 }
-
-
-export default MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule;

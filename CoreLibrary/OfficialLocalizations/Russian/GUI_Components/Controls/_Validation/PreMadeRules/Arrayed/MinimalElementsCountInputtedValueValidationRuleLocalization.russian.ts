@@ -1,12 +1,12 @@
 import type { MinimalElementsCountInputtedValueValidationRule } from "@yamato-daiwa/frontend";
 
 
-export const minimalElementsCountInputtedValueValidationRuleLocalization__russian:
+export const MinimalElementsCountInputtedValueValidationRuleLocalization__Russian:
     MinimalElementsCountInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: (
     { minimalElementsCount }: MinimalElementsCountInputtedValueValidationRule.ErrorMessage.TemplateVariables
   ): string =>
-      "Указано слишком мало пунктов. " +
-      `Пожалуйста, укажите хотя бы ${ minimalElementsCount }.`
+      "Указанное количество пунктов меньше минимально требуемого. " +
+      `Пожалуйста, укажите хотя бы ${ minimalElementsCount } пунктов.`
 };

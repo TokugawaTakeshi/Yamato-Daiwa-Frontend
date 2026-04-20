@@ -190,7 +190,7 @@ mixin ValidatableControlShell--YDF(properties, statesSimulations)
         else if mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge
 
           +Badge--YDF({
-            valueLabel: ValidatableControlShell__YDF.localization.requirementBadges.optional,
+            valueLabel: ValidatableControlShell__YDF.localization.requirementBadges[ required ? "required" : "optional" ],
             theme: ValidatableControlShell__YDF.selfAndChildrenComponentsThemesCorrespondence.badge[theme],
             geometricVariation: ValidatableControlShell__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
                 badge[geometricVariation],

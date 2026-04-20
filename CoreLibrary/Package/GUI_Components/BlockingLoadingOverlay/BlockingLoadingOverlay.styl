@@ -30,7 +30,7 @@ BlockingLoadingOverlay--YDF-generateStyles(
     justify-content center
     align-items center
 
-    background: properties.backgroundColor
+    background-color: properties.backgroundColor
     cursor not-allowed
 
 
@@ -62,12 +62,12 @@ BlockingLoadingOverlay--YDF-setCustomColorOfInnerLoadingIndicator(COLOR)
   .BlockingLoadingOverlay--YDF-LoadingIndicator
 
     LoadingIndicator--YDF-customize(
-        (
-          LoadingIndicator--YDF.Types.variableWidthArcSpinner\
-          {
-            decoration: {
-              color: COLOR
-            }
+      (
+        LoadingIndicator--YDF.Types.variableWidthArcSpinner\
+        {
+          decoration: {
+            color: COLOR
           }
-        )
+        }
       )
+    )

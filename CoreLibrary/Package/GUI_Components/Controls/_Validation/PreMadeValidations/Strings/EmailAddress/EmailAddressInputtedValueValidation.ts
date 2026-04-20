@@ -17,7 +17,6 @@ import { isString } from "@yamato-daiwa/es-extensions";
 
 class EmailAddressInputtedValueValidation<EmptyValue extends EmailAddressInputtedValueValidation.SupportedEmptyValues = string>
     extends InputtedValueValidation<string, EmptyValue>
-/* eslint-disable-next-line @stylistic/brace-style -- Allow Allman style for rectangular areas principle. */
 {
 
   public static localization: EmailAddressInputtedValueValidation.Localization;

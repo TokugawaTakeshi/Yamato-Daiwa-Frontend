@@ -1,7 +1,7 @@
 import type { NonNegativeIntegerOfRegularNotationInputtedValueValidationRule } from "@yamato-daiwa/frontend";
 
 
-export const nonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization__russian:
+export const NonNegativeIntegerOfRegularNotationInputtedValueValidationRuleLocalization__Russian:
     NonNegativeIntegerOfRegularNotationInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: (): string =>

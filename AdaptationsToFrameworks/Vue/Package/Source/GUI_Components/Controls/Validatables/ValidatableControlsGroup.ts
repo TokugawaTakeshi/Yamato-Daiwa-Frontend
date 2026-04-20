@@ -1,7 +1,7 @@
 import ValidatableControl from "./ValidatableControl";
-import type { InputtedValueValidation } from "@yamato-daiwa/frontend";
 
 import type { ComponentPublicInstance as VueComponentPublicInstance } from "vue";
+import type { Vue as VueClassComponent } from "vue-facing-decorator";
 
 import {
   Logger,
@@ -40,7 +40,7 @@ export default class ValidatableControlsGroup<ValidData extends ArbitraryObject 
   ): boolean {
     return (Array.isArray(controlsPayload) ? controlsPayload : Object.values(controlsPayload)).
         some(
-          (validatableControlPayload: ValidatableControl.Payload<unknown, unknown, InputtedValueValidation>): boolean =>
+          (validatableControlPayload: ValidatableControl.Payload<boolean, unknown>): boolean =>
               validatableControlPayload.isInvalid
         );
   }
@@ -52,7 +52,7 @@ export default class ValidatableControlsGroup<ValidData extends ArbitraryObject 
       scrollingContainerHTML_ID
     }: Readonly<{
       controlsPayload: ValidatableControlsGroup.GeneralizedControlsPayload;
-      parentVueComponentInstance: VueComponentPublicInstance;
+      parentVueComponentInstance: VueComponentPublicInstance | InstanceType<typeof VueClassComponent>;
       scrollingContainerHTML_ID?: string;
     }>
   ): void {
@@ -169,7 +169,7 @@ export default class ValidatableControlsGroup<ValidData extends ArbitraryObject 
 namespace ValidatableControlsGroup {
 
   export type GeneralizedControlsPayload =
-      Readonly<{ [controlKey: string]: ValidatableControl.Payload<unknown, unknown, InputtedValueValidation>; }> |
-      Array<ValidatableControl.Payload<unknown, unknown, InputtedValueValidation>>;
+      Readonly<{ [controlKey: string]: ValidatableControl.Payload<boolean, unknown>; }> |
+      Array<ValidatableControl.Payload<boolean, unknown>>;
 
 }

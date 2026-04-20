@@ -2,8 +2,6 @@ mixin Heading--YDF(properties)
 
   -
 
-    properties = properties ?? {};
-
     const {
       level,
       text,
@@ -16,24 +14,24 @@ mixin Heading--YDF(properties)
     const tag = `h${ level }`
 
   #{ tag }&attributes(attributes)(
-    id=(innerLink ? null : HTML_ID)
+    id=HTML_ID
   )
 
     if innerLink
 
       a(href=`#${ HTML_ID }`)
 
-      if block
+        if block
 
-        block
+          block
 
-      else if text
+        else if text
 
-        | #{ text }
+          | #{ text }
 
-      else if innerHTML
+        else if innerHTML
 
-        | !{ innerHTML }
+          | !{ innerHTML }
 
     else
 

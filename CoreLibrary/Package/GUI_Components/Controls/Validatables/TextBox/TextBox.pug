@@ -350,7 +350,6 @@ mixin TextBox--YDF(properties, statesSimulations)
           aria-checked="false"
           tabindex="0"
           aria-label=TextBox__YDF.localization.passwordDisplayingToggle.displayingOfPassword.accessibilityGuidance
-          aria-readonly=readonly
           aria-disabled=disabled
         )&attributes({
           [TextBox__YDF.DOM_AccessResources.passwordDisplayingToggle.DATA_ATTRIBUTE_KEY]: ""
@@ -377,7 +376,6 @@ mixin TextBox--YDF(properties, statesSimulations)
 
       +Button--YDF({
         accessibilityGuidance: TextBox__YDF.localization.valueCopyingButton.accessibilityGuidance,
-        HTML_Type: Button__YDF.HTML_Types.regular,
         theme: TextBox__YDF.selfAndChildrenComponentsThemesCorrespondence.valueCopyingButton[theme],
         areThemesCSS_ClassesCommon,
         geometricVariation: TextBox__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.

@@ -18,5 +18,5 @@ $projectBuilding:
         $buildingModeDependent:
 
           $production:
-            $outputTopDirectoryRelativePath: ""
+            $outputTopDirectoryRelativePath: "wwwroot"
             $revisioning: { $disable: true }

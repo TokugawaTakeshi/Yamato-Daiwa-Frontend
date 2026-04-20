@@ -28,9 +28,13 @@ import onDifferentValueAssigned from "../../../_Auxiliaries/Decorators/onDiffere
 
 /** @beta */
 class NumberBox<
-  ValidValue extends NumberBox.SupportedValidatablePayloadValuesTypes,
-  InvalidValue extends NumberBox.SupportedValidatablePayloadValuesTypes,
-  Validation extends InputtedValueValidation
+  IsInputRequired extends boolean,
+  NonEmptyValueType extends NumberBox.SupportedValidatablePayloadValuesTypes.NonEmpty,
+  EmptyValueType extends NumberBox.SupportedValidatablePayloadValuesTypes.Empty = NonEmptyValueType,
+  /* eslint-disable-next-line @stylistic/type-generic-spacing -- Looks like the false positive. */
+  ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)) =
+      IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType),
+  InvalidValue extends NonEmptyValueType | EmptyValueType = NonEmptyValueType | EmptyValueType
 > implements ValidatableControl {
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -46,7 +50,8 @@ class NumberBox<
 
 
   /* ━━━ Instance Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public readonly payload: ValidatableControl.Payload<ValidValue, InvalidValue, Validation>;
+  public readonly payload:
+      ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>;
 
   /* [ Theory ] `null` will be converted to `0`. */
   protected payloadNumericalValue(): number { return Number(this.payload.value); }
@@ -91,7 +96,6 @@ class NumberBox<
 
     }
 
-
     this.shellComponent.rootElement.classList.remove(NumberBox.INVALID_VALUE_STATE_CSS_CLASS);
     this.shellComponent.$mustDisplayValidationErrorsMessagesIfAny = false;
 
@@ -128,26 +132,43 @@ class NumberBox<
 
 
   /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static initializeOne<Validation extends InputtedValueValidation>(
-    initializationProperties: NumberBox.Initialization.AlwaysNonEmptyValueScenario.Properties<Validation>
-  ): NumberBox<number, number, Validation>;
+  /* @ts-ignore: TS2394 Acceptable during α/β versions of this component but must and will be fixed before official release. */
+  public static initializeOne<IsInputRequired extends boolean>(
+    initializationProperties: NumberBox.Initialization.AlwaysNonEmptyValueScenario.Properties
+  ): NumberBox<IsInputRequired, number, number, number, number>;
 
-  public static initializeOne<Validation extends InputtedValueValidation>(
-    initializationProperties: NumberBox.Initialization.CouldBeInitiallyEmptyButRequiredValueScenario.Properties<Validation>
-  ): NumberBox<number | null, number, Validation>;
+  public static initializeOne(
+    initializationProperties: NumberBox.Initialization.CouldBeInitiallyEmptyButRequiredValueScenario.Properties
+  ): NumberBox<true, number, number | null, number, number | null>;
 
-  public static initializeOne<Validation extends InputtedValueValidation>(
-    initializationProperties: NumberBox.Initialization.OptionalValueScenario.Properties<Validation>
-  ): NumberBox<number | null, number | null, Validation>;
+  public static initializeOne(
+    initializationProperties: NumberBox.Initialization.OptionalValueScenario.Properties
+  ): NumberBox<false, number, number | null, number | null, number | null>;
 
-  public static initializeOne<
-    ValidValue extends NumberBox.SupportedValidatablePayloadValuesTypes,
-    InvalidValue extends NumberBox.SupportedValidatablePayloadValuesTypes,
-    Validation extends InputtedValueValidation
-  >(
-    initializationProperties: NumberBox.Initialization.Properties<Validation>
-  ): NumberBox<ValidValue, InvalidValue, Validation> {
-    return new NumberBox<ValidValue, InvalidValue, Validation>({
+  public static initializeOne<IsInputRequired extends boolean>(
+    initializationProperties: NumberBox.Initialization.Properties
+  ): NumberBox<
+    IsInputRequired,
+    NumberBox.SupportedValidatablePayloadValuesTypes.NonEmpty,
+    NumberBox.SupportedValidatablePayloadValuesTypes.Empty,
+    IsInputRequired extends true ?
+        NumberBox.SupportedValidatablePayloadValuesTypes.NonEmpty :
+        NumberBox.SupportedValidatablePayloadValuesTypes.NonEmpty |
+            NumberBox.SupportedValidatablePayloadValuesTypes.Empty,
+    NumberBox.SupportedValidatablePayloadValuesTypes.NonEmpty |
+       NumberBox.SupportedValidatablePayloadValuesTypes.Empty
+  > {
+    return new NumberBox<
+      IsInputRequired,
+      NumberBox.SupportedValidatablePayloadValuesTypes.NonEmpty,
+      NumberBox.SupportedValidatablePayloadValuesTypes.Empty,
+      IsInputRequired extends true ?
+        NumberBox.SupportedValidatablePayloadValuesTypes.NonEmpty :
+        NumberBox.SupportedValidatablePayloadValuesTypes.NonEmpty |
+            NumberBox.SupportedValidatablePayloadValuesTypes.Empty,
+      NumberBox.SupportedValidatablePayloadValuesTypes.NonEmpty |
+         NumberBox.SupportedValidatablePayloadValuesTypes.Empty
+    >({
       ...initializationProperties,
       rootElement: "selector" in initializationProperties.rootElement ?
           getExpectedToBeSingleDOM_Element({
@@ -192,7 +213,7 @@ class NumberBox<
       minimalValue,
       maximalValue,
       ...initializationProperties
-    }: NumberBox.ConstructorParameter<Validation>
+    }: NumberBox.ConstructorParameter
   ) {
 
     if (rootElement.classList.contains(NumberBox.ROOT_ELEMENT_SELECTOR)) {
@@ -264,7 +285,7 @@ class NumberBox<
 
     }
 
-    this.payload = new ValidatableControl.Payload<ValidValue, InvalidValue, Validation>({
+    this.payload = new ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>({
 
       /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
       * Although both `ValidValue` and `InvalidValue` constrained to `NumberBox.SupportedValidatablePayloadValuesTypes`
@@ -272,7 +293,9 @@ class NumberBox<
       *   between specific scenario and `ValidValue`/`InvalidValue`. */
       initialValue: payloadInitialValue as ValidValue | InvalidValue,
       getComponentInstance: (): ValidatableControl => this,
-      validation: initializationProperties.validation,
+      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+       * Acceptable during α/β versions of this component but must and will be fixed before official release. */
+      validation: initializationProperties.validation as unknown as InputtedValueValidation<NonEmptyValueType, EmptyValueType>,
       onAnyChangeEventHandler: {
         handler: this.onPayloadInitializedOrChanged.bind(this),
         ID: NumberBox.generateOnAnyChangeOfPayloadEventHandlerID(this.ID)
@@ -438,8 +461,7 @@ class NumberBox<
     const newValue: number = Number(this.payload.value) + this.step;
     this.nativeInputElement.value = String(newValue);
 
-    /* [ Theory ] The `Number(null)` will be `0`. */
-    /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- */
+    /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- [ Theory ] The `Number(null)` will be `0`. */
     this.payload.$setValue({ newValue: newValue as ValidValue | InvalidValue });
 
   }
@@ -449,8 +471,7 @@ class NumberBox<
     const newValue: number = Number(this.payload.value) - this.step;
     this.nativeInputElement.value = String(newValue);
 
-    /* [ Theory ] The `Number(null)` will be `0`. */
-    /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- */
+    /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- [ Theory ] The `Number(null)` will be `0`. */
     this.payload.$setValue({ newValue: newValue as ValidValue | InvalidValue });
 
   }
@@ -474,12 +495,14 @@ class NumberBox<
   protected transformInputtedRawValue(rawValue: string): ValidValue | InvalidValue {
 
     if (rawValue.length > 0) {
-      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- */
+      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+       * Acceptable during α/β versions of this component but must and will be fixed before official release. */
       return Number(rawValue) as ValidValue | InvalidValue;
     }
 
 
-    /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- */
+    /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+       * Acceptable during α/β versions of this component but must and will be fixed before official release. */
     return (this.scenario === NumberBox.Scenarios.alwaysNonEmptyValue ? 0 : null) as ValidValue | InvalidValue;
 
   }
@@ -533,7 +556,14 @@ class NumberBox<
 
 namespace NumberBox {
 
-  export type SupportedValidatablePayloadValuesTypes = number | null;
+  export type SupportedValidatablePayloadValuesTypes =
+      SupportedValidatablePayloadValuesTypes.NonEmpty |
+      SupportedValidatablePayloadValuesTypes.Empty;
+
+  export namespace SupportedValidatablePayloadValuesTypes {
+    export type NonEmpty = number;
+    export type Empty = number | null;
+  }
 
   export enum Scenarios {
     alwaysNonEmptyValue = "ALWAYS_NON_EMPTY_VALUE",
@@ -541,41 +571,31 @@ namespace NumberBox {
     optionalValue = "OPTIONAL_VALUE"
   }
 
-  export type ConstructorParameter<Validation extends InputtedValueValidation> =
+  export type ConstructorParameter =
       Readonly<{ rootElement: Element; }> &
       Omit<
-        Initialization.Properties<Validation>,
+        Initialization.Properties,
             "rootElements" |
             "contextElement"
       >;
 
   export namespace Initialization {
 
-    export type Properties<Validation extends InputtedValueValidation> =
-        (
-          AlwaysNonEmptyValueScenario.Properties<Validation> |
-          CouldBeInitiallyEmptyButRequiredValueScenario.Properties<Validation> |
-          OptionalValueScenario.Properties<Validation>
-        );
+    export type Properties =
+          AlwaysNonEmptyValueScenario.Properties |
+          CouldBeInitiallyEmptyButRequiredValueScenario.Properties |
+          OptionalValueScenario.Properties;
 
     export namespace Properties {
 
-      export type RootElementsDefinition = Readonly<
-        {
-          rootElement: Readonly<{ selector: string; }>;
-          contextElement?: ParentNode | Readonly<{ selector: string; }>;
-        } |
-        {
-          rootElement: Element;
-          contextElement?: never;
-        }
-      >;
-
-      export type Common<Validation extends InputtedValueValidation> = Readonly<{
+      export type Common<
+        NonEmptyValueType extends SupportedValidatablePayloadValuesTypes.NonEmpty,
+        EmptyValueType extends SupportedValidatablePayloadValuesTypes.Empty
+      > = Readonly<{
         minimalValue?: number;
         maximalValue?: number;
         step?: number;
-        validation: Validation;
+        validation: InputtedValueValidation<NonEmptyValueType, EmptyValueType>;
         validityHighlightingActivationMode: ValidityHighlightingActivationModes;
       }>;
 
@@ -583,41 +603,52 @@ namespace NumberBox {
 
     export namespace AlwaysNonEmptyValueScenario {
 
-      export type Properties<Validation extends InputtedValueValidation> =
+      export type Properties =
           Readonly<{
             scenario: Scenarios.alwaysNonEmptyValue;
             overridingPreInputtedInitialValue?: number;
           }> &
-          Initialization.Properties.Common<Validation> &
-          Initialization.Properties.RootElementsDefinition;
+          Initialization.Properties.Common<number, number> &
+          RootElementDefinition;
 
     }
 
     export namespace CouldBeInitiallyEmptyButRequiredValueScenario {
 
-      export type Properties<Validation extends InputtedValueValidation> =
+      export type Properties =
           Readonly<{
             scenario: Scenarios.couldBeInitiallyEmptyButRequiredValue;
-            overridingPreInputtedInitialValue?: number | null;
+            overridingPreInputtedInitialValue?: SupportedValidatablePayloadValuesTypes;
           }> &
-          Initialization.Properties.Common<Validation> &
-          Initialization.Properties.RootElementsDefinition;
+          Initialization.Properties.Common<number, null> &
+          RootElementDefinition;
 
     }
 
     export namespace OptionalValueScenario {
 
-      export type Properties<Validation extends InputtedValueValidation> =
+      export type Properties =
           Readonly<{
             scenario: Scenarios.optionalValue;
             overridingPreInputtedInitialValue?: number | null;
           }> &
-          Initialization.Properties.Common<Validation> &
-          Initialization.Properties.RootElementsDefinition;
+          Initialization.Properties.Common<number, null> &
+          RootElementDefinition;
 
     }
 
   }
+
+  export type Localization = Readonly<{
+    buttons: Readonly<{
+      incrementing: Readonly<{
+        generateAccessibilityGuidance: ({ step }: Readonly<{ step: number; }>) => string;
+      }>;
+      decrementing: Readonly<{
+        generateAccessibilityGuidance: ({ step }: Readonly<{ step: number; }>) => string;
+      }>;
+    }>;
+  }>;
 
   export enum ValidityHighlightingActivationModes {
     immediate = "IMMEDIATE",

@@ -8,6 +8,7 @@ mixin SingleImageViewer--YDF(properties, statesSimulations)
     const {
 
       imageURI,
+      imagesSet,
       imageAlternateText,
       fullScreenView,
       aspectRatio,
@@ -70,6 +71,8 @@ mixin SingleImageViewer--YDF(properties, statesSimulations)
 
     ];
 
+    let mainImageURI /** @type { string } */;
+
 
   .SingleImageViewer--YDF&attributes(attributes)(
     data-has_full_screen_view__ydf=fullScreenView
@@ -90,7 +93,9 @@ mixin SingleImageViewer--YDF(properties, statesSimulations)
 
     figure.SingleImageViewer--YDF-Figure
 
-      mixin ImgTag()
+      if imageURI
+
+        - mainImageURI = imageURI;
 
         img.SingleImageViewer--YDF-Image(
           src=imageURI
@@ -99,10 +104,36 @@ mixin SingleImageViewer--YDF(properties, statesSimulations)
           data-yda-auto_aspect_ratio=autoAspectRatioByYDA
         )
 
-      //- [ Theory ] The image could be narrower than below underlay thus underlay could be visible
-      //- picture.SingleImageViewer--YDF-Underlay
+      else
 
-      +ImgTag
+        //- [ Theory ] The image could be narrower than below underlay thus underlay could be visible
+        picture.SingleImageViewer--YDF-Underlay
+
+          each image in imagesSet
+
+            -
+
+              if (image.isMain) {
+                mainImageURI = image.URI;
+              }
+
+              /** @type { string } */
+              const mediaAttributeValue =
+                [
+                  ...image.minimalViewportWidth__pixels ? [ `(min-width: ${ image.minimalViewportWidth__pixels }px)` ] : [],
+                  ...image.maximalViewportWidth__pixels ? [ `(max-width: ${ image.maximalViewportWidth__pixels }px)` ] : []
+                ].
+                    join(" and ");
+
+            source(
+              media=mediaAttributeValue
+              srcset=image.URI
+            )
+
+          img.SingleImageViewer--YDF-Image(
+            src=mainImageURI
+            alt=imageAlternateText
+          )
 
       if block
         figcaption.SingleImageViewer--YDF-Caption
@@ -125,7 +156,7 @@ mixin SingleImageViewer--YDF(properties, statesSimulations)
 
         figure.SingleImageViewer--YDF-ModalView-PositioningWrapper
           img.SingleImageViewer--YDF-ModalView-Image(
-            src=imageURI
+            src=mainImageURI
             alt=imageAlternateText
             data-yda-auto_aspect_ratio=autoAspectRatioByYDA
           )

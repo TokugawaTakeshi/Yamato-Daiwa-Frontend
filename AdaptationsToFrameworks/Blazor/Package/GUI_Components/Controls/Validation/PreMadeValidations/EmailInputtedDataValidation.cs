@@ -20,7 +20,7 @@ public class EmailAddressInputtedValueValidation(
     
     isValueOfSupportedType: (object? rawValue) => rawValue is string,
     
-    hasValueBeenOmitted: (object? rawValue) => !String.IsNullOrEmpty((string?) rawValue),
+    hasValueBeenOmitted: (object? rawValue) => String.IsNullOrEmpty((string?) rawValue),
     
     inputRequiredFlag,
     
@@ -35,7 +35,7 @@ public class EmailAddressInputtedValueValidation(
           
           new MinimalCharactersCountInputtedValueValidationRule
           {
-            MinimalCharactersCount = minimalCharactersCount ?? Fundamentals.Email.MINIMAL_CHARACTERS_COUNT,
+            MinimalCharactersCount = minimalCharactersCount ?? Fundamentals.EmailAddress.MINIMAL_CHARACTERS_COUNT,
             ErrorMessageBuilder =
                 (localization ?? EmailAddressInputtedValueValidation.Localization).
                     MinimalCharactersCountValidationErrorMessageBuilder,
@@ -52,7 +52,7 @@ public class EmailAddressInputtedValueValidation(
 
           new MaximalCharactersCountInputtedValueValidationRule
           {
-            MaximalCharactersCount = maximalCharactersCount ?? Fundamentals.Email.MAXIMAL_CHARACTERS_COUNT,
+            MaximalCharactersCount = maximalCharactersCount ?? Fundamentals.EmailAddress.MAXIMAL_CHARACTERS_COUNT,
             ErrorMessageBuilder =
                 (localization ?? EmailAddressInputtedValueValidation.Localization).
                     MaximalCharactersCountValidationErrorMessageBuilder,
@@ -73,8 +73,10 @@ public class EmailAddressInputtedValueValidation(
   /* [ Approach ] Although YDF library can suggest the minimal and maximal characters count for the email address,
    *    in the applications with good architecture this value must be taken from the business rules and
    *    passed via constructor. */
-  public readonly IConvertible MINIMAL_CHARACTERS_COUNT = minimalCharactersCount ?? Fundamentals.Email.MINIMAL_CHARACTERS_COUNT;
-  public readonly IConvertible MAXIMAL_CHARACTERS_COUNT = maximalCharactersCount ?? Fundamentals.Email.MAXIMAL_CHARACTERS_COUNT;
+  public readonly IConvertible MINIMAL_CHARACTERS_COUNT = 
+      minimalCharactersCount ?? Fundamentals.EmailAddress.MINIMAL_CHARACTERS_COUNT;
+  public readonly IConvertible MAXIMAL_CHARACTERS_COUNT = 
+    maximalCharactersCount ?? Fundamentals.EmailAddress.MAXIMAL_CHARACTERS_COUNT;
 
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

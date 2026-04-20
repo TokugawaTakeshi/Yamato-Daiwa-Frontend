@@ -1,93 +1,154 @@
-﻿using YamatoDaiwa.CSharpExtensions;
-using YamatoDaiwa.Frontend.Exceptions;
-using YamatoDaiwa.Frontend.GUI_Components.Abstractions;
+﻿using YamatoDaiwa.Frontend.Exceptions;
 using YamatoDaiwa.Frontend.GUI_Components.Controls.Validatables.ValidatableControl;
-using YamatoDaiwa.Frontend.GUI_Components.Controls.Validation;
 using YamatoDaiwa.Frontend.Helpers;
-using Microsoft.JSInterop;
 
 namespace YamatoDaiwa.Frontend.GUI_Components.Controls.ValidatableControlShell;
 
 
 public partial class ValidatableControlShell: 
     Microsoft.AspNetCore.Components.ComponentBase,
-    YamatoDaiwa.Frontend.GUI_Components.Abstractions.IHTML_AttributesFallthrough,
-    YamatoDaiwa.Frontend.GUI_Components.Abstractions.IFlexibleExternalCSS_ClassesSpecifyingForRootElement
+    YamatoDaiwa.Frontend.GUI_Components.Abstractions.IHTML_AttributesFallthrough
 {
   
+  /* ━━━ Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public const string CSS_NAMESPACE = "ValidatableControlShell--YDF";
+
   
+  /* ┅┅┅ JavaScript Functionality ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  [Microsoft.AspNetCore.Components.Inject]
+  protected Microsoft.JSInterop.IJSRuntime javaScriptRuntime { get; set; } = null!;
+
+  private readonly JavaScriptFunctionality javaScriptFunctionality = JavaScriptFunctionality.GetNotInitializedYetInstance();
+
+
+  /* ┅┅┅ Elements References ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  protected Microsoft.AspNetCore.Components.ElementReference rootElement;
+
+
+  /* ┅┅┅ Common Parameters ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   [Microsoft.AspNetCore.Components.Parameter(CaptureUnmatchedValues = true)]
   public Dictionary<string, object>? rootElementHTML_Attributes { get; set; }
   
-  [Microsoft.AspNetCore.Components.Inject]
-  protected Microsoft.JSInterop.IJSRuntime javaScriptRuntime { get; set; } = null!;
   
-  protected Microsoft.AspNetCore.Components.ElementReference rootElement;
+
+  /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected override async System.Threading.Tasks.Task OnAfterRenderAsync(bool firstRender)
+  {
+    if (firstRender)
+    {
+      await this.javaScriptFunctionality.Load(this.javaScriptRuntime);
+    }
+  }
 
   public async System.Threading.Tasks.ValueTask<IValidatableControl.RootElementOffsetCoordinates> getRootElementOffsetCoordinates()
   {
-    return await this.javaScriptRuntime.InvokeAsync<IValidatableControl.RootElementOffsetCoordinates>(
-      "getDOM_ElementOffsetCoordinates",
-      this.rootElement
-    );
+    return await this.javaScriptFunctionality.GetDOM_ElementOffsetCoordinates(this.rootElement);
   }
-  
+
   
   /* ━━━ Text Elements ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  [Microsoft.AspNetCore.Components.Parameter] 
-  public string? label { get; set; }
-  
-  [Microsoft.AspNetCore.Components.Parameter] 
-  public string? guidance { get; set; }
-  
-  public string? formattedGuidance
+  protected string? _label;
+
+  [Microsoft.AspNetCore.Components.Parameter]
+  [
+    System.Diagnostics.CodeAnalysis.SuppressMessage(
+      category: "Microsoft.Performance", 
+      checkId: "BL0007",
+      Justification = 
+          "Validation via setter is not recommended, but no better alternative has been suggested. " +
+          "https://stackoverflow.com/q/79935713/4818123"
+    )
+  ]
+  public string? label
   {
-    get
+    get => this._label;
+    set
     {
-    
-      if (this.guidance is null)
-      {
-        return null;
-      }
       
-      
-      string[] guidanceSegments = this.guidance.Split("**");
-
-      for (int segmentIndex = 0; segmentIndex <= guidanceSegments.Length - 1; segmentIndex++)
+      if (value?.Length == 0)
       {
-        string currentSegment = guidanceSegments[segmentIndex];
-
-        if (segmentIndex % 2 != 0)
-        {
-          guidanceSegments[segmentIndex] =
-            $"<span class=\"ValidatableControlShell--YDF-Guidance-AccentedFragment\">{ currentSegment }</span>";
-        }
+        throw new InvalidRazorComponentParameterException(
+          new InvalidRazorComponentParameterException.TemplateVariables
+          {
+            ComponentName = nameof(ValidatableControlShell), 
+            ParameterName = nameof(this.label), 
+            MessageSpecificPart = "If defined, must the non-empty string."
+          }
+        );
       }
 
-      return YamatoDaiwa.CSharpExtensions.RegexExtensions.ReplaceMatchesWithRegularExpressionToDynamicValue(
-        new RegexExtensions.ReplacingOfMatchesWithRegularExpressionToDynamicValue.CompoundParameter
-        {
-          regularExpressionWithCapturingGroups = new System.Text.RegularExpressions.Regex(@"(\[(?<anchorText>.+?)\]\((?<URI>.+?)\))"),
-          replacer = (
-            YamatoDaiwa.CSharpExtensions.RegexExtensions.ReplacingOfMatchesWithRegularExpressionToDynamicValue.Matching match
-            ) =>
-              "<a " +
-                "class=\"Link--YDF ValidatableControlShell--YDF-Guidance-Link\" " +
-                $"href=\"{ match.namedCapturingGroups["URI"] }\" " +
-                "target=\"_blank\" " +
-                "rel=\"noopener noreferrer nofollow\" " +
-              ">" +
-                match.namedCapturingGroups["anchorText"] +
-              "</a>",
-          targetString = String.Join("", guidanceSegments) 
-        }
-      );
+      this._label = value;
+      
+    }
+  }
+ 
+  
+  /* ╍╍╍ Guidance ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+  protected string? _guidance;
+  protected string? cachedGuidance = null;
+  protected string? formattedGuidance;
+  
+  [Microsoft.AspNetCore.Components.Parameter] 
+  [
+    System.Diagnostics.CodeAnalysis.SuppressMessage(
+      category: "Microsoft.Performance", 
+      checkId: "BL0007", 
+      Justification = 
+          "Validation via setter is not recommended, but no better alternative has been suggested. " +
+          "https://stackoverflow.com/q/79935713/4818123"
+    )
+  ]
+  public string? guidance
+  {
+    get => this._guidance;
+    set
+    {
+      
+      if (value?.Length == 0)
+      {
+        throw new InvalidRazorComponentParameterException(
+          new InvalidRazorComponentParameterException.TemplateVariables
+          {
+            ComponentName = nameof(ValidatableControlShell), 
+            ParameterName = nameof(this.guidance), 
+            MessageSpecificPart = "If defined, must the non-empty string."
+          }
+        );
+      }
+
+      if (value != this.cachedGuidance)
+      {
+        this._guidance = value;
+        this.cachedGuidance = this.guidance;
+        this.formattedGuidance = ValidatableControlShell.formatGuidance(this.guidance);
+      }
       
     }
   }
 
-  
+  protected static string? formatGuidance(string? guidance)
+  {
+    return guidance is not null ?
+      Markdown.ReplaceMarkdownLink(
+        Markdown.ReplaceMarkdownBold(
+          guidance,
+          replacer: (string boldedContent) =>
+            $"<span class=\"ValidatableControlShell--YDF-Guidance-AccentedFragment\">{ boldedContent }</span>"
+        ),
+        replacer: (YamatoDaiwa.Frontend.Helpers.Markdown.LinkData linkData) =>
+            "<a " +
+              "class=\"Link--YDF ValidatableControlShell--YDF-Guidance-Link\" " +
+              $"href=\"{ linkData.URI }\" " +
+              "target=\"_blank\" " +
+              "rel=\"noopener noreferrer nofollow\"" +
+            ">" +
+              linkData.anchorText +
+            "</a>"
+      ) :
+      null;
+  }
+
+
   /* ━━━ Inputting Requirement ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   [Microsoft.AspNetCore.Components.Parameter] 
   public bool required { get; set; } = false;
@@ -101,7 +162,7 @@ public partial class ValidatableControlShell:
   [Microsoft.AspNetCore.Components.Parameter] 
   public bool mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge { get; set; } = false;
   
-  
+
   /* ━━━ HTML IDs ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   [Microsoft.AspNetCore.Components.Parameter] 
   public string? coreElementHTML_ID { get; set; }
@@ -111,15 +172,6 @@ public partial class ValidatableControlShell:
   
   
   /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  [Microsoft.AspNetCore.Components.Parameter]
-  public string? rootElementModifierCSS_Class { get; set; } = null;
-
-  [Microsoft.AspNetCore.Components.Parameter]
-  public string[]? rootElementModifierCSS_Classes { get; set; } = null;
-
-  [Microsoft.AspNetCore.Components.Parameter]
-  public string? rootElementSpaceSeparatedModifierCSS_Classes { get; set; } = null;
-
   private string classAttributeValueForRootElement => YDF_ComponentsHelper.GenerateClassAttributeValueForRootElement(
     new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement
     {
@@ -143,8 +195,6 @@ public partial class ValidatableControlShell:
         standardOnes = typeof(ValidatableControlShell.StandardDecorativeVariations),
         customOnes = ValidatableControlShell.CustomDecorativeVariations
       },
-      externalSpaceSeparatedCSS_Classes =
-          ((IFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes,
       rootElementHTML_Attributes = this.rootElementHTML_Attributes
     }
   );
@@ -158,8 +208,40 @@ public partial class ValidatableControlShell:
   [Microsoft.AspNetCore.Components.Parameter] 
   public bool mustDisplayErrorsMessagesIfAny { get; set; } = false;
 
+  public IEnumerable<string> _validationErrorsMessages = [];
+  
   [Microsoft.AspNetCore.Components.Parameter] 
-  public IEnumerable<string> validationErrorsMessages { get; set; } = [];
+  public IEnumerable<string> validationErrorsMessages
+  {
+    get => this._validationErrorsMessages;
+    set
+    {
+      this._validationErrorsMessages = value;
+      this.animateErrorsMessagesListIfMust();
+    }
+  }
+  
+  /* [ Theory ]
+   * Even if `validationErrorsMessages` has become an empty array, the validation errors messages are still
+   *   required to animate the collapsing.
+   * */
+  protected IEnumerable<string> validationErrorsMessagesCopyForAnimating = [];
+
+  protected const float ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS = 0.2F;
+  protected const float ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS = 0.1F;
+  
+  protected uint errorsListAnimationDuration__milliseconds =>
+      (uint)(
+        (
+          this.validationErrorsMessages.Any() ?
+              ValidatableControlShell.ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS *
+                  this.validationErrorsMessages.Count() :
+            ValidatableControlShell.ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS *
+                  this.validationErrorsMessagesCopyForAnimating.Count()
+        ) * 
+            1000.0F
+      );
+  //- ━━━ TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   /* ┅┅┅ Validation Statuses List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   [Microsoft.AspNetCore.Components.Parameter]
@@ -340,42 +422,19 @@ public partial class ValidatableControlShell:
           optionalInputBadge[this._decorativeVariation];
   
   
+  /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected override void OnInitialized()
+  {
+    base.OnInitialized();
+    this.validationErrorsMessagesCopyForAnimating = this.validationErrorsMessages.ToArray();
+  }
+
+  
   /* ━━━ Child Content ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   [Microsoft.AspNetCore.Components.Parameter]
   public Microsoft.AspNetCore.Components.RenderFragment? ChildContent { get; set; }
   
-  
-  /* ━━━ Validation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected override void OnParametersSet()
-  {
 
-    if (this.label?.Length == 0) 
-    {
-      throw new InvalidRazorComponentParameterException(
-        new InvalidRazorComponentParameterException.TemplateVariables
-        {
-          ComponentName = nameof(ValidatableControlShell),
-          ParameterName = nameof(this.label),
-          MessageSpecificPart = "If defined, must the non-empty string."
-        }
-      );
-    }
-    
-    if (this.guidance?.Length == 0) 
-    {
-      throw new InvalidRazorComponentParameterException(
-        new InvalidRazorComponentParameterException.TemplateVariables
-        {
-          ComponentName = nameof(ValidatableControlShell),
-          ParameterName = nameof(this.guidance),
-          MessageSpecificPart = "If defined, must the non-empty string."
-        }
-      );
-    }
-    
-  }
-  
-  
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public abstract record Localization
   {

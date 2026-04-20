@@ -36,8 +36,6 @@ SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultPro
       display flex
       flex-direction row-reverse
 
-      margin-top 0.2rem
-
 
       /.SingleImageViewer--YDF__RegularGeometry &
 
@@ -46,6 +44,8 @@ SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultPro
 
         border-bottom-style solid
         border-bottom-color W3C_39_ShadesOfGray--YDF[32]
+
+        margin-top 0.2rem
 
 
     &-Figure
@@ -57,11 +57,6 @@ SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultPro
 
         whenItGoingFirst({ verticalSpaceAbove: 0.6rem })
         whenItGoingLast({ verticalSpaceBelow: 0.6rem })
-
-
-    &-Underlay
-
-      background aliceblue
 
 
     &-Image
@@ -80,7 +75,7 @@ SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultPro
 
       Paddings({ horizontalSymmetric: 8px })
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({ fontSize: 13px, lineSpacing: 4px })
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({ fontSize: 13px, lineSpacing: 6px })
 
       color: W3C_39_ShadesOfGray--YDF[14]
 
@@ -116,7 +111,7 @@ SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultPro
 
       &-UpperButton
 
-        margin-top 0.2rem
+        margin-top 0.4rem
         margin-right 0.4rem
         align-self flex-end
         flex-shrink 0
@@ -129,8 +124,6 @@ SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultPro
         align-items center
 
         overflow auto
-
-        background-color aliceblue
 
         flex-grow 1
 
@@ -155,13 +148,14 @@ SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultPro
       &-BottomActionBar
 
         display flex
+        flex-wrap wrap
         flex-direction row-reverse
         row-gap 0.4rem
         column-gap 0.6rem
 
         Paddings({
           horizontalSymmetric: 0.4rem,
-          bottom: 0.2rem
+          bottom: 0.4rem
         })
 
         flex-shrink 0

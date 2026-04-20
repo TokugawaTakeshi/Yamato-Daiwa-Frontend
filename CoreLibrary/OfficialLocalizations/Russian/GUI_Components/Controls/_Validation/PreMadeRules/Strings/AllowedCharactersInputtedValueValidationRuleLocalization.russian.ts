@@ -1,7 +1,7 @@
 import type { AllowedCharactersInputtedValueValidationRule } from "@yamato-daiwa/frontend";
 
 
-export const allowedCharactersInputtedValueValidationRuleLocalization__russian:
+export const AllowedCharactersInputtedValueValidationRuleLocalization__Russian:
     AllowedCharactersInputtedValueValidationRule.Localization =
 {
   errorMessageBuilder: (

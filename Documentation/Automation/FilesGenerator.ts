@@ -4,13 +4,63 @@ import { ImprovedPath } from "@yamato-daiwa/es-extensions-nodejs";
 
 
 /* ━━━ Types ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-export namespace Common {
-
-  export type TemplateVariables = TemplateVariables.Step1 | TemplateVariables.Step2;
+/* ┅┅┅ Stylus Function ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export namespace StylusFunction {
 
   export namespace TemplateVariables {
 
-    export type Step1 = {
+    /* ┅┅┅ Step 1 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+    export type Step1 =
+
+        TemplatesGenerator.Preset.PreDefinedTemplateVariables &
+
+        Step1.DirectlyInputted &
+
+        Step1.Computed;
+
+    export namespace Step1 {
+
+      export type DirectlyInputted = Readonly<{
+
+        /** @example coreLibrary.$children.styles.$children.kernel.$children.functions.$children.strings.$children.buildString */
+        targetRouteWithChildrenPointers: string;
+
+      }>;
+
+      export type Computed = {
+
+        /** @example coreLibrary.styles.kernel.functions.strings.buildString */
+        targetRouteWithoutChildrenPointers: string;
+
+      };
+
+    }
+
+
+    /* ┅┅┅ Step 2 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+    export type Step2 =
+
+        Step1 &
+
+        Step2.DirectlyInputted;
+
+    export namespace Step2 {
+
+      export type DirectlyInputted = Readonly<{
+
+        /** @example buildString */
+        directoryPathForNativeImplementationRelativeToProjectRoot: string;
+
+      }>;
+
+    }
+
+  }
+
+}
+
+
+/* ┅┅┅ GUI Component ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 export namespace GUI_Component {
 
   export namespace TemplateVariables {
@@ -147,83 +197,6 @@ export namespace GUI_Component {
 
 
 TemplatesGenerator.generate({
-
-  // main: {
-  //
-  //   questions: [
-  //     {
-  //       text: "Please specify the route including \"$children\" properties.",
-  //       example: "coreLibrary.$children.markup.$children.functionality.$children.inlineJavaScript.$children." +
-  //           "functionsAndClasses.$children.processObjectTypeParameterOfPugMixin",
-  //       isAnswerValid: isNonEmptyString,
-  //       onValidAnswerAccepted(
-  //         targetRouteWithChildrenPointers: string, templateVariables: GUI_Component.TemplateVariables.Step1
-  //       ): void {
-  //         templateVariables.$targetRouteWithoutChildrenPointers =
-  //             targetRouteWithChildrenPointers.replaceAll("$children.", "");
-  //       },
-  //       templateVariableName: "$targetRouteWithChildrenPointers"
-  //     },
-  //     {
-  //       text: "Please input the output directory path relative to \"Pages\" directory.",
-  //       example: "CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin",
-  //       isAnswerValid: isNonEmptyString,
-  //       onValidAnswerAccepted(
-  //         outputDirectoryPathRelativeToPagesDirectory: string, templateVariables: ArbitraryObject
-  //       ): void {
-  //
-  //         const sourceDirectoryAbsolutePath: string = ImprovedPath.joinPathSegments(
-  //           [ process.cwd(), "01-Source" ],
-  //           { alwaysForwardSlashSeparators: true }
-  //         );
-  //
-  //         templateVariables.sourceDirectoryAbsolutePath = sourceDirectoryAbsolutePath;
-  //
-  //
-  //         const outputDirectoryAbsolutePath: string = ImprovedPath.joinPathSegments(
-  //           [ sourceDirectoryAbsolutePath, "Pages", outputDirectoryPathRelativeToPagesDirectory ],
-  //           { alwaysForwardSlashSeparators: true }
-  //         );
-  //
-  //         templateVariables.outputDirectoryAbsolutePath = outputDirectoryAbsolutePath;
-  //
-  //
-  //         templateVariables.$$PATH_RELATIVE_TO_PROJECT_ROOT_DIRECTORY = ImprovedPath.computeRelativePath({
-  //           basePath: outputDirectoryAbsolutePath,
-  //           comparedPath: process.cwd(),
-  //           alwaysForwardSlashSeparators: true
-  //         });
-  //
-  //         templateVariables.$$PATH_RELATIVE_TO_SOURCE_DIRECTORY = ImprovedPath.computeRelativePath({
-  //           basePath: outputDirectoryAbsolutePath,
-  //           comparedPath: sourceDirectoryAbsolutePath,
-  //           alwaysForwardSlashSeparators: true
-  //         });
-  //
-  //       },
-  //       templateVariableName: "outputDirectoryPathRelativeToPagesDirectory"
-  //     },
-  //     {
-  //       text: "Please input the basic file name without extension.",
-  //       example: "processObjectTypeParameterOfPugMixin",
-  //       isAnswerValid: isNonEmptyString,
-  //       onValidAnswerAccepted(): void {},
-  //       templateVariableName: "basicFileNameWithoutExtensions"
-  //     }
-  //   ],
-  //
-  //   fileOutputPathBuilder: (file: TemplatesGenerator.Preset.File, templateVariables: ArbitraryObject): string =>
-  //       ImprovedPath.joinPathSegments([
-  //         templateVariables.outputDirectoryAbsolutePath,
-  //         ...isNonEmptyString(file.subdirectory) ? [ file.subdirectory ] : [],
-  //         file.outputFileNamePattern.replace("[BASIC_FILE_NAME]", templateVariables.basicFileNameWithoutExtensions)
-  //       ]),
-  //
-  //   files: [
-
-  //   ]
-  //
-  // },
 
   GUI_Component: {
 

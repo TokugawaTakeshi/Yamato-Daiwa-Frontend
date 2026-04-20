@@ -1,7 +1,7 @@
 import type { EmailAddressInputtedValueValidationRule } from "@yamato-daiwa/frontend";
 
 
-export const emailAddressInputtedValueValidationRuleLocalization__russian:
+export const EmailAddressInputtedValueValidationRuleLocalization__Russian:
     EmailAddressInputtedValueValidationRule.Localization =
     {
       errorMessageBuilder: (): string =>

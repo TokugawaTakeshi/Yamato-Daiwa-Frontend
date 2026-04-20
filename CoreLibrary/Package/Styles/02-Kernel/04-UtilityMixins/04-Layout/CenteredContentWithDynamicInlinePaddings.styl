@@ -1,0 +1,29 @@
+CenteredContentWithDynamicInlinePaddings--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter({
+    mixinOrFunctionName: "CenteredContentWithDynamicInlinePaddings--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      maximalContentWidth: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: true
+      },
+      minimalInlinePaddings: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  maximalContentWidth = compoundParameter.maximalContentWidth
+  minimalInlinePaddings = nullToZero(compoundParameter.minimalInlinePaddings)
+
+  if minimalInlinePaddings == 0
+
+    minimalInlinePaddings = 0px
+
+
+  padding-inline "clamp(%s, calc(0.5*(100% - %s)), 50vw)" % (minimalInlinePaddings maximalContentWidth)

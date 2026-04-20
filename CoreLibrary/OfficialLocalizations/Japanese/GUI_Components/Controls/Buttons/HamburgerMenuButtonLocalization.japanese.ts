@@ -1,7 +1,7 @@
 import type { HamburgerMenuButtonLocalization } from "@yamato-daiwa/frontend";
 
 
-export const hamburgerMenuButtonYDF_GUI_ComponentLocalization__japanese: HamburgerMenuButtonLocalization = {
+export const HamburgerMenuButtonYDF_GUI_ComponentLocalization__Japanese: HamburgerMenuButtonLocalization = {
   defaultLabel: "メニュー",
   defaultAccessibilityGuidance: "メニュー"
 };

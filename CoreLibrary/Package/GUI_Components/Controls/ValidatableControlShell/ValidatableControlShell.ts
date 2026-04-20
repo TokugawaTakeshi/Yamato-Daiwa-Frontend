@@ -3,7 +3,7 @@
 
 /* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import componentDynamicPartsHTML from "./ValidatableControlShell.parts.pug";
-import validatableControlShellYDF_GUI_ComponentDOM_AccessResources from "./ValidatableControlShellDOM_AccessResources";
+import ValidatableControlShellYDF_GUI_ComponentDOM_AccessResources from "./ValidatableControlShellDOM_AccessResources";
 import ExpandingAnimation from "../../../Animations/ExpandingAnimation";
 import CollapsingAnimation from "../../../Animations/CollapsingAnimation";
 
@@ -33,7 +33,7 @@ class ValidatableControlShell {
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ┅┅┅ Accessing to DOM ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   protected static DOM_AccessResources: ValidatableControlShell.DOM_AccessResources =
-      validatableControlShellYDF_GUI_ComponentDOM_AccessResources;
+      ValidatableControlShellYDF_GUI_ComponentDOM_AccessResources;
 
   protected static readonly ROOT_ELEMENT_CSS_CLASS: string = "ValidatableControlShell--YDF";
 

@@ -2,7 +2,7 @@
 /* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import {
   type ValidatableControlShellLocalization,
-  validatableControlShellYDF_GUI_ComponentLocalization__english,
+  ValidatableControlShellYDF_GUI_ComponentLocalization__English,
   InputtedValueValidation,
   replaceMarkdownBold,
   replaceMarkdownLink
@@ -11,6 +11,9 @@ import {
 /* ┅┅┅ Related GUI Components ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import Badge from "../../Badge/BadgeLogic.vue";
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicator.vue";
+import CheckmarkIcon__Circled__Filled from "../../../SVG_Icons/Checkmark/CheckmarkIcon__Circled__Filled.vue";
+import MultiplicationSignIcon__Boxed__Filled from
+    "../../../SVG_Icons/MultiplicationSign/MultiplicationSignIcon__Boxed__Filled.vue";
 
 /* ┅┅┅ Validations ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import VuePropertyValidator from "../../_VuePropertiesValidators/VuePropertyValidator";
@@ -45,7 +48,9 @@ import {
   name: ValidatableControlShell.CSS_NAMESPACE,
   components: {
     Badge,
-    LoadingIndicator
+    LoadingIndicator,
+    CheckmarkIcon__Circled__Filled,
+    MultiplicationSignIcon__Boxed__Filled
   }
 })
 class ValidatableControlShell extends VueComponent {
@@ -53,7 +58,7 @@ class ValidatableControlShell extends VueComponent {
   public static CSS_NAMESPACE: string = "ValidatableControlShell--YDF";
 
 
-  /* ━━━ Text Elements ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ━━━ Textual Elements ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   @VueProperty({
     required: false,
     get validator(): VuePropertyValidator {
@@ -230,19 +235,18 @@ class ValidatableControlShell extends VueComponent {
    * Even if `validationErrorsMessages` has become an empty array, the validation errors messages are still
    *   required to animate the collapsing.
    * Cannot be assigned here with `[ ...this.validationErrorsMessages ]` because of `vue-facing-decorator` limitations. */
-  protected validationErrorsMessagesCopyForAnimating!: ReadonlyArray<string>;
+  protected validationErrorsMessagesCopyForAnimating: ReadonlyArray<string> = [];
 
   protected static readonly ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS: number = 0.2;
   protected static readonly ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS: number = 0.1;
 
   protected get errorsListAnimationDuration__milliseconds(): number {
     return secondsToMilliseconds(
-      (
-        this.validationErrorsMessages.length > 0 ?
-            ValidatableControlShell.ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS :
-            ValidatableControlShell.ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS
-      ) *
-          this.validationErrorsMessagesCopyForAnimating.length
+      this.validationErrorsMessages.length > 0 ?
+          ValidatableControlShell.ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS *
+              this.validationErrorsMessages.length :
+          ValidatableControlShell.ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS *
+              this.validationErrorsMessagesCopyForAnimating.length
     );
   }
 
@@ -264,6 +268,104 @@ class ValidatableControlShell extends VueComponent {
     );
 
   }
+
+
+  /* ┅┅┅ Validation Statuses List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+
+  /* ╍╍╍ Content ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+  @VueProperty({
+    type: InputtedValueValidation.AsynchronousChecks.Status,
+    required: false
+  })
+  @preventNullForOptionalVueProperty
+  protected readonly asynchronousChecksStatus?: InputtedValueValidation.AsynchronousChecks.Status;
+
+  /* [ Theory ]
+   * Even if `asynchronousChecksActualForDisplaying` has become an empty array, the validation errors messages are still
+   *   required to animate the collapsing.
+   * Cannot be assigned here with `[ ...this.validationErrorsMessages ]` because of `vue-facing-decorator` limitations. */
+  protected actualForDisplayingAsynchronousChecksCopyForAnimating: InputtedValueValidation.AsynchronousChecks = {};
+
+  protected get asynchronousChecksActualForDisplaying(): InputtedValueValidation.AsynchronousChecks {
+    return Object.defineProperties<InputtedValueValidation.AsynchronousChecks>(
+      {},
+      Object.entries(this.asynchronousChecksStatus?.checks ?? {}).reduce(
+        (
+          propertyDescriptorMap: PropertyDescriptorMap,
+          [ validationRuleName, asynchronousCheckStatus ]:
+              Readonly<[string, InputtedValueValidation.AsynchronousCheck.Status]>
+        ): PropertyDescriptorMap => {
+
+          if (!asynchronousCheckStatus.hasInvalidValueBeenConfirmed) {
+            propertyDescriptorMap[validationRuleName] = {
+              value: asynchronousCheckStatus,
+              configurable: false,
+              enumerable: true,
+              writable: false
+            };
+          }
+
+          return propertyDescriptorMap;
+
+        },
+        {}
+      )
+    );
+  }
+
+
+  /* ╍╍╍ Animating Duration ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+  protected static readonly ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ANIMATION_DURATION_PER_ONE_ITEM__SECONDS: number = 0.2;
+  protected static readonly ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ANIMATION_COLLAPSING__SECONDS: number = 0.1;
+
+  protected get asynchronousValidationsStatusesListAnimationDurationPerOneItem__milliseconds(): number {
+    return secondsToMilliseconds(
+        Object.entries(this.asynchronousChecksActualForDisplaying).length > 0 ?
+            ValidatableControlShell.ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ANIMATION_DURATION_PER_ONE_ITEM__SECONDS *
+                Object.entries(this.asynchronousChecksActualForDisplaying).length :
+            ValidatableControlShell.ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ANIMATION_COLLAPSING__SECONDS *
+                Object.entries(this.actualForDisplayingAsynchronousChecksCopyForAnimating).length
+      );
+  }
+
+  @onVueComponentFieldUpdated("asynchronousChecksActualForDisplaying")
+  protected onAsynchronousChecksActualForDisplayingUpdated(): void {
+
+    if (Object.entries(this.asynchronousChecksActualForDisplaying).length > 0) {
+      this.actualForDisplayingAsynchronousChecksCopyForAnimating = { ...this.asynchronousChecksActualForDisplaying };
+      return;
+    }
+
+
+    setTimeout(
+      (): void => {
+        this.actualForDisplayingAsynchronousChecksCopyForAnimating = {};
+      },
+      this.asynchronousValidationsStatusesListAnimationDurationPerOneItem__milliseconds
+    );
+
+  }
+
+
+  /* ╍╍╍ CSS Classes ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+
+  /* eslint-disable-next-line @typescript-eslint/class-methods-use-this --
+   * Musts be non-static to be accessible from the template   */
+  protected get asynchronousValidationsStatusesListItemSpecificCSS_Class():
+      (asynchronousCheckStatus: InputtedValueValidation.AsynchronousCheck.Status) => string {
+        return (asynchronousCheckStatus: InputtedValueValidation.AsynchronousCheck.Status): string => {
+
+          if (asynchronousCheckStatus.isPending) {
+            return "ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__InProgressState";
+          }
+
+
+          return asynchronousCheckStatus.hasValidValueBeenConfirmed ?
+              "ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__SucceededAndValidState" :
+              "ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__MalfunctionState";
+
+        };
+      }
 
 
   /* ━━━ Conditional Rendering ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -448,8 +550,11 @@ class ValidatableControlShell extends VueComponent {
   protected static readonly Badge: typeof Badge = Badge;
 
   @AccessibleFromTemplateAsNonReactive
+  protected static readonly LoadingIndicator: typeof LoadingIndicator = LoadingIndicator;
+
+  @AccessibleFromTemplateAsNonReactive
   public static localization: ValidatableControlShellLocalization =
-      validatableControlShellYDF_GUI_ComponentLocalization__english;
+      ValidatableControlShellYDF_GUI_ComponentLocalization__English;
 
 
   /* ━━━ Transforming to Options API ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

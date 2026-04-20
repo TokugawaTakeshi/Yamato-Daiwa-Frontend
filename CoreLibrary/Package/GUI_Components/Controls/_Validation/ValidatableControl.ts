@@ -29,14 +29,21 @@ namespace ValidatableControl {
 
   export type RootElementOffsetCoordinates = Readonly<{ top: number; left: number; }>;
 
-  export class Payload<ValidValue, InvalidValue, Validation extends InputtedValueValidation> {
+  export class Payload<
+    IsInputRequired extends boolean,
+    NonEmptyValueType,
+    EmptyValueType = NonEmptyValueType,
+    ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)) =
+        IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType),
+    InvalidValue extends NonEmptyValueType | EmptyValueType = NonEmptyValueType | EmptyValueType
+  > {
 
     public readonly ID: string = Payload.generateSelfID();
-    public readonly validation: Validation;
+    public readonly validation: InputtedValueValidation<NonEmptyValueType, EmptyValueType>;
     public readonly getComponentInstance: () => ValidatableControl;
 
     /* [ Convention ] The fields begin from the underscore must be changed only via constructor or setters. */
-    protected _value: ValidValue | InvalidValue;
+    protected _value: NonEmptyValueType | EmptyValueType;
     protected _validationResult: InputtedValueValidation.Result;
     protected _asynchronousChecksStatus: InputtedValueValidation.AsynchronousChecks.Status | null = null;
 
@@ -49,7 +56,10 @@ namespace ValidatableControl {
     protected waitingForStaringOfAsynchronousValidationTimeID: number | null = null;
 
 
-    public constructor(compoundParameter: Payload.ConstructorCompoundParameter<ValidValue, InvalidValue, Validation>) {
+    public constructor(
+      compoundParameter:
+          Payload.ConstructorCompoundParameter<NonEmptyValueType, EmptyValueType>
+    ) {
 
       this._value = compoundParameter.initialValue;
       this.validation = compoundParameter.validation;
@@ -79,7 +89,7 @@ namespace ValidatableControl {
 
 
     /* ━━━ Value ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    public get value(): ValidValue | InvalidValue { return this._value; }
+    public get value(): NonEmptyValueType | EmptyValueType { return this._value; }
 
     public $setValue(
       {
@@ -121,6 +131,14 @@ namespace ValidatableControl {
 
       this.waitingForStaringOfAsynchronousValidationTimeID = window.setTimeout(
         (): void => {
+
+          /* [ Theory ]
+           * For an optional value case, even if it is empty, it will be valid, but no need to execute validation is
+           *   this case. */
+          if (this.validation.hasValueBeenOmitted(this._value)) {
+            return;
+          }
+
 
           this.validation.executeAsynchronousChecksIfAny(
             this._value,
@@ -395,9 +413,9 @@ namespace ValidatableControl {
 
   export namespace Payload {
 
-    export type ConstructorCompoundParameter<ValidValue, InvalidValue, Validation extends InputtedValueValidation> = Readonly<{
-      initialValue: ValidValue | InvalidValue;
-      validation: Validation;
+    export type ConstructorCompoundParameter<NonEmptyValueType, EmptyValueType> = Readonly<{
+      initialValue: NonEmptyValueType | EmptyValueType;
+      validation: InputtedValueValidation<NonEmptyValueType, EmptyValueType>;
       getComponentInstance: () => ValidatableControl;
       onAnyChangeEventHandler?: GeneralizedEventHandler | Readonly<{ handler: GeneralizedEventHandler; ID: string; }>;
       onHasBecomeValidEventHandler?: GeneralizedEventHandler | Readonly<{ handler: GeneralizedEventHandler; ID: string; }>;
@@ -420,6 +438,34 @@ namespace ValidatableControl {
     ) => unknown;
     export type OnAsynchronousValidationStatusChangedEventHandlersMap = Map<
       EventHandlerID, OnAsynchronousValidationStatusChangedEventHandler
+    >;
+
+  }
+
+
+  export namespace CharactersInputtingType {
+
+    export enum ValidityHighlightingActivationModes {
+      immediate = "IMMEDIATE",
+      onFirstInputtedCharacter = "ON_FIRST_INPUTTED_CHARACTER",
+      onFocusOut = "ON_FOCUS_OUT"
+    }
+
+    export type ValidityHighlightingActivationModeDefinition<
+      IsRequired extends boolean,
+      NonEmptyValueType,
+      EmptyValueType,
+      ValidValue extends (IsRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)),
+      InvalidValue extends NonEmptyValueType | EmptyValueType
+    > = Readonly<
+      {
+        validityHighlightingActivationMode: ValidityHighlightingActivationModes;
+      } |
+      {
+        decideValidityHighlightingActivationMode:
+            (payload: Payload<IsRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>) =>
+                ValidityHighlightingActivationModes;
+      }
     >;
 
   }

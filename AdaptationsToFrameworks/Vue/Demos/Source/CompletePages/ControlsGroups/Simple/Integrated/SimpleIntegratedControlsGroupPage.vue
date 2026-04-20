@@ -10,6 +10,7 @@
       v-model="controlsPayload.emailAddress"
       :validityHighlightingActivationMode="TextBox.ValidityHighlightingActivationModes.onFocusOut"
       :required="controlsPayload.emailAddress.validation.isInputRequired()"
+      autocomplete="email"
       :ref="controlsPayload.emailAddress.VUE_REFERENCE_ID"
     )
 
@@ -21,6 +22,7 @@
       :required="controlsPayload.password.validation.isInputRequired()"
       :minimalCharactersCount="controlsPayload.password.validation.MINIMAL_CHARACTERS_COUNT"
       :maximalCharactersCount="controlsPayload.password.validation.MAXIMAL_CHARACTERS_COUNT"
+      autocomplete="current-password"
       :ref="controlsPayload.password.VUE_REFERENCE_ID"
     )
 

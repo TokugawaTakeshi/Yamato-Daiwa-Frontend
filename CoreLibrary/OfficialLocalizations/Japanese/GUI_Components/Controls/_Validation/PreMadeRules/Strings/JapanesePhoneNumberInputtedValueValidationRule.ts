@@ -2,22 +2,19 @@ import { JAPANESE_PHONE_NUMBER_VALID_PATTERN__NO_N_DASHES_ALLOWED } from "fundam
 
 import type { InputtedValueValidation } from "@yamato-daiwa/frontend";
 
-import japanesePhoneNumberInputtedValueValidationRuleLocalization__japanese from
+import { JapanesePhoneNumberInputtedValueValidationRuleLocalization__Japanese } from
       "./JapanesePhoneNumberInputtedValueValidationRuleLocalization.japanese";
 
 import {
-  Logger,
-  InvalidParameterValueError,
   removeAllSpecifiedCharacters,
-  isNotUndefined,
-  isString
+  isNotUndefined
 } from "@yamato-daiwa/es-extensions";
 
 
-class JapanesePhoneNumberInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
+export class JapanesePhoneNumberInputtedValueValidationRule implements InputtedValueValidation.Rule<string> {
 
   public static localization: JapanesePhoneNumberInputtedValueValidationRule.Localization =
-      japanesePhoneNumberInputtedValueValidationRuleLocalization__japanese;
+      JapanesePhoneNumberInputtedValueValidationRuleLocalization__Japanese;
 
   public readonly mustFinishValidationIfValueIsInvalid: boolean;
 
@@ -53,36 +50,19 @@ class JapanesePhoneNumberInputtedValueValidationRule implements InputtedValueVal
 
   }
 
-  public check(rawValue: unknown): InputtedValueValidation.Rule.CheckingResult {
-
-    if (!isString(rawValue)) {
-
-      Logger.logError({
-        errorType: InvalidParameterValueError.NAME,
-        title: InvalidParameterValueError.localization.defaultTitle,
-        description: "Unable to execute this validation because the raw value is not the string " +
-            `and actually has type "${ typeof rawValue }".`,
-        occurrenceLocation: "JapanesePhoneNumberInputtedValueValidationRule.check(rawValue)"
-      });
-
-      return { isValid: true };
-
-    }
-
-
+  public check(rawValue: string): InputtedValueValidation.Rule.CheckingResult {
     return this.regularExpression__noNDashesRespected.test(removeAllSpecifiedCharacters(rawValue, "-")) ?
         { isValid: true } :
         {
           isValid: false,
           errorMessage: this.errorMessageBuilder({ rawValue })
         };
-
   }
 
 }
 
 
-namespace JapanesePhoneNumberInputtedValueValidationRule {
+export namespace JapanesePhoneNumberInputtedValueValidationRule {
 
   export type Localization = Readonly<{ errorMessageBuilder: ErrorMessage.Builder; }>;
 
@@ -97,6 +77,3 @@ namespace JapanesePhoneNumberInputtedValueValidationRule {
   }
 
 }
-
-
-export default JapanesePhoneNumberInputtedValueValidationRule;

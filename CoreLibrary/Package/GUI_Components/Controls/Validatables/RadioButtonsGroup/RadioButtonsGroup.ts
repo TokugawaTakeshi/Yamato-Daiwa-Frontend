@@ -11,10 +11,14 @@ import RadioButton from "../../RadioButton/RadioButton";
 import { isNotNull, isNull, Logger } from "@yamato-daiwa/es-extensions";
 
 
+/** @beta */
 class RadioButtonsGroup<
-  ValidValue extends RadioButtonsGroup.SupportedValidatablePayloadValuesTypes,
-  InvalidValue extends RadioButtonsGroup.SupportedValidatablePayloadValuesTypes,
-  Validation extends InputtedValueValidation
+  IsInputRequired extends boolean,
+  NonEmptyValueType extends RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.NonEmpty,
+  EmptyValueType extends RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.Empty = NonEmptyValueType,
+  ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)) =
+      IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType),
+  InvalidValue extends NonEmptyValueType | EmptyValueType = NonEmptyValueType | EmptyValueType
 > implements ValidatableControl {
 
   /* ━━━ Static fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -25,7 +29,8 @@ class RadioButtonsGroup<
 
 
   /* ━━━ Instance Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public readonly payload: ValidatableControl.Payload<ValidValue, InvalidValue, Validation>;
+  public readonly payload:
+      ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>;
 
   protected readonly mustDisplayErrorsMessagesImmediatelyIfAny: boolean;
 
@@ -77,49 +82,62 @@ class RadioButtonsGroup<
 
 
   /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static pickOneBySelector<Validation extends InputtedValueValidation = InputtedValueValidation>(
-    initializationProperties: RadioButtonsGroup.InitializationProperties.AlwaysSelectedStringKeyOptionScenario<Validation>
-  ): RadioButtonsGroup<string, string, Validation>;
+  /* @ts-ignore: TS2394 Acceptable during α/β versions of this component but must and will be fixed before official release. */
+  public static pickOneBySelector(
+    initializationProperties: RadioButtonsGroup.InitializationProperties.AlwaysSelectedStringKeyOptionScenario
+  ): RadioButtonsGroup<true, string>;
 
-  public static pickOneBySelector<Validation extends InputtedValueValidation = InputtedValueValidation>(
-    initializationProperties: RadioButtonsGroup.InitializationProperties.
-        CouldBeUnselectedInitiallyButRequiredStringKeyOptionScenario<Validation>
-  ): RadioButtonsGroup<string, string | null, Validation>;
+  public static pickOneBySelector(
+    initializationProperties:
+        RadioButtonsGroup.InitializationProperties.CouldBeUnselectedInitiallyButRequiredStringKeyOptionScenario
+  ): RadioButtonsGroup<true, string, null, string, null | string>;
 
-  public static pickOneBySelector<Validation extends InputtedValueValidation = InputtedValueValidation>(
-    initializationProperties: RadioButtonsGroup.InitializationProperties.
-        OptionalStringKeyOptionScenario<Validation>
-  ): RadioButtonsGroup<string | null, string | null, Validation>;
+  public static pickOneBySelector(
+    initializationProperties: RadioButtonsGroup.InitializationProperties.OptionalStringKeyOptionScenario
+  ): RadioButtonsGroup<false, string, null, string | null, string | null>;
 
-  public static pickOneBySelector<Validation extends InputtedValueValidation = InputtedValueValidation>(
-    initializationProperties: RadioButtonsGroup.InitializationProperties.AlwaysHasSelectedNumericValueScenario<Validation>
-  ): RadioButtonsGroup<number, number, Validation>;
+  public static pickOneBySelector(
+    initializationProperties:
+        RadioButtonsGroup.InitializationProperties.AlwaysHasSelectedNumericValueScenario
+  ): RadioButtonsGroup<true, number>;
 
-  public static pickOneBySelector<Validation extends InputtedValueValidation = InputtedValueValidation>(
-    initializationProperties: RadioButtonsGroup.InitializationProperties.
-          CouldBeUnselectedInitiallyButRequiredNumericKeyOptionScenario<Validation>
-  ): RadioButtonsGroup<number, number | null, Validation>;
+  public static pickOneBySelector(
+    initializationProperties:
+        RadioButtonsGroup.InitializationProperties.CouldBeUnselectedInitiallyButRequiredNumericKeyOptionScenario
+  ): RadioButtonsGroup<true, number, null, number, null | number>;
 
-  public static pickOneBySelector<Validation extends InputtedValueValidation = InputtedValueValidation>(
-    initializationProperties: RadioButtonsGroup.InitializationProperties.OptionalNumericKeyOptionScenario<Validation>
-  ): RadioButtonsGroup<number | null, number | null, Validation>;
+  public static pickOneBySelector(
+    initializationProperties: RadioButtonsGroup.InitializationProperties.OptionalNumericKeyOptionScenario
+  ): RadioButtonsGroup<false, number, null, number | null, number | null>;
 
-  public static pickOneBySelector<Validation extends InputtedValueValidation = InputtedValueValidation>(
-    initializationProperties: RadioButtonsGroup.InitializationProperties<Validation>
+  public static pickOneBySelector<IsInputRequired extends boolean>(
+    initializationProperties: RadioButtonsGroup.InitializationProperties
   ): RadioButtonsGroup<
-    RadioButtonsGroup.SupportedValidatablePayloadValuesTypes,
-    RadioButtonsGroup.SupportedValidatablePayloadValuesTypes,
-    Validation
+    IsInputRequired,
+    RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.NonEmpty,
+    RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.Empty,
+    IsInputRequired extends true ?
+        RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.NonEmpty :
+        RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.NonEmpty |
+            RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.Empty,
+    RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.NonEmpty |
+        RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.Empty
   > {
     return new RadioButtonsGroup<
-      RadioButtonsGroup.SupportedValidatablePayloadValuesTypes,
-      RadioButtonsGroup.SupportedValidatablePayloadValuesTypes,
-      Validation
+      IsInputRequired,
+      RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.NonEmpty,
+      RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.Empty,
+      IsInputRequired extends true ?
+        RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.NonEmpty :
+        RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.NonEmpty |
+            RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.Empty,
+      RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.NonEmpty |
+          RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.Empty
     >(initializationProperties);
   }
 
 
-  /* ━━━ Interface implementation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ━━━ Interface Implementation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public highlightInvalidInput(): this {
     this.$mustHighlightInvalidInputIfAnyValidationErrorsMessages = true;
     return this;
@@ -142,7 +160,7 @@ class RadioButtonsGroup<
 
 
   /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected constructor(initializationProperties: RadioButtonsGroup.InitializationProperties<Validation>) {
+  protected constructor(initializationProperties: RadioButtonsGroup.InitializationProperties) {
 
     this.mustDisplayErrorsMessagesImmediatelyIfAny = initializationProperties.mustDisplayErrorsMessagesImmediatelyIfAny;
 
@@ -263,17 +281,24 @@ class RadioButtonsGroup<
 
 
     /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
-    * Maybe it is not possible to tell TypeScript the correspondence of "rawOptionKeyParser" and
-    *   "RadioButtonsGroup.Scenarios". */
+    * Maybe it is impossible to specify the correct correspondence of "rawOptionKeyParser" and
+    *   "RadioButtonsGroup.Scenarios" with the current overloading mechanism in TypeScript. */
     this.rawOptionKeyParser = rawOptionKeyParser as (rawKey: string) => ValidValue | InvalidValue;
 
-    this.payload = new ValidatableControl.Payload<ValidValue, InvalidValue, Validation>({
+    this.payload = new ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>({
+
       /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
        * Maybe it is not possible to tell TypeScript the correspondence of "rawOptionKeyParser" and
        *   "RadioButtonsGroup.Scenarios". */
       initialValue: initialValue as ValidValue | InvalidValue,
+
       getComponentInstance: (): ValidatableControl => this,
-      validation: initializationProperties.validation,
+
+      /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+       * Acceptable during α/β versions of this component but must and will be fixed before official release.
+       * The switch/case may be the possible solution for this case. */
+      validation: initializationProperties.validation as unknown as InputtedValueValidation<NonEmptyValueType, EmptyValueType>,
+
       onHasBecomeValidEventHandler: this.onPayloadHasBecomeValidEventHandler.bind(this),
       onHasBecomeInvalidEventHandler: this.onPayloadHasBecomeInvalidEventHandler.bind(this),
       onAsynchronousValidationStatusChangedEventHandler:
@@ -338,7 +363,14 @@ class RadioButtonsGroup<
 
 namespace RadioButtonsGroup {
 
-  export type SupportedValidatablePayloadValuesTypes = string | number | null;
+  export type SupportedValidatablePayloadValuesTypes =
+      SupportedValidatablePayloadValuesTypes.NonEmpty |
+      SupportedValidatablePayloadValuesTypes.Empty;
+
+  export namespace SupportedValidatablePayloadValuesTypes {
+    export type NonEmpty = string | number;
+    export type Empty = string | number | null;
+  }
 
   export enum Scenarios {
     alwaysSelectedStringKeyOption = "ALWAYS_SELECTED_STRING_KEY_OPTION",
@@ -349,17 +381,20 @@ namespace RadioButtonsGroup {
     optionalNumericKeyOption = "OPTIONAL_NUMERIC_KEY_OPTION"
   }
 
-  export type InitializationProperties<Validation extends InputtedValueValidation = InputtedValueValidation> =
-      InitializationProperties.AlwaysSelectedStringKeyOptionScenario<Validation> |
-      InitializationProperties.CouldBeUnselectedInitiallyButRequiredStringKeyOptionScenario<Validation> |
-      InitializationProperties.OptionalStringKeyOptionScenario<Validation> |
-      InitializationProperties.AlwaysHasSelectedNumericValueScenario<Validation> |
-      InitializationProperties.CouldBeUnselectedInitiallyButRequiredNumericKeyOptionScenario<Validation> |
-      InitializationProperties.OptionalNumericKeyOptionScenario<Validation>;
+  export type InitializationProperties =
+      InitializationProperties.AlwaysSelectedStringKeyOptionScenario |
+      InitializationProperties.CouldBeUnselectedInitiallyButRequiredStringKeyOptionScenario |
+      InitializationProperties.OptionalStringKeyOptionScenario |
+      InitializationProperties.AlwaysHasSelectedNumericValueScenario |
+      InitializationProperties.CouldBeUnselectedInitiallyButRequiredNumericKeyOptionScenario |
+      InitializationProperties.OptionalNumericKeyOptionScenario;
 
   export namespace InitializationProperties {
 
-    export type Common<Validation extends InputtedValueValidation> = Readonly<
+    export type Common<
+      NonEmptyValueType extends SupportedValidatablePayloadValuesTypes.NonEmpty,
+      EmptyValueType extends SupportedValidatablePayloadValuesTypes.Empty
+    > = Readonly<
       (
         {
           rootElement: Readonly<{ selector: string; }>;
@@ -372,58 +407,54 @@ namespace RadioButtonsGroup {
       ) &
       {
         mustDisplayErrorsMessagesImmediatelyIfAny: boolean;
-        validation: Validation;
+        validation: InputtedValueValidation<NonEmptyValueType, EmptyValueType>;
       }
     >;
 
-    export type AlwaysSelectedStringKeyOptionScenario<Validation extends InputtedValueValidation> =
+    export type AlwaysSelectedStringKeyOptionScenario =
         Readonly<{
           scenario: Scenarios.alwaysSelectedStringKeyOption;
           overridingPreInputtedInitialValue?: string;
         }> &
-        Common<Validation>;
+        Common<string, string>;
 
-    export type CouldBeUnselectedInitiallyButRequiredStringKeyOptionScenario<
-      Validation extends InputtedValueValidation
-    > =
+    export type CouldBeUnselectedInitiallyButRequiredStringKeyOptionScenario =
         Readonly<{
           scenario: Scenarios.couldBeUnselectedInitiallyButRequiredStringKeyOption;
           overridingPreInputtedInitialValue?: string | null;
         }> &
-        Common<Validation>;
+        Common<string, null>;
 
-    export type OptionalStringKeyOptionScenario<Validation extends InputtedValueValidation> =
+    export type OptionalStringKeyOptionScenario =
         Readonly<{
           scenario: Scenarios.optionalStringKeyOption;
           overridingPreInputtedInitialValue?: string | null;
         }> &
-        Common<Validation>;
+        Common<string, null>;
 
-    export type AlwaysHasSelectedNumericValueScenario<Validation extends InputtedValueValidation> =
+    export type AlwaysHasSelectedNumericValueScenario =
         Readonly<{
           scenario: Scenarios.alwaysSelectedNumericKeyOption;
           overridingPreInputtedInitialValue?: number;
           rawOptionKeyParser: NumericRawKeyParser;
         }> &
-        Common<Validation>;
+        Common<number, number>;
 
-    export type CouldBeUnselectedInitiallyButRequiredNumericKeyOptionScenario<
-      Validation extends InputtedValueValidation
-    > =
+    export type CouldBeUnselectedInitiallyButRequiredNumericKeyOptionScenario =
         Readonly<{
           scenario: Scenarios.couldBeUnselectedInitiallyButRequiredNumericKeyOption;
           overridingPreInputtedInitialValue?: number | null;
           rawOptionKeyParser: NumericRawKeyParser;
         }> &
-        Common<Validation>;
+        Common<number, null>;
 
-    export type OptionalNumericKeyOptionScenario<Validation extends InputtedValueValidation> =
+    export type OptionalNumericKeyOptionScenario =
         Readonly<{
           scenario: Scenarios.optionalNumericKeyOption;
           overridingPreInputtedInitialValue?: number | null;
           rawOptionKeyParser: NumericRawKeyParser;
         }> &
-        Common<Validation>;
+        Common<number, null>;
 
   }
 

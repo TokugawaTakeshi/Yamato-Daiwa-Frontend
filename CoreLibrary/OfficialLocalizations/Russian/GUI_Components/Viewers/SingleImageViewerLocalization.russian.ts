@@ -1,7 +1,7 @@
 import type { SingleImageViewerLocalization } from "@yamato-daiwa/frontend";
 
 
-export const singleImageViewerYDF_GUI_ComponentLocalization__russian: SingleImageViewerLocalization = {
+export const SingleImageViewerYDF_GUI_ComponentLocalization__Russian: SingleImageViewerLocalization = {
   buttons: {
     fullScreenViewActivating: { label: "Во весь экран" },
     fullScreenViewDeactivating: { label: "Закрыть" },

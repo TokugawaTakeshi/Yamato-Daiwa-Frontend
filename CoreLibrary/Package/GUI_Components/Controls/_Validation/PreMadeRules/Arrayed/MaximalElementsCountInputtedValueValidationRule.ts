@@ -1,7 +1,7 @@
 import type InputtedValueValidation from "../../InputtedValueValidation";
 import maximalElementsCountInputtedValueValidationRuleLocalization__english from
     "./MaximalElementsCountInputtedValueValidationRuleLocalization.english";
-import { stringifyAndFormatArbitraryValue, isNotUndefined } from "@yamato-daiwa/es-extensions";
+import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
 class MaximalElementsCountInputtedValueValidationRule implements InputtedValueValidation.Rule<ReadonlyArray<unknown>> {
@@ -53,10 +53,7 @@ class MaximalElementsCountInputtedValueValidationRule implements InputtedValueVa
         { isValid: true } :
         {
           isValid: false,
-          errorMessage: this.errorMessageBuilder({
-            formattedRawValue: stringifyAndFormatArbitraryValue(rawValue),
-            maximalElementsCount: this.MAXIMAL_ELEMENTS_COUNT
-          })
+          errorMessage: this.errorMessageBuilder({ maximalElementsCount: this.MAXIMAL_ELEMENTS_COUNT })
         };
 
   }
@@ -74,7 +71,6 @@ namespace MaximalElementsCountInputtedValueValidationRule {
 
     export type TemplateVariables = Readonly<{
       maximalElementsCount: number;
-      formattedRawValue: string;
     }>;
 
   }

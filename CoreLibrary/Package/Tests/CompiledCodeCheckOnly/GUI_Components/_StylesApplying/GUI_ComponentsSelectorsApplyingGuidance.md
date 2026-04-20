@@ -26,7 +26,7 @@ This context dependent selector is the optimization measure: when the theme and/
   there is no need to generate the modifier classes for them.
 
 
-## Common patterns
+## Common Patterns
 
 ### Root element
 
@@ -240,7 +240,7 @@ Multiple themes & multiple theme dependent geometric variation:
 ```
 
 
-### Children element
+### Children Element
 
 ```stylus
 applyGeometricVariation(themeName, variationName, variation)

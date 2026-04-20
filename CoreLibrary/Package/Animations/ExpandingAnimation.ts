@@ -1,4 +1,4 @@
-import type TargetElementDefinition from "../Logic/Types/TargetElementDefinition";
+import type { TargetElementDefinition } from "../Logic/Types/TargetElementDefinition";
 import {
   getExpectedToBeSingleDOM_Element,
   resolveContextDOM_ElementPolymorphicSpecification

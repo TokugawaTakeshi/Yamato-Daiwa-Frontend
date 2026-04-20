@@ -4,14 +4,15 @@ import numericMaximumInputtedValueValidationRuleLocalization__english from
 import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 
 
-class NumericMaximumInputtedValueValidationRule implements InputtedValueValidation.Rule<number> {
+class NumericMaximumInputtedValueValidationRule<TargetType extends number | bigint> implements
+    InputtedValueValidation.Rule<TargetType> {
 
   public static localization: NumericMaximumInputtedValueValidationRule.Localization =
       numericMaximumInputtedValueValidationRuleLocalization__english;
 
   public readonly mustFinishValidationIfValueIsInvalid: boolean;
 
-  private readonly MAXIMAL_NUMERIC_VALUE: number;
+  private readonly MAXIMAL_NUMERIC_VALUE: TargetType;
   private readonly errorMessageBuilder: NumericMaximumInputtedValueValidationRule.ErrorMessage.Builder;
 
 
@@ -19,7 +20,7 @@ class NumericMaximumInputtedValueValidationRule implements InputtedValueValidati
     compoundParameter:
         InputtedValueValidation.Rule.ConstructorParameter &
         Readonly<{
-          maximalNumericValue: number;
+          maximalNumericValue: TargetType;
           errorMessageBuilder?: NumericMaximumInputtedValueValidationRule.ErrorMessage.Builder;
           errorMessage?: string;
           localization?: NumericMaximumInputtedValueValidationRule.Localization;
@@ -45,7 +46,7 @@ class NumericMaximumInputtedValueValidationRule implements InputtedValueValidati
   }
 
 
-  public check(rawValue: number): InputtedValueValidation.Rule.CheckingResult {
+  public check(rawValue: TargetType): InputtedValueValidation.Rule.CheckingResult {
     return rawValue <= this.MAXIMAL_NUMERIC_VALUE ?
         { isValid: true } :
         {
@@ -66,8 +67,8 @@ namespace NumericMaximumInputtedValueValidationRule {
     export type Builder = (templateVariables: TemplateVariables) => string;
 
     export type TemplateVariables = Readonly<{
-      maximalValue: number;
-      rawValue: number;
+      maximalValue: number | bigint;
+      rawValue: number | bigint;
     }>;
 
   }
