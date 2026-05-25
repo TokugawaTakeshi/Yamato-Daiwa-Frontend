@@ -343,7 +343,7 @@ export class CodeViewer {
         const singleCodeListing: Element | null = this.activeTabPanel.querySelector(CodeViewer.CODE_CONTAINER_SELECTOR);
 
         if (isNotNull(singleCodeListing)) {
-          return String(singleCodeListing.textContent);
+          return singleCodeListing.textContent;
         }
 
 
@@ -352,7 +352,7 @@ export class CodeViewer {
         );
 
         if (codeListings.length === 1) {
-          return codeListings[0].textContent ?? "";
+          return codeListings[0].textContent;
         }
 
 
@@ -360,7 +360,7 @@ export class CodeViewer {
 
         codeListings.forEach((codeListing: Element): void => {
           accumulatingValue = accumulatingValue +
-            insertSubstringIf("\n", codeListing.textContent?.endsWith("\n") !== true) +
+            insertSubstringIf("\n", !codeListing.textContent.endsWith("\n")) +
             codeListing.textContent;
         });
 

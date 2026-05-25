@@ -59,7 +59,7 @@ abstract class Accordion {
       },
       handler(): void {
 
-        if (panel.hidden) {
+        if (panel.hidden === true) {
 
           ExpandingAnimation.animate({
             targetElement: { selector: Accordion.DOM_AccessResources.panel.INTERNALLY_UNIQUE_SELECTOR },

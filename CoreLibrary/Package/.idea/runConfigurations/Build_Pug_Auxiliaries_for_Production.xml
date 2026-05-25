@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Production Building of Logic" type="js.build_tools.npm" nameIsGenerated="true">
+  <configuration default="false" name="Build Pug Auxiliaries for Production" type="js.build_tools.npm" nameIsGenerated="true">
     <package-json value="$PROJECT_DIR$/package.json" />
     <command value="run" />
     <scripts>
-      <script value="Production Building of Logic" />
+      <script value="Build Pug Auxiliaries for Production" />
     </scripts>
     <node-interpreter value="project" />
     <envs />

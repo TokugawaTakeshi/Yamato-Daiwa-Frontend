@@ -10,7 +10,7 @@ import {
 import type { ParsedJSON_Object } from "@yamato-daiwa/es-extensions";
 
 
-export default function processObjectTypeParameterOfPugMixin(
+export function processObjectTypeParameterOfPugMixin(
   {
     rawParameter: rawMixinParameter,
     parameterNumber: mixinParameterNumber,

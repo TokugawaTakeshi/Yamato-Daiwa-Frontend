@@ -62,23 +62,23 @@ export class MinimalKanjiOrKanaCharactersRatioInputtedValueValidationRule implem
 
           let kanjiOrKanaCharactersCount: number = 0;
 
-            for (const character of rawValue) {
+          for (const character of rawValue) {
 
-              if ((/[ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠]/u).test(character)) {
+            if ((/[ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠]/u).test(character)) {
 
-                kanjiOrKanaCharactersCount++;
+              kanjiOrKanaCharactersCount++;
 
-                const kanjiOrKanaCharactersRatio: number = kanjiOrKanaCharactersCount / rawValue.length;
+              const kanjiOrKanaCharactersRatio: number = kanjiOrKanaCharactersCount / rawValue.length;
 
-                if (kanjiOrKanaCharactersRatio >= this.MINIMAL_KANJI_OR_KANA_CHARACTERS_RATIO) {
-                  return false;
-                }
-
+              if (kanjiOrKanaCharactersRatio >= this.MINIMAL_KANJI_OR_KANA_CHARACTERS_RATIO) {
+                return false;
               }
 
             }
 
-            return true;
+          }
+
+          return true;
 
         })();
 

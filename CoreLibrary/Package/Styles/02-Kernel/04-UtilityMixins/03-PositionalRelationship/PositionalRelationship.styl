@@ -1,7 +1,7 @@
-PositionalRelationship(compoundParameter, restParameters__MUST_NOT_BE...)
+PositionalRelationship--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "PositionalRelationship",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "PositionalRelationship--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
@@ -27,9 +27,9 @@ PositionalRelationship(compoundParameter, restParameters__MUST_NOT_BE...)
   contextSelector = compoundParameter.contextSelector
 
 
-  iterateAssociativeArray(definitions, @(targetElementSelector, definition) {
+  iterateAssociativeArray--YDF(definitions, @(targetElementSelector, definition) {
 
-    if (isNotNull(definition.retireFromIt) && (isNotNull(definition.retireFromIt.x) || isNotNull(definition.retireFromIt.y))) {
+    if (isNotNull--YDF(definition.retireFromIt) && (isNotNull--YDF(definition.retireFromIt.x) || isNotNull--YDF(definition.retireFromIt.y))) {
 
       // [ Example ]
       // For:
@@ -38,17 +38,17 @@ PositionalRelationship(compoundParameter, restParameters__MUST_NOT_BE...)
       //    referenceElementSelector: "p"
       // we need:
       //    .EmailFormatting h3 + p
-      elementFromWhichToRetireSelector = isNull(contextSelector) ?\
+      elementFromWhichToRetireSelector = isNull--YDF(contextSelector) ?\
           targetElementSelector : contextSelector + " " + targetElementSelector
 
       /{elementFromWhichToRetireSelector} + {referenceElementSelector} {
         if (definition.retireFromIt.usePaddingsInsteadOfMargins) {
-          applyIfNotNull({
+          applyIfNotNull--YDF({
             padding-left: definition.retireFromIt.x,
             padding-top: definition.retireFromIt.y
           })
         } else {
-          applyIfNotNull({
+          applyIfNotNull--YDF({
             margin-left: definition.retireFromIt.x,
             margin-top: definition.retireFromIt.y
           })
@@ -56,7 +56,7 @@ PositionalRelationship(compoundParameter, restParameters__MUST_NOT_BE...)
       }
     }
 
-    if (isNotNull(definition.pushItFromSelf) && (isNotNull(definition.pushItFromSelf.x) || isNotNull(definition.pushItFromSelf.y))) {
+    if (isNotNull--YDF(definition.pushItFromSelf) && (isNotNull--YDF(definition.pushItFromSelf.x) || isNotNull--YDF(definition.pushItFromSelf.y))) {
 
       // [ Example ]
       //    targetElementSelector: "h3"
@@ -64,17 +64,17 @@ PositionalRelationship(compoundParameter, restParameters__MUST_NOT_BE...)
       //    referenceElementSelector: "p"
       // we need:
       //    .EmailFormatting p + 3
-      elementFromWhichToRetireSelector = isNull(contextSelector) ?\
+      elementFromWhichToRetireSelector = isNull--YDF(contextSelector) ?\
           referenceElementSelector : contextSelector + " " + referenceElementSelector
 
       /{elementFromWhichToRetireSelector} + {targetElementSelector} {
         if (definition.pushItFromSelf.usePaddingsInsteadOfMargins) {
-          applyIfNotNull({
+          applyIfNotNull--YDF({
             padding-left: definition.pushItFromSelf.x,
             padding-top: definition.pushItFromSelf.y
           })
         } else {
-          applyIfNotNull({
+          applyIfNotNull--YDF({
             margin-left: definition.pushItFromSelf.x,
             margin-top: definition.pushItFromSelf.y
           })

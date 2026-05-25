@@ -9,9 +9,9 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/04-Quantities/g
 @require "02-Kernel.styl"
 
 
-testForEquality(
+testForEquality--YDF(
   "If the `fontSize` is `10px` and `lineHeight` is `0`, the dimensional output must be `0px`.",
-  getLineSpacingByFontSizeAndLineHeight({
+  getLineSpacingByFontSizeAndLineHeight--YDF({
     fontSize: 10px,
     lineHeight: 0,
     mustOutputDimensionalQuantityIfPossible: true
@@ -19,9 +19,9 @@ testForEquality(
   0px
 )
 
-testForEquality(
+testForEquality--YDF(
   "If the `fontSize` is `10px` and `lineHeight` is `0`, the dimensionless output must be `0`.",
-  getLineSpacingByFontSizeAndLineHeight({
+  getLineSpacingByFontSizeAndLineHeight--YDF({
     fontSize: 10px,
     lineHeight: 0,
     mustOutputDimensionalQuantityIfPossible: false
@@ -29,9 +29,9 @@ testForEquality(
   0
 )
 
-testForEquality(
+testForEquality--YDF(
   "If the `fontSize` is `10px` and `lineHeight` is `14px`, the dimensional output must be `4px`.",
-  getLineSpacingByFontSizeAndLineHeight({
+  getLineSpacingByFontSizeAndLineHeight--YDF({
     fontSize: 10px,
     lineHeight: 14px,
     mustOutputDimensionalQuantityIfPossible: true
@@ -39,9 +39,9 @@ testForEquality(
   4px
 )
 
-testForEquality(
+testForEquality--YDF(
   "If the `fontSize` is `10px` and `lineHeight` is `14px`, the dimensionless output must be `0.4`.",
-  getLineSpacingByFontSizeAndLineHeight({
+  getLineSpacingByFontSizeAndLineHeight--YDF({
     fontSize: 10px,
     lineHeight: 14px,
     mustOutputDimensionalQuantityIfPossible: false
@@ -49,9 +49,9 @@ testForEquality(
   0.4
 )
 
-testForEquality(
+testForEquality--YDF(
   "If the `fontSize` is `1rem` and `lineHeight` is `1.2em`, the output will be `calc(1.2em - 1rem)` expression.",
-  getLineSpacingByFontSizeAndLineHeight({
+  getLineSpacingByFontSizeAndLineHeight--YDF({
     fontSize: 1rem,
     lineHeight: 1.2em,
     mustOutputDimensionalQuantityIfPossible: false
@@ -59,9 +59,9 @@ testForEquality(
   "calc(1.2em - 1rem)"
 )
 
-testForEquality(
+testForEquality--YDF(
   "If the `fontSize` is `10px` and `lineHeight` is `1.4`, the dimensional output must be `4px`.",
-  getLineSpacingByFontSizeAndLineHeight({
+  getLineSpacingByFontSizeAndLineHeight--YDF({
     fontSize: 10px,
     lineHeight: 1.4,
     mustOutputDimensionalQuantityIfPossible: true
@@ -69,10 +69,10 @@ testForEquality(
   4px
 )
 
-testForEquality(
+testForEquality--YDF(
   "If the `fontSize` is `10px` and `lineHeight` is `1.4`, the expected output is `0.4`, but because of IEEE754 behavior" +\
     "is will be 0.3999999999999999.",
-  getLineSpacingByFontSizeAndLineHeight({
+  getLineSpacingByFontSizeAndLineHeight--YDF({
     fontSize: 10px,
     lineHeight: 1.4,
     mustOutputDimensionalQuantityIfPossible: false

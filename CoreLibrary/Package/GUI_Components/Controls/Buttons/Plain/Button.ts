@@ -1,3 +1,7 @@
+/* eslint-disable no-underscore-dangle -- [ CONVENTION ]
+* The instance fields begins from the underscore MUST be changed only via setters. */
+/* eslint-disable @typescript-eslint/member-ordering -- The members of this class are grouped semantically. */
+
 import {
   LeftClickEventListener,
   getExpectedToBeSingleDOM_Element
@@ -31,9 +35,6 @@ class Button {
 
 
   /* ─── Reactivity ───────────────────────────────────────────────────────────────────────────────────────────────── */
-  /* eslint-disable no-underscore-dangle -- [ CONVENTION ]
-   * The instance fields begins from the underscore MUST be changed only via setters or constructor. */
-
   /* ┄┄┄ Label ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ */
   protected _label: string | null;
 
@@ -99,7 +100,6 @@ class Button {
     }
 
   }
-  /* eslint-enable no-underscore-dangle -- */
 
 
   /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

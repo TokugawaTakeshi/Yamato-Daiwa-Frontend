@@ -43,9 +43,9 @@ NumberBox--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "NumberBox--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -98,7 +98,7 @@ NumberBox--YDF-generateStyles(
 
       &-NativeInput
 
-        TextBoxLikeElementsPrimer()
+        TextBoxLikeElementsPrimer--YDF()
 
         //* [ Why? ] The with is being set based on minimal and maximal value by `ch` units from markup. */
         box-sizing content-box
@@ -117,21 +117,21 @@ NumberBox--YDF-generateStyles(
   // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "NumberBox.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
 
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
-    +provideDefaultSelectorWhenRootAndApply(ROOT_ELEMENT_SELECTOR)
+    +provideDefaultSelectorWhenRootAndApply--YDF(ROOT_ELEMENT_SELECTOR)
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     .NumberBox--YDF-NativeInput
 
-      //TextElementHeightSizing({
+      //TextElementHeightSizing--YDF({
       //  type: TextElementHeightSizingTypes--YDF.natural,
       //  borders: { thickness: { all: 1px } },
       //  paddings: {
@@ -148,7 +148,7 @@ NumberBox--YDF-generateStyles(
 
       border-width 1px
 
-      Paddings({
+      Paddings--YDF({
         horizontalSymmetric: 0.5rem,
         verticalSymmetric: 0.45rem
       })
@@ -159,7 +159,7 @@ NumberBox--YDF-generateStyles(
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "NumberBox.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
@@ -176,7 +176,7 @@ NumberBox--YDF-generateStyles(
   // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   applyBasicRules()
 
-  applyComponentThemes({
+  applyComponentThemes--YDF({
     CSS_Namespace: "NumberBox--YDF",
     themes: properties.themes,
     applyGeometricVariation: applyGeometricVariation,

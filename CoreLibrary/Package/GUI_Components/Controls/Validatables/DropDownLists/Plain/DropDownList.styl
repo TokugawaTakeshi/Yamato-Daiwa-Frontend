@@ -45,9 +45,9 @@ DropDownList--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "DropDownList--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -85,7 +85,7 @@ DropDownList--YDF-generateStyles(
 
     .DropDownList--YDF-InputElement
 
-      TextBoxLikeElementsPrimer()
+      TextBoxLikeElementsPrimer--YDF()
 
       line-height 1
 
@@ -120,16 +120,16 @@ DropDownList--YDF-generateStyles(
   // ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "DropDownList.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
 
 
     // ╍╍╍ Root Element ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
-    +provideDefaultSelectorWhenRootAndApply("." + DropDownList--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + DropDownList--YDF.CSS_NAMESPACE)
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -137,24 +137,23 @@ DropDownList--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(
-        getObjectValueByDotSeparatedPathSafely(variation, "rootElement.customDeclarations")
+      applyMixinStoredInObjectIfItIsNotNull--YDF(
+        getObjectValueByDotSeparatedPathSafely--YDF(variation, "rootElement.customDeclarations")
       )
 
 
-    // ━━━ TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     // ┅┅┅ Input or TextArea Element ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     .DropDownList--YDF-InputElement
 
       border-width 1px
-      BorderLeftFilletsRadius(3px)
+      BorderLeftFilletsRadius--YDF(3px)
       padding: calc(.45rem - 2px) .5rem calc(.45rem + 1px)
       font-size 1rem
 
 
     .DropDownList--YDF-ListBox-Option
 
-      Paddings({
+      Paddings--YDF({
         horizontalSymmetric: 0.5rem,
         verticalSymmetric: 0.5rem
       })
@@ -163,7 +162,7 @@ DropDownList--YDF-generateStyles(
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "DropDownList.${ themeName }Theme.${ variationName }Decoration",
       {
         themeName: themeName,
@@ -171,7 +170,7 @@ DropDownList--YDF-generateStyles(
       }
     )
 
-    ROOT_ELEMENT_SELECTOR = getCurrentSelectorSubstitutingRoot(".DropDownList--YDF")
+    ROOT_ELEMENT_SELECTOR = getCurrentSelectorSubstitutingRoot--YDF(".DropDownList--YDF")
 
     .DropDownList--YDF-InputElement
 
@@ -186,7 +185,7 @@ DropDownList--YDF-generateStyles(
       border-color: JQueryUI_BaseTheme.clickableElements.defaultState.borderColor
       background-color white
 
-      applyObjectTypeBoxShadowDefinition({
+      applyObjectTypeBoxShadowDefinition--YDF({
         blurRadius: 4px,
         spreadRadius: 1px,
         YOffset: 1px,
@@ -204,7 +203,7 @@ DropDownList--YDF-generateStyles(
 
       &:focus
 
-        applyObjectTypeBoxShadowDefinition({
+        applyObjectTypeBoxShadowDefinition--YDF({
           inset: true,
           blurRadius: 3px,
           spreadRadius: 1px,
@@ -227,7 +226,7 @@ DropDownList--YDF-generateStyles(
   // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   applyBasicRules()
 
-  applyComponentThemes({
+  applyComponentThemes--YDF({
     CSS_Namespace: "DropDownList--YDF",
     themes: properties.themes,
     applyGeometricVariation: applyGeometricVariation,

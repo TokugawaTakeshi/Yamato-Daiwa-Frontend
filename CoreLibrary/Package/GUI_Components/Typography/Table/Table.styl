@@ -9,12 +9,15 @@
 
 Table--YDF = {
 
-  componentIndependentCSS_Class: "RegularTheme--YDF",
+  CSS_NAMESPACE: "Table--YDF",
 
   defaultProperties: {
 
     themes: {
+
       regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF",
 
         geometricVariations: {
           regular: Table-RegularTheme-RegularGeometricVariation--YDF,
@@ -29,7 +32,9 @@ Table--YDF = {
         }
 
       }
+
     }
+
   },
 
   defaultOptions: {
@@ -56,9 +61,9 @@ Table--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "Table--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -126,37 +131,37 @@ Table--YDF-generateStyles(
   // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Table.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
 
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
-    +provideDefaultSelectorWhenRootAndApply(ROOT_ELEMENT_SELECTOR)
+    +provideDefaultSelectorWhenRootAndApply--YDF(ROOT_ELEMENT_SELECTOR)
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
       th,
       td
 
-        Paddings(variation.cells.all.paddings)
+        Paddings--YDF(variation.cells.all.paddings)
 
 
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Table.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
 
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
-    +provideDefaultSelectorWhenRootAndApply(".Table--YDF")
+    +provideDefaultSelectorWhenRootAndApply--YDF(".Table--YDF")
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -164,12 +169,12 @@ Table--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
       thead
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -185,7 +190,7 @@ Table--YDF-generateStyles(
 
           &:nth-child(odd)
 
-            validateAndAssignStoredInObjectCSS_Properties({
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               assigments: {
@@ -197,7 +202,7 @@ Table--YDF-generateStyles(
 
           &:nth-child(even)
 
-            validateAndAssignStoredInObjectCSS_Properties({
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               assigments: {
@@ -210,7 +215,7 @@ Table--YDF-generateStyles(
   // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   applyBasicRules()
 
-  applyComponentThemes({
+  applyComponentThemes--YDF({
     CSS_Namespace: "Table--YDF",
     themes: properties.themes,
     applyGeometricVariation: applyGeometricVariation,

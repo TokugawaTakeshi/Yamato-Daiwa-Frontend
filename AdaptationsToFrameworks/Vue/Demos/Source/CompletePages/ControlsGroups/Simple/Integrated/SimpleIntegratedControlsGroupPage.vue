@@ -45,7 +45,11 @@
 
   import EmailInputtedDataValidation from "../../_Reusables/Validations/EmailInputtedDataValidation";
   import PasswordInputtedDataValidation from "../../_Reusables/Validations/PasswordInputtedDataValidation";
-  import { Component as VueComponentConfiguration, Vue as VueComponent } from "vue-facing-decorator";
+  import {
+    Component as VueComponentConfiguration,
+    Vue as VueComponent,
+    toNative as transformToOptionAPI_Component
+  } from "vue-facing-decorator";
   import {
     ValidatableControl,
     TextBox,
@@ -65,12 +69,12 @@
       Button
     }
   })
-  export default class SimpleIntegratedControlsGroup extends VueComponent {
+  class SimpleIntegratedControlsGroup extends VueComponent {
 
     /* ━━━ Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     private controlsPayload: Readonly<{
-      emailAddress: ValidatableControl.Payload<string, string, EmailInputtedDataValidation>;
-      password: ValidatableControl.Payload<string, string, PasswordInputtedDataValidation>;
+      emailAddress: ValidatableControl.Payload<true, string>;
+      password: ValidatableControl.Payload<true, string>;
     }> = {
       emailAddress: ValidatableControl.Payload.createInitialInstance({
         initialValue: "",
@@ -143,6 +147,8 @@
     }
 
   }
+
+  export default transformToOptionAPI_Component(SimpleIntegratedControlsGroup);
 
 </script>
 

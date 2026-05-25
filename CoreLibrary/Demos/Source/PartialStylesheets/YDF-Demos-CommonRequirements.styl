@@ -11,7 +11,7 @@ ThemesShowcase--YDF-generateStyles()
 
   padding 12px 16px
 
-  Centerer({ maximalWidth: 2*NARROWEST_SCREEN_WIDTH_UNIT--YDF })
+  Centerer--YDF({ maximalWidth: 2*NARROWEST_SCREEN_WIDTH_UNIT--YDF })
 
 
   &-InvisibleHeading
@@ -28,7 +28,7 @@ ThemesShowcase--YDF-generateStyles()
       margin-top 0 !important
 
 
-PositionalRelationship({
+PositionalRelationship--YDF({
   referenceElementSelector: "." + ThemesShowcase--YDF.CSS_NAMESPACE,
   definitions:
       (".Heading2" { retireFromIt: { y: 0.8rem }, pushItFromSelf: { y: 1.8rem } })\

@@ -1,9 +1,9 @@
-# Sprite
+# Sprite--YDF
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-sprt-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 ```
-Sprite({
+Sprite--YDF({
   spritesMapURL: DataTypes--YDF.string;
   width: DataTypes--YDF.unit;
   height: DataTypes--YDF.unit;
@@ -40,7 +40,7 @@ you can compute the coordinates like:
       // □ □ □
       // ↓
       // y
-      Sprite({
+      Sprite--YDF({
         spritesMapURL: "ExampleSpritesMap.png",
         width: ICONS_WIDTH,
         height: ICONS_HEIGHT,
@@ -55,7 +55,7 @@ you can compute the coordinates like:
       // □ □ □
       // ↓
       // y
-      Sprite({
+      Sprite--YDF({
         spritesMapURL: "ExampleSpritesMap.png",
         width: ICONS_WIDTH,
         height: ICONS_HEIGHT,
@@ -70,7 +70,7 @@ you can compute the coordinates like:
       // □ □ □
       // ↓
       // y
-      Sprite({
+      Sprite--YDF({
         spritesMapURL: "ExampleSpritesMap.png",
         width: ICONS_WIDTH,
         height: ICONS_HEIGHT,
@@ -85,7 +85,7 @@ you can compute the coordinates like:
       // ■ □ □
       // ↓
       // y
-      Sprite({
+      Sprite--YDF({
         spritesMapURL: "ExampleSpritesMap.png",
         width: ICONS_WIDTH,
         height: ICONS_HEIGHT,

@@ -58,9 +58,9 @@ TextBox--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "TextBox--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -121,7 +121,7 @@ TextBox--YDF-generateStyles(
 
       &-InputOrTextAreaElement
 
-        TextBoxLikeElementsPrimer()
+        TextBoxLikeElementsPrimer--YDF()
 
         box-sizing border-box
         width 100%
@@ -163,7 +163,7 @@ TextBox--YDF-generateStyles(
         &-AppendedSVG_Icon,
         &-PasswordDisplayingToggle
 
-          VerticallyCenteredAbsolutelyPositionedBlock()
+          VerticallyCenteredAbsolutelyPositionedBlock--YDF()
 
 
       if options.features.passwordDisplayingToggle
@@ -212,23 +212,23 @@ TextBox--YDF-generateStyles(
   // ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "TextBox.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
 
-    ROOT_ELEMENT_SELECTOR = getCurrentSelectorSubstitutingRoot("." + TextBox--YDF.CSS_NAMESPACE)
+    ROOT_ELEMENT_SELECTOR = getCurrentSelectorSubstitutingRoot--YDF("." + TextBox--YDF.CSS_NAMESPACE)
 
 
     // ╍╍╍ Root Element ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
-    +provideDefaultSelectorWhenRootAndApply("." + TextBox--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + TextBox--YDF.CSS_NAMESPACE)
 
-      applyMixinStoredInObjectIfItIsNotNull(
-        getObjectValueByDotSeparatedPathSafely(variation, "rootElement.customDeclarations")
+      applyMixinStoredInObjectIfItIsNotNull--YDF(
+        getObjectValueByDotSeparatedPathSafely--YDF(variation, "rootElement.customDeclarations")
       )
 
     // ┅┅┅ Input or TextArea Element ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
-    cachedInputOfTextAreaElementProperties = extractAndValidateObjectProperties({
+    cachedInputOfTextAreaElementProperties = extractAndValidateObjectProperties--YDF({
       targetObject: variation,
       targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
       extracts: {
@@ -246,8 +246,8 @@ TextBox--YDF-generateStyles(
 
     .TextBox--YDF-InputOrTextAreaElement
 
-      BordersSizing(cachedInputOfTextAreaElementProperties.bordersSpecification)
-      Paddings(cachedInputOfTextAreaElementProperties.paddingsSpecification, { mustSkipApplyingOfVerticalPaddings: true })
+      BordersSizing--YDF(cachedInputOfTextAreaElementProperties.bordersSpecification)
+      Paddings--YDF(cachedInputOfTextAreaElementProperties.paddingsSpecification, { mustSkipApplyingOfVerticalPaddings: true })
 
 
     input.TextBox--YDF-InputOrTextAreaElement
@@ -255,7 +255,7 @@ TextBox--YDF-generateStyles(
       //* [ Theory: CSS ]
       //* In the "input" case, the height not equal to sum of line height, vertical paddings and borders, so it must
       //* be manually fixed. See https://stackoverflow.com/a/42888592/4818123. */
-      TextElementHeightSizing({
+      TextElementHeightSizing--YDF({
         type: TextElementHeightSizingTypes--YDF.natural,
         mustFixateHeight: true,
         borders: cachedInputOfTextAreaElementProperties.bordersSpecification,
@@ -271,7 +271,7 @@ TextBox--YDF-generateStyles(
 
     textarea.TextBox--YDF-InputOrTextAreaElement
 
-      TextElementHeightSizing({
+      TextElementHeightSizing--YDF({
         type: TextElementHeightSizingTypes--YDF.natural,
         mustFixateHeight: true,
         borders: cachedInputOfTextAreaElementProperties.bordersSpecification,
@@ -289,7 +289,7 @@ TextBox--YDF-generateStyles(
     // ╍╍╍ SVG Icons ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     if options.features.icons
 
-      cachedSVG_IconProperties = extractAndValidateObjectProperties({
+      cachedSVG_IconProperties = extractAndValidateObjectProperties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         extracts: {
@@ -317,11 +317,11 @@ TextBox--YDF-generateStyles(
         right: cachedSVG_IconProperties.rightSpacingWhenGoingLast
 
 
-      +provideDefaultSelectorWhenRootAndApply("." + TextBox--YDF.CSS_NAMESPACE)
+      +provideDefaultSelectorWhenRootAndApply--YDF("." + TextBox--YDF.CSS_NAMESPACE)
 
         &:has(.TextBox--YDF-PrependedSVG_Icon) .TextBox--YDF-InputOrTextAreaElement
 
-          padding-left: buildCalcExpression(
+          padding-left: buildCalcExpression--YDF(
             "${ horizontalSpacingBetweenLeftEdgeAndSVG_Icon } + " +\
               "${ SVG_IconWidth } + ${ horizontalSpacingBetweenSVG_IconAndText }",
             {
@@ -334,7 +334,7 @@ TextBox--YDF-generateStyles(
 
         &:has(.TextBox--YDF-AppendedSVG_Icon) .TextBox--YDF-InputOrTextAreaElement
 
-          padding-right: buildCalcExpression(
+          padding-right: buildCalcExpression--YDF(
             "${ horizontalSpacingBetweenSVG_IconAndText } +" +\
               "${ SVG_IconWidth } + ${ horizontalSpacingBetweenSVG_IconAndRightEdge }",
             {
@@ -348,7 +348,7 @@ TextBox--YDF-generateStyles(
     // ╍╍╍ Password Displaying Toggle ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     if options.features.passwordDisplayingToggle
 
-      cachedPasswordDisplayingToggleProperties = extractAndValidateObjectProperties({
+      cachedPasswordDisplayingToggleProperties = extractAndValidateObjectProperties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         extracts: {
@@ -368,16 +368,16 @@ TextBox--YDF-generateStyles(
         width: cachedPasswordDisplayingToggleProperties.iconWidth
 
 
-      +provideDefaultSelectorWhenRootAndApply("." + TextBox--YDF.CSS_NAMESPACE)
+      +provideDefaultSelectorWhenRootAndApply--YDF("." + TextBox--YDF.CSS_NAMESPACE)
 
         &:has(.TextBox--YDF-PasswordDisplayingToggle) .TextBox--YDF-InputOrTextAreaElement
 
-          padding-right: buildCalcExpression(
+          padding-right: buildCalcExpression--YDF(
             "${ horizontalSpacingBetweenSVG_IconAndText } +" +\
               "${ SVG_IconWidth } + ${ horizontalSpacingBetweenSVG_IconAndRightEdge }",
             {
               horizontalSpacingBetweenSVG_IconAndText:
-                  extractAndValidateObjectProperties({
+                  extractAndValidateObjectProperties--YDF({
                     targetObject: variation,
                     targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                     extracts: {
@@ -405,7 +405,7 @@ TextBox--YDF-generateStyles(
   // ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "TextBox.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
@@ -419,9 +419,9 @@ TextBox--YDF-generateStyles(
         // ─── Root Element ────────────────────────────────────────────────────────────────────────────────────────────
         ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED = selector() == "." + TextBox--YDF.CSS_NAMESPACE ? "/" : null
 
-        +provideDefaultSelectorWhenRootAndApply("." + TextBox--YDF.CSS_NAMESPACE)
+        +provideDefaultSelectorWhenRootAndApply--YDF("." + TextBox--YDF.CSS_NAMESPACE)
 
-          applyMixinStoredInObjectIfItIsNotNull(stateDependentSettings.rootElement.customDeclarations)
+          applyMixinStoredInObjectIfItIsNotNull--YDF(stateDependentSettings.rootElement.customDeclarations)
 
 
         // ─── Input or TextArea Element ───────────────────────────────────────────────────────────────────────────────
@@ -435,27 +435,27 @@ TextBox--YDF-generateStyles(
 
         { ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED }.TextBox--YDF-InputOrTextAreaElement{ PSEUDO_CLASS__NULL_IF_NOT_REQUIRED }
 
-          validateAndAssignStoredInObjectCSS_Properties({
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
             targetObject: stateDependentSettings.inputOrTextAreaElement,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             assigments: {
               color: { dotSeparatedPath: "text.color", required: false },
-              underline: { dotSeparatedPath: "text.underline", required: false, applier: applyObjectTypeUnderlineDefinition },
+              underline: { dotSeparatedPath: "text.underline", required: false, applier: applyObjectTypeUnderlineDefinition--YDF },
               background-color: { dotSeparatedPath: "background.color", required: false },
               background-image: { dotSeparatedPath: "background.image", required: false },
               border-style: { dotSeparatedPath: "borders.style", required: false },
               border-color: { dotSeparatedPath: "borders.color", required: false },
-              outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition },
-              box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition }
+              outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition--YDF },
+              box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition--YDF }
             }
           })
 
-          applyMixinStoredInObjectIfItIsNotNull(stateDependentSettings.inputOrTextAreaElement.customDeclarations)
+          applyMixinStoredInObjectIfItIsNotNull--YDF(stateDependentSettings.inputOrTextAreaElement.customDeclarations)
 
 
           &::placeholder
 
-            validateAndAssignStoredInObjectCSS_Properties({
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
               targetObject: stateDependentSettings.inputOrTextAreaElement,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               assigments: {
@@ -469,7 +469,7 @@ TextBox--YDF-generateStyles(
 
           SVG_Icons()
 
-            validateAndAssignStoredInObjectCSS_Properties({
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
               targetObject: stateDependentSettings.SVG_Icon,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               assigments: {
@@ -477,10 +477,10 @@ TextBox--YDF-generateStyles(
               }
             })
 
-            applyMixinStoredInObjectIfItIsNotNull(stateDependentSettings.SVG_Icon.customDeclarations)
+            applyMixinStoredInObjectIfItIsNotNull--YDF(stateDependentSettings.SVG_Icon.customDeclarations)
 
 
-          if isNull(PSEUDO_CLASS__NULL_IF_NOT_REQUIRED)
+          if isNull--YDF(PSEUDO_CLASS__NULL_IF_NOT_REQUIRED)
 
             .TextBox--YDF-PrependedSVG_Icon,
             .TextBox--YDF-AppendedSVG_Icon
@@ -489,7 +489,7 @@ TextBox--YDF-generateStyles(
 
           else
 
-            +provideDefaultSelectorWhenRootAndApply("." + TextBox--YDF.CSS_NAMESPACE)
+            +provideDefaultSelectorWhenRootAndApply--YDF("." + TextBox--YDF.CSS_NAMESPACE)
 
               &:has(.TextBox--YDF-InputOrTextAreaElement{ PSEUDO_CLASS__NULL_IF_NOT_REQUIRED })
 
@@ -504,22 +504,22 @@ TextBox--YDF-generateStyles(
 
           PasswordDisplayingToggle()
 
-            validateAndAssignStoredInObjectCSS_Properties({
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
               targetObject: stateDependentSettings.passwordDisplayingToggle,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               assigments: {
                 box-shadow: {
                   dotSeparatedPath: "shadow",
                   required: false,
-                  applier: applyObjectTypeBoxShadowDefinition
+                  applier: applyObjectTypeBoxShadowDefinition--YDF
                 }
               }
             })
 
-            applyMixinStoredInObjectIfItIsNotNull(stateDependentSettings.passwordDisplayingToggle.customDeclarations)
+            applyMixinStoredInObjectIfItIsNotNull--YDF(stateDependentSettings.passwordDisplayingToggle.customDeclarations)
 
 
-          if isNull(PSEUDO_CLASS__NULL_IF_NOT_REQUIRED)
+          if isNull--YDF(PSEUDO_CLASS__NULL_IF_NOT_REQUIRED)
 
             { ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED }.TextBox--YDF-PasswordDisplayingToggle
 
@@ -527,7 +527,7 @@ TextBox--YDF-generateStyles(
 
           else
 
-            +provideDefaultSelectorWhenRootAndApply("." + TextBox--YDF.CSS_NAMESPACE)
+            +provideDefaultSelectorWhenRootAndApply--YDF("." + TextBox--YDF.CSS_NAMESPACE)
 
               &:has(.TextBox--YDF-InputOrTextAreaElement{ PSEUDO_CLASS__NULL_IF_NOT_REQUIRED })
 
@@ -539,7 +539,7 @@ TextBox--YDF-generateStyles(
           // ┄┄┄ SVG Icon ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
           PasswordDisplayingToggle-SVG_Icon()
 
-            validateAndAssignStoredInObjectCSS_Properties({
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
               targetObject: stateDependentSettings.passwordDisplayingToggle,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               assigments: {
@@ -547,7 +547,7 @@ TextBox--YDF-generateStyles(
               }
             })
 
-          if isNull(PSEUDO_CLASS__NULL_IF_NOT_REQUIRED)
+          if isNull--YDF(PSEUDO_CLASS__NULL_IF_NOT_REQUIRED)
 
             { ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED }.TextBox--YDF-PasswordDisplayingToggle-SVG_Icon
 
@@ -555,7 +555,7 @@ TextBox--YDF-generateStyles(
 
           else
 
-            +provideDefaultSelectorWhenRootAndApply("." + TextBox--YDF.CSS_NAMESPACE)
+            +provideDefaultSelectorWhenRootAndApply--YDF("." + TextBox--YDF.CSS_NAMESPACE)
 
               &:has(.TextBox--YDF-InputOrTextAreaElement{ PSEUDO_CLASS__NULL_IF_NOT_REQUIRED })
 
@@ -617,14 +617,14 @@ TextBox--YDF-generateStyles(
 
       .TextBox--YDF-PasswordDisplayingToggle{statePseudoClass}
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: stateDependentSettings,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
             box-shadow: {
               dotSeparatedPath: "shadow",
               required: false,
-              applier: applyObjectTypeBoxShadowDefinition
+              applier: applyObjectTypeBoxShadowDefinition--YDF
             }
           }
         })
@@ -632,7 +632,7 @@ TextBox--YDF-generateStyles(
 
         .TextBox--YDF-PasswordDisplayingToggle-SVG_Icon
 
-          validateAndAssignStoredInObjectCSS_Properties({
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
             targetObject: stateDependentSettings,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             assigments: {
@@ -651,7 +651,7 @@ TextBox--YDF-generateStyles(
 
   if !options.themeIndependentStylesOnly
 
-    applyComponentThemes({
+    applyComponentThemes--YDF({
       CSS_Namespace: "TextBox--YDF",
       themes: properties.themes,
       applyGeometricVariation: applyGeometricVariation,

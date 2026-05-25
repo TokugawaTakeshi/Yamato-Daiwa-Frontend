@@ -17,8 +17,8 @@ width default values).
 
 ### Dimensions
 
-All of below variables are being used by [InitialGlobalCSS_Rules](../../02-Kernel/04-StylesInitialization/InitialGlobalCSS_Rules.md) 
-mixin which is intended to be applied between [CrossBrowserStylesReset](../../02-Kernel/04-StylesInitialization/CrossBrowserStylesReset.md)
+All of below variables are being used by [InitialGlobalCSS_Rules--YDF](../../02-Kernel/04-StylesInitialization/InitialGlobalCSS_Rules.md) 
+mixin which is intended to be applied between [CrossBrowserStylesReset--YDF](../../02-Kernel/04-StylesInitialization/CrossBrowserStylesReset.md)
 and other styles.
 
 | Variable name                              | [Type](../../01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md#datatypes---stylus-data-types) | Default value |
@@ -55,7 +55,7 @@ changed and new values could be added.
 of websites and web applications, mainly focused on CSS classes naming conventions, project structure conventions and
 splitting the GUI on components.
 
-Below variables are being used by [buildBEM_ClassName](../07-OtherFunctions/buildBEM_ClassName.md) functions, but elements
+Below variables are being used by [buildBEM_ClassName--YDF](../07-OtherFunctions/buildBEM_ClassName.md) functions, but elements
 and modifier separators could be overwritten.
 
 | Variable name          | [Type](../../01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md#datatypes---stylus-data-types) | Default value |

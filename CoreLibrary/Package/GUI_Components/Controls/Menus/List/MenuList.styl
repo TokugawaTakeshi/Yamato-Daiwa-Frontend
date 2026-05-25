@@ -40,9 +40,9 @@ MenuList--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "MenuList--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -81,37 +81,37 @@ MenuList--YDF-generateStyles(
   // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "MenuList.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
 
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
-    +provideDefaultSelectorWhenRootAndApply("." + MenuList--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + MenuList--YDF.CSS_NAMESPACE)
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "MenuList.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
 
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
-    +provideDefaultSelectorWhenRootAndApply("." + MenuList--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + MenuList--YDF.CSS_NAMESPACE)
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
   // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   applyBasicRules()
 
-  applyComponentThemes({
+  applyComponentThemes--YDF({
     CSS_Namespace: "MenuList--YDF",
     themes: properties.themes,
     applyGeometricVariation: applyGeometricVariation,

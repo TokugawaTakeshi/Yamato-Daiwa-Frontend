@@ -13,21 +13,21 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   &-ElementA
 
-    retireFromElementWithSameSelector({ x: 2px, y: 4px })
+    retireFromElementWithSameSelector--YDF({ x: 2px, y: 4px })
 
 
   ul
 
     li
 
-      retireFromElementWithSameSelector({ y: 8px, contextSelector: ".Block ul", referenceElementSelector: "li" })
+      retireFromElementWithSameSelector--YDF({ y: 8px, contextSelector: ".Block ul", referenceElementSelector: "li" })
 
 
   ol
 
     li
 
-      retireFromElementWithSameSelector({
+      retireFromElementWithSameSelector--YDF({
         x: 4px,
         y: 8px,
         usePaddingsInsteadOfMargins: true,

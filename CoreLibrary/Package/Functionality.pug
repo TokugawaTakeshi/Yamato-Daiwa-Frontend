@@ -4,122 +4,6 @@ include Markup/InlineECMAScript/PugExtensions.generated.pug
 
   const {
 
-    /* ━━━ AJAX ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    AJAX_Service,
-    FetchAPI_Service,
-    serializeURI_QueryParameters,
-
-
-    /* ━━━ Arrays ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    /* ┅┅┅ Creating ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    createArrayOfNaturalNumbers,
-
-    /* ┅┅┅ Retrieving of Elements ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    getArrayElementSatisfiesThePredicateIfSuchElementIsExactlyOne,
-    getLastElementOfArray,
-
-    /* ┅┅┅ Retrieving of Indexes ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    getIndexesOfSatisfiesThePredicateArrayElements,
-    getIndexOfArrayElementSatisfiesThePredicateIfSuchElementIsExactlyOne,
-
-    /* ┅┅┅ Retrieving of Subarrays ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    cropArray,
-
-    /* ┅┅┅ Adding of Elements ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    addElementsToArray,
-
-    /* ┅┅┅ Replacing of Elements ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    replaceArrayElementsByIndexesImmutably,
-    replaceArrayElementsByPredicates,
-
-    /* ┅┅┅ Permutations of Elements ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    moveArrayElementToOnePosition,
-    swapArrayElements,
-
-    /* ┅┅┅ Removing of Elements ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    removeArrayElementsByIndexes,
-    removeArrayElementsByPredicates,
-
-    /* ┅┅┅ Restructuring ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    twoDimensionalizeArray,
-
-    /* ┅┅┅ Other ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    addElementsToArrayIfTheyAreNotPresentOtherwiseRemove,
-
-
-    /* ━━━ Constants and enumerations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    /* ┅┅┅ Re-exporting from "fundamental-constants" ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    /* ╍╍╍ Computer Networking ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
-    HTTP_DEFAULT_PORT,
-    HTTP_Methods,
-    HTTPS_DEFAULT_PORT,
-    NETWORK_PORT_MAXIMAL_VALUE,
-    NETWORK_PORT_MINIMAL_VALUE,
-
-    /* ─── HTTP Status Codes ──────────────────────────────────────────────────────────────────────────────────────── */
-    HTTP_StatusCodes,
-    InformationalResponsesHTTP_StatusCodes,
-    SuccessfulResponsesHTTP_StatusCodes,
-    RedirectionResponsesHTTP_StatusCodes,
-    ClientErrorsHTTP_StatusCodes,
-    ServerErrorsHTTP_StatusCodes,
-
-    /* ┅┅┅ Data Types ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    IntegerDataTypes,
-
-    /* ┅┅┅ Date & Time ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    DAYS_COUNT_IN_WEEK,
-    DaysOfWeekNames,
-    HOURS_COUNT_IN_STELLAR_DAY,
-    MAXIMAL_DAYS_IN_MONTH,
-    MAXIMAL_SUPPORTED_UNIX_MILLISECONDS_AMOUNT,
-    MINIMAL_SUPPORTED_UNIX_MILLISECONDS_AMOUNT,
-    MINUTES_COUNT_IN_HOUR,
-    MONTHS_COUNT_IN_YEAR,
-    MonthsNames,
-    SECONDS_COUNT_IN_MINUTE,
-
-    /* ─── ISO 8601 ───────────────────────────────────────────────────────────────────────────────────────────────── */
-    MAXIMAL_CHARACTERS_COUNT_IN_DATE_PART_OF_ISO8601_STRING,
-    CHARACTERS_COUNT_IN_FULL_ISO8601_STRING,
-
-    /* ╍╍╍ Email Address ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
-    EMAIL_ADDRESS_VALID_PATTERN,
-    MAXIMAL_CHARACTERS_COUNT_OF_EMAIL_ADDRESS,
-    MINIMAL_CHARACTERS_COUNT_OF_EMAIL_ADDRESS,
-
-
-    /* ━━━ Data Mocking ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    DataMocking,
-    MockGatewayHelper,
-    MockGatewayHelperLocalization__English,
-
-
-    /* ━━━ Date & Time ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    CalendarBuilder,
-    convert24_HoursFormatTo12_HoursFormat,
-    DateWithoutTime,
-    getDaysCountInSpecificMonth,
-    getISO8601_StringWithoutTimePart,
-    getMonthNameByNumber,
-    getMonthNumberByName,
-    getNextMonthNumber,
-    getPreviousMonthNumber,
-    getYearOfNextMonth,
-    getYearOfPreviousMonth,
-    hasTimeCome,
-    isValidNativeDate,
-    millisecondsToSeconds,
-    secondsToMilliseconds,
-    TimePoint,
-    Timer,
-
-
-    /* ━━━ Default Value Substituters ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    substituteWhenNull,
-    substituteWhenUndefined,
-
-
     /* ━━━ Errors ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /* ┅┅┅ Algorithm Mismatch ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
     AlgorithmMismatchError,
@@ -424,7 +308,6 @@ include Markup/InlineECMAScript/PugExtensions.generated.pug
     isString,
     isStringOfLength,
     IsStringOfLengthCheck,
-    // ━━━ TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
     /* ─── Rest ───────────────────────────────────────────────────────────────────────────────────────────────────── */
     isBoolean,
@@ -446,9 +329,6 @@ include Markup/InlineECMAScript/PugExtensions.generated.pug
 
 
     /* ━━━ Specialities for Pug ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    buildEmailLinkHrefAttributeValue,
-    buildPhoneNumberLinkHrefAttributeValue,
-    processObjectTypeParameterOfPugMixin,
     HeadingsLevelsCoordinator__YDF,
     generateNanoID,
     replaceMarkdownBold__YDF,
@@ -463,7 +343,6 @@ include Markup/InlineECMAScript/PugExtensions.generated.pug
   ).__PUG_EXTENSIONS_EXPORTS__;
 
 
-include Markup/InlineECMAScript/RoutingEmulator.pug
 
 include Markup/Assets/Dummies.pug
 include Markup/Assets/SVG_Icons/SVG_Icons.pug

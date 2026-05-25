@@ -69,6 +69,12 @@ block Functionality
       };
 
       /**
+       * @type Array<string>
+       * @private
+       */
+      static bodyCSS_Classes = [];
+
+      /**
        * @param {
        *   Readonly<{
        *     metadata: {
@@ -99,14 +105,18 @@ block Functionality
             description,
             keywords,
             author
-          } = {},
+          } =
+              {},
           faviconURI,
           AMP_VersionURI,
           stylesSheetsURIs,
-          scriptsURIs: {
-            atEndOfHead,
-            atEndOfBody
-          } = {}
+          scriptsURIs:
+              {
+                atEndOfHead,
+                atEndOfBody
+              } =
+                  {},
+          bodyCSS_Classes
         }
       ) {
 
@@ -125,6 +135,8 @@ block Functionality
             atEndOfHead ?? RegularWebPageTemplate__YDF.scriptsURIs.atEndOfHead;
         RegularWebPageTemplate__YDF.scriptsURIs.atEndOfBody =
             atEndOfBody ?? RegularWebPageTemplate__YDF.scriptsURIs.atEndOfBody;
+
+        RegularWebPageTemplate__YDF.bodyCSS_Classes = bodyCSS_Classes ?? RegularWebPageTemplate__YDF.bodyCSS_Classes;
 
         return RegularWebPageTemplate__YDF;
 
@@ -197,7 +209,9 @@ html(lang= RegularWebPageTemplate__YDF.metadata.locale)
         script(src=scriptURI)
 
 
-  body
+  body(
+    class=RegularWebPageTemplate__YDF.bodyCSS_Classes
+  )
 
     block PageContent
 

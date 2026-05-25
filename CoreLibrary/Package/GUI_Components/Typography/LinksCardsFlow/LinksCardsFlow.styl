@@ -17,7 +17,7 @@ LinksCardsFlow--YDF-generateStyles()
       box-shadow 0 0 2px 2px alpha(black, 25%)
       cursor pointer
 
-      retireFromElementWithSameSelector({ y: 0.8rem })
+      retireFromElementWithSameSelector--YDF({ y: 0.8rem })
 
 
       &:hover
@@ -68,7 +68,7 @@ LinksCardsFlow--YDF-generateStyles()
 
     &-Title
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: 2rem,
         lineSpacing: 0.2rem,
         mustAllowWordsBreakingAnywhere: true
@@ -96,7 +96,7 @@ LinksCardsFlow--YDF-generateStyles()
       /.LinksList-Image + .LinksList-Title:last-child,
       /.LinksList-SVG_Icon + .LinksList-Title:last-child
 
-        applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
           fontSize: 1rem,
           lineSpacing: 4px,
           mustAllowWordsBreakingAnywhere: true

@@ -54,6 +54,8 @@ class TextBox<
   IsInputRequired extends boolean,
   NonEmptyValueType extends TextBox.SupportedValidatablePayloadValuesTypes.NonEmpty,
   EmptyValueType extends TextBox.SupportedValidatablePayloadValuesTypes.Empty = NonEmptyValueType,
+  /* eslint-disable-next-line @stylistic/type-generic-spacing --
+   * ESLint Stylistic plugin bug: this positive in completely nor related with the spacing around angled brackets. */
   ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)) =
       IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType),
   InvalidValue extends NonEmptyValueType | EmptyValueType = NonEmptyValueType | EmptyValueType
@@ -254,6 +256,7 @@ class TextBox<
 
 
   /* ┅┅┅ Buttons ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  /* ╍╍╍ Value Copying Button ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
   @VueProperty({
     default: false,
     get validator(): VuePropertyValidator {
@@ -267,6 +270,28 @@ class TextBox<
   @preventNullForOptionalVueProperty
   protected readonly hasValueCopyingButton!: boolean;
 
+  protected get valueCopyingButtonGeometricModifiers(): Array<string> {
+    return [
+      Button.GeometricModifiers.squareShape,
+      Button.GeometricModifiers.noLeftBorderAndRoundings,
+        ...this.geometricModifiers.includes(TextBox.GeometricModifiers.noRoundings) ?
+            [ Button.GeometricModifiers.noRoundings ] : []
+    ];
+  }
+
+  @VueProperty({
+    required: false,
+    type: Function
+  })
+  protected onValueCopiedExternalEventHandler?: (value: string) => unknown;
+
+  protected onValueCopyingButtonClicked(): void {
+    navigator.clipboard.writeText(this.rawInput).catch(Logger.logPromiseError);
+    this.onValueCopiedExternalEventHandler?.(this.rawInput);
+  }
+
+
+  /* ╍╍╍ Password Displaying Toggle ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
   @VueProperty({
     default: false,
     get validator(): VuePropertyValidator {
@@ -279,6 +304,16 @@ class TextBox<
   })
   @preventNullForOptionalVueProperty
   protected readonly hasPasswordDisplayingToggle!: boolean;
+
+  protected get mustDisplayPasswordDisplayingToggle(): boolean {
+    return this.HTML_Type === TextBox.HTML_Types.password && this.hasPasswordDisplayingToggle;
+  }
+
+  protected isPasswordDisplaying: boolean = false;
+
+  protected onPasswordDisplayingToggleClicked(): void {
+    this.isPasswordDisplaying = !this.isPasswordDisplaying;
+  }
 
 
   /* ━━━ Input & Validation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -435,7 +470,7 @@ class TextBox<
 
   }
 
-  @emitVueEvent(TextBox.Events.input)
+  @emitVueEvent("update:modelValue")
   protected updateVModel(newValue: TextBox.SupportedValidatablePayloadValuesTypes):
       ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>
   {
@@ -445,7 +480,7 @@ class TextBox<
     return this.validatablePayload.updateImmutably(newValue as NonEmptyValueType | EmptyValueType);
   }
 
-  @emitVueEvent(TextBox.Events.blur)
+  @emitVueEvent("BLUR")
   protected onFocusOut(): void {
     this.mustHighlightInputtedValueValidity = true;
   }
@@ -694,7 +729,7 @@ class TextBox<
   })
   protected readonly labelElementHTML_ID?: string;
 
-  /* [ Performance Optimization ] Intended to be non-reactive and thus must be assigned in `create` lifecycle hook. */
+  /* [ Performance Optimization ] Intended to be non-reactive and thus must be assigned in `created` lifecycle hook. */
   protected HTML_IDs!: Readonly<{
     inputOrTextarea: string;
     label: string;
@@ -778,7 +813,7 @@ class TextBox<
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   @AccessibleFromTemplateAsNonReactive
-  public static localization: TextBoxLocalization = textBoxYDF_GUI_ComponentLocalization__english;
+  public static localization: TextBoxLocalization = TextBoxYDF_GUI_ComponentLocalization__English;
 
 
   /* ━━━ Transforming to Options API ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

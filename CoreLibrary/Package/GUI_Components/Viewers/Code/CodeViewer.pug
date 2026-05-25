@@ -9,7 +9,7 @@ mixin CodeViewer--YDF(properties)
       title,
       resultWebViewURI,
       defaultPaddingsInViewport = false
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
@@ -73,13 +73,13 @@ mixin CodeViewer-TabPanel--YDF(properties, logging)
       fileLabel,
       isActive = false,
       codeLanguage
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: CodeViewer__YDF.tabPanelPropertiesSpecification,
       mixinName: logging?.wrapperComponentName ?? "CodeViewer-TabPanel--YDF"
-    })
+    });
 
   .CodeViewer--YDF-TabPanel(
     data-file_label= fileLabel

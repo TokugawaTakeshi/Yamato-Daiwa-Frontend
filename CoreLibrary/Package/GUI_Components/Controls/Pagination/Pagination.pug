@@ -17,7 +17,7 @@ mixin Pagination--YDF(properties, statesSimulations)
       geometricVariation,
       decorativeVariation
 
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
@@ -28,7 +28,7 @@ mixin Pagination--YDF(properties, statesSimulations)
     const {
       totalPagesCount,
       currentPageNumber
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: statesSimulations,
       parameterNumber: 2,
       parameterName: "statesSimulations",

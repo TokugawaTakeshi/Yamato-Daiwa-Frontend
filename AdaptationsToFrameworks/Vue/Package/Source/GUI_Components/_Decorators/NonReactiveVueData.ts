@@ -5,6 +5,10 @@ import type { ComponentOptions } from "vue";
 export default function NonReactiveVueData(
   value: unknown
 ): (_arguments: unknown, decoratorContext: string | DecoratorContext) => void {
+
+  /* eslint-disable-next-line @typescript-eslint/strict-void-return --
+   * Decorator function must even be `void` or return `any` but not `unknown`.
+   * Because usage of `any` type is strictly prohibited, accepting that the function is void. */
   return createDecorator(
     (componentOptions: ComponentOptions, key: string): void => {
 
@@ -23,4 +27,5 @@ export default function NonReactiveVueData(
     },
     { preserve: true }
   );
+
 }

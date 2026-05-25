@@ -1,7 +1,7 @@
-applyTextGeometryWithoutExtraSpaceCausedByLineHeight(compoundParameter, restParameters__MUST_NOT_BE...)
+applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "applyTextGeometryWithoutExtraSpaceCausedByLineHeight",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
@@ -19,7 +19,7 @@ applyTextGeometryWithoutExtraSpaceCausedByLineHeight(compoundParameter, restPara
       lineSpacing: {
         type: DataTypes--YDF.dimensionalQuantity DataTypes--YDF.dimensionlessQuantity,
         requiredIf: {
-          predicate: @(compoundParameter) { return isNull(compoundParameter.lineHeight) },
+          predicate: @(compoundParameter) { return isNull--YDF(compoundParameter.lineHeight) },
           descriptionForLogging: "The 'lineHeight' is not specified"
         },
         incompatibleWith: "lineHeight"
@@ -78,11 +78,11 @@ applyTextGeometryWithoutExtraSpaceCausedByLineHeight(compoundParameter, restPara
   mustComputeAbsoluteExtraSpaceIfPossible = compoundParameter.mustComputeAbsoluteExtraSpaceIfPossible
   paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins = compoundParameter.paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins
 
-  if isNull(compoundParameter.lineHeight)
+  if isNull--YDF(compoundParameter.lineHeight)
 
     lineSpacing = compoundParameter.lineSpacing
 
-    lineHeight = getLineHeightByFontSizeAndLineSpacing({
+    lineHeight = getLineHeightByFontSizeAndLineSpacing--YDF({
       fontSize: fontSize,
       lineSpacing: lineSpacing,
       mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: compoundParameter.mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0,
@@ -90,12 +90,12 @@ applyTextGeometryWithoutExtraSpaceCausedByLineHeight(compoundParameter, restPara
     })
 
 
-    if removeUnitFromAmount(lineSpacing) == 0
+    if removeUnitFromAmount--YDF(lineSpacing) == 0
 
       // === [ Branch A1 ] 0 line spacing
       extraSpaceCausedByLineHeightAtTopOrBottom = 0
 
-    else if isDimensionlessQuantity(lineSpacing)
+    else if isDimensionlessQuantity--YDF(lineSpacing)
 
       // === [ Branch A2 ] Dimensionless line spacing
       extraSpaceCausedByLineHeightAtTopOrBottom = fontSize * lineSpacing / 2
@@ -108,7 +108,7 @@ applyTextGeometryWithoutExtraSpaceCausedByLineHeight(compoundParameter, restPara
     else
 
       // === [ Branch A4 ] Font size and line spacing of different units
-      extraSpaceCausedByLineHeightAtTopOrBottom = buildCalcExpression(
+      extraSpaceCausedByLineHeightAtTopOrBottom = buildCalcExpression--YDF(
         "${ fontSize } * (${ lineSpacing } / 2)" , { fontSize: fontSize, lineSpacing: lineSpacing }
       )
 
@@ -116,12 +116,12 @@ applyTextGeometryWithoutExtraSpaceCausedByLineHeight(compoundParameter, restPara
 
     lineHeight = compoundParameter.lineHeight
 
-    if removeUnitFromAmount(lineHeight) == 0
+    if removeUnitFromAmount--YDF(lineHeight) == 0
 
       // === [ Branch B1 ] 0 line height: basically it could not be but must be processed correctly
       extraSpaceCausedByLineHeightAtTopOrBottom = 0
 
-    else if isDimensionlessQuantity(lineHeight)
+    else if isDimensionlessQuantity--YDF(lineHeight)
 
       // === [ Branch B2 ] Dimensionless line height
       extraSpaceCausedByLineHeightAtTopOrBottom = ((fontSize * lineHeight) - fontSize) / 2
@@ -137,12 +137,12 @@ applyTextGeometryWithoutExtraSpaceCausedByLineHeight(compoundParameter, restPara
 
       if !mustApplyDimensionalLineHeightIfPossible
 
-        lineHeight = removeUnitFromAmount(lineHeight / fontSize)
+        lineHeight = removeUnitFromAmount--YDF(lineHeight / fontSize)
 
     else
 
       // === [ Branch B4 ] Font size and line height of different units
-      extraSpaceCausedByLineHeightAtTopOrBottom = buildCalcExpression(
+      extraSpaceCausedByLineHeightAtTopOrBottom = buildCalcExpression--YDF(
         "(${ lineHeight } - ${ fontSize }) / 2" , { fontSize: fontSize, lineHeight: lineHeight }
       )
 
@@ -157,39 +157,39 @@ applyTextGeometryWithoutExtraSpaceCausedByLineHeight(compoundParameter, restPara
 
   if extraSpaceCausedByLineHeightAtTopOrBottom != 0
 
-    if isNotNull(paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins)
+    if isNotNull--YDF(paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins)
 
-      topPadding = getFirstNonNullArrayElement(
-        arrayConstructor__POLYFILL(
+      topPadding = getFirstNonNullArrayElement--YDF(
+        arrayConstructor__POLYFILL--YDF(
           paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.all,
           paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.verticalSymmetric,
           paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.top
         )
       )
 
-      bottomPadding = getFirstNonNullArrayElement(
-        arrayConstructor__POLYFILL(
+      bottomPadding = getFirstNonNullArrayElement--YDF(
+        arrayConstructor__POLYFILL--YDF(
           paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.all,
           paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.verticalSymmetric,
           paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.bottom
         )
       )
 
-      upwardShifting = nullToZero(paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.upwardShifting)
+      upwardShifting = nullToZero--YDF(paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.upwardShifting)
 
-      topPadding = buildCalcExpression(
+      topPadding = buildCalcExpression--YDF(
         "${ topPadding } - ${ upwardShifting } - ${ extraSpaceCausedByLineHeightAtTopOrBottom }",
         {
-          topPadding: nullToZero(topPadding),
+          topPadding: nullToZero--YDF(topPadding),
           upwardShifting: upwardShifting,
           extraSpaceCausedByLineHeightAtTopOrBottom: extraSpaceCausedByLineHeightAtTopOrBottom
         }
       )
 
-      bottomPadding = buildCalcExpression(
+      bottomPadding = buildCalcExpression--YDF(
         "${ topPadding } + ${ upwardShifting } - ${ extraSpaceCausedByLineHeightAtTopOrBottom }",
         {
-          topPadding: nullToZero(bottomPadding),
+          topPadding: nullToZero--YDF(bottomPadding),
           upwardShifting: upwardShifting,
           extraSpaceCausedByLineHeightAtTopOrBottom: extraSpaceCausedByLineHeightAtTopOrBottom
         }
@@ -201,7 +201,7 @@ applyTextGeometryWithoutExtraSpaceCausedByLineHeight(compoundParameter, restPara
 
     else if compoundParameter.mustApplyNegativeMarginsToRootElement
 
-      if isDimensionalOrDimensionlessQuantity(extraSpaceCausedByLineHeightAtTopOrBottom)
+      if isDimensionalOrDimensionlessQuantity--YDF(extraSpaceCausedByLineHeightAtTopOrBottom)
 
         margin-top: -(extraSpaceCausedByLineHeightAtTopOrBottom)
         margin-bottom: -(extraSpaceCausedByLineHeightAtTopOrBottom)
@@ -222,7 +222,7 @@ applyTextGeometryWithoutExtraSpaceCausedByLineHeight(compoundParameter, restPara
 
       &:before
 
-        if isDimensionalOrDimensionlessQuantity(extraSpaceCausedByLineHeightAtTopOrBottom)
+        if isDimensionalOrDimensionlessQuantity--YDF(extraSpaceCausedByLineHeightAtTopOrBottom)
 
           margin-top: -(extraSpaceCausedByLineHeightAtTopOrBottom)
 
@@ -233,7 +233,7 @@ applyTextGeometryWithoutExtraSpaceCausedByLineHeight(compoundParameter, restPara
 
       &:after
 
-        if isDimensionalOrDimensionlessQuantity(extraSpaceCausedByLineHeightAtTopOrBottom)
+        if isDimensionalOrDimensionlessQuantity--YDF(extraSpaceCausedByLineHeightAtTopOrBottom)
 
           margin-bottom: -(extraSpaceCausedByLineHeightAtTopOrBottom)
 

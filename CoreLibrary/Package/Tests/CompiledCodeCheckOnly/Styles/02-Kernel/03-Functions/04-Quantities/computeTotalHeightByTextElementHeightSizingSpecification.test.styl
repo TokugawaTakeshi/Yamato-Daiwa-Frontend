@@ -15,9 +15,9 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/04-Quantities/c
 // Although we can say that in this case the total height will be 14px, generally it could not be definitively calculated
 //   thus the returned value is always the calc expression (in this case - calc(14px)),
 // The PostCSS optimization could simplify it to `14px`.
-testForEquality(
+testForEquality--YDF(
   "In 'fontSize: 10px' and 'lineHeight: 14px' only has been specified, the total hegiht will be 14px.",
-  computeTotalHeightByTextElementHeightSizingSpecification({
+  computeTotalHeightByTextElementHeightSizingSpecification--YDF({
     type: TextElementHeightSizingTypes--YDF.natural,
     fontSize: 10px,
     lineHeight: 14px
@@ -25,9 +25,9 @@ testForEquality(
   "calc(14px)"
 )
 
-testForEquality(
+testForEquality--YDF(
   "Vertical symmetric bordres has been included correctly",
-  computeTotalHeightByTextElementHeightSizingSpecification({
+  computeTotalHeightByTextElementHeightSizingSpecification--YDF({
     type: TextElementHeightSizingTypes--YDF.natural,
     fontSize: 10px,
     lineHeight: 14px,
@@ -38,9 +38,9 @@ testForEquality(
   "calc(2px + 14px)"
 )
 
-testForEquality(
+testForEquality--YDF(
   "Vertical asymmetric bordres has been included correctly",
-  computeTotalHeightByTextElementHeightSizingSpecification({
+  computeTotalHeightByTextElementHeightSizingSpecification--YDF({
     type: TextElementHeightSizingTypes--YDF.natural,
     fontSize: 10px,
     lineHeight: 14px,
@@ -52,9 +52,9 @@ testForEquality(
   "calc(1px + 2px + 14px)"
 )
 
-testForEquality(
+testForEquality--YDF(
   "Vertical symmetric paddings has been included correctly",
-  computeTotalHeightByTextElementHeightSizingSpecification({
+  computeTotalHeightByTextElementHeightSizingSpecification--YDF({
     type: TextElementHeightSizingTypes--YDF.natural,
     fontSize: 10px,
     lineHeight: 14px,
@@ -68,9 +68,9 @@ testForEquality(
   "calc(2px + 12px + 14px)"
 )
 
-testForEquality(
+testForEquality--YDF(
   "Vertical assymetic paddings has been included correctly",
-  computeTotalHeightByTextElementHeightSizingSpecification({
+  computeTotalHeightByTextElementHeightSizingSpecification--YDF({
     type: TextElementHeightSizingTypes--YDF.natural,
     fontSize: 10px,
     lineHeight: 14px,

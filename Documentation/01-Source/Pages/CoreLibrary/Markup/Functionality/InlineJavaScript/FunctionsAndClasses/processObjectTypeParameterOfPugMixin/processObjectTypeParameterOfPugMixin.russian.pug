@@ -61,7 +61,7 @@ block append Metadata
       ]
     });
 
-    RoutingEmulator.setCurrentRoute(
+    YDF.RoutingEmulator.setCurrentRoute(
       "coreLibrary.markup.functionality.inlineJavaScript.functionsAndClasses.processObjectTypeParameterOfPugMixin"
     );
 
@@ -319,17 +319,6 @@ block append SpecificContent
       Другое важное #[+Term--YDID свойство] — #[+ImportantEntity__Code--YDID parameterPropertiesSpecification];
         в нём необходимо указать правила валидации, и, если нужно, то обработки (такие как подстановка значений по
         умолчанию).
-
-    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning, SVG_Icon: true }).
-      На данный момент #[+ImportantEntity--YDID RawObjectDataProcessor], который использует
-        #[+ImportantEntity--YDID processObjectTypeParameterOfPugMixin], создаёт #[+Keyword--YDID новый]
-        #[+Term--YDID объект] на основе старого, при этом в #[+Keyword--YDID новый] помещает
-        #[+Keyphrase--YDID #[+Keyword--YDID только] те свойства, которые были объявлены в правилах валидации].
-      Связано это с тем, что #[+Keyphrase--YDID в общем случае] #[+Keyword--YDID не]&nbsp;каждое #[+Term--YDID свойство]
-        и #[+Keyword--YDID не]&nbsp;каждого #[+Term--YDID объекта] можно менять, когда такие изменения запрошены.
-      В будущем планируется добавить поддержку модификации исходного #[+Term--YDID объекта] (насколько это возможно),
-        однако это займёт определённое время, так как ожидается значительное увеличение объёма исходного кода,
-        а также придётся как минимум удвоить количество тестов.
 
     p.Article-Paragraph
       | Свойство #[+ImportantEntity__Code--YDID parameterPropertiesSpecification] имеет #[+Term--YDID тип]

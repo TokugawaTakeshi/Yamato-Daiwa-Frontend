@@ -186,7 +186,6 @@ class ValidatableControlsGroup<
 
 
   /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* eslint-disable @typescript-eslint/member-ordering -- No need to hoist the secondary static fields. */
 
   /* ─── Events handlers ─────────────────────────────────────────────────────────────────────────────────────────── */
   protected onAnyChangeOfSpecificControlEventHandler(
@@ -278,8 +277,6 @@ class ValidatableControlsGroup<
     return Object.values(this.isEachControlPayloadValid).
         some((isCurrentControlPayloadValid: boolean): boolean => !isCurrentControlPayloadValid);
   }
-
-  /* eslint-enable @typescript-eslint/member-ordering */
 
 }
 

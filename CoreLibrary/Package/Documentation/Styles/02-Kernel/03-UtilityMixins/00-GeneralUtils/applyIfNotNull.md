@@ -1,4 +1,4 @@
-# `applyIfNotNull`: applying the nullable CSS properties
+# `applyIfNotNull--YDF`: applying the nullable CSS properties
 
 [![Official IntelliJ IDEA plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-ainn-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -30,13 +30,13 @@ The output will be an invalid CSS:
 }
 ```
 
-The `applyIfNotNull` has been designed to solve this problem:
+The `applyIfNotNull--YDF` has been designed to solve this problem:
 
 ```stylus
 
 .Example
 
-  applyIfNotNull({
+  applyIfNotNull--YDF({
     background: background__assumeThatUnknownAtAdvance,
     color: fontColor__assumeThatUnknownAtAdvance
   })
@@ -56,8 +56,8 @@ Please note that the keys must be the valid CSS key.
 .Example
 
   // ⇩ Right
-  applyIfNotNull({ line-height: 1 })
+  applyIfNotNull--YDF({ line-height: 1 })
 
   // ⇩ Wrong: the `lineHeight` is not a valid CSS key
-  applyIfNotNull({ lineHeight: 1 })
+  applyIfNotNull--YDF({ lineHeight: 1 })
 ```

@@ -1,7 +1,7 @@
-whenItJustAfter(compoundParameter, restParameters__MUST_NOT_BE...)
+whenItJustAfter--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "whenItJustAfter",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "whenItJustAfter--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
@@ -22,7 +22,7 @@ whenItJustAfter(compoundParameter, restParameters__MUST_NOT_BE...)
   })
 
 
-  targetElementSelector = isNull(compoundParameter.contextSelector) ?\
+  targetElementSelector = isNull--YDF(compoundParameter.contextSelector) ?\
       compoundParameter.targetElementSelector :\
       compoundParameter.contextSelector + " " + compoundParameter.targetElementSelector
 

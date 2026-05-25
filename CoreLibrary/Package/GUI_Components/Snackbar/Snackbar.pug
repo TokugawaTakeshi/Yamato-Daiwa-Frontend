@@ -12,7 +12,7 @@ mixin Snackbar--YDF(properties, statesSimulations)
       areThemesCSS_ClassesCommon,
       geometricVariation,
       decorativeVariation
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
@@ -23,7 +23,7 @@ mixin Snackbar--YDF(properties, statesSimulations)
     const {
       mounted,
       hidden
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: statesSimulations,
       parameterNumber: 2,
       parameterName: "statesSimulations",

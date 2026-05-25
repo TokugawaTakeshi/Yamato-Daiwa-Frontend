@@ -12,6 +12,6 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/09-OtherFunctio
 sample1 = "ALPHA"
 sample2 = null
 
-p(substituteNull(sample1, "BRAVO"))  // => "ALPHA" ("sample1" is defined, no need to substitute the default value)
-p(substituteNull(sample2, "BRAVO"))  // => "BRAVO" ("sample2" is explicit null, default value has been substituted)
-p(substituteNull(sample3, "BRAVO"))  // => "BRAVO" ("sample3" is not defined, default value has been substituted)
+p(substituteNull--YDF(sample1, "BRAVO"))  // => "ALPHA" ("sample1" is defined, no need to substitute the default value)
+p(substituteNull--YDF(sample2, "BRAVO"))  // => "BRAVO" ("sample2" is explicit null, default value has been substituted)
+p(substituteNull--YDF(sample3, "BRAVO"))  // => "BRAVO" ("sample3" is not defined, default value has been substituted)

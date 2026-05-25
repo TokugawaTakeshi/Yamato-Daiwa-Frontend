@@ -1,4 +1,4 @@
-HorizontalCenteringWithoutWrapper = {
+HorizontalCenteringWithoutWrapper--YDF = {
   TargetElementTypes: {
     block: "BLOCK",
     inlineBlock: "INLINE_BLOCK"
@@ -6,17 +6,17 @@ HorizontalCenteringWithoutWrapper = {
 }
 
 
-centerHorizontallyWithoutWrapper(compoundParameter, restParameters__MUST_NOT_BE...)
+centerHorizontallyWithoutWrapper--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "centerHorizontallyWithoutWrapper",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "centerHorizontallyWithoutWrapper--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
       targetElementType: {
         type: DataTypes--YDF.string,
         required: true,
-        allowedValues: values(HorizontalCenteringWithoutWrapper.TargetElementTypes)
+        allowedValues: values(HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes)
       },
       maximalWidth: {
         type: DataTypes--YDF.dimensionalQuantity,
@@ -34,7 +34,7 @@ centerHorizontallyWithoutWrapper(compoundParameter, restParameters__MUST_NOT_BE.
   compoundParameter = compoundParameter || {}
 
 
-  if compoundParameter.targetElementType == HorizontalCenteringWithoutWrapper.TargetElementTypes.block
+  if compoundParameter.targetElementType == HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.block
 
     margin-left auto
     margin-right auto
@@ -47,9 +47,9 @@ centerHorizontallyWithoutWrapper(compoundParameter, restParameters__MUST_NOT_BE.
     transform translateX(-50%)
 
 
-  applyIfNotNull({ max-width: compoundParameter.maximalWidth })
+  applyIfNotNull--YDF({ max-width: compoundParameter.maximalWidth })
 
 
-  if isNotNull(compoundParameter.horizontalSpaceBetweenSelfAndParent)
+  if isNotNull--YDF(compoundParameter.horizontalSpaceBetweenSelfAndParent)
 
     width "calc(100% - 2*%s)" % compoundParameter.horizontalSpaceBetweenSelfAndParent

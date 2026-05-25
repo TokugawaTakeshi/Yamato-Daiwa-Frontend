@@ -14,33 +14,31 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-Typograp
 /* === Specifying via line spacing ================================================================================== */
 /* --- [ Branch A1 ] 0 line spacing --------------------------------------------------------------------------------- */
 /*
-  Размер шрифта - 13px, межстрочный интервал - 0.
-  Данная ситуация является неоднозначной, потому что из нулевого межстрочного интервала не следует, что высота строки тоже
-    равно нулю.
-  Существует опция `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0`, которая предназначена для разрешения
-    этой неоднозначности, и в идеале её следовало бы сделать обязательной при условии, что указано `lineSpacing` (а не `lineHeight`).
-  Однако ввиду того, что нулевой межстрочный интервал в многострочных текстовых блоках, для которых и предназначена
-    примесь `applyTextGeometryWithoutExtraSpaceCausedByLineHeight` - экстраординарный частный случай, смысл которого
-    неочевиден, `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0` имеет значение по умолчанию, равное `true`.
-  При таком значении, как это и следует из прямого перевода, высота строки считается равной размеру шрифта, когда
-    `lineSpacing` равен нулю.
-  Таким образом никакого "ExtraSpaceCausedByLineHeight" не будет.
-
+  Font size: 13px, line spacing: 0.
+  This situation is ambiguous because zero line spacing does not imply that the line height is also zero.
+  There is the option `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0` intended to resolve this ambiguity,
+    and ideally it should be made mandatory provided that `lineSpacing` (rather than `lineHeight`) is specified.
+  However, since zero line spacing in multi-line text blocks, for which the
+    `applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF` mixin is intended, is an extraordinary special case
+    whose meaning is unobvious, `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0` has a default value of `true`.
+  With this value, as follows from the direct translation, the line height is considered equal to the font size when
+    `lineSpacing` is zero.
+  Thus, there will be no "ExtraSpaceCausedByLineHeight".
  */
 .ZeroLineSpacing-RelativeLineHeight
 
   /* Expected: line-height: 1 */
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 13px,
     lineSpacing: 0
   })
 
 
-/* "px" и любые другие единицы изменения здесь ничего не меняют - результат будет полностью эквивалентен выше. */
+/* "px" and any other units do not change anything here - the result will be completely equivalent to the above. */
 .ZeroPixelsLineSpacing-RelativeLineHeight
 
   /* Expected: line-height: 1 */
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 13px,
     lineSpacing: 0px
   })
@@ -49,18 +47,18 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-Typograp
 .ZeroLineSpacing-AbsoluteLineHeight
 
   /* Expected: line-height: 13px */
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 13px,
     lineSpacing: 0,
     mustApplyDimensionalLineHeightIfPossible: true
   })
 
 
-/* "px" и любые другие единицы изменения здесь ничего не меняют - результат будет полностью эквивалентен выше. */
+/* "px" and any other units do not change anything here - the result will be completely equivalent to the above. */
 .ZeroPixelsLineSpacing-AbsoluteLineHeight
 
   /* Expected: line-height: 13px */
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 13px,
     lineSpacing: 0px,
     mustApplyDimensionalLineHeightIfPossible: true
@@ -69,15 +67,15 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-Typograp
 
 /* --- [ Branch A2 ] Dimensionless line spacing --------------------------------------------------------------------- */
 /*
-  Размер шрифта - 10px (мелко, зато в рамках этого теста лего сравнить ...), межстрочный интервал - 0.4.
-  При настройках по умолчанию данная функция попытается вычислить безразмерную высоту строки, и в данном случае это будет 1.4.
-  Нетрудно также для проверки подсчитать, что из-за высоты строки сверху и снизу у нас будет в 2px.
-  Её и надо компенсировать. Таким образом, у нас будут before и after c -2px.
+  Font size - 10px (small, but easy to compute even mentally), line spacing - 0.4.
+  With default settings, this function will attempt to calculate a dimensionless line height, and in this case it will be 1.4.
+  It is also easy to calculate for verification that due to the line height, we will have 2px at the top and bottom.
+  It needs to be compensated. Thus, we will have before and after with -2px.
  */
 .DimensionlessLineSpacing-DimensionlessLineHeight
 
   /* Expected: line-height: 1.4, margin-top: -2px, margin-bottom: -2px */
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 10px,
     lineSpacing: 0.4
   })
@@ -87,16 +85,16 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-Typograp
 /* --- [ Branch A3 ] Font size and line spacing of same unit -------------------------------------------------------- */
 
 /*
-  Размер шрифта - 10px (мелко, зато в рамках этого теста лего сравнить ...), межстрочный интервал - 4px.
-  Однако ввиду того, что согласно настройкам по умолчанию вычисляется безразмерная высота строки, это будет 1.4.
-  Нетрудно также для проверки подсчитать, что из-за высоты строки сверху и снизу у нас будет в 2px.
-  Её и надо компенсировать. Таким образом, у нас будут before и after c -2px.
+  Font size - 10px (small, but easy to compute even mentally), line spacing - 4px.
+  However, since a dimensionless line height is calculated by default, it will be 1.4.
+  It is also easy to calculate for verification that due to the line height, we will have 2px at the top and bottom.
+  It needs to be compensated. Thus, we will have before and after with -2px.
  */
 
 .FontSizeAndLineSpacingOfSameUnit-DimensionlessLineHeight
 
   /* Expected: line-height: 1.4 */
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 10px,
     lineSpacing: 4px
   })
@@ -105,27 +103,27 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-Typograp
 .FontSizeAndLineSpacingOfSameUnit-DimensionalLineHeight
 
   /* Expected: line-height: 14px */
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 10px,
     lineSpacing: 4px,
     mustApplyDimensionalLineHeightIfPossible: true
   })
 
 
-/* --- [ Branch A4 ] Font size and line spacing of different units --------------------------------------------------- */
+/* --- [ Branch A4 ] Font size and line spacing of different units -------------------------------------------------- */
 .FontSizeAndLineSpacingOfSameUnit-DimensionlessLineHeight
 
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 1rem,
     lineSpacing: 2px
   })
 
 
 // === Specifying via line height ======================================================================================
-/* --- [ Branch B1 ] 0 line height --------------------------------------------------------------------------------- */
+/* --- [ Branch B1 ] 0 line height ---------------------------------------------------------------------------------- */
 .ZeroLineHeight
 
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 10px,
     lineHeight: 0
   })
@@ -133,17 +131,17 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-Typograp
 
 .ZeroPixelsLineHeight
 
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 10px,
     lineHeight: 0
   })
 
 
-/* --- [ Branch B2 ] Dimensional line height ----------------------------------------------------------------------- */
+/* --- [ Branch B2 ] Dimensional line height ------------------------------------------------------------------------ */
 .DimensionlessLineHeight-DimensionalLineHeight
 
   /* Expected: line-height: 14px */
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 10px,
     lineHeight: 1.4,
     mustApplyDimensionalLineHeightIfPossible: true
@@ -153,17 +151,17 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-Typograp
 .DimensionlessLineHeight-DimensionlessLineHeight
 
   /* Expected: line-height: 1.4 */
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 10px,
     lineHeight: 1.4
   })
 
 
-/* --- [ Branch B3 ] Dimensional line height ----------------------------------------------------------------------- */
+/* --- [ Branch B3 ] Dimensional line height ------------------------------------------------------------------------ */
 .FontSizeAndLineHeightOfSameUnit-DimensionlessLineHeight
 
   /* Expected: line-height: 1.4 */
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 10px,
     lineHeight: 14px
   })
@@ -172,7 +170,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-Typograp
 .FontSizeAndLineHeightOfSameUnit-DimensionalLineHeight
 
   /* Expected: line-height: 14px */
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 10px,
     lineHeight: 14px,
     mustApplyDimensionalLineHeightIfPossible: true
@@ -182,7 +180,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-Typograp
 /* --- [ Branch B4 ] Font size and line height of different units --------------------------------------------------- */
 .FontSizeAndLineHeightOfSameUnit-DimensionlessLineHeight
 
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 1rem,
     lineHeight: 1.2em
   })
@@ -192,7 +190,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-Typograp
 .AbsoluteFontSizeAndRelativeLineHeight-RelativeLineHeight-Paddings
 
   /* Expected: line-height: 1.4 */
-  applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
     fontSize: 10px,
     lineSpacing: 0.4,
     paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins: {

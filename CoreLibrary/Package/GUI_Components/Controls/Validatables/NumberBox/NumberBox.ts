@@ -19,7 +19,7 @@ import {
 } from "@yamato-daiwa/es-extensions";
 import {
   getExpectedToBeSingleDOM_Element,
-  addInputEventHandler,
+  InputEventListener,
   LeftClickEventListener,
   cloneDOM_Element
 } from "@yamato-daiwa/es-extensions-browserjs";
@@ -358,7 +358,7 @@ class NumberBox<
 
     this.shellComponent.$validationErrorsMessages = this.payload.validationErrorsMessages;
 
-    addInputEventHandler({
+    InputEventListener.createAndAssign({
       targetElement: this.nativeInputElement,
       handler: this.onTypeCharacterEventListener.bind(this)
     });

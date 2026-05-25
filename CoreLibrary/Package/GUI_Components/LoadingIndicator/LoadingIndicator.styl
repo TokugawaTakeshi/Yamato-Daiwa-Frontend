@@ -76,7 +76,7 @@ LoadingIndicator--YDF-generateStyles()
 
 LoadingIndicator--YDF-customizeGeometry(settingsByTypes)
 
-  iterateAssociativeArray(
+  iterateAssociativeArray--YDF(
     settingsByTypes,
     @(type, settings) {
       LoadingIndicator--YDF-customizeGeometryOfSpecificType(type, settings.geometry)
@@ -90,11 +90,11 @@ LoadingIndicator--YDF-customizeGeometryOfSpecificType(type, settings)
 
     &.LoadingIndicator--YDF__VariableWidthArcSpinnerType {
 
-      applyIfNotNull({ height: getObjectValueByDotSeparatedPathSafely(settings, "diameter") })
+      applyIfNotNull--YDF({ height: getObjectValueByDotSeparatedPathSafely--YDF(settings, "diameter") })
 
       div {
 
-        applyIfNotNull({ border-width: getObjectValueByDotSeparatedPathSafely(settings, "thickness") })
+        applyIfNotNull--YDF({ border-width: getObjectValueByDotSeparatedPathSafely--YDF(settings, "thickness") })
 
       }
 
@@ -105,7 +105,7 @@ LoadingIndicator--YDF-customizeGeometryOfSpecificType(type, settings)
 
 LoadingIndicator--YDF-customizeDecoration(settingsByTypes)
 
-  iterateAssociativeArray(
+  iterateAssociativeArray--YDF(
     settingsByTypes,
     @(type, settings) {
       LoadingIndicator--YDF-customizeDecorationOfSpecificType(type, settings.decoration)

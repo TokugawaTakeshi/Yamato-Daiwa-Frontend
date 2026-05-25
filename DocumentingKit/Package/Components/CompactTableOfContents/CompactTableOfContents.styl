@@ -51,14 +51,14 @@ provideCompactTableOfContentsComponent(
   overridings = {}
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
 
   .CompactTableOfContents--YDF_DK
 
     &-Item
 
-      retireFromElementWithSameSelector({ y: 6px })
+      retireFromElementWithSameSelector--YDF({ y: 6px })
 
 
       &:has(.CompactTableOfContents--YDF_DK-Item-CollapsingToggle)
@@ -76,12 +76,12 @@ provideCompactTableOfContentsComponent(
         display block
 
         border-radius 8px
-        Paddings({
+        Paddings--YDF({
           horizontalSymmetric: 8px,
           verticalSymmetric: 4px
         })
 
-        applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
           fontSize: 14px,
           lineSpacing: 4px,
           mustAllowWordsBreakingAnywhere: true,
@@ -131,7 +131,7 @@ provideCompactTableOfContentsComponent(
 
       &-CollapsingToggle
 
-        ButtonLikeElementsPrimer()
+        ButtonLikeElementsPrimer--YDF()
 
         display inline-flex
         border-radius 50px

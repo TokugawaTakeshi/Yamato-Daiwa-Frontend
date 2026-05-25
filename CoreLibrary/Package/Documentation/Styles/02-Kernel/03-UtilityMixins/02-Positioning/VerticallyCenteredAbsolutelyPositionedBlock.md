@@ -1,9 +1,9 @@
-# `VerticallyCenteredAbsolutelyPositionedBlock`
+# `VerticallyCenteredAbsolutelyPositionedBlock--YDF`
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-vcapb-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 ```
-VerticallyCenteredAbsolutelyPositionedBlock({
+VerticallyCenteredAbsolutelyPositionedBlock--YDF({
   upwardShifting?: DataTypes--YDF.unit
 })
 ```
@@ -16,5 +16,5 @@ center (relative units recommended).
 ```stylus
 .ModalDialog
 
-  VerticallyCenteredAbsolutelyPositionedBlock()
+  VerticallyCenteredAbsolutelyPositionedBlock--YDF()
 ```

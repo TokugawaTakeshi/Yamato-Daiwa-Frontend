@@ -35,11 +35,11 @@
           valueLabel=@localization.requirementBadges.required
           theme=@badgeTheme
           geometricVariation=@badgeGeometricVariation
-          geometricModifiers=@([ Badge.GeometricModifiers.pillShape ])    
+          geometricModifiers=@([ Badge.GeometricModifiers.pillShape ])
           decorativeVariation=@requiredInputBadgeDecorativeVariation
         />
       }
-      
+
       else if (mustDisplayOptionalInputBadge)
       {
         <Badge
@@ -51,7 +51,7 @@
           decorativeVariation=@optionalInputBadgeDecorativeVariation
         />
       }
-      
+
       else if (mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge)
       {
         <Badge
@@ -63,49 +63,52 @@
           decorativeVariation=@Badge.StandardDecorativeVariations.neutralPastel
         />
       }
-      
-    </div>  
+
+    </div>
   }
-  
-  
+
+
   @* ━━━ Guidance ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
   @if (formattedGuidance is not null)
   {
     <p class="ValidatableControlShell--YDF-Guidance">
       @((Microsoft.AspNetCore.Components.MarkupString)formattedGuidance)
-    </p>  
+    </p>
   }
 
-  
+
   @* ━━━ Main Slot ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
-  <div 
+  <div
     class=@(
       String.Join(
-        ' ', 
+        ' ',
         this.mainSlotWrapperAdditionalCSS_Classes.Prepend("ValidatableControlShell--YDF-MainSlotCustomizableWrapper")
       )
     )
   >
     @(ChildContent)
   </div>
-  
-  
+
+
   @* ━━━ (Non-asynchronous) validations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
   @if (mustDisplayErrorsMessagesIfAny && validationErrorsMessagesCopyForAnimating.Any())
   {
-    <ul class="ValidatableControlShell--YDF-ValidationErrorsMessagesList">
-
+    <ul
+      class="ValidatableControlShell--YDF-ValidationErrorsMessagesList"
+      @ref=@validationErrorsMessagesList
+    >
+  
       @foreach (string validationErrorMessage in validationErrorsMessagesCopyForAnimating)
       {
-        <li 
+        <li
           class="ValidatableControlShell--YDF-ValidationErrorsMessagesList-Item"
           @key=@validationErrorMessage
         >
           @(validationErrorMessage)
-        </li>  
+        </li>
       }
-      
-    </ul>  
+  
+    </ul>
   }
   
   

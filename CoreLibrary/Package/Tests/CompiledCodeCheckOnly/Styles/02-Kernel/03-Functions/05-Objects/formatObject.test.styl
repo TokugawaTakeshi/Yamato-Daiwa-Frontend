@@ -8,14 +8,14 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/05-Objects/form
 @require "02-Kernel.styl"
 
 
-p(formatObject({}))
-//p(formatObject("NON_OBJECT"))
+p(formatObject--YDF({}))
+//p(formatObject--YDF("NON_OBJECT"))
 
-p(formatObject({ alpha: "ALPHA" }))
+p(formatObject--YDF({ alpha: "ALPHA" }))
 
-p(formatObject({ alpha: "ALPHA", bravo: "BRAVO" }))
+p(formatObject--YDF({ alpha: "ALPHA", bravo: "BRAVO" }))
 
-p(formatObject({
+p(formatObject--YDF({
   alpha: "ALPHA",
   bravo: "BRAVO",
   charlie: {
@@ -24,7 +24,7 @@ p(formatObject({
   }
 }))
 
-p(formatObject({
+p(formatObject--YDF({
   alpha: "ALPHA",
   bravo: "BRAVO",
   charlie: {
@@ -34,7 +34,7 @@ p(formatObject({
   delta: "DELTA"
 }))
 
-p(formatObject({
+p(formatObject--YDF({
   geometry: {
     fontSize: 40px,
     lineHeight: 1.2

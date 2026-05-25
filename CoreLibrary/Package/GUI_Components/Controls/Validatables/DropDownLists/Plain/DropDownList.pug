@@ -102,7 +102,7 @@ mixin DropDownList--YDF(properties, statesSimulations)
        * */
       decorativeVariation
 
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
@@ -161,7 +161,7 @@ mixin DropDownList--YDF(properties, statesSimulations)
        * */
       asynchronousValidationsStatuses
 
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: statesSimulations,
       parameterNumber: 2,
       parameterName: "statesSimulations",
@@ -170,7 +170,6 @@ mixin DropDownList--YDF(properties, statesSimulations)
     });
 
 
-    //- TODO 検問　━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     const rootElementModifierCSS_Classes = [
 
       expanded ?
@@ -241,8 +240,6 @@ mixin DropDownList--YDF(properties, statesSimulations)
       asynchronousValidationsStatuses
     }
   ).DropDownList--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
-
-    //- TODO placeholder、未使用
 
     input.DropDownList--YDF-InputElement(
       role="combobox"

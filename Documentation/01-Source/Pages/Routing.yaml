@@ -35,14 +35,6 @@ coreLibrary:
 
                   $children:
 
-                    buildEmailLinkHrefAttributeValue:
-                      $heading: "<code>buildEmailLinkHrefAttributeValue</code>"
-                      $URI: `@All/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildEmailLinkHrefAttributeValue/buildEmailLinkHrefAttributeValue.${ fileNameLocalizationExtensions }`
-
-                    buildPhoneNumberLinkHrefAttributeValue:
-                      $heading: "<code>buildPhoneNumberLinkHrefAttributeValue</code>"
-                      $URI: `@All/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildPhoneNumberLinkHrefAttributeValue/buildPhoneNumberLinkHrefAttributeValue.${ fileNameLocalizationExtensions }`
-
                     processObjectTypeParameterOfPugMixin:
                       $heading: "<code>processObjectTypeParameterOfPugMixin</code>"
                       $URI: `@All/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/processObjectTypeParameterOfPugMixin.${ fileNameLocalizationExtensions }`
@@ -52,10 +44,11 @@ coreLibrary:
                           english: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/TableOfContents/processObjectTypeParameterOfPugMixin.toc.english.yaml
                           japanese: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/TableOfContents/processObjectTypeParameterOfPugMixin.toc.japanese.yaml
                           russian: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/TableOfContents/processObjectTypeParameterOfPugMixin.toc.russian.yaml
+
 #                    RoutingEmulator:
 #                      $heading: "<code>RoutingEmulator</code>"
 #                      $URI: "#"
-#
+
                 assets:
 
                   $heading: `coreLibrary.markup.functionality.inlineJavaScript.assets.$heading`

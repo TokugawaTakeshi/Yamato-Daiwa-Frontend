@@ -68,7 +68,7 @@ provideParameterMetadataYDF_DK_Component()
 
       &-Key
 
-        applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
           fontSize: 1rem,
           lineSpacing: 0.2rem,
           mustAllowWordsBreakingAnywhere: true
@@ -85,7 +85,7 @@ provideParameterMetadataYDF_DK_Component()
 
       &-Value
 
-        applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
           fontSize: 1rem,
           lineSpacing: 0.2rem,
           mustAllowWordsBreakingAnywhere: true
@@ -97,7 +97,7 @@ provideParameterMetadataYDF_DK_Component()
         +NarrowContainersConfiguration()
 
           margin-left 1rem
-          PositionalRelationship({
+          PositionalRelationship--YDF({
             definitions: (".ParameterMetadata--YDF_DK-Metadata-Key" { retireFromIt: { y: 0.2rem }, pushItFromSelf: { y: 0.8rem } })
           })
 

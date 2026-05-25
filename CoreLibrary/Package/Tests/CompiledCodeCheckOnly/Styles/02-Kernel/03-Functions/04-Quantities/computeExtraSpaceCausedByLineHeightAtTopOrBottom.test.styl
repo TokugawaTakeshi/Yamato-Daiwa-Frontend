@@ -10,63 +10,63 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/04-Quantities/c
 
 
 // === [ Branch A1 ] 0 line spacing
-testForEquality(
+testForEquality--YDF(
   "When line spacing is 0, the extra space caused by line height is also 0",
-  computeExtraSpaceCausedByLineHeightAtTopOrBottom({ fontSize: 10px, lineSpacing: 0 }),
+  computeExtraSpaceCausedByLineHeightAtTopOrBottom--YDF({ fontSize: 10px, lineSpacing: 0 }),
   0
 )
 
 
 // === [ Branch A2 ] Dimensionless line spacing
-testForEquality(
+testForEquality--YDF(
   "With 10px font size and line spacing equals 0.4 the extra space caused by line height is 2px at the top and the bottom",
-  computeExtraSpaceCausedByLineHeightAtTopOrBottom({ fontSize: 10px, lineSpacing: 0.4 }),
+  computeExtraSpaceCausedByLineHeightAtTopOrBottom--YDF({ fontSize: 10px, lineSpacing: 0.4 }),
   2px
 )
 
 
 // === [ Branch A3 ] Font size and line spacing of same unit
-testForEquality(
+testForEquality--YDF(
   "With 10px font size and line spacing equals 4px the extra space caused by line height is 2px at the top and the bottom",
-  computeExtraSpaceCausedByLineHeightAtTopOrBottom({ fontSize: 10px, lineSpacing: 4px }),
+  computeExtraSpaceCausedByLineHeightAtTopOrBottom--YDF({ fontSize: 10px, lineSpacing: 4px }),
   2px
 )
 
 
 // === [ Branch A3 ] Font size and line spacing of same unit
-testForEquality(
+testForEquality--YDF(
   "With 1rem font size and line spacing equals 4px, the scalar result could not be computed by CSS pre-processor; " +\
       "the calc expression 'calc(1rem * (4px / 2))' will be generated instead",
-  computeExtraSpaceCausedByLineHeightAtTopOrBottom({ fontSize: 1rem, lineSpacing: 4px }),
+  computeExtraSpaceCausedByLineHeightAtTopOrBottom--YDF({ fontSize: 1rem, lineSpacing: 4px }),
   "calc(1rem * (4px / 2))"
 )
 
 
 // === [ Branch B1 ] 0 line height: basically it could not be but must be processed correctly
-testForEquality(
+testForEquality--YDF(
   "With 10px fons size and 0 line height (that is strange on practice), the extra space caused by line height is also 0",
-  computeExtraSpaceCausedByLineHeightAtTopOrBottom({ fontSize: 10px, lineHeight: 0 }),
+  computeExtraSpaceCausedByLineHeightAtTopOrBottom--YDF({ fontSize: 10px, lineHeight: 0 }),
   0
 )
 
 // === [ Branch B2 ] Dimensionless line height
-testForEquality(
+testForEquality--YDF(
   "With 10px font size and line height equals 1.4, the extra space caused by line height is 2px at the top and the bottom",
-  computeExtraSpaceCausedByLineHeightAtTopOrBottom({ fontSize: 10px, lineHeight: 1.4 }),
+  computeExtraSpaceCausedByLineHeightAtTopOrBottom--YDF({ fontSize: 10px, lineHeight: 1.4 }),
   2px
 )
 
 // === [ Branch B3 ] Font size and line height of same unit
-testForEquality(
+testForEquality--YDF(
   "When font size is 10px and line height is 14px, the extra space caused by line height is 2px at the top and the bottom",
-  computeExtraSpaceCausedByLineHeightAtTopOrBottom({ fontSize: 10px, lineHeight: 14px }),
+  computeExtraSpaceCausedByLineHeightAtTopOrBottom--YDF({ fontSize: 10px, lineHeight: 14px }),
   2px
 )
 
 // === [ Branch B4 ] Font size and line height of different units
-testForEquality(
+testForEquality--YDF(
   "With 1rem font size and line spacing equals 14px, the scalar result could not be computed by CSS pre-processor; " +\
       "the calc expression 'calc((14px - 1rem) / 2)' will be generated instead",
-  computeExtraSpaceCausedByLineHeightAtTopOrBottom({ fontSize: 1rem, lineHeight: 14px }),
+  computeExtraSpaceCausedByLineHeightAtTopOrBottom--YDF({ fontSize: 1rem, lineHeight: 14px }),
   "calc((14px - 1rem) / 2)"
 )

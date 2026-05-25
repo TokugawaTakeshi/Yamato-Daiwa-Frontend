@@ -12,9 +12,13 @@ public partial class ValidatableControlShell:
   
   /* ━━━ Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public const string CSS_NAMESPACE = "ValidatableControlShell--YDF";
-
   
-  /* ┅┅┅ JavaScript Functionality ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  private bool hasBeenRenderedAtLeastOnce = false;
+
+  private readonly List<Func<Task>> tasksForAfterNextRender = [];
+  
+  
+    /* ┅┅┅ JavaScript Functionality ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   [Microsoft.AspNetCore.Components.Inject]
   protected Microsoft.JSInterop.IJSRuntime javaScriptRuntime { get; set; } = null!;
 

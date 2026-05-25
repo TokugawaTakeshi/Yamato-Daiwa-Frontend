@@ -50,9 +50,9 @@ ClosingButton--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "ClosingButton--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -107,7 +107,7 @@ ClosingButton--YDF-generateStyles(
 
     .ClosingButton--YDF
 
-      ButtonLikeElementsPrimer()
+      ButtonLikeElementsPrimer--YDF()
 
       display flex
       flex-direction column
@@ -150,25 +150,25 @@ ClosingButton--YDF-generateStyles(
   // ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "ClosingButton.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
 
 
     // ╍╍╍ Root Element ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
-    +provideDefaultSelectorWhenRootAndApply("." + ClosingButton--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + ClosingButton--YDF.CSS_NAMESPACE)
 
-      BordersSizing(variation.rootElement.borders)
-      Paddings(variation.rootElement.paddings)
+      BordersSizing--YDF(variation.rootElement.borders)
+      Paddings--YDF(variation.rootElement.paddings)
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     // ╍╍╍ Icon ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     .ClosingButton--YDF-Icon
 
-      cachedReusables = extractAndValidateObjectProperties({
+      cachedReusables = extractAndValidateObjectProperties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         extracts: {
@@ -197,24 +197,24 @@ ClosingButton--YDF-generateStyles(
         width lineWidth
         height lineThickness
 
-        left: buildCalcExpression(
+        left: buildCalcExpression--YDF(
                 "${ boxSizeHalfWidth } - ${ lineHalfWidth }",
                 { boxSizeHalfWidth: boxSizeHalfWidth, lineHalfWidth: lineHalfWidth }
               )
 
-        top: buildCalcExpression(
+        top: buildCalcExpression--YDF(
                 "${ boxSizeHalfWidth } - ${ lineHalfThickness }",
                 { boxSizeHalfWidth: boxSizeHalfWidth, lineHalfThickness: lineHalfThickness }
               )
 
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     // ╍╍╍ Label ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     .ClosingButton--YDF-Label
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -223,7 +223,7 @@ ClosingButton--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.label.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.label.customDeclarations)
 
 
   //* [ Approach ] Being the modifiers, must be applied after theme-dependent styles. */
@@ -239,7 +239,7 @@ ClosingButton--YDF-generateStyles(
   // ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "ClosingButton.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
@@ -253,7 +253,7 @@ ClosingButton--YDF-generateStyles(
 
 
         // ╍╍╍ Root Element ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation[state].rootElement,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -261,18 +261,18 @@ ClosingButton--YDF-generateStyles(
             background-image: { dotSeparatedPath: "background.image", required: false },
             border-style: { dotSeparatedPath: "borders.style", required: false },
             border-color: { dotSeparatedPath: "borders.color", required: false },
-            outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition },
-            box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition }
+            outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition--YDF },
+            box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition--YDF }
           }
         })
 
-        applyMixinStoredInObjectIfItIsNotNull(variation[state].rootElement.customDeclarations)
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation[state].rootElement.customDeclarations)
 
 
         // ┅┅┅ Icon ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
         { ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED }.ClosingButton--YDF-Icon
 
-          strokeColor = extractAndValidateObjectProperties({
+          strokeColor = extractAndValidateObjectProperties--YDF({
             targetObject: variation[state].icon,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             extracts: {
@@ -284,29 +284,29 @@ ClosingButton--YDF-generateStyles(
           &::before,
           &::after
 
-            applyIfNotNull({ background-color: strokeColor })
+            applyIfNotNull--YDF({ background-color: strokeColor })
 
 
-          applyMixinStoredInObjectIfItIsNotNull(variation[state].icon.customDeclarations)
+          applyMixinStoredInObjectIfItIsNotNull--YDF(variation[state].icon.customDeclarations)
 
 
         // ┅┅┅ Label ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
         { ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED }.ClosingButton--YDF-Label
 
-          validateAndAssignStoredInObjectCSS_Properties({
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
             targetObject: variation[state].label.text,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             assigments: {
               font-weight: { dotSeparatedPath: "fontWeight", required: false },
               color: { dotSeparatedPath: "color", required: false },
-              underline: { dotSeparatedPath: "underline", required: false, applier: applyObjectTypeUnderlineDefinition }
+              underline: { dotSeparatedPath: "underline", required: false, applier: applyObjectTypeUnderlineDefinition--YDF }
             }
           })
 
-          applyMixinStoredInObjectIfItIsNotNull(variation[state].label.customDeclarations)
+          applyMixinStoredInObjectIfItIsNotNull--YDF(variation[state].label.customDeclarations)
 
 
-      +provideDefaultSelectorWhenRootAndApply("." + ClosingButton--YDF.CSS_NAMESPACE)
+      +provideDefaultSelectorWhenRootAndApply--YDF("." + ClosingButton--YDF.CSS_NAMESPACE)
 
         if (state == "defaultState")
 
@@ -372,7 +372,7 @@ ClosingButton--YDF-generateStyles(
 
   if !options.themeIndependentStylesOnly
 
-    applyComponentThemes({
+    applyComponentThemes--YDF({
       CSS_Namespace: ClosingButton--YDF.CSS_NAMESPACE,
       themes: properties.themes,
       areThemesCSS_ClassesCommon: options.externalThemes,

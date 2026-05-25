@@ -10,7 +10,7 @@ provideCallableExpressionYDF_DK_Component()
     &-TechnicalNameHeading
 
       font-family Consolas, monaco, monospace
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: 1.4rem,
         lineSpacing: 0.2rem,
         mustAllowWordsBreakingAnywhere: true
@@ -22,7 +22,7 @@ provideCallableExpressionYDF_DK_Component()
 
     &-LocalizedDescriptiveHeading
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: 1.2rem,
         lineSpacing: 0.2rem,
         mustAllowWordsBreakingAnywhere: true
@@ -35,7 +35,7 @@ provideCallableExpressionYDF_DK_Component()
 
     &-SignaturesFlow
 
-      retireFrom({
+      retireFrom--YDF({
         definitions:\
             (".CallableExpressionScheme--YDF_DK-TechnicalNameHeading" { y: 4px })\
             (".CallableExpressionScheme--YDF_DK-LocalizedDescriptiveHeading" { y: 12px })
@@ -47,13 +47,13 @@ provideCallableExpressionYDF_DK_Component()
       display flex
       flex-wrap wrap
 
-      retireFrom({ targetElementSelector: ".CallableExpressionScheme--YDF_DK-Signature", y: 8px })
+      retireFrom--YDF({ targetElementSelector: ".CallableExpressionScheme--YDF_DK-Signature", y: 8px })
 
 
       &-Heading
 
         font-family "Arial Black", "Arial Bold", "Gadget", sans-serif
-        applyTextGeometryWithoutExtraSpaceCausedByLineHeight({ fontSize: 1.2rem, lineSpacing: 0.2rem })
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({ fontSize: 1.2rem, lineSpacing: 0.2rem })
 
         color: W3C_39_ShadesOfGray--YDF[12]
 
@@ -62,7 +62,7 @@ provideCallableExpressionYDF_DK_Component()
 
       &-LocalizedDescriptiveHeading
 
-        applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
           fontSize: 1.1rem,
           lineSpacing: 0.2rem,
           mustAllowWordsBreakingAnywhere: true
@@ -86,7 +86,7 @@ provideCallableExpressionYDF_DK_Component()
       flex-wrap wrap
       align-items baseline
 
-      retireFrom({ targetElementSelector: ".CallableExpressionScheme--YDF_DK-GenericExpressionLabel", y: 6px })
+      retireFrom--YDF({ targetElementSelector: ".CallableExpressionScheme--YDF_DK-GenericExpressionLabel", y: 6px })
 
 
       /.CallableExpressionScheme--YDF_DK-Signature &
@@ -121,7 +121,7 @@ provideCallableExpressionYDF_DK_Component()
         color: YDF_ColorPalette.red.mediumDark
 
         flex-shrink 0
-        PositionalRelationship({
+        PositionalRelationship--YDF({
           definitions: (".CallableExpressionScheme--YDF_DK-Bracket" { retireFromIt: { x: 0.2rem }, pushItFromSelf: { x: 0.2rem } })
         })
 
@@ -133,7 +133,7 @@ provideCallableExpressionYDF_DK_Component()
         flex-shrink 0
         margin-left 0.5rem
 
-        pushTargetFromSelf({ targetElementSelector: ".CallableExpressionScheme--YDF_DK-GenericParameter-Name", x: 0.5rem })
+        pushTargetFromSelf--YDF({ targetElementSelector: ".CallableExpressionScheme--YDF_DK-GenericParameter-Name", x: 0.5rem })
 
 
       &-Comma
@@ -174,7 +174,7 @@ provideCallableExpressionYDF_DK_Component()
       color: W3C_39_ShadesOfGray--YDF[12]
 
       flex-shrink 0
-      retireFrom({ targetElementSelector: ".CallableExpressionScheme--YDF_DK-ParametersFlow", y: 6px })
+      retireFrom--YDF({ targetElementSelector: ".CallableExpressionScheme--YDF_DK-ParametersFlow", y: 6px })
 
 
     &-ReturnedValue
@@ -199,7 +199,7 @@ provideCallableExpressionYDF_DK_Component()
       grid-template-columns repeat(auto-fill, minmax(250px, 1fr));
       gap 6px
 
-      retireFrom({
+      retireFrom--YDF({
         definitions:\
             (".CallableExpressionScheme--YDF_DK-ParametersAndReturnedValuesGroup" { y: 0.4rem })\
             (".CallableExpressionScheme--YDF_DK-SignaturesFlow" { y: 0.8rem })

@@ -22,13 +22,13 @@ if undefinedVariable
   p("It will be printed too because 'typeof(undefinedVariable)' is 'ident' it means not falsy.")
 
 
-if (isTrue(undefinedVariable))
+if (isTrue--YDF(undefinedVariable))
 
   p("It will not be printed because 'undefinedVariable' is not true.")
   error("Test has been failed.")
 
 
-else if (isFalse(undefinedVariable))
+else if (isFalse--YDF(undefinedVariable))
 
   p("It will not be printed because 'undefinedVariable' is not false.")
   error("Test has been failed.")

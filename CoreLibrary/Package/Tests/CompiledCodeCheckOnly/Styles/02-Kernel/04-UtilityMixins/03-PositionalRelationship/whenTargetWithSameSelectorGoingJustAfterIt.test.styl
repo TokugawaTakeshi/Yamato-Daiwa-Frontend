@@ -13,13 +13,13 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   &-ElementA
 
-    +whenTargetWithSameSelectorGoingJustAfterIt()
+    +whenTargetWithSameSelectorGoingJustAfterIt--YDF()
 
       background goldenrod
 
 
   p
 
-    +whenTargetWithSameSelectorGoingJustAfterIt({ referenceElementSelector: "p", contextSelector: ".Block" })
+    +whenTargetWithSameSelectorGoingJustAfterIt--YDF({ referenceElementSelector: "p", contextSelector: ".Block" })
 
       border-top 1px solid black

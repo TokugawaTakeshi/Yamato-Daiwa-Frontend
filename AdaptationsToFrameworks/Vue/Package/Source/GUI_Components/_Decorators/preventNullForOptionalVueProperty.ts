@@ -5,27 +5,33 @@ import ForbiddenNullValueOfOptionalVuePropertyError from
     "../_Errors/ForbiddenNullValueOfOptionalVueProperty/ForbiddenNullValueOfOptionalVuePropertyError";
 
 
-const preventNullForOptionalVueProperty: (_arguments: unknown, decoratorContext: string | DecoratorContext) => void =
-    createDecorator(
-      (componentOptions: ComponentOptions, key: string): void => {
+const preventNullForOptionalVueProperty:
 
-        /* eslint-disable no-underscore-dangle -- [ CONVENTION ]
-         * Vue uses the `_` prefix to define its own private properties.  */
-        if (isUndefined(componentOptions._nonNullOptionalProperties__YDF)) {
-          componentOptions._nonNullOptionalProperties__YDF = [];
-        }
+    (_arguments: unknown, decoratorContext: string | DecoratorContext) => void =
 
-        /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
-        * The componentOptions` allows to add custom properties (do not be confused with ones called "props").
-        * Maybe they can be specified via generic parameter, but `ComponentOptions` have many generic parameters which
-        *   can not be specified selectively. */
-        ((componentOptions._nonNullOptionalProperties__YDF as Array<string>)).push(key);
+        /* eslint-disable-next-line @typescript-eslint/strict-void-return --
+        * Decorator function must even be `void` or return `any` but not `unknown`.
+        * Because usage of `any` type is strictly prohibited, accepting that the function is void. */
+        createDecorator(
+          (componentOptions: ComponentOptions, key: string): void => {
 
-        patchLifecycleHook("beforeCreate", componentOptions);
-        patchLifecycleHook("beforeUpdate", componentOptions);
+            /* eslint-disable no-underscore-dangle -- [ CONVENTION ]
+             * Vue uses the `_` prefix to define its own private properties.  */
+            if (isUndefined(componentOptions._nonNullOptionalProperties__YDF)) {
+              componentOptions._nonNullOptionalProperties__YDF = [];
+            }
 
-      }
-    );
+            /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+            * The componentOptions` allows adding custom properties (do not be confused with ones called "props").
+            * Maybe they can be specified via generic parameter, but `ComponentOptions` have many generic parameters
+            * which cannot be specified selectively. */
+            ((componentOptions._nonNullOptionalProperties__YDF as Array<string>)).push(key);
+
+            patchLifecycleHook("beforeCreate", componentOptions);
+            patchLifecycleHook("beforeUpdate", componentOptions);
+
+          }
+        );
 
 
 function patchLifecycleHook(

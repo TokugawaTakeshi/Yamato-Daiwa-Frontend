@@ -1,9 +1,9 @@
-formatObject(targetObject)
+formatObject--YDF(targetObject)
 
-  if !isObject(targetObject)
+  if !isObject--YDF(targetObject)
 
     warn(
-      "The passed parameter to 'formatObject' function is not an object - it has type " + typeof(targetObject) + " " +\
+      "The passed parameter to 'formatObject--YDF' function is not an object - it has type " + typeof(targetObject) + " " +\
       "and value:\n" + targetObject
     )
 
@@ -62,17 +62,17 @@ formatObject(targetObject)
 
     accumulatingString = "{\n";
 
-    lastKey = keys(targetObject)[getLengthOfPrimitivesArray(keys(targetObject)) - 1]
+    lastKey = keys(targetObject)[getLengthOfPrimitivesArray--YDF(keys(targetObject)) - 1]
 
     for key, value in targetObject
 
-      if isObject(value)
+      if isObject--YDF(value)
 
         accumulatingString = accumulatingString + insertTabbing() + key + ": "
         incrementTabbing()
         accumulatingString = accumulatingString + formatDepthLevel(value)
 
-      else if isString(value)
+      else if isString--YDF(value)
 
         accumulatingString = accumulatingString + insertTabbing() + key + ": " + "'" + value + "'"
 

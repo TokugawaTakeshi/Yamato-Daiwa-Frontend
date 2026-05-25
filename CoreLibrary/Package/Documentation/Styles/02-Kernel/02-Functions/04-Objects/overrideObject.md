@@ -9,7 +9,7 @@ overrideObject(targetObject: DataTypes--YDF.object, overridings: DataTypes--YDF.
 Overrides object herewith unlike native **merge**/**extend** works correctly with nested objects.
 
 Note that first operand will mutate as result of this operation.
-If the mutating of the first operator is unsolicited, use [deeplyCloneAndOverrideObject](deeplyCloneAndOverrideObject.md)
+If the mutating of the first operator is unsolicited, use [deeplyCloneAndOverrideObject--YDF](deeplyCloneAndOverrideObject.md)
 function instead.
 
 

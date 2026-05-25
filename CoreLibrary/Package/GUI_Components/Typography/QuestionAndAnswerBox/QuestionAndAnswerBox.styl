@@ -74,7 +74,7 @@ QuestionAndAnswerBox--YDF-generateStyles()
 
     &-Text
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: YDF_Configuration.textGeometry.basicFontSize,
         lineHeight: YDF_Configuration.textGeometry.basicLineHeightInMultilineTextBlocks
       })
@@ -84,6 +84,6 @@ QuestionAndAnswerBox--YDF-generateStyles()
       grid-area QUESTION
       margin-top 0.2rem
 
-      PositionalRelationship({
+      PositionalRelationship--YDF({
         definitions: (".QuestionAndAnswerBox--YDF-Title" { retireFromIt: { y: 0.4rem }, pushItFromSelf: { y: 1rem } })
       })

@@ -1,30 +1,4 @@
-applyStylesToRootElementOfYDF_Component(defaultSelector, areThemesCSS_ClassesCommon, themes)
-
-  commonThemesCSS_Classes = YDF_Array-create()
-
-  for theme in values(themes)
-
-    YDF_Array-appendElementsIf(
-      commonThemesCSS_Classes,
-      isNonEmptyString(theme.componentIndependentCSS_Class),
-      theme.componentIndependentCSS_Class
-    )
-
-  hasCommonCSS_Class = YDF_Array-isIncludes(commonThemesCSS_Classes, theme.componentIndependentCSS_Class)
-
-
-  if selector() == "&" || selector() == "" || hasCommonCSS_Class
-
-    {defaultSelector}
-
-      {block}
-
-  else
-
-    {block}
-
-
-provideDefaultSelectorWhenRootAndApply(defaultSelector)
+provideDefaultSelectorWhenRootAndApply--YDF(defaultSelector)
 
   if selector() == "&" || selector() == ""
 
@@ -37,15 +11,15 @@ provideDefaultSelectorWhenRootAndApply(defaultSelector)
     {block}
 
 
-getCurrentSelectorSubstitutingRoot(defaultSelector)
+getCurrentSelectorSubstitutingRoot--YDF(defaultSelector)
 
   return selector() == "&" || selector() == "" ? defaultSelector : selector()
 
 
-applyComponentThemes(compoundParameter, restParameters__MUST_NOT_BE...)
+applyComponentThemes--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "applyComponentThemes",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "applyComponentThemes--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
@@ -83,13 +57,13 @@ applyComponentThemes(compoundParameter, restParameters__MUST_NOT_BE...)
 
   applyTheme(themeName, theme) {
 
-    nonEmptyGeometricVariationsCount = getObjectNonNullValuesCount(theme.geometricVariations)
+    nonEmptyGeometricVariationsCount = getObjectNonNullValuesCount--YDF(theme.geometricVariations)
     mustApplyGeometricVariations = !(themeIndependentGeometricVariations && hasThemeIndependentGeometricVariationsBeenApplied.value);
 
     if(mustApplyGeometricVariations) {
 
       // [ Theory ] Every value could be set to null by user.
-      iterateObjectSkippingNullValues(theme.geometricVariations, @(geometricVariationName, geometricVariation) {
+      iterateObjectSkippingNullValues--YDF(theme.geometricVariations, @(geometricVariationName, geometricVariation) {
 
         if (nonEmptyGeometricVariationsCount == 1) {
 
@@ -103,9 +77,9 @@ applyComponentThemes(compoundParameter, restParameters__MUST_NOT_BE...)
 
         } else {
 
-          geometricVariationCSS_Class = buildBEM_ClassName({
+          geometricVariationCSS_Class = buildBEM_ClassName--YDF({
             block: CSS_Namespace,
-            modifier: capitalizeFirstLatinCharacter(geometricVariationName) + "GeometricVariation"
+            modifier: capitalizeFirstLatinCharacter--YDF(geometricVariationName) + "GeometricVariation"
             elementSeparator: "-",
             modifierSeparator: "__"
           })
@@ -133,9 +107,9 @@ applyComponentThemes(compoundParameter, restParameters__MUST_NOT_BE...)
     }
 
     // [ Theory ] Every value could be set to null by user.
-    iterateObjectSkippingNullValues(theme.decorativeVariations, @(decorativeVariationName, decorativeVariation) {
+    iterateObjectSkippingNullValues--YDF(theme.decorativeVariations, @(decorativeVariationName, decorativeVariation) {
 
-      nonEmptyDecorativeVariationsCount = getObjectNonNullValuesCount(theme.decorativeVariations)
+      nonEmptyDecorativeVariationsCount = getObjectNonNullValuesCount--YDF(theme.decorativeVariations)
 
       if (nonEmptyDecorativeVariationsCount == 1) {
 
@@ -143,9 +117,9 @@ applyComponentThemes(compoundParameter, restParameters__MUST_NOT_BE...)
 
       } else {
 
-        decorativeVariationCSS_Class = buildBEM_ClassName({
+        decorativeVariationCSS_Class = buildBEM_ClassName--YDF({
           block: CSS_Namespace,
-          modifier: capitalizeFirstLatinCharacter(decorativeVariationName) + "DecorativeVariation",
+          modifier: capitalizeFirstLatinCharacter--YDF(decorativeVariationName) + "DecorativeVariation",
           elementSeparator: "-",
           modifierSeparator: "__"
         })
@@ -164,9 +138,9 @@ applyComponentThemes(compoundParameter, restParameters__MUST_NOT_BE...)
   }
 
 
-  nonEmptyThemesCount = getObjectNonNullValuesCount(themes)
+  nonEmptyThemesCount = getObjectNonNullValuesCount--YDF(themes)
 
-  iterateObjectSkippingNullValues(themes, @(themeName, theme) {
+  iterateObjectSkippingNullValues--YDF(themes, @(themeName, theme) {
 
     if (nonEmptyThemesCount == 1) {
 
@@ -176,9 +150,9 @@ applyComponentThemes(compoundParameter, restParameters__MUST_NOT_BE...)
 
       if (areThemesCSS_ClassesCommon) {
 
-        if (!isNonEmptyString(theme.componentIndependentCSS_Class)) {
+        if (!isNonEmptyString--YDF(theme.componentIndependentCSS_Class)) {
           error(
-            buildString(
+            buildString--YDF(
               "The themes of the component with CSS namespace '${ CSS_Namespace }' has been set to external however " +\
               "the property 'componentIndependentCSS_Class' on the theme specification has not been defined. "+\
               "Please define it with non-empty string.",
@@ -194,9 +168,9 @@ applyComponentThemes(compoundParameter, restParameters__MUST_NOT_BE...)
 
       } else {
 
-        themeCSS_Class = buildBEM_ClassName({
+        themeCSS_Class = buildBEM_ClassName--YDF({
           block: CSS_Namespace,
-          modifier: capitalizeFirstLatinCharacter(themeName) + "Theme",
+          modifier: capitalizeFirstLatinCharacter--YDF(themeName) + "Theme",
           elementSeparator: "-",
           modifierSeparator: "__"
         })
@@ -211,15 +185,15 @@ applyComponentThemes(compoundParameter, restParameters__MUST_NOT_BE...)
   })
 
 
-provideComponentsPositionalRelationship(definitions = {})
+provideComponentsPositionalRelationship--YDF(definitions = {})
 
-  iterateAssociativeArray(definitions, @(componentCSS_Namespace, definitionsForTargetComponent) {
+  iterateAssociativeArray--YDF(definitions, @(componentCSS_Namespace, definitionsForTargetComponent) {
 
-    if isNotNull(definitionsForTargetComponent.withTypography) {
+    if isNotNull--YDF(definitionsForTargetComponent.withTypography) {
 
-      iterateObjectSkippingNullValues(definitionsForTargetComponent.withTypography, @(presetName, preset) {
+      iterateObjectSkippingNullValues--YDF(definitionsForTargetComponent.withTypography, @(presetName, preset) {
 
-        if isNotNull(preset.typographyDefinition) && isNotNull(preset.spacingDefinitions) {
+        if isNotNull--YDF(preset.typographyDefinition) && isNotNull--YDF(preset.spacingDefinitions) {
 
           elementsKeysAndCSS_ClassesMap = generateTypographyElementsKeysAndCSS_ClassesMap(preset.typographyDefinition)
 
@@ -227,7 +201,7 @@ provideComponentsPositionalRelationship(definitions = {})
 
             TARGET_ELEMENT_CSS_CLASS = elementsKeysAndCSS_ClassesMap[elementKey]
 
-            PositionalRelationship({
+            PositionalRelationship--YDF({
               definitions: ("." + componentCSS_Namespace {
                 retireFromIt: { y: spacingDefinitions.retireFromComponent },
                 pushItFromSelf: { y: spacingDefinitions.pushComponentFromSelf }
@@ -239,11 +213,11 @@ provideComponentsPositionalRelationship(definitions = {})
       })
     }
 
-    if (isNotNull(definitionsForTargetComponent.withOtherComponents)) {
+    if (isNotNull--YDF(definitionsForTargetComponent.withOtherComponents)) {
 
-      iterateAssociativeArray(definitionsForTargetComponent.withOtherComponents, @(targetCSS_Class, spacingDefinitions) {
+      iterateAssociativeArray--YDF(definitionsForTargetComponent.withOtherComponents, @(targetCSS_Class, spacingDefinitions) {
 
-        PositionalRelationship({
+        PositionalRelationship--YDF({
           definitions: ("." + targetCSS_Class {
             retireFromIt: { y: spacingDefinitions.retireFromTarget },
             pushItFromSelf: { y: spacingDefinitions.pushTargetFromSelf }
@@ -255,10 +229,10 @@ provideComponentsPositionalRelationship(definitions = {})
   })
 
 
-extractAndValidateObjectProperties(compoundParameter, restParameters__MUST_NOT_BE...)
+extractAndValidateObjectProperties--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "extractAndValidateObjectProperties",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "extractAndValidateObjectProperties--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
@@ -279,15 +253,15 @@ extractAndValidateObjectProperties(compoundParameter, restParameters__MUST_NOT_B
 
   for variableName, variableSpecification in extracts
 
-    variableFinalName = isNonEmptyString(variableSpecification.newName) ? variableSpecification.newName : variableName
-    targetValue = getObjectValueByDotSeparatedPathSafely(targetObject, variableSpecification.dotSeparatedPath)
+    variableFinalName = isNonEmptyString--YDF(variableSpecification.newName) ? variableSpecification.newName : variableName
+    targetValue = getObjectValueByDotSeparatedPathSafely--YDF(targetObject, variableSpecification.dotSeparatedPath)
 
-    if isNull(targetValue)
+    if isNull--YDF(targetValue)
 
       if variableSpecification.required
 
         error(
-          buildString(
+          buildString--YDF(
             "The property '${dotSeparatedPath}' must be defined on '${targetObjectName}' while actually is null.",
             {
               dotSeparatedPath: variableSpecification.dotSeparatedPath,
@@ -297,14 +271,14 @@ extractAndValidateObjectProperties(compoundParameter, restParameters__MUST_NOT_B
         )
 
 
-      if isNotNull(variableSpecification.requiredIf)
+      if isNotNull--YDF(variableSpecification.requiredIf)
 
         // [ Stylus theory ] Functions in objects could be called if and only if destructured
         predicate = variableSpecification.requiredIf.predicate
 
-        if (isTrue(predicate(targetObject))) {
+        if (isTrue--YDF(predicate(targetObject))) {
           error(
-            buildString(
+            buildString--YDF(
               "The property '${dotSeparatedPath}' must be defined on '${targetObjectName}' when ${requirementConditionDescription}.",
               {
                 dotSeparatedPath: variableSpecification.dotSeparatedPath,
@@ -317,12 +291,12 @@ extractAndValidateObjectProperties(compoundParameter, restParameters__MUST_NOT_B
 
 
       else if (\
-        isNonEmptyString(variableSpecification.mustBeInsteadOf) &&\
-        isNull(getObjectValueByDotSeparatedPathSafely(targetObject, variableSpecification.mustBeInsteadOf))
+        isNonEmptyString--YDF(variableSpecification.mustBeInsteadOf) &&\
+        isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(targetObject, variableSpecification.mustBeInsteadOf))
       )
 
         error(
-          buildString(
+          buildString--YDF(
             "The property '${targetPropertyDotSeparatedPath}' must be defined on '${targetObjectName}' when " +\
             "'${oppositePropertyName}' is null.",
             {
@@ -336,12 +310,12 @@ extractAndValidateObjectProperties(compoundParameter, restParameters__MUST_NOT_B
     else
 
       if (\
-        isNonEmptyString(variableSpecification.mustBeInsteadOf) &&\
-        isNotNull(getObjectValueByDotSeparatedPathSafely(targetObject, variableSpecification.mustBeInsteadOf))
+        isNonEmptyString--YDF(variableSpecification.mustBeInsteadOf) &&\
+        isNotNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(targetObject, variableSpecification.mustBeInsteadOf))
       )
 
         error(
-          buildString(
+          buildString--YDF(
             "The properties '${targetPropertyDotSeparatedPath}' and '${oppositePropertyName}' are " +\
             "incompatible. Specify only one of them.",
             {
@@ -352,14 +326,14 @@ extractAndValidateObjectProperties(compoundParameter, restParameters__MUST_NOT_B
           )
         )
 
-      if isNotNull(variableSpecification.incompatibleWith)
+      if isNotNull--YDF(variableSpecification.incompatibleWith)
 
         for incompatiblePropertyDotSeparatedPath in variableSpecification.incompatibleWith
 
-          if isNotNull(getObjectValueByDotSeparatedPathSafely(targetObject, incompatiblePropertyDotSeparatedPath))
+          if isNotNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(targetObject, incompatiblePropertyDotSeparatedPath))
 
             error(
-              buildString(
+              buildString--YDF(
                 "The property '${ targetPropertyDotSeparatedPath }' is incompatible with the property " +\
                 "${ incompatiblePropertyDotSeparatedPath } for the '${ targetObjectName }'.",
                 {
@@ -376,10 +350,10 @@ extractAndValidateObjectProperties(compoundParameter, restParameters__MUST_NOT_B
   return extractedVariables
 
 
-validateAndAssignStoredInObjectCSS_Properties(compoundParameter, restParameters__MUST_NOT_BE...)
+validateAndAssignStoredInObjectCSS_Properties--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "validateAndAssignStoredInObjectCSS_Properties",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "validateAndAssignStoredInObjectCSS_Properties--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
@@ -392,7 +366,7 @@ validateAndAssignStoredInObjectCSS_Properties(compoundParameter, restParameters_
     followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
   })
 
-  extractedCSS_Declarations = extractAndValidateObjectProperties({
+  extractedCSS_Declarations = extractAndValidateObjectProperties--YDF({
     targetObject: compoundParameter.targetObject,
     targetObjectName: compoundParameter.targetObjectName,
     extracts: compoundParameter.assigments
@@ -402,37 +376,37 @@ validateAndAssignStoredInObjectCSS_Properties(compoundParameter, restParameters_
 
   for propertyKey, propertySpecification in compoundParameter.assigments
 
-    CSS_Key = isNonEmptyString(propertySpecification.newName) ? propertySpecification.newName : propertyKey
+    CSS_Key = isNonEmptyString--YDF(propertySpecification.newName) ? propertySpecification.newName : propertyKey
     applier = compoundParameter.assigments[propertyKey].applier
 
-    if (isNotNull(applier))
+    if (isNotNull--YDF(applier))
 
       value = extractedCSS_Declarations[CSS_Key]
 
-      if isNotNull(value)
+      if isNotNull--YDF(value)
 
         applier(extractedCSS_Declarations[CSS_Key])
 
 
     // [ Theory ] The CSS properties with same "newName" but different "propertyKey" could be.
-    else if (!hasPrimitivesArraySpecifiedElement(assignedCSS_Properties, CSS_Key))
+    else if (!hasPrimitivesArraySpecifiedElement--YDF(assignedCSS_Properties, CSS_Key))
 
       value = extractedCSS_Declarations[CSS_Key]
 
-      if isNotNull(value)
+      if isNotNull--YDF(value)
 
         {CSS_Key}: value
 
         push(assignedCSS_Properties, CSS_Key)
 
 
-applyObjectTypeBoxShadowDefinition(compoundParameter, restParameters__MUST_NOT_BE...)
+applyObjectTypeBoxShadowDefinition--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  // [ Stylus theory ] `isNull(compoundParameter) { return }` will not work.
-  if isNotNull(compoundParameter)
+  // [ Stylus theory ] `isNull--YDF(compoundParameter) { return }` will not work.
+  if isNotNull--YDF(compoundParameter)
 
-    validateObjectTypeParameter({
-      mixinOrFunctionName: "applyObjectTypeBoxShadowDefinition",
+    validateObjectTypeParameter--YDF({
+      mixinOrFunctionName: "applyObjectTypeBoxShadowDefinition--YDF",
       targetParameterNumber: 1,
       targetParameter: compoundParameter,
       schema: {
@@ -465,18 +439,18 @@ applyObjectTypeBoxShadowDefinition(compoundParameter, restParameters__MUST_NOT_B
     })
 
     box-shadow: unquote(
-      (isTrue(compoundParameter.inset) ? "inset " : "") +\
-      buildString(
+      (isTrue--YDF(compoundParameter.inset) ? "inset " : "") +\
+      buildString--YDF(
         "${XOffset} ${YOffset} ${blurRadius} ${spreadRadius} ${color}",
         compoundParameter
       )
     )
 
 
-applyObjectTypeUnderlineDefinition(compoundParameter = {}, restParameters__MUST_NOT_BE...)
+applyObjectTypeUnderlineDefinition--YDF(compoundParameter = {}, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "applyObjectTypeUnderlineDefinition",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "applyObjectTypeUnderlineDefinition--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
@@ -508,9 +482,9 @@ applyObjectTypeUnderlineDefinition(compoundParameter = {}, restParameters__MUST_
     followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
   })
 
-  if isNotNull(compoundParameter) && length(keys(compoundParameter)) > 0
+  if isNotNull--YDF(compoundParameter) && length(keys(compoundParameter)) > 0
 
-    applyIfNotNull({
+    applyIfNotNull--YDF({
       text-decoration-line: compoundParameter.position,
       text-decoration-thickness: compoundParameter.thickness,
       text-underline-offset: compoundParameter.offset,
@@ -519,10 +493,10 @@ applyObjectTypeUnderlineDefinition(compoundParameter = {}, restParameters__MUST_
     })
 
 
-applyOutlineObjectTypeDefinition(compoundParameter = {}, restParameters__MUST_NOT_BE...)
+applyOutlineObjectTypeDefinition--YDF(compoundParameter = {}, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "applyOutlineObjectTypeDefinition",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "applyOutlineObjectTypeDefinition--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
@@ -549,9 +523,9 @@ applyOutlineObjectTypeDefinition(compoundParameter = {}, restParameters__MUST_NO
   })
 
 
-  if isNotNull(compoundParameter) && length(keys(compoundParameter)) > 0
+  if isNotNull--YDF(compoundParameter) && length(keys(compoundParameter)) > 0
 
-    applyIfNotNull({
+    applyIfNotNull--YDF({
       outline-width: compoundParameter.thickness,
       outline-offset: compoundParameter.offset,
       outline-style: compoundParameter.type,

@@ -52,7 +52,7 @@ TextElementHeightSizingSpecificationSchema--YDF = {
   lineHeight: {
     type: DataTypes--YDF.dimensionalQuantity DataTypes--YDF.dimensionlessQuantity,
     requiredIf: {
-      predicate: @(compoundParameter) { return isNull(compoundParameter.lineSpacing) },
+      predicate: @(compoundParameter) { return isNull--YDF(compoundParameter.lineSpacing) },
       descriptionForLogging: "The 'lineSpacing' is not specified"
     },
     incompatibleWith: "lineSpacing",

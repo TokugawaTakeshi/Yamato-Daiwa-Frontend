@@ -33,7 +33,7 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
       decorativeVariation,
       decorativeModifiers
 
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
@@ -48,7 +48,7 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
       validValueHighlightingIfNoValidationErrorsMessages,
       validationErrorsMessages,
       asynchronousValidationsStatuses
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: statesSimulations,
       parameterNumber: 2,
       parameterName: "statesSimulations",
@@ -376,7 +376,7 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
                     })&attributes({
                       [DateTimePicker__YDF.DOM_AccessResources.dialog.topActionBar.reusableButtons.switchingToDateSelectingPanel.DATA_ATTRIBUTE_KEY]: ""
                     })
-        //- === TODO ===================================================================================================
+
         .DateTimePicker--YDF-Dialog-Header
 
           p.DateTimePicker--YDF-Dialog-Header-CurrentScopeLabel&attributes({
@@ -450,7 +450,7 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
               each emptyArrayElement, index in new Array(MONTHS_COUNT_IN_YEAR)
                 button.DateTimePicker--YDF-MonthSelectingButton(
                   type="button"
-                )= `${ index + 1 }月`
+                )= index + 1
 
 
           when DateTimePicker__YDF.Matrices.years
@@ -468,8 +468,8 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
 
               thead
                 tr
-                  th.DateTimePicker--YDF-HoursMatrix-HeaderCell(colspan="2" scope="col") 午前
-                  th.DateTimePicker--YDF-HoursMatrix-HeaderCell(colspan="2" scope="col") 午後
+                  th.DateTimePicker--YDF-HoursMatrix-HeaderCell(colspan="2" scope="col") A.M.
+                  th.DateTimePicker--YDF-HoursMatrix-HeaderCell(colspan="2" scope="col") P.M.
 
               tbody
                 each emptyArrayElement, index in new Array(6)

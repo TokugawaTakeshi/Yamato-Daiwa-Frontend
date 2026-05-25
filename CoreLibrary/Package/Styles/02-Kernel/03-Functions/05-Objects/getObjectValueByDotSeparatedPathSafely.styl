@@ -1,7 +1,7 @@
-getObjectValueByDotSeparatedPathSafely(targetObject, dotSeparatedPath)
+getObjectValueByDotSeparatedPathSafely--YDF(targetObject, dotSeparatedPath)
 
   objectNamePathSegments = split(".", dotSeparatedPath)
-  lastIterationNumber = getLengthOfPrimitivesArray(objectNamePathSegments) - 1
+  lastIterationNumber = getLengthOfPrimitivesArray--YDF(objectNamePathSegments) - 1
   valueOfCurrentDepth = targetObject
 
   for pathSegment, index in objectNamePathSegments
@@ -12,6 +12,6 @@ getObjectValueByDotSeparatedPathSafely(targetObject, dotSeparatedPath)
 
       return valueOfCurrentDepth
 
-    else if isNull(valueOfCurrentDepth)
+    else if isNull--YDF(valueOfCurrentDepth)
 
       return null

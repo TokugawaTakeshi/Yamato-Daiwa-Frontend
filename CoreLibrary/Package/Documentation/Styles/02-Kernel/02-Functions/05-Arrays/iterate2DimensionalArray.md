@@ -1,4 +1,4 @@
-# `iterate2DimensionalArray`: Iterates 2-dimensional array
+# `iterate2DimensionalArray--YDF`: Iterates 2-dimensional array
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-iterate2DimensionalArray-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -8,7 +8,7 @@ Has the same effect as `for element, index in targetArray` until elements count 
 ```stylus
 sample1 = (11 "ALPHA" true { hash: 1 }) ("BRAVO" 22 false)
 
-iterate2DimensionalArray(sample1, @(nestedArray, index){
+iterate2DimensionalArray--YDF(sample1, @(nestedArray, index){
   p("Element No. " + index + ":")
   p(nestedArray)
 })
@@ -50,13 +50,13 @@ true
 {"hash":"(1)"}
 ```
 
-Because `iterate2DimensionalArray` assumes that the argument is always the 2-dimensional array, it will be only one
+Because `iterate2DimensionalArray--YDF` assumes that the argument is always the 2-dimensional array, it will be only one
 iteration for single-element array:
 
 ```stylus
 sample2 = (11 "ALPHA" true { hash: 1 })
 
-iterate2DimensionalArray(sample2, @(nestedArray, index){
+iterate2DimensionalArray--YDF(sample2, @(nestedArray, index){
   p("Element No. " + index + ":")
   p(nestedArray)
 })

@@ -28,6 +28,7 @@ class CollapsingAnimation {
       mustReturnPromise,
       mustReplaceWithElementOnceComplete,
       mustRemoveOnceComplete,
+      finalStateFixation,
       ...options
     }: CollapsingAnimation.Options
   ): Promise<void> | number {
@@ -59,9 +60,12 @@ class CollapsingAnimation {
 
     const offsetHeightOfAnimatedElement__pixels: number = targetElement.offsetHeight;
 
+    if (window.getComputedStyle(targetElement).boxSizing === "content-box") {
+      targetElement.style.boxSizing = "border-box";
+    }
+
     targetElement.style.height = `${ offsetHeightOfAnimatedElement__pixels }px`;
     targetElement.style.overflow = "hidden";
-    targetElement.style.visibility = "hidden";
 
     const duration__milliseconds: number =
         "averageSpeed__pixelsPerSecond" in options ?
@@ -94,23 +98,40 @@ class CollapsingAnimation {
           "finish",
           (): void => {
 
-            targetElement.style.height = "0";
+            targetElement.style.removeProperty("box-sizing");
             targetElement.style.removeProperty("height");
-            targetElement.style.removeProperty("margin-top");
-            targetElement.style.removeProperty("margin-bottom");
             targetElement.style.removeProperty("padding-top");
             targetElement.style.removeProperty("padding-bottom");
-            targetElement.style.removeProperty("overflow");
-            targetElement.style.removeProperty("visibility");
+            targetElement.style.removeProperty("margin-top");
+            targetElement.style.removeProperty("margin-bottom");
+
+            if (finalStateFixation?.displayNoneStyle ?? true) {
+              targetElement.style.display = "none";
+            }
+
+            if (finalStateFixation?.hiddenAttribute === true) {
+              targetElement.setAttribute("hidden", "hidden");
+            }
+
+            if (finalStateFixation?.visibilityHiddenStyle === true) {
+              targetElement.style.visibility = "hidden";
+            }
+
+            if (finalStateFixation?.zeroHeightAndOverflowHiddenStyles === true) {
+              targetElement.style.height = "0";
+            } else {
+              targetElement.style.removeProperty("overflow");
+            }
+
 
             callback?.();
             resolve();
 
             if (isNeitherUndefinedNorNull(mustReplaceWithElementOnceComplete)) {
-                targetElement.replaceWith(mustReplaceWithElementOnceComplete);
-              } else if (mustRemoveOnceComplete === true) {
-                targetElement.remove();
-              }
+              targetElement.replaceWith(mustReplaceWithElementOnceComplete);
+            } else if (mustRemoveOnceComplete === true) {
+              targetElement.remove();
+            }
 
           }
         );
@@ -137,6 +158,7 @@ namespace CollapsingAnimation {
         TargetElementDefinition &
         DurationDefinition &
         Readonly<{
+          finalStateFixation?: FinalStateFixation;
           mustReplaceWithElementOnceComplete?: ChildNode;
           mustRemoveOnceComplete?: boolean;
           callback?: () => unknown;
@@ -146,6 +168,13 @@ namespace CollapsingAnimation {
       { averageSpeed__pixelsPerSecond: number; } |
       { duration__seconds: number; }
     >;
+
+    export type FinalStateFixation = Readonly<{
+      displayNoneStyle?: boolean;
+      visibilityHiddenStyle?: boolean;
+      hiddenAttribute?: boolean;
+      zeroHeightAndOverflowHiddenStyles?: boolean;
+    }>;
 
     export type PromiseReturningConfiguration =
         Common &

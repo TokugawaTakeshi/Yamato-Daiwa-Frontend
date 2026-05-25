@@ -8,37 +8,37 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/01-TypeCheckers
 @require "01-Assets.styl"
 @require "02-Kernel.styl"
 
-testForTrue(
+testForTrue--YDF(
   "'1' is the natural number",
-  isNaturalNumber(1)
+  isNaturalNumber--YDF(1)
 )
 
-testForFalse(
+testForFalse--YDF(
   "'1.1' is not the natural number",
-  isNaturalNumber(1.1)
+  isNaturalNumber--YDF(1.1)
 )
 
-testForFalse(
+testForFalse--YDF(
   "'1e+1' is not the natural number",
-  isNaturalNumber(1e+1)
+  isNaturalNumber--YDF(1e+1)
 )
 
-testForFalse(
+testForFalse--YDF(
   "'-1' is not the natural number",
-  isNaturalNumber(-1)
+  isNaturalNumber--YDF(-1)
 )
 
-testForFalse(
+testForFalse--YDF(
   "'0' is not the natural number",
-  isNaturalNumber(0)
+  isNaturalNumber--YDF(0)
 )
 
-testForFalse(
+testForFalse--YDF(
   "'null' is not the natural number",
-  isNaturalNumber(null)
+  isNaturalNumber--YDF(null)
 )
 
-testForFalse(
+testForFalse--YDF(
   "Stringified digit is not the natural number",
-  isNaturalNumber("1")
+  isNaturalNumber--YDF("1")
 )

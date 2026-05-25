@@ -9,7 +9,7 @@ Blockquote--YDF = {
 
 Blockquote--YDF-generateStyles(preset = Blockquote--YDF.defaultProperties, overridings = {})
 
-  properties = deeplyCloneAndOverrideObject(BlockquoteComponentDefaultProperties, customProperties)
+  properties = deeplyCloneAndOverrideObject--YDF(BlockquoteComponentDefaultProperties, customProperties)
 
 
   .Blockquote--YDF
@@ -113,7 +113,7 @@ Blockquote--YDF-generateStyles(preset = Blockquote--YDF.defaultProperties, overr
 
       +WideContainersConfiguration()
 
-        retireFrom({
+        retireFrom--YDF({
           definitions:\
               (".Blockquote--YDF-SVG_Icon" { x: 8px })\
               (".Blockquote--YDF-Image" { x: 8px })
@@ -122,7 +122,7 @@ Blockquote--YDF-generateStyles(preset = Blockquote--YDF.defaultProperties, overr
 
     &-Text
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: YDF_Configuration.textGeometry.basicFontSize,
         lineHeight: YDF_Configuration.textGeometry.basicLineHeightInMultilineTextBlocks
       })
@@ -131,7 +131,7 @@ Blockquote--YDF-generateStyles(preset = Blockquote--YDF.defaultProperties, overr
 
       +WideContainersConfiguration()
 
-        retireFrom({ targetElementSelector: ".Blockquote--YDF-Image", x: 12px })
+        retireFrom--YDF({ targetElementSelector: ".Blockquote--YDF-Image", x: 12px })
 
 
       +NarrowContainersConfiguration()

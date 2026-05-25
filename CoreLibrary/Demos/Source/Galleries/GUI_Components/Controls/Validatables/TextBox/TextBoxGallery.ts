@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file -- Alloc additional class for the validation.  */
+
 import { InputtedValueValidation, ValidatableControl, TextBox, isStringEmpty } from "@yamato-daiwa/frontend";
 import { isString } from "@yamato-daiwa/es-extensions";
 

@@ -12,7 +12,7 @@ ThemesShowcase--YDF-generateStyles()
 
     &-KeyLabel
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: 1.2rem,
         lineSpacing: 0.2,
         mustAllowWordsBreakingAnywhere: true
@@ -40,15 +40,15 @@ ThemesShowcase--YDF-generateStyles()
         padding-left 0
 
 
-      pushTargetFromSelf({ targetElementSelector: ".ThemesShowcase--YDF-KeyLabel", y: 2rem })
+      pushTargetFromSelf--YDF({ targetElementSelector: ".ThemesShowcase--YDF-KeyLabel", y: 2rem })
 
-      pushTargetFromSelf({
+      pushTargetFromSelf--YDF({
         targetElementSelector: ".ThemesShowcase--YDF-KeyLabel",
         y: 1.2rem,
         contextSelector: ".ThemesShowcase--YDF-ChildList"
       })
 
-      pushTargetFromSelf({
+      pushTargetFromSelf--YDF({
         targetElementSelector: ".ThemesShowcase--YDF-KeyLabel",
         y: 0.8rem,
         contextSelector: ".ThemesShowcase--YDF-ChildList .ThemesShowcase--YDF-ChildList"

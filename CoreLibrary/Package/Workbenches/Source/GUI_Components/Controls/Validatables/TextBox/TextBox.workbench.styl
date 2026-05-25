@@ -2,8 +2,8 @@
 @require "../../../../../../GUI_Components.styl"
 
 
-CrossBrowserStylesReset()
-InitialGlobalCSS_Rules()
+CrossBrowserStylesReset--YDF()
+InitialGlobalCSS_Rules--YDF()
 
 
 ValidatableControlShell--YDF-generateStyles()
@@ -13,8 +13,6 @@ Button--YDF-generateStyles()
 
 body
 
-  CenteredContentWithComputedHorizontalPaddings({
-    contentWidth: 2*NARROWEST_SCREEN_WIDTH_UNIT--YDF
-  })
+  CenteredContentWithComputedHorizontalPaddings--YDF({ contentWidth: 2*NARROWEST_SCREEN_WIDTH_UNIT--YDF })
 
   padding-top 1rem

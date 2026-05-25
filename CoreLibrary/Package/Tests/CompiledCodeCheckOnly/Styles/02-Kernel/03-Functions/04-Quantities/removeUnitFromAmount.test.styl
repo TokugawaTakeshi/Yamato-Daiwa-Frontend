@@ -8,15 +8,15 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/04-Quantities/r
 @require "02-Kernel.styl"
 
 
-testForEquality(
+testForEquality--YDF(
   "'px' unit has been removed from '10px'.",
-  removeUnitFromAmount(10px),
+  removeUnitFromAmount--YDF(10px),
   10
 )
 
 
-testForEquality(
+testForEquality--YDF(
   "Nothing to remove from '1.5', it has been kept as is.",
-  removeUnitFromAmount(1.5),
+  removeUnitFromAmount--YDF(1.5),
   1.5
 )

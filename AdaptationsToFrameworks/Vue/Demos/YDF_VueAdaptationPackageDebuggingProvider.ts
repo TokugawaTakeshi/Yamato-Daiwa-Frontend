@@ -4,7 +4,12 @@ import Path from "path";
 import FileSystem from "fs";
 import PackageJSON from "@npmcli/package-json";
 import FilesWatcher from "chokidar";
-import { isUndefined, millisecondsToSeconds, Logger, UnexpectedEventError} from "@yamato-daiwa/es-extensions";
+import {
+  isUndefined,
+  Logger,
+  UnexpectedEventError,
+  secondsToMilliseconds
+} from "@yamato-daiwa/es-extensions";
 import { ConsoleApplicationLogger } from "@yamato-daiwa/es-extensions-nodejs";
 
 
@@ -80,7 +85,7 @@ export default class YDF_VueAdaptationPackageDebuggingProvider {
 
       FilesWatcher.
 
-          watch(`${ installedYamatoDaiwaFrontendVuePackageAbsolutePath }/Distributable/**.*`).
+          watch(Path.join(yamatoDaiwaFrontendVuePackageSourceCodeAbsolutePath, "Distributable")).
 
           on(
             "all",
@@ -96,7 +101,7 @@ export default class YDF_VueAdaptationPackageDebuggingProvider {
                         installedYamatoDaiwaFrontendVuePackageAbsolutePath
                       );
                     },
-                    millisecondsToSeconds(2)
+                    secondsToMilliseconds(2)
                   );
 
             }

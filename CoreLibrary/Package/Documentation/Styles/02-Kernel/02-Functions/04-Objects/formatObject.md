@@ -47,6 +47,6 @@ inspect: '{
 }'
 ```
 
-* If you are using the function `log()` (also provided by **@yamato-daiwa/frontend**), you don't need
-**formatObject** because **log** using **formatObject** is passed parameter is the object.
+* If you are using the function `log--YDF()` (also provided by **@yamato-daiwa/frontend**), you don't need
+**formatObject** because **log--YDF** using **formatObject** is passed parameter is the object.
 * If the passed parameter is not and object, `formatObject` will return this parameter as is and emit the warning

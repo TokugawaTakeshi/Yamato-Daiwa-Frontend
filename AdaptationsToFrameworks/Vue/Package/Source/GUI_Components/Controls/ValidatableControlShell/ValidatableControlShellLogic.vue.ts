@@ -231,10 +231,6 @@ class ValidatableControlShell extends VueComponent {
   @preventNullForOptionalVueProperty
   protected readonly validationErrorsMessages!: ReadonlyArray<string>;
 
-  /* [ Theory ]
-   * Even if `validationErrorsMessages` has become an empty array, the validation errors messages are still
-   *   required to animate the collapsing.
-   * Cannot be assigned here with `[ ...this.validationErrorsMessages ]` because of `vue-facing-decorator` limitations. */
   protected validationErrorsMessagesCopyForAnimating: ReadonlyArray<string> = [];
 
   protected static readonly ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS: number = 0.2;
@@ -250,8 +246,8 @@ class ValidatableControlShell extends VueComponent {
     );
   }
 
-  @onVueComponentFieldUpdated("mustDisplayErrorsMessagesIfAny")
-  @onVueComponentFieldUpdated("validationErrorsMessages")
+  @onVueComponentFieldUpdated("mustDisplayErrorsMessagesIfAny", { immediate: true })
+  @onVueComponentFieldUpdated("validationErrorsMessages", { immediate: true })
   protected onValidationErrorsMessagesUpdated(): void {
 
     if (this.validationErrorsMessages.length > 0) {
@@ -271,7 +267,6 @@ class ValidatableControlShell extends VueComponent {
 
 
   /* ┅┅┅ Validation Statuses List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-
   /* ╍╍╍ Content ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
   @VueProperty({
     type: InputtedValueValidation.AsynchronousChecks.Status,

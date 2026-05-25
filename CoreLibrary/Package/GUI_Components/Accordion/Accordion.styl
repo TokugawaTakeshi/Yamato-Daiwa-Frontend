@@ -48,9 +48,9 @@ Accordion--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "Accordion--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -130,7 +130,7 @@ Accordion--YDF-generateStyles(
   // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Accordion.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
@@ -141,7 +141,7 @@ Accordion--YDF-generateStyles(
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Accordion.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
@@ -152,7 +152,7 @@ Accordion--YDF-generateStyles(
   // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   applyBasicRules()
 
-  applyComponentThemes({
+  applyComponentThemes--YDF({
     CSS_Namespace: "Accordion--YDF",
     themes: properties.themes,
     applyGeometricVariation: applyGeometricVariation,

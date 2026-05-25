@@ -1,9 +1,9 @@
-# `InitialGlobalCSS_Rules`
+# `InitialGlobalCSS_Rules--YDF`
 
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-si-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 Some basic CSS rules like default font size and default line height intended to be applying directly after
-`CrossBrowserStylesReset`. 
+`CrossBrowserStylesReset--YDF`. 
 
 
 ## What this mixin exactly does
@@ -40,7 +40,7 @@ html
 
 ### Initial styles for `sub` and `sup`
 
-After the styles of `sub` and `sup` has been reset by `CrossBrowserStylesReset`, it should be setup such as `sub` and
+After the styles of `sub` and `sup` has been reset by `CrossBrowserStylesReset--YDF`, it should be setup such as `sub` and
 `sup` looks like `sub` and `sup`. 
 
 ```stylus

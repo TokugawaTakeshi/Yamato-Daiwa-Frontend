@@ -1,8 +1,8 @@
 @require "../../../../Functionality.styl"
 
 
-CrossBrowserStylesReset()
-InitialGlobalCSS_Rules()
+CrossBrowserStylesReset--YDF()
+InitialGlobalCSS_Rules--YDF()
 
 
 provideYDF_Typography()
@@ -106,21 +106,21 @@ provideYDF_Typography()
 
     for hueKey in YDF_ColorPalette
 
-      &-PastelGradientCell__{ capitalizeFirstLatinCharacter(hueKey) }
+      &-PastelGradientCell__{ capitalizeFirstLatinCharacter--YDF(hueKey) }
 
         background-image: appendDirectionToLinearGradientColorStopsExpression--YDF("to bottom", YDF_ColorPalette[hueKey].pastelGradient)
 
 
-      &-LightGradientCell__{ capitalizeFirstLatinCharacter(hueKey) }
+      &-LightGradientCell__{ capitalizeFirstLatinCharacter--YDF(hueKey) }
 
         background-image: appendDirectionToLinearGradientColorStopsExpression--YDF("to bottom", YDF_ColorPalette[hueKey].lightGradient)
 
 
-      &-DarkGradientCell__{ capitalizeFirstLatinCharacter(hueKey) }
+      &-DarkGradientCell__{ capitalizeFirstLatinCharacter--YDF(hueKey) }
 
         background-image: appendDirectionToLinearGradientColorStopsExpression--YDF("to bottom", YDF_ColorPalette[hueKey].darkGradient)
 
 
-      &-GlossyGradientCell__{ capitalizeFirstLatinCharacter(hueKey) }
+      &-GlossyGradientCell__{ capitalizeFirstLatinCharacter--YDF(hueKey) }
 
         background-image: appendDirectionToLinearGradientColorStopsExpression--YDF("to bottom", YDF_ColorPalette[hueKey].glossyGradient)

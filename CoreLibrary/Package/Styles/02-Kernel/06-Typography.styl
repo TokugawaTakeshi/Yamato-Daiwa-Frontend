@@ -10,12 +10,12 @@ YDF_TypographyDefaultDefinitions = {
 
   elements: {
 
-    heading1: deeplyCloneAndOverrideObject(Heading1DefaultProperties--YDF, {
+    heading1: deeplyCloneAndOverrideObject--YDF(Heading1DefaultProperties--YDF, {
       class: "Heading1",
       mixin: Heading1--YDF,
       skip: false
     }),
-    heading2: deeplyCloneAndOverrideObject(Heading2DefaultProperties--YDF, {
+    heading2: deeplyCloneAndOverrideObject--YDF(Heading2DefaultProperties--YDF, {
       class: "Heading2",
       mixin: Heading2--YDF,
       skip: false,
@@ -23,7 +23,7 @@ YDF_TypographyDefaultDefinitions = {
         heading1: { whenItJustBefore: 16px }
       }
     }),
-    heading3: deeplyCloneAndOverrideObject(Heading3DefaultProperties--YDF, {
+    heading3: deeplyCloneAndOverrideObject--YDF(Heading3DefaultProperties--YDF, {
       class: "Heading3",
       mixin: Heading3--YDF,
       skip: false,
@@ -31,7 +31,7 @@ YDF_TypographyDefaultDefinitions = {
         heading2: { whenItJustBefore: 12px }
       }
     }),
-    heading4: deeplyCloneAndOverrideObject(Heading4DefaultProperties--YDF, {
+    heading4: deeplyCloneAndOverrideObject--YDF(Heading4DefaultProperties--YDF, {
       class: "Heading4",
       mixin: Heading4--YDF,
       skip: false,
@@ -39,7 +39,7 @@ YDF_TypographyDefaultDefinitions = {
         heading3: { whenItJustBefore: 10px }
       }
     }),
-    heading5: deeplyCloneAndOverrideObject(Heading5DefaultProperties--YDF, {
+    heading5: deeplyCloneAndOverrideObject--YDF(Heading5DefaultProperties--YDF, {
       class: "Heading5",
       mixin: Heading5--YDF,
       skip: false,
@@ -47,7 +47,7 @@ YDF_TypographyDefaultDefinitions = {
         heading4: { whenItJustBefore: 8px }
       }
     }),
-    heading6: deeplyCloneAndOverrideObject(Heading6DefaultProperties--YDF, {
+    heading6: deeplyCloneAndOverrideObject--YDF(Heading6DefaultProperties--YDF, {
       class: "Heading6",
       mixin: Heading6--YDF,
       skip: false,
@@ -56,7 +56,7 @@ YDF_TypographyDefaultDefinitions = {
       }
     }),
 
-    subheading1: deeplyCloneAndOverrideObject(Subheading1DefaultProperties--YDF, {
+    subheading1: deeplyCloneAndOverrideObject--YDF(Subheading1DefaultProperties--YDF, {
       class: "Subheading1",
       mixin: Subheading1--YDF,
       skip: false,
@@ -65,7 +65,7 @@ YDF_TypographyDefaultDefinitions = {
         heading2: { whenItJustAfter: 12px }
       }
     }),
-    subheading2: deeplyCloneAndOverrideObject(Subheading2DefaultProperties--YDF, {
+    subheading2: deeplyCloneAndOverrideObject--YDF(Subheading2DefaultProperties--YDF, {
       class: "Subheading2",
       mixin: Subheading2--YDF,
       skip: false,
@@ -74,7 +74,7 @@ YDF_TypographyDefaultDefinitions = {
         heading3: { whenItJustAfter: 12px }
       }
     }),
-    subheading3: deeplyCloneAndOverrideObject(Subheading3DefaultProperties--YDF, {
+    subheading3: deeplyCloneAndOverrideObject--YDF(Subheading3DefaultProperties--YDF, {
       class: "Subheading3",
       mixin: Subheading3--YDF,
       skip: false,
@@ -83,7 +83,7 @@ YDF_TypographyDefaultDefinitions = {
         heading4: { whenItJustAfter: 10px }
       }
     }),
-    subheading4: deeplyCloneAndOverrideObject(Subheading4DefaultProperties--YDF, {
+    subheading4: deeplyCloneAndOverrideObject--YDF(Subheading4DefaultProperties--YDF, {
       class: "Subheading4",
       mixin: Subheading4--YDF,
       skip: false,
@@ -92,7 +92,7 @@ YDF_TypographyDefaultDefinitions = {
         heading5: { whenItJustAfter: 10px }
       }
     }),
-    subheading5: deeplyCloneAndOverrideObject(Subheading5DefaultProperties--YDF, {
+    subheading5: deeplyCloneAndOverrideObject--YDF(Subheading5DefaultProperties--YDF, {
       class: "Subheading5",
       mixin: Subheading5--YDF,
       skip: false,
@@ -101,7 +101,7 @@ YDF_TypographyDefaultDefinitions = {
         heading6: { whenItJustAfter: 10px }
       }
     }),
-    subheading6: deeplyCloneAndOverrideObject(Subheading6DefaultProperties--YDF, {
+    subheading6: deeplyCloneAndOverrideObject--YDF(Subheading6DefaultProperties--YDF, {
       class: "Subheading6",
       mixin: Subheading6--YDF,
       skip: false,
@@ -110,7 +110,7 @@ YDF_TypographyDefaultDefinitions = {
       }
     }),
 
-    paragraph: deeplyCloneAndOverrideObject(ParagraphDefaultProperties--YDF, {
+    paragraph: deeplyCloneAndOverrideObject--YDF(ParagraphDefaultProperties--YDF, {
       class: "Paragraph",
       mixin: Paragraph--YDF,
       skip: false,
@@ -131,7 +131,7 @@ YDF_TypographyDefaultDefinitions = {
       }
     }),
 
-    unorderedList: deeplyCloneAndOverrideObject(UnorderedListDefaultProperties--YDF, {
+    unorderedList: deeplyCloneAndOverrideObject--YDF(UnorderedListDefaultProperties--YDF, {
       class: "UnorderedList",
       mixin: UnorderedList--YDF,
       skip: false,
@@ -147,7 +147,7 @@ YDF_TypographyDefaultDefinitions = {
       }
     }),
 
-    orderedList: deeplyCloneAndOverrideObject(OrderedListDefaultProperties--YDF, {
+    orderedList: deeplyCloneAndOverrideObject--YDF(OrderedListDefaultProperties--YDF, {
       class: "OrderedList",
       mixin: OrderedList--YDF,
       skip: false,
@@ -163,7 +163,7 @@ YDF_TypographyDefaultDefinitions = {
       }
     }),
 
-    descriptionList: deeplyCloneAndOverrideObject(DescriptionListDefaultProperties--YDF, {
+    descriptionList: deeplyCloneAndOverrideObject--YDF(DescriptionListDefaultProperties--YDF, {
       class: "DescriptionList",
       mixin: DescriptionList--YDF,
       skip: false,
@@ -187,7 +187,7 @@ generateTypographyElementsKeysAndCSS_ClassesMap(typographyDefinition)
 
   for elementKey, elementProperties in typographyDefinition.elements
 
-    elementsKeysAndCSS_ClassesMap[elementKey] = isNotNull(typographyDefinition.CSS_NamespacePrefix) ?\
+    elementsKeysAndCSS_ClassesMap[elementKey] = isNotNull--YDF(typographyDefinition.CSS_NamespacePrefix) ?\
         typographyDefinition.CSS_NamespacePrefix + "-" + elementProperties.class :\
         elementProperties.class
 
@@ -203,15 +203,15 @@ provideYDF_Typography(
   }
 )
 
-  typographyDefinition = deeplyCloneAndOverrideObject(preset, overridings)
+  typographyDefinition = deeplyCloneAndOverrideObject--YDF(preset, overridings)
   elementsKeysAndCSS_ClassesMap = generateTypographyElementsKeysAndCSS_ClassesMap(typographyDefinition)
 
 
   setPositionalRelationshipForSpecificElement(positionalRelationship)
 
-    if isNotNull(positionalRelationship)
+    if isNotNull--YDF(positionalRelationship)
       for elementKey, positionalRelationshipParameters in positionalRelationship
-        PositionalRelationship({
+        PositionalRelationship--YDF({
           definitions: ("." + elementsKeysAndCSS_ClassesMap[elementKey] {
             retireFromIt: { y: positionalRelationshipParameters.whenItJustBefore },
             pushItFromSelf: { y: positionalRelationshipParameters.whenItJustAfter }
@@ -223,7 +223,7 @@ provideYDF_Typography(
 
     TARGET_ELEMENT_CSS_CLASS = elementsKeysAndCSS_ClassesMap[elementKey]
 
-    if isFalse(elementProperties.skip)
+    if isFalse--YDF(elementProperties.skip)
 
       .{TARGET_ELEMENT_CSS_CLASS}
 
@@ -238,7 +238,7 @@ provideYDF_Typography(
 
 providePositionalRelationshipWithTypographyElements(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "providePositionalRelationshipWithTypographyElements",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
@@ -247,9 +247,9 @@ providePositionalRelationshipWithTypographyElements(compoundParameter, restParam
   })
 
 
-  iterateObjectSkippingNullValues(compoundParameter.presets, @(presetName, preset) {
+  iterateObjectSkippingNullValues--YDF(compoundParameter.presets, @(presetName, preset) {
 
-    if isNotNull(preset.typographyDefinition) && isNotNull(preset.spacingDefinitions) {
+    if isNotNull--YDF(preset.typographyDefinition) && isNotNull--YDF(preset.spacingDefinitions) {
 
       elementsKeysAndCSS_ClassesMap = generateTypographyElementsKeysAndCSS_ClassesMap(preset.typographyDefinition)
 
@@ -257,7 +257,7 @@ providePositionalRelationshipWithTypographyElements(compoundParameter, restParam
 
         TARGET_ELEMENT_CSS_CLASS = elementsKeysAndCSS_ClassesMap[elementKey]
 
-        PositionalRelationship({
+        PositionalRelationship--YDF({
           definitions: ("." + TARGET_ELEMENT_CSS_CLASS {
             retireFromIt: { y: spacingDefinitions.whenItJustAfter },
             pushItFromSelf: { y: spacingDefinitions.whenItJustBefore }

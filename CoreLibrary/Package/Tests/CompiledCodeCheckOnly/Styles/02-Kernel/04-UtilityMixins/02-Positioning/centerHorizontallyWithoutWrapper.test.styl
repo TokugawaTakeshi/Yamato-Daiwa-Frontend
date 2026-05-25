@@ -9,34 +9,34 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/02-Position
 @require "02-Kernel.styl"
 
 
-.HorizontalCenteringWithoutWrapper
+.HorizontalCenteringWithoutWrapper--YDF
 
   &-Case1
 
-    centerHorizontallyWithoutWrapper({
-      targetElementType: HorizontalCenteringWithoutWrapper.TargetElementTypes.block
+    centerHorizontallyWithoutWrapper--YDF({
+      targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.block
     })
 
 
   &-Case2
 
-    centerHorizontallyWithoutWrapper({
-      targetElementType: HorizontalCenteringWithoutWrapper.TargetElementTypes.inlineBlock
+    centerHorizontallyWithoutWrapper--YDF({
+      targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.inlineBlock
     })
 
 
   &-Case3
 
-    centerHorizontallyWithoutWrapper({
-      targetElementType: HorizontalCenteringWithoutWrapper.TargetElementTypes.block,
+    centerHorizontallyWithoutWrapper--YDF({
+      targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.block,
       maximalWidth: 430px
     })
 
 
   &-Case4
 
-    centerHorizontallyWithoutWrapper({
-      targetElementType: HorizontalCenteringWithoutWrapper.TargetElementTypes.block,
+    centerHorizontallyWithoutWrapper--YDF({
+      targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.block,
       maximalWidth: 450px,
       horizontalSpaceBetweenSelfAndParent: 20px
     })

@@ -25,7 +25,7 @@
 
     dt
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: 14px,
         lineSpacing: 6px,
         mustAllowWordsBreakingAnywhere: true
@@ -36,7 +36,7 @@
 
       +NarrowScreensConfiguration()
 
-        PositionalRelationship({
+        PositionalRelationship--YDF({
           definitions: ("dt" { retireFromIt: { y: 6px }, pushItFromSelf: { y: 16px } }),
           contextSelector: ".BadgeGallery-TwoColumnsTable",
           referenceElementSelector: "dd"
@@ -50,13 +50,13 @@
     gap 6px 6px
     align-items center
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions:\
           (".Heading2" { retireFromIt: { y: 0.8rem }, pushItFromSelf: { y: 16px } })\
           (".Heading3" { retireFromIt: { y: 0.8rem }, pushItFromSelf: { y: 16px } })
     })
 
-    retireFromElementWithSameSelector({ y: 8px })
+    retireFromElementWithSameSelector--YDF({ y: 8px })
 
 
     &__LimitedChildrenMaximalWidth

@@ -26,29 +26,29 @@ Paragraph--YDF(
   }
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  mustGenerateGeometry = isTrue(options.geometryOnly) || isFalse(options.decorationOnly)
-  mustGenerateDecoration = isTrue(options.decorationOnly) || isFalse(options.geometryOnly)
+  mustGenerateGeometry = isTrue--YDF(options.geometryOnly) || isFalse--YDF(options.decorationOnly)
+  mustGenerateDecoration = isTrue--YDF(options.decorationOnly) || isFalse--YDF(options.geometryOnly)
 
 
   if mustGenerateGeometry
 
-    applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
       fontSize: properties.geometry.text.size,
       lineHeight: properties.geometry.text.lineHeight,
       lineSpacing: properties.geometry.text.lineSpacing,
       mustTryToProvideHyphenations: true
     })
 
-    applyMixinStoredInObjectIfItIsNotNull(properties.geometry.customDeclarations)
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.geometry.customDeclarations)
 
 
   if mustGenerateDecoration
 
-    applyIfNotNull({
+    applyIfNotNull--YDF({
       font-weight: properties.decoration.text.fontWeight,
       color: properties.decoration.text.color
     })
 
-    applyMixinStoredInObjectIfItIsNotNull(properties.decoration.customDeclarations)
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.decoration.customDeclarations)

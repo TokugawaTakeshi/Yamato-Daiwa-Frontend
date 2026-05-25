@@ -1,9 +1,9 @@
-# `TableCellWidthSizing`
+# `TableCellWidthSizing--YDF`
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-tcws-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 ```
-TableCellWidthSizing({
+TableCellWidthSizing--YDF({
 
   fixedTotalWidth?: DataTypes--YDF.dimensionalQuantity;
   // OR
@@ -50,7 +50,7 @@ property has been set to desired value (`fixed` for defining the column width by
 ```stylus
 .TableCell1
 
-  TableCellWidthSizing({
+  TableCellWidthSizing--YDF({
     fixedTotalWidth: 220px,
     leftBorderWidth: 1px,
     leftPadding: 6px,
@@ -72,7 +72,7 @@ The `width` property will be computed basing on `fixedContentWidth` and paddings
 ```stylus
 .TableCell2-1
 
-  TableCellWidthSizing({
+  TableCellWidthSizing--YDF({
     fixedContentWidth: 120px,
     leftBorderWidth: 1px,
     leftPadding: 6px,
@@ -99,7 +99,7 @@ You can mix the difference units:
 ```stylus
 .TableCell2-2
 
-  TableCellWidthSizing({
+  TableCellWidthSizing--YDF({
     fixedContentWidth: 10ch,
     leftBorderWidth: 1px,
     leftPadding: 0.75rem,
@@ -125,7 +125,7 @@ will be compiled to:
 ```stylus
 .TableCell3
 
-  TableCellWidthSizing({
+  TableCellWidthSizing--YDF({
     contentMinimalWidth: 120px,
     contentMaximalWidth: 140px,
     leftBorderWidth: 1px,

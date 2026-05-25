@@ -23,18 +23,18 @@ operand2 = {
   echo: "HOGE"
 }
 
-result = deeplyCloneAndOverrideObject(operand1, operand2)
+result = deeplyCloneAndOverrideObject--YDF(operand1, operand2)
 
 result.alpha.bravo = "FUGA"
 
 
-testForEquality(
+testForEquality--YDF(
   "'alpha.bravo' has been changed on result.",
   result.alpha.bravo,
   "FUGA"
 )
 
-testForEquality(
+testForEquality--YDF(
   "'alpha.bravo' has not changed on operand 1.",
   operand1.alpha.bravo,
   "FOO"

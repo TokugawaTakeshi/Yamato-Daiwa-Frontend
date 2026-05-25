@@ -2,8 +2,8 @@ YDF_Array-appendElementsIf(targetArray, conditionOrPredicate, newElements...)
 
   for element in newElements
 
-    if (isTrue(conditionOrPredicate) || conditionOrPredicate(element))
+    if (isTrue--YDF(conditionOrPredicate) || conditionOrPredicate(element))
 
-      targetArray["" + getLengthOfPrimitivesArray(keys(targetArray))] = element
+      targetArray["" + getLengthOfPrimitivesArray--YDF(keys(targetArray))] = element
 
   return targetArray

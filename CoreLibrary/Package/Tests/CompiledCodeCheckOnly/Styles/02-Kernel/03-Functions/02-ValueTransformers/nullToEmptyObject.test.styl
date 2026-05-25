@@ -9,22 +9,22 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/02-ValueTransfo
 @require "02-Kernel.styl"
 
 
-testForTrue(
+testForTrue--YDF(
   "Null has been transformed to empty object",
-  typeof(nullToEmptyObject(null)) == "object" && length(nullToEmptyObject(null)) == 0
+  typeof(nullToEmptyObject--YDF(null)) == "object" && length(nullToEmptyObject--YDF(null)) == 0
 )
 
-testForFalse(
+testForFalse--YDF(
   "Empty string has NOT been transformed to object",
-  typeof(nullToEmptyObject("")) == "object"
+  typeof(nullToEmptyObject--YDF("")) == "object"
 )
 
-testForFalse(
+testForFalse--YDF(
   "Non-empty string has NOT been transformed to object",
-  typeof(nullToEmptyObject("ABC")) == "object"
+  typeof(nullToEmptyObject--YDF("ABC")) == "object"
 )
 
-testForFalse(
+testForFalse--YDF(
   "Number has NOT been transformed to object",
-  typeof(nullToEmptyObject(1)) == "object"
+  typeof(nullToEmptyObject--YDF(1)) == "object"
 )

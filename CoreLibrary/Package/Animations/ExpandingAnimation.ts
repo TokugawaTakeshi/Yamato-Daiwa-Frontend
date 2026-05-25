@@ -177,8 +177,21 @@ class ExpandingAnimation {
     targetElement.style.visibility = "hidden";
     targetElement.hidden = false;
 
+    if (targetElement.style.display === "none") {
+      targetElement.style.removeProperty("display");
+    }
+
     const computedStylesOfAnimatedElement: CSSStyleDeclaration = getComputedStyle(targetElement);
     const offsetHeightOfAnimatedElement__pixels: number = targetElement.offsetHeight;
+
+    const finalPaddingTop: string = computedStylesOfAnimatedElement.paddingTop;
+    const finalPaddingBottom: string = computedStylesOfAnimatedElement.paddingBottom;
+    const finalMarginTop: string = computedStylesOfAnimatedElement.marginTop;
+    const finalMarginBottom: string = computedStylesOfAnimatedElement.marginBottom;
+
+    if (computedStylesOfAnimatedElement.boxSizing === "content-box") {
+      targetElement.style.boxSizing = "border-box";
+    }
 
     targetElement.style.removeProperty("position");
     targetElement.style.visibility = "visible";
@@ -192,10 +205,10 @@ class ExpandingAnimation {
     const animation: Animation = targetElement.animate(
       {
         height: `${ offsetHeightOfAnimatedElement__pixels }px`,
-        marginTop: computedStylesOfAnimatedElement.marginTop,
-        marginBottom: computedStylesOfAnimatedElement.marginBottom,
-        paddingTop: computedStylesOfAnimatedElement.paddingTop,
-        paddingBottom: computedStylesOfAnimatedElement.paddingBottom
+        marginTop: finalMarginTop,
+        marginBottom: finalMarginBottom,
+        paddingTop: finalPaddingTop,
+        paddingBottom: finalPaddingBottom
       },
       {
         duration:
@@ -214,6 +227,7 @@ class ExpandingAnimation {
       "finish",
       (): void => {
 
+        targetElement.style.removeProperty("box-sizing");
         targetElement.style.removeProperty("visibility");
         targetElement.style.removeProperty("overflow");
         targetElement.style.removeProperty("height");

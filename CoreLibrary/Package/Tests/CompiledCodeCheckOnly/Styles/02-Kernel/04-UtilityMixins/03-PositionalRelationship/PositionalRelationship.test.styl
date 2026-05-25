@@ -13,7 +13,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   &-Paragraph
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions: (".Article-Heading" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px } })
     })
 
@@ -22,7 +22,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   p
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions: ("h2" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px } })
       contextSelector: ".Article2",
       referenceElementSelector: "p"
@@ -33,7 +33,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   &-Element2
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions: (".ExampleA-Element1" { retireFromIt: { x: 2px }, pushItFromSelf: { y: 4px } })
     })
 
@@ -42,7 +42,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   &-Paragraph
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions:\
           (".Article3-Heading" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px } })\
           (".Article3-OrderedList" { retireFromIt: { y: 4px }, pushItFromSelf: { y: 8px } })
@@ -53,13 +53,14 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   &-Paragraph
 
-    // TODO before/afterが利用出来ん
-    applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    /* [ Theory ] Basically unable to use ::before/::after pseudo elements in emails. */
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
       fontSize: 14px,
-      lineHeight: 17px
+      lineHeight: 17px,
+      mustApplyNegativeMarginsToRootElement: true
     })
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions:\
           (".EmailMagazine-Heading" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px }, usePaddingsInsteadOfMargins: true })
     })

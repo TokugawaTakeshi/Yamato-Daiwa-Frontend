@@ -34,7 +34,7 @@ providePropertyMetadataYDF_DK_Component()
 
     &-Key
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: 1rem,
         lineSpacing: 0.2rem,
         mustAllowWordsBreakingAnywhere: true
@@ -52,7 +52,7 @@ providePropertyMetadataYDF_DK_Component()
 
     &-Value
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: 1rem,
         lineSpacing: 0.2rem,
         mustAllowWordsBreakingAnywhere: true
@@ -64,7 +64,7 @@ providePropertyMetadataYDF_DK_Component()
       +NarrowContainersConfiguration()
 
         margin-left 1rem
-        PositionalRelationship({
+        PositionalRelationship--YDF({
           definitions: (".PropertyMetadata--YDF_DK-Key" { retireFromIt: { y: 0.4rem }, pushItFromSelf: { y: 0.6rem } })
         })
 

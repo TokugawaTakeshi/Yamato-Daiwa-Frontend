@@ -11,7 +11,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/06-Arrays/itera
 
 sample1 = (".Selector1" {  alpha: 1, bravo: "FOO" }) (".Selector2" {  alpha: 2, bravo: "BAR" })
 
-iterateAssociativeArray(sample1, @(key, value) {
+iterateAssociativeArray--YDF(sample1, @(key, value) {
   p("Key: " + key);
   p("Value: " + value)
 })
@@ -25,7 +25,7 @@ p("-----------------------------------------------------")
 
 sample2 = (".Selector1" {  alpha: 1, bravo: "FOO" })
 
-iterateAssociativeArray(sample2, @(key, value) {
+iterateAssociativeArray--YDF(sample2, @(key, value) {
   p("Key: " + key);
   p("Value: " + value)
 })

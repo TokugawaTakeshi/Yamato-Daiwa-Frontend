@@ -35,6 +35,9 @@ export default function onDifferentValueAssigned():
       /* eslint-disable-next-line @typescript-eslint/unbound-method -- In this case, the bounding of "this" must not be. */
       const originalSetter: ((value: unknown) => void) | undefined = descriptor.set;
 
+      /* eslint-disable-next-line func-names --
+       * Need to use `function` keyword for the accessing to correct `this` but not sure that the function name requires
+       *   even when assigning to setter. */
       descriptor.set = function (this: ArbitraryObject, newValue: unknown): void {
 
         const comparableNewValue: string = JSON.stringify(newValue);

@@ -75,9 +75,9 @@ Chip--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "Chip--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -133,7 +133,7 @@ Chip--YDF-generateStyles(
 
     .Chip--YDF-Button
 
-      ButtonLikeElementsPrimer()
+      ButtonLikeElementsPrimer--YDF()
 
 
     if options.loadingPlaceholder
@@ -146,14 +146,14 @@ Chip--YDF-generateStyles(
   // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Chip.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
 
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
-    cachedValidReusables = extractAndValidateObjectProperties({
+    cachedValidReusables = extractAndValidateObjectProperties--YDF({
       targetObject: variation,
       targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
       extracts: {
@@ -183,9 +183,9 @@ Chip--YDF-generateStyles(
       }
     })
 
-    +provideDefaultSelectorWhenRootAndApply(".Chip--YDF")
+    +provideDefaultSelectorWhenRootAndApply--YDF(".Chip--YDF")
 
-      BORDER_RADIUS_TO_VALUE_TEXT_SIZE_RATIO = extractAndValidateObjectProperties({
+      BORDER_RADIUS_TO_VALUE_TEXT_SIZE_RATIO = extractAndValidateObjectProperties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         extracts: {
@@ -195,15 +195,15 @@ Chip--YDF-generateStyles(
         }
       }).borderRadiusToValueTextSizeRatio
 
-      BordersSizing({ thickness: variation.rootElement.bordersThickness })
+      BordersSizing--YDF({ thickness: variation.rootElement.bordersThickness })
       border-radius: cachedValidReusables.valueLabelTextSize * BORDER_RADIUS_TO_VALUE_TEXT_SIZE_RATIO
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     .Chip--YDF-SVG_Icon
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -211,7 +211,7 @@ Chip--YDF-generateStyles(
           height: {
             dotSeparatedPath: "SVG_Icon.height",
             requiredIf: {
-              predicate: @(variation) { return isNull(getObjectValueByDotSeparatedPathSafely(variation, "SVG_Icon.width")) },
+              predicate: @(variation) { return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(variation, "SVG_Icon.width")) },
               conditionDescription: "'SVG_Icon.width' icon is null"
             }
           },
@@ -241,13 +241,13 @@ Chip--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.SVG_Icon.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
 
 
     .Chip--YDF-Key
 
-      // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight`.
-      validateAndAssignStoredInObjectCSS_Properties({
+      // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF`.
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -279,12 +279,12 @@ Chip--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.keyLabel.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.keyLabel.customDeclarations)
 
 
       &:first-child
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -293,11 +293,11 @@ Chip--YDF-generateStyles(
         })
 
 
-      retireFrom({
+      retireFrom--YDF({
         targetElementSelector: ".Chip--YDF-SVG_Icon",
         contextSelector: CONTEXT_SELECTOR,
         referenceElementSelector: ".Chip--YDF-Key",
-        x: extractAndValidateObjectProperties({
+        x: extractAndValidateObjectProperties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           extracts: {
@@ -311,18 +311,18 @@ Chip--YDF-generateStyles(
 
       font-size: cachedValidReusables.valueLabelTextSize
 
-      // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight`.
-      applyIfNotNull({
+      // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF`.
+      applyIfNotNull--YDF({
         padding-top: cachedValidReusables.valueLabelTopSpacing,
         padding-bottom: cachedValidReusables.valueLabelBottomSpacing
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.valueLabel.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.valueLabel.customDeclarations)
 
 
       &:first-child
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -333,7 +333,7 @@ Chip--YDF-generateStyles(
 
       &:last-child
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -342,17 +342,17 @@ Chip--YDF-generateStyles(
         })
 
 
-    retireFrom({
+    retireFrom--YDF({
       definitions:\
           (".Chip--YDF-SVG_Icon" {
-            x: extractAndValidateObjectProperties({
+            x: extractAndValidateObjectProperties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               extracts: { spacingAfterSVG_Icon: { dotSeparatedPath: "valueLabel.spacing.afterSVG_Icon", required: true } }
             }).spacingAfterSVG_Icon
           })\
           (".Chip--YDF-Key" {
-            x: extractAndValidateObjectProperties({
+            x: extractAndValidateObjectProperties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               extracts: { spacingAfterKeyLabel: { dotSeparatedPath: "valueLabel.spacing.afterKeyLabel", required: true } }
@@ -369,7 +369,7 @@ Chip--YDF-generateStyles(
 
         LoadingPlaceholder()
 
-        HEIGHT = computeTotalHeightByTextElementHeightSizingSpecification({
+        HEIGHT = computeTotalHeightByTextElementHeightSizingSpecification--YDF({
           type: TextElementHeightSizingTypes--YDF.natural,
           borders: cachedValidReusables.bordersSizing,
           paddings: {
@@ -387,7 +387,7 @@ Chip--YDF-generateStyles(
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Chip.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
@@ -395,9 +395,9 @@ Chip--YDF-generateStyles(
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
 
-    +provideDefaultSelectorWhenRootAndApply(".Chip--YDF")
+    +provideDefaultSelectorWhenRootAndApply--YDF(".Chip--YDF")
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -408,12 +408,12 @@ Chip--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     .Chip--YDF-SVG_Icon
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -421,12 +421,12 @@ Chip--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.SVG_Icon.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
 
 
     .Chip--YDF-Key
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -435,12 +435,12 @@ Chip--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.keyLabel.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.keyLabel.customDeclarations)
 
 
     .Chip--YDF-Value
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -449,7 +449,7 @@ Chip--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.valueLabel.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.valueLabel.customDeclarations)
 
 
   applyThemeIndependentDecorativeModifiers()
@@ -471,7 +471,7 @@ Chip--YDF-generateStyles(
   // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   applyBasicRules()
 
-  applyComponentThemes({
+  applyComponentThemes--YDF({
     CSS_Namespace: "Chip--YDF",
     themes: properties.themes,
     applyGeometricVariation: applyGeometricVariation,

@@ -1,39 +1,39 @@
-validateObjectTypeParameter(namedParameters)
+validateObjectTypeParameter--YDF(namedParameters)
 
   mixinOrFunctionName = namedParameters.mixinOrFunctionName
 
-  if !isNonEmptyString(mixinOrFunctionName) {
+  if !isNonEmptyString--YDF(mixinOrFunctionName) {
     error(
       "Please specify the property 'mixinOfFunctionName' at first and only object-type parameter of function " +\
-      "'validateObjectTypeParameter' with non-empty string for clear logging where exactly error could occur."
+      "'validateObjectTypeParameter--YDF' with non-empty string for clear logging where exactly error could occur."
     )
   }
 
 
   targetParameterNumber = namedParameters.targetParameterNumber
 
-  if !isNaturalNumber(targetParameterNumber)
+  if !isNaturalNumber--YDF(targetParameterNumber)
     error(
       "Please specify the property 'targetParameterNumber' at first and only object-type parameter of function " +\
-      "'validateObjectTypeParameter' with natural number for clear logging what number parameter is invalid."
+      "'validateObjectTypeParameter--YDF' with natural number for clear logging what number parameter is invalid."
     )
 
 
   schema = namedParameters.schema
 
-  if !isObject(schema)
+  if !isObject--YDF(schema)
     error(
       "Please specify the property 'schema' at first and only object-type parameter of function " +\
-      "'validateObjectTypeParameter' with object describing the scema of valid target parameter to display it to " +\
+      "'validateObjectTypeParameter--YDF' with object describing the scema of valid target parameter to display it to " +\
       "user if invalid value will be passed."
     )
 
 
   // [ Theory ] Explicit null will not be substituted by Stylus default parameters functionality
-  targetParameter = nullToEmptyObject(namedParameters.targetParameter)
+  targetParameter = nullToEmptyObject--YDF(namedParameters.targetParameter)
 
-  if (!isObject(targetParameter)) {
-    error(buildString(
+  if (!isObject--YDF(targetParameter)) {
+    error(buildString--YDF(
       "The parameter number ${targetParameterNumber} of function/mixin '${mixinOrFunctionName}' must be of object type.\n" +\
       "Actual value: ${actualValue}\n" +\
       "Actual value's type: ${actualValueType}\n" +\
@@ -43,7 +43,7 @@ validateObjectTypeParameter(namedParameters)
         mixinOrFunctionName: mixinOrFunctionName,
         actualValue: targetParameter,
         actualValueType: typeof(targetParameter),
-        schema: formatObject(schema)
+        schema: formatObject--YDF(schema)
       }
     ))
   }
@@ -51,14 +51,14 @@ validateObjectTypeParameter(namedParameters)
 
   followingParametersWhichMustNotBe = namedParameters.followingParametersWhichMustNotBe
 
-  if isNotNull(followingParametersWhichMustNotBe) {
-    error(buildString(
+  if isNotNull--YDF(followingParametersWhichMustNotBe) {
+    error(buildString--YDF(
       "The function/mixin '${mixinOrFunctionName}' must NOT have more than ${lastParameterNumber} parameters.\n" +\
       "Please check this parameter's schema:\n${schema}",
       {
         mixinOrFunctionName: mixinOrFunctionName,
         lastParameterNumber: targetParameterNumber,
-        schema: formatObject(schema)
+        schema: formatObject--YDF(schema)
       }
     ))
   }
@@ -66,7 +66,7 @@ validateObjectTypeParameter(namedParameters)
 
   generateErrorMessage(templateParameters)
 
-    return buildString(
+    return buildString--YDF(
       "Invalid parameter at:" +\
       "\n  ●  Function/mixin: ${mixinOrFunctionName}" +\
       "\n  ●  Parameter number: ${targetParameterNumber}" +\
@@ -78,7 +78,7 @@ validateObjectTypeParameter(namedParameters)
         targetParameterNumber: targetParameterNumber,
         parameterPropertyPath: templateParameters.parameterPropertyPath
         messageSpecificPart: templateParameters.messageSpecificPart,
-        propertyFormattedSpecification: formatObject(templateParameters.propertySpecification)
+        propertyFormattedSpecification: formatObject--YDF(templateParameters.propertySpecification)
       }
     )
 
@@ -94,12 +94,12 @@ validateObjectTypeParameter(namedParameters)
     for propertyName, propertySpecification in levelSchema {
 
       targetParameterCurrentPropertyDotSeparatedPathValueHolder.value =\
-          isEmptyString(targetParameterCurrentPropertyDotSeparatedPathValueHolder.value) ?\
+          isEmptyString--YDF(targetParameterCurrentPropertyDotSeparatedPathValueHolder.value) ?\
           propertyName : targetParameterCurrentPropertyDotSeparatedPathValueHolder.value + "." + propertyName
 
       propertyValue = objectOfCurrentLevel[propertyName]
 
-      if (isNull(propertyValue)) {
+      if (isNull--YDF(propertyValue)) {
 
         if (propertySpecification.required) {
           error(generateErrorMessage({
@@ -110,14 +110,14 @@ validateObjectTypeParameter(namedParameters)
         }
 
 
-        if (isNotNull(propertySpecification.requiredIf)) {
+        if (isNotNull--YDF(propertySpecification.requiredIf)) {
 
           // [ Stylus theory ] Functions in objects could be called if and only if destructured
           predicate = propertySpecification.requiredIf.predicate
 
-          if (isTrue(predicate(objectOfCurrentLevel, targetParameter))) {
+          if (isTrue--YDF(predicate(objectOfCurrentLevel, targetParameter))) {
             error(generateErrorMessage({
-              messageSpecificPart: buildString(
+              messageSpecificPart: buildString--YDF(
                 "This property is required when ${requirementConditionDescription} and this condition has been satisfied " +\
                 "while this proeprty has been omited or explicitly set to null.",
                 { requirementConditionDescription:  propertySpecification.requiredIf.conditionDescription }
@@ -129,18 +129,18 @@ validateObjectTypeParameter(namedParameters)
         }
 
 
-        if (isNotNull(propertySpecification.defaultValue)) {
+        if (isNotNull--YDF(propertySpecification.defaultValue)) {
           targetParameter[propertyName] = propertySpecification.defaultValue
         }
 
         // [ Stylus theory ] Even if add "return" here, the execution will continue after "if-else" block
       } else {
 
-        if (isNotNull(propertySpecification.incompatibleWith)) {
+        if (isNotNull--YDF(propertySpecification.incompatibleWith)) {
           for incompatiblePropertyDotSeparatedPath in propertySpecification.incompatibleWith {
-            if (isNotNull(getObjectValueByDotSeparatedPathSafely(targetParameter, incompatiblePropertyDotSeparatedPath))) {
+            if (isNotNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(targetParameter, incompatiblePropertyDotSeparatedPath))) {
               error(generateErrorMessage({
-                messageSpecificPart: buildString(
+                messageSpecificPart: buildString--YDF(
                   "This property is incompatible with property '${incompatiblePropertyDotSeparatedPath}'.",
                   { incompatiblePropertyDotSeparatedPath: incompatiblePropertyDotSeparatedPath }
                 ),
@@ -152,8 +152,8 @@ validateObjectTypeParameter(namedParameters)
         }
 
 
-        if (!isNonEmptyString(propertySpecification.type)) {
-          error(buildString(
+        if (!isNonEmptyString--YDF(propertySpecification.type)) {
+          error(buildString--YDF(
             "No valid type has been specified for the property ${propertyName} - it must be the non-empty string, " +\
             "the element of 'DataTypes--YDF' enumeration, while actual value is ${actualValue}.",
             {
@@ -167,13 +167,13 @@ validateObjectTypeParameter(namedParameters)
         // --- String --------------------------------------------------------------------------------------------------
         if (propertySpecification.type == DataTypes--YDF.string) {
 
-          if (isTrue(propertySpecification.considerIdentifierAsString)) {
+          if (isTrue--YDF(propertySpecification.considerIdentifierAsString)) {
             propertyValue = "" + propertyValue
           }
 
-          if (!isString(propertyValue)) {
+          if (!isString--YDF(propertyValue)) {
             error(generateErrorMessage({
-              messageSpecificPart: buildString(
+              messageSpecificPart: buildString--YDF(
                 "This property must be the string while actually has type '${propertyActualType}' and value '${propertyValue}'.",
                 {
                   propertyActualType: typeof(propertyValue),
@@ -186,11 +186,11 @@ validateObjectTypeParameter(namedParameters)
           }
 
           if (
-            isNotNull(propertySpecification.minimalCharactersCount) &&\
+            isNotNull--YDF(propertySpecification.minimalCharactersCount) &&\
             length(propertyValue) < propertySpecification.minimalCharactersCount
           ) {
             error(generateErrorMessage({
-              messageSpecificPart: buildString(
+              messageSpecificPart: buildString--YDF(
                 "This string-type property has ${actualCharactersCount} characters while at least " +\
                 "${minimalCharactersCount} required.",
                 {
@@ -204,11 +204,11 @@ validateObjectTypeParameter(namedParameters)
           }
 
           if (
-            isNotNull(propertySpecification.maximalCharactersCount) &&\
+            isNotNull--YDF(propertySpecification.maximalCharactersCount) &&\
             length(propertyValue) > propertySpecification.maximalCharactersCount
           ) {
             error(generateErrorMessage({
-              messageSpecificPart: buildString(
+              messageSpecificPart: buildString--YDF(
                 "This string-type property has ${actualCharactersCount} characters while ${maximalCharactersCount} " +\
                 "allowed as maximum.",
                 {
@@ -222,11 +222,11 @@ validateObjectTypeParameter(namedParameters)
           }
 
           if (\
-            isNotNull(propertySpecification.allowedAlternatives) &&\
-            !hasPrimitivesArraySpecifiedElement(propertySpecification.allowedAlternatives, propertyValue)
+            isNotNull--YDF(propertySpecification.allowedAlternatives) &&\
+            !hasPrimitivesArraySpecifiedElement--YDF(propertySpecification.allowedAlternatives, propertyValue)
           ) {
             error(generateErrorMessage({
-              messageSpecificPart: buildString(
+              messageSpecificPart: buildString--YDF(
                 "This string-type property has value '${actualValue}' while below alternatives only allowed:\n" +\
                 "${formattedAllowedAlternatives}",
                 {
@@ -250,9 +250,9 @@ validateObjectTypeParameter(namedParameters)
           ) {
 
             // --- Dimensional or dimensionless amount -----------------------------------------------------------------
-            if (!isDimensionalOrDimensionlessQuantity(propertyValue)) {
+            if (!isDimensionalOrDimensionlessQuantity--YDF(propertyValue)) {
               error(generateErrorMessage({
-                messageSpecificPart: buildString(
+                messageSpecificPart: buildString--YDF(
                   "This property must be either dimensional or dimensionless amount while actually has type " +\
                   "'${propertyActualType}' and value '${propertyValue}'.",
                   {
@@ -271,7 +271,7 @@ validateObjectTypeParameter(namedParameters)
 
             // [ Stylus theory ] Direct usage if below expression in "if" statement will cause the Stylus bug
             // expected ")", got "{"
-            hasValueDimensionalAmountType = isDimensionalQuantity(propertyValue, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY")
+            hasValueDimensionalAmountType = isDimensionalQuantity--YDF(propertyValue, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY")
 
             if (!hasValueDimensionalAmountType) {
 
@@ -286,7 +286,7 @@ validateObjectTypeParameter(namedParameters)
               } else {
 
                 error(generateErrorMessage({
-                  messageSpecificPart: buildString(
+                  messageSpecificPart: buildString--YDF(
                     "This property must be the dimensional amount while actually has type '${propertyActualType}' and value '${propertyValue}'.",
                     {
                       propertyActualType: typeof(propertyValue),
@@ -303,7 +303,7 @@ validateObjectTypeParameter(namedParameters)
           } else if (propertySpecification.type == DataTypes--YDF.dimensionlessQuantity) {
 
             // --- Dimensionless amount --------------------------------------------------------------------------------
-            if (!isDimensionlessQuantity(propertyValue)) {
+            if (!isDimensionlessQuantity--YDF(propertyValue)) {
 
               if (typeof(propertyValue) == "unit") {
 
@@ -316,7 +316,7 @@ validateObjectTypeParameter(namedParameters)
               } else {
 
                 error(generateErrorMessage({
-                  messageSpecificPart: buildString(
+                  messageSpecificPart: buildString--YDF(
                     "This property must be the dimensionless amount while actually has type '${propertyActualType}' and value '${propertyValue}'.",
                     {
                       propertyActualType: typeof(propertyValue),
@@ -333,11 +333,11 @@ validateObjectTypeParameter(namedParameters)
 
 
           if (
-            isDimensionlessQuantity(propertySpecification.minimalValue) &&\
+            isDimensionlessQuantity--YDF(propertySpecification.minimalValue) &&\
             propertyValue < propertySpecification.minimalValue
           ) {
             error(generateErrorMessage({
-              messageSpecificPart: buildString(
+              messageSpecificPart: buildString--YDF(
                 "This amount has value ${actualValue} while minimal allowed value is ${minimalValue}.",
                 {
                   actualValue: propertyValue,
@@ -350,11 +350,11 @@ validateObjectTypeParameter(namedParameters)
           }
 
           if (
-            isDimensionlessQuantity(propertySpecification.maximalValue) &&\
+            isDimensionlessQuantity--YDF(propertySpecification.maximalValue) &&\
             propertyValue > propertySpecification.maximalValue
           ) {
             error(generateErrorMessage({
-              messageSpecificPart: buildString(
+              messageSpecificPart: buildString--YDF(
                 "This amount has value '${actualValue}' while maximal allowed value is ${maximalValue}.",
                 {
                   actualValue: propertyValue,
@@ -370,9 +370,9 @@ validateObjectTypeParameter(namedParameters)
 
           // --- Boolean -----------------------------------------------------------------------------------------------
 
-          if (!isBoolean(propertyValue)) {
+          if (!isBoolean--YDF(propertyValue)) {
             error(generateErrorMessage({
-              messageSpecificPart: buildString(
+              messageSpecificPart: buildString--YDF(
                 "This property must be the boolean while actually has type '${propertyActualType}' and value '${propertyValue}'.",
                 {
                   propertyActualType: typeof(propertyValue),
@@ -388,7 +388,7 @@ validateObjectTypeParameter(namedParameters)
           // --- Color definition --------------------------------------------------------------------------------------
           if (typeof(propertyValue) != "rgba" && typeof(propertyValue) != "hsla") {
             error(generateErrorMessage({
-              messageSpecificPart: buildString(
+              messageSpecificPart: buildString--YDF(
                 "This property must be the color definition while actually has type '${propertyActualType}' and value '${propertyValue}'.",
                 {
                   propertyActualType: typeof(propertyValue),
@@ -401,8 +401,8 @@ validateObjectTypeParameter(namedParameters)
           }
         } else if (propertySpecification.type == DataTypes--YDF.object) {
 
-          if (!isObject(propertyValue)) {
-            error(buildString(
+          if (!isObject--YDF(propertyValue)) {
+            error(buildString--YDF(
               "The property '${propertyName}' in parameters object of mixin/function '${mixinOrFunctionName}' must be the " +\
               "object while aclually it has type '${propertyRealType}' and value: ${propertyValue}",
               {
@@ -421,7 +421,7 @@ validateObjectTypeParameter(namedParameters)
         } else {
 
           error(generateErrorMessage({
-            messageSpecificPart: buildString(
+            messageSpecificPart: buildString--YDF(
               "The type '${propertyActualType}' is unknown.",
               { propertyActualType: typeof(propertyValue) }
             ),

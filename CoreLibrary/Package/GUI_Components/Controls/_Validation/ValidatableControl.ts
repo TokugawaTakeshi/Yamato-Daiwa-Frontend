@@ -33,6 +33,8 @@ namespace ValidatableControl {
     IsInputRequired extends boolean,
     NonEmptyValueType,
     EmptyValueType = NonEmptyValueType,
+    /* eslint-disable-next-line @stylistic/type-generic-spacing --
+     * ESLint Stylistic plugin bug: this positive in completely nor related with the spacing around angled brackets. */
     ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)) =
         IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType),
     InvalidValue extends NonEmptyValueType | EmptyValueType = NonEmptyValueType | EmptyValueType

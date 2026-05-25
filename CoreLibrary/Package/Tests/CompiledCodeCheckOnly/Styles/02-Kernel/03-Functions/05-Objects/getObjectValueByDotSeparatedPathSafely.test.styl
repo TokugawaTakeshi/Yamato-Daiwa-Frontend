@@ -17,32 +17,32 @@ sample = {
 }
 
 
-testForEquality(
+testForEquality--YDF(
   "Correct value for key of 1st level",
-  getObjectValueByDotSeparatedPathSafely(sample, "alpha"),
+  getObjectValueByDotSeparatedPathSafely--YDF(sample, "alpha"),
   "FOO"
 )
 
-testForEquality(
+testForEquality--YDF(
   "Correct value for key of 2nd level",
-  getObjectValueByDotSeparatedPathSafely(sample, "bravo.charlie"),
+  getObjectValueByDotSeparatedPathSafely--YDF(sample, "bravo.charlie"),
   "BAR"
 )
 
-testForEquality(
+testForEquality--YDF(
   "Null has been returned for non-exiting value of 1st level",
-  getObjectValueByDotSeparatedPathSafely(sample, "delta"),
+  getObjectValueByDotSeparatedPathSafely--YDF(sample, "delta"),
   null
 )
 
-testForEquality(
+testForEquality--YDF(
   "Null has been returned for non-exiting value of 2nd level herewith 1st level value is existing",
-  getObjectValueByDotSeparatedPathSafely(sample, "bravo.golf"),
+  getObjectValueByDotSeparatedPathSafely--YDF(sample, "bravo.golf"),
   null
 )
 
-testForEquality(
+testForEquality--YDF(
   "Null has been returned for non-exiting value of 2nd level herewith 1st level value is not existing too",
-  getObjectValueByDotSeparatedPathSafely(sample, "hotel.echo"),
+  getObjectValueByDotSeparatedPathSafely--YDF(sample, "hotel.echo"),
   null
 )

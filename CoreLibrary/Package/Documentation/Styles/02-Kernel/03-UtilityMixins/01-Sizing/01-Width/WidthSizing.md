@@ -33,7 +33,7 @@ It is implied that all of above values are unknown at advance and will be define
 ```stylus
 .Element1
 
-  WidthSizing({ fixedWidth: 120px })
+  WidthSizing--YDF({ fixedWidth: 120px })
 ```
 
 will be transpiled to
@@ -50,7 +50,7 @@ will be transpiled to
 ```stylus
 .Element2-1
 
-  WidthSizing({
+  WidthSizing--YDF({
     minimalWidth: 120px,
     maximalWidth: 240px
   })
@@ -70,7 +70,7 @@ Add `takeMaximumSpaceAsPossible: true` to make `.Element2-1` take `240px` while 
 ```stylus
 .Element2-2
 
-  WidthSizing({
+  WidthSizing--YDF({
     minimalWidth: 120px,
     maximalWidth: 240px,
     takeMaximumSpaceAsPossible: true
@@ -98,7 +98,7 @@ Please note that `fixedWidth` is incompatible with `minimalWidth`, `maximalWidth
 ```stylus
 .Element3
 
-  WidthSizing({
+  WidthSizing--YDF({
     leftOrRightSymmetricBordersWidths: 1px,
     leftOrRightSymmetricPaddings: 8px
   })
@@ -121,7 +121,7 @@ will be transpiled to:
 ```stylus
 .Element4
 
-  WidthSizing({
+  WidthSizing--YDF({
     leftBorderWidth: 1px,
     rightBorderWidth: 2px,
     leftPadding: 8px,
@@ -149,7 +149,7 @@ Below ruleset will not change them.
 ```stylus
 .Element5-0
   
-  WidthSizing({ fixedWidth: 200px })
+  WidthSizing--YDF({ fixedWidth: 200px })
 ```
 
 If you want set the paddings at appropriate side to `none` when `leftBorderWidth`, `rightBorderWidth` or 
@@ -162,7 +162,7 @@ or `leftOrRightSymmetricPaddings` are `null` the appropriate CSS property will b
 ```stylus
 .Element5-1
 
-  WidthSizing({
+  WidthSizing--YDF({
     fixedWidth: 200px,
     isExplicitBorderNoneDeclarationRequired: true,
     isExplicitPaddingZeroDeclarationRequired: true
@@ -187,7 +187,7 @@ and left padding - to 0:
 ```stylus
 .Element5-2
 
-  WidthSizing({
+  WidthSizing--YDF({
     leftBorderWidth: 1px,
     isExplicitBorderNoneDeclarationRequired: true,
     rightPadding: 12px,

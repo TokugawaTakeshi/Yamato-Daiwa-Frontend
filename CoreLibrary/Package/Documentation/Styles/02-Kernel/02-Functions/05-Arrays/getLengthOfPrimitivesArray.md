@@ -1,21 +1,21 @@
-# `getLengthOfPrimitivesArray` Get the length (elements count) of strings, numbers or booleans
+# `getLengthOfPrimitivesArray--YDF` Get the length (elements count) of strings, numbers or booleans
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-getLengthOfPrimitivesArray-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 ```
-getLengthOfPrimitivesArray(targetValue: Array<string | number | boolean>): number
+getLengthOfPrimitivesArray--YDF(targetValue: Array<string | number | boolean>): number
 ```
 
 ```stylus
 sample = "ALPHA"
 
 p(length(sample)); // => 5 (For V0.54.8)
-p(getLengthOfPrimitivesArray(sample)); // => 1
+p(getLengthOfPrimitivesArray--YDF(sample)); // => 1
 
 sample2 = "ALPHA" "BRAVO"
 
 p(length(sample2)); // => 2 (For V0.54.8)
-p(getLengthOfPrimitivesArray(sample2)); // => 2
+p(getLengthOfPrimitivesArray--YDF(sample2)); // => 2
 ```
 
 This function may work with array of other values, but it has not been tested.

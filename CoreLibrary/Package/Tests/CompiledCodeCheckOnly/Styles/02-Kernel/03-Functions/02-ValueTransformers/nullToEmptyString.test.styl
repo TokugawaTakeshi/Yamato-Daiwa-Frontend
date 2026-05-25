@@ -9,26 +9,26 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/02-ValueTransfo
 @require "02-Kernel.styl"
 
 
-testForEquality(
+testForEquality--YDF(
   "Null has been transformed to empty string",
-  nullToEmptyString(null),
+  nullToEmptyString--YDF(null),
   ""
 )
 
-testForEquality(
+testForEquality--YDF(
   "Empty string has been left as is",
-  nullToEmptyString(""),
+  nullToEmptyString--YDF(""),
   ""
 )
 
-testForEquality(
+testForEquality--YDF(
   "Non-empty string has been left as is",
-  nullToEmptyString("ABC"),
+  nullToEmptyString--YDF("ABC"),
   "ABC"
 )
 
-testForEquality(
+testForEquality--YDF(
   "Number has been left as is",
-  nullToEmptyString(1),
+  nullToEmptyString--YDF(1),
   1
 )

@@ -13,14 +13,14 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   &-ElementB
 
-    retireFrom({ targetElementSelector: ".Example1-ElementA", x: 2px, y: 4px })
+    retireFrom--YDF({ targetElementSelector: ".Example1-ElementA", x: 2px, y: 4px })
 
 
 .Example2
 
   p
 
-    retireFrom({
+    retireFrom--YDF({
       targetElementSelector: "h1",
       y: 14px,
       referenceElementSelector: "p",
@@ -32,7 +32,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   &-ElementC
 
-    retireFrom({
+    retireFrom--YDF({
       definitions: (".Example3-ElementA" { x: 2px, y: 4px }) (".Example3-ElementB" { x: 6px, y: 8px })
     })
 
@@ -41,7 +41,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   p
 
-    retireFrom({
+    retireFrom--YDF({
       definitions: ("h1" { y: 12px }) ("h2" { y: 8px }),
       referenceElementSelector: "p",
       contextSelector: ".Example4"

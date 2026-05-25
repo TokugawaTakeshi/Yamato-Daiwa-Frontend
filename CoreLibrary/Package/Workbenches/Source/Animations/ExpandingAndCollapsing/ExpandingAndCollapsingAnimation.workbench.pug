@@ -23,4 +23,46 @@ block append Requirements
 
 block append PageContent
 
-  div
+  h1.Heading1 Collapsing / Expanding
+
+  h2.Heading2 Collapsing Only
+
+  h3.Heading3 Without Margins
+
+  .TestCase#UNFOLDING_ONLY-COLLAPSING_ONLY-WITHOUT_MARGINS--TEST-SITE
+
+    .TestCase-SamplesFlow
+
+      #Sample1-1-1
+      #Sample1-1-2
+
+    .TestCase-ButtonsFlow
+
+      button#BUTTON-1-1(
+        type="button"
+      ) Fold
+
+      button#BUTTON-1-2(
+        type="button"
+      ) Unfold
+
+
+  h3.Heading3 With Margins
+
+  .TestCase#UNFOLDING_ONLY-COLLAPSING_ONLY-WITH_MARGINS--TEST-SITE
+
+    .TestCase-SamplesFlow
+
+      #Sample1-2-1
+      #Sample1-2-2
+
+
+    .TestCase-ButtonsFlow
+
+      button#BUTTON-2-1(
+        type="button"
+      ) Fold
+
+      button#BUTTON-2-2(
+        type="button"
+      ) Unfold

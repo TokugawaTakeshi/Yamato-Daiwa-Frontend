@@ -51,7 +51,7 @@ mixin CompactTableOfContents--YDF_DK(localizedRouting, options, iterationData)
 
             -
 
-              const isCurrentRoute = route === RoutingEmulator.currentRoute;
+              const isCurrentRoute = route === YDF.RoutingEmulator.currentRoute;
               const linkModifierCSS_Classes = isCurrentRoute ? [ "CompactTableOfContents--YDF_DK-Item-Link__Current" ] : [];
 
               const anchorURI = options.mustApplyAnchorsInsteadOfURIs === true ? `#${ metadata.$anchor }` : metadata.$URI;

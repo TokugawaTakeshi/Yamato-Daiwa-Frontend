@@ -1,6 +1,6 @@
-buildBEM_ClassName(compoundParameter, restParameters__MUST_NOT_BE...)
+buildBEM_ClassName--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "buildBEM_Class",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
@@ -36,12 +36,12 @@ buildBEM_ClassName(compoundParameter, restParameters__MUST_NOT_BE...)
   outputBEM_Class = compoundParameter.block
 
 
-  if isNotNull(compoundParameter.element)
+  if isNotNull--YDF(compoundParameter.element)
 
     outputBEM_Class = outputBEM_Class + compoundParameter.elementSeparator + compoundParameter.element
 
 
-  if isNotNull(compoundParameter.modifier)
+  if isNotNull--YDF(compoundParameter.modifier)
 
     outputBEM_Class = outputBEM_Class + compoundParameter.modifierSeparator + compoundParameter.modifier
 

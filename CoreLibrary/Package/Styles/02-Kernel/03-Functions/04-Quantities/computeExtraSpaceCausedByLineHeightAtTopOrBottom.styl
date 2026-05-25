@@ -1,7 +1,7 @@
-computeExtraSpaceCausedByLineHeightAtTopOrBottom(compoundParameter, restParameters__MUST_NOT_BE...)
+computeExtraSpaceCausedByLineHeightAtTopOrBottom--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "applyTextGeometryWithoutExtraSpaceCausedByLineHeight",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "computeExtraSpaceCausedByLineHeightAtTopOrBottom--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
@@ -19,7 +19,7 @@ computeExtraSpaceCausedByLineHeightAtTopOrBottom(compoundParameter, restParamete
       lineSpacing: {
         type: DataTypes--YDF.dimensionalQuantity DataTypes--YDF.dimensionlessQuantity,
         requiredIf: {
-          predicate: @(compoundParameter) { return isNull(compoundParameter.lineHeight) },
+          predicate: @(compoundParameter) { return isNull--YDF(compoundParameter.lineHeight) },
           descriptionForLogging: "The 'lineHeight' is not specified"
         },
         incompatibleWith: "lineHeight"
@@ -34,14 +34,14 @@ computeExtraSpaceCausedByLineHeightAtTopOrBottom(compoundParameter, restParamete
   lineHeight = compoundParameter.lineHeight
 
 
-  if isNull(lineHeight)
+  if isNull--YDF(lineHeight)
 
-    if removeUnitFromAmount(lineSpacing) == 0
+    if removeUnitFromAmount--YDF(lineSpacing) == 0
 
       // === [ Branch A1 ] 0 line spacing
       return 0
 
-    else if isDimensionlessQuantity(lineSpacing)
+    else if isDimensionlessQuantity--YDF(lineSpacing)
 
       // === [ Branch A2 ] Dimensionless line spacing
       return fontSize * lineSpacing / 2
@@ -58,12 +58,12 @@ computeExtraSpaceCausedByLineHeightAtTopOrBottom(compoundParameter, restParamete
 
   else
 
-    if removeUnitFromAmount(lineHeight) == 0
+    if removeUnitFromAmount--YDF(lineHeight) == 0
 
       // === [ Branch B1 ] 0 line height: basically it could not be but must be processed correctly
       return 0
 
-    else if isDimensionlessQuantity(lineHeight)
+    else if isDimensionlessQuantity--YDF(lineHeight)
 
       // === [ Branch B2 ] Dimensionless line height
       return ((fontSize * lineHeight) - fontSize) / 2
@@ -82,6 +82,6 @@ computeExtraSpaceCausedByLineHeightAtTopOrBottom(compoundParameter, restParamete
     else
 
       // === [ Branch B4 ] Font size and line height of different units
-      return buildCalcExpression(
+      return buildCalcExpression--YDF(
         "(${ lineHeight } - ${ fontSize }) / 2" , { fontSize: fontSize, lineHeight: lineHeight }
       )

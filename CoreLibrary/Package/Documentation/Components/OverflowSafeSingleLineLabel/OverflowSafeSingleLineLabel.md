@@ -31,8 +31,8 @@ overflow-safe and all hanging symbols like *g* or *h* be fully visible.
 @require "../PATH/TO/node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
 
 
-CrossBrowserStylesReset()
-InitialGlobalCSS_Rules()
+CrossBrowserStylesReset--YDF()
+InitialGlobalCSS_Rules--YDF()
 
 
 OverflowSafeSingleLineLabel--YDF-generateStyles()

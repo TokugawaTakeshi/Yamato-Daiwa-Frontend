@@ -1,4 +1,4 @@
-# `validateObjectTypeParameter` - object-type parameter validation
+# `validateObjectTypeParameter--YDF` - object-type parameter validation
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-votp-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -28,7 +28,7 @@ exampleMixin({
 })
 ```
 
-Additionally, `validateObjectTypeParameter` will validate this object-type parameter according specified schema.
+Additionally, `validateObjectTypeParameter--YDF` will validate this object-type parameter according specified schema.
 
 
 ## Options
@@ -41,38 +41,38 @@ First, define 'mixinOrFunctionName' for exact error message where invalid data e
 exampleMixin(parametersObject = {}, restParameters__MUST_NOT_BE...)
 
   // [ Interim code warning ] Just below code will not work
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "exampleMixin"
   })
 ```
 
 ### parameterNumber
 
-`validateObjectTypeParameter` works not only for first parameter. Specify explicitly the number of target parameter for
+`validateObjectTypeParameter--YDF` works not only for first parameter. Specify explicitly the number of target parameter for
 exact logging:
 
 ```stylus
 exampleMixin(parametersObject = {}, restParameters__MUST_NOT_BE...)
 
   // [ Interim code warning ] Just below code will not work
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "exampleMixin",
     targetParameterNumber: 1
   })
 ```
 
-You can call `validateObjectTypeParameter` for each of multiple object-type parameters is there are.
+You can call `validateObjectTypeParameter--YDF` for each of multiple object-type parameters is there are.
 
 
 ### targetParameter
 
-Of course, the parameter which will be validated must be explicitly passed to `validateObjectTypeParameter` function:
+Of course, the parameter which will be validated must be explicitly passed to `validateObjectTypeParameter--YDF` function:
 
 ```stylus
 exampleMixin(parametersObject = {}, restParameters__MUST_NOT_BE...)
 
   // [ Interim code warning ] Just below code will not work
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "exampleMixin",
     targetParameterNumber: 1,
     targetParameter: parametersObject
@@ -83,20 +83,20 @@ If this parameter is optional, specify the empty object as default value, or Sty
 validation start:
 
 ```
-argument "parametersObject" required for buildBEM_ClassName(parametersObject, restParameters__MUST_NOT_BE)
+argument "parametersObject" required for buildBEM_ClassName--YDF(parametersObject, restParameters__MUST_NOT_BE)
 ```
 
 
 ### followingParametersWhichMustNotBe
 
 If you are want to forbid following parameters, declare them using the Stylus
-[rest parameters literal](https://stylus-lang.com/docs/vargs.html) and pass to `validateObjectTypeParameter`
+[rest parameters literal](https://stylus-lang.com/docs/vargs.html) and pass to `validateObjectTypeParameter--YDF`
 
 ```stylus
 exampleMixin(parametersObject = {}, restParameters__MUST_NOT_BE...)
 
   // [ Interim code warning ] Just below code will not work
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "exampleMixin",
     targetParameterNumber: 1,
     targetParameter: parametersObject,
@@ -112,7 +112,7 @@ Specify the `schema` property following below manual.
 ```stylus
 exampleMixin(parametersObject = {}, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "exampleMixin",
     targetParameterNumber: 1,
     targetParameter: parametersObject,
@@ -132,9 +132,9 @@ exampleMixin(parametersObject = {}, restParameters__MUST_NOT_BE...)
 * If it is optional, you can skip the `required: false`.
 
 ```stylus
-buildBEM_ClassName(compoundParameter, restParameters__MUST_NOT_BE...)
+buildBEM_ClassName--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "buildBEM_Class",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
@@ -157,7 +157,7 @@ buildBEM_ClassName(compoundParameter, restParameters__MUST_NOT_BE...)
 If the required property will be omitted like:
 
 ```stylus
-buildBEM_ClassName({ element: "Icon" })
+buildBEM_ClassName--YDF({ element: "Icon" })
 ```
 
 the error like below will be thrown:
@@ -192,10 +192,10 @@ TextElementHeightSizingTypes--YDF = {
   natural: "NATURAL"
 }
 
-TextElementHeightSizing(textElementHeightSizingSpecification, restParameters__MUST_NOT_BE...)
+TextElementHeightSizing--YDF(textElementHeightSizingSpecification, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "TextElementHeightSizing",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "TextElementHeightSizing--YDF",
     targetParameterNumber: 1,
     targetParameter: textElementHeightSizingSpecification,
     schema: {
@@ -224,7 +224,7 @@ Now if property `type` will be `TextElementHeightSizingTypes--YDF.fixed` but `fi
 ```stylus
 .Sample
 
-  TextElementHeightSizing({
+  TextElementHeightSizing--YDF({
     type: TextElementHeightSizingTypes--YDF.fixed
   })
 ```
@@ -233,7 +233,7 @@ below error will be thrown:
 
 ```
 Invalid parameter at:
-  ●  Function/mixin: TextElementHeightSizing
+  ●  Function/mixin: TextElementHeightSizing--YDF
   ●  Parameter number: 1
   ●  Parameter's property: fixedHeight
 This property is required when 'type' is 'TextElementHeightSizingTypes--YDF.fixed' and this condition has been satisfied while this proeprt
@@ -255,9 +255,9 @@ Specify the **defaultValue** value which will be substituted when target propert
 Do not specify the `required: true` or `required: false` if you defined the **defaultValue**.
 
 ```stylus
-buildBEM_ClassName(compoundParameter, restParameters__MUST_NOT_BE...)
+buildBEM_ClassName--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "buildBEM_Class",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
@@ -290,13 +290,13 @@ buildBEM_ClassName(compoundParameter, restParameters__MUST_NOT_BE...)
 Testing:
 
 ```stylus
-p(buildBEM_ClassName({
+p(buildBEM_ClassName--YDF({
   block: "Component",
   element: "Element",
   modifier: "Modifier"
 })) // => "Component__Element_Modifier"
 
-p(buildBEM_ClassName({
+p(buildBEM_ClassName--YDF({
   block: "Component",
   element: "Element",
   modifier: "Modifier",
@@ -332,7 +332,7 @@ names:
 ```stylus
 widthSizing(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "widthSizing",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
@@ -380,9 +380,9 @@ Please check the specification of this property:
 In the nested property case, specify **incompatibleWith** with the property path:
 
 ```stylus
-BordersSizing(parametersObject, restParameters__MUST_NOT_BE...)
+BordersSizing--YDF(parametersObject, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "Borders",
     targetParameterNumber: 1,
     targetParameter: parametersObject,
@@ -412,7 +412,7 @@ BordersSizing(parametersObject, restParameters__MUST_NOT_BE...)
 Now, if mutually exclusive rules will be passed as
 
 ```stylus
-BordersSizing({
+BordersSizing--YDF({
   thickness: {
     horizontalSymmetric: 2px,
     left: 4px
@@ -442,9 +442,9 @@ Please check the specification of this property:
 Specify the **type** of each property with the member or **DataTypes** enumeration.
 
 ```stylus
-buildBEM_ClassName(compoundParameter, restParameters__MUST_NOT_BE...)
+buildBEM_ClassName--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "buildBEM_Class",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
@@ -469,7 +469,7 @@ buildBEM_ClassName(compoundParameter, restParameters__MUST_NOT_BE...)
 If it will be violated like:
 
 ```stylus
-p(buildBEM_ClassName({ block: 1 }))
+p(buildBEM_ClassName--YDF({ block: 1 }))
 ```
 
 the error as below will be thrown:
@@ -494,10 +494,10 @@ It is possible to allow both dimensional and dimensionless amounts (actual for l
 Specify **type** with two values `DataTypes--YDF.dimensionalQuantity DataTypes--YDF.dimensionlessQuantity` _in this sequence_.
 
 ```stylus
-TextElementHeightSizing(textElementHeightSizingSpecification, restParameters__MUST_NOT_BE...)
+TextElementHeightSizing--YDF(textElementHeightSizingSpecification, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "TextElementHeightSizing",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "TextElementHeightSizing--YDF",
     targetParameterNumber: 1,
     targetParameter: textElementHeightSizingSpecification,
     schema: {
@@ -516,7 +516,7 @@ TextElementHeightSizing(textElementHeightSizingSpecification, restParameters__MU
 ```stylus
 .Correct1
 
-  TextElementHeightSizing({
+  TextElementHeightSizing--YDF({
     type: TextElementHeightSizingTypes--YDF.natural,
     lineHeight: 18px
   })
@@ -524,7 +524,7 @@ TextElementHeightSizing(textElementHeightSizingSpecification, restParameters__MU
   
 .Correct2
 
-  TextElementHeightSizing({
+  TextElementHeightSizing--YDF({
     type: TextElementHeightSizingTypes--YDF.natural,
     lineHeight: 1.3
   })
@@ -532,7 +532,7 @@ TextElementHeightSizing(textElementHeightSizingSpecification, restParameters__MU
   
 .Incorrect
 
-  TextElementHeightSizing({
+  TextElementHeightSizing--YDF({
     type: TextElementHeightSizingTypes--YDF.natural,
     lineHeight: "Invalid"
   })
@@ -542,7 +542,7 @@ Now, in **.Incorrect** case, below exception will be thrown.
 
 ```
 Invalid parameter at:
-  ●  Function/mixin: TextElementHeightSizing
+  ●  Function/mixin: TextElementHeightSizing--YDF
   ●  Parameter number: 1
   ●  Parameter's property: lineHeight
 This property must be either dimensional or dimensionless amount while actually has type 'string' and value 'Invalid'.
@@ -559,10 +559,10 @@ Specify **minimalValue** for the amount property to the allowed minimal value an
 value.
 
 ```stylus
-TextElementHeightSizing(textElementHeightSizingSpecification, restParameters__MUST_NOT_BE...)
+TextElementHeightSizing--YDF(textElementHeightSizingSpecification, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "TextElementHeightSizing",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "TextElementHeightSizing--YDF",
     targetParameterNumber: 1,
     targetParameter: textElementHeightSizingSpecification,
     schema: {
@@ -582,7 +582,7 @@ Now, if this limitation will be violated as
 ```stylus
 .Sample
 
-  TextElementHeightSizing({
+  TextElementHeightSizing--YDF({
     type: TextElementHeightSizingTypes--YDF.natural,
     linesCount: 0
   })
@@ -592,7 +592,7 @@ the error as below will be thrown:
 
 ```
 Invalid parameter at:
-  ●  Function/mixin: TextElementHeightSizing
+  ●  Function/mixin: TextElementHeightSizing--YDF
   ●  Parameter number: 1
   ●  Parameter's property: linesCount
 This amount has value 0 while minimal allowed value is 1.
@@ -615,9 +615,9 @@ Specify **minimalCharactersCount** for the string-type property to set allowed m
 **maximalCharactersCount** - to limit maximal characters count.
 
 ```stylus
-buildBEM_ClassName(compoundParameter, restParameters__MUST_NOT_BE...)
+buildBEM_ClassName--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "buildBEM_Class",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
@@ -636,7 +636,7 @@ buildBEM_ClassName(compoundParameter, restParameters__MUST_NOT_BE...)
 Now if this limitation will be violated as
 
 ```stylus
-buildBEM_ClassName({ block: "" })
+buildBEM_ClassName--YDF({ block: "" })
 ```
 the error as below will be thrown:
 
@@ -665,9 +665,9 @@ TextElementHeightSizingTypes--YDF = {
   natural: "NATURAL"
 }
 
-TextElementHeightSizing(textElementHeightSizingSpecification, restParameters__MUST_NOT_BE...)
+TextElementHeightSizing--YDF(textElementHeightSizingSpecification, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "TextElementHeightSizing",
     targetParameterNumber: 1,
     targetParameter: textElementHeightSizingSpecification,
@@ -716,10 +716,10 @@ Please check the specification of this property:
 Stylus [supports](https://stylus-lang.com/docs/functions.html#argument-defaults) the default parameter value.
 
 ```stylus
-BordersSizing(bordersSpecification = {}, restParameters__MUST_NOT_BE...)
+BordersSizing--YDF(bordersSpecification = {}, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "BordersSizing",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "BordersSizing--YDF",
     targetParameterNumber: 1,
     targetParameter: bordersSpecification,
     schema: BordersSizingSpecificationSchema--YDF,
@@ -751,4 +751,4 @@ Test(sampleObject.bravo)
 3. In the tried case,  the parameter will _not_ be substituted because it has been specified is spit its value is null
    as not existing object property for the Stylus case 
 
-The `validateObjectTypeParameter` converts null to empty object, but as the Stylus user, you have to know about above pitfall. 
+The `validateObjectTypeParameter--YDF` converts null to empty object, but as the Stylus user, you have to know about above pitfall. 

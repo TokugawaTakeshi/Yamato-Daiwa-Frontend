@@ -1,9 +1,9 @@
-Paddings(paddingsSpecification, options = {}, restParameters__MUST_NOT_BE...)
+Paddings--YDF(paddingsSpecification, options = {}, restParameters__MUST_NOT_BE...)
 
   //* [ Stylus Theory ] Explicit `null` will NOT be substituted. */
-  paddingsSpecification = isNotNull(paddingsSpecification) ? paddingsSpecification : {}
+  paddingsSpecification = isNotNull--YDF(paddingsSpecification) ? paddingsSpecification : {}
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "Paddings",
     targetParameterNumber: 1,
     targetParameter: paddingsSpecification,
@@ -11,7 +11,7 @@ Paddings(paddingsSpecification, options = {}, restParameters__MUST_NOT_BE...)
     followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
   })
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "Paddings",
     targetParameterNumber: 2,
     targetParameter: options,
@@ -28,42 +28,42 @@ Paddings(paddingsSpecification, options = {}, restParameters__MUST_NOT_BE...)
     followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
   })
 
-  leftPadding = getFirstNonNullArrayElement(arrayConstructor__POLYFILL(
+  leftPadding = getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
     paddingsSpecification.all, paddingsSpecification.horizontalSymmetric, paddingsSpecification.left
   ))
 
-  rightPadding = getFirstNonNullArrayElement(arrayConstructor__POLYFILL(
+  rightPadding = getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
     paddingsSpecification.all, paddingsSpecification.horizontalSymmetric, paddingsSpecification.right
   ))
 
-  topPadding = getFirstNonNullArrayElement(arrayConstructor__POLYFILL(
+  topPadding = getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
     paddingsSpecification.all, paddingsSpecification.verticalSymmetric, paddingsSpecification.top
   ))
 
-  bottomPadding = getFirstNonNullArrayElement(arrayConstructor__POLYFILL(
+  bottomPadding = getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
     paddingsSpecification.all, paddingsSpecification.verticalSymmetric, paddingsSpecification.bottom
   ))
 
 
-  if (isNotNull(paddingsSpecification.upwardShifting) && isNotNull(topPadding)) {
-    topPadding = buildCalcExpression(
+  if (isNotNull--YDF(paddingsSpecification.upwardShifting) && isNotNull--YDF(topPadding)) {
+    topPadding = buildCalcExpression--YDF(
       "${ topPadding } - ${ upwardShifting }",
       { topPadding: topPadding, upwardShifting: paddingsSpecification.upwardShifting }
     )
   }
 
-  if isNotNull(paddingsSpecification.upwardShifting)
+  if isNotNull--YDF(paddingsSpecification.upwardShifting)
 
-    if isNotNull(topPadding)
+    if isNotNull--YDF(topPadding)
 
-      topPadding = buildCalcExpression(
+      topPadding = buildCalcExpression--YDF(
         "${ topPadding } - ${ upwardShifting }",
         { topPadding: topPadding, upwardShifting: paddingsSpecification.upwardShifting }
       )
 
-    if isNotNull(bottomPadding)
+    if isNotNull--YDF(bottomPadding)
 
-      bottomPadding = buildCalcExpression(
+      bottomPadding = buildCalcExpression--YDF(
         "${ bottomPadding } + ${ upwardShifting }",
         { bottomPadding: bottomPadding, upwardShifting: paddingsSpecification.upwardShifting }
       )
@@ -71,23 +71,23 @@ Paddings(paddingsSpecification, options = {}, restParameters__MUST_NOT_BE...)
 
   if !options.mustSkipApplyingOfHorizontalPaddings
 
-    applyIfNotNull({
+    applyIfNotNull--YDF({
       padding-left: leftPadding,
       padding-right: rightPadding
     })
 
   if !options.mustSkipApplyingOfVerticalPaddings
 
-    applyIfNotNull({
+    applyIfNotNull--YDF({
       padding-top: topPadding,
       padding-bottom: bottomPadding
     })
 
 
-specifyPaddings(paddingsSpecification, restParameters__MUST_NOT_BE...)
+specifyPaddings--YDF(paddingsSpecification, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "specifyPaddings",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "specifyPaddings--YDF",
     targetParameterNumber: 1,
     targetParameter: paddingsSpecification,
     schema: PaddingsSpecificationSchema--YDF,

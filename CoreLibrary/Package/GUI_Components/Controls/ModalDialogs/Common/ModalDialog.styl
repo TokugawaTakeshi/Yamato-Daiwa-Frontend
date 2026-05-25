@@ -10,7 +10,7 @@ ModalDialog--YDF-generateStyles()
     justify-content center
     align-items center
 
-    FixedTranslucentDimLayer()
+    FixedTranslucentDimLayer--YDF()
 
 
     &[hidden]
@@ -26,7 +26,7 @@ ModalDialog--YDF-generateStyles()
       flex-direction column
 
       border-radius 5px
-      Paddings({ horizontalSymmetric: 12px })
+      Paddings--YDF({ horizontalSymmetric: 12px })
 
       background white
 
@@ -65,7 +65,7 @@ ModalDialog--YDF-generateStyles()
 
     &-Title
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: 16px,
         lineSpacing: 4px,
         mustAllowWordsBreakingAnywhere: true

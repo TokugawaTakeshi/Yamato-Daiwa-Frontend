@@ -1,4 +1,4 @@
-# `applyIfNotZero`: applying non-zero CSS properties
+# `applyIfNotZero--YDF`: applying non-zero CSS properties
 
 [![Official IntelliJ IDEA plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-ainz-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -15,7 +15,7 @@ EXAMPLE_ELEMENT_MARGINS = 12px
 
 .Example
 
-  applyIfNotZero({
+  applyIfNotZero--YDF({
     padding: EXAMPLE_ELEMENT_PADDINGS,
     margin: EXAMPLE_ELEMENT_MARGINS
   })
@@ -38,8 +38,8 @@ Please note that the keys must be the valid CSS key.
 .Example
 
   // ⇩ Right
-  applyIfNotZero({ line-height: 1 })
+  applyIfNotZero--YDF({ line-height: 1 })
 
   // ⇩ Wrong: the `lineHeight` is not a valid CSS key
-  applyIfNotZero({ lineHeight: 1 })
+  applyIfNotZero--YDF({ lineHeight: 1 })
 ```

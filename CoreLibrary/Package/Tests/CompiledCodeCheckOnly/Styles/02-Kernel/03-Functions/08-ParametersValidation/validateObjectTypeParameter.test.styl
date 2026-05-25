@@ -10,33 +10,33 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/08-ParametersVa
 
 
 // --- Wrong parameter type test ---------------------------------------------------------------------------------------
-//buildBEM_ClassName("ALPHA")
+//buildBEM_ClassName--YDF("ALPHA")
 
 
 // --- Forbidden subsequent parameters test ----------------------------------------------------------------------------
-//buildBEM_ClassName({}, "ALPHA")
+//buildBEM_ClassName--YDF({}, "ALPHA")
 
 
 // --- Required property absence ---------------------------------------------------------------------------------------
-//buildBEM_ClassName({ element: "Icon" })
+//buildBEM_ClassName--YDF({ element: "Icon" })
 
 
 // --- Conditional requirement -----------------------------------------------------------------------------------------
 //.Sample
 //
-//  TextElementHeightSizing({
+//  TextElementHeightSizing--YDF({
 //    type: TextElementHeightSizingTypes--YDF.fixed
 //  })
 
 
 // --- Default values --------------------------------------------------------------------------------------------------
-//p(buildBEM_ClassName({
+//p(buildBEM_ClassName--YDF({
 //  block: "Component",
 //  element: "Element",
 //  modifier: "Modifier"
 //}))
 //
-//p(buildBEM_ClassName({
+//p(buildBEM_ClassName--YDF({
 //  block: "Component",
 //  element: "Element",
 //  modifier: "Modifier",
@@ -46,7 +46,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/08-ParametersVa
 
 
 // --- Invalid property type -------------------------------------------------------------------------------------------
-//buildBEM_ClassName({ block: 1 })
+//buildBEM_ClassName--YDF({ block: 1 })
 
 
 // --- Incompatible properties -----------------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/08-ParametersVa
 //  maximalWidth: 120px
 //})
 
-//BordersSizing({
+//BordersSizing--YDF({
 //  thickness: {
 //    horizontalSymmetric: 2px,
 //    left: 4px
@@ -67,7 +67,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/08-ParametersVa
 // --- Allow both dimensional and dimensionless amount
 //.Correct1
 //
-//  TextElementHeightSizing({
+//  TextElementHeightSizing--YDF({
 //    type: TextElementHeightSizingTypes--YDF.natural,
 //    lineHeight: 18px
 //  })
@@ -75,7 +75,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/08-ParametersVa
 //
 //.Correct2
 //
-//  TextElementHeightSizing({
+//  TextElementHeightSizing--YDF({
 //    type: TextElementHeightSizingTypes--YDF.natural,
 //    lineHeight: 1.3
 //  })
@@ -83,7 +83,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/08-ParametersVa
 //
 //.Incorrect
 //
-//  TextElementHeightSizing({
+//  TextElementHeightSizing--YDF({
 //    type: TextElementHeightSizingTypes--YDF.natural,
 //    lineHeight: "Invalid"
 //  })
@@ -92,7 +92,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/08-ParametersVa
 // --- Minimal value
 //.Sample
 //
-//  TextElementHeightSizing({
+//  TextElementHeightSizing--YDF({
 //    type: TextElementHeightSizingTypes--YDF.natural,
 //    linesCount: 0
 //  })
@@ -100,11 +100,11 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/08-ParametersVa
 
 // --- Strings ---------------------------------------------------------------------------------------------------------
 // --- Minimal characters count
-//buildBEM_ClassName({ block: "" })
+//buildBEM_ClassName--YDF({ block: "" })
 
 // --- Allowed alternatives
 //.Sample
 //
-//  TextElementHeightSizing({
+//  TextElementHeightSizing--YDF({
 //    type: "OTHER"
 //  })

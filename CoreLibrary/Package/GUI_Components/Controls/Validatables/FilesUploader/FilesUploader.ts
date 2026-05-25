@@ -48,6 +48,8 @@ class FilesUploader<
   IsInputRequired extends boolean,
   NonEmptyValueType extends FilesUploader.SupportedValidatablePayloadValuesTypes.NonEmpty,
   EmptyValueType extends FilesUploader.SupportedValidatablePayloadValuesTypes.Empty,
+  /* eslint-disable-next-line @stylistic/type-generic-spacing --
+   * ESLint Stylistic plugin bug: this positive in completely nor related with the spacing around angled brackets. */
   ValidValue extends (IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType)) =
       IsInputRequired extends true ? NonEmptyValueType : (NonEmptyValueType | EmptyValueType),
   InvalidValue extends NonEmptyValueType | EmptyValueType = NonEmptyValueType | EmptyValueType
@@ -629,8 +631,6 @@ class FilesUploader<
 
 
   /* ─── Uploading ────────────────────────────────────────────────────────────────────────────────────────────────── */
-  /* eslint-disable-next-line n/no-unsupported-features/node-builtins --
-   * Waiting for the answer https://stackoverflow.com/q/79056215/4818123 */
   protected async issueFilesURIs(newFiles: ReadonlyArray<File>): Promise<void> {
 
     if (newFiles.length === 0) {
@@ -644,8 +644,6 @@ class FilesUploader<
 
       newBase64EncodedFiles = await Promise.all(
 
-        /* eslint-disable-next-line n/no-unsupported-features/node-builtins --
-         * Waiting for the answer https://stackoverflow.com/q/79056215/4818123 */
         newFiles.map(async (file: File): Promise<string> => encodeFileToBase64(file))
 
       );
@@ -709,7 +707,8 @@ class FilesUploader<
 
     }
 
-    /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- TODO */
+    /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+     * Acceptable during α/β versions of this component but must and will be fixed before official release. */
     this.payload.$setValue({ newValue: payloadNewValue as ValidValue | InvalidValue });
 
   }

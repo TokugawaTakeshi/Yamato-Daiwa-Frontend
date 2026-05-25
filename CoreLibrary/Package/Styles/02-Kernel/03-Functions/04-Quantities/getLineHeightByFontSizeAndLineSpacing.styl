@@ -1,7 +1,7 @@
-getLineHeightByFontSizeAndLineSpacing(compoundParameter, restParameters__MUST_NOT_BE...)
+getLineHeightByFontSizeAndLineSpacing--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "getLineHeightByFontSizeAndLineSpacing",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "getLineHeightByFontSizeAndLineSpacing--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
@@ -30,7 +30,7 @@ getLineHeightByFontSizeAndLineSpacing(compoundParameter, restParameters__MUST_NO
   mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0 = compoundParameter.mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0
   mustOutputDimensionalQuantityIfPossible = compoundParameter.mustOutputDimensionalQuantityIfPossible
 
-  isSpecifiedLineSpacingTheDimensionalAmount = isDimensionalQuantity(
+  isSpecifiedLineSpacingTheDimensionalAmount = isDimensionalQuantity--YDF(
     lineSpacing, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY"
   )
 
@@ -47,7 +47,7 @@ getLineHeightByFontSizeAndLineSpacing(compoundParameter, restParameters__MUST_NO
 
       else
 
-        return mustOutputDimensionalQuantityIfPossible ? appendUnit(0, unit(fontSize)) :  0
+        return mustOutputDimensionalQuantityIfPossible ? appendUnit--YDF(0, unit(fontSize)) :  0
 
 
     else if unit(lineSpacing) == unit(fontSize)
@@ -58,11 +58,11 @@ getLineHeightByFontSizeAndLineSpacing(compoundParameter, restParameters__MUST_NO
 
       else
 
-        return removeUnitFromAmount((fontSize + lineSpacing) / fontSize)
+        return removeUnitFromAmount--YDF((fontSize + lineSpacing) / fontSize)
 
     else
 
-      return buildCalcExpression(
+      return buildCalcExpression--YDF(
         "${ fontSize } + ${ lineSpacing }",
         { fontSize: fontSize, lineSpacing: lineSpacing }
       )

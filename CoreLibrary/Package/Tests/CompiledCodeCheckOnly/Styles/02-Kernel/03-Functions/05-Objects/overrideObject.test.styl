@@ -9,7 +9,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/05-Objects/over
 @require "02-Kernel.styl"
 
 
-// In this case, "overrideObject" is equivalent to "merge"/"extend"
+// In this case, "overrideObject--YDF" is equivalent to "merge"/"extend"
 sample1 = {
   alpha: "FOO",
   charlie: {
@@ -23,7 +23,7 @@ overridings1 = {
 }
 
 //mergingResult1 = merge(sample1, overridings1)
-mergingResult1 = overrideObject(sample1, overridings1)
+mergingResult1 = overrideObject--YDF(sample1, overridings1)
 
 p(sample1)
 log(sample1)
@@ -36,7 +36,7 @@ log(mergingResult1)
 
 
 p("===================================================================================================================")
-// In this case, "overrideObject" gives different result to "merge"/"extend"
+// In this case, "overrideObject--YDF" gives different result to "merge"/"extend"
 sample2 = {
   alpha: {
     bravo: "FOO",
@@ -55,7 +55,7 @@ overridings2 = {
 
 
 //mergingResult2 = merge(sample2, overridings2)
-mergingResult2 = overrideObject(sample2, overridings2)
+mergingResult2 = overrideObject--YDF(sample2, overridings2)
 
 p(sample2)
 log(sample2)

@@ -69,8 +69,8 @@ for sample, index in lowercaseSamples
 
   targetLatinCharacter = split("", sample)[0]
 
-  testForEquality(
+  testForEquality--YDF(
     "'" + targetLatinCharacter + "'" + " letter has been capitalized",
-    capitalizeFirstLatinCharacter(sample),
+    capitalizeFirstLatinCharacter--YDF(sample),
     correspondingCapitalizedSamples[index]
   )

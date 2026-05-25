@@ -14,9 +14,9 @@
 
     &-InputElement
 
-      TextBoxLikeElementsPrimer()
+      TextBoxLikeElementsPrimer--YDF()
 
-      TextElementHeightSizing({
+      TextElementHeightSizing--YDF({
         type: TextElementHeightSizingTypes--YDF.natural,
         borders: { thickness: { all: 1px } },
         paddings: { verticalSymmetric: 0.6rem },
@@ -30,7 +30,7 @@
       width 0 //* [ Why?! ] To provide the shrinkage in narrow containers (`min-width: 0` will not work.) */
 
       border-width 1px
-      Paddings({ horizontalSymmetric: 1rem })
+      Paddings--YDF({ horizontalSymmetric: 1rem })
 
       border-style solid
       border-color #c5c5c5

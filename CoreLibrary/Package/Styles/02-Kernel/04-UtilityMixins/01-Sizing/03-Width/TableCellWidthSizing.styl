@@ -1,7 +1,7 @@
-TableCellWidthSizing(compoundParameter, restParameters__MUST_NOT_BE...)
+TableCellWidthSizing--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "TableCellWidthSizing",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "TableCellWidthSizing--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
@@ -74,23 +74,23 @@ TableCellWidthSizing(compoundParameter, restParameters__MUST_NOT_BE...)
   contentMinimalWidth = compoundParameter.contentMinimalWidth
   contentMaximalWidth = compoundParameter.contentMaximalWidth
 
-  leftBorderWidth = substituteNull(compoundParameter.leftBorderWidth, compoundParameter.leftOrRightSymmetricBordersWidths)
-  rightBorderWidth = substituteNull(compoundParameter.rightBorderWidth, compoundParameter.leftOrRightSymmetricBordersWidths)
+  leftBorderWidth = substituteNull--YDF(compoundParameter.leftBorderWidth, compoundParameter.leftOrRightSymmetricBordersWidths)
+  rightBorderWidth = substituteNull--YDF(compoundParameter.rightBorderWidth, compoundParameter.leftOrRightSymmetricBordersWidths)
 
-  leftPadding = substituteNull(compoundParameter.leftPadding, compoundParameter.leftOrRightSymmetricPaddings)
-  rightPadding = substituteNull(compoundParameter.rightPadding, compoundParameter.leftOrRightSymmetricPaddings)
+  leftPadding = substituteNull--YDF(compoundParameter.leftPadding, compoundParameter.leftOrRightSymmetricPaddings)
+  rightPadding = substituteNull--YDF(compoundParameter.rightPadding, compoundParameter.leftOrRightSymmetricPaddings)
 
   truncateOnOverflow = compoundParameter.truncateOnOverflow
   displayEllipsisOnOverflow = compoundParameter.displayEllipsisOnOverflow
 
 
-  if isNotNull(fixedTotalWidth)
+  if isNotNull--YDF(fixedTotalWidth)
 
     width fixedTotalWidth
 
-  else if isNotNull(fixedContentWidth)
+  else if isNotNull--YDF(fixedContentWidth)
 
-    width: buildCalcExpression(
+    width: buildCalcExpression--YDF(
       "${fixedContentWidth} + ${leftBorderWidth} + ${rightBorderWidth} + ${leftPadding} + ${rightPadding}",
       {
         fixedContentWidth: fixedContentWidth,
@@ -102,13 +102,13 @@ TableCellWidthSizing(compoundParameter, restParameters__MUST_NOT_BE...)
     )
 
 
-  if isNotNull(totalMinimalWidth)
+  if isNotNull--YDF(totalMinimalWidth)
 
     min-width totalMinimalWidth
 
-  else if isNotNull(contentMinimalWidth)
+  else if isNotNull--YDF(contentMinimalWidth)
 
-    min-width: buildCalcExpression(
+    min-width: buildCalcExpression--YDF(
       "${contentMinimalWidth} + ${leftBorderWidth} + ${rightBorderWidth} + ${leftPadding} + ${rightPadding}",
       {
         contentMinimalWidth: contentMinimalWidth,
@@ -120,13 +120,13 @@ TableCellWidthSizing(compoundParameter, restParameters__MUST_NOT_BE...)
     )
 
 
-  if isNotNull(totalMaximalWidth)
+  if isNotNull--YDF(totalMaximalWidth)
 
     max-width totalMaximalWidth
 
-  else if isNotNull(contentMaximalWidth)
+  else if isNotNull--YDF(contentMaximalWidth)
 
-    max-width: buildCalcExpression(
+    max-width: buildCalcExpression--YDF(
       "${contentMaximalWidth} + ${leftBorderWidth} + ${rightBorderWidth} + ${leftPadding} + ${rightPadding}",
       {
         contentMaximalWidth: contentMaximalWidth,
@@ -138,7 +138,7 @@ TableCellWidthSizing(compoundParameter, restParameters__MUST_NOT_BE...)
     )
 
 
-  applyIfNotNull({
+  applyIfNotNull--YDF({
     border-left-width: leftBorderWidth,
     border-right-width: rightBorderWidth,
     padding-left: leftPadding,

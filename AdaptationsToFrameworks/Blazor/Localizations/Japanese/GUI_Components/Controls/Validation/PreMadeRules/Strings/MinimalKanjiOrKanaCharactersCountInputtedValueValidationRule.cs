@@ -54,14 +54,14 @@ public class MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule : Inpu
     int minimalKanjiOrKanaCharactersCount = Convert.ToInt32(this.MinimalKanjiOrKanaCharactersCount);
 
     bool isInvalid = this.IsKanjiOrKanaCharactersCountLessThanRequiredMinimum?.
-      Invoke(
-        new CustomCheckParameter
-        {
-          TargetString = (string)rawValue,
-          MinimalKanjiOrKanaCharactersCount = minimalKanjiOrKanaCharactersCount
-        }
-      ) ?? 
-      this.checkByDefaultAlgorithm((string)rawValue, minimalKanjiOrKanaCharactersCount);
+        Invoke(
+          new CustomCheckParameter
+          {
+            TargetString = (string)rawValue,
+            MinimalKanjiOrKanaCharactersCount = minimalKanjiOrKanaCharactersCount
+          }
+        ) ?? 
+        checkByDefaultAlgorithm((string)rawValue, minimalKanjiOrKanaCharactersCount);
 
 
     return new InputtedValueValidation.IRule.CheckingResult
@@ -79,7 +79,7 @@ public class MinimalKanjiOrKanaCharactersCountInputtedValueValidationRule : Inpu
 
   }
 
-  private bool checkByDefaultAlgorithm(string targetString, int minimalKanjiOrKanaCharactersCount)
+  private static bool checkByDefaultAlgorithm(string targetString, int minimalKanjiOrKanaCharactersCount)
   {
 
     int count = 0;

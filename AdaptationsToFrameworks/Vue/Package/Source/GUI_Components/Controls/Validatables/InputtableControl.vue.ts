@@ -11,7 +11,8 @@ import { type ValidatableControl } from "@yamato-daiwa/frontend";
 import {
   ComponentBase as VueComponentConfiguration,
   Vue as VueComponent,
-  Prop as VueProperty
+  Prop as VueProperty,
+  Watch as onVueDataOrPropertyChanged
 } from "vue-facing-decorator";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
@@ -158,16 +159,35 @@ export default abstract class InputtableControl extends VueComponent {
   protected readonly readonly!: boolean;
 
 
+  /* [ Approach ]
+   * Unlike the invalid value highlighting, the library user may not wish the specific highlighting (usually green-color
+   *   based) for inputted valid value, thus the additional flag is required. */
+  @VueProperty({
+    default: false,
+    get validator(): VuePropertyValidator {
+      return BooleanVuePropertyValidator({
+        propertyName: "mustHighlightValidInputWhenItIsValid",
+        componentName: "(Inheritor of InputtableControl)",
+        isPropertyRequired: this.required === true
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
+  protected readonly mustHighlightValidInputWhenItIsValid!: boolean;
+
+
   /* ━━━ State ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected abstract invalidInputHighlightingIfAnyValidationErrorsMessages: boolean;
-  protected abstract validInputHighlightingIfNoErrorsMessages: boolean;
+  protected abstract mustHighlightInputtedValueValidity: boolean;
+
+  protected abstract get mustHighlightInvalidInputtedValue(): boolean;
+  protected abstract get mustHighlightValidInputtedValue(): boolean;
 
 
   /* ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ┅┅┅ Public ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   /* ╍╍╍ Partial Implementations of ValidatableControl Interface ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
   public highlightInvalidInput(): this {
-    this.invalidInputHighlightingIfAnyValidationErrorsMessages = true;
+    this.mustHighlightInputtedValueValidity = true;
     return this;
   }
 
@@ -190,28 +210,18 @@ export default abstract class InputtableControl extends VueComponent {
   }
 
 
-  /* ╍╍╍ Lifecycle Hooks ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
-  protected beforeCreate(): void {
-    InputtableControl.validateProperties(this);
-  }
-
-  protected beforeUpdate(): void {
-    InputtableControl.validateProperties(this);
-  }
-
-
   /* ┅┅┅ Protected ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  /** @descriptioin
-   * Validation with referencing of multiple properties is possible only via lifecycle hooks.
-   * This method is static because non-static methods are not accessible from the viewpoint of "vue-facing-decorator" */
-  protected static validateProperties(instance: InputtableControl): void {
+  @onVueDataOrPropertyChanged("label", { immediate: true })
+  @onVueDataOrPropertyChanged("accessibilityGuidance", { immediate: true })
+  @onVueDataOrPropertyChanged("externalLabelHTML_ID", { immediate: true })
+  protected validateProperties(): void {
 
-    const inheritedComponentNameForLogging: string = instance.$options.name ?? "(Unnamed component)";
+    const inheritedComponentNameForLogging: string = this.$options.name ?? "(Unnamed component)";
 
     if (
-      isEitherUndefinedOrNull(instance.label) &&
-      isEitherUndefinedOrNull(instance.accessibilityGuidance) &&
-      isEitherUndefinedOrNull(instance.externalLabelHTML_ID)
+      isEitherUndefinedOrNull(this.label) &&
+          isEitherUndefinedOrNull(this.accessibilityGuidance) &&
+          isEitherUndefinedOrNull(this.externalLabelHTML_ID)
     ) {
       Logger.logError({
         errorType: InvalidVuePropertiesCombinationError.NAME,

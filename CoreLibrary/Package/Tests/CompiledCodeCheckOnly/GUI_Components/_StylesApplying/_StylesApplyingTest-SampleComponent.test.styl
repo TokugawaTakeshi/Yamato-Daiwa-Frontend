@@ -55,9 +55,9 @@ provideSampleYDF_Component(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overrides)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overrides)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "provideSampleYDF_Component",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -118,17 +118,12 @@ provideSampleYDF_Component(
   /* --- Geometry --------------------------------------------------------------------------------------------------- */
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Sample.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
 
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
-
-
-    +applyStylesToRootElementOfYDF_Component(defaultSelector: ".Sample--YDF", options.areThemesCSS_ClassesCommon, properties.themes)
-
-      border-width: variation.rootElement.borderWidth
 
 
     if options.geometricModifiers.pillShape
@@ -146,7 +141,7 @@ provideSampleYDF_Component(
   // --- Decoration ----------------------------------------------------------------------------------------------------
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Sample.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
@@ -159,7 +154,7 @@ provideSampleYDF_Component(
 
     log(options.areThemesCSS_ClassesCommon)
 
-    applyComponentThemes({
+    applyComponentThemes--YDF({
       CSS_Namespace: "Sample--YDF",
       themes: properties.themes,
       areThemesCSS_ClassesCommon: options.areThemesCSS_ClassesCommon,

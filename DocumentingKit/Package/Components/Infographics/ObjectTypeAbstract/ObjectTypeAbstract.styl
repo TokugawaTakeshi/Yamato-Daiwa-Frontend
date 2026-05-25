@@ -18,7 +18,7 @@ provideObjectTypeAbstractYDF_DK_Component()
     &-TypeNameHeading
 
       font-family Consolas, monaco, monospace
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: 1.2rem,
         lineSpacing: 0.2rem,
         mustAllowWordsBreakingAnywhere: true
@@ -32,7 +32,7 @@ provideObjectTypeAbstractYDF_DK_Component()
 
     &-LocalizedDescriptiveHeading
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: 1rem,
         lineSpacing: 0.2rem,
         mustAllowWordsBreakingAnywhere: true
@@ -69,7 +69,7 @@ provideObjectTypeAbstractYDF_DK_Component()
       container-type inline-size
 
 
-      retireFrom({
+      retireFrom--YDF({
         definitions:\
             (".ObjectTypeAbstract--YDF_DK-TypeNameHeading" { y: 0.2rem })\
             (".ObjectTypeAbstract--YDF_DK-LocalizedDescriptiveHeading" { y: 0.4rem })
@@ -123,7 +123,7 @@ provideObjectTypeAbstractYDF_DK_Component()
       &-PropertyKeyLabel
 
         font-family "Lucida Console", "Lucida Sans Typewriter", monaco, "Bitstream Vera Sans Mono", monospace
-        applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
           fontSize: 1rem,
           lineSpacing: 0.2rem,
           mustAllowWordsBreakingAnywhere: true
@@ -145,7 +145,7 @@ provideObjectTypeAbstractYDF_DK_Component()
 
         +NarrowContainersConfiguration()
 
-          PositionalRelationship({
+          PositionalRelationship--YDF({
             definitions: (\
               ".ObjectTypeAbstract--YDF_DK-Group-PropertyKeyLabel"\
               { retireFromIt: { y: 0.3rem }, pushItFromSelf: { y: 1rem } }

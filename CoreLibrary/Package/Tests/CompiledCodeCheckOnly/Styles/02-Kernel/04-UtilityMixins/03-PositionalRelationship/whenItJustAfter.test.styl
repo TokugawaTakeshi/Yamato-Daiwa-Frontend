@@ -23,7 +23,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   &-ChildB
 
-    +whenItJustAfter({ targetElementSelector: ".Block-ChildA1" })
+    +whenItJustAfter--YDF({ targetElementSelector: ".Block-ChildA1" })
 
       background gold
 
@@ -37,6 +37,6 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   p
 
-    +whenItJustAfter({ targetElementSelector: "h2", contextSelector: ".Block2", referenceElementSelector: "p" })
+    +whenItJustAfter--YDF({ targetElementSelector: "h2", contextSelector: ".Block2", referenceElementSelector: "p" })
 
       background silver

@@ -51,13 +51,13 @@
   private void switchValidationErrorsMessages()
   {
     this.validationErrorsMessages =
-          this.validationErrorsMessages.Length == 0 ?
-              [
-                "This field is required",
-                "Invalid email format",
-                "Value must be at least 3 characters long"
-              ] :
-              [];
+        this.validationErrorsMessages.Length == 0 ?
+            [
+              "This field is required",
+              "Invalid email format",
+              "Value must be at least 3 characters long"
+            ] :
+            [];
   }
 
   private async Task TryJavaScriptFunctionality()

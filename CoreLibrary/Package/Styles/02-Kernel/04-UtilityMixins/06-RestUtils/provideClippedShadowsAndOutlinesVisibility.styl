@@ -1,7 +1,7 @@
-provideClippedShadowsAndOutlinesVisibility(compoundParameter, restParameters__MUST_NOT_BE...)
+provideClippedShadowsAndOutlinesVisibility--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "provideClippedShadowsAndOutlinesVisibility",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "provideClippedShadowsAndOutlinesVisibility--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
@@ -65,24 +65,24 @@ provideClippedShadowsAndOutlinesVisibility(compoundParameter, restParameters__MU
   })
 
 
-  requiredSpaceAtLeft = getFirstNonNullArrayElement(
+  requiredSpaceAtLeft = getFirstNonNullArrayElement--YDF(
     compoundParameter.requiredHorizontalSymmetricSpace compoundParameter.requiredSpaceAtLeft
   )
 
-  requiredSpaceAtRight = getFirstNonNullArrayElement(
+  requiredSpaceAtRight = getFirstNonNullArrayElement--YDF(
     compoundParameter.requiredHorizontalSymmetricSpace compoundParameter.requiredSpaceAtRight
   )
 
-  requiredSpaceAtTop = getFirstNonNullArrayElement(
+  requiredSpaceAtTop = getFirstNonNullArrayElement--YDF(
     compoundParameter.requiredVerticalSymmetricSpace compoundParameter.requiredSpaceAtTop
   )
 
-  requiredSpaceAtBottom = getFirstNonNullArrayElement(
+  requiredSpaceAtBottom = getFirstNonNullArrayElement--YDF(
     compoundParameter.requiredVerticalSymmetricSpace compoundParameter.requiredSpaceAtBottom
   )
 
 
-  applyIfNotNull({
+  applyIfNotNull--YDF({
     padding-left: requiredSpaceAtLeft,
     padding-right: requiredSpaceAtRight,
     padding-top: requiredSpaceAtTop,
@@ -90,19 +90,19 @@ provideClippedShadowsAndOutlinesVisibility(compoundParameter, restParameters__MU
   })
 
 
-  if isNotNull(requiredSpaceAtLeft) && isFalse(compoundParameter.noCompensatingNegativeLeftMargins)
+  if isNotNull--YDF(requiredSpaceAtLeft) && isFalse--YDF(compoundParameter.noCompensatingNegativeLeftMargins)
 
     margin-left: -(requiredSpaceAtLeft)
 
 
-  if isNotNull(requiredSpaceAtRight) && isFalse(compoundParameter.noCompensatingNegativeRightMargins)
+  if isNotNull--YDF(requiredSpaceAtRight) && isFalse--YDF(compoundParameter.noCompensatingNegativeRightMargins)
 
     margin-right: -(requiredSpaceAtRight)
 
 
-  if isNotNull(requiredSpaceAtTop) && isFalse(compoundParameter.noCompensatingNegativeTopMargins)
+  if isNotNull--YDF(requiredSpaceAtTop) && isFalse--YDF(compoundParameter.noCompensatingNegativeTopMargins)
 
-    if isTrue(compoundParameter.useBeforePseudoElementWithCompensatingNegativeTopMargins)
+    if isTrue--YDF(compoundParameter.useBeforePseudoElementWithCompensatingNegativeTopMargins)
 
       &:before
 
@@ -115,9 +115,9 @@ provideClippedShadowsAndOutlinesVisibility(compoundParameter, restParameters__MU
       margin-top: -(requiredSpaceAtTop)
 
 
-  if isNotNull(requiredSpaceAtBottom) && isFalse(compoundParameter.noCompensatingNegativeBottomMargins)
+  if isNotNull--YDF(requiredSpaceAtBottom) && isFalse--YDF(compoundParameter.noCompensatingNegativeBottomMargins)
 
-    if isTrue(compoundParameter.useAfterPseudoElementWithCompensatingNegativeBottomMargins)
+    if isTrue--YDF(compoundParameter.useAfterPseudoElementWithCompensatingNegativeBottomMargins)
 
       &:after
 

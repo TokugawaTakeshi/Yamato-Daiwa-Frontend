@@ -251,3 +251,6 @@ export { default as TriangleIcon__Upward__Filled } from
 /* ━━━ Functions ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export { default as extractVueRouteQueryParameterValueAsArrayOfStrings } from
     "./Functions/Routing/extractVueRouteQueryParameterAsArray";
+
+/* ━━━ Re-exports from Core Package ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+export { InputtedValueValidation } from "@yamato-daiwa/frontend";

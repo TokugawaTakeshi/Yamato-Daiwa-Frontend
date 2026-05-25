@@ -52,7 +52,7 @@ mixin Badge--YDF(properties)
        */
       rootElementTag
 
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
@@ -121,7 +121,7 @@ mixin Badge--YDF-LoadingPlaceholder(properties)
       /** @type { Array<Badge__YDF.GeometricModifiers> } [ geometricModifiers = [] ] */
       geometricModifiers
 
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",

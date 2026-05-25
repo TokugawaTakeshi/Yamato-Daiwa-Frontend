@@ -2,11 +2,11 @@
 
 [![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/package/@yamato-daiwa/frontend)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/README.md)
-![MIT](https://img.shields.io/badge/MIT-green?style=for-the-badge)
+[![MIT](https://img.shields.io/badge/MIT-green?style=for-the-badge)](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/LICENSE)
 
-![Pug](https://img.shields.io/badge/Pug-E3C29B?style=for-the-badge&logo=pug&logoColor=black)
-![Stylus](https://img.shields.io/badge/Stylus-333333?style=for-the-badge&logo=stylus&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+[![Pug](https://img.shields.io/badge/Pug-E3C29B?style=for-the-badge&logo=pug&logoColor=black)](https://pugjs.org/api/getting-started.html)
+[![Stylus](https://img.shields.io/badge/Stylus-333333?style=for-the-badge&logo=stylus&logoColor=white)](https://stylus-lang.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![IntelliJ IDEA plugin](https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 [![NPM Version](https://img.shields.io/npm/v/@yamato-daiwa/frontend)](https://www.npmjs.com/package/@yamato-daiwa/frontend)
@@ -25,8 +25,14 @@ The toolkit for the high-quality frontend development with [Pug](https://pugjs.o
 ## Installation
 
 ```
-npm i @yamato-daiwa/frontend@2.0.0-beta.12
+npm i @yamato-daiwa/frontend -E
 ```
+
+To avoid the API incompatability problems and for the optimization purposes, the
+  [@yamato-daiwa/es-extensions](https://www.npmjs.com/package/@yamato-daiwa/es-extensions) and 
+  [@yamato-daiwa/es-extensions-browserjs](https://www.npmjs.com/package/@yamato-daiwa/es-extensions-browserjs)
+  of version **1.9.0** or patch one of this version has been made peer dependencies.
+For modern version of **npm**, basically these dependencies will be installed automatically without warnings.
 
 
 ## Documentation

@@ -1,14 +1,14 @@
-pushTargetFromSelf(compoundParameter, restParameters__MUST_NOT_BE...)
+pushTargetFromSelf--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "pushTargetFromSelf",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "pushTargetFromSelf--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
       targetElementSelector: {
         type: DataTypes--YDF.string,
         requiredIf: {
-          predicate: @(compoundParameter) { return isNull(compoundParameter.definitions) },
+          predicate: @(compoundParameter) { return isNull--YDF(compoundParameter.definitions) },
           descriptionForLogging: "The 'definitions' are not specified"
         }
       },
@@ -41,9 +41,9 @@ pushTargetFromSelf(compoundParameter, restParameters__MUST_NOT_BE...)
   })
 
 
-  if (isNotNull(compoundParameter.definitions)) {
+  if (isNotNull--YDF(compoundParameter.definitions)) {
 
-    iterateAssociativeArray(compoundParameter.definitions, @(targetElementSelector, definition) {
+    iterateAssociativeArray--YDF(compoundParameter.definitions, @(targetElementSelector, definition) {
 
       definition.pushItFromSelf = {
         x: definition.x,
@@ -69,7 +69,7 @@ pushTargetFromSelf(compoundParameter, restParameters__MUST_NOT_BE...)
     )
   }
 
-  PositionalRelationship({
+  PositionalRelationship--YDF({
     definitions: definitions,
     contextSelector: compoundParameter.contextSelector,
     referenceElementSelector: compoundParameter.referenceElementSelector

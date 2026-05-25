@@ -73,7 +73,7 @@ mixin ValidatableControlShell--YDF(properties, statesSimulations)
        */
       decorativeVariation
 
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
@@ -95,7 +95,7 @@ mixin ValidatableControlShell--YDF(properties, statesSimulations)
        * */
       asynchronousValidationsStatuses
 
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: statesSimulations,
       parameterNumber: 2,
       parameterName: "statesSimulations",
@@ -336,7 +336,7 @@ mixin ValidatableControlShell--YDF-LoadingPlaceholder(properties)
        */
       geometricVariation
 
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",

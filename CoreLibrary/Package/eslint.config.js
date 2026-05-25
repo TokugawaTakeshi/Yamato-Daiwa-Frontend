@@ -8,7 +8,8 @@ module.exports = [
       "LogicDistributable/",
       "Tests/Build/",
       "Workbenches/Build/",
-      "Markup/InlineECMAScript/Temporary/"
+      "Markup/InlineECMAScript/Temporary/",
+      ".idea"
     ]
   },
 

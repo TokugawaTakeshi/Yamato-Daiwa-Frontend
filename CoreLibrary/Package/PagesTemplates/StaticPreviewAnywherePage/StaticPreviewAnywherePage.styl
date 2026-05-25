@@ -2,8 +2,8 @@
 @require "../../GUI_Components.styl"
 
 
-CrossBrowserStylesReset()
-InitialGlobalCSS_Rules()
+CrossBrowserStylesReset--YDF()
+InitialGlobalCSS_Rules--YDF()
 
 
 Badge--YDF-generateStyles()
@@ -12,13 +12,13 @@ Link--YDF-generateStyles()
 
 .StaticPreviewAnywherePage--YDF
 
-  Centerer({ maximalWidth: 2*NARROWEST_SCREEN_WIDTH_UNIT--YDF })
+  Centerer--YDF({ maximalWidth: 2*NARROWEST_SCREEN_WIDTH_UNIT--YDF })
   padding 0.8rem 0.6rem 2rem
 
 
   &-TopHeading
 
-    applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
       fontSize: 2.4rem,
       lineSpacing: 0.2,
       mustAllowWordsBreakingAnywhere: true
@@ -35,7 +35,7 @@ Link--YDF-generateStyles()
 
   &-SectionHeading
 
-    applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
       fontSize: 2rem,
       lineSpacing: 0.2,
       mustAllowWordsBreakingAnywhere: true
@@ -47,7 +47,7 @@ Link--YDF-generateStyles()
 
   &-SubsectionHeading
 
-    applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
       fontSize: 1.6rem,
       lineSpacing: 0.2,
       mustAllowWordsBreakingAnywhere: true
@@ -56,12 +56,12 @@ Link--YDF-generateStyles()
     font-weight bold
     color #ff9068
 
-    retireFrom({ targetElementSelector: ".StaticPreviewAnywherePage--YDF-SectionHeading", y: 0.2rem })
+    retireFrom--YDF({ targetElementSelector: ".StaticPreviewAnywherePage--YDF-SectionHeading", y: 0.2rem })
 
 
   &-SubsubsectionHeading
 
-    applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
       fontSize: 1.2rem,
       lineSpacing: 0.2,
       mustAllowWordsBreakingAnywhere: true
@@ -70,12 +70,12 @@ Link--YDF-generateStyles()
     font-weight bold
     color: W3C_39_ShadesOfGray--YDF[24]
 
-    retireFrom({ targetElementSelector: ".StaticPreviewAnywherePage--YDF-SubsectionHeading", y: 0.2rem })
+    retireFrom--YDF({ targetElementSelector: ".StaticPreviewAnywherePage--YDF-SubsectionHeading", y: 0.2rem })
 
 
   &-CardsFlow
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions:\
         (".StaticPreviewAnywherePage--YDF-SectionHeading" { retireFromIt: { y: 0.5rem }, pushItFromSelf: { y: 1rem } })\
         (".StaticPreviewAnywherePage--YDF-SubsectionHeading" { retireFromIt: { y: 0.5rem }, pushItFromSelf: { y: 1rem } })\
@@ -94,7 +94,7 @@ Link--YDF-generateStyles()
     padding 0.4rem
     box-shadow 0 0 4px 1px alpha(black, 0.25)
 
-    retireFromElementWithSameSelector({ y: 0.6rem })
+    retireFromElementWithSameSelector--YDF({ y: 0.6rem })
 
 
     &-Title

@@ -1,9 +1,9 @@
-# `CenteredContentWithComputedHorizontalPaddings`
+# `CenteredContentWithComputedHorizontalPaddings--YDF`
 
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-ccwchp-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 ```
-CenteredContentWithComputedHorizontalPaddings({
+CenteredContentWithComputedHorizontalPaddings--YDF({
   contentWidth: DataTypes--YDF.unit
 })
 ```
@@ -71,7 +71,7 @@ This solution is completely valid, but actually we don't need the centerer until
     padding-right "calc(0.5*(100% - %s))" % CONTENT_WIDTH
 ```
 
-The `CenteredContentWithComputedHorizontalPaddings` will take care about above computing:
+The `CenteredContentWithComputedHorizontalPaddings--YDF` will take care about above computing:
 
 ```stylus
 .page
@@ -79,14 +79,14 @@ The `CenteredContentWithComputedHorizontalPaddings` will take care about above c
   // ...
   +WideScreensConfiguration()
 
-    CenteredContentWithComputedHorizontalPaddings({ contentWidth: MAXIMAL_CONTENT_WIDTH })
+    CenteredContentWithComputedHorizontalPaddings--YDF({ contentWidth: MAXIMAL_CONTENT_WIDTH })
 ```
 
 
 ## Usage
 
 In addition to above example, basically we want to add the side paddings to container.
-Once use `CenteredContentWithComputedHorizontalPaddings`, as it following from the mixin name, side padding will
+Once use `CenteredContentWithComputedHorizontalPaddings--YDF`, as it following from the mixin name, side padding will
 be used to center the content and it's value is dynamic. By other words:
 
 * Until maximal grid width reached, the content width is dynamic but paddings are static (however, the relative units like
@@ -128,19 +128,19 @@ added.
   +WideScreensConfiguration()
 
     // Fixed content width, dynamic paddings
-    CenteredContentWithComputedHorizontalPaddings({ contentWidth: MAXIMAL_CONTENT_WIDTH })
+    CenteredContentWithComputedHorizontalPaddings--YDF({ contentWidth: MAXIMAL_CONTENT_WIDTH })
   
   
   +MediumScreensConfiguration()
 
     // Fixed paddings, dynamic content width
-    Paddings({ horizontalSymmetric: 20px })
+    Paddings--YDF({ horizontalSymmetric: 20px })
   
   
   +NarrowScreensConfiguration()
 
     // One more phase for example
-    Paddings({ horizontalSymmetric: 12px })
+    Paddings--YDF({ horizontalSymmetric: 12px })
 ```
 
 You can input this example in one second with <kbd>med-3c</kbd> live template of official plugin for IntelliJ IDEA-family IDEs.

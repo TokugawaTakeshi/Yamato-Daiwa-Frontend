@@ -45,9 +45,9 @@ DateTimePicker--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "DateTimePicker--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -85,7 +85,7 @@ DateTimePicker--YDF-generateStyles(
 
       &-IndicatorButton
 
-        ButtonLikeElementsPrimer()
+        ButtonLikeElementsPrimer--YDF()
 
         display flex
         align-items center
@@ -163,7 +163,7 @@ DateTimePicker--YDF-generateStyles(
 
       &-DaySelectingButton
 
-        ButtonLikeElementsPrimer()
+        ButtonLikeElementsPrimer--YDF()
         width 100%
 
 
@@ -185,7 +185,7 @@ DateTimePicker--YDF-generateStyles(
 
       &-MonthSelectingButton
 
-        ButtonLikeElementsPrimer()
+        ButtonLikeElementsPrimer--YDF()
 
 
         &:disabled
@@ -206,7 +206,7 @@ DateTimePicker--YDF-generateStyles(
 
       &-YearSelectingButton
 
-        ButtonLikeElementsPrimer()
+        ButtonLikeElementsPrimer--YDF()
 
 
       &-HoursMatrix
@@ -217,7 +217,7 @@ DateTimePicker--YDF-generateStyles(
 
       &-HourSelectingButton
 
-        ButtonLikeElementsPrimer()
+        ButtonLikeElementsPrimer--YDF()
         width 100%
 
 
@@ -235,7 +235,7 @@ DateTimePicker--YDF-generateStyles(
   // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "DateTimePicker.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
@@ -243,7 +243,7 @@ DateTimePicker--YDF-generateStyles(
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
 
-    +provideDefaultSelectorWhenRootAndApply("." + DateTimePicker--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + DateTimePicker--YDF.CSS_NAMESPACE)
 
       min-width 120px
 
@@ -251,7 +251,7 @@ DateTimePicker--YDF-generateStyles(
     .DateTimePicker--YDF-IndicatorButton
 
       border-width 1px
-      BorderLeftFilletsRadius(3px)
+      BorderLeftFilletsRadius--YDF(3px)
       padding: calc(.45rem - 2px) .5rem calc(.45rem + 1px)
 
 
@@ -283,7 +283,7 @@ DateTimePicker--YDF-generateStyles(
       column-gap 6px
       row-gap 4px
 
-      Paddings({ horizontalSymmetric: 6px })
+      Paddings--YDF({ horizontalSymmetric: 6px })
 
       margin-top 4px
 
@@ -315,13 +315,13 @@ DateTimePicker--YDF-generateStyles(
 
     .DateTimePicker--YDF-Dialog-Header
 
-      Paddings({ horizontalSymmetric: 6px })
+      Paddings--YDF({ horizontalSymmetric: 6px })
       margin-top 0.2rem
 
 
     .DateTimePicker--YDF-Dialog-Header-CurrentScopeLabel
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: 1rem,
         lineSpacing: 4px,
         mustApplyNegativeMarginsToRootElement: true
@@ -330,7 +330,7 @@ DateTimePicker--YDF-generateStyles(
 
     .DateTimePicker--YDF-DayTitleCell
 
-      Paddings({
+      Paddings--YDF({
         verticalSymmetric: 10px,
         upwardShifting: 1px
       })
@@ -340,7 +340,7 @@ DateTimePicker--YDF-generateStyles(
 
     .DateTimePicker--YDF-DaySelectingButton
 
-      Paddings({
+      Paddings--YDF({
         verticalSymmetric: 10px,
         upwardShifting: 1px
       })
@@ -354,7 +354,7 @@ DateTimePicker--YDF-generateStyles(
 
     .DateTimePicker--YDF-MonthSelectingButton
 
-      Paddings({
+      Paddings--YDF({
         verticalSymmetric: 10px,
         upwardShifting: 1px
       })
@@ -368,7 +368,7 @@ DateTimePicker--YDF-generateStyles(
 
     .DateTimePicker--YDF-YearSelectingButton
 
-      Paddings({
+      Paddings--YDF({
         verticalSymmetric: 10px,
         upwardShifting: 1px
       })
@@ -377,7 +377,7 @@ DateTimePicker--YDF-generateStyles(
 
     .DateTimePicker--YDF-HoursMatrix-HeaderCell
 
-      Paddings({
+      Paddings--YDF({
         verticalSymmetric: 6px,
         upwardShifting: 1px
       })
@@ -385,7 +385,7 @@ DateTimePicker--YDF-generateStyles(
 
     .DateTimePicker--YDF-HourSelectingButton
 
-      Paddings({
+      Paddings--YDF({
         verticalSymmetric: 10px,
         upwardShifting: 1px
       })
@@ -403,12 +403,12 @@ DateTimePicker--YDF-generateStyles(
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "DateTimePicker.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
 
-    ROOT_ELEMENT_SELECTOR = getCurrentSelectorSubstitutingRoot(".DateTimePicker--YDF")
+    ROOT_ELEMENT_SELECTOR = getCurrentSelectorSubstitutingRoot--YDF(".DateTimePicker--YDF")
 
 
     ClickableCellsCommonDecorations()
@@ -545,7 +545,7 @@ DateTimePicker--YDF-generateStyles(
 
     .DateTimePicker--YDF-MonthSelectingButton
 
-      Paddings({
+      Paddings--YDF({
         verticalSymmetric: 10px,
         upwardShifting: 1px
       })
@@ -567,7 +567,7 @@ DateTimePicker--YDF-generateStyles(
   //- ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   applyBasicRules()
 
-  applyComponentThemes({
+  applyComponentThemes--YDF({
     CSS_Namespace: DateTimePicker--YDF.CSS_NAMESPACE,
     themes: properties.themes,
     applyGeometricVariation: applyGeometricVariation,

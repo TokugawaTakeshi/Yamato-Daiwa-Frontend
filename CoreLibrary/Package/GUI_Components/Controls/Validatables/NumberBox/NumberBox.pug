@@ -76,7 +76,7 @@ mixin NumberBox--YDF(properties, statesSimulations)
 
       ...instanceID_DependentProperties
 
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
@@ -105,7 +105,7 @@ mixin NumberBox--YDF(properties, statesSimulations)
       /** @var { Array<{ ID: string; message: string; }> | boolean } [ asynchronousValidationsStatuses = false ] */
       asynchronousValidationsStatuses
 
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: statesSimulations,
       parameterNumber: 2,
       parameterName: "statesSimulations",

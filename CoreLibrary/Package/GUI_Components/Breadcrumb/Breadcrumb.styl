@@ -32,12 +32,12 @@ Breadcrumb--YDF-generateStyles()
           &__SingleLine
 
             font-size: YDF_Configuration.textGeometry.basicFontSize
-            SingleLineTextElementOverflowSafety({ displayEllipsis: true })
+            SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
 
 
           &__MultiLine
 
-            applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+            applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
               fontSize: YDF_Configuration.textGeometry.basicFontSize,
               lineHeight: YDF_Configuration.textGeometry.basicLineHeightInMultilineTextBlocks,
               mustAllowWordsBreakingAnywhere: true

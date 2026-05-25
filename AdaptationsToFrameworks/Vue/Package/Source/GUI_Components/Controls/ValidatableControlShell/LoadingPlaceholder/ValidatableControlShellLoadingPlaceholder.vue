@@ -1,7 +1,7 @@
 <template lang="pug">
 
-  .ValidatableControlShell--YDF(
-    class=rootElementModifierCSS_Classes
+  .ValidatableControlShell--YDF.ValidatableControlShell--YDF__LoadingPlaceholder(
+    :class="rootElementModifierCSS_Classes"
   )
 
     .ValidatableControlShell--YDF-Header(

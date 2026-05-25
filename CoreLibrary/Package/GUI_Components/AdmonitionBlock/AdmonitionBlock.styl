@@ -56,9 +56,9 @@ AdmonitionBlock--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overrides)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overrides)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "AdmonitionBlock--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -117,7 +117,7 @@ AdmonitionBlock--YDF-generateStyles(
 
       &-DismissingButton
 
-        ButtonLikeElementsPrimer()
+        ButtonLikeElementsPrimer--YDF()
 
         cursor pointer
 
@@ -136,8 +136,8 @@ AdmonitionBlock--YDF-generateStyles(
 
       &-CenteredButton
 
-        centerHorizontallyWithoutWrapper({
-          targetElementType: HorizontalCenteringWithoutWrapper.TargetElementTypes.inlineBlock
+        centerHorizontallyWithoutWrapper--YDF({
+          targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.inlineBlock
         })
 
 
@@ -151,7 +151,7 @@ AdmonitionBlock--YDF-generateStyles(
   // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "AdmonitionBlock.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
@@ -159,31 +159,31 @@ AdmonitionBlock--YDF-generateStyles(
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
 
-    +provideDefaultSelectorWhenRootAndApply("." + AdmonitionBlock--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + AdmonitionBlock--YDF.CSS_NAMESPACE)
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
           borders: {
             dotSeparatedPath: "rootElement.borders",
             required: false,
-            applier: BordersSizing
+            applier: BordersSizing--YDF
           },
           paddings: {
             dotSeparatedPath: "rootElement.paddings",
             required: false,
-            applier: Paddings
+            applier: Paddings--YDF
           }
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     .AdmonitionBlock--YDF-SVG_Icon
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -191,21 +191,21 @@ AdmonitionBlock--YDF-generateStyles(
           height: {
             dotSeparatedPath: "SVG_Icon.height",
             requiredIf: {
-              predicate: @(variation) { return isNull(getObjectValueByDotSeparatedPathSafely(variation, "SVG_Icon.width")) },
+              predicate: @(variation) { return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(variation, "SVG_Icon.width")) },
               conditionDescription: "'SVG_Icon.width' icon is null"
             }
           }
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.SVG_Icon.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
 
 
     .AdmonitionBlock--YDF-Title
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight(
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
         merge(
-          extractAndValidateObjectProperties({
+          extractAndValidateObjectProperties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             extracts: {
@@ -218,11 +218,11 @@ AdmonitionBlock--YDF-generateStyles(
         )
       )
 
-      retireFrom({
+      retireFrom--YDF({
         targetElementSelector: ".AdmonitionBlock--YDF-SVG_Icon",
         referenceElementSelector: ".AdmonitionBlock--YDF-Title",
         contextSelector: CONTEXT_SELECTOR,
-        x: extractAndValidateObjectProperties({
+        x: extractAndValidateObjectProperties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           extracts: {
@@ -231,13 +231,13 @@ AdmonitionBlock--YDF-generateStyles(
         }).spacingAfterSVG_Icon
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.title.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.title.customDeclarations)
 
 
     .AdmonitionBlock--YDF-MainContent
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight(
-        extractAndValidateObjectProperties({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
+        extractAndValidateObjectProperties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           extracts: {
@@ -248,11 +248,11 @@ AdmonitionBlock--YDF-generateStyles(
         })
       )
 
-      retireFrom({
+      retireFrom--YDF({
         targetElementSelector: ":is(.AdmonitionBlock--YDF-SVG_Icon, .AdmonitionBlock--YDF-SVG_Icon + .AdmonitionBlock--YDF-Title)",
         referenceElementSelector: ".AdmonitionBlock--YDF-MainContent",
         contextSelector: CONTEXT_SELECTOR,
-        x: extractAndValidateObjectProperties({
+        x: extractAndValidateObjectProperties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           extracts: {
@@ -261,11 +261,11 @@ AdmonitionBlock--YDF-generateStyles(
         }).afterSVG_Icon
       })
 
-      retireFrom({
+      retireFrom--YDF({
         targetElementSelector: ".AdmonitionBlock--YDF-Title",
         referenceElementSelector: ".AdmonitionBlock--YDF-MainContent",
         contextSelector: CONTEXT_SELECTOR,
-        y: extractAndValidateObjectProperties({
+        y: extractAndValidateObjectProperties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           extracts: {
@@ -274,12 +274,12 @@ AdmonitionBlock--YDF-generateStyles(
         }).afterTitle
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.mainContent.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.mainContent.customDeclarations)
 
 
     .AdmonitionBlock--YDF-DismissingButton
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -290,12 +290,12 @@ AdmonitionBlock--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.dismissingButton.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dismissingButton.customDeclarations)
 
 
     .AdmonitionBlock--YDF-DismissingButton-Icon
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -304,7 +304,7 @@ AdmonitionBlock--YDF-generateStyles(
             dotSeparatedPath: "dismissingButton.SVG_Icon.height",
             requiredIf: {
               predicate: @(variation) {
-                return isNull(getObjectValueByDotSeparatedPathSafely(variation, "dismissingButton.SVG_Icon.width"))
+                return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(variation, "dismissingButton.SVG_Icon.width"))
               },
               conditionDescription: "'dismissingButton.SVG_Icon.width' icon is null"
             }
@@ -312,12 +312,12 @@ AdmonitionBlock--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.dismissingButton.SVG_Icon.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dismissingButton.SVG_Icon.customDeclarations)
 
 
     .AdmonitionBlock--YDF-CenteredButton
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -325,12 +325,12 @@ AdmonitionBlock--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.centeredButton.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.centeredButton.customDeclarations)
 
 
     .AdmonitionBlock--YDF-ActionBar
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -339,21 +339,21 @@ AdmonitionBlock--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.actionBar.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.actionBar.customDeclarations)
 
 
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "AdmonitionBlock.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
 
 
-    +provideDefaultSelectorWhenRootAndApply("." + AdmonitionBlock--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + AdmonitionBlock--YDF.CSS_NAMESPACE)
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -364,12 +364,12 @@ AdmonitionBlock--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     .AdmonitionBlock--YDF-SVG_Icon
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -377,12 +377,12 @@ AdmonitionBlock--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.SVG_Icon.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
 
 
     .AdmonitionBlock--YDF-Title
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -391,12 +391,12 @@ AdmonitionBlock--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.title.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.title.customDeclarations)
 
 
     .AdmonitionBlock--YDF-MainContent
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -405,7 +405,7 @@ AdmonitionBlock--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.mainContent.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.mainContent.customDeclarations)
 
 
     DismissingButtonStyles(state)
@@ -427,14 +427,14 @@ AdmonitionBlock--YDF-generateStyles(
 
       .AdmonitionBlock--YDF-DismissingButton{statePseudoClass}
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
             box-shadow: {
               dotSeparatedPath: "dismissingButton." + state + ".shadow",
               required: false,
-              applier: applyObjectTypeBoxShadowDefinition
+              applier: applyObjectTypeBoxShadowDefinition--YDF
             }
           }
         })
@@ -442,7 +442,7 @@ AdmonitionBlock--YDF-generateStyles(
 
       SVG_IconStyles()
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -451,7 +451,7 @@ AdmonitionBlock--YDF-generateStyles(
         })
 
 
-      if (isNull(statePseudoClass))
+      if (isNull--YDF(statePseudoClass))
 
         .AdmonitionBlock--YDF-DismissingButton-Icon
 
@@ -470,7 +470,7 @@ AdmonitionBlock--YDF-generateStyles(
 
 
     // ─── Typography Assimilation (Experimental) ──────────────────────────────────────────────────────────────────────
-    if isNotNull(variation.typographyAssimilation)
+    if isNotNull--YDF(variation.typographyAssimilation)
 
       assimilatedTypography = {
         elements: {}
@@ -478,12 +478,12 @@ AdmonitionBlock--YDF-generateStyles(
 
       for elementKey, elementDecorationOverridings in variation.typographyAssimilation
 
-        assimilatedTypography.elements[elementKey] = deeplyCloneAndOverrideObject(
+        assimilatedTypography.elements[elementKey] = deeplyCloneAndOverrideObject--YDF(
           YDF_TypographyDefaultDefinitions.elements[elementKey], { decoration: elementDecorationOverridings }
         )
 
 
-      +provideDefaultSelectorWhenRootAndApply("." + AdmonitionBlock--YDF.CSS_NAMESPACE)
+      +provideDefaultSelectorWhenRootAndApply--YDF("." + AdmonitionBlock--YDF.CSS_NAMESPACE)
 
         provideYDF_Typography(
           preset: assimilatedTypography,
@@ -494,7 +494,7 @@ AdmonitionBlock--YDF-generateStyles(
   //- ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   applyBasicRules()
 
-  applyComponentThemes({
+  applyComponentThemes--YDF({
     CSS_Namespace: AdmonitionBlock--YDF.CSS_NAMESPACE,
     themes: properties.themes,
     applyGeometricVariation: applyGeometricVariation,

@@ -34,7 +34,7 @@ mixin RadioButtonsGroup--YDF(properties, statesSimulations)
       geometricVariation = RadioButtonsGroup__YDF.GeometricVariations.regular,
       decorativeVariation = RadioButtonsGroup__YDF.DecorativeVariations.regular
 
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
@@ -47,7 +47,7 @@ mixin RadioButtonsGroup--YDF(properties, statesSimulations)
       validValueHighlightingIfNoValidationErrorsMessages,
       validationErrorsMessages,
       asynchronousValidationsStatuses
-    } = processObjectTypeParameterOfPugMixin({
+    } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: statesSimulations,
       parameterNumber: 2,
       parameterName: "statesSimulations",

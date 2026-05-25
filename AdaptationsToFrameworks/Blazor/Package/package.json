@@ -2,10 +2,10 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "Build YDF Exports": "yda --mode PRODUCTION"
+    "Build JavaScript Functionality": "yda --mode PRODUCTION"
   },
   "dependencies": {
-    "@yamato-daiwa/frontend": "2.0.0-beta.11"
+    "@yamato-daiwa/frontend": "../../../CoreLibrary/Package"
   },
   "devDependencies": {
     "@yamato-daiwa/style_guides": "0.13.0",

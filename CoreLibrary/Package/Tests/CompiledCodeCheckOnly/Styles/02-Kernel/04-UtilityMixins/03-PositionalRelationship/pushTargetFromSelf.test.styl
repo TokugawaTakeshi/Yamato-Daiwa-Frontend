@@ -18,7 +18,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   &-ElementB
 
-    pushTargetFromSelf({ targetElementSelector: ".Example1-ElementA", y: 4px })
+    pushTargetFromSelf--YDF({ targetElementSelector: ".Example1-ElementA", y: 4px })
 
 
 .Example2
@@ -30,7 +30,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   p
 
-    pushTargetFromSelf({
+    pushTargetFromSelf--YDF({
       targetElementSelector: "h2",
       y: 24px,
       referenceElementSelector: "p",
@@ -52,7 +52,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-Position
 
   &-ElementC
 
-    pushTargetFromSelf({
+    pushTargetFromSelf--YDF({
       definitions:\
         (".Example3-ElementA" { x: 2px, y: 4px })\
         (".Example3-ElementB" { x: 6px, y: 8px, usePaddingsInsteadOfMargins: true })

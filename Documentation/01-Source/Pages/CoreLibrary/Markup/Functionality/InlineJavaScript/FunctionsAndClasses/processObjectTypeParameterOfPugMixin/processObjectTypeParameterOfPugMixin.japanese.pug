@@ -59,7 +59,7 @@ block append Metadata
       ]
     });
 
-    RoutingEmulator.setCurrentRoute(
+    YDF.RoutingEmulator.setCurrentRoute(
       "coreLibrary.markup.functionality.inlineJavaScript.functionsAndClasses.processObjectTypeParameterOfPugMixin"
     );
 
@@ -295,17 +295,6 @@ block append SpecificContent
         #[+Keyword--YDID 特定の]#[+Term--YDID 引数]である（上記の例だと、１個しか無い）。
       其の他の重要な#[+Term--YDID プロパティ]は#[+ImportantEntity__Code--YDID parameterPropertiesSpecification]で、
         妥当性確認の規則であり、必要に応じて規定値の代入の様に処理の指示が出来る。
-
-    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning, SVG_Icon: true }).
-      現在#[+ImportantEntity--YDID processObjectTypeParameterOfPugMixin]に使われている
-        #[+ImportantEntity--YDID RawObjectDataProcessor]は、#[+Keyword--YDID 以前の]#[+Term--YDID オブジェクト]に応じて
-        #[+Keyword--YDID 新規]#[+Term--YDID オブジェクト]を作る。
-      但し、#[+Keyphrase--YDID 妥当性の確認規則で定義された#[+Term--YDID プロパティ]#[+Keyword--YDID のみ]]
-        新しい#[+Term--YDID オブジェクト]に入れられる。
-      理由としては、変化が求められても、#[+Keyword--YDID 一般に]は、どの#[+Term--YDID オブジェクト]のどの#[+Term--YDID プロパティ]でも変化出来る訳
-        では#[+Keyword--YDID ない]為だ。
-      将来的に、既存#[+Term--YDID オブジェクト]の変更のサポート（可能な限り）を追加する予定は有るが、コード量が大幅に増加する事が予報される。
-      此れにより、テストの数を少なくとも２倍にしなければならない為、時間がかかる。
 
     p.Article-Paragraph
       | #[+ImportantEntity__Code--YDID parameterPropertiesSpecification]#[+Term--YDID プロパティ]は

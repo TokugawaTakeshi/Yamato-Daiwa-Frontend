@@ -11,7 +11,7 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/09-OtherFunctio
 
 // [ Expected output ] 14px
 p(
-  getLineHeightByFontSizeAndLineSpacing({
+  getLineHeightByFontSizeAndLineSpacing--YDF({
     fontSize: 14px,
     lineSpacing: 0,
     mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true,
@@ -21,7 +21,7 @@ p(
 
 // [ Expected output ] 0px
 p(
-  getLineHeightByFontSizeAndLineSpacing({
+  getLineHeightByFontSizeAndLineSpacing--YDF({
     fontSize: 14px,
     lineSpacing: 0,
     mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: false,
@@ -31,7 +31,7 @@ p(
 
 // [ Expected output ] 14px
 p(
-  getLineHeightByFontSizeAndLineSpacing({
+  getLineHeightByFontSizeAndLineSpacing--YDF({
     fontSize: 14px,
     lineSpacing: 0px,
     mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true,
@@ -41,7 +41,7 @@ p(
 
 // [ Expected output ] 0px
 p(
-  getLineHeightByFontSizeAndLineSpacing({
+  getLineHeightByFontSizeAndLineSpacing--YDF({
     fontSize: 14px,
     lineSpacing: 0px,
     mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: false,
@@ -51,26 +51,26 @@ p(
 
 
 // [ Expected output ] 0
-//p(getLineHeightByFontSizeAndLineSpacing({ fontSize: 14px, lineSpacing: 0, mustOutputDimensionalQuantityIfPossible: false }))
-//p(getLineHeightByFontSizeAndLineSpacing({ fontSize: 14px, lineSpacing: 0px, mustOutputDimensionalQuantityIfPossible: false }))
+//p(getLineHeightByFontSizeAndLineSpacing--YDF({ fontSize: 14px, lineSpacing: 0, mustOutputDimensionalQuantityIfPossible: false }))
+//p(getLineHeightByFontSizeAndLineSpacing--YDF({ fontSize: 14px, lineSpacing: 0px, mustOutputDimensionalQuantityIfPossible: false }))
 
 
 // [ Expected output ] 12px
-//p(getLineHeightByFontSizeAndLineSpacing({ fontSize: 10px, lineSpacing: 2px, mustOutputDimensionalQuantityIfPossible: true }))
+//p(getLineHeightByFontSizeAndLineSpacing--YDF({ fontSize: 10px, lineSpacing: 2px, mustOutputDimensionalQuantityIfPossible: true }))
 
 // [ Expected output ] 1.2
-//p(getLineHeightByFontSizeAndLineSpacing({ fontSize: 10px, lineSpacing: 2px, mustOutputDimensionalQuantityIfPossible: false }))
+//p(getLineHeightByFontSizeAndLineSpacing--YDF({ fontSize: 10px, lineSpacing: 2px, mustOutputDimensionalQuantityIfPossible: false }))
 
 
 // [ Expected output ] calc(1rem + 2px)
-//p(getLineHeightByFontSizeAndLineSpacing({ fontSize: 1rem, lineSpacing: 2px, mustOutputDimensionalQuantityIfPossible: true }))
+//p(getLineHeightByFontSizeAndLineSpacing--YDF({ fontSize: 1rem, lineSpacing: 2px, mustOutputDimensionalQuantityIfPossible: true }))
 
 // [ Expected output ] calc(1rem + 2px)
-//p(getLineHeightByFontSizeAndLineSpacing({ fontSize: 1rem, lineSpacing: 2px, mustOutputDimensionalQuantityIfPossible: false }))
+//p(getLineHeightByFontSizeAndLineSpacing--YDF({ fontSize: 1rem, lineSpacing: 2px, mustOutputDimensionalQuantityIfPossible: false }))
 //
 //
 //// [ Expected output ] 1.2rem
-//p(getLineHeightByFontSizeAndLineSpacing({ fontSize: 1rem, lineSpacing: 1.2, mustOutputDimensionalQuantityIfPossible: true }))
+//p(getLineHeightByFontSizeAndLineSpacing--YDF({ fontSize: 1rem, lineSpacing: 1.2, mustOutputDimensionalQuantityIfPossible: true }))
 //
 //// [ Expected output ] 1.2
-//p(getLineHeightByFontSizeAndLineSpacing({ fontSize: 1rem, lineSpacing: 1.2, mustOutputDimensionalQuantityIfPossible: false }))
+//p(getLineHeightByFontSizeAndLineSpacing--YDF({ fontSize: 1rem, lineSpacing: 1.2, mustOutputDimensionalQuantityIfPossible: false }))

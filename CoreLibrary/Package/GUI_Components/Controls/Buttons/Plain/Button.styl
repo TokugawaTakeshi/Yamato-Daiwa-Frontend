@@ -71,9 +71,9 @@ Button--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "Button--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -168,7 +168,7 @@ Button--YDF-generateStyles(
 
     .Button--YDF
 
-      ButtonLikeElementsPrimer()
+      ButtonLikeElementsPrimer--YDF()
 
       cursor pointer
 
@@ -237,14 +237,14 @@ Button--YDF-generateStyles(
   // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Button.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
 
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
-    cachedValidReusables = extractAndValidateObjectProperties({
+    cachedValidReusables = extractAndValidateObjectProperties--YDF({
       targetObject: variation,
       targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
       extracts: {
@@ -303,7 +303,7 @@ Button--YDF-generateStyles(
       }
     })
 
-    HEIGHT = computeTotalHeightByTextElementHeightSizingSpecification({
+    HEIGHT = computeTotalHeightByTextElementHeightSizingSpecification--YDF({
       type: TextElementHeightSizingTypes--YDF.natural,
       borders: cachedValidReusables.bordersSizing,
       paddings: {
@@ -316,9 +316,9 @@ Button--YDF-generateStyles(
     })
 
 
-    +provideDefaultSelectorWhenRootAndApply("." + Button--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + Button--YDF.CSS_NAMESPACE)
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -326,20 +326,20 @@ Button--YDF-generateStyles(
         }
       })
 
-      BordersSizing(cachedValidReusables.bordersSizing)
+      BordersSizing--YDF(cachedValidReusables.bordersSizing)
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
-    /input{getCurrentSelectorSubstitutingRoot("." + Button--YDF.CSS_NAMESPACE)}
+    /input{getCurrentSelectorSubstitutingRoot--YDF("." + Button--YDF.CSS_NAMESPACE)}
 
-      //* [ Approach ] The vertical padding will be defined by `TextElementHeightSizing` herewith it will be
+      //* [ Approach ] The vertical padding will be defined by `TextElementHeightSizing--YDF` herewith it will be
       //*   the corrected value respecting the extra space caused the line height
-      Paddings({ horizontalSymmetric: cachedValidReusables.horizontalSymmetricLabelSpacingWhenItIsLone })
+      Paddings--YDF({ horizontalSymmetric: cachedValidReusables.horizontalSymmetricLabelSpacingWhenItIsLone })
 
       //* [ Approach ] For both single line and multi line modes the settings will be same because the text overflow
       //*   already has been set in the common declarations.
-      TextElementHeightSizing({
+      TextElementHeightSizing--YDF({
         type: TextElementHeightSizingTypes--YDF.natural,
         fontSize: cachedValidReusables.textSize,
         lineHeight: cachedValidReusables.lineHeight,
@@ -359,7 +359,7 @@ Button--YDF-generateStyles(
 
       &.Button--YDF__PillShapeGeometricModifier
 
-        TEXT_SIZE_TO_BORDER_RADIUS_RATIO = extractAndValidateObjectProperties({
+        TEXT_SIZE_TO_BORDER_RADIUS_RATIO = extractAndValidateObjectProperties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           extracts: {
@@ -386,13 +386,13 @@ Button--YDF-generateStyles(
 
 
       //* [ Theory ] For the `input` tag, the fixating of height is required */
-      /input{getCurrentSelectorSubstitutingRoot("." + Button--YDF.CSS_NAMESPACE)}.Button--YDF__SquareShapeUnlessOverflowedGeometricModifier,
-      /input{getCurrentSelectorSubstitutingRoot("." + Button--YDF.CSS_NAMESPACE)}.Button--YDF__SquareShapeGeometricModifier
+      /input{getCurrentSelectorSubstitutingRoot--YDF("." + Button--YDF.CSS_NAMESPACE)}.Button--YDF__SquareShapeUnlessOverflowedGeometricModifier,
+      /input{getCurrentSelectorSubstitutingRoot--YDF("." + Button--YDF.CSS_NAMESPACE)}.Button--YDF__SquareShapeGeometricModifier
 
         min-height HEIGHT
 
 
-      /input{getCurrentSelectorSubstitutingRoot("." + Button--YDF.CSS_NAMESPACE)}.Button--YDF__SquareShapeGeometricModifier
+      /input{getCurrentSelectorSubstitutingRoot--YDF("." + Button--YDF.CSS_NAMESPACE)}.Button--YDF__SquareShapeGeometricModifier
 
         max-height HEIGHT
 
@@ -401,7 +401,7 @@ Button--YDF-generateStyles(
 
       MultilineValueLabelStyles()
 
-        applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
           fontSize: cachedValidReusables.textSize,
           lineSpacing: cachedValidReusables.lineSpacing,
           lineHeight: cachedValidReusables.lineHeight,
@@ -418,7 +418,7 @@ Button--YDF-generateStyles(
         MultilineValueLabelStyles()
 
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.label.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.label.customDeclarations)
 
 
       &:first-child:last-child
@@ -443,7 +443,7 @@ Button--YDF-generateStyles(
 
           font-size: cachedValidReusables.textSize
 
-          Paddings({
+          Paddings--YDF({
             top: cachedValidReusables.topSpacing,
             bottom: cachedValidReusables.topSpacing
           })
@@ -456,7 +456,7 @@ Button--YDF-generateStyles(
 
     .Button--YDF-SVG_Icon
 
-      iconHeight = extractAndValidateObjectProperties({
+      iconHeight = extractAndValidateObjectProperties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         extracts: {
@@ -467,7 +467,7 @@ Button--YDF-generateStyles(
         }
       }).iconHeight
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -481,14 +481,14 @@ Button--YDF-generateStyles(
       height: iconHeight
 
 
-      if isNotNull(variation.SVG_Icon.default.spacing.leftWhenGoingFirst)
+      if isNotNull--YDF(variation.SVG_Icon.default.spacing.leftWhenGoingFirst)
 
         &:first-child:not(:last-child)
 
           margin-left: variation.SVG_Icon.default.spacing.leftWhenGoingFirst
 
 
-      if isNotNull(variation.SVG_Icon.default.spacing.rightWhenGoingLast)
+      if isNotNull--YDF(variation.SVG_Icon.default.spacing.rightWhenGoingLast)
 
         &:last-child:not(:first-child)
 
@@ -500,27 +500,27 @@ Button--YDF-generateStyles(
         //* [ Initial equation ] labelFontSize + labelTopSpacing = iconHeight + iconTopSpacing
         //* [ Formula ] iconPopMargin = labelFontSize + labelTopSpacing - iconHeight
         //* The `labelUpwardShifting` could be eliminated because it presents in bots sides of initial equation. */
-        topMargin = buildCalcExpressionFromFragments({
+        topMargin = buildCalcExpressionFromFragments--YDF({
           textSize: cachedValidReusables.textSize,
           basicTopSpacing: @() {
-            if (isNotNull(cachedValidReusables.topSpacing)) {
+            if (isNotNull--YDF(cachedValidReusables.topSpacing)) {
               return " + " + cachedValidReusables.topSpacing
             }
           },
           iconHeight: @() { return " - " + iconHeight }
         })
 
-        bottomMargin = buildCalcExpressionFromFragments({
+        bottomMargin = buildCalcExpressionFromFragments--YDF({
           textSize: cachedValidReusables.textSize,
           basicBottomSpacing: @() {
-            if (isNotNull(cachedValidReusables.bottomSpacing)) {
+            if (isNotNull--YDF(cachedValidReusables.bottomSpacing)) {
               return " + " + cachedValidReusables.bottomSpacing
             }
           },
           iconHeight: @() { return " - " + iconHeight }
         })
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -539,7 +539,7 @@ Button--YDF-generateStyles(
         margin-bottom: bottomMargin
 
 
-        if isNotNull(variation.SVG_Icon.default.spacing.horizontalSymmetricWhenLone)
+        if isNotNull--YDF(variation.SVG_Icon.default.spacing.horizontalSymmetricWhenLone)
 
           margin-left: variation.SVG_Icon.default.spacing.horizontalSymmetricWhenLone
           margin-right: variation.SVG_Icon.default.spacing.horizontalSymmetricWhenLone
@@ -547,7 +547,7 @@ Button--YDF-generateStyles(
 
       /
 
-        PositionalRelationship({
+        PositionalRelationship--YDF({
           definitions: (
             ".Button--YDF-Label" {
               retireFromIt: { x: variation.SVG_Icon.default.spacing.afterLabel },
@@ -559,16 +559,16 @@ Button--YDF-generateStyles(
         })
 
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.SVG_Icon.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
 
 
-      specialIcons = substituteNull(variation.SVG_Icon.specials, {})
+      specialIcons = substituteNull--YDF(variation.SVG_Icon.specials, {})
 
       for iconSpecificCSS_Class, dimensions in specialIcons
 
         &.{iconSpecificCSS_Class}
 
-          validateAndAssignStoredInObjectCSS_Properties({
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
             targetObject: dimensions,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING + ".variation.SVG_Icon.specials." + iconSpecificCSS_Class ,
             assigments: {
@@ -579,7 +579,7 @@ Button--YDF-generateStyles(
               height: {
                 dotSeparatedPath: "height",
                 requiredIf: {
-                  predicate: @(variation) { return isNull(getObjectValueByDotSeparatedPathSafely(dimensions, "width")) },
+                  predicate: @(variation) { return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(dimensions, "width")) },
                   conditionDescription: "'width' is null"
                 }
               }
@@ -604,7 +604,7 @@ Button--YDF-generateStyles(
       .Button--YDF__NoLeftBorderAndRoundingsGeometricModifier
 
         border-left none
-        BorderLeftFilletsRadius(0)
+        BorderLeftFilletsRadius--YDF(0)
 
 
     if options.geometricModifiers.noRightBorderAndRoundings
@@ -612,7 +612,7 @@ Button--YDF-generateStyles(
       .Button--YDF__NoRightBorderAndRoundingsGeometricModifier
 
         border-right none
-        BorderRightFilletsRadius(0)
+        BorderRightFilletsRadius--YDF(0)
 
 
     if options.geometricModifiers.noTopBorderAndRoundings
@@ -620,7 +620,7 @@ Button--YDF-generateStyles(
       .Button--YDF__NoTopBorderAndRoundingsGeometricModifier
 
         border-top none
-        BorderTopFilletsRadius(0)
+        BorderTopFilletsRadius--YDF(0)
 
 
     if options.geometricModifiers.noBottomBorderAndRoundings
@@ -628,7 +628,7 @@ Button--YDF-generateStyles(
       .Button--YDF__NoBottomBorderAndRoundingsGeometricModifier
 
         border-bottom none
-        BorderBottomFilletsRadius(0)
+        BorderBottomFilletsRadius--YDF(0)
 
 
     if options.geometricModifiers.squareShape
@@ -636,14 +636,14 @@ Button--YDF-generateStyles(
       input.Button--YDF__SquareShapeGeometricModifier,
       input.Button--YDF__SquareShapeUnlessOverflowedGeometricModifier
 
-        SingleLineTextElementOverflowSafety({ displayEllipsis: false })
+        SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: false })
         padding 0
 
 
       .Button--YDF__SquareShapeGeometricModifier .Button--YDF-Label,
       .Button--YDF__SquareShapeUnlessOverflowedGeometricModifier .Button--YDF-Label
 
-        SingleLineTextElementOverflowSafety({ displayEllipsis: false })
+        SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: false })
         margin-right 0 !important
         margin-left 0 !important
 
@@ -654,7 +654,7 @@ Button--YDF-generateStyles(
 
         &.Button--YDF__SingleLineGeometricModifier
 
-          SingleLineTextElementOverflowSafety({ displayEllipsis: true })
+          SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
 
 
         &:not(.Button--YDF__SingleLineGeometricModifier)
@@ -666,7 +666,7 @@ Button--YDF-generateStyles(
 
         /.Button--YDF__SingleLineGeometricModifier &
 
-          SingleLineTextElementOverflowSafety({ displayEllipsis: true })
+          SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
 
 
         /:not(.Button--YDF__SingleLineGeometricModifier) &
@@ -703,7 +703,7 @@ Button--YDF-generateStyles(
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Button.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
@@ -712,29 +712,29 @@ Button--YDF-generateStyles(
 
       Declarations()
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation[state].rootElement,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
             color: { dotSeparatedPath: "text.color", required: false },
-            underline: { dotSeparatedPath: "text.underline", required: false, applier: applyObjectTypeUnderlineDefinition },
+            underline: { dotSeparatedPath: "text.underline", required: false, applier: applyObjectTypeUnderlineDefinition--YDF },
             background-color: { dotSeparatedPath: "background.color", required: false },
             background-image: { dotSeparatedPath: "background.image", required: false },
             border-style: { dotSeparatedPath: "borders.style", required: false },
             border-color: { dotSeparatedPath: "borders.color", required: false },
-            outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition },
-            box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition }
+            outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition--YDF },
+            box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition--YDF }
           }
         })
 
-        applyMixinStoredInObjectIfItIsNotNull(variation[state].rootElement.customDeclarations)
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation[state].rootElement.customDeclarations)
 
 
         ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED = selector() == "." + Button--YDF.CSS_NAMESPACE ? "/" : null
 
         { ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED }.Button--YDF-SVG_Icon
 
-          validateAndAssignStoredInObjectCSS_Properties({
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
             targetObject: variation[state].SVG_Icon,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             assigments: {
@@ -742,10 +742,10 @@ Button--YDF-generateStyles(
             }
           })
 
-          applyMixinStoredInObjectIfItIsNotNull(variation[state].SVG_Icon.customDeclarations)
+          applyMixinStoredInObjectIfItIsNotNull--YDF(variation[state].SVG_Icon.customDeclarations)
 
 
-      +provideDefaultSelectorWhenRootAndApply("." + Button--YDF.CSS_NAMESPACE)
+      +provideDefaultSelectorWhenRootAndApply--YDF("." + Button--YDF.CSS_NAMESPACE)
 
         if (state == "defaultState")
 
@@ -812,7 +812,7 @@ Button--YDF-generateStyles(
 
   if !options.themeIndependentStylesOnly
 
-    applyComponentThemes({
+    applyComponentThemes--YDF({
       CSS_Namespace: Button--YDF.CSS_NAMESPACE,
       themes: properties.themes,
       areThemesCSS_ClassesCommon: options.externalThemes,

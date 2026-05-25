@@ -1,6 +1,6 @@
 // This function could give different result to native "merge"/"extends".
 // Check the tests and documentation for details
-overrideObject(targetObject, overridings)
+overrideObject--YDF(targetObject, overridings)
 
   if targetObject == null
 
@@ -9,6 +9,6 @@ overrideObject(targetObject, overridings)
 
   for key, value in overridings
 
-    targetObject[key] = typeof(value) == "object" ? overrideObject(targetObject[key], value) : value
+    targetObject[key] = typeof(value) == "object" ? overrideObject--YDF(targetObject[key], value) : value
 
   return targetObject

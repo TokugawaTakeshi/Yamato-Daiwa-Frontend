@@ -35,7 +35,7 @@ ImprovedList--YDF = {
 
 ImprovedList--YDF-generateStyles(preset = ImprovedList--YDF.defaultProperties, overridings = {})
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
 
   .ImprovedList--YDF
@@ -52,7 +52,7 @@ ImprovedList--YDF-generateStyles(preset = ImprovedList--YDF.defaultProperties, o
     align-items baseline
     grid-column-gap: properties.geometry.horizontalSpaceBetweenMakerAndListItemTargetContent
 
-    retireFromElementWithSameSelector({ y: properties.geometry.verticalSpaceBetweenItems })
+    retireFromElementWithSameSelector--YDF({ y: properties.geometry.verticalSpaceBetweenItems })
 
 
     &-Marker
@@ -73,7 +73,7 @@ ImprovedList--YDF-generateStyles(preset = ImprovedList--YDF.defaultProperties, o
 
     &-TargetContent
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: YDF_Configuration.textGeometry.basicFontSize,
         lineHeight: YDF_Configuration.textGeometry.basicLineHeight,
         mustAllowWordsBreakingAnywhere: true

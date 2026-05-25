@@ -20,7 +20,7 @@ SingleImageViewer--YDF = {
 
 SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultProperties, overridings = {})
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
 
   .SingleImageViewer--YDF
@@ -28,7 +28,7 @@ SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultPro
     &.SingleImageViewer--YDF__RegularGeometry
 
       border: 1px solid W3C_39_ShadesOfGray--YDF[32]
-      Paddings({ horizontalSymmetric: 0.6rem })
+      Paddings--YDF({ horizontalSymmetric: 0.6rem })
 
 
     &-ActionBar
@@ -50,13 +50,13 @@ SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultPro
 
     &-Figure
 
-      retireFrom({ targetElementSelector: ".SingleImageViewer--YDF-ActionBar", y: 0.4rem })
+      retireFrom--YDF({ targetElementSelector: ".SingleImageViewer--YDF-ActionBar", y: 0.4rem })
 
 
       /.SingleImageViewer--YDF__RegularGeometry &
 
-        whenItGoingFirst({ verticalSpaceAbove: 0.6rem })
-        whenItGoingLast({ verticalSpaceBelow: 0.6rem })
+        whenItGoingFirst--YDF({ verticalSpaceAbove: 0.6rem })
+        whenItGoingLast--YDF({ verticalSpaceBelow: 0.6rem })
 
 
     &-Image
@@ -73,9 +73,9 @@ SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultPro
 
     &-Caption
 
-      Paddings({ horizontalSymmetric: 8px })
+      Paddings--YDF({ horizontalSymmetric: 8px })
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({ fontSize: 13px, lineSpacing: 6px })
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({ fontSize: 13px, lineSpacing: 6px })
 
       color: W3C_39_ShadesOfGray--YDF[14]
 
@@ -153,7 +153,7 @@ SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultPro
         row-gap 0.4rem
         column-gap 0.6rem
 
-        Paddings({
+        Paddings--YDF({
           horizontalSymmetric: 0.4rem,
           bottom: 0.4rem
         })

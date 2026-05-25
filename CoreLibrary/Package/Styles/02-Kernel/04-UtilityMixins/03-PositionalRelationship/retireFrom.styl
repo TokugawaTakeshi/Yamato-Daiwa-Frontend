@@ -1,14 +1,14 @@
-retireFrom(compoundParameter, restParameters__MUST_NOT_BE...)
+retireFrom--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "retireFrom",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "retireFrom--YDF",
     targetParameterNumber: 1,
     targetParameter: compoundParameter,
     schema: {
       targetElementSelector: {
         type: DataTypes--YDF.string,
         requiredIf: {
-          predicate: @(compoundParameter) { return isNull(compoundParameter.definitions) },
+          predicate: @(compoundParameter) { return isNull--YDF(compoundParameter.definitions) },
           descriptionForLogging: "The 'definitions' are not specified"
         }
       },
@@ -41,9 +41,9 @@ retireFrom(compoundParameter, restParameters__MUST_NOT_BE...)
   })
 
 
-  if (isNotNull(compoundParameter.definitions)) {
+  if (isNotNull--YDF(compoundParameter.definitions)) {
 
-    iterateAssociativeArray(compoundParameter.definitions, @(targetElementSelector, definition) {
+    iterateAssociativeArray--YDF(compoundParameter.definitions, @(targetElementSelector, definition) {
 
       definition.retireFromIt = {
         x: definition.x,
@@ -69,7 +69,7 @@ retireFrom(compoundParameter, restParameters__MUST_NOT_BE...)
     )
   }
 
-  PositionalRelationship({
+  PositionalRelationship--YDF({
     definitions: definitions,
     contextSelector: compoundParameter.contextSelector,
     referenceElementSelector: compoundParameter.referenceElementSelector

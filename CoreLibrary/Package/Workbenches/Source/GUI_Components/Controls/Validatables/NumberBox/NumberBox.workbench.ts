@@ -14,6 +14,9 @@ NumberBox.initializeOne({
           isInputRequired: true,
           isValueOfSupportedType:
               (rawValue: unknown): rawValue is number => isNumber(rawValue, { mustConsiderNaN_AsNumber: false }),
+          /* eslint-disable-next-line @typescript-eslint/no-unused-vars --
+           * "typescript-eslint" plugin bug: the parameter cannot be removed because it need to be referred in the type
+           *    guard definition.  */
           hasValueBeenOmitted: (_possiblyEmptyValue: number): _possiblyEmptyValue is number => true
         });
       }

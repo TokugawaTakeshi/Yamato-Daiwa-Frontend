@@ -133,6 +133,9 @@ $projectBuilding:
             $mustExpose: true
           $typeScriptTypesDeclarations:
             $mustGenerate: true
+          $externalizingDependencies:
+            - @yamato-daiwa/es-extensions
+            - @yamato-daiwa/es-extensions-browserjs
 
         $buildingModeDependent:
 
@@ -151,7 +154,7 @@ $projectBuilding:
         $distributing:
           $exposingOfExportsFromEntryPoints:
             $mustExpose: true
-            $namespace: __PUG_EXTENSIONS_EXPORTS__
+            $namespace: YDF
 
         $buildingModeDependent:
           $production:

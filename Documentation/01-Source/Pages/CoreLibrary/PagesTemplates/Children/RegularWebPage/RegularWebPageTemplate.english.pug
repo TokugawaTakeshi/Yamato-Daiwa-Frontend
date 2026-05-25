@@ -232,7 +232,7 @@ block append SpecificContent
         #[+Keyword--YDID Each] of these #[+Term--YDID elements] #[+Keyword--YDID must] be the #[+Term--YDID string]
           and represent the #[+Keyword--YDID valid] #[+ImportantEntity--YDID URI] referencing the #[+Term--YDID CSS file].
 
-      dt scripts.atEndOfHead
+      dt scriptsURIs.atEndOfHead
       dd
 
         p.Article-Paragraph.
@@ -261,7 +261,7 @@ block append SpecificContent
               #[+Term--YDID tag] manually using the #[+ImportantEntity__Code--YDID HeadScripts]
               #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.block }) Pug block].
 
-      dt scripts.atEndOfBody
+      dt scriptsURIs.atEndOfBody
       dd
 
         p.Article-Paragraph.
@@ -287,6 +287,11 @@ block append SpecificContent
             If you need any other #[+Term--YDID attributes], add the #[+ImportantEntity__Code--YDID script]
               #[+Term--YDID tag] manually using the #[+ImportantEntity__Code--YDID EndBodyScripts]
               #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.block }) Pug block].
+
+        dt bodyCSS_Classes
+        dd.
+          The #[+Keyword--YDID array] of #[+Term--YDID CSS classes], which must be assigned to the
+            #[+ImportantEntity__Code--YDID body] element.
 
     p.Article-Paragraph.
       The #[+ImportantEntity__Code--YDID configure] #[+Term--YDID method] #[+Keyword--YDID could] be called

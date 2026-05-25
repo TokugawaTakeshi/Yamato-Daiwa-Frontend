@@ -8,20 +8,20 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/02-ValueTransfo
 @require "01-Assets.styl"
 @require "02-Kernel.styl"
 
-testForEquality(
+testForEquality--YDF(
   "Empty string has been transformed to null",
-  emptyStringToNull(""),
+  emptyStringToNull--YDF(""),
   null
 )
 
-testForInequality(
+testForInequality--YDF(
   "Non-empty string has NOT been transformed to null",
-  emptyStringToNull("ABC"),
+  emptyStringToNull--YDF("ABC"),
   null
 )
 
-testForEquality(
+testForEquality--YDF(
   "Null has been kept as is",
-  emptyStringToNull(null),
+  emptyStringToNull--YDF(null),
   null
 )

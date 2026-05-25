@@ -49,9 +49,9 @@ Snackbar--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overrides)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overrides)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "Snackbar--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -99,7 +99,7 @@ Snackbar--YDF-generateStyles(
 
       &-DismissingButton
 
-        ButtonLikeElementsPrimer()
+        ButtonLikeElementsPrimer--YDF()
 
         cursor pointer
 
@@ -142,7 +142,7 @@ Snackbar--YDF-generateStyles(
   // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Snackbar.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
@@ -159,21 +159,21 @@ Snackbar--YDF-generateStyles(
         {block}
 
 
-    +provideDefaultSelectorWhenRootAndApply("." + Snackbar--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + Snackbar--YDF.CSS_NAMESPACE)
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
           borders: {
             dotSeparatedPath: "rootElement.borders",
             required: false,
-            applier: BordersSizing
+            applier: BordersSizing--YDF
           }
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     .Snackbar--YDF__TopLeftPosition,
@@ -204,7 +204,7 @@ Snackbar--YDF-generateStyles(
 
       +WideScreensConfiguration()
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -218,7 +218,7 @@ Snackbar--YDF-generateStyles(
 
       +NarrowScreensConfiguration()
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -242,7 +242,7 @@ Snackbar--YDF-generateStyles(
 
       +WideScreensConfiguration()
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -256,7 +256,7 @@ Snackbar--YDF-generateStyles(
 
       +NarrowScreensConfiguration()
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -281,7 +281,7 @@ Snackbar--YDF-generateStyles(
 
         &.Snackbar--YDF-Transition__DisplayingState
 
-          validateAndAssignStoredInObjectCSS_Properties({
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             assigments: {
@@ -319,7 +319,7 @@ Snackbar--YDF-generateStyles(
 
         &.Snackbar--YDF-Transition__DisplayingState
 
-          validateAndAssignStoredInObjectCSS_Properties({
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             assigments: {
@@ -359,7 +359,7 @@ Snackbar--YDF-generateStyles(
 
     .Snackbar--YDF-SVG_Icon
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -367,7 +367,7 @@ Snackbar--YDF-generateStyles(
           height: {
             dotSeparatedPath: "SVG_Icon.height",
             requiredIf: {
-              predicate: @(variation) { return isNull(getObjectValueByDotSeparatedPathSafely(variation, "SVG_Icon.width")) },
+              predicate: @(variation) { return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(variation, "SVG_Icon.width")) },
               conditionDescription: "'SVG_Icon.width' icon is null"
             }
           },
@@ -375,19 +375,19 @@ Snackbar--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.SVG_Icon.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
 
 
     .Snackbar--YDF-Message
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
           min-width: { dotSeparatedPath: "message.minimalWidth", required: false },
           max-width: { dotSeparatedPath: "message.maximalWidth", required: false },
           text: { dotSeparatedPath: "message.text", applier: @(textProperties) {
-            applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+            applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
               fontSize: textProperties.size,
               lineSpacing: textProperties.lineSpacing,
               lineHeight: textProperties.lineHeight,
@@ -420,12 +420,12 @@ Snackbar--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.message.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.message.customDeclarations)
 
 
     .Snackbar--YDF-DismissingButton
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -434,12 +434,12 @@ Snackbar--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.dismissingButton.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dismissingButton.customDeclarations)
 
 
     .Snackbar--YDF-DismissingButton-Icon
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -448,7 +448,7 @@ Snackbar--YDF-generateStyles(
             dotSeparatedPath: "dismissingButton.SVG_Icon.height",
             requiredIf: {
               predicate: @(variation) {
-                return isNull(getObjectValueByDotSeparatedPathSafely(variation, "dismissingButton.SVG_Icon.width"))
+                return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(variation, "dismissingButton.SVG_Icon.width"))
               },
               conditionDescription: "'dismissingButton.SVG_Icon.width' icon is null"
             }
@@ -460,15 +460,15 @@ Snackbar--YDF-generateStyles(
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Snackbar.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
 
 
-    +provideDefaultSelectorWhenRootAndApply("." + Snackbar--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + Snackbar--YDF.CSS_NAMESPACE)
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -479,17 +479,17 @@ Snackbar--YDF-generateStyles(
           box-shadow: {
             dotSeparatedPath: "rootElement.shadow",
             required: false,
-            applier: applyObjectTypeBoxShadowDefinition
+            applier: applyObjectTypeBoxShadowDefinition--YDF
           }
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     .Snackbar--YDF-SVG_Icon
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -497,12 +497,12 @@ Snackbar--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.SVG_Icon.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
 
 
     .Snackbar--YDF-Message
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -511,7 +511,7 @@ Snackbar--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.message.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.message.customDeclarations)
 
 
     DismissingButtonStyles(state)
@@ -533,24 +533,24 @@ Snackbar--YDF-generateStyles(
 
       .Snackbar--YDF-DismissingButton{statePseudoClass}
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
             box-shadow: {
               dotSeparatedPath: "dismissingButton." + state + ".shadow",
               required: false,
-              applier: applyObjectTypeBoxShadowDefinition
+              applier: applyObjectTypeBoxShadowDefinition--YDF
             }
           }
         })
 
-        applyMixinStoredInObjectIfItIsNotNull(variation.dismissingButton[state].customDeclarations)
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dismissingButton[state].customDeclarations)
 
 
       SVG_IconStyles()
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -559,7 +559,7 @@ Snackbar--YDF-generateStyles(
         })
 
 
-      if (isNull(statePseudoClass))
+      if (isNull--YDF(statePseudoClass))
 
         .Snackbar--YDF-DismissingButton-Icon
 
@@ -582,7 +582,7 @@ Snackbar--YDF-generateStyles(
 
   if !options.themeIndependentStylesOnly
 
-    applyComponentThemes({
+    applyComponentThemes--YDF({
       CSS_Namespace: Snackbar--YDF.CSS_NAMESPACE,
       themes: properties.themes,
       applyGeometricVariation: applyGeometricVariation,

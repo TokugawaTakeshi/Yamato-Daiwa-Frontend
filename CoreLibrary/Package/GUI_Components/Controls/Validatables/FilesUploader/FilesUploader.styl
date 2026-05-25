@@ -45,9 +45,9 @@ FilesUploader--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overrides)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overrides)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "FilesUploader--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -123,7 +123,7 @@ FilesUploader--YDF-generateStyles(
 
       &-SingleFileDeletingButton
 
-        placeToRight()
+        placeToRight--YDF()
         margin-top 0.4rem
 
 
@@ -134,7 +134,7 @@ FilesUploader--YDF-generateStyles(
         column-gap 6px
         row-gap 8px
 
-        retireFrom({
+        retireFrom--YDF({
           definitions:\
               (".FilesUploader--YDF-FilePickingButton" { y: 0.2rem })\
               (".FilesUploader--YDF-DragAndDropArea" { y: 0.4rem })
@@ -184,42 +184,42 @@ FilesUploader--YDF-generateStyles(
   // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "FilesUploader.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
 
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
-    +provideDefaultSelectorWhenRootAndApply("." + FilesUploader--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + FilesUploader--YDF.CSS_NAMESPACE)
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     .FilesUploader--YDF-DragAndDropArea
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
           borders: {
             dotSeparatedPath: "dragAndDropArea.borders",
             required: false,
-            applier: BordersSizing
+            applier: BordersSizing--YDF
           },
           paddings: {
             dotSeparatedPath: "dragAndDropArea.paddings",
             required: true,
-            applier: Paddings
+            applier: Paddings--YDF
           }
         }
       })
 
-      retireFrom({
+      retireFrom--YDF({
         targetElementSelector: ".FilesUploader--YDF-FilePickingButton",
         referenceElementSelector: ".FilesUploader--YDF-DragAndDropArea",
         contextSelector: CONTEXT_SELECTOR,
-        y: extractAndValidateObjectProperties({
+        y: extractAndValidateObjectProperties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           extracts: {
@@ -228,12 +228,12 @@ FilesUploader--YDF-generateStyles(
         }).afterFilePickingButton
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.dragAndDropArea.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dragAndDropArea.customDeclarations)
 
 
       &-Icon
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -242,8 +242,8 @@ FilesUploader--YDF-generateStyles(
               dotSeparatedPath: "dragAndDropArea.children.SVG_Icon.height",
               requiredIf: {
                 predicate: @(variation) {
-                  return isNull(
-                    getObjectValueByDotSeparatedPathSafely(variation, "dragAndDropArea.children.SVG_Icon.width")
+                  return isNull--YDF(
+                    getObjectValueByDotSeparatedPathSafely--YDF(variation, "dragAndDropArea.children.SVG_Icon.width")
                   )
                 },
                 conditionDescription: "'dragAndDropArea.children.SVG_Icon.width' icon is null"
@@ -255,9 +255,9 @@ FilesUploader--YDF-generateStyles(
 
       &-Guidance
 
-        applyTextGeometryWithoutExtraSpaceCausedByLineHeight(
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
           merge(
-            extractAndValidateObjectProperties({
+            extractAndValidateObjectProperties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               extracts: {
@@ -278,7 +278,7 @@ FilesUploader--YDF-generateStyles(
 
     .FilesUploader--YDF-SingleImagePreviewer
 
-      retireFrom({
+      retireFrom--YDF({
         referenceElementSelector: ".FilesUploader--YDF-SingleImagePreviewer",
         contextSelector: CONTEXT_SELECTOR,
         definitions:\
@@ -300,20 +300,20 @@ FilesUploader--YDF-generateStyles(
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "FilesUploader.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
 
 
-    +provideDefaultSelectorWhenRootAndApply("." + FilesUploader--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + FilesUploader--YDF.CSS_NAMESPACE)
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     .FilesUploader--YDF-DragAndDropArea
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -324,7 +324,7 @@ FilesUploader--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.dragAndDropArea.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dragAndDropArea.customDeclarations)
 
 
     DragAndDropAreaStyles(state)
@@ -346,7 +346,7 @@ FilesUploader--YDF-generateStyles(
 
       .FilesUploader--YDF-DragAndDropArea{statePseudoClass}
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -357,12 +357,12 @@ FilesUploader--YDF-generateStyles(
             box-shadow: {
               dotSeparatedPath: "dragAndDropArea." + state + ".shadow",
               required: false,
-              applier: applyObjectTypeBoxShadowDefinition
+              applier: applyObjectTypeBoxShadowDefinition--YDF
             }
           }
         })
 
-        applyMixinStoredInObjectIfItIsNotNull(variation.dragAndDropArea[state].customDeclarations)
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dragAndDropArea[state].customDeclarations)
 
 
     for state in variation.dragAndDropArea
@@ -399,7 +399,7 @@ FilesUploader--YDF-generateStyles(
   //- ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   applyBasicRules()
 
-  applyComponentThemes({
+  applyComponentThemes--YDF({
     CSS_Namespace: FilesUploader--YDF.CSS_NAMESPACE,
     themes: properties.themes,
     applyGeometricVariation: applyGeometricVariation,

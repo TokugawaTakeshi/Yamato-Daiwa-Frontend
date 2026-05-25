@@ -67,7 +67,7 @@
 
     VerticallySlidingAlwaysMountedContainer.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList(
       v-if="asynchronousChecksStatus"
-      :modelValue="Object.entries(asynchronousChecksActualForDisplaying).length > 0"
+      :modelValue="Object.entries(actualForDisplayingAsynchronousChecksCopyForAnimating).length > 0"
       tag="ul"
       :duration="asynchronousValidationsStatusesListAnimationDurationPerOneItem__milliseconds"
     )

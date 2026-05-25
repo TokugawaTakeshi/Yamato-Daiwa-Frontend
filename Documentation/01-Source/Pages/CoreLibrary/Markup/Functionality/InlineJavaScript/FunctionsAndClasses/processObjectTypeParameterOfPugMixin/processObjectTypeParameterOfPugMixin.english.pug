@@ -56,7 +56,7 @@ block append Metadata
       ]
     });
 
-    RoutingEmulator.setCurrentRoute(
+    YDF.RoutingEmulator.setCurrentRoute(
       "coreLibrary.markup.functionality.inlineJavaScript.functionsAndClasses.processObjectTypeParameterOfPugMixin"
     );
 
@@ -309,18 +309,6 @@ block append SpecificContent
       Another important #[+Term--YDID property], #[+ImportantEntity__Code--YDID parameterPropertiesSpecification],
         #[+Keyword--YDID must] be defined with the validation rules and, optionally, the processing such as default
         value substitutions.
-
-    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning, SVG_Icon: true }).
-      Currently, the #[+ImportantEntity--YDID RawObjectDataProcessor], which is being used by
-        #[+ImportantEntity--YDID processObjectTypeParameterOfPugMixin], creates a #[+Keyword--YDID new]
-        #[+Term--YDID object] based on the source one, and
-        #[+Keyphrase--YDID only the properties specified in the validation rules will be added to the new one].
-      The reason is that, #[+Keyphrase--YDID in general], #[+Keyword--YDID not]&nbsp;every #[+Term--YDID property]
-        and&nbsp;#[+Keyword--YDID not]&nbsp;every #[+Term--YDID object] can be changed even if changes have been
-        requested.
-      There is a plan to add support for the modification of the source object (as far as possible); however, it will
-        take some time because the code volume will significantly increase and the number of tests would increase by
-        at least 100%.
 
     p.Article-Paragraph
       | The #[+ImportantEntity__Code--YDID parameterPropertiesSpecification] #[+Term--YDID property] has the

@@ -84,9 +84,9 @@ Badge--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overrides)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overrides)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "Badge--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -164,14 +164,14 @@ Badge--YDF-generateStyles(
   // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Badge.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
 
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
-    cachedValidReusables = extractAndValidateObjectProperties({
+    cachedValidReusables = extractAndValidateObjectProperties--YDF({
       targetObject: variation,
       targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
       extracts: {
@@ -204,18 +204,18 @@ Badge--YDF-generateStyles(
     })
 
 
-    +provideDefaultSelectorWhenRootAndApply("." + Badge--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + Badge--YDF.CSS_NAMESPACE)
 
-      BordersSizing(cachedValidReusables.bordersSizing)
+      BordersSizing--YDF(cachedValidReusables.bordersSizing)
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     if options.geometricModifiers.pillShape
 
       &.Badge--YDF__PillShapeGeometricModifier
 
-        BORDER_RADIUS_TO_VALUE_TEXT_SIZE_RATIO = extractAndValidateObjectProperties({
+        BORDER_RADIUS_TO_VALUE_TEXT_SIZE_RATIO = extractAndValidateObjectProperties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           extracts: {
@@ -230,7 +230,7 @@ Badge--YDF-generateStyles(
 
     .Badge--YDF-SVG_Icon
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -238,7 +238,7 @@ Badge--YDF-generateStyles(
           height: {
             dotSeparatedPath: "SVG_Icon.height",
             requiredIf: {
-              predicate: @(variation) { return isNull(getObjectValueByDotSeparatedPathSafely(variation, "SVG_Icon.width")) },
+              predicate: @(variation) { return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(variation, "SVG_Icon.width")) },
               conditionDescription: "'SVG_Icon.width' icon is null"
             }
           },
@@ -268,13 +268,13 @@ Badge--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.SVG_Icon.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
 
 
     .Badge--YDF-KeyLabel
 
-      // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight`.
-      validateAndAssignStoredInObjectCSS_Properties({
+      // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF`.
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -305,9 +305,9 @@ Badge--YDF-generateStyles(
 
       MultilineKeyLabelStyles(mustSkipFontSizeApplying)
 
-        applyTextGeometryWithoutExtraSpaceCausedByLineHeight(
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
           merge(
-            extractAndValidateObjectProperties({
+            extractAndValidateObjectProperties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               extracts: {
@@ -319,13 +319,13 @@ Badge--YDF-generateStyles(
               fontSize: cachedValidReusables.keyLabelTextSize,
               mustApplyNegativeMarginsToRootElement: true,
               mustSkipFontSizeApplying: mustSkipFontSizeApplying,
-              mustAllowWordsBreakingAnywhere: isFalse(options.geometricModifiers.singleLine)
+              mustAllowWordsBreakingAnywhere: isFalse--YDF(options.geometricModifiers.singleLine)
             }
           )
         )
 
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.keyLabel.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.keyLabel.customDeclarations)
 
 
       if options.geometricModifiers.singleLine
@@ -340,7 +340,7 @@ Badge--YDF-generateStyles(
 
       &:first-child
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -356,11 +356,11 @@ Badge--YDF-generateStyles(
           MultilineKeyLabelStyles(mustSkipFontSizeApplying: true)
 
 
-    retireFrom({
+    retireFrom--YDF({
       targetElementSelector: ".Badge--YDF-SVG_Icon",
       contextSelector: CONTEXT_SELECTOR,
       referenceElementSelector: ".Badge--YDF-KeyLabel",
-      x: extractAndValidateObjectProperties({
+      x: extractAndValidateObjectProperties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         extracts: {
@@ -372,15 +372,15 @@ Badge--YDF-generateStyles(
 
     .Badge--YDF-ValueLabel
 
-      // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight`.
-      applyIfNotNull({
+      // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF`.
+      applyIfNotNull--YDF({
         padding-top: cachedValidReusables.valueLabelTopSpacing,
         padding-bottom: cachedValidReusables.valueLabelBottomSpacing
       })
 
       MultilineValueLabelStyles()
 
-        applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
           fontSize: cachedValidReusables.valueLabelTextSize,
           lineSpacing: cachedValidReusables.valueLabelLineSpacing,
           lineHeight: cachedValidReusables.valueLabelLineHeight,
@@ -394,12 +394,12 @@ Badge--YDF-generateStyles(
         MultilineValueLabelStyles()
 
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.valueLabel.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.valueLabel.customDeclarations)
 
 
       &:first-child
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -410,7 +410,7 @@ Badge--YDF-generateStyles(
 
       &:last-child
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -431,17 +431,17 @@ Badge--YDF-generateStyles(
           MultilineValueLabelStyles()
 
 
-    retireFrom({
+    retireFrom--YDF({
       definitions:\
           (".Badge--YDF-SVG_Icon" {
-            x: extractAndValidateObjectProperties({
+            x: extractAndValidateObjectProperties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               extracts: { spacingAfterSVG_Icon: { dotSeparatedPath: "valueLabel.spacing.afterSVG_Icon", required: true } }
             }).spacingAfterSVG_Icon
           })\
           (".Badge--YDF-KeyLabel" {
-            x: extractAndValidateObjectProperties({
+            x: extractAndValidateObjectProperties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               extracts: { spacingAfterKeyLabel: { dotSeparatedPath: "valueLabel.spacing.afterKeyLabel", required: true } }
@@ -458,7 +458,7 @@ Badge--YDF-generateStyles(
 
         LoadingPlaceholder()
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -466,7 +466,7 @@ Badge--YDF-generateStyles(
           }
         })
 
-        HEIGHT = computeTotalHeightByTextElementHeightSizingSpecification({
+        HEIGHT = computeTotalHeightByTextElementHeightSizingSpecification--YDF({
           type: TextElementHeightSizingTypes--YDF.natural,
           borders: cachedValidReusables.bordersSizing,
           paddings: {
@@ -488,7 +488,7 @@ Badge--YDF-generateStyles(
 
         /.Badge--YDF__SingleLineGeometricModifier &
 
-          SingleLineTextElementOverflowSafety({ displayEllipsis: true })
+          SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
 
 
         /:not(.Badge--YDF__SingleLineGeometricModifier) &
@@ -500,7 +500,7 @@ Badge--YDF-generateStyles(
 
         /.Badge--YDF__SingleLineGeometricModifier &
 
-          SingleLineTextElementOverflowSafety({ displayEllipsis: true })
+          SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
 
 
         /:not(.Badge--YDF__SingleLineGeometricModifier) &
@@ -511,15 +511,15 @@ Badge--YDF-generateStyles(
   // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "Badge.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
 
 
-    +provideDefaultSelectorWhenRootAndApply("." + Badge--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + Badge--YDF.CSS_NAMESPACE)
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -530,12 +530,12 @@ Badge--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     .Badge--YDF-SVG_Icon
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -543,12 +543,12 @@ Badge--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.SVG_Icon.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
 
 
     .Badge--YDF-KeyLabel
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -557,12 +557,12 @@ Badge--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.keyLabel.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.keyLabel.customDeclarations)
 
 
     .Badge--YDF-ValueLabel
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -571,7 +571,7 @@ Badge--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.valueLabel.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.valueLabel.customDeclarations)
 
 
   applyThemeIndependentDecorativeModifiers()
@@ -595,7 +595,7 @@ Badge--YDF-generateStyles(
 
   if !options.themeIndependentStylesOnly
 
-    applyComponentThemes({
+    applyComponentThemes--YDF({
       CSS_Namespace: Badge--YDF.CSS_NAMESPACE,
       themes: properties.themes,
       areThemesCSS_ClassesCommon: options.areThemesCSS_ClassesCommon,

@@ -2,12 +2,13 @@ import {
   InputtedValueValidation,
   MinimalCharactersCountInputtedValueValidationRule,
   MaximalCharactersCountInputtedValueValidationRule,
-  AllowedCharactersInputtedValueValidationRule
+  AllowedCharactersInputtedValueValidationRule,
+  isStringEmpty
 } from "@yamato-daiwa/frontend";
-import { isEmptyString } from "@yamato-daiwa/es-extensions";
+import { isString } from "@yamato-daiwa/es-extensions";
 
 
-export default class PasswordInputtedDataValidation extends InputtedValueValidation {
+export default class PasswordInputtedDataValidation extends InputtedValueValidation<string> {
 
   private static readonly REQUIRED_VALUE_IS_MISSING_DEFAULT_VALIDATION_ERROR_MESSAGE: string =
       "The password is missing. Please input the password.";
@@ -29,7 +30,8 @@ export default class PasswordInputtedDataValidation extends InputtedValueValidat
 
     super({
       isInputRequired,
-      omittedValueChecker: isEmptyString,
+      isValueOfSupportedType: isString,
+      hasValueBeenOmitted: isStringEmpty,
       requiredInputIsMissingValidationErrorMessage:
           requiredValueIsMissingCustomValidationErrorMessage ??
           PasswordInputtedDataValidation.REQUIRED_VALUE_IS_MISSING_DEFAULT_VALIDATION_ERROR_MESSAGE,

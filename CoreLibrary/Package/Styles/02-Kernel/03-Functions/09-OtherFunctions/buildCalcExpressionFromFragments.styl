@@ -1,16 +1,16 @@
-buildCalcExpressionFromFragments(fragmentsObject)
+buildCalcExpressionFromFragments--YDF(fragmentsObject)
 
   stringifiedFragments = YDF_Array-create()
 
   for key, polymorphicValue in fragmentsObject
 
-    if isFunction(polymorphicValue)
+    if isFunction--YDF(polymorphicValue)
 
       fragment = polymorphicValue()
 
       YDF_Array-appendElementsIf(
         stringifiedFragments,
-        @(_fragment) { return isNotNull(_fragment) },
+        @(_fragment) { return isNotNull--YDF(_fragment) },
         fragment
       )
 

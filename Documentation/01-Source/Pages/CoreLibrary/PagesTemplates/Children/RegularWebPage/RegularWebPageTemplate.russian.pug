@@ -27,7 +27,7 @@ block append Metadata
       ]
     });
 
-    RoutingEmulator.setCurrentRoute("coreLibrary.markup.pagesTemplates.RegularWebPage");
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.markup.pagesTemplates.RegularWebPage");
 
     LanguageDropDownList__YDF_DK.setLinks({
       english: routing.english.coreLibrary.$children.markup.$children.pagesTemplates.$children.RegularWebPage.$URI,
@@ -236,7 +236,7 @@ block append SpecificContent
           #[+Keyword--YDID строчный] #[+Term--YDID тип] и являться #[+Keyword--YDID валидным]
           #[+ImportantEntity--YDID URI], ссылающимся на #[+Term--YDID CSS-файл].
 
-      dt scripts.atEndOfHead
+      dt scriptsURIs.atEndOfHead
       dd
 
         p.Article-Paragraph.
@@ -265,7 +265,7 @@ block append SpecificContent
               #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.block }) Pug-блока]
               #[+ImportantEntity__Code--YDID HeadScripts].
 
-      dt scripts.atEndOfBody
+      dt scriptsURIs.atEndOfBody
       dd
 
         p.Article-Paragraph.
@@ -291,6 +291,11 @@ block append SpecificContent
               #[+ImportantEntity__Code--YDID script] скрипт вручную в с　использованием
               #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.block }) Pug-блока]
               #[+ImportantEntity__Code--YDID EndBodyScripts].
+
+        dt bodyCSS_Classes
+        dd.
+          #[+Keyword--YDID Массив] #[+Term--YDID CSS-классов], которые должны быть назначены элементу
+            #[+ImportantEntity__Code--YDID body].
 
     p.Article-Paragraph.
       #[+Term--YDID Метод] #[+ImportantEntity__Code--YDID configure] #[+Keyword--YDID можно] вызывать

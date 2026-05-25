@@ -30,7 +30,7 @@ abstract class Snackbar {
   protected static readonly sessionsQueue: PromisesQueue = new PromisesQueue();
 
 
-  /* ─── Accessing to DOM ─────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Accessing to DOM ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   protected static readonly CSS_NAMESPACE: string = "Snackbar--YDF";
 
   protected static readonly HIDDEN_STATE_CSS_CLASS: string = `${ Snackbar.CSS_NAMESPACE }-Transition__HiddenState`;
@@ -42,7 +42,7 @@ abstract class Snackbar {
   protected static readonly DISMISSING_BUTTON_ELEMENT_SELECTOR: string = ".Snackbar--YDF-DismissingButton";
 
 
-  /* ─── Initialization on Demand ─────────────────────────────────────────────────────────────────────────────────── */
+  /* ╍╍╍ Initialization on Demand ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
   protected static DOM_Workpiece: HTMLElement | null = null;
 
   protected static SVG_IconMountingPointElement: Element;
@@ -52,7 +52,11 @@ abstract class Snackbar {
   protected static dismissingButtonElement: HTMLElement;
 
 
-  /* ─── Others Constants ─────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Events Handling ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  protected static closingButtonEventListener: LeftClickEventListener;
+
+
+  /* ┅┅┅ Others Constants ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   protected static readonly DEFAULT_APPEARING_TRANSITION_DURATION__SECONDS: number = 0.5;
   protected static readonly DEFAULT_DISAPPEARING_TRANSITION_DURATION__SECONDS: number = 0.2;
   protected static readonly DEFAULT_DISPLAYING_DURATION__SECONDS: number = 5;
@@ -80,7 +84,7 @@ abstract class Snackbar {
     }
 
 
-    Snackbar.dismissingButtonElement.removeEventListener("click", Snackbar.hideAndUnmount);
+    Snackbar.closingButtonEventListener.utilize();
 
     Snackbar.DOM_Workpiece.style.transitionDuration = `${ Snackbar.DEFAULT_DISAPPEARING_TRANSITION_DURATION__SECONDS }s`;
     Snackbar.DOM_Workpiece.classList.remove(Snackbar.DISPLAYING_STATE_CSS_CLASS);
@@ -140,10 +144,11 @@ abstract class Snackbar {
     Snackbar.SVG_IconMountingPointElement.replaceWith(decorativeVariationsDependent.SVG_Icon);
     Snackbar.messageElement.innerHTML = messageTextOrHTML;
 
-    LeftClickEventListener.createAndAssign({
-      targetElement: Snackbar.dismissingButtonElement,
-      handler: Snackbar.hideAndUnmount
-    });
+    Snackbar.closingButtonEventListener =
+        new LeftClickEventListener({
+          targetElement: Snackbar.dismissingButtonElement,
+          handler: Snackbar.hideAndUnmount
+        });
 
     if (isUndefined(mountingPointElementSelector)) {
       getExpectedToBeSingleDOM_Element({ selector: parentElementSelector }).appendChild(initializedDOM_Workpiece);

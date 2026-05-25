@@ -1,9 +1,9 @@
-deeplyCloneObject(targetObject)
+deeplyCloneObject--YDF(targetObject)
 
   workpieceClone = {}
 
   for key, value in targetObject
 
-    workpieceClone[key] = typeof(value) == "object" ? deeplyCloneObject(value) : value
+    workpieceClone[key] = typeof(value) == "object" ? deeplyCloneObject--YDF(value) : value
 
   return workpieceClone

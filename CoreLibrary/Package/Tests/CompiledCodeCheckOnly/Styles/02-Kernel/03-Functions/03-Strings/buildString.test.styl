@@ -9,18 +9,18 @@ stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/03-Strings/buil
 @require "02-Kernel.styl"
 
 
-testForEquality(
+testForEquality--YDF(
   "One value has been interpolated as expected",
-  buildString(
+  buildString--YDF(
     "Good morning, ${name}",
     { name: "Takeshi" }
   ),
   "Good morning, Takeshi"
 )
 
-testForEquality(
+testForEquality--YDF(
   "One value has been interpolated as expected even with the space inside braces",
-  buildString(
+  buildString--YDF(
     "Good morning, ${ name }",
     { name: "Takeshi" }
   ),
@@ -28,9 +28,9 @@ testForEquality(
 )
 
 
-testForEquality(
+testForEquality--YDF(
   "Two values has been interpolated as expected",
-  buildString(
+  buildString--YDF(
     "Good morning, ${givenName} ${familyName}",
     {
       givenName: "Takeshi",
@@ -40,9 +40,9 @@ testForEquality(
   "Good morning, Takeshi Tokugawa"
 )
 
-testForEquality(
+testForEquality--YDF(
   "Two values has been interpolated as expected even with the space inside braces",
-  buildString(
+  buildString--YDF(
     "Good morning, ${ givenName } ${ familyName }",
     {
       givenName: "Takeshi",
@@ -53,9 +53,9 @@ testForEquality(
 )
 
 
-testForEquality(
+testForEquality--YDF(
   "Long text with three values has been interpolated as expected",
-  buildString(
+  buildString--YDF(
     "In the quaint village of ${villageName}, nestled amidst the rolling hills of the countryside, lived the " +\
       "${familyName} family. " +\
     "Mr. ${givenName} ${familyName}, a respected member of the community, was known for his " +\
@@ -70,9 +70,9 @@ testForEquality(
   "Mr. Jonathan Thompson, a respected member of the community, was known for his kindness and generosity."
 )
 
-testForEquality(
+testForEquality--YDF(
   "Long text with three values has been interpolated as expected even with the space inside braces",
-  buildString(
+  buildString--YDF(
     "In the quaint village of ${ villageName }, nestled amidst the rolling hills of the countryside, lived the " +\
       "${ familyName } family. " +\
     "Mr. ${ givenName } ${ familyName }, a respected member of the community, was known for his " +\
@@ -88,18 +88,18 @@ testForEquality(
 )
 
 
-testForEquality(
+testForEquality--YDF(
   "One numeric value has been interpolated as expected",
-  buildString(
+  buildString--YDF(
     "You have ${messagesCount} message(s)",
     { messagesCount: 2 }
   ),
   "You have 2 message(s)"
 )
 
-testForEquality(
+testForEquality--YDF(
   "One numeric value has been interpolated as expected even with the space inside braces",
-  buildString(
+  buildString--YDF(
     "You have ${ messagesCount } message(s)",
     { messagesCount: 2 }
   ),

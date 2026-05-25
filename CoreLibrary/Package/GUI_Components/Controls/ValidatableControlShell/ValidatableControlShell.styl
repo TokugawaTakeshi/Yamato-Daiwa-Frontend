@@ -46,9 +46,9 @@ ValidatableControlShell--YDF-generateStyles(
   restParameters__MUST_NOT_BE...
 )
 
-  properties = deeplyCloneAndOverrideObject(preset, overridings)
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "ValidatableControlShell--YDF-generateStyles",
     targetParameterNumber: 3,
     targetParameter: options,
@@ -153,7 +153,7 @@ ValidatableControlShell--YDF-generateStyles(
   // ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
   applyGeometricVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "ValidatableControlShell.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
@@ -161,15 +161,15 @@ ValidatableControlShell--YDF-generateStyles(
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
 
-    +provideDefaultSelectorWhenRootAndApply("." + ValidatableControlShell--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + ValidatableControlShell--YDF.CSS_NAMESPACE)
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     // ╍╍╍ Label ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     .ValidatableControlShell--YDF-Label
 
-      fontSize = extractAndValidateObjectProperties({
+      fontSize = extractAndValidateObjectProperties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         extracts: {
@@ -177,9 +177,9 @@ ValidatableControlShell--YDF-generateStyles(
         }
       }).fontSize
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight(
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
         merge(
-          extractAndValidateObjectProperties({
+          extractAndValidateObjectProperties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             extracts: {
@@ -194,7 +194,7 @@ ValidatableControlShell--YDF-generateStyles(
         )
       )
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.label.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.label.customDeclarations)
 
 
       if options.loadingPlaceholder
@@ -213,7 +213,7 @@ ValidatableControlShell--YDF-generateStyles(
     // ╍╍╍ Badge ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     .ValidatableControlShell--YDF-Badge
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -224,12 +224,12 @@ ValidatableControlShell--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.badge.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.badge.customDeclarations)
 
 
       &:first-child
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -243,10 +243,10 @@ ValidatableControlShell--YDF-generateStyles(
 
       /
 
-        retireFrom({
+        retireFrom--YDF({
           definitions:\
               (".ValidatableControlShell--YDF-Label" {
-                x: extractAndValidateObjectProperties({
+                x: extractAndValidateObjectProperties--YDF({
                   targetObject: variation,
                   targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                   extracts: {
@@ -262,7 +262,7 @@ ValidatableControlShell--YDF-generateStyles(
     // ╍╍╍ Guidance ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     .ValidatableControlShell--YDF-Guidance
 
-      fontSize = extractAndValidateObjectProperties({
+      fontSize = extractAndValidateObjectProperties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         extracts: {
@@ -270,9 +270,9 @@ ValidatableControlShell--YDF-generateStyles(
         }
       }).fontSize
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight(
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
         merge(
-          extractAndValidateObjectProperties({
+          extractAndValidateObjectProperties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             extracts: {
@@ -287,7 +287,7 @@ ValidatableControlShell--YDF-generateStyles(
         )
       )
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.guidance.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.guidance.customDeclarations)
 
 
       if options.loadingPlaceholder
@@ -304,11 +304,11 @@ ValidatableControlShell--YDF-generateStyles(
 
       /
 
-        retireFrom({
+        retireFrom--YDF({
           targetElementSelector: ".ValidatableControlShell--YDF-Header",
           contextSelector: CONTEXT_SELECTOR,
           referenceElementSelector: ".ValidatableControlShell--YDF-Guidance",
-          y: extractAndValidateObjectProperties({
+          y: extractAndValidateObjectProperties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             extracts: {
@@ -321,15 +321,15 @@ ValidatableControlShell--YDF-generateStyles(
     // ╍╍╍ Main Slot Customizable Wrapper ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     .ValidatableControlShell--YDF-MainSlotCustomizableWrapper
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.mainSlot.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.mainSlot.customDeclarations)
 
 
       /
 
-        retireFrom({
+        retireFrom--YDF({
           definitions:\
               (".ValidatableControlShell--YDF-Header:not(:has(.ValidatableControlShell--YDF-Badge))" {
-                y: extractAndValidateObjectProperties({
+                y: extractAndValidateObjectProperties--YDF({
                   targetObject: variation,
                   targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                   extracts: {
@@ -338,7 +338,7 @@ ValidatableControlShell--YDF-generateStyles(
                 }).spacingAfterHeading
               })\
               (".ValidatableControlShell--YDF-Header:has(.ValidatableControlShell--YDF-Badge)" {
-                y: extractAndValidateObjectProperties({
+                y: extractAndValidateObjectProperties--YDF({
                   targetObject: variation,
                   targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                   extracts: {
@@ -347,7 +347,7 @@ ValidatableControlShell--YDF-generateStyles(
                 }).spacingAfterHeading
               })\
               (".ValidatableControlShell--YDF-Guidance" {
-                y: extractAndValidateObjectProperties({
+                y: extractAndValidateObjectProperties--YDF({
                   targetObject: variation,
                   targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                   extracts: {
@@ -361,7 +361,7 @@ ValidatableControlShell--YDF-generateStyles(
 
 
     // ╍╍╍ Validation Errors Messages List ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
-    errorsMessagesWideContainersConfigurationMinimalWidth = extractAndValidateObjectProperties({
+    errorsMessagesWideContainersConfigurationMinimalWidth = extractAndValidateObjectProperties--YDF({
       targetObject: variation,
       targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
       extracts: {
@@ -382,7 +382,7 @@ ValidatableControlShell--YDF-generateStyles(
         if targetPhase == "forWideContainers"
 
           //* [ Theory ] For narrow containers, the arrow presence must be respected. */
-          validateAndAssignStoredInObjectCSS_Properties({
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             assigments: {
@@ -396,7 +396,7 @@ ValidatableControlShell--YDF-generateStyles(
 
         if targetPhase == "forNarrowContainers"
 
-          cachedValidReusables = extractAndValidateObjectProperties({
+          cachedValidReusables = extractAndValidateObjectProperties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             extracts: {
@@ -410,7 +410,7 @@ ValidatableControlShell--YDF-generateStyles(
 
           position relative
 
-          validateAndAssignStoredInObjectCSS_Properties({
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             assigments: {
@@ -421,12 +421,12 @@ ValidatableControlShell--YDF-generateStyles(
               borders: {
                 dotSeparatedPath: "validationErrorsMessagesList.forNarrowContainers.borders",
                 required: false,
-                applier: BordersSizing
+                applier: BordersSizing--YDF
               },
               paddings: {
                 dotSeparatedPath: "validationErrorsMessagesList.forNarrowContainers.paddings",
                 required: false,
-                applier: Paddings
+                applier: Paddings--YDF
               },
               z-index: {
                 dotSeparatedPath: "validationErrorsMessagesList.forNarrowContainers.zIndex",
@@ -435,7 +435,7 @@ ValidatableControlShell--YDF-generateStyles(
             }
           })
 
-          verticalSpacingBetweenMainSlotAndArrow = extractAndValidateObjectProperties({
+          verticalSpacingBetweenMainSlotAndArrow = extractAndValidateObjectProperties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             extracts: {
@@ -446,7 +446,7 @@ ValidatableControlShell--YDF-generateStyles(
             }
           }).verticalSpacingBetweenMainSlotAndArrow
 
-          verticalSpacingBetweenMainSlotAndList = buildCalcExpression(
+          verticalSpacingBetweenMainSlotAndList = buildCalcExpression--YDF(
             "${ arrowTriangleHeight } + ${ verticalSpacingBetweenMainSlotAndArrow }",
             {
               arrowTriangleHeight: cachedValidReusables.arrowTriangleHeight,
@@ -460,7 +460,7 @@ ValidatableControlShell--YDF-generateStyles(
           // ─── Arrow ─────────────────────────────────────────────────────────────────────────────────────────────────
           &:before
 
-            triangleBaseWidth = extractAndValidateObjectProperties({
+            triangleBaseWidth = extractAndValidateObjectProperties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               extracts: {
@@ -485,7 +485,7 @@ ValidatableControlShell--YDF-generateStyles(
             top 0
             left 0
 
-            validateAndAssignStoredInObjectCSS_Properties({
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               assigments: {
@@ -496,7 +496,7 @@ ValidatableControlShell--YDF-generateStyles(
               }
             })
 
-            spacingFromLeft = extractAndValidateObjectProperties({
+            spacingFromLeft = extractAndValidateObjectProperties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               extracts: {
@@ -509,20 +509,20 @@ ValidatableControlShell--YDF-generateStyles(
 
             transform translate(spacingFromLeft, -100%)
 
-            applyMixinStoredInObjectIfItIsNotNull(
+            applyMixinStoredInObjectIfItIsNotNull--YDF(
               variation.validationErrorsMessagesList.forNarrowContainers.arrow.customDeclarations
             )
 
 
-        applyMixinStoredInObjectIfItIsNotNull(variation.validationErrorsMessagesList[targetPhase].customDeclarations)
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.validationErrorsMessagesList[targetPhase].customDeclarations)
 
 
         // ─── Item ────────────────────────────────────────────────────────────────────────────────────────────────────
         &-Item
 
-          applyTextGeometryWithoutExtraSpaceCausedByLineHeight(
+          applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
             merge(
-              extractAndValidateObjectProperties({
+              extractAndValidateObjectProperties--YDF({
                 targetObject: variation,
                 targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                 extracts: {
@@ -544,10 +544,10 @@ ValidatableControlShell--YDF-generateStyles(
             )
           )
 
-          retireFromElementWithSameSelector({
+          retireFromElementWithSameSelector--YDF({
             contextSelector: CONTEXT_SELECTOR,
             referenceElementSelector: ".ValidatableControlShell--YDF-ValidationErrorsMessagesList-Item"
-            y: extractAndValidateObjectProperties({
+            y: extractAndValidateObjectProperties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               extracts: {
@@ -559,7 +559,7 @@ ValidatableControlShell--YDF-generateStyles(
             }).spacingBetweenSelfInstances
           })
 
-          applyMixinStoredInObjectIfItIsNotNull(variation.validationErrorsMessagesList[targetPhase].item.customDeclarations)
+          applyMixinStoredInObjectIfItIsNotNull--YDF(variation.validationErrorsMessagesList[targetPhase].item.customDeclarations)
 
 
     @media container and (min-width: errorsMessagesWideContainersConfigurationMinimalWidth)
@@ -573,7 +573,7 @@ ValidatableControlShell--YDF-generateStyles(
 
 
     // ┅┅┅ Asynchronous Validations Statuses List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
-    asynchronousValidationsStatusesListWideContainersConfigurationMinimalWidth = extractAndValidateObjectProperties({
+    asynchronousValidationsStatusesListWideContainersConfigurationMinimalWidth = extractAndValidateObjectProperties--YDF({
       targetObject: variation,
       targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
       extracts: {
@@ -593,13 +593,29 @@ ValidatableControlShell--YDF-generateStyles(
 
         if targetPhase == "forWideContainers"
 
+          // .ValidatableControlShell--YDF-MainSlotCustomizableWrapper
           //* [ Theory ] For narrow containers, the arrow presence must be respected. */
-          retireFrom({
+          //* [ Theory ] Element with `[data-validation_errors_messages_mounting_point]` selector is actual only
+          //    for VanillaJS implementation. In adaptations to frameworks, asynchronous validations statuses list
+          //    may be directly after element with `ValidatableControlShell--YDF-MainSlotCustomizableWrapper` class. */
+          retireFrom--YDF({
             contextSelector: CONTEXT_SELECTOR,
             referenceElementSelector: ".ValidatableControlShell--YDF-AsynchronousValidationsStatusesList",
             definitions:\
                 ("[data-validation_errors_messages_mounting_point]" {
-                  y: extractAndValidateObjectProperties({
+                  y: extractAndValidateObjectProperties--YDF({
+                    targetObject: variation,
+                    targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                    extracts: {
+                      afterLabel: {
+                        dotSeparatedPath: "asynchronousValidationsStatusesList.forWideContainers.spacing.afterMainSlot",
+                        required: true
+                      }
+                    }
+                  }).afterLabel
+                })\
+                (".ValidatableControlShell--YDF-MainSlotCustomizableWrapper" {
+                  y: extractAndValidateObjectProperties--YDF({
                     targetObject: variation,
                     targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                     extracts: {
@@ -611,7 +627,7 @@ ValidatableControlShell--YDF-generateStyles(
                   }).afterLabel
                 })\
                 (".ValidatableControlShell--YDF-ValidationErrorsMessagesList" {
-                  y: extractAndValidateObjectProperties({
+                  y: extractAndValidateObjectProperties--YDF({
                     targetObject: variation,
                     targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                     extracts: {
@@ -627,7 +643,7 @@ ValidatableControlShell--YDF-generateStyles(
 
         if targetPhase == "forNarrowContainers"
 
-          cachedValidReusables = extractAndValidateObjectProperties({
+          cachedValidReusables = extractAndValidateObjectProperties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             extracts: {
@@ -649,7 +665,7 @@ ValidatableControlShell--YDF-generateStyles(
 
           position relative
 
-          validateAndAssignStoredInObjectCSS_Properties({
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             assigments: {
@@ -660,12 +676,12 @@ ValidatableControlShell--YDF-generateStyles(
               borders: {
                 dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.borders",
                 required: false,
-                applier: BordersSizing
+                applier: BordersSizing--YDF
               },
               paddings: {
                 dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.paddings",
                 required: false,
-                applier: Paddings
+                applier: Paddings--YDF
               },
               z-index: {
                 dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.zIndex",
@@ -677,7 +693,7 @@ ValidatableControlShell--YDF-generateStyles(
           verticalSpacingBetweenMainSlotAndArrow = cachedValidReusables.verticalSpacingBetweenMainSlotAndArrow
           verticalSpacingBetweenListsAndArrow = cachedValidReusables.verticalSpacingBetweenLists
 
-          verticalSpacingBetweenMainSlotAndList = buildCalcExpression(
+          verticalSpacingBetweenMainSlotAndList = buildCalcExpression--YDF(
             "${ arrowTriangleHeight } + ${ verticalSpacingBetweenMainSlotAndArrow }",
             {
               arrowTriangleHeight: cachedValidReusables.arrowTriangleHeight,
@@ -685,7 +701,7 @@ ValidatableControlShell--YDF-generateStyles(
             }
           )
 
-          verticalSpacingBetweenLists = buildCalcExpression(
+          verticalSpacingBetweenLists = buildCalcExpression--YDF(
             "${ arrowTriangleHeight } + ${ verticalSpacingBetweenListsAndArrow }",
             {
               arrowTriangleHeight: cachedValidReusables.arrowTriangleHeight,
@@ -693,11 +709,15 @@ ValidatableControlShell--YDF-generateStyles(
             }
           )
 
-          retireFrom({
+          //* [ Theory ] Element with `[data-validation_errors_messages_mounting_point]` selector is actual only
+          //    for VanillaJS implementation. In adaptations to frameworks, asynchronous validations statuses list
+          //    may be directly after element with `ValidatableControlShell--YDF-MainSlotCustomizableWrapper` class. */
+          retireFrom--YDF({
             contextSelector: CONTEXT_SELECTOR,
             referenceElementSelector: ".ValidatableControlShell--YDF-AsynchronousValidationsStatusesList",
             definitions:\
                 ("[data-validation_errors_messages_mounting_point]" { y: verticalSpacingBetweenMainSlotAndList })\
+                (".ValidatableControlShell--YDF-MainSlotCustomizableWrapper" { y: verticalSpacingBetweenMainSlotAndList })\
                 (".ValidatableControlShell--YDF-ValidationErrorsMessagesList" { y: verticalSpacingBetweenLists })
           })
 
@@ -705,7 +725,7 @@ ValidatableControlShell--YDF-generateStyles(
           // ─── Arrow ─────────────────────────────────────────────────────────────────────────────────────────────────
           &:before
 
-            triangleBaseWidth = extractAndValidateObjectProperties({
+            triangleBaseWidth = extractAndValidateObjectProperties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               extracts: {
@@ -730,7 +750,7 @@ ValidatableControlShell--YDF-generateStyles(
             top 0
             left 0
 
-            validateAndAssignStoredInObjectCSS_Properties({
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               assigments: {
@@ -741,7 +761,7 @@ ValidatableControlShell--YDF-generateStyles(
               }
             })
 
-            spacingFromLeft = extractAndValidateObjectProperties({
+            spacingFromLeft = extractAndValidateObjectProperties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               extracts: {
@@ -754,18 +774,18 @@ ValidatableControlShell--YDF-generateStyles(
 
             transform translate(spacingFromLeft, -100%)
 
-            applyMixinStoredInObjectIfItIsNotNull(
+            applyMixinStoredInObjectIfItIsNotNull--YDF(
               variation.asynchronousValidationsStatusesList.forNarrowContainers.arrow.customDeclarations
             )
 
 
-        applyMixinStoredInObjectIfItIsNotNull(variation.asynchronousValidationsStatusesList[targetPhase].customDeclarations)
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.asynchronousValidationsStatusesList[targetPhase].customDeclarations)
 
 
         // ─── Item ────────────────────────────────────────────────────────────────────────────────────────────────────
         &-Item
 
-          validateAndAssignStoredInObjectCSS_Properties({
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             assigments: {
@@ -777,10 +797,10 @@ ValidatableControlShell--YDF-generateStyles(
             }
           })
 
-          retireFromElementWithSameSelector({
+          retireFromElementWithSameSelector--YDF({
             contextSelector: CONTEXT_SELECTOR,
             referenceElementSelector: ".ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item"
-            y: extractAndValidateObjectProperties({
+            y: extractAndValidateObjectProperties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               extracts: {
@@ -793,7 +813,7 @@ ValidatableControlShell--YDF-generateStyles(
             }).spacingBetweenSelfInstances
           })
 
-          applyMixinStoredInObjectIfItIsNotNull(
+          applyMixinStoredInObjectIfItIsNotNull--YDF(
             variation.asynchronousValidationsStatusesList[targetPhase].item.customDeclarations
           )
 
@@ -801,7 +821,7 @@ ValidatableControlShell--YDF-generateStyles(
           // ┄┄┄ Icon ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
           &-Icon
 
-            validateAndAssignStoredInObjectCSS_Properties({
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
               targetObject: variation,
               targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
               assigments: {
@@ -813,8 +833,8 @@ ValidatableControlShell--YDF-generateStyles(
                   dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase + ".item.SVG_Icon.height",
                   requiredIf: {
                     predicate: @(variation) {
-                      return isNull(
-                        getObjectValueByDotSeparatedPathSafely(
+                      return isNull--YDF(
+                        getObjectValueByDotSeparatedPathSafely--YDF(
                           variation, "asynchronousValidationsStatusesList." + targetPhase + ".item.SVG_Icon.width"
                         )
                       )
@@ -826,7 +846,7 @@ ValidatableControlShell--YDF-generateStyles(
               }
             })
 
-            applyMixinStoredInObjectIfItIsNotNull(
+            applyMixinStoredInObjectIfItIsNotNull--YDF(
               variation.asynchronousValidationsStatusesList[targetPhase].item.SVG_Icon.customDeclarations
             )
 
@@ -836,7 +856,7 @@ ValidatableControlShell--YDF-generateStyles(
 
             LoadingIndicator--YDF-customizeGeometryOfSpecificType(
               LoadingIndicator--YDF.Types.variableWidthArcSpinner,
-              extractAndValidateObjectProperties({
+              extractAndValidateObjectProperties--YDF({
                 targetObject: variation,
                 targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                 extracts: {
@@ -858,9 +878,9 @@ ValidatableControlShell--YDF-generateStyles(
           // ┄┄┄ Text ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
           &-Text
 
-            applyTextGeometryWithoutExtraSpaceCausedByLineHeight(
+            applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
               merge(
-                extractAndValidateObjectProperties({
+                extractAndValidateObjectProperties--YDF({
                   targetObject: variation,
                   targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                   extracts: {
@@ -895,7 +915,7 @@ ValidatableControlShell--YDF-generateStyles(
   // ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
   applyDecorativeVariation(themeName, variationName, variation)
 
-    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString(
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "ValidatableControlShell.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
@@ -903,15 +923,15 @@ ValidatableControlShell--YDF-generateStyles(
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
 
-    +provideDefaultSelectorWhenRootAndApply("." + ValidatableControlShell--YDF.CSS_NAMESPACE)
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + ValidatableControlShell--YDF.CSS_NAMESPACE)
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.rootElement.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
     // ╍╍╍ Label ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     .ValidatableControlShell--YDF-Label
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -920,7 +940,7 @@ ValidatableControlShell--YDF-generateStyles(
         }
       })
 
-      applyMixinStoredInObjectIfItIsNotNull(variation.label.customDeclarations)
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.label.customDeclarations)
 
 
     // ╍╍╍ Badge ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
@@ -928,18 +948,18 @@ ValidatableControlShell--YDF-generateStyles(
 
       &__Required
 
-        applyMixinStoredInObjectIfItIsNotNull(variation.badge.required.customDeclarations)
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.badge.required.customDeclarations)
 
 
       &__Optional
 
-        applyMixinStoredInObjectIfItIsNotNull(variation.badge.optional.customDeclarations)
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.badge.optional.customDeclarations)
 
 
     // ╍╍╍ Guidance ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     .ValidatableControlShell--YDF-Guidance
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -951,7 +971,7 @@ ValidatableControlShell--YDF-generateStyles(
 
       &-AccentedFragment
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -966,7 +986,7 @@ ValidatableControlShell--YDF-generateStyles(
 
       .ValidatableControlShell--YDF-ValidationErrorsMessagesList
 
-        cachedValidReusables = extractAndValidateObjectProperties({
+        cachedValidReusables = extractAndValidateObjectProperties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           extracts: {
@@ -981,7 +1001,7 @@ ValidatableControlShell--YDF-generateStyles(
           }
         })
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -990,12 +1010,12 @@ ValidatableControlShell--YDF-generateStyles(
             box-shadow: {
               dotSeparatedPath: "validationErrorsMessagesList." + targetPhase + ".shadow",
               required: false,
-              applier: applyObjectTypeBoxShadowDefinition
+              applier: applyObjectTypeBoxShadowDefinition--YDF
             }
           }
         })
 
-        applyIfNotNull({
+        applyIfNotNull--YDF({
           background-color: cachedValidReusables.backgroundColor,
           background-image: cachedValidReusables.backgroundImage
         })
@@ -1013,7 +1033,7 @@ ValidatableControlShell--YDF-generateStyles(
             border-left-color transparent
             border-right-color transparent
 
-            applyIfNotNull({
+            applyIfNotNull--YDF({
               border-bottom-color: cachedValidReusables.backgroundColor,
               border-bottom-image: cachedValidReusables.backgroundImage
             })
@@ -1022,7 +1042,7 @@ ValidatableControlShell--YDF-generateStyles(
         // ─── Item ────────────────────────────────────────────────────────────────────────────────────────────────────
         &-Item
 
-          validateAndAssignStoredInObjectCSS_Properties({
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             assigments: {
@@ -1036,13 +1056,13 @@ ValidatableControlShell--YDF-generateStyles(
           })
 
 
-    if getObjectNonNullValuesCount(errorsMessagesListsWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName]) > 1
+    if getObjectNonNullValuesCount--YDF(errorsMessagesListsWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName]) > 1
 
       for geometricVariationName, errorsMessagesWideContainersConfigurationMinimalWidth in errorsMessagesListsWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName]
 
-        geometricVariationCSS_Class = buildBEM_ClassName({
+        geometricVariationCSS_Class = buildBEM_ClassName--YDF({
           block: ValidatableControlShell--YDF.CSS_NAMESPACE,
-          modifier: capitalizeFirstLatinCharacter(geometricVariationName) + "GeometricVariation"
+          modifier: capitalizeFirstLatinCharacter--YDF(geometricVariationName) + "GeometricVariation"
           elementSeparator: "-",
           modifierSeparator: "__"
         })
@@ -1060,7 +1080,7 @@ ValidatableControlShell--YDF-generateStyles(
 
     else
 
-      +provideDefaultSelectorWhenRootAndApply("." + ValidatableControlShell--YDF.CSS_NAMESPACE)
+      +provideDefaultSelectorWhenRootAndApply--YDF("." + ValidatableControlShell--YDF.CSS_NAMESPACE)
 
         @media container and (min-width: errorsMessagesWideContainersConfigurationMinimalWidth)
 
@@ -1077,7 +1097,7 @@ ValidatableControlShell--YDF-generateStyles(
 
       .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList
 
-        cachedValidReusables = extractAndValidateObjectProperties({
+        cachedValidReusables = extractAndValidateObjectProperties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           extracts: {
@@ -1092,7 +1112,7 @@ ValidatableControlShell--YDF-generateStyles(
           }
         })
 
-        validateAndAssignStoredInObjectCSS_Properties({
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           assigments: {
@@ -1107,12 +1127,12 @@ ValidatableControlShell--YDF-generateStyles(
             box-shadow: {
               dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase + ".shadow",
               required: false,
-              applier: applyObjectTypeBoxShadowDefinition
+              applier: applyObjectTypeBoxShadowDefinition--YDF
             }
           }
         })
 
-        applyIfNotNull({
+        applyIfNotNull--YDF({
           background-color: cachedValidReusables.backgroundColor,
           background-image: cachedValidReusables.backgroundImage
         })
@@ -1130,7 +1150,7 @@ ValidatableControlShell--YDF-generateStyles(
             border-left-color transparent
             border-right-color transparent
 
-            applyIfNotNull({
+            applyIfNotNull--YDF({
               border-bottom-color: cachedValidReusables.backgroundColor,
               border-bottom-image: cachedValidReusables.backgroundImage
             })
@@ -1143,7 +1163,7 @@ ValidatableControlShell--YDF-generateStyles(
 
             LoadingIndicator--YDF-customizeDecorationOfSpecificType(
               LoadingIndicator--YDF.Types.variableWidthArcSpinner,
-              extractAndValidateObjectProperties({
+              extractAndValidateObjectProperties--YDF({
                 targetObject: variation,
                 targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                 extracts: {
@@ -1162,7 +1182,7 @@ ValidatableControlShell--YDF-generateStyles(
 
             ../__SucceededAndValidState .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon
 
-              validateAndAssignStoredInObjectCSS_Properties({
+              validateAndAssignStoredInObjectCSS_Properties--YDF({
                 targetObject: variation,
                 targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                 assigments: {
@@ -1177,7 +1197,7 @@ ValidatableControlShell--YDF-generateStyles(
 
             ../__MalfunctionState .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon
 
-              validateAndAssignStoredInObjectCSS_Properties({
+              validateAndAssignStoredInObjectCSS_Properties--YDF({
                 targetObject: variation,
                 targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                 assigments: {
@@ -1195,7 +1215,7 @@ ValidatableControlShell--YDF-generateStyles(
 
             ../__InProgressState .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text
 
-              validateAndAssignStoredInObjectCSS_Properties({
+              validateAndAssignStoredInObjectCSS_Properties--YDF({
                 targetObject: variation,
                 targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                 assigments: {
@@ -1209,7 +1229,7 @@ ValidatableControlShell--YDF-generateStyles(
 
             ../__SucceededAndValidState .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text
 
-              validateAndAssignStoredInObjectCSS_Properties({
+              validateAndAssignStoredInObjectCSS_Properties--YDF({
                 targetObject: variation,
                 targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                 assigments: {
@@ -1224,7 +1244,7 @@ ValidatableControlShell--YDF-generateStyles(
 
             ../__MalfunctionState .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text
 
-              validateAndAssignStoredInObjectCSS_Properties({
+              validateAndAssignStoredInObjectCSS_Properties--YDF({
                 targetObject: variation,
                 targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
                 assigments: {
@@ -1237,13 +1257,13 @@ ValidatableControlShell--YDF-generateStyles(
               })
 
 
-    if getObjectNonNullValuesCount(asynchronousValidationsStatusesListWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName]) > 1
+    if getObjectNonNullValuesCount--YDF(asynchronousValidationsStatusesListWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName]) > 1
 
       for geometricVariationName, asynchronousValidationsStatusesListWideContainersConfigurationMinimalWidth in errorsMessagesListsWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName]
 
-        geometricVariationCSS_Class = buildBEM_ClassName({
+        geometricVariationCSS_Class = buildBEM_ClassName--YDF({
           block: ValidatableControlShell--YDF.CSS_NAMESPACE,
-          modifier: capitalizeFirstLatinCharacter(geometricVariationName) + "GeometricVariation"
+          modifier: capitalizeFirstLatinCharacter--YDF(geometricVariationName) + "GeometricVariation"
           elementSeparator: "-",
           modifierSeparator: "__"
         })
@@ -1261,7 +1281,7 @@ ValidatableControlShell--YDF-generateStyles(
 
      else
 
-      +provideDefaultSelectorWhenRootAndApply("." + ValidatableControlShell--YDF.CSS_NAMESPACE)
+      +provideDefaultSelectorWhenRootAndApply--YDF("." + ValidatableControlShell--YDF.CSS_NAMESPACE)
 
         @media container and (min-width: asynchronousValidationsStatusesListWideContainersConfigurationMinimalWidth)
 
@@ -1278,7 +1298,7 @@ ValidatableControlShell--YDF-generateStyles(
 
   if !options.themeIndependentStylesOnly
 
-    applyComponentThemes({
+    applyComponentThemes--YDF({
       CSS_Namespace: ValidatableControlShell--YDF.CSS_NAMESPACE,
       themes: properties.themes,
       applyGeometricVariation: applyGeometricVariation,

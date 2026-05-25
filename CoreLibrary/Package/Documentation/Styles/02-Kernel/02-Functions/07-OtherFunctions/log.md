@@ -1,4 +1,4 @@
-# `log`: improved logging
+# `log--YDF`: improved logging
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-log-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -20,7 +20,7 @@ p(sample1)
 // => {"alpha":"(\"FOO\")","bravo":"(1)","charlie":"({\"delta\":\"(\\\"BAR\\\")\",\"echo\":\"(2)\"})"}
 ```
 
-The `log(sample1)` gives the output:
+The `log--YDF(sample1)` gives the output:
 
 ```
 {

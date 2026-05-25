@@ -35,7 +35,7 @@ applyGeometricVariation(themeName, variationName, variation)
 
   // ...
 
-  +provideDefaultSelectorWhenRootAndApply(".Sample--YDF")
+  +provideDefaultSelectorWhenRootAndApply--YDF(".Sample--YDF")
 
     border-width: variation.rootElement.borderWidth
 ```
@@ -139,7 +139,6 @@ With _multiple_ **themes** and **1** _theme dependent_ **geometric variation**, 
 ```
 
 
-[//]: # (=== TODO ===============================================================================================================)
 #### Apply modifier CSS class to root
 
 ```stylus
@@ -153,7 +152,7 @@ applyGeometricVariation(themeName, variationName, variation)
   
   &.Badge--YDF__PillShapeGeometricModifier
 
-    TEXT_SIZE_TO_BORDER_RADIUS_RATIO = extractAndValidateObjectProperties({
+    TEXT_SIZE_TO_BORDER_RADIUS_RATIO = extractAndValidateObjectProperties--YDF({
       targetObject: variation,
       targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
       extracts: {
@@ -336,8 +335,6 @@ applyGeometricVariation(themeName, variationName, variation)
 }
 ```
 
-[//]: # (TODO 再開点)
-
 
 #### Pseudo elements
 
@@ -353,7 +350,7 @@ applyGeometricVariation(themeName, variationName, variation)
 
     &:first-child
 
-      validateAndAssignStoredInObjectCSS_Properties({
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
         targetObject: variation,
         targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
         assigments: {
@@ -406,8 +403,6 @@ Multiple themes & multiple geometric variations, herewith the geometric variatio
 }
 ```
 
-[//]: # (TODO 再開点)
-
 
 #### Positional relationship
 
@@ -425,11 +420,11 @@ applyGeometricVariation(themeName, variationName, variation)
 
     .Badge--YDF-Key
 
-      retireFrom({
+      retireFrom--YDF({
         targetElementSelector: ".Badge--YDF-SVG_Icon",
         contextSelector: CONTEXT_SELECTOR,
         referenceElementSelector: ".Badge--YDF-Key",
-        x: extractAndValidateObjectProperties({
+        x: extractAndValidateObjectProperties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
           extracts: {

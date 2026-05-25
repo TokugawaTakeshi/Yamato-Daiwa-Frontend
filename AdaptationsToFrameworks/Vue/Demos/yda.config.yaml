@@ -46,9 +46,9 @@ $projectBuilding:
 
         $sourceFilesTopDirectoryRelativePath: Source/CompletePages
 
-        $partialsRecognition:
-          $excludeFilesWithPrefixes: "_"
-          $excludeSubdirectoriesWithPrefixes: "_"
+        $sourceFilesSelection:
+          $prefixesOfExcludeFiles: "_"
+          $prefixesOfExcludedSubdirectories: "_"
 
         $buildingModeDependent:
           $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
@@ -58,9 +58,9 @@ $projectBuilding:
 
         $sourceFilesTopDirectoryRelativePath: Source/PartialDemos
 
-        $partialsRecognition:
-          $excludeFilesWithPrefixes: "_"
-          $excludeSubdirectoriesWithPrefixes: "_"
+        $sourceFilesSelection:
+          $prefixesOfExcludeFiles: "_"
+          $prefixesOfExcludedSubdirectories: "_"
 
         $buildingModeDependent: { $production: { $outputTopDirectoryRelativePath: Distributions } }
 
@@ -74,9 +74,9 @@ $projectBuilding:
 
         $sourceFilesTopDirectoryRelativePath: Source/CompletePages
 
-        $partialsRecognition:
-          $excludeFilesWithPrefixes: "_"
-          $excludeSubdirectoriesWithPrefixes: "_"
+        $sourceFilesSelection:
+          $prefixesOfExcludeFiles: "_"
+          $prefixesOfExcludedSubdirectories: "_"
 
         $targetRuntime:
           $type: BROWSER

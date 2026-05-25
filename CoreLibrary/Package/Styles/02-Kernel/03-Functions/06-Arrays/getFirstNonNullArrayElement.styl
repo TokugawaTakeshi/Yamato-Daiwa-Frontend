@@ -1,14 +1,14 @@
-getFirstNonNullArrayElement(targetArray)
+getFirstNonNullArrayElement--YDF(targetArray)
 
   // Array of single object-type element special case
-  if (isObject(targetArray) && isNull(targetArray[1])) {
+  if (isObject--YDF(targetArray) && isNull--YDF(targetArray[1])) {
     return targetArray
   }
 
 
   for element in targetArray
 
-    if isNotNull(element)
+    if isNotNull--YDF(element)
 
       return element
 

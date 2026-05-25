@@ -1,10 +1,10 @@
-TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
+TextElementHeightSizing--YDF(properties, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "TextElementHeightSizing",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "TextElementHeightSizing--YDF",
     targetParameterNumber: 1,
     targetParameter: properties,
-    schema: deeplyCloneAndOverrideObject(
+    schema: deeplyCloneAndOverrideObject--YDF(
       TextElementHeightSizingSpecificationSchema--YDF,
       {
         isExplicitBorderNoneDeclarationRequired: {
@@ -37,8 +37,8 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
 
 
   // ━━━ Line height / line spacing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  lineHeight = isNull(properties.lineHeight) ?\
-      getLineHeightByFontSizeAndLineSpacing({
+  lineHeight = isNull--YDF(properties.lineHeight) ?\
+      getLineHeightByFontSizeAndLineSpacing--YDF({
         fontSize: fontSize,
         lineSpacing: properties.lineSpacing,
         mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0:
@@ -54,37 +54,37 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
   // ━━━ Paddings ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   if !properties.mustSkipPaddingsApplying
 
-    topBasicPadding = getFirstNonNullArrayElement(
-      arrayConstructor__POLYFILL(
-        getObjectValueByDotSeparatedPathSafely(properties.paddings, "all"),
-        getObjectValueByDotSeparatedPathSafely(properties.paddings, "verticalSymmetric"),
-        getObjectValueByDotSeparatedPathSafely(properties.paddings, "top")
+    topBasicPadding = getFirstNonNullArrayElement--YDF(
+      arrayConstructor__POLYFILL--YDF(
+        getObjectValueByDotSeparatedPathSafely--YDF(properties.paddings, "all"),
+        getObjectValueByDotSeparatedPathSafely--YDF(properties.paddings, "verticalSymmetric"),
+        getObjectValueByDotSeparatedPathSafely--YDF(properties.paddings, "top")
       )
     )
 
-    bottomBasicPadding = getFirstNonNullArrayElement(
-      arrayConstructor__POLYFILL(
-        getObjectValueByDotSeparatedPathSafely(properties.paddings, "all"),
-        getObjectValueByDotSeparatedPathSafely(properties.paddings, "verticalSymmetric"),
-        getObjectValueByDotSeparatedPathSafely(properties.paddings, "bottom")
+    bottomBasicPadding = getFirstNonNullArrayElement--YDF(
+      arrayConstructor__POLYFILL--YDF(
+        getObjectValueByDotSeparatedPathSafely--YDF(properties.paddings, "all"),
+        getObjectValueByDotSeparatedPathSafely--YDF(properties.paddings, "verticalSymmetric"),
+        getObjectValueByDotSeparatedPathSafely--YDF(properties.paddings, "bottom")
       )
     )
 
     isExplicitPaddingZeroDeclarationRequired = properties.isExplicitPaddingZeroDeclarationRequired
-    paddingsUpwardShifting = getObjectValueByDotSeparatedPathSafely(properties.paddings, "upwardShifting")
+    paddingsUpwardShifting = getObjectValueByDotSeparatedPathSafely--YDF(properties.paddings, "upwardShifting")
 
     extraSpaceCausedByLineHeightAtTopOrBottom = null
 
     if properties.mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight
 
-      extraSpaceCausedByLineHeightAtTopOrBottom = computeExtraSpaceCausedByLineHeightAtTopOrBottom({
+      extraSpaceCausedByLineHeightAtTopOrBottom = computeExtraSpaceCausedByLineHeightAtTopOrBottom--YDF({
         fontSize: fontSize,
         lineHeight: properties.lineHeight,
         lineSpacing: properties.lineSpacing
       })
 
 
-    if isNull(topBasicPadding) || removeUnitFromAmount(topBasicPadding) == 0
+    if isNull--YDF(topBasicPadding) || removeUnitFromAmount--YDF(topBasicPadding) == 0
 
       if isExplicitPaddingZeroDeclarationRequired
 
@@ -92,15 +92,15 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
 
     else
 
-      correctedTopPaddings = buildCalcExpressionFromFragments({
-        topBasicPadding: nullToZero(topBasicPadding),
+      correctedTopPaddings = buildCalcExpressionFromFragments--YDF({
+        topBasicPadding: nullToZero--YDF(topBasicPadding),
         paddingsUpwardShifting: @() {
-          if (isNotNull(paddingsUpwardShifting)) {
+          if (isNotNull--YDF(paddingsUpwardShifting)) {
             return " - " + paddingsUpwardShifting
           }
         }
         mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight: @() {
-          if (isNotNull(extraSpaceCausedByLineHeightAtTopOrBottom)) {
+          if (isNotNull--YDF(extraSpaceCausedByLineHeightAtTopOrBottom)) {
             return " - " + extraSpaceCausedByLineHeightAtTopOrBottom
           }
         }
@@ -109,7 +109,7 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
       padding-top correctedTopPaddings
 
 
-    if isNull(topBasicPadding) || removeUnitFromAmount(bottomBasicPadding) == 0
+    if isNull--YDF(topBasicPadding) || removeUnitFromAmount--YDF(bottomBasicPadding) == 0
 
       if isExplicitPaddingZeroDeclarationRequired
 
@@ -117,15 +117,15 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
 
     else
 
-      correctedBottomPaddings = buildCalcExpressionFromFragments({
-        topBasicPadding: nullToZero(bottomBasicPadding),
+      correctedBottomPaddings = buildCalcExpressionFromFragments--YDF({
+        topBasicPadding: nullToZero--YDF(bottomBasicPadding),
         paddingsUpwardShifting: @() {
-          if (isNotNull(paddingsUpwardShifting)) {
+          if (isNotNull--YDF(paddingsUpwardShifting)) {
             return " + " + paddingsUpwardShifting
           }
         }
         mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight: @() {
-          if (isNotNull(extraSpaceCausedByLineHeightAtTopOrBottom)) {
+          if (isNotNull--YDF(extraSpaceCausedByLineHeightAtTopOrBottom)) {
             return " - " + extraSpaceCausedByLineHeightAtTopOrBottom
           }
         }
@@ -137,25 +137,25 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
   // ━━━ Borders ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   if !properties.mustSkipBordersApplying
 
-    topBorder = getFirstNonNullArrayElement(
-      arrayConstructor__POLYFILL(
-        getObjectValueByDotSeparatedPathSafely(properties.borders.thickness, "all"),
-        getObjectValueByDotSeparatedPathSafely(properties.borders.thickness, "verticalSymmetric"),
-        getObjectValueByDotSeparatedPathSafely(properties.borders.thickness, "top")
+    topBorder = getFirstNonNullArrayElement--YDF(
+      arrayConstructor__POLYFILL--YDF(
+        getObjectValueByDotSeparatedPathSafely--YDF(properties.borders.thickness, "all"),
+        getObjectValueByDotSeparatedPathSafely--YDF(properties.borders.thickness, "verticalSymmetric"),
+        getObjectValueByDotSeparatedPathSafely--YDF(properties.borders.thickness, "top")
       )
     )
 
-    bottomBorder = getFirstNonNullArrayElement(
-      arrayConstructor__POLYFILL(
-        getObjectValueByDotSeparatedPathSafely(properties.borders.thickness, "all"),
-        getObjectValueByDotSeparatedPathSafely(properties.borders.thickness, "verticalSymmetric"),
-        getObjectValueByDotSeparatedPathSafely(properties.borders.thickness, "bottom")
+    bottomBorder = getFirstNonNullArrayElement--YDF(
+      arrayConstructor__POLYFILL--YDF(
+        getObjectValueByDotSeparatedPathSafely--YDF(properties.borders.thickness, "all"),
+        getObjectValueByDotSeparatedPathSafely--YDF(properties.borders.thickness, "verticalSymmetric"),
+        getObjectValueByDotSeparatedPathSafely--YDF(properties.borders.thickness, "bottom")
       )
     )
 
     isExplicitBorderNoneDeclarationRequired = properties.isExplicitBorderNoneDeclarationRequired
 
-    if isNull(topBorder) || removeUnitFromAmount(topBorder) == 0
+    if isNull--YDF(topBorder) || removeUnitFromAmount--YDF(topBorder) == 0
 
       if isExplicitBorderNoneDeclarationRequired
 
@@ -166,7 +166,7 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
       border-top-width topBorder
 
 
-    if isNull(bottomBorder) || removeUnitFromAmount(bottomBorder) == 0
+    if isNull--YDF(bottomBorder) || removeUnitFromAmount--YDF(bottomBorder) == 0
 
       if isExplicitBorderNoneDeclarationRequired
 
@@ -181,17 +181,17 @@ TextElementHeightSizing(properties, restParameters__MUST_NOT_BE...)
 
   if sizingType == TextElementHeightSizingTypes--YDF.natural && properties.mustFixateHeight
 
-    height: computeTotalHeightByTextElementHeightSizingSpecification(properties)
+    height: computeTotalHeightByTextElementHeightSizingSpecification--YDF(properties)
 
   else if sizingType == TextElementHeightSizingTypes--YDF.fixed
 
     height: fixedHeight
 
 
-specifyTextElementHeightSizing(textElementHeightSizingSpecification, restParameters__MUST_NOT_BE...)
+specifyTextElementHeightSizing--YDF(textElementHeightSizingSpecification, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
-    mixinOrFunctionName: "specifyTextElementHeightSizing",
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "specifyTextElementHeightSizing--YDF",
     targetParameterNumber: 1,
     targetParameter: textElementHeightSizingSpecification,
     schema: TextElementHeightSizingSpecificationSchema--YDF,
