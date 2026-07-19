@@ -215,9 +215,11 @@ export {
   /* ━━━ IDs Generators ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   StringTypeID_Generator,
 
+
   /* ━━━ Logging ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   Logger,
   loggerLocalization__english,
+
 
   /* ┅┅┅ PoliteErrorsMessageBuilder ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   PoliteErrorsMessagesBuilder,
@@ -229,6 +231,7 @@ export {
   createMapBasedOnOtherMap,
   filterMap,
   getExpectedToBeNonUndefinedMapValue,
+  getOneEntryOfMap,
   invertMapImmutably,
   mergeMaps,
   removeEntriesFromMap,
@@ -251,6 +254,7 @@ export {
 
 
   /* ━━━ Objects ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  getEntriesOfObjectWithFixedKeysSetAndUniformValues,
   getObjectPropertySafely,
   setObjectProperties,
 
@@ -293,8 +297,11 @@ export {
 
   /* ━━━ Sets ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   addElementsToSet,
+  createSetBasedOnAnyArrayLikeCollection,
   createSetBasedOnOtherSet,
+  getOneElementOfSet,
   mergeSets,
+  removeOneElementFromSet,
   removeSetElementsByPredicates,
 
 

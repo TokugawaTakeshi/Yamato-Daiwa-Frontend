@@ -45,9 +45,15 @@ coreLibrary:
                           japanese: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/TableOfContents/processObjectTypeParameterOfPugMixin.toc.japanese.yaml
                           russian: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/TableOfContents/processObjectTypeParameterOfPugMixin.toc.russian.yaml
 
-#                    RoutingEmulator:
-#                      $heading: "<code>RoutingEmulator</code>"
-#                      $URI: "#"
+                    RoutingEmulator:
+                      $heading: "<code>RoutingEmulator</code>"
+                      $URI: `@All/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/RoutingEmulator.${ fileNameLocalizationExtensions }`
+                      $sectioning:
+                        $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/TableOfContents/TableOfContents.toc.yaml
+                        $localizations:
+                          english: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/TableOfContents/TableOfContents.toc.english.yaml
+                          japanese: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/TableOfContents/TableOfContents.toc.japanese.yaml
+                          russian: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/TableOfContents/TableOfContents.toc.russian.yaml
 
                 assets:
 
@@ -55,9 +61,15 @@ coreLibrary:
 
                   $children:
 
-#                    textOverflowSafetyTest:
-#                      $heading: "<code>textOverflowSafetyTest</code>"
-#                      $URI: "#"
+                    textOverflowSafetyTest:
+                      $heading: "<code>textOverflowSafetyTest</code>"
+                      $URI: `@All/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/textOverflowSafetyTest/textOverflowSafetyTest.${ fileNameLocalizationExtensions }`
+                      $sectioning:
+                        $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/textOverflowSafetyTest/TableOfContents/textOverflowSafetyTest.toc.yaml
+                        $localizations:
+                          english: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/textOverflowSafetyTest/TableOfContents/textOverflowSafetyTest.toc.english.yaml
+                          japanese: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/textOverflowSafetyTest/TableOfContents/textOverflowSafetyTest.toc.japanese.yaml
+                          russian: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/textOverflowSafetyTest/TableOfContents/textOverflowSafetyTest.toc.russian.yaml
 
                     DummyImagesURIs:
                       $heading: "<code>DummyImagesURIs</code>"
