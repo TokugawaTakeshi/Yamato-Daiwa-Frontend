@@ -9,7 +9,7 @@
 
 
   margin-top 0.9rem
-  pushTargetFromSelf({ targetElementSelector: ".Article-Heading2", y: 1.6rem })
+  pushTargetFromSelf--YDF({ targetElementSelector: ".Article-Heading2", y: 1.6rem })
 
 
   li
@@ -58,12 +58,12 @@
 
       font-family Consolas, monaco, monospace
 
-      Paddings({
+      Paddings-YDF({
         horizontalSymmetric: 0.5rem,
         bottom: 0.3rem
       })
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight({
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
         fontSize: 1rem,
         lineSpacing: 0.4,
         mustAllowWordsBreakingAnywhere: true

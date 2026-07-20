@@ -102,7 +102,7 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
     const initiallyDisplayingYear = new Date().getFullYear();
     const initiallyDisplayingMonthNumber__numerationFrom0 = new Date().getMonth();
 
-    const initial6x7DaysMatrix = CalendarBuilder.generateDataFor6x7DaysMatrix({
+    const initial6x7DaysMatrix = YDF.CalendarBuilder.generateDataFor6x7DaysMatrix({
       targetYear: initiallyDisplayingYear,
       targetMonthNumber__numerationFrom0: initiallyDisplayingMonthNumber__numerationFrom0,
       firstDayOfWeek__numerationFrom0ForSunday: 0
@@ -430,8 +430,8 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
 
                 -
                   let dayNumberInMonth = 0;
-                  const disabledButtonNumber = getRandomInteger({ minimalValue: 1, maximalValue: 31 })
-                  const selectedButtonNumber = getRandomInteger({ minimalValue: 1, maximalValue: 31 })
+                  const disabledButtonNumber = YDF.getRandomInteger({ minimalValue: 1, maximalValue: 31 })
+                  const selectedButtonNumber = YDF.getRandomInteger({ minimalValue: 1, maximalValue: 31 })
 
                 each weekData in initial6x7DaysMatrix
 

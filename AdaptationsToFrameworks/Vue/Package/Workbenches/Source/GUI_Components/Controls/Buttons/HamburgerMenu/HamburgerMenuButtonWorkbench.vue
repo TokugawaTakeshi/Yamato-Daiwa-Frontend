@@ -55,8 +55,8 @@
   @require "../../../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
 
 
-  CrossBrowserStylesReset()
-  InitialGlobalCSS_Rules()
+  CrossBrowserStylesReset--YDF()
+  InitialGlobalCSS_Rules--YDF()
 
 
   HamburgerMenuButton--YDF-generateStyles()

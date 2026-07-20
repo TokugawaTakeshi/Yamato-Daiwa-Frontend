@@ -48,8 +48,8 @@
   @require "../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
 
 
-  CrossBrowserStylesReset()
-  InitialGlobalCSS_Rules()
+  CrossBrowserStylesReset--YDF()
+  InitialGlobalCSS_Rules--YDF()
 
 
   OverflowSafeSingleLineLabel--YDF-generateStyles()
@@ -80,7 +80,7 @@
     grid-template-columns auto minmax(0, 1fr)
     gap 6px 12px
 
-    retireFrom({ targetElementSelector: ".PlainLabelTest", y: 24px })
+    retireFrom--YDF({ targetElementSelector: ".PlainLabelTest", y: 24px })
 
 
     &-Key

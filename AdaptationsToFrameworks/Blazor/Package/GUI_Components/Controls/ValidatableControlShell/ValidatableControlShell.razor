@@ -16,7 +16,7 @@
   @if (mustDisplayHeader)
   {
     <div class="ValidatableControlShell--YDF-Header">
-
+  
       @if(label is not null)
       {
         <label
@@ -27,7 +27,7 @@
           @(label)
         </label>
       }
-
+  
       @if (mustDisplayRequiredInputBadge)
       {
         <Badge
@@ -39,7 +39,7 @@
           decorativeVariation=@requiredInputBadgeDecorativeVariation
         />
       }
-
+  
       else if (mustDisplayOptionalInputBadge)
       {
         <Badge
@@ -51,7 +51,7 @@
           decorativeVariation=@optionalInputBadgeDecorativeVariation
         />
       }
-
+  
       else if (mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge)
       {
         <Badge
@@ -63,7 +63,7 @@
           decorativeVariation=@Badge.StandardDecorativeVariations.neutralPastel
         />
       }
-
+  
     </div>
   }
 
@@ -75,8 +75,8 @@
       @((Microsoft.AspNetCore.Components.MarkupString)formattedGuidance)
     </p>
   }
-
-
+  
+  
   @* ━━━ Main Slot ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
   <div
     class=@(
@@ -88,8 +88,8 @@
   >
     @(ChildContent)
   </div>
-
-
+  
+  
   @* ━━━ (Non-asynchronous) validations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
   @if (mustDisplayErrorsMessagesIfAny && validationErrorsMessagesCopyForAnimating.Any())
   {

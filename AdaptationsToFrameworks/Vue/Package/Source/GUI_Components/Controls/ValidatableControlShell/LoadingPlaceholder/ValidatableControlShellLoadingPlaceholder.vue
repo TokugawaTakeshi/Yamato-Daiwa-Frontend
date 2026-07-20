@@ -16,7 +16,6 @@
         v-if="badge"
        :theme="badgeTheme"
        :geometricVariation="badgeGeometricVariation"
-       :decorativeVariation="badgeDecorativeVariation"
        :geometricModifiers="[ Badge.GeometricModifiers.pillShape ]"
       )
 

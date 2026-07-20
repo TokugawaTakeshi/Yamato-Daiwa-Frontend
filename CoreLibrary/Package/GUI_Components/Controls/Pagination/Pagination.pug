@@ -86,7 +86,7 @@ mixin Pagination--YDF(properties, statesSimulations)
 
       -
 
-        const lastPageNumber = limitMaximalValue({
+        const lastPageNumber = YDF.limitMaximalValue({
           targetNumber: currentPageNumber + maximalPageNumberButtonsCount - 1,
           maximalValue: totalPagesCount
         })

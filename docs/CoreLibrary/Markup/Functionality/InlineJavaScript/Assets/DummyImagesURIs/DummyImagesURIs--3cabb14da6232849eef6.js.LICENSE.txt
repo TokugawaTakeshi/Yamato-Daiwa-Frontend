@@ -1,8 +1,0 @@
-/*!
- * clipboard.js v2.0.11
- * https://clipboardjs.com/
- *
- * Licensed MIT © Zeno Rocha
- */
-
-/*! For license information please see index.js.LICENSE.txt */

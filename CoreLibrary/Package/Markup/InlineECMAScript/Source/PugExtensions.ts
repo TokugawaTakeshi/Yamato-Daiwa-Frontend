@@ -330,6 +330,7 @@ export {
   extractAllFileNameExtensions,
   extractLastExtensionOfFileName,
   removeAllFileNameExtensions,
+  removeSpecifiedFileNameExtensionsFromPath,
 
   /* ─── Stem ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
   extractFileNameWithoutAnyExtensions,
@@ -458,7 +459,9 @@ export {
 
 } from "@yamato-daiwa/es-extensions";
 
+export { textOverflowSafetyTest } from "./PugExtensions/textOverflowSafetyTest";
 export { processObjectTypeParameterOfPugMixin } from "./PugExtensions/processObjectTypeParameterOfPugMixin";
 export { RoutingEmulator } from "./PugExtensions/RoutingEmulator";
+export { DummyImagesURIs } from "./PugExtensions/DummyImagesURIs";
 
 export { default as HeadingsLevelsCoordinator__YDF } from "./PugExtensions/HeadingsLevelsCoordinator";

@@ -11,13 +11,8 @@
 
   button(
     type="button"
-    @click="switchValidationErrorsMessages"
-  ) Switch VEM
-
-  button(
-    type="button"
-    @click="switchAsynchronousChecksStatus"
-  ) Switch ACS
+    @click="switchValidations"
+  ) Switch validations
 
 </template>
 
@@ -48,12 +43,15 @@
   })
   class ValidatableControlShellWorkbench extends VueComponent {
 
+    private static ONLY_ERRORED_ASYNCHRONOUS_CHECKS_STATUS: boolean = false;
+
     protected validationErrorsMessages: ReadonlyArray<string> = [];
 
     protected asynchronousChecksStatus: InputtedValueValidation.AsynchronousChecks.Status =
         new InputtedValueValidation.AsynchronousChecks.Status({});
 
-    protected switchValidationErrorsMessages(): void {
+    protected switchValidations(): void {
+
       this.validationErrorsMessages =
           this.validationErrorsMessages.length === 0 ?
               [
@@ -62,34 +60,37 @@
                 "Value must be at least 3 characters long"
               ] :
               [];
-    }
-
-    protected switchAsynchronousChecksStatus(): void {
 
       this.asynchronousChecksStatus =
           Object.values(this.asynchronousChecksStatus.checks).length === 0 ?
             new InputtedValueValidation.AsynchronousChecks.Status({
-              check1: {
-                message: "Pending check",
-                isPending: true,
-                hasValidValueBeenConfirmed: false,
-                hasErrorOccurred: false,
-                hasInvalidValueBeenConfirmed: false
-              },
-              check2: {
-                message: "Confirmed Valid value",
-                isPending: false,
-                hasValidValueBeenConfirmed: true,
-                hasErrorOccurred: false,
-                hasInvalidValueBeenConfirmed: false
-              },
-              check3: {
-                message: "Error occurred",
-                isPending: false,
-                hasValidValueBeenConfirmed: false,
-                hasErrorOccurred: true,
-                hasInvalidValueBeenConfirmed: false
-              },
+
+              ...ValidatableControlShellWorkbench.ONLY_ERRORED_ASYNCHRONOUS_CHECKS_STATUS ?
+                  null :
+                  {
+                    check1: {
+                      message: "Pending check",
+                      isPending: true,
+                      hasValidValueBeenConfirmed: false,
+                      hasErrorOccurred: false,
+                      hasInvalidValueBeenConfirmed: false
+                    },
+                    check2: {
+                      message: "Confirmed Valid value",
+                      isPending: false,
+                      hasValidValueBeenConfirmed: true,
+                      hasErrorOccurred: false,
+                      hasInvalidValueBeenConfirmed: false
+                    },
+                    check3: {
+                      message: "Error occurred",
+                      isPending: false,
+                      hasValidValueBeenConfirmed: false,
+                      hasErrorOccurred: true,
+                      hasInvalidValueBeenConfirmed: false
+                    }
+                  },
+
               check4: {
                 message: "Invalid",
                 isPending: false,
@@ -99,6 +100,7 @@
               }
             }) :
             new InputtedValueValidation.AsynchronousChecks.Status({});
+
 
     }
 
@@ -115,8 +117,8 @@
   @require "../../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
 
 
-  CrossBrowserStylesReset()
-  InitialGlobalCSS_Rules()
+  CrossBrowserStylesReset--YDF()
+  InitialGlobalCSS_Rules--YDF()
 
 
   Badge--YDF-generateStyles()

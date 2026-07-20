@@ -204,20 +204,11 @@ class ValidatableControlShell extends VueComponent {
 
 
   /* ━━━ Validation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* ┅┅┅ Errors List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 
-  @VueProperty({
-    default: false,
-    get validator(): VuePropertyValidator {
-      return BooleanVuePropertyValidator({
-        propertyName: "mustDisplayErrorsMessagesIfAny",
-        isPropertyRequired: this.required === true,
-        componentName: ValidatableControlShell.CSS_NAMESPACE
-      });
-    }
-  })
-  @preventNullForOptionalVueProperty
-  protected readonly mustDisplayErrorsMessagesIfAny!: boolean;
+  /* [ Approach ]
+   * In this GUI component, the messages going from `asynchronousChecksStatus` items with
+   *   `hasInvalidValueBeenConfirmed: true` are displaying with plain validation errors messages.
+   * So the following 2 properties are related thus been declared nearly each other. */
 
   @VueProperty({
     default: (): ReadonlyArray<string> => [],
@@ -231,7 +222,33 @@ class ValidatableControlShell extends VueComponent {
   @preventNullForOptionalVueProperty
   protected readonly validationErrorsMessages!: ReadonlyArray<string>;
 
-  protected validationErrorsMessagesCopyForAnimating: ReadonlyArray<string> = [];
+  @VueProperty({
+    type: InputtedValueValidation.AsynchronousChecks.Status,
+    required: false
+  })
+  @preventNullForOptionalVueProperty
+  protected readonly asynchronousChecksStatus?: InputtedValueValidation.AsynchronousChecks.Status;
+
+
+  /* ┅┅┅ Errors List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  @VueProperty({
+    default: false,
+    get validator(): VuePropertyValidator {
+      return BooleanVuePropertyValidator({
+        propertyName: "mustDisplayErrorsMessagesIfAny",
+        isPropertyRequired: this.required === true,
+        componentName: ValidatableControlShell.CSS_NAMESPACE
+      });
+    }
+  })
+  @preventNullForOptionalVueProperty
+  protected readonly mustDisplayErrorsMessagesIfAny!: boolean;
+
+  /* [ Theory ]
+   * ● These messages may include the ones coming from `asynchronousChecksStatus` items with
+   *   `hasInvalidValueBeenConfirmed: true`, not only from `validationErrorsMessages`.
+   * ● For the correct conditional rendering, must keep messages until the sliding up animation ends. */
+  protected validationErrorsMessagesForAnimating: ReadonlyArray<string> = [];
 
   protected static readonly ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS: number = 0.2;
   protected static readonly ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS: number = 0.1;
@@ -242,23 +259,33 @@ class ValidatableControlShell extends VueComponent {
           ValidatableControlShell.ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS *
               this.validationErrorsMessages.length :
           ValidatableControlShell.ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS *
-              this.validationErrorsMessagesCopyForAnimating.length
+              this.validationErrorsMessagesForAnimating.length
     );
   }
 
   @onVueComponentFieldUpdated("mustDisplayErrorsMessagesIfAny", { immediate: true })
   @onVueComponentFieldUpdated("validationErrorsMessages", { immediate: true })
+  @onVueComponentFieldUpdated("asynchronousChecksStatus", { immediate: true })
   protected onValidationErrorsMessagesUpdated(): void {
 
-    if (this.validationErrorsMessages.length > 0) {
-      this.validationErrorsMessagesCopyForAnimating = [ ...this.validationErrorsMessages ];
+    if (
+      this.validationErrorsMessages.length > 0 ||
+          this.asynchronousChecksStatus?.hasAtLeastOneInvalidValueBeenConfirmed === true
+    ) {
+
+      this.validationErrorsMessagesForAnimating = [
+        ...this.validationErrorsMessages,
+        ...this.asynchronousChecksStatus?.errorsMessages ?? []
+      ];
+
       return;
+
     }
 
 
     setTimeout(
       (): void => {
-        this.validationErrorsMessagesCopyForAnimating = [];
+        this.validationErrorsMessagesForAnimating = [];
       },
       this.errorsListAnimationDuration__milliseconds
     );
@@ -268,17 +295,7 @@ class ValidatableControlShell extends VueComponent {
 
   /* ┅┅┅ Validation Statuses List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   /* ╍╍╍ Content ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
-  @VueProperty({
-    type: InputtedValueValidation.AsynchronousChecks.Status,
-    required: false
-  })
-  @preventNullForOptionalVueProperty
-  protected readonly asynchronousChecksStatus?: InputtedValueValidation.AsynchronousChecks.Status;
 
-  /* [ Theory ]
-   * Even if `asynchronousChecksActualForDisplaying` has become an empty array, the validation errors messages are still
-   *   required to animate the collapsing.
-   * Cannot be assigned here with `[ ...this.validationErrorsMessages ]` because of `vue-facing-decorator` limitations. */
   protected actualForDisplayingAsynchronousChecksCopyForAnimating: InputtedValueValidation.AsynchronousChecks = {};
 
   protected get asynchronousChecksActualForDisplaying(): InputtedValueValidation.AsynchronousChecks {
@@ -323,7 +340,7 @@ class ValidatableControlShell extends VueComponent {
       );
   }
 
-  @onVueComponentFieldUpdated("asynchronousChecksActualForDisplaying")
+  @onVueComponentFieldUpdated("asynchronousChecksActualForDisplaying", { immediate: true })
   protected onAsynchronousChecksActualForDisplayingUpdated(): void {
 
     if (Object.entries(this.asynchronousChecksActualForDisplaying).length > 0) {
@@ -361,7 +378,6 @@ class ValidatableControlShell extends VueComponent {
 
         };
       }
-
 
   /* ━━━ Conditional Rendering ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected get mustDisplayRequiredInputBadge(): boolean {
@@ -531,12 +547,6 @@ class ValidatableControlShell extends VueComponent {
       activeDecorativeVariation: this.decorativeVariation,
       allDecorativeVariations: ValidatableControlShell.DecorativeVariations
     });
-  }
-
-
-  /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected beforeCreate(): void {
-    this.validationErrorsMessagesCopyForAnimating = [ ...this.validationErrorsMessages ];
   }
 
 

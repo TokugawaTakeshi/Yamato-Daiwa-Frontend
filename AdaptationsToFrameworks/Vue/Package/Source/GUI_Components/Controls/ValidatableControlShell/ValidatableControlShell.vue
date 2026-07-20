@@ -55,13 +55,13 @@
 
 
     VerticallySlidingAlwaysMountedContainer.ValidatableControlShell--YDF-ValidationErrorsMessagesList(
-      :modelValue="mustDisplayErrorsMessagesIfAny && validationErrorsMessagesCopyForAnimating.length > 0"
+      :modelValue="mustDisplayErrorsMessagesIfAny && validationErrorsMessagesForAnimating.length > 0"
       tag="ul"
       :duration="errorsListAnimationDuration__milliseconds"
     )
 
       li.ValidatableControlShell--YDF-ValidationErrorsMessagesList-Item(
-        v-for="validationErrorMessage of validationErrorsMessagesCopyForAnimating"
+        v-for="validationErrorMessage of validationErrorsMessagesForAnimating"
         :key="validationErrorMessage"
       ) {{ validationErrorMessage }}
 

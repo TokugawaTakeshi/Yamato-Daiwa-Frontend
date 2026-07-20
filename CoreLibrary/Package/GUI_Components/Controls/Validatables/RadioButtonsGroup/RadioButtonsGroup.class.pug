@@ -259,7 +259,7 @@
           type: Object,
           properties: {
             key: {
-              type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+              type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
               isUndefinedForbidden: true,
               isNullForbidden: true,
               alternatives: [
@@ -269,13 +269,13 @@
                 },
                 {
                   type: Number,
-                  numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+                  numbersSet: YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber,
                   isNaN_Forbidden: true
                 }
               ]
             },
             label: {
-              type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+              type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
               isUndefinedForbidden: true,
               isNullForbidden: true,
               alternatives: [
@@ -285,7 +285,7 @@
                 },
                 {
                   type: Number,
-                  numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+                  numbersSet: YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber,
                   isNaN_Forbidden: true
                 }
               ]
@@ -296,7 +296,7 @@
       },
 
       initiallySelectedOptionKey: {
-        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
         isUndefinedForbidden: false,
         isNullForbidden: true,
         alternatives: [
@@ -306,7 +306,7 @@
           },
           {
             type: Number,
-            numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+            numbersSet: YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber,
             isNaN_Forbidden: true
           }
         ]

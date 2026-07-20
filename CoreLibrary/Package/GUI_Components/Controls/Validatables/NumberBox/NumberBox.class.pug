@@ -273,13 +273,13 @@
 
       /** @description Could be something like "{{ foo }}" in the MVC case. */
       initialValue: {
-        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
         undefinedValueSubstitution: 0,
         isNullForbidden: true,
         alternatives: [
           {
             type: Number,
-            numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+            numbersSet: YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber,
             isNaN_Forbidden: true
           },
           {
@@ -327,7 +327,7 @@
 
       step: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber,
         isNaN_Forbidden: true,
         undefinedValueSubstitution: 1,
         isNullForbidden: true
@@ -335,7 +335,7 @@
 
       minimalValue: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero,
         isNaN_Forbidden: true,
         undefinedValueSubstitution: Number.MIN_SAFE_INTEGER,
         isNullForbidden: true
@@ -343,7 +343,7 @@
 
       maximalValue: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero,
         isNaN_Forbidden: true,
         undefinedValueSubstitution: Number.MAX_SAFE_INTEGER,
         isNullForbidden: true,

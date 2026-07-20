@@ -122,7 +122,7 @@ mixin FilesUploader--YDF(properties, statesSimulations)
       singleImagePreviewURI = value;
     }
 
-    const supportedFilesNamesExtensionsWihtoutLeadingDots = supportedFilesNamesExtensions__leadingDotsAreOptional.map(
+    const supportedFilesNamesExtensionsWithoutLeadingDots = supportedFilesNamesExtensions__leadingDotsAreOptional.map(
       fileNameExtension => removeSpecificCharacterFromCertainPosition({
         targetString: fileNameExtension,
         targetCharacter: ".",
@@ -132,8 +132,8 @@ mixin FilesUploader--YDF(properties, statesSimulations)
 
     /* FIXME Not found to specify "accept all files" such as satisfy the HTML validator.
      *  Both "*" and *.*" has been treated as invalid. */
-    const acceptAttributeValueForInputTag = supportedFilesNamesExtensionsWihtoutLeadingDots.length > 0 ?
-        `.${ supportedFilesNamesExtensionsWihtoutLeadingDots.join(", .") }` : "*.*";
+    const acceptAttributeValueForInputTag = supportedFilesNamesExtensionsWithoutLeadingDots.length > 0 ?
+        `.${ supportedFilesNamesExtensionsWithoutLeadingDots.join(", .") }` : "*.*";
 
 
   +ValidatableControlShell--YDF(
@@ -231,7 +231,7 @@ mixin FilesUploader--YDF(properties, statesSimulations)
         aria-label="Images preview"
       )
 
-        each imageURI in Array.from(Object.values(DummyImagesURIs)).concat(Array.from(Object.values(DummyImagesURIs)))
+        each imageURI in Array.from(Object.values(YDF.DummyImagesURIs)).concat(Array.from(Object.values(YDF.DummyImagesURIs)))
 
           li.FilesUploader--YDF-PreviewCard
 

@@ -153,7 +153,7 @@
       },
 
       value: {
-        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
         isUndefinedForbidden: false,
         isNullForbidden: true,
         alternatives: [
@@ -211,7 +211,7 @@
 
       minimalFilesCount: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
         isNaN_Forbidden: true,
         undefinedValueSubstitution: 1,
         isNullForbidden: true
@@ -219,7 +219,7 @@
 
       maximalFilesCount: {
         type: Number,
-        numbersSet: RawObjectDataProcessor.NumbersSets.naturalNumber,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.naturalNumber,
         isNaN_Forbidden: true,
         isUndefinedForbidden: false,
         isNullForbidden: true,
@@ -348,7 +348,7 @@
       },
 
       singleImagePreview: {
-        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
         undefinedValueSubstitution: false,
         isNullForbidden: true,
         alternatives: [

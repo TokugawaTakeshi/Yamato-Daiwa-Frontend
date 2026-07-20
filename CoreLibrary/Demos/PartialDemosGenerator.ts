@@ -20,7 +20,7 @@ import Handlebars from "handlebars";
 
 
 /* [ Example ]
- * ts-node PartialDemosGenerator.ts Source/CompletePages/GUI_Components/AdmonitionBlock
+ * tsx PartialDemosGenerator.ts Source/CompletePages/GUI_Components/AdmonitionBlock
  */
 
 Logger.setImplementation(ConsoleApplicationLogger);

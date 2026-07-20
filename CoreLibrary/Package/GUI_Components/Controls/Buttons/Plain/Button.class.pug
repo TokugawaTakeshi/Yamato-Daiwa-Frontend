@@ -177,7 +177,7 @@
       },
 
       label: {
-        type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
         undefinedForbiddenIf: {
           predicate: ({ rawData__full: properties }) =>
               properties.HTML_Type === Button__YDF.HTML_Types.inputButton ||
@@ -195,7 +195,7 @@
           },
           {
             type: Number,
-            numbersSet: RawObjectDataProcessor.NumbersSets.anyRealNumber,
+            numbersSet: YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber,
             isNaN_Forbidden: true
           }
         ]
