@@ -114,12 +114,12 @@ mixin RadioButtonsGroup--YDF(properties, statesSimulations)
       aria-disabled=disabled
     )
 
-      if isNonEmptyArray(selectingOptions)
+      if YDF.isNonEmptyArray(selectingOptions)
 
         each option in selectingOptions
 
           -
-            const isCurrentOptionSelected = isNotUndefined(
+            const isCurrentOptionSelected = YDF.isNotUndefined(
               (selectingOptions ?? []).find(option => option.key === initiallySelectedOptionKey)
             );
 

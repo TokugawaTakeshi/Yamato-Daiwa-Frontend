@@ -56,7 +56,7 @@
 
         type: Array,
         undefinedForbiddenIf: {
-          predicate: ({ rawData__full: properties }) => isUndefined(properties.imageURI),
+          predicate: ({ rawData__full: properties }) => YDF.isUndefined(properties.imageURI),
           descriptionForLogging: "`imageURI` is not defined"
         },
         isNullForbidden: true,

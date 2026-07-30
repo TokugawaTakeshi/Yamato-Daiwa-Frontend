@@ -5,7 +5,8 @@ module.exports = [
 
   {
     ignores: [
-      "YDF.js"
+      "wwwroot/YDF.global.js",
+      "wwwroot/YDF.module.js"
     ]
   },
 

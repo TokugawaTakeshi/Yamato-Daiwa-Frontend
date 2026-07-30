@@ -123,11 +123,12 @@ mixin FilesUploader--YDF(properties, statesSimulations)
     }
 
     const supportedFilesNamesExtensionsWithoutLeadingDots = supportedFilesNamesExtensions__leadingDotsAreOptional.map(
-      fileNameExtension => removeSpecificCharacterFromCertainPosition({
-        targetString: fileNameExtension,
-        targetCharacter: ".",
-        fromFirstPosition: true
-      })
+      fileNameExtension =>
+          YDF.removeSpecificCharacterFromCertainPosition({
+            targetString: fileNameExtension,
+            targetCharacter: ".",
+            fromFirstPosition: true
+          })
     );
 
     /* FIXME Not found to specify "accept all files" such as satisfy the HTML validator.
@@ -205,7 +206,7 @@ mixin FilesUploader--YDF(properties, statesSimulations)
         -
 
           const singleImagePreviewStyles = {
-            ...isNotUndefined(initialImageAspectRatio) ? { "aspect-ratio": initialImageAspectRatio } : null
+            ...YDF.isNotUndefined(initialImageAspectRatio) ? { "aspect-ratio": initialImageAspectRatio } : null
           };
 
         img.FilesUploader--YDF-SingleImagePreviewer-Image(

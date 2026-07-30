@@ -672,11 +672,6 @@ class TextBox<
     invalidInputPrevention?: TextBox.Initialization.Common.Properties.PayloadTypeIndependent.InvalidInputPrevention
   ): void {
 
-    if (this.isAutoSizingEnabled) {
-      this.nativeInputAcceptingElement.style.height = `${ this.nativeInputAcceptingElement.scrollHeight }px`;
-      this.nativeInputAcceptingElement.style.overflowY = "hidden";
-    }
-
     if (this.payload.validation.isInputRequired()) {
       this.nativeInputAcceptingElement.setAttribute("required", "");
     } else {

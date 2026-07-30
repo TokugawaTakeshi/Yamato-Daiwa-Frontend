@@ -31,15 +31,15 @@ Breadcrumb--YDF-generateStyles()
 
           &__SingleLine
 
-            font-size: YDF_Configuration.textGeometry.basicFontSize
+            font-size: Configuration--YDF.textGeometry.basicFontSize
             SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
 
 
           &__MultiLine
 
             applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
-              fontSize: YDF_Configuration.textGeometry.basicFontSize,
-              lineHeight: YDF_Configuration.textGeometry.basicLineHeightInMultilineTextBlocks,
+              fontSize: Configuration--YDF.textGeometry.basicFontSize,
+              lineHeight: Configuration--YDF.textGeometry.basicLineHeightInMultilineTextBlocks,
               mustAllowWordsBreakingAnywhere: true
             })
 

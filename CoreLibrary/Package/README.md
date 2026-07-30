@@ -45,16 +45,15 @@ For modern version of **npm**, basically these dependencies will be installed au
 
 + [YDEE Integration](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/YDEE_Integration/YDEE_Integration.english.html)
 
-
 ###### Functions and Classes
 
-+ [`buildEmailLinkHrefAttributeValue`](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildEmailLinkHrefAttributeValue/buildEmailLinkHrefAttributeValue.english.html)
-+ [`buildPhoneNumberLinkHrefAttributeValue`](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildPhoneNumberLinkHrefAttributeValue/buildPhoneNumberLinkHrefAttributeValue.english.html)
 + [`processObjectTypeParameterOfPugMixin`](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/processObjectTypeParameterOfPugMixin.english.html)
++ [`RoutingEmulator`]([https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Markup/FunctionsAndClasses/RoutingEmulator.md](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/RoutingEmulator.english.html))
 
 
 ###### Assets
 
++ [`textOverflowSafetyTest`]([https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Markup/ConstantsAssets/textOverflowSafetyTest/textOverflowSafetyTest.md](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/textOverflowSafetyTest/textOverflowSafetyTest.english.html))
 + [`DummyImageURLs`](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/DummyImagesURIs/DummyImagesURIs.english.html)
 
 

@@ -107,7 +107,7 @@ mixin ValidatableControlShell--YDF(properties, statesSimulations)
     /** @type { string | undefined } */
     let formattedGuidance;
 
-    if (isNotUndefined(guidance)) {
+    if (YDF.isNotUndefined(guidance)) {
       formattedGuidance = ValidatableControlShell__YDF.formatGuidance(guidance);
     }
 
@@ -238,7 +238,7 @@ mixin ValidatableControlShell--YDF(properties, statesSimulations)
 
 
     //- ━━━ Asynchronous Validations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    if asynchronousValidationsStatuses === true || isNonEmptyArray(asynchronousValidationsStatuses)
+    if asynchronousValidationsStatuses === true || YDF.isNonEmptyArray(asynchronousValidationsStatuses)
 
       ul.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList
 

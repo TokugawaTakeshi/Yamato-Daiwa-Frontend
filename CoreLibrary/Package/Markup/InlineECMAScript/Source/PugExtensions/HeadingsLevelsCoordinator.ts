@@ -1,26 +1,26 @@
-export default class HeadingsLevelsCoordinator__YDF {
+export class HeadingsLevelsCoordinator {
 
   static #currentLevel: number = 1;
 
   public static incrementLevel(): void {
-    HeadingsLevelsCoordinator__YDF.#currentLevel++;
+    HeadingsLevelsCoordinator.#currentLevel++;
   }
 
   public static decrementLevel(): void {
-    HeadingsLevelsCoordinator__YDF.#currentLevel--;
+    HeadingsLevelsCoordinator.#currentLevel--;
   }
 
   public static getHeadingTagOfCurrentLevel(): string {
-    return `h${ HeadingsLevelsCoordinator__YDF.#currentLevel }`;
+    return `h${ HeadingsLevelsCoordinator.#currentLevel }`;
   }
 
   public static incrementLevelAndGetHeadingTag(): string {
-    HeadingsLevelsCoordinator__YDF.incrementLevel();
-    return HeadingsLevelsCoordinator__YDF.getHeadingTagOfCurrentLevel();
+    HeadingsLevelsCoordinator.incrementLevel();
+    return HeadingsLevelsCoordinator.getHeadingTagOfCurrentLevel();
   }
 
   public static get currentLevel(): number {
-    return HeadingsLevelsCoordinator__YDF.#currentLevel;
+    return HeadingsLevelsCoordinator.#currentLevel;
   }
 
 }

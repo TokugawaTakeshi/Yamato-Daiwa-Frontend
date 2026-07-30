@@ -206,7 +206,7 @@ mixin DropDownList--YDF(properties, statesSimulations)
 
     let inputElementInitialValue = "";
 
-    if (isNotUndefined(initiallySelectedOptionKey) && selectingOptions.length > 0) {
+    if (YDF.isNotUndefined(initiallySelectedOptionKey) && selectingOptions.length > 0) {
       inputElementInitialValue = selectingOptions.find(option => option.key === initiallySelectedOptionKey)?.label ?? "";
     }
 
@@ -280,7 +280,7 @@ mixin DropDownList--YDF(properties, statesSimulations)
       hidden=(!expanded)
     )
 
-      if isNonEmptyArray(selectingOptions)
+      if YDF.isNonEmptyArray(selectingOptions)
 
         each option in selectingOptions
 

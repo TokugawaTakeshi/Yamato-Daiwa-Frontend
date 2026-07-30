@@ -1,4 +1,4 @@
-YDF_Configuration = {
+Configuration--YDF = {
 
   fontsStacks: {
 
@@ -72,3 +72,12 @@ YDF_Configuration = {
   }
 
 }
+
+
+overrideConfiguration--YDF(basicCustomConfiguration, addComputedProperties = null)
+
+  overrideObject--YDF(Configuration--YDF, basicCustomConfiguration)
+
+  if isFunction--YDF(addComputedProperties)
+
+    addComputedProperties(Configuration--YDF)

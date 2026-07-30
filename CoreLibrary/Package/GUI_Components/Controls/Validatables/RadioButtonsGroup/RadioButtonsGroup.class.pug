@@ -231,8 +231,8 @@
         type: String,
         undefinedForbiddenIf: {
           predicate: ({ rawData__full: properties }) =>
-              !isNonEmptyString(properties.label) &&
-              !isNonEmptyString(properties.accessibilityGuidance),
+              !YDF.isNonEmptyString(properties.label) &&
+              !YDF.isNonEmptyString(properties.accessibilityGuidance),
           descriptionForLogging:
               "Neither \"label\" nor \"accessibilityGuidance\" has been specified with non-empty strings"
         },

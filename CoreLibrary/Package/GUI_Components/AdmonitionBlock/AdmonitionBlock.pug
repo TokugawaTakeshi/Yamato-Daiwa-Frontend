@@ -118,7 +118,7 @@ mixin AdmonitionBlock--YDF(properties)
         when AdmonitionBlock__YDF.DecorativeVariations.question
           +QuestionMark__Circled__Filled--YDF_Icon.AdmonitionBlock--YDF-SVG_Icon
 
-    else if isArbitraryObject(SVG_Icon)
+    else if YDF.isArbitraryObject(SVG_Icon)
 
       svg.AdmonitionBlock--YDF-SVG_Icon&attributes(SVG_Icon.SVG_ElementAttributes)
         use(xlink:href=`#${ SVG_Icon.innerElementID }`)

@@ -378,9 +378,9 @@
         isNullForbidden: true,
         customValidators: {
           validationFunction: ({ value: maximalCharactersCount, rawData__currentObjectDepth }) =>
-              isUndefined(rawData__currentObjectDepth.minimalCharactersCount) ||
+              YDF.isUndefined(rawData__currentObjectDepth.minimalCharactersCount) ||
               (
-                isNumber(rawData__currentObjectDepth.minimalCharactersCount, { mustConsiderNaN_AsNumber: false }) &&
+                YDF.isNumber(rawData__currentObjectDepth.minimalCharactersCount, { mustConsiderNaN_AsNumber: false }) &&
                     maximalCharactersCount >= rawData__currentObjectDepth.minimalCharactersCount
               ),
           descriptionForLogging: "\"maximalCharactersCount\" can not be less than \"minimalCharactersCount\"."
@@ -403,9 +403,9 @@
         isNullForbidden: true,
         customValidators: {
           validationFunction: ({ value: maximalNumericValue, rawData__currentObjectDepth }) =>
-              isUndefined(rawData__currentObjectDepth.minimalNumericValue) ||
+              YDF.isUndefined(rawData__currentObjectDepth.minimalNumericValue) ||
               (
-                isNumber(rawData__currentObjectDepth.minimalNumericValue, { mustConsiderNaN_AsNumber: false }) &&
+                YDF.isNumber(rawData__currentObjectDepth.minimalNumericValue, { mustConsiderNaN_AsNumber: false }) &&
                     maximalNumericValue >= rawData__currentObjectDepth.minimalNumericValue
               ),
           descriptionForLogging: "\"maximalNumericValue\" can not be less than \"minimalNumericValue\"."
@@ -526,13 +526,18 @@
 
     /* ━━━ ID Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /**
+     * @private
+     * @type { number }
+     */
+    static counterForID_Generating = 0;
+
+    /**
      * @public
-     * @param { string } uniqueDynamicPart
-     * @default ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID
+     * @param { string } [uniqueDynamicPart] Required mainly for MVC where the iterative rendering is not under Pug control.
      * @return { string } Generated ID
-     * */
-    static generateInstanceID(uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()) {
-      return `TEXT_BOX--YDF-${ uniqueDynamicPart }`;
+     */
+    static generateInstanceID(uniqueDynamicPart) {
+      return `TEXT_BOX--YDF-${ uniqueDynamicPart ?? ++TextBox__YDF.counterForID_Generating }`;
     }
 
 

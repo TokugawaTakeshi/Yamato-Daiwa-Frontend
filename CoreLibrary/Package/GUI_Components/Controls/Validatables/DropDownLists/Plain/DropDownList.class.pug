@@ -492,13 +492,18 @@
 
     /* ━━━ ID Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /**
+     * @private
+     * @type { number }
+     */
+    static counterForID_Generating = 0;
+
+    /**
      * @public
-     * @param { string } uniqueDynamicPart
-     * @default ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID
+     * @param { string } [uniqueDynamicPart] Required mainly for MVC where the iterative rendering is not under Pug control.
      * @return { string } Generated ID
-     * */
-    static generateComponentID(uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()) {
-      return `DROP_DOWN_LIST--YDF-${ uniqueDynamicPart }`;
+     */
+    static generateComponentID(uniqueDynamicPart) {
+      return `DROP_DOWN_LIST--YDF-${ uniqueDynamicPart ?? ++DropDownList__YDF.counterForID_Generating }`;
     }
 
   }

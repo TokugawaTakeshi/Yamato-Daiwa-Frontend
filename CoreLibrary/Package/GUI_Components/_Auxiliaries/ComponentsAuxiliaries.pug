@@ -107,7 +107,7 @@
     static defineThemes(themesNames, TargetComponentClass) {
 
       for (const themeName of themesNames) {
-        TargetComponentClass.Themes[toLowerCamelCase(themeName)] = toScreamingSnakeCase(themeName);
+        TargetComponentClass.Themes[YDF.toLowerCamelCase(themeName)] = YDF.toScreamingSnakeCase(themeName);
       }
 
       return TargetComponentClass;
@@ -334,10 +334,6 @@
       return demandedDecorativeModifiersNames.map(
         decorativeModifierName => `${ CSS_Namespace }__${ toUpperCamelCase(decorativeModifierName) }DecorativeModifier`
       )
-    }
-
-    static generateUniqueDynamicPartForComponentInstanceID() {
-      return generateNanoID();
     }
 
   }

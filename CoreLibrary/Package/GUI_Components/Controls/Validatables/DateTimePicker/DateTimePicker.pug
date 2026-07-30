@@ -113,7 +113,7 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
         DateTimePicker__YDF.localization.expandingToggle.expandedState.accessibilityGuidance;
 
     const isInitialValueRepresentsValidDateAndPossiblyTime =
-        isNotUndefined(value) && new Date(value).toString() !== "Invalid Date";
+        YDF.isNotUndefined(value) && new Date(value).toString() !== "Invalid Date";
 
     /** @type { string | undefined } */
     let valueAttributeForInputElement;
@@ -205,7 +205,7 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
 
         if isInitialValueRepresentsValidDateAndPossiblyTime
 
-          if isNotUndefined(initialValueFormatter)
+          if YDF.isNotUndefined(initialValueFormatter)
             | #{ initialValueFormatter(value) }
           else
             | #{ formattedLocalDateAndPossiblyTime }

@@ -349,9 +349,9 @@
         isNullForbidden: true,
         customValidators: {
           validationFunction: ({ value: maximalValue, rawData__currentObjectDepth }) =>
-              isUndefined(rawData__currentObjectDepth.minimalValue) ||
+              YDF.isUndefined(rawData__currentObjectDepth.minimalValue) ||
               (
-                isNumber(rawData__currentObjectDepth.minimalValue, { mustConsiderNaN_AsNumber: false }) &&
+                YDF.isNumber(rawData__currentObjectDepth.minimalValue, { mustConsiderNaN_AsNumber: false }) &&
                     maximalValue > rawData__currentObjectDepth.minimalValue
               ),
           descriptionForLogging: "\"maximalValue\" could not be less than \"minimalValue\"."
@@ -439,10 +439,19 @@
 
     /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /* ─── ID generating ──────────────────────────────────────────────────────────────────────────────────────────── */
-    static generateInstanceID(
-      uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()
-    ) {
-      return `NUMBER_BOX--YDF-${ uniqueDynamicPart }`;
+    /**
+     * @private
+     * @type { number }
+     */
+    static counterForID_Generating = 0;
+
+    /**
+     * @public
+     * @param { string } [uniqueDynamicPart] Required mainly for MVC where the iterative rendering is not under Pug control.
+     * @return { string } Generated ID
+     */
+    static generateInstanceID(uniqueDynamicPart) {
+      return `NUMBER_BOX--YDF-${ uniqueDynamicPart ?? ++NumberBox__YDF.counterForID_Generating }`;
     }
 
 

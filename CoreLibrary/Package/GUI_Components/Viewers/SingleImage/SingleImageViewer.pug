@@ -43,9 +43,9 @@ mixin SingleImageViewer--YDF(properties, statesSimulations)
     let backgroundUnderlayStyles;
 
     const individualStyles = {
-      ...isString(aspectRatio) ? { "aspect-ratio": aspectRatio }  : null,
-      ...isNonEmptyString(maximalWidth__anyValidCSS_Value) ? { "max-width": maximalWidth__anyValidCSS_Value } : null,
-      ...isNonEmptyString(maximalHeight__anyValidCSS_Value) ? { "max-height": maximalHeight__anyValidCSS_Value } : null
+      ...YDF.isString(aspectRatio) ? { "aspect-ratio": aspectRatio }  : null,
+      ...YDF.isNonEmptyString(maximalWidth__anyValidCSS_Value) ? { "max-width": maximalWidth__anyValidCSS_Value } : null,
+      ...YDF.isNonEmptyString(maximalHeight__anyValidCSS_Value) ? { "max-height": maximalHeight__anyValidCSS_Value } : null
     };
 
     const rootElementModifierCSS_Classes = [

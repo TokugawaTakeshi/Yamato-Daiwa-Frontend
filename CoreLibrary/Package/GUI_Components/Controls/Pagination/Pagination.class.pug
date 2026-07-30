@@ -191,7 +191,7 @@
         isNullForbidden: true,
         customValidators: {
           validationFunction: ({ value: currentPageNumber, rawData__currentObjectDepth }) =>
-              isUndefined(rawData__currentObjectDepth.totalPagesCount) ||
+              YDF.isUndefined(rawData__currentObjectDepth.totalPagesCount) ||
                   currentPageNumber <= rawData__currentObjectDepth.totalPagesCount,
           descriptionForLogging: "\"currentPageNumber\" could not be more than \"totalPagesCount\"."
         }

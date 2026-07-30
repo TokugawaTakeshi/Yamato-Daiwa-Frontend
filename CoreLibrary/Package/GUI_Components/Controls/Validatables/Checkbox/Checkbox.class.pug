@@ -383,14 +383,18 @@
 
     /* ━━━ ID generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /**
-     * @public
-     * @param { string } [uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()]
-     * @returns { string }
+     * @private
+     * @type { number }
      */
-    static generateInstanceID(
-      uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()
-    ) {
-      return `CHECKBOX--YDF-${ uniqueDynamicPart }`;
+    static counterForID_Generating = 0;
+
+    /**
+     * @public
+     * @param { string } [uniqueDynamicPart] Required mainly for MVC where the iterative rendering is not under Pug control.
+     * @return { string } Generated ID
+     */
+    static generateInstanceID(uniqueDynamicPart) {
+      return `CHECKBOX--YDF-${ uniqueDynamicPart ?? ++Checkbox__YDF.counterForID_Generating }`;
     }
 
   }

@@ -358,9 +358,9 @@
         isNullForbidden: true,
         customValidators: {
           validationFunction: ({ value: maximalCharactersCount, rawData__currentObjectDepth }) =>
-              isUndefined(rawData__currentObjectDepth.minimalCharactersCount) ||
+              YDF.isUndefined(rawData__currentObjectDepth.minimalCharactersCount) ||
               (
-                isIntegerOfAnySign(rawData__currentObjectDepth.minimalCharactersCount) &&
+                YDF.isIntegerOfAnySign(rawData__currentObjectDepth.minimalCharactersCount) &&
                 maximalCharactersCount >= rawData__currentObjectDepth.minimalCharactersCount
               ),
           descriptionForLogging: "\"maximalCharactersCount\" could not be less than \"minimalCharactersCount\"."
@@ -383,9 +383,9 @@
         isNullForbidden: true,
         customValidators: {
           validationFunction: ({ value: maximalNumericValue, rawData__currentObjectDepth }) =>
-              isUndefined(rawData__currentObjectDepth.minimalNumericValue) ||
+              YDF.isUndefined(rawData__currentObjectDepth.minimalNumericValue) ||
               (
-                isIntegerOfAnySign(rawData__currentObjectDepth.minimalNumericValue) &&
+                YDF.isIntegerOfAnySign(rawData__currentObjectDepth.minimalNumericValue) &&
                 maximalNumericValue >= rawData__currentObjectDepth.minimalNumericValue
               ),
           descriptionForLogging: "\"maximalNumericValue\" could not be less than \"minimalNumericValue\"."
@@ -505,10 +505,19 @@
 
     /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /* ─── ID generating ──────────────────────────────────────────────────────────────────────────────────────────── */
-    static generateInstanceID(
-      uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()
-    ) {
-      return `DATE_TIME_PICKER--YDF-${ uniqueDynamicPart }`;
+    /**
+     * @private
+     * @type { number }
+     */
+    static counterForID_Generating = 0;
+
+    /**
+     * @public
+     * @param { string } [uniqueDynamicPart] Required mainly for MVC where the iterative rendering is not under Pug control.
+     * @return { string } Generated ID
+     */
+    static generateInstanceID(uniqueDynamicPart) {
+      return `DATE_TIME_PICKER--YDF-${ uniqueDynamicPart ?? ++DateTimePicker__YDF.counterForID_Generating }`;
     }
 
 

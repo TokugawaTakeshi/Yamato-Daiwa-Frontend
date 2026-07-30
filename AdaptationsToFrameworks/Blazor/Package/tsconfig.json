@@ -15,6 +15,9 @@
 
   },
 
-  "include": [ "YDF.ts" ],
+  "include": [ 
+    "YDF.module.ts",
+    "YDF.global.ts" 
+  ]
 
 }

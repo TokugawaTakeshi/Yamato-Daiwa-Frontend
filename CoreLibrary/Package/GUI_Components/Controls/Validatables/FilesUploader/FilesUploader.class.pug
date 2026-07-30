@@ -138,7 +138,7 @@
         type: String,
         undefinedForbiddenIf: {
           predicate: ({ rawData__full: properties }) =>
-              !isNonEmptyString(properties.label) && !isNonEmptyString(properties.accessibilityGuidance),
+              !YDF.isNonEmptyString(properties.label) && !YDF.isNonEmptyString(properties.accessibilityGuidance),
           descriptionForLogging: "Neither \"label\" nor \"accessibilityGuidance\" has been specified with non-empty strings"
         },
         isNullForbidden: true,
@@ -225,9 +225,9 @@
         isNullForbidden: true,
         customValidators: {
           validationFunction: ({ value: maximalFilesCount, rawData__currentObjectDepth }) =>
-              isUndefined(rawData__currentObjectDepth.minimalFilesCount) ||
+              YDF.isUndefined(rawData__currentObjectDepth.minimalFilesCount) ||
               (
-                isNumber(rawData__currentObjectDepth.minimalFilesCount, { mustConsiderNaN_AsNumber: false }) &&
+                YDF.isNumber(rawData__currentObjectDepth.minimalFilesCount, { mustConsiderNaN_AsNumber: false }) &&
                 maximalFilesCount >= rawData__currentObjectDepth.minimalFilesCount
               ),
           descriptionForLogging: "\"maximalFilesCount\" could not be less than \"minimalFilesCount\""
@@ -397,8 +397,19 @@
 
     /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     /* ─── ID generating ──────────────────────────────────────────────────────────────────────────────────────────── */
-    static generateInstanceID(uniqueDynamicPart = ComponentsAuxiliaries.generateUniqueDynamicPartForComponentInstanceID()) {
-      return `FILES_UPLOADER--YDF-${ uniqueDynamicPart }`;
+    /**
+     * @private
+     * @type { number }
+     */
+    static counterForID_Generating = 0;
+
+    /**
+     * @public
+     * @param { string } [uniqueDynamicPart] Required mainly for MVC where the iterative rendering is not under Pug control.
+     * @return { string } Generated ID
+     */
+    static generateInstanceID(uniqueDynamicPart) {
+      return `FILES_UPLOADER--YDF-${ uniqueDynamicPart ?? ++FilesUploader__YDF.counterForID_Generating }`;
     }
 
   };
