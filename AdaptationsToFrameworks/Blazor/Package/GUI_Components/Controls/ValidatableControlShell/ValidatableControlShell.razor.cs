@@ -222,19 +222,21 @@ public partial class ValidatableControlShell:
   
   /* ━━━ Validation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   
+  /* ┅┅┅ Errors List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  public IEnumerable<string> synchronousValidationErrorsMessages = [];
+  public IReadOnlyList<string> allValidationErrorsMessages = [];
+  
+  /* [ Approach ]
+   * For the correct conditional rendering, must keep messages until the sliding up animation ends even
+   *  `allValidationErrorsMessages` is already empty. */
+  protected IEnumerable<string> validationErrorsMessagesForAnimating = [];
+  
   /* [ Approach ]
    * In this GUI component, the messages going from `asynchronousChecksStatus` items with
    *   `hasInvalidValueBeenConfirmed: true` are displaying with plain validation errors messages.
-   * So the following 2 properties are related thus been declared nearly each other. */
-  
-  public IEnumerable<string> _validationErrorsMessages = [];
-  
-  /* [ Theory ]
-   * ● These messages may include the ones coming from `asynchronousChecksStatus` items with
-   *   `hasInvalidValueBeenConfirmed: true`, not only from `validationErrorsMessages`.
-   * ● For the correct conditional rendering, must keep messages until the sliding up animation ends. */
-  protected IEnumerable<string> validationErrorsMessagesForAnimating = [];
-  
+   * So the following 2 properties are related thus been declared nearly each other, not in different subsection.
+   * However, such details are internal, so the property corresponding to `synchronousValidationErrorsMessages`
+   *   is `validationErrorsMessages`. */
   [Microsoft.AspNetCore.Components.Parameter] 
   [
     System.Diagnostics.CodeAnalysis.SuppressMessage(
@@ -246,29 +248,22 @@ public partial class ValidatableControlShell:
   ]
   public IEnumerable<string> validationErrorsMessages
   {
-    get => this._validationErrorsMessages;
+    get => this.synchronousValidationErrorsMessages;
     set
     {
       
-      int outdatedNumberOfValidationErrorsMessages = this.validationErrorsMessagesForAnimating.Count();
+      int outdatedNumberOfValidationErrorsMessages = this.allValidationErrorsMessages.Count;
       
-      this._validationErrorsMessages = value;
-      this.validationErrorsMessagesForAnimating =
-          [
-            .. this._validationErrorsMessages,
-            .. this.asynchronousChecksCheckStatus?.Checks.Values.
-                Where(
-                  (InputtedValueValidation.AsynchronousCheck.Status asynchronousCheckStatus) => 
-                      asynchronousCheckStatus.HasInvalidValueBeenConfirmed
-                ).
-                Select(
-                  (InputtedValueValidation.AsynchronousCheck.Status asynchronousCheckStatus) => 
-                    asynchronousCheckStatus.Message
-                ) ?? 
-               []
-          ];
+      this.synchronousValidationErrorsMessages = value;
+      
+      this.allValidationErrorsMessages = this.getAllValidationMessages();
 
-      int newNumberOfValidationErrorsMessages = this.validationErrorsMessagesForAnimating.Count();
+      int newNumberOfValidationErrorsMessages = this.allValidationErrorsMessages.Count;
+
+      if (newNumberOfValidationErrorsMessages > 0)
+      {
+        this.validationErrorsMessagesForAnimating = [ .. this.allValidationErrorsMessages ];  
+      }
       
       this.animateErrorsMessagesListIfMust(
         mustAnimateMessagesListExpanding: 
@@ -280,16 +275,12 @@ public partial class ValidatableControlShell:
     }
   }
   
-  [Microsoft.AspNetCore.Components.Parameter]
-  public InputtedValueValidation.AsynchronousChecks.Status? asynchronousChecksCheckStatus { get; set; } = null;
-  
-  
-  /* ┅┅┅ Errors List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   [Microsoft.AspNetCore.Components.Parameter] 
   public bool mustDisplayErrorsMessagesIfAny { get; set; } = false;
 
-  protected Microsoft.AspNetCore.Components.ElementReference validationErrorsMessagesList;
   
+  /* ╍╍╍ Animating ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+  protected Microsoft.AspNetCore.Components.ElementReference validationErrorsMessagesList;
 
   protected const float ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS = 0.2F;
   protected const float ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS = 0.1F;
@@ -315,11 +306,184 @@ public partial class ValidatableControlShell:
     if (mustAnimateMessagesListExpanding)
     {
       
-  /* ┅┅┅ Validation Statuses List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  [Microsoft.AspNetCore.Components.Parameter]
-  public InputtedValueValidation.AsynchronousChecks.Status? asynchronousChecksCheckStatus { get; set; } = null;
+      this.tasksForAfterNextRender.Add(
+        () => 
+            this.javaScriptFunctionality.ExpandingAnimation.
+                Animate(
+                  new JavaScriptFunctionality._ExpandingAnimation.CompoundParameter
+                  {
+                    duration__seconds = this.errorsListAnimationDuration__seconds,
+                    targetElement = this.validationErrorsMessagesList
+                  }
+                ).
+                AsTask()
+      );
+      
+    } else if (mustAnimateMessagesListCollapsing)
+    {
+      
+      this.tasksForAfterNextRender.Add(
+          async () =>
+          {
+            
+            await this.javaScriptFunctionality.CollapsingAnimation.
+                Animate(
+                  new JavaScriptFunctionality._CollapsingAnimation.CompoundParameter
+                  {
+                    duration__seconds = this.errorsListAnimationDuration__seconds,
+                    targetElement = this.validationErrorsMessagesList
+                  }
+                );
+            
+            this.validationErrorsMessagesForAnimating = [];
+            
+          }
+        );
+      
+    }
+    
+  }
   
+  
+  /* ┅┅┅ Validation Statuses List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  public YamatoDaiwa.Frontend.GUI_Components.Controls.Validation.InputtedValueValidation.AsynchronousChecks.Status? 
+      _asynchronousChecksStatus;
+  
+  public YamatoDaiwa.Frontend.GUI_Components.Controls.Validation.InputtedValueValidation.AsynchronousCheck.Status[]
+      asynchronousCheckStatusesForAnimating = [];
+  
+  [Microsoft.AspNetCore.Components.Parameter] 
+  public YamatoDaiwa.Frontend.GUI_Components.Controls.Validation.InputtedValueValidation.AsynchronousChecks.Status? 
+      asynchronousChecksStatus
+  {
+    get => this._asynchronousChecksStatus;
+    set
+    {
+      
+      int outdatedNumberOfValidationErrorsMessages = this.allValidationErrorsMessages.Count;
+      int outdatedNumberOfAsynchronousValidationsStatuses = this._asynchronousChecksStatus?.Checks.Count ?? 0; 
+      
+      this._asynchronousChecksStatus = value;
+      
+      this.allValidationErrorsMessages = this.getAllValidationMessages();
 
+      int newNumberOfValidationErrorsMessages = this.allValidationErrorsMessages.Count;
+      int newNumberOfOfAsynchronousValidationsStatuses = this._asynchronousChecksStatus?.Checks.Count ?? 0;
+
+      if (newNumberOfValidationErrorsMessages > 0)
+      {
+        this.validationErrorsMessagesForAnimating = [ ..this.allValidationErrorsMessages ];  
+      }
+      
+
+      if (newNumberOfOfAsynchronousValidationsStatuses > 0)
+      {
+        /* [ Approach ] Above condition guarantees that `this._asynchronousChecksStatus` is not null when truthy. */
+        this.asynchronousCheckStatusesForAnimating = [ ..this._asynchronousChecksStatus!.Checks.Values ];
+      }
+
+      this.animateErrorsMessagesListIfMust(
+        mustAnimateMessagesListExpanding: 
+            outdatedNumberOfValidationErrorsMessages == 0 && newNumberOfValidationErrorsMessages > 0,
+        mustAnimateMessagesListCollapsing:
+            outdatedNumberOfValidationErrorsMessages > 0 && newNumberOfValidationErrorsMessages == 0
+      );
+      
+      this.animateAsynchronousValidationsStatusesListIfMust(
+        mustAsynchronousValidationsStatusesListExpanding: 
+            outdatedNumberOfAsynchronousValidationsStatuses == 0 && newNumberOfOfAsynchronousValidationsStatuses > 0,
+        mustAsynchronousValidationsStatusesListCollapsing: 
+            outdatedNumberOfAsynchronousValidationsStatuses > 0 && newNumberOfOfAsynchronousValidationsStatuses == 0
+      );
+      
+    }
+  }
+
+
+  /* ╍╍╍ Animating ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+  protected Microsoft.AspNetCore.Components.ElementReference asynchronousValidationsStatusesList;
+  
+  protected const float ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ANIMATION_DURATION_PER_ONE_ITEM__SECONDS = 0.2F;
+  protected const float ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ANIMATION_COLLAPSING__SECONDS = 0.1F;
+
+  protected float asynchronousValidationsStatusesListAnimationDurationPerOneItem__seconds =>
+      this.asynchronousCheckStatusesForAnimating.Length > 0 ?
+         ValidatableControlShell.ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ANIMATION_DURATION_PER_ONE_ITEM__SECONDS *
+             this.asynchronousCheckStatusesForAnimating.Length :
+          ValidatableControlShell.ASYNCHRONOUS_VALIDATIONS_STATUSES_LIST_ANIMATION_COLLAPSING__SECONDS;
+   
+  protected void animateAsynchronousValidationsStatusesListIfMust(
+    bool mustAsynchronousValidationsStatusesListExpanding,
+    bool mustAsynchronousValidationsStatusesListCollapsing
+  ) {
+
+    if (!this.hasBeenRenderedAtLeastOnce)
+    {
+      return;
+    }
+
+
+    if (mustAsynchronousValidationsStatusesListExpanding)
+    {
+      
+      this.tasksForAfterNextRender.Add(
+        () => 
+            this.javaScriptFunctionality.ExpandingAnimation.
+                Animate(
+                  new JavaScriptFunctionality._ExpandingAnimation.CompoundParameter
+                  {
+                    duration__seconds = this.asynchronousValidationsStatusesListAnimationDurationPerOneItem__seconds,
+                    targetElement = this.asynchronousValidationsStatusesList
+                  }
+                ).
+                AsTask()
+      );
+      
+    } else if (mustAsynchronousValidationsStatusesListCollapsing)
+    {
+     
+      this.tasksForAfterNextRender.Add(
+          async () =>
+          {
+            
+            await this.javaScriptFunctionality.CollapsingAnimation.
+                Animate(
+                  new JavaScriptFunctionality._CollapsingAnimation.CompoundParameter
+                  {
+                    duration__seconds = this.asynchronousValidationsStatusesListAnimationDurationPerOneItem__seconds,
+                    targetElement = this.asynchronousValidationsStatusesList
+                  }
+                );
+            
+            this.asynchronousCheckStatusesForAnimating = [];
+            
+          }
+        );
+      
+    }
+    
+  }
+  
+   
+  /* ┅┅┅ Auxiliaries ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  protected IReadOnlyList<string> getAllValidationMessages()
+  {
+    return [
+      .. this.synchronousValidationErrorsMessages,
+      .. this.asynchronousChecksStatus?.Checks.Values.
+          Where(
+            (InputtedValueValidation.AsynchronousCheck.Status asynchronousCheckStatus) => 
+                asynchronousCheckStatus.HasInvalidValueBeenConfirmed
+          ).
+          Select(
+            (InputtedValueValidation.AsynchronousCheck.Status asynchronousCheckStatus) => 
+              asynchronousCheckStatus.Message
+          ) ?? 
+         []
+    ];
+  }
+   
+  
   /* ━━━ Conditional Rendering ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected bool mustDisplayRequiredInputBadge => this.required && this.mustDisplayAppropriateBadgeIfInputIsRequired;
   protected bool mustDisplayOptionalInputBadge => !this.required && this.mustDisplayAppropriateBadgeIfInputIsOptional;
@@ -336,7 +500,9 @@ public partial class ValidatableControlShell:
   
   protected internal static Type? CustomThemes;
   
-  public static void defineThemes(Type customThemes) 
+  public static void defineThemes(
+    Type customThemes
+  ) 
   {
     YDF_ComponentsHelper.ValidateCustomTheme(customThemes);
     ValidatableControlShell.CustomThemes = customThemes;
@@ -349,7 +515,9 @@ public partial class ValidatableControlShell:
     System.Diagnostics.CodeAnalysis.SuppressMessage(
       category: "Microsoft.Performance", 
       checkId: "BL0007", 
-      Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
+      Justification = 
+          "Validation via setter is not recommended, but no better alternative has been suggested. " +
+          "https://stackoverflow.com/q/79935713/4818123"
     )
   ]
   public object theme
@@ -498,7 +666,7 @@ public partial class ValidatableControlShell:
   protected override void OnInitialized()
   {
     base.OnInitialized();
-    this.validationErrorsMessagesCopyForAnimating = this.validationErrorsMessages.ToArray();
+    this.validationErrorsMessagesForAnimating = [.. this.validationErrorsMessages];
   }
 
   

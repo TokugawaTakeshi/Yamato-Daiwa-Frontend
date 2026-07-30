@@ -255,11 +255,10 @@ class ValidatableControlShell extends VueComponent {
 
   protected get errorsListAnimationDuration__milliseconds(): number {
     return secondsToMilliseconds(
-      this.validationErrorsMessages.length > 0 ?
+      this.validationErrorsMessagesForAnimating.length > 0 ?
           ValidatableControlShell.ERRORS_LIST_EXPANDING_ANIMATION_DURATION_PER_ONE_ERROR_MESSAGE__SECONDS *
-              this.validationErrorsMessages.length :
-          ValidatableControlShell.ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS *
-              this.validationErrorsMessagesForAnimating.length
+              this.validationErrorsMessagesForAnimating.length :
+          ValidatableControlShell.ERRORS_LIST_COLLAPSING_ANIMATION_DURATION__SECONDS
     );
   }
 
@@ -563,7 +562,9 @@ class ValidatableControlShell extends VueComponent {
 
 
   /* ━━━ Transforming to Options API ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static applyStaticMembersToInheritorTransformedToOptionAPI(inheritedComponent: object): object {
+  public static applyStaticMembersToInheritorTransformedToOptionAPI(
+      inheritedComponent: typeof ValidatableControlShell
+  ): typeof ValidatableControlShell {
     return Object.defineProperties(
       inheritedComponent,
       {

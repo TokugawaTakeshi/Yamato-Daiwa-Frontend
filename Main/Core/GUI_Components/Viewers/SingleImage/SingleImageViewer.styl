@@ -1,0 +1,161 @@
+SingleImageViewer--YDF = {
+
+  CSS_NAMESPACE: "SingleImageViewer--YDF",
+
+  defaultProperties: {
+
+    positionalRelationship: {
+      withTypographyElements: {
+        mainPreset: {
+          typographyDefinition: null,
+          spacingDefinitions: {
+            paragraph: { whenItJustBefore: 12px, whenItJustAfter: 16px }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+SingleImageViewer--YDF-generateStyles(preset = SingleImageViewer--YDF.defaultProperties, overridings = {})
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+
+  .SingleImageViewer--YDF
+
+    &.SingleImageViewer--YDF__RegularGeometry
+
+      border: 1px solid W3C_39_ShadesOfGray--YDF[32]
+      Paddings--YDF({ horizontalSymmetric: 0.6rem })
+
+
+    &-ActionBar
+
+      display flex
+      flex-direction row-reverse
+
+
+      /.SingleImageViewer--YDF__RegularGeometry &
+
+        border-bottom-width 1px
+        padding-bottom 4px
+
+        border-bottom-style solid
+        border-bottom-color W3C_39_ShadesOfGray--YDF[32]
+
+        margin-top 0.2rem
+
+
+    &-Figure
+
+      retireFrom--YDF({ targetElementSelector: ".SingleImageViewer--YDF-ActionBar", y: 0.4rem })
+
+
+      /.SingleImageViewer--YDF__RegularGeometry &
+
+        whenItGoingFirst--YDF({ verticalSpaceAbove: 0.6rem })
+        whenItGoingLast--YDF({ verticalSpaceBelow: 0.6rem })
+
+
+    &-Image
+
+      display block
+
+      max-width 100%
+
+      background-color: W3C_39_ShadesOfGray--YDF[36]
+
+      margin-left auto
+      margin-right auto
+
+
+    &-Caption
+
+      Paddings--YDF({ horizontalSymmetric: 8px })
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({ fontSize: 13px, lineSpacing: 6px })
+
+      color: W3C_39_ShadesOfGray--YDF[14]
+
+      margin-top 12px
+
+
+      /.SingleImageViewer--YDF__RegularGeometry &
+
+        border-top 1px solid W3C_39_ShadesOfGray--YDF[32]
+        padding-top 8px
+
+
+    &-ModalView
+
+      display flex
+      flex-direction column
+      row-gap 0.4rem
+
+      position fixed
+      left 0
+      right 0
+      top 0
+      bottom 0
+      z-index: Configuration--YDF.zIndexes.modalsUnderlay
+
+      background-color alpha(black, 50%)
+
+
+      &__HiddenState
+
+        display none
+
+
+      &-UpperButton
+
+        margin-top 0.4rem
+        margin-right 0.4rem
+        align-self flex-end
+        flex-shrink 0
+
+
+      &-PositioningWrapper
+
+        display flex
+        justify-content center
+        align-items center
+
+        overflow auto
+
+        flex-grow 1
+
+
+      &-Image
+
+        flex-shrink 0
+
+
+        &__FullWidth
+
+          width 100%
+          height auto
+
+
+        &__FullHeight
+
+          height 100%
+          width auto
+
+
+      &-BottomActionBar
+
+        display flex
+        flex-wrap wrap
+        flex-direction row-reverse
+        row-gap 0.4rem
+        column-gap 0.6rem
+
+        Paddings--YDF({
+          horizontalSymmetric: 0.4rem,
+          bottom: 0.4rem
+        })
+
+        flex-shrink 0

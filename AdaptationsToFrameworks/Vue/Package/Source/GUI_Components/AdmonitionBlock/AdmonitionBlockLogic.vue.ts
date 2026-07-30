@@ -100,7 +100,7 @@ class AdmonitionBlock extends VueComponent {
   protected readonly areThemesCSS_ClassesCommon!: boolean;
 
 
-  /* ─── Geometry ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public static readonly GeometricVariations: AdmonitionBlock.GeometricVariations = {
     regular: "REGULAR",
     stickyNoteLike: "STICKY_NOTE_LIKE"
@@ -118,7 +118,7 @@ class AdmonitionBlock extends VueComponent {
   }
 
 
-  /* ─── Decoration ───────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public static readonly DecorativeVariations: AdmonitionBlock.DecorativeVariations = {
     notice: "NOTICE",
     error: "ERROR",
@@ -202,9 +202,11 @@ class AdmonitionBlock extends VueComponent {
 
 
   /* ━━━ Transforming to Options API ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static applyStaticMembersToInheritorTransformedToOptionAPI(inheritedComponent: object): object {
+  public static applyStaticMembersToInheritorTransformedToOptionAPI(
+    inheritedComponentClass: typeof AdmonitionBlock
+  ): typeof AdmonitionBlock {
     return Object.defineProperties(
-      inheritedComponent,
+      inheritedComponentClass,
       {
         CSS_NAMESPACE: { value: AdmonitionBlock.CSS_NAMESPACE },
         Themes: { value: AdmonitionBlock.Themes },

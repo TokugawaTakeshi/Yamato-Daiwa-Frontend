@@ -121,7 +121,9 @@ class LoadingIndicator extends VueComponent {
 
 
   /* ━━━ Transforming to Options API ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static applyStaticMembersToInheritorTransformedToOptionAPI(inheritedComponent: object): object {
+  public static applyStaticMembersToInheritorTransformedToOptionAPI(
+    inheritedComponent: typeof LoadingIndicator
+  ): typeof LoadingIndicator {
     return Object.defineProperties(
       inheritedComponent,
       {

@@ -117,7 +117,7 @@ public abstract class InputtedValueValidation
 
         }
         
-        this.ErrorsMessages = errorsMessages.ToArray();
+        this.ErrorsMessages = [.. errorsMessages];
         
       }
     }

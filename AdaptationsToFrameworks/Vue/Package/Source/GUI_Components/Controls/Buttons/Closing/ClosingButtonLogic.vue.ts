@@ -212,9 +212,11 @@ class ClosingButton extends VueComponent {
 
 
   /* ━━━ Transforming to Options API ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static applyStaticMembersToInheritorTransformedToOptionAPI(inheritedComponent: object): object {
+  public static applyStaticMembersToInheritorTransformedToOptionAPI(
+    inheritedComponentClass: typeof ClosingButton
+  ): typeof ClosingButton {
     return Object.defineProperties(
-      inheritedComponent,
+      inheritedComponentClass,
       {
         CSS_NAMESPACE: { value: ClosingButton.CSS_NAMESPACE },
         LabelLetterCases: { value: ClosingButton.LabelLetterCases },

@@ -26,7 +26,7 @@ include GUI_ComponentOverviewLocalization.english.pug
 
       getLocalizedAssets() {
 
-        if (isNotNull(this.localizedAssets)) {
+        if (YDF.isNotNull(this.localizedAssets)) {
           return this.localizedAssets;
         }
 
@@ -120,7 +120,7 @@ mixin GUI_ComponentOverview(properties)
           }
         }
 
-        const formattedHeading = replaceMarkdownLink__YDF(
+        const formattedHeading = YDF.replaceMarkdownLink(
           headingTemplate,
           ({ URI, anchorText }) =>
               `<a ` +

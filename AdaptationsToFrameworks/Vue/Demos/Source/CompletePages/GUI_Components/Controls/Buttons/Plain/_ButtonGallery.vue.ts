@@ -6,7 +6,9 @@ import {
   Button,
   ButtonLoadingPlaceholder,
   HeartIcon__Filled,
-  MenuIcon__ThreeDots__Horizontal
+  MenuIcon__ThreeDots__Horizontal,
+  AccessibleFromTemplateAsNonReactive,
+  NonReactiveVueData
 } from "@yamato-daiwa/frontend-vue";
 import ThemesShowcase from "../../../../../ThemesShowcase.vue";
 import Gallery from "../../../../../Gallery.vue";
@@ -32,8 +34,19 @@ import { getRandomString } from "@yamato-daiwa/es-extensions";
 class ButtonGallery extends Gallery<ButtonGallery.PartialsFlags> {
 
   /* ━━━ Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected Button!: typeof Button;
+  @AccessibleFromTemplateAsNonReactive
+  protected static Button: typeof Button = Button;
 
+  @NonReactiveVueData({ initialValue: "Button__YDF.Themes." })
+  protected THEME_KEY_LABEL_PREFIX!: string;
+
+  @NonReactiveVueData({ initialValue: "Button__YDF.GeometricVariations." })
+  protected GEOMETRIC_VARIATION_KEY_LABEL_PREFIX!: string;
+
+  @NonReactiveVueData({ initialValue: "Button__YDF.DecorativeVariations." })
+  protected DECORATIVE_VARIATION_KEY_LABEL_PREFIX!: string;
+
+  @NonReactiveVueData({ initialValue: `OVERFLOW_TEST-gh${ getRandomString({ minimalCharactersCount: 100 }) }` })
   protected textOverflowSafetyTest!: string;
 
 
@@ -66,20 +79,6 @@ class ButtonGallery extends Gallery<ButtonGallery.PartialsFlags> {
           decorativeVariation.value !== Button.DecorativeVariations.linkLike &&
           geometricVariation.value === Button.GeometricVariations.linkLike
         );
-  }
-
-
-  /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected initializeNonReactiveClassFields(): void {
-
-    this.Button = Button;
-
-    this.THEME_KEY_LABEL_PREFIX = "Button__YDF.Themes.";
-    this.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX = "Button__YDF.GeometricVariations.";
-    this.DECORATIVE_VARIATION_KEY_LABEL_PREFIX = "Button__YDF.DecorativeVariations.";
-
-    this.textOverflowSafetyTest = `OVERFLOW_TEST-gh${ getRandomString({ minimalCharactersCount: 100 }) }`;
-
   }
 
 }

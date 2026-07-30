@@ -123,7 +123,7 @@ block append SpecificContent
         正しい#[+Term--YDID HTMLコード]が生成されるには、一部分又は全ての#[+Term--YDID プロパティ]が特定の制限を満たさなければならない時に、需要が有る。
 
 
-    //- ━━━ 問題の考察 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ 問題の考察 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.problems.$heading,
@@ -205,7 +205,7 @@ block append SpecificContent
         #[+Keyword--YDID 自力で]不備が直せる程度の分かりやすいターミナルの出力でなければいけない。
 
 
-    //- ━━━ YDFの解決 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ YDFの解決 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.YDF_Solution.$heading,
@@ -263,7 +263,7 @@ block append SpecificContent
               foo,
               bar,
               baz
-            } = processObjectTypeParameterOfPugMixin({
+            } = YDF.processObjectTypeParameterOfPugMixin({
               rawParameter: compoundParameter,
               parameterNumber: 1,
               parameterName: "compoundParameter",
@@ -275,7 +275,7 @@ block append SpecificContent
                 },
                 bar: {
                   type: Number,
-                  numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
+                  numbersSet: YDF.RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
                   required: true,
                   minimalValue: 10
                 },
@@ -313,14 +313,14 @@ block append SpecificContent
         埋めるべきである。
 
 
-    //- ━━━ 単一引数のプロパティ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ 単一引数のプロパティ ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.singleParameterProperties.$heading,
       HTML_ID: localizedSectioning.singleParameterProperties.$anchor
     }).Article-Heading2
 
-    //- ─── `rawParameter`：ミックスイン実行時点のミックスイン引数 ──────────────────────────────────────────────────────────────────
+    //- ╍╍╍ `rawParameter`：ミックスイン実行時点のミックスイン引数 ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     +Heading--YDF({
       level: 3,
       innerHTML: localizedSectioning.singleParameterProperties.$children.rawParameter.$heading,
@@ -354,7 +354,7 @@ block append SpecificContent
           const {
             foo,
             bar
-          } = processObjectTypeParameterOfPugMixin({
+          } = YDF.processObjectTypeParameterOfPugMixin({
             rawParameter: compoundParameter,
             parameterNumber: 1,
             parameterName: "compoundParameter",
@@ -366,7 +366,7 @@ block append SpecificContent
               },
               bar: {
                 type: Number,
-                numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
+                numbersSet: YDF.RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
                 defaultValue: 10
               }
             },
@@ -380,7 +380,7 @@ block append SpecificContent
             #[+Keyword--YDID 空]の#[+Term--YDID オブジェクト]を用意してくれる訳である。
 
 
-    //- ─── `parameterPropertiesSpecification`：単一の引数のプロパティの仕様 ──────────────────────────────────────────────────
+    //- ╍╍╍ `parameterPropertiesSpecification`：単一の引数のプロパティの仕様 ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     +Heading--YDF({
       level: 3,
       innerHTML: localizedSectioning.singleParameterProperties.$children.parameterPropertiesSpecification.$heading,
@@ -419,7 +419,8 @@ block append SpecificContent
         #[+ImportantEntity__Code--YDID ObjectSubtypes.fixedKeyAndValuePairsObject]型の#[+Term--YDID 変数]を定義し、
         #[+Keyword--YDID 全ての]#[+Term--YDID プロパティ]を指定した上で、#[+ImportantEntity--YDID Pug]に貼り付けすれば良い。
 
-    //- ─── ロギング変数：`parameterNumber`、`parameterName`、`mixinName` ───────────────────────────────────────────────────
+
+    //- ┅┅┅ ロギング変数：`parameterNumber`、`parameterName`、`mixinName` ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 3,
       innerHTML: localizedSectioning.singleParameterProperties.$children.loggingProperties.$heading,
@@ -455,7 +456,7 @@ block append SpecificContent
       (...)
 
 
-    //- ━━━ 「IntelliJ IDEA」ファミリー統合開発環境に於ける高速入力 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ 「IntelliJ IDEA」ファミリー統合開発環境に於ける高速入力 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance({
       imageURI:
           "@AssociatedWithPages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/" +
@@ -512,7 +513,7 @@ block append SpecificContent
           #[+ImportantEntity__Code--YDID mixinName]#[+Term--YDID プロパティ]に該当する#[+Term--YDID ミックスイン]の名前を埋めて下さい。
 
 
-      //- ━━━ 外部リンク ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ 外部リンク ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.externalLinks.$heading,
@@ -522,14 +523,16 @@ block append SpecificContent
     +LinksCardsFlow--YDF
 
       +LinksCardsFlow-ItemWithSVG_Icon--YDF({
-        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
-            "Package/Markup/InlineECMAScript/Source/PugExtensions/processObjectTypeParameterOfPugMixin.ts",
+        unendorsedExternalURI:
+            GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/Markup/InlineECMAScript/Source/PugExtensions/processObjectTypeParameterOfPugMixin.ts",
         title: "ソースコード"
       }): +File__SourceCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
 
       +LinksCardsFlow-ItemWithSVG_Icon--YDF({
-        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-ES-Extensions/blob/master/CoreLibrary/" +
-            "Package/Documentation/RawObjectDataProcessor/RawObjectDataProcessor.md",
+        unendorsedExternalURI:
+            GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/Documentation/RawObjectDataProcessor/RawObjectDataProcessor.md",
         title: "RawObjectDataProcessor"
       })
         +Bookmark__Outlined--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
@@ -538,12 +541,13 @@ block append SpecificContent
             #[+Term--YDID 関数]に使われている
 
       +LinksCardsFlow-ItemWithSVG_Icon--YDF({
-        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
-            "Package/Components/Controls/TextBox/TextBox.pug",
+        unendorsedExternalURI:
+            GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/GUI_Components/Controls/Validatables/TextBox/TextBox.pug",
         title: "実例"
       })
         +File__SourceCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
         .LinksCardsFlow--YDF-Description.
-          #[+ImportantEntity__Code--YDID «TextBox»]
+          #[+ImportantEntity__Code--YDID 「TextBox」]
           #[+ImportantEntity__Code--YDID TextBox]と言う#[+Term--YDID GUIコンポーネント]の#[+Term__Contrast--YDID マークアップ]を
             生成する為#[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin]#[+Term--YDID 関数]を利用する

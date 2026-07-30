@@ -10,7 +10,9 @@ export default abstract class Gallery<
   PartialFlags extends Readonly<{ [partialKey: string]: boolean | undefined; }>
 > extends VueComponent {
 
-  protected abstract initializeNonReactiveClassFields(): void;
+  protected abstract THEME_KEY_LABEL_PREFIX: string;
+  protected abstract GEOMETRIC_VARIATION_KEY_LABEL_PREFIX: string;
+  protected abstract DECORATIVE_VARIATION_KEY_LABEL_PREFIX: string;
 
 
   /* ━━━ Properties ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -30,18 +32,6 @@ export default abstract class Gallery<
   /* ━━━ Computed ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected get mustRenderAllPartials(): boolean {
     return !Object.values(this.partialsFlags).some((value: boolean | undefined): boolean => value !== true);
-  }
-
-
-  /* ━━━ Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected THEME_KEY_LABEL_PREFIX: string = "";
-  protected GEOMETRIC_VARIATION_KEY_LABEL_PREFIX: string = "";
-  protected DECORATIVE_VARIATION_KEY_LABEL_PREFIX: string = "";
-
-
-  /* ━━━ Lifecycle hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected created(): void {
-    this.initializeNonReactiveClassFields();
   }
 
 }

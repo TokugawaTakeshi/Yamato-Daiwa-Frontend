@@ -4,7 +4,7 @@ problems:
 
 YDF_Solution:
 
-  $heading: "The YDF solution"
+  $heading: "The YDF Solution"
 
 singleParameterProperties:
 
@@ -24,12 +24,12 @@ singleParameterProperties:
 
 IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance:
 
-  $heading: "Quick input in IntelliJ IDEA family of IDEs"
+  $heading: "Quick Input in IntelliJ IDEA family of IDEs"
 
   steps:
 
-    $heading: "Steps for using the Live templates"
+    $heading: "Steps for Using the Live Templates"
 
 externalLinks:
 
-  $heading: "External links"
+  $heading: "External Links"

@@ -8,9 +8,15 @@ namespace YamatoDaiwa.Frontend.GUI_Components.LoadingIndicator;
 
 public partial class LoadingIndicator : 
     Microsoft.AspNetCore.Components.ComponentBase,
-    IFlexibleExternalCSS_ClassesSpecifyingForRootElement 
+    YamatoDaiwa.Frontend.GUI_Components.Abstractions.IHTML_AttributesFallthrough
 {
 
+  public const string CSS_NAMESPACE = "LoadingIndicator--YDF";
+  
+  [Microsoft.AspNetCore.Components.Parameter(CaptureUnmatchedValues = true)]
+  public Dictionary<string, object>? rootElementHTML_Attributes { get; set; }
+  
+  
   /* ━━━ Type ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public enum Types
   {
@@ -111,44 +117,34 @@ public partial class LoadingIndicator :
 
 
   /* ━━━ CSS classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  [Microsoft.AspNetCore.Components.Parameter]
-  public string? rootElementModifierCSS_Class { get; set; } = null;
-
-  [Microsoft.AspNetCore.Components.Parameter]
-  public string[]? rootElementModifierCSS_Classes { get; set; } = null;
-
-  [Microsoft.AspNetCore.Components.Parameter]
-  public string? rootElementSpaceSeparatedModifierCSS_Classes { get; set; } = null;
-
-  private string composeClassAttributeValueForRootElement(string namespaceCSS_Class) => new List<string> { namespaceCSS_Class }.
-    
-      AddElementToEndIf(
-        $"LoadingIndicator--YDF__{ this._theme.ToUpperCamelCase() }Theme",
-        YDF_ComponentsHelper.MustApplyThemeCSS_Class(
-          typeof(LoadingIndicator.StandardThemes), LoadingIndicator.CustomThemes, this.areThemesCSS_ClassesCommon
-        )
-      ).
-      
-      AddElementToEndIf(
-        $"LoadingIndicator--YDF__{ this._geometricVariation.ToUpperCamelCase() }GeometricVariation",
-        YDF_ComponentsHelper.MustApplyGeometricVariationModifierCSS_Class(
-          typeof(LoadingIndicator.StandardGeometricVariations), LoadingIndicator.CustomGeometricVariations
-        )
-      ).
-          
-      AddElementToEndIf(
-        $"LoadingIndicator--YDF__{ this._decorativeVariation.ToUpperCamelCase() }DecorativeVariation",
-        YDF_ComponentsHelper.MustApplyDecorativeVariationModifierCSS_Class(
-          typeof(LoadingIndicator.StandardDecorativeVariations), LoadingIndicator.CustomDecorativeVariations
-        )
-      ).
-
-      AddElementToEndIf(
-        ((IFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes,
-        rootElementSpaceSeparatedExternalCSS_Classes =>
-          !String.IsNullOrEmpty(rootElementSpaceSeparatedExternalCSS_Classes)
-      ).
-      
-      StringifyEachElementAndJoin(" ");
-
+  private string composeClassAttributeValueForRootElement(string typeDependentCSS_Class) => 
+  
+  YDF_ComponentsHelper.GenerateClassAttributeValueForRootElement(
+    new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement
+    {
+      CSS_Namespace = LoadingIndicator.CSS_NAMESPACE,
+      theme = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.Theme
+      {
+        activeOne = this._theme,
+        standardOnes = typeof(LoadingIndicator.StandardThemes),
+        customOnes = LoadingIndicator.CustomThemes,
+        areThemesCSS_ClassesCommon = this.areThemesCSS_ClassesCommon 
+      },
+      geometricVariation = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.GeometricVariation
+      {
+        activeOne = this._geometricVariation,
+        standardOnes = typeof(LoadingIndicator.StandardGeometricVariations),
+        customOnes = LoadingIndicator.CustomGeometricVariations
+      },
+      decorativeVariation = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.DecorativeVariation
+      {
+        activeOne = this._decorativeVariation,
+        standardOnes = typeof(LoadingIndicator.StandardDecorativeVariations),
+        customOnes = LoadingIndicator.CustomDecorativeVariations
+      },
+      rootElementHTML_Attributes = this.rootElementHTML_Attributes,
+      otherInternalCSS_Classes = [ typeDependentCSS_Class ]
+    }
+  );
+  
 }

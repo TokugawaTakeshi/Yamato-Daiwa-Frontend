@@ -10,7 +10,7 @@
     :mustDisplayAppropriateBadgeIfInputIsOptional="mustDisplayAppropriateBadgeIfInputIsOptional"
     :mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge="mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge"
 
-    :validationErrorsMessages="validatablePayload.validationErrorsMessages"
+    :validationErrorsMessages="payload.validationErrorsMessages"
     :mustDisplayErrorsMessagesIfAny="mustHighlightInvalidInputtedValue"
 
     :coreElementHTML_ID="HTML_IDs.inputOrTextarea"
@@ -42,6 +42,7 @@
         :id="HTML_IDs.inputOrTextarea"
         :aria-label="accessibilityGuidance"
         :aria-labelledby="externalLabelHTML_ID"
+        :aria-invalid="payload.isInvalid"
         :ref="INPUT_OR_TEXT_AREA_ELEMENT_VUE_REFERENCE_ID"
         @keydown="onKeyDown"
         @input="$event => { onInput($event.target.value) }"
@@ -51,7 +52,7 @@
       //- [ Bundler bug ] The `v-else` is being compiled to `v-else="v-else"`
       input.TextBox--YDF-InputOrTextAreaElement(
         v-else-if="!multiline"
-        :type="HTML_Type"
+        :type="isPasswordDisplaying ? HTML_Types.text : HTML_Type"
         v-model="rawInput"
         :placeholder="placeholder"
         :autocomplete="autocomplete"
@@ -65,6 +66,7 @@
         :id="HTML_IDs.inputOrTextarea"
         :aria-label="accessibilityGuidance"
         :aria-labelledby="externalLabelHTML_ID"
+        :aria-invalid="payload.isInvalid"
         :ref="INPUT_OR_TEXT_AREA_ELEMENT_VUE_REFERENCE_ID"
         @keydown="onKeyDown"
         @input="$event => { onInput($event.target.value) }"
@@ -94,12 +96,14 @@
         )
 
     Button(
+      v-if="hasValueCopyingButton"
       :accessibilityGuidance="localization.valueCopyingButton.accessibilityGuidance"
       :theme="valueCopyingButtonTheme"
       :areThemesCSS_ClassesCommon="areThemesCSS_ClassesCommon"
       :geometricVariation="valueCopyingButtonGeometricVariation"
       :geometricModifiers="valueCopyingButtonGeometricModifiers"
       :decorativeVariation="valueCopyingButtonDecorativeVariation"
+      @click="onValueCopyingButtonClicked"
     ): template(v-slot:loneSVG_Icon): CopyingIcon.Button--YDF-SVG_Icon
 
 </template>
@@ -107,20 +111,22 @@
 
 <script lang="ts">
 
+  /* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   import TextBoxLogic from "./TextBoxLogic.vue";
 
-  /* ─── GUI Components ───────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ GUI Components ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell.vue";
   import Button from "../../Buttons/Plain/Button.vue";
   import SigningInIcon from "../../../../SVG_Icons/Authentication/SigningInIcon.vue";
   import SigningOutIcon from "../../../../SVG_Icons/Authentication/SigningOutIcon.vue";
   import CopyingIcon from "../../../../SVG_Icons/Copying/CopyingIcon.vue";
 
-  /* ─── Framework ────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Framework ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   import {
     ComponentBase as VueComponentConfiguration,
     toNative as transformToOptionAPI_VueComponent
   } from "vue-facing-decorator";
+  /* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 
   @VueComponentConfiguration({

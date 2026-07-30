@@ -2,7 +2,12 @@
 import componentVueTemplate from "./_AdmonitionBlockGallery.vue.pug";
 
 /* ─── GUI Components ─────────────────────────────────────────────────────────────────────────────────────────────── */
-import { AdmonitionBlock, Button } from "@yamato-daiwa/frontend-vue";
+import {
+  AdmonitionBlock,
+  Button,
+  AccessibleFromTemplateAsNonReactive,
+  NonReactiveVueData
+} from "@yamato-daiwa/frontend-vue";
 import Gallery from "../../../Gallery.vue";
 import ThemesShowcase from "../../../ThemesShowcase.vue";
 import ExclamationMarkIcon__Squared from "./ExclamationMark__Squared--MaterialDesignIcon.vue";
@@ -23,21 +28,17 @@ import { Component as VueComponentConfiguration } from "vue-facing-decorator";
 })
 class AdmonitionBlockGallery extends Gallery<AdmonitionBlockGallery.PartialsFlags> {
 
-  /* ━━━ Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* ─── Non-reactive ─────────────────────────────────────────────────────────────────────────────────────────────── */
-  protected AdmonitionBlock!: typeof AdmonitionBlock;
+  @AccessibleFromTemplateAsNonReactive
+  protected static AdmonitionBlock: typeof AdmonitionBlock = AdmonitionBlock;
 
+  @NonReactiveVueData({ initialValue: "AdmonitionBlock__YDF.Themes." })
+  protected readonly THEME_KEY_LABEL_PREFIX!: string;
 
-  /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected initializeNonReactiveClassFields(): void {
+  @NonReactiveVueData({ initialValue: "AdmonitionBlock__YDF.GeometricVariations." })
+  protected readonly GEOMETRIC_VARIATION_KEY_LABEL_PREFIX!: string;
 
-    this.AdmonitionBlock = AdmonitionBlock;
-
-    this.THEME_KEY_LABEL_PREFIX = "AdmonitionBlock__YDF.Themes.";
-    this.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX = "AdmonitionBlock__YDF.GeometricVariations.";
-    this.DECORATIVE_VARIATION_KEY_LABEL_PREFIX = "AdmonitionBlock__YDF.DecorativeVariations.";
-
-  }
+  @NonReactiveVueData({ initialValue: "AdmonitionBlock__YDF.DecorativeVariations." })
+  protected readonly DECORATIVE_VARIATION_KEY_LABEL_PREFIX!: string;
 
 }
 

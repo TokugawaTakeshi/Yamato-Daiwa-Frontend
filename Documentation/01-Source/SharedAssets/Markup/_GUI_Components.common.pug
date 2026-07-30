@@ -74,19 +74,19 @@
          */
         getLocalizedPropertiesSpecification(MetadataClass, framework) {
 
-          if (isNotNull(this.localizedPropertiesSpecification)) {
+          if (YDF.isNotNull(this.localizedPropertiesSpecification)) {
             return this.localizedPropertiesSpecification;
           }
 
 
-          this.localizedPropertiesSpecification = ValuesDeepCopier.
+          this.localizedPropertiesSpecification = YDF.ValuesDeepCopier.
               deeplyCloneObjectLikeValueAsPossible(MetadataClass.propertiesSpecification);
 
           /* ━━━ Theme ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-          if (isNotUndefined(this.localizedPropertiesSpecification.theme)) {
+          if (YDF.isNotUndefined(this.localizedPropertiesSpecification.theme)) {
 
             /* ┅┅┅ Default Value ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-            if (isNotUndefined(this.localizedPropertiesSpecification.theme.undefinedValueSubstitution)) {
+            if (YDF.isNotUndefined(this.localizedPropertiesSpecification.theme.undefinedValueSubstitution)) {
 
               const defaultThemeKey = Object.entries(MetadataClass.Themes).
                   find(
@@ -177,7 +177,7 @@
 
 
           /* ━━━ Are Themes CSS Classes Common ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-          if (isNotUndefined(this.localizedPropertiesSpecification.areThemesCSS_ClassesCommon)) {
+          if (YDF.isNotUndefined(this.localizedPropertiesSpecification.areThemesCSS_ClassesCommon)) {
 
             switch (framework) {
 
@@ -211,10 +211,10 @@
 
 
           /* ━━━ Geometric Variation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-          if (isNotUndefined(this.localizedPropertiesSpecification.geometricVariation)) {
+          if (YDF.isNotUndefined(this.localizedPropertiesSpecification.geometricVariation)) {
 
             /* ┅┅┅ Default Value ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-            if (isNotUndefined(this.localizedPropertiesSpecification.geometricVariation.undefinedValueSubstitution)) {
+            if (YDF.isNotUndefined(this.localizedPropertiesSpecification.geometricVariation.undefinedValueSubstitution)) {
 
               const defaultGeometricVariationKey = Object.entries(MetadataClass.GeometricVariations).
                   find(
@@ -308,7 +308,7 @@
 
 
           /* ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-          if (isNotUndefined(this.localizedPropertiesSpecification.geometricModifiers)) {
+          if (YDF.isNotUndefined(this.localizedPropertiesSpecification.geometricModifiers)) {
 
             this.localizedPropertiesSpecification.geometricModifiers.element.allowedAlternatives =
                 this.localizedPropertiesSpecification.geometricModifiers.element.allowedAlternatives.map(
@@ -327,10 +327,10 @@
 
 
           /* ━━━ Decorative Variation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-          if (isNotUndefined(this.localizedPropertiesSpecification.decorativeVariation)) {
+          if (YDF.isNotUndefined(this.localizedPropertiesSpecification.decorativeVariation)) {
 
             /* ┅┅┅ Default Value ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-            if (isNotUndefined(this.localizedPropertiesSpecification.decorativeVariation.undefinedValueSubstitution)) {
+            if (YDF.isNotUndefined(this.localizedPropertiesSpecification.decorativeVariation.undefinedValueSubstitution)) {
 
               const defaultDecorativeVariationKey = Object.entries(MetadataClass.DecorativeVariations).
                   find(
@@ -425,7 +425,7 @@
 
 
           /* ━━━ Decorative Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-          if (isNotUndefined(this.localizedPropertiesSpecification.decorativeModifiers)) {
+          if (YDF.isNotUndefined(this.localizedPropertiesSpecification.decorativeModifiers)) {
 
             this.localizedPropertiesSpecification.decorativeModifiers.element.allowedAlternatives =
                 this.localizedPropertiesSpecification.decorativeModifiers.element.allowedAlternatives.map(
@@ -465,7 +465,7 @@
 
                 if (propertySpecification.isUndefinedForbidden && propertySpecification.isNullForbidden) {
                   propertySpecification.required = true;
-                } else if (isNotUndefined(propertySpecification.undefinedValueSubstitution)) {
+                } else if (YDF.isNotUndefined(propertySpecification.undefinedValueSubstitution)) {
                   propertySpecification.defaultValue = propertySpecification.undefinedValueSubstitution;
                 } else if (propertySpecification.isUndefinedForbidden === false || propertySpecification.isNullForbidden === false) {
                   propertySpecification.required = false;
@@ -512,7 +512,7 @@
                   GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables?.propertiesConditionalRequirementDescriptions?.[propertyName] ??
                   this.GUI_ComponentSpecificStringResources.propertiesConditionalRequirementDescriptions?.[propertyName];
 
-              if (isNotUndefined(localizedPropertyConditionalRequirementDescription)) {
+              if (YDF.isNotUndefined(localizedPropertyConditionalRequirementDescription)) {
                 propertySpecification.undefinedForbiddenIf.descriptionForLogging = localizedPropertyConditionalRequirementDescription;
               }
 
@@ -531,12 +531,12 @@
          */
         getLocalizedStatesSimulationsSpecification(MetadataClass) {
 
-          if (isNotNull(this.localizedStatesSimulationsSpecification)) {
+          if (YDF.isNotNull(this.localizedStatesSimulationsSpecification)) {
             return this.localizedStatesSimulationsSpecification;
           }
 
 
-          this.localizedStatesSimulationsSpecification = ValuesDeepCopier.
+          this.localizedStatesSimulationsSpecification = YDF.ValuesDeepCopier.
               deeplyCloneObjectLikeValueAsPossible(MetadataClass.statesSimulationsSpecification);
 
 

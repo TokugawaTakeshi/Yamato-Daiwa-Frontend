@@ -5,6 +5,7 @@
     guidance="Please input something"
     inputOrTextareaElementHTML_ID="BLA"
     v-model="textBoxPayload"
+    :multiline="true"
     :validityHighlightingActivationMode="ValidityHighlightingActivationModes.onFocusOut"
     :mustDisplayAppropriateBadgeIfInputIsRequired="true"
     :required="textBoxPayload.validation.isInputRequired()"
@@ -16,23 +17,31 @@
 
 <script lang="ts">
 
-  /* ─── GUI Components ───────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ┅┅┅ GUI Components ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   /* eslint-disable-next-line max-classes-per-file -- Allow additional class for for inputted data validation. */
   import TextBox from "../../../../../../Source/GUI_Components/Controls/Validatables/TextBox/TextBox.vue";
 
-  /* ─── Framework ────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Framework ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   import {
     Component as VueComponentOptions,
     Vue as VueComponent,
     toNative as transformToOptionAPI_VueComponent
   } from "vue-facing-decorator";
-  import { ValidatableControl, NonReactiveVueData, AccessibleFromTemplateAsNonReactive } from "../../../../../../Source";
+
+  /* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  import {
+    ValidatableControl,
+    NonReactiveVueData,
+    AccessibleFromTemplateAsNonReactive
+  } from "../../../../../../Source";
   import {
     InputtedValueValidation,
     isStringEmpty,
     MinimalCharactersCountInputtedValueValidationRule
   } from "@yamato-daiwa/frontend";
   import { isString } from "@yamato-daiwa/es-extensions";
+  /* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 
   @VueComponentOptions({
@@ -43,7 +52,7 @@
   })
   class TextBoxWorkbench extends VueComponent {
 
-    @NonReactiveVueData("TEXT_BOX")
+    @NonReactiveVueData({ initialValue: "TEXT_BOX" })
     protected readonly TEXT_BOX_VUE_REFERENCE_ID!: string;
 
     @AccessibleFromTemplateAsNonReactive

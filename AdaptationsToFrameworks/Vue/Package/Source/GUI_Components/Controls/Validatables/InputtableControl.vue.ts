@@ -159,6 +159,7 @@ export default abstract class InputtableControl extends VueComponent {
   protected readonly readonly!: boolean;
 
 
+  /* ┅┅┅ Validity ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   /* [ Approach ]
    * Unlike the invalid value highlighting, the library user may not wish the specific highlighting (usually green-color
    *   based) for inputted valid value, thus the additional flag is required. */
@@ -203,10 +204,6 @@ export default abstract class InputtableControl extends VueComponent {
       left: rootElement.offsetLeft
     };
 
-  }
-
-  public resetStateToInitial(): void {
-    Object.assign(this.$data, this.$options.data?.({}));
   }
 
 

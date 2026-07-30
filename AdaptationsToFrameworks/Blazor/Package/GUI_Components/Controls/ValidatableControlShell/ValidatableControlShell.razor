@@ -91,14 +91,14 @@
   
   
   @* ━━━ (Non-asynchronous) validations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
-  @if (mustDisplayErrorsMessagesIfAny && validationErrorsMessagesCopyForAnimating.Any())
+  @if (mustDisplayErrorsMessagesIfAny && validationErrorsMessagesForAnimating.Any())
   {
     <ul
       class="ValidatableControlShell--YDF-ValidationErrorsMessagesList"
       @ref=@validationErrorsMessagesList
     >
   
-      @foreach (string validationErrorMessage in validationErrorsMessagesCopyForAnimating)
+      @foreach (string validationErrorMessage in validationErrorsMessagesForAnimating)
       {
         <li
           class="ValidatableControlShell--YDF-ValidationErrorsMessagesList-Item"
@@ -110,64 +110,61 @@
   
     </ul>
   }
-  
-  
+
+
   @* ━━━ Asynchronous validations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
-  @if (
-    asynchronousChecksCheckStatus is {} definedAsynchronousChecksCheckStatus &&
-    (
-      definedAsynchronousChecksCheckStatus.HasAtLeastOneCheckNotFinishedYet ||
-      definedAsynchronousChecksCheckStatus.HasAtLeastOneCheckErrorOccurred ||
-      definedAsynchronousChecksCheckStatus.HasNoInvalidValuesBeenConfirmed  
-    )
-  )
+  @if (asynchronousCheckStatusesForAnimating.Any())
   {
-    
-    <ul class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList">
-      
-      @foreach (
-        KeyValuePair<string, InputtedValueValidation.AsynchronousCheck.Status> asynchronousCheckStatus in 
-            definedAsynchronousChecksCheckStatus.Checks)
+  
+    <ul 
+      class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList"
+      @ref=@asynchronousValidationsStatusesList
+    >
+  
+      @foreach (InputtedValueValidation.AsynchronousCheck.Status asynchronousCheck in asynchronousCheckStatusesForAnimating)
       {
-        
-        @if (asynchronousCheckStatus.Value.IsPending)
+  
+        @if (asynchronousCheck.IsPending)
         {
-          
+  
           <li class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__InProgressState">
-            
+  
             <LoadingIndicator
-              type="LoadingIndicator.Types.variableWidthArcSpinner"
-              geometricVariation="LoadingIndicator.StandardGeometricVariations.small"
+              type=@LoadingIndicator.Types.variableWidthArcSpinner
+              geometricVariation=@LoadingIndicator.StandardGeometricVariations.small
+              class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-LoadingIndicator"
             />
+  
+            <p class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text">
+              @(asynchronousCheck.Message)
+            </p>
             
-          </li>    
-          
-        } else if (asynchronousCheckStatus.Value.HasValidValueBeenConfirmed)
+          </li>
+  
+        } else if (asynchronousCheck.HasValidValueBeenConfirmed)
         {
-          
           <li class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__SucceededAndValidState">
-            <Checkmark__Circled__Filled rootElementModifierCSS_Class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon"/>
+            <CheckmarkIcon__Circled__Filled class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon"/>
             <p class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text">
-              @asynchronousCheckStatus.Value.Message
+              @(asynchronousCheck.Message)
             </p>
           </li>
-          
-        } else if (asynchronousCheckStatus.Value.HasErrorOccurred)
+        } else if (asynchronousCheck.HasErrorOccurred)
         {
-          
+        
           <li class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__MalfunctionState">
-            <MultiplicationSignIcon__Boxed__Filled rootElementModifierCSS_Class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon" />
+            <MultiplicationSignIcon__Boxed__Filled class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon" />
             <p class="ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text">
-              @asynchronousCheckStatus.Value.Message
+              @(asynchronousCheck.Message)
             </p>
           </li>
-          
+        
         }
         
       }
-      
-    </ul>  
-    
+  
+    </ul>
+  
   }
 
 </div>

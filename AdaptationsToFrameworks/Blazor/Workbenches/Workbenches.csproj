@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Package\YamatoDaiwa.Frontend.csproj" />
+    <PackageReference Include="YamatoDaiwa.CSharpExtensions" Version="0.9.0" />
   </ItemGroup>
 
 </Project>

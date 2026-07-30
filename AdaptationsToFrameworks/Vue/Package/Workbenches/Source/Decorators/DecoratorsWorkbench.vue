@@ -34,7 +34,7 @@
 
     protected reactiveFiled = "ALPHA";
 
-    @NonReactiveVueData("ALPHA")
+    @NonReactiveVueData({ initialValue: "ALPHA" })
     protected nonReactiveFiled!: string;
 
     @AccessibleFromTemplateAsNonReactive

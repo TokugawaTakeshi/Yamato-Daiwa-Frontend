@@ -1,0 +1,234 @@
+@require "Themes/Regular/GeometricVariations/DropDownList-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/DropDownList-RegularTheme-SmallGeometricVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/DropDownList-RegularTheme-RegularDecorativeVariation.styl"
+
+
+DropDownList--YDF = {
+
+  CSS_NAMESPACE: "DropDownList--YDF",
+
+  componentIndependentCSS_Class: "RegularTheme--YDF",
+
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        geometricVariations: {
+          regular: DropDownList-RegularTheme-RegularGeometricVariation--YDF,
+          small: DropDownList-RegularTheme-SmallGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          regular: DropDownList-RegularTheme-RegularDecorativeVariation--YDF
+        }
+
+      }
+    }
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true
+  }
+
+}
+
+
+DropDownList--YDF-generateStyles(
+  preset = DropDownList--YDF.defaultProperties,
+  overridings = {},
+  options = DropDownList--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "DropDownList--YDF-generateStyles",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: DropDownList--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: DropDownList--YDF.defaultOptions.externalThemes
+      },
+      loadingPlaceholder: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: DropDownList--YDF.defaultOptions.loadingPlaceholder
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: DropDownList--YDF.defaultOptions.themeIndependentGeometricVariations
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .DropDownList--YDF-MainSlotComposition
+
+      display flex
+
+      position relative
+
+
+    .DropDownList--YDF-InputElement
+
+      TextBoxLikeElementsPrimer--YDF()
+
+      line-height 1
+
+      min-width 0
+      flex-grow 1
+
+
+    .DropDownList--YDF-Button
+
+      flex-shrink 0
+
+
+    .DropDownList--YDF-ListBox
+
+      width 100%
+
+      position absolute
+      top 100%
+      z-index: Configuration--YDF.zIndexes.lowermostLayer + 1
+
+
+    .DropDownList--YDF-ListBox-Option
+
+      cursor pointer
+
+
+      &__SelectedState
+
+        pointer-events none
+
+
+  // ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "DropDownList.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+
+    // ╍╍╍ Root Element ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + DropDownList--YDF.CSS_NAMESPACE)
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          min-width: { dotSeparatedPath: "rootElement.minimalWidth", required: false }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(
+        getObjectValueByDotSeparatedPathSafely--YDF(variation, "rootElement.customDeclarations")
+      )
+
+
+    // ┅┅┅ Input or TextArea Element ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    .DropDownList--YDF-InputElement
+
+      border-width 1px
+      BorderLeftFilletsRadius--YDF(3px)
+      padding: calc(.45rem - 2px) .5rem calc(.45rem + 1px)
+      font-size 1rem
+
+
+    .DropDownList--YDF-ListBox-Option
+
+      Paddings--YDF({
+        horizontalSymmetric: 0.5rem,
+        verticalSymmetric: 0.5rem
+      })
+
+
+  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "DropDownList.${ themeName }Theme.${ variationName }Decoration",
+      {
+        themeName: themeName,
+        variationName: variationName
+      }
+    )
+
+    ROOT_ELEMENT_SELECTOR = getCurrentSelectorSubstitutingRoot--YDF(".DropDownList--YDF")
+
+    .DropDownList--YDF-InputElement
+
+      border-color #c5c5c5
+      border-style solid
+      color #454545
+
+
+    .DropDownList--YDF-ListBox
+
+      border-style solid
+      border-color: JQueryUI_BaseTheme.clickableElements.defaultState.borderColor
+      background-color white
+
+      applyObjectTypeBoxShadowDefinition--YDF({
+        blurRadius: 4px,
+        spreadRadius: 1px,
+        YOffset: 1px,
+        color: alpha(black, 0.25)
+      })
+
+
+    .DropDownList--YDF-ListBox-Option
+
+      &:hover
+
+        color: JQueryUI_BaseTheme.clickableElements.hoverState.fontColor
+        background-color: JQueryUI_BaseTheme.clickableElements.hoverState.background
+
+
+      &:focus
+
+        applyObjectTypeBoxShadowDefinition--YDF({
+          inset: true,
+          blurRadius: 3px,
+          spreadRadius: 1px,
+          color: #007fff
+        })
+
+
+      &:active
+
+        color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor
+        background-color: JQueryUI_BaseTheme.clickableElements.activeState.background
+
+
+      &__SelectedState
+
+        color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor
+        background-color: JQueryUI_BaseTheme.clickableElements.activeState.background
+
+
+  // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  applyComponentThemes--YDF({
+    CSS_Namespace: "DropDownList--YDF",
+    themes: properties.themes,
+    applyGeometricVariation: applyGeometricVariation,
+    applyDecorativeVariation: applyDecorativeVariation
+  })

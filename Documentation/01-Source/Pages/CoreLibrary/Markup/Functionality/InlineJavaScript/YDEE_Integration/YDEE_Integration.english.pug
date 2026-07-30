@@ -113,24 +113,24 @@ block append SpecificContent
 
             li.ProductCard
 
-              - const productTitle = getRandomString({ minimalCharactersCount: 6, minimalCharactersCount: 32 });
+              - const productTitle = YDF.getRandomString({ minimalCharactersCount: 6, minimalCharactersCount: 32 });
 
               span.ProductCard-Title= productTitle
 
               img.ProductCard-Photo(
-                src=getRandomObjectPropertyValue(DummyImagesURIs)
+                src=YDF.getRandomObjectPropertyValue(YDF.DummyImagesURIs)
                 alt=`The photo of the &quot;${ productTitle }&quot; product`
               )
 
               span.ProductCard-PriceLabel
-                span.ProductCard-PriceLabel-Amount= getRandomInteger({ minimalValue: 100, maximalValue: 100000 })
+                span.ProductCard-PriceLabel-Amount= YDF.getRandomInteger({ minimalValue: 100, maximalValue: 100000 })
                 span.ProductCard-PriceLabel-Currency $
 
     p.Article-Paragraph
       | Here, the #[+Term--YDID functions] #[+SecondaryEntity__Code--YDID getRandomString],
       |   #[+SecondaryEntity__Code--YDID getRandomObjectPropertyValue], and #[+SecondaryEntity__Code--YDID getRandomInteger]
-      |   from #[+ImportantEntity--YDID YDEE] have been used.
-      | The #[+Term--YDID associative array]-like #[+Term__Contrast--YDID constant]
+      |   from #[+ImportantEntity--YDID YDEE] have been used, herewith the #[+Term--YDID associative array]-like
+      |   #[+Term__Contrast--YDID constant]
       |
       +Link--YDF({
         internalURI: localizedRouting.coreLibrary.$children.
@@ -140,7 +140,8 @@ block append SpecificContent
             assets.$children.
             DummyImagesURIs.$URI
       }) DummyImagesURIs
-      |   is #[+Keyword--YDID part] of #[+ImportantEntity--YDID YDF].
+      |   is #[+Keyword--YDID part] of #[+ImportantEntity--YDID YDF] but not&nbsp;related with
+      |   #[+ImportantEntity--YDID YDEE].
       | As a result, for each card, #[+Term--YDID HTML code] similar to the following will be generated
       |   (avoiding taking up too much space, the #[+SecondaryEntity__Code--YDID src] #[+Term--YDID attribute] of the
       |   #[+SecondaryEntity__Code--YDID img] #[+Term--YDID tag] has been truncated):

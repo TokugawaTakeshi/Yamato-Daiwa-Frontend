@@ -63,9 +63,10 @@ export default class ValidatableControlsGroup<ValidData extends ArbitraryObject 
 
       if (validatableControlPayload.isInvalid) {
 
-        const componentInstance: ValidatableControl | null = ValidatableControl.getValidatableControlInstanceByVueReferenceID({
-          parentVueComponentInstance, vueReferenceID: validatableControlPayload.VUE_REFERENCE_ID
-        });
+        const componentInstance: ValidatableControl | null =
+            ValidatableControl.getValidatableControlInstanceByVueReferenceID({
+              parentVueComponentInstance, vueReferenceID: validatableControlPayload.VUE_REFERENCE_ID
+            });
 
         if (isNull(componentInstance)) {
 

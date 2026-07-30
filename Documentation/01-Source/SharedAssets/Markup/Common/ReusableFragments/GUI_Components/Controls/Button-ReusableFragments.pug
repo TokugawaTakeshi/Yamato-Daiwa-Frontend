@@ -72,7 +72,7 @@ mixin ButtonComponent-PugMixinOrClassSynopsis(properties)
     };
 
 
-    if (isNotUndefined(framework)) {
+    if (YDF.isNotUndefined(framework)) {
 
       propertiesSpecification.HTML_Type.allowedAlternatives = propertiesSpecification.HTML_Type.allowedAlternatives.map(
         ({ key, value }) => ({ key: key.replace("__YDF", "", value) })
@@ -259,7 +259,7 @@ mixin ButtonComponent-PugMixinOrClassSynopsis(properties)
   else
 
     +CallableExpressionScheme--YDF_DK({
-      technicalName: isUndefined(framework) ? "Button--YDF" : "Button",
+      technicalName: YDF.isUndefined(framework) ? "Button--YDF" : "Button",
       parametersSpecification: [
         {
           genericTechnicalName: "properties",

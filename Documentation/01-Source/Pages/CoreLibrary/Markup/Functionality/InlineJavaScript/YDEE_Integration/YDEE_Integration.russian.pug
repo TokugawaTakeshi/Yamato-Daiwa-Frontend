@@ -111,17 +111,17 @@ block append SpecificContent
 
             li.ProductCard
 
-              - const productTitle = getRandomString({ minimalCharactersCount: 6, minimalCharactersCount: 32 });
+              - const productTitle = YDF.getRandomString({ minimalCharactersCount: 6, minimalCharactersCount: 32 });
 
               span.ProductCard-Title= productTitle
 
               img.ProductCard-Photo(
-                src=getRandomObjectPropertyValue(DummyImagesURIs)
+                src=YDF.getRandomObjectPropertyValue(YDF.DummyImagesURIs)
                 alt=`Фотография товар «${ productTitle }»`
               )
 
               span.ProductCard-PriceLabel
-                span.ProductCard-PriceLabel-Amount= getRandomInteger({ minimalValue: 100, maximalValue: 100000 })
+                span.ProductCard-PriceLabel-Amount= YDF.getRandomInteger({ minimalValue: 100, maximalValue: 100000 })
                 span.ProductCard-PriceLabel-Currency ₽
 
     p.Article-Paragraph
@@ -137,8 +137,11 @@ block append SpecificContent
             assets.$children.
             DummyImagesURIs.$URI
       }) DummyImagesURIs
-      |   типа #[+Term__Contrast--YDID «ассоциативный массив»] является #[+Keyword--YDID частью]
-      |   #[+ImportantEntity--YDID YDF].
+      |   типа #[+Term__Contrast--YDID «ассоциативный массив»] хотя является #[+Keyword--YDID частью]
+      |   #[+ImportantEntity--YDID YDF], но при этом не&nbsp;имеет отношения к #[+ImportantEntity--YDID YDEE].
+      | Как видно, вся эта функциональность находится внутри объекта #[+ImportantEntity__Code--YDID YDF], выполняющего
+      |   роль пространства имён, снижающего вероятность конфликта имён (возможно, Вы захотите определить собственные
+      |   #[+Term--YDID функции] с именами наподобие #[+SecondaryEntity__Code--YDID getRandomString]).
       | В результате, для каждой карточки будет сгенерирован #[+Term--YDID HTML-код], подобный приведённому ниже
       |   (значение #[+Term--YDID атрибута]&nbsp;#[+SecondaryEntity__Code--YDID src] у #[+Term--YDID тэга]
       |   #[+SecondaryEntity__Code--YDID img] частично опущено, чтобы не&nbsp;занимать место):

@@ -402,7 +402,7 @@ class Button extends VueComponent {
 
 
   /* ━━━ Transforming to Options API ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static applyStaticMembersToInheritorTransformedToOptionAPI(inheritedComponent: object): object {
+  public static applyStaticMembersToInheritorTransformedToOptionAPI(inheritedComponent: typeof Button): typeof Button {
     return Object.defineProperties(
       inheritedComponent,
       {

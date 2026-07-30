@@ -16,7 +16,7 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
       class="PropertyMetadata--YDF_DK-Value__Accented"
     )
 
-      if isArbitraryObject(type) && isString(type.name) && isString(type.anchorOrURI)
+      if YDF.isArbitraryObject(type) && YDF.isString(type.name) && YDF.isString(type.anchorOrURI)
 
         +Link--YDF({ internalURI: type.anchorOrURI })= type.name
 
@@ -51,7 +51,7 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
 
     //- ━━━ Requirement For Languages with `undefined` and `null` Empty Data Types ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     //- ─── Undefinedability ─────────────────────────────────────────────────────────────────────────────────────────
-    if isBoolean(propertySpecification.isUndefinedForbidden)
+    if YDF.isBoolean(propertySpecification.isUndefinedForbidden)
 
       dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.isUndefinedForbidden
       dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization[propertySpecification.isUndefinedForbidden ? "yes" : "no"]
@@ -61,7 +61,7 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
       dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.undefinedForbiddenIf
       dd.PropertyMetadata--YDF_DK-Value= propertySpecification.undefinedForbiddenIf.descriptionForLogging
 
-    else if isNotUndefined(propertySpecification.undefinedValueSubstitution)
+    else if YDF.isNotUndefined(propertySpecification.undefinedValueSubstitution)
 
       dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.undefinedValueSubstitution
       dd.PropertyMetadata--YDF_DK-Value.PropertyMetadata--YDF_DK-Value__Accented
@@ -72,14 +72,14 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
 
         else
 
-          | #{ stringifyAndFormatArbitraryValue(propertySpecification.undefinedValueSubstitution) }
+          | #{ YDF.stringifyAndFormatArbitraryValue(propertySpecification.undefinedValueSubstitution) }
 
     else if propertySpecification.mustTransformUndefinedToNull === true
 
       dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.mustTransformUndefinedToNull
       dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization.yes
 
-    else if isBoolean(propertySpecification.isUndefinedForbidden)
+    else if YDF.isBoolean(propertySpecification.isUndefinedForbidden)
       dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.required
       dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization[propertySpecification.required ? "yes" : "no"]
 
@@ -89,7 +89,7 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
 
 
     //- ─── Nullability ──────────────────────────────────────────────────────────────────────────────────────────────
-    if isBoolean(propertySpecification.isNullForbidden)
+    if YDF.isBoolean(propertySpecification.isNullForbidden)
 
       dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.isNullForbidden
       dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization[propertySpecification.isNullForbidden ? "yes" : "no"]
@@ -99,10 +99,10 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
       dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.nullForbiddenIf
       dd.PropertyMetadata--YDF_DK-Value= propertySpecification.nullForbiddenIf.descriptionForLogging
 
-    else if isNotUndefined(propertySpecification.nullValueSubstitution)
+    else if YDF.isNotUndefined(propertySpecification.nullValueSubstitution)
 
       dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.nullValueSubstitution
-      dd.PropertyMetadata--YDF_DK-Value= stringifyAndFormatArbitraryValue(propertySpecification.nullValueSubstitution)
+      dd.PropertyMetadata--YDF_DK-Value= YDF.stringifyAndFormatArbitraryValue(propertySpecification.nullValueSubstitution)
 
     else if propertySpecification.mustTransformNullToUndefined === true
 
@@ -115,7 +115,7 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
 
 
     //- ━━━ Common Requirement (Preferred for Languages with Single Kind of Empty Type) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    if isNotUndefined(propertySpecification.defaultValue)
+    if YDF.isNotUndefined(propertySpecification.defaultValue)
 
       dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.defaultValue
       dd.PropertyMetadata--YDF_DK-Value.PropertyMetadata--YDF_DK-Value__Accented
@@ -126,7 +126,7 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
 
         else
 
-          | #{ stringifyAndFormatArbitraryValue(propertySpecification.defaultValue) }
+          | #{ YDF.stringifyAndFormatArbitraryValue(propertySpecification.defaultValue) }
 
     else if propertySpecification.required === true
 
@@ -162,12 +162,12 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
         dd.PropertyMetadata--YDF_DK-Value.PropertyMetadata--YDF_DK-Value__Accented
           | #{ propertySpecification.minimalEntriesCount }
 
-      if isBoolean(propertySpecification.areUndefinedTypeValuesForbidden)
+      if YDF.isBoolean(propertySpecification.areUndefinedTypeValuesForbidden)
 
         dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.areUndefinedTypeValuesForbidden
         dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization[propertySpecification.areUndefinedTypeValuesForbidden ? "yes" : "no"]
 
-      if isBoolean(propertySpecification.areNullTypeValuesForbidden)
+      if YDF.isBoolean(propertySpecification.areNullTypeValuesForbidden)
 
         dt.PropertyMetadata--YDF_DK-Key= PropertyMetadata__YDF_DK.localization.areNullTypeValuesForbidden
         dd.PropertyMetadata--YDF_DK-Value= PropertyMetadata__YDF_DK.localization[propertySpecification.areNullTypeValuesForbidden ? "yes" : "no"]
@@ -260,7 +260,7 @@ mixin PropertyMetadata--YDF_DK(propertySpecification)
 
             li
 
-              if isString(allowedAlternative)
+              if YDF.isString(allowedAlternative)
                 | #{ allowedAlternative }
 
               else if Array.isArray(allowedAlternative)

@@ -17,9 +17,9 @@ npm i @yamato-daiwa/frontend-react@2.0.0 @yamato-daiwa/frontend@2.0.0
 ### Peer Dependencies
 
 + **@yamato-daiwa/frontend**: @2.0.0
-+ **react**: ~19.2.0
-+ **react-dom**: ~19.2.0
-+ **react-router**: ~7.11.0
++ **react**: ~19.3.0
++ **react-dom**: ~19.3.0
++ **react-router**: ~8.4.0
 
 
 ## Documentation

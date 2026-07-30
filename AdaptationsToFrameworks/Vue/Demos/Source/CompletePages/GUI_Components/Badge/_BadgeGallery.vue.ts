@@ -2,7 +2,13 @@
 import componentVueTemplate from "./_BadgeGallery.vue.pug";
 
 /* ─── GUI Components ─────────────────────────────────────────────────────────────────────────────────────────────── */
-import { Badge, BadgeLoadingPlaceholder, CalendarIcon } from "@yamato-daiwa/frontend-vue";
+import {
+  Badge,
+  BadgeLoadingPlaceholder,
+  CalendarIcon,
+  AccessibleFromTemplateAsNonReactive,
+  NonReactiveVueData
+} from "@yamato-daiwa/frontend-vue";
 import ThemesShowcase from "../../../ThemesShowcase.vue";
 import Gallery from "../../../Gallery.vue";
 
@@ -27,10 +33,22 @@ class BadgeGallery extends Gallery<BadgeGallery.PartialsFlags> {
 
   /* ━━━ Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ─── Non-reactive ─────────────────────────────────────────────────────────────────────────────────────────────── */
-  protected Badge!: typeof Badge;
+  @AccessibleFromTemplateAsNonReactive
+  protected static Badge: typeof Badge = Badge;
 
+  @NonReactiveVueData({ initialValue: "Badge__YDF.Themes." })
+  protected THEME_KEY_LABEL_PREFIX!: string;
+
+  @NonReactiveVueData({ initialValue: "Badge__YDF.GeometricVariations." })
+  protected GEOMETRIC_VARIATION_KEY_LABEL_PREFIX!: string;
+
+  @NonReactiveVueData({ initialValue: "Badge__YDF.DecorativeVariations." })
+  protected DECORATIVE_VARIATION_KEY_LABEL_PREFIX!: string;
+
+  @NonReactiveVueData({ initialValue: new Date().toLocaleDateString() })
   protected todayDate__localized__stringified!: string;
 
+  @NonReactiveVueData({ initialValue: `OVERFLOW_TEST-gh${ getRandomString({ minimalCharactersCount: 100 }) }` })
   protected textOverflowSafetyTest!: string;
 
 
@@ -43,22 +61,6 @@ class BadgeGallery extends Gallery<BadgeGallery.PartialsFlags> {
   protected mustRenderAtLeastOnePartialRelatedWithDecorativeModifier(): boolean {
     return this.partialsFlags.bordersDisguisingDecorativeModifier === true ||
         this.partialsFlags.noBackgroundDecorativeModifier === true;
-  }
-
-
-  /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected initializeNonReactiveClassFields(): void {
-
-    this.Badge = Badge;
-
-    this.THEME_KEY_LABEL_PREFIX = "Badge__YDF.Themes.";
-    this.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX = "Badge__YDF.GeometricVariations.";
-    this.DECORATIVE_VARIATION_KEY_LABEL_PREFIX = "Badge__YDF.DecorativeVariations.";
-
-    this.todayDate__localized__stringified = new Date().toLocaleDateString();
-
-    this.textOverflowSafetyTest = `OVERFLOW_TEST-gh${ getRandomString({ minimalCharactersCount: 100 }) }`;
-
   }
 
 }

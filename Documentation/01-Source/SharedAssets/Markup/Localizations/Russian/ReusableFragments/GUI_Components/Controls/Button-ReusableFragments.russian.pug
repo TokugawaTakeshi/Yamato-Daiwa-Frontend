@@ -149,9 +149,9 @@ mixin ButtonComponent-MinimalExampleDescription(properties)
 
     const exampleTitle = [
       "Примеры отображения компонента «Button» (библиотека: «Yamato Daiwa Frontend",
-      ...isNotUndefined(framework) ? [ ` ${ toUpperCamelCase(framework) }` ] : [],
+      ...YDF.isNotUndefined(framework) ? [ ` ${ YDF.toUpperCamelCase(framework) }` ] : [],
       "», сокращённо: «YDF",
-      ...isNotUndefined(framework) ? [ ` ${ toUpperCamelCase(framework) }` ] : [],
+      ...YDF.isNotUndefined(framework) ? [ ` ${ YDF.toUpperCamelCase(framework) }` ] : [],
       "»."
     ].join("");
 

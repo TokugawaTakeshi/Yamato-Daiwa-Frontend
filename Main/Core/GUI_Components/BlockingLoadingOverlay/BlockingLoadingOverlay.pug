@@ -1,0 +1,28 @@
+include BlockingLoadingOverlay.class.pug
+
+
+mixin BlockingLoadingOverlay--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+      loadingIndicatorType
+    } = properties;
+
+    const {
+      displaying = false
+    } = statesSimulations ?? {};
+
+
+  .BlockingLoadingOverlay--YDF(
+    hidden=(displaying ? null : "")
+    role="dialog"
+  )&attributes(attributes)
+
+    p.BlockingLoadingOverlay--YDF-VisuallyHiddenMessage= BlockingLoadingOverlay__YDF.localization.defaultAccessibilityGuidance
+
+    +LoadingIndicator--YDF({
+      type: loadingIndicatorType
+    }).BlockingLoadingOverlay--YDF-LoadingIndicator(
+      role="none"
+    )

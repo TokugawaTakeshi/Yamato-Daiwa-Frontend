@@ -3,7 +3,10 @@ import type { ComponentOptions } from "vue";
 
 
 export default function NonReactiveVueData(
-  value: unknown
+  polymorphicParameter: Readonly<
+    { initialValue: unknown; } |
+    { getInitialValue: () => unknown; }
+  >
 ): (_arguments: unknown, decoratorContext: string | DecoratorContext) => void {
 
   /* eslint-disable-next-line @typescript-eslint/strict-void-return --
@@ -20,7 +23,9 @@ export default function NonReactiveVueData(
 
         originalCreatedHook?.call(this);
 
-        this[key] = value;
+        this[key] =
+            "initialValue" in polymorphicParameter ?
+                polymorphicParameter.initialValue : polymorphicParameter.getInitialValue();
 
       };
 

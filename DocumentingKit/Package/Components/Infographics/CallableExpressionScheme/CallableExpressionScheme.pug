@@ -27,7 +27,7 @@ mixin CallableExpressionScheme--YDF_DK(properties)
 
       span.CallableExpressionScheme--YDF_DK-Bracket= "<"
 
-      if isString(genericParameter)
+      if YDF.isString(genericParameter)
 
         span.CallableExpressionScheme--YDF_DK-GenericParameter-Name= genericParameter
 
@@ -45,7 +45,7 @@ mixin CallableExpressionScheme--YDF_DK(properties)
 
       each genericParameter, index in genericParameters
 
-        if isString(genericParameter)
+        if YDF.isString(genericParameter)
 
           span.CallableExpressionScheme--YDF_DK-GenericParameter-Name= genericParameter
 
@@ -71,7 +71,7 @@ mixin CallableExpressionScheme--YDF_DK(properties)
       .CallableExpressionScheme--YDF_DK-LocalizedDescriptiveHeading= localizedDescriptiveHeading
 
 
-    if isNonEmptyArray(signatures)
+    if YDF.isNonEmptyArray(signatures)
 
       .CallableExpressionScheme--YDF_DK-SignaturesFlow
 
@@ -93,7 +93,7 @@ mixin CallableExpressionScheme--YDF_DK(properties)
 
               span.CallableExpressionScheme--YDF_DK-OpeningCurlyBracket (
 
-              if isNonEmptyArray(signature.parametersSpecification)
+              if YDF.isNonEmptyArray(signature.parametersSpecification)
 
                 .CallableExpressionScheme--YDF_DK-ParametersFlow
 
@@ -119,7 +119,7 @@ mixin CallableExpressionScheme--YDF_DK(properties)
 
         span.CallableExpressionScheme--YDF_DK-Bracket (
 
-        if isNonEmptyArray(parametersSpecification)
+        if YDF.isNonEmptyArray(parametersSpecification)
 
           .CallableExpressionScheme--YDF_DK-ParametersFlow
 

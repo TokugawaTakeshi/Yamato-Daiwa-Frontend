@@ -1,6 +1,7 @@
 ﻿@page "/ValidatableControlShell"
 
 @using YamatoDaiwa.Frontend.GUI_Components.Controls.ValidatableControlShell
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.ValidatableControlShell.LoadingPlaceholder
 @using Demos.GUI_Components.ThemesShowcase
 
 
@@ -354,96 +355,198 @@
     </ComponentSlot>
   </ThemesShowcase>
   
-  @* *@
-  @* $1$ ━━━ Asynchronous Validations Statuses ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ #1# *@
-  @* <h2 class="Heading2">Asynchronous Validations Statuses</h2> *@
-  @* *@
-  @* <h3 class="Heading3">Wide Containers</h3> *@
-  @* <ThemesShowcase *@
-  @*   themes=@typeof(ValidatableControlShell.StandardThemes) *@
-  @*   themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX *@
-  @*   geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations) *@
-  @*   geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX *@
-  @*   decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations) *@
-  @*   decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX *@
-  @* > *@
-  @*   <ComponentSlot> *@
-  @*     <ValidatableControlShell *@
-  @*       theme=@context.themeValue *@
-  @*       geometricVariation=@context.geometricVariationValue *@
-  @*       decorativeVariation=@context.decorativeVariationValue *@
-  @*       asynchronousChecksCheckStatus=@asynchronousChecksCheckStatus *@
-  @*     > *@
-  @*       <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div> *@
-  @*     </ValidatableControlShell> *@
-  @*   </ComponentSlot> *@
-  @* </ThemesShowcase> *@
-  @* *@
-  @* <ThemesShowcase *@
-  @*   themes=@typeof(ValidatableControlShell.StandardThemes) *@
-  @*   themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX *@
-  @*   geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations) *@
-  @*   geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX *@
-  @*   decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations) *@
-  @*   decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX *@
-  @* > *@
-  @*   <ComponentSlot> *@
-  @*     <ValidatableControlShell *@
-  @*       theme=@context.themeValue *@
-  @*       geometricVariation=@context.geometricVariationValue *@
-  @*       decorativeVariation=@context.decorativeVariationValue *@
-  @*       invalidInputHighlightingIfAnyValidationErrorsMessages=@true *@
-  @*       validationErrorsMessages=@([ "Message 1", "Message 2" ]) *@
-  @*       asynchronousChecksCheckStatus=@asynchronousChecksCheckStatus *@
-  @*     > *@
-  @*       <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div> *@
-  @*     </ValidatableControlShell> *@
-  @*   </ComponentSlot> *@
-  @* </ThemesShowcase> *@
-  @* *@
-  @* <h3 class="Heading3">Narrow Containers</h3> *@
-  @* <ThemesShowcase *@
-  @*   themes=@typeof(ValidatableControlShell.StandardThemes) *@
-  @*   themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX *@
-  @*   geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations) *@
-  @*   geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX *@
-  @*   decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations) *@
-  @*   decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX *@
-  @*   decorativeVariationsListItemAdditionalCSS_Classes=@([ "ValidatableControlShellGallery-ValidationErrorsMessagesSection-NarrowContainer" ]) *@
-  @* > *@
-  @*   <ComponentSlot> *@
-  @*     <ValidatableControlShell *@
-  @*       theme=@context.themeValue *@
-  @*       geometricVariation=@context.geometricVariationValue *@
-  @*       decorativeVariation=@context.decorativeVariationValue *@
-  @*       asynchronousChecksCheckStatus=@asynchronousChecksCheckStatus *@
-  @*     > *@
-  @*       <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core</div> *@
-  @*     </ValidatableControlShell> *@
-  @*   </ComponentSlot> *@
-  @* </ThemesShowcase> *@
-  @* *@
-  @* <ThemesShowcase *@
-  @*   themes=@typeof(ValidatableControlShell.StandardThemes) *@
-  @*   themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX *@
-  @*   geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations) *@
-  @*   geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX *@
-  @*   decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations) *@
-  @*   decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX *@
-  @*   decorativeVariationsListItemAdditionalCSS_Classes=@([ "ValidatableControlShellGallery-ValidationErrorsMessagesSection-NarrowContainer" ]) *@
-  @* > *@
-  @*   <ComponentSlot> *@
-  @*     <ValidatableControlShell *@
-  @*       theme=@context.themeValue *@
-  @*       geometricVariation=@context.geometricVariationValue *@
-  @*       decorativeVariation=@context.decorativeVariationValue *@
-  @*       invalidInputHighlightingIfAnyValidationErrorsMessages=@true *@
-  @*       validationErrorsMessages=@([ "Message 1", "Message 2" ]) *@
-  @*       asynchronousChecksCheckStatus=@asynchronousChecksCheckStatus *@
-  @*     > *@
-  @*       <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core</div> *@
-  @*     </ValidatableControlShell> *@
-  @*   </ComponentSlot> *@
-  @* </ThemesShowcase> *@
+  
+  @* ━━━ Asynchronous Validations Statuses ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Asynchronous Validations Statuses</h2>
+  
+  <h3 class="Heading3">Wide Containers</h3>
+  
+  <ThemesShowcase
+    themes=@typeof(ValidatableControlShell.StandardThemes)
+    themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <ValidatableControlShell
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        asynchronousChecksStatus=@asynchronousChecksCheckStatus
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+     </ValidatableControlShell>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  <ThemesShowcase
+    themes=@typeof(ValidatableControlShell.StandardThemes)
+    themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <ValidatableControlShell
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        mustDisplayErrorsMessagesIfAny=@true
+        validationErrorsMessages=@([ 
+          "The user name must have at least 3 characters. Please input more characters.", 
+          "Inputted user name is including the following forbidden characters: \"$\", \"'\". " +
+            "Please input the other user name without next characters: \"$\", \"&\", \"'\", \"\"\"." 
+        ])
+        asynchronousChecksStatus=@asynchronousChecksCheckStatus
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+      </ValidatableControlShell>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  <h3 class="Heading3">Narrow Containers</h3>
+  
+  <ThemesShowcase
+    themes=@typeof(ValidatableControlShell.StandardThemes)
+    themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ValidatableControlShellGallery-ValidationErrorsMessagesSection-NarrowContainer" ])
+  >
+    <ComponentSlot>
+      <ValidatableControlShell
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        asynchronousChecksStatus=@asynchronousChecksCheckStatus
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core</div>
+     </ValidatableControlShell>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  <ThemesShowcase
+    themes=@typeof(ValidatableControlShell.StandardThemes)
+    themeKeyLabelPrefix=@ValidatableControlShellDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(ValidatableControlShell.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ValidatableControlShellDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(ValidatableControlShell.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ValidatableControlShellDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ValidatableControlShellGallery-ValidationErrorsMessagesSection-NarrowContainer" ])
+  >
+    <ComponentSlot>
+      <ValidatableControlShell
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        mustDisplayErrorsMessagesIfAny=@true
+        validationErrorsMessages=@([ 
+          "The user name must have at least 3 characters. Please input more characters.", 
+          "Inputted user name is including the following forbidden characters: \"$\", \"'\". " +
+            "Please input the other user name without next characters: \"$\", \"&\", \"'\", \"\"\"." 
+        ])
+        asynchronousChecksStatus=@asynchronousChecksCheckStatus
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core</div>
+      </ValidatableControlShell>
+    </ComponentSlot>
+  </ThemesShowcase>
+
+  
+  @* ━━━ Loading Placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Loading Placeholder</h2>
+
+  @* ─── Labels Only ──────────────────────────────────────────────────────────────────────────────────────────────── *@
+  <div class="ValidatableControlShellGallery-LoadingPlaceholderSection-LinearFlow">
+    @foreach (
+      ValidatableControlShell.StandardGeometricVariations geometricVariation in
+          Enum.GetValues<ValidatableControlShell.StandardGeometricVariations>()
+    )
+    {
+      <ValidatableControlShellLoadingPlaceholder
+        label=@true
+        geometricVariation=@geometricVariation
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+      </ValidatableControlShellLoadingPlaceholder>
+    }
+  </div>
+
+
+  @* ─── Labels & Badges ─────────────────────────────────────────────────────────────────────────────────────────── *@
+  <div class="ValidatableControlShellGallery-LoadingPlaceholderSection-LinearFlow">
+    @foreach (
+      ValidatableControlShell.StandardGeometricVariations geometricVariation in
+          Enum.GetValues<ValidatableControlShell.StandardGeometricVariations>()
+    )
+    {
+      <ValidatableControlShellLoadingPlaceholder
+        label=@true
+        badge=@true
+        geometricVariation=@geometricVariation
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+      </ValidatableControlShellLoadingPlaceholder>
+    }
+  </div>
+
+
+  @* ─── Guidances ───────────────────────────────────────────────────────────────────────────────────────────────── *@
+  <div class="ValidatableControlShellGallery-LoadingPlaceholderSection-LinearFlow">
+    @foreach (
+      ValidatableControlShell.StandardGeometricVariations geometricVariation in
+          Enum.GetValues<ValidatableControlShell.StandardGeometricVariations>()
+    )
+    {
+      <ValidatableControlShellLoadingPlaceholder
+        guidance=@true
+        geometricVariation=@geometricVariation
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+      </ValidatableControlShellLoadingPlaceholder>
+    }
+  </div>
+
+
+  @* ─── Labels and Guidances ────────────────────────────────────────────────────────────────────────────────────── *@
+  <div class="ValidatableControlShellGallery-LoadingPlaceholderSection-LinearFlow">
+    @foreach (
+      ValidatableControlShell.StandardGeometricVariations geometricVariation in
+          Enum.GetValues<ValidatableControlShell.StandardGeometricVariations>()
+    )
+    {
+      <ValidatableControlShellLoadingPlaceholder
+        label=@true
+        guidance=@true
+        geometricVariation=@geometricVariation
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+      </ValidatableControlShellLoadingPlaceholder>
+    }
+  </div>
+
+
+  @* ─── Labels, Badges and Guidances ────────────────────────────────────────────────────────────────────────────── *@
+  <div class="ValidatableControlShellGallery-LoadingPlaceholderSection-LinearFlow">
+    @foreach (
+      ValidatableControlShell.StandardGeometricVariations geometricVariation in
+          Enum.GetValues<ValidatableControlShell.StandardGeometricVariations>()
+    )
+    {
+      <ValidatableControlShellLoadingPlaceholder
+        label=@true
+        badge=@true
+        guidance=@true
+        geometricVariation=@geometricVariation
+      >
+        <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+      </ValidatableControlShellLoadingPlaceholder>
+    }
+  </div>
 
 </div>

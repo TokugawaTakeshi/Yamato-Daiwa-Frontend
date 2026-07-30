@@ -75,7 +75,7 @@ block append Metadata
     const {
       $sectioning: localizedSectioning,
       $heading: topHeading
-    } = routing.english.coreLibrary.$children.markup.$children.functionality.$children.inlineJavaScript.$children.
+    } = routing.russian.coreLibrary.$children.markup.$children.functionality.$children.inlineJavaScript.$children.
         functionsAndClasses.$children.processObjectTypeParameterOfPugMixin;
 
 
@@ -129,7 +129,7 @@ block append SpecificContent
         генерации #[+Term--YDID HTML-кода] должны соответствовать определённым ограничениям.
 
 
-    //- ━━━ Проблематика ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ Проблематика ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.problems.$heading,
@@ -219,7 +219,7 @@ block append SpecificContent
         #[+Keyphrase--YDID без траты времени на поиск нужной справки в документации].
 
 
-    //- ━━━ Решение YDF ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ Решение YDF ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.YDF_Solution.$heading,
@@ -268,7 +268,7 @@ block append SpecificContent
 
     p.Article-Paragraph.
       В примере выше с помощью #[+Term--YDID деструктурирующего присваивания] #[+Keyword--YDID все]
-        #[+Term__Contrast--YDID свойства]　#[+Term--YDID параметра] типа #[+Term--YDID «объект»] были вынесены в
+        #[+Term__Contrast--YDID свойства] #[+Term--YDID параметра] типа #[+Term--YDID «объект»] были вынесены в
         #[+Term--YDID константы] и теперь ими
         можно пользоваться как если бы это были отдельные #[+Term--YDID параметры].
       Используя #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin], деструктурировать нужно
@@ -284,7 +284,7 @@ block append SpecificContent
               foo,
               bar,
               baz
-            } = processObjectTypeParameterOfPugMixin({
+            } = YDF.processObjectTypeParameterOfPugMixin({
               rawParameter: compoundParameter,
               parameterNumber: 1,
               parameterName: "compoundParameter",
@@ -296,7 +296,7 @@ block append SpecificContent
                 },
                 bar: {
                   type: Number,
-                  numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
+                  numbersSet: YDF.RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
                   required: true,
                   minimalValue: 10
                 },
@@ -338,14 +338,14 @@ block append SpecificContent
         может быть неясно, где именно произошло нарушение.
 
 
-    //- ━━━ Свойства единственного параметра ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ Свойства единственного параметра ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.singleParameterProperties.$heading,
       HTML_ID: localizedSectioning.singleParameterProperties.$anchor
     }).Article-Heading2
 
-    //- ─── `rawParameter` — параметр примеси в момент начала её выполнения ────────────────────────────────────────────
+    //- ╍╍╍ `rawParameter` — параметр примеси в момент начала её выполнения ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     +Heading--YDF({
       level: 3,
       innerHTML: localizedSectioning.singleParameterProperties.$children.rawParameter.$heading,
@@ -386,7 +386,7 @@ block append SpecificContent
           const {
             foo,
             bar
-          } = processObjectTypeParameterOfPugMixin({
+          } = YDF.processObjectTypeParameterOfPugMixin({
             rawParameter: compoundParameter,
             parameterNumber: 1,
             parameterName: "compoundParameter",
@@ -398,7 +398,7 @@ block append SpecificContent
               },
               bar: {
                 type: Number,
-                numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
+                numbersSet: YDF.RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
                 defaultValue: 10
               }
             },
@@ -415,7 +415,7 @@ block append SpecificContent
             #[+Keyword--YDID пустой] #[+Term--YDID объект].
 
 
-    //- ─── `parameterPropertiesSpecification` — спецификация свойств параметра примеси ────────────────────────────────
+    //- ╍╍╍ `parameterPropertiesSpecification` — спецификация свойств параметра примеси ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     +Heading--YDF({
       level: 3,
       innerHTML: localizedSectioning.singleParameterProperties.$children.parameterPropertiesSpecification.$heading,
@@ -467,7 +467,7 @@ block append SpecificContent
         и определить в ней все #[+Term--YDID свойства], а затем вставить значение в #[+Term--YDID Pug-код].
 
 
-    //- ─── Свойства логирования — `parameterNumber`, `parameterName`, `mixinName` ─────────────────────────────────────
+    //- ╍╍╍ Свойства логирования — `parameterNumber`, `parameterName`, `mixinName` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     +Heading--YDF({
       level: 3,
       innerHTML: localizedSectioning.singleParameterProperties.$children.loggingProperties.$heading,
@@ -503,7 +503,7 @@ block append SpecificContent
       (...)
 
 
-    //- ━━━ Быстрый ввод в интегрированных средах разработки семейства IntelliJ IDEA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ Быстрый ввод в интегрированных средах разработки семейства IntelliJ IDEA ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance({
       imageURI:
           "@AssociatedWithPages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/" +
@@ -567,7 +567,7 @@ block append SpecificContent
           Заполните #[+Term--YDID свойство] #[+ImportantEntity__Code--YDID mixinName] именем Вашей #[+Term--YDID примеси].
 
 
-    //- ━━━ Внешние ссылки ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ Внешние ссылки ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.externalLinks.$heading,
@@ -577,14 +577,16 @@ block append SpecificContent
     +LinksCardsFlow--YDF
 
       +LinksCardsFlow-ItemWithSVG_Icon--YDF({
-        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
-            "Package/Markup/InlineECMAScript/Source/PugExtensions/processObjectTypeParameterOfPugMixin.ts",
+        unendorsedExternalURI:
+            GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/Markup/InlineECMAScript/Source/PugExtensions/processObjectTypeParameterOfPugMixin.ts",
         title: "Исходный код"
       }): +File__SourceCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
 
       +LinksCardsFlow-ItemWithSVG_Icon--YDF({
-        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-ES-Extensions/blob/master/CoreLibrary/" +
-            "Package/Documentation/RawObjectDataProcessor/RawObjectDataProcessor.md",
+        unendorsedExternalURI:
+            GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/Documentation/RawObjectDataProcessor/RawObjectDataProcessor.md",
         title: "RawObjectDataProcessor"
       })
         +Bookmark__Outlined--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
@@ -593,8 +595,9 @@ block append SpecificContent
             используется #[+Term--YDID функцией] #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin]
 
       +LinksCardsFlow-ItemWithSVG_Icon--YDF({
-        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
-            "Package/Components/Controls/TextBox/TextBox.pug",
+        unendorsedExternalURI:
+            GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/GUI_Components/Controls/Validatables/TextBox/TextBox.pug",
         title: "Практический пример"
       })
         +File__SourceCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon

@@ -26,7 +26,7 @@ public partial class ValidatableControlShellDemoPage : Microsoft.AspNetCore.Comp
             HasValidValueBeenConfirmed = false,
             HasInvalidValueBeenConfirmed = false,
             HasErrorOccurred = false,
-            Message = ""
+            Message = "Checking of the inputted user name for the availability ..."
           }
         },
         {
@@ -37,7 +37,7 @@ public partial class ValidatableControlShellDemoPage : Microsoft.AspNetCore.Comp
             HasValidValueBeenConfirmed = true,
             HasInvalidValueBeenConfirmed = false,
             HasErrorOccurred = false,
-            Message = "Valid value confirmed"
+            Message = "The user name is available"
           }
         },
         {
@@ -46,9 +46,27 @@ public partial class ValidatableControlShellDemoPage : Microsoft.AspNetCore.Comp
           {
             IsPending = false,
             HasValidValueBeenConfirmed = false,
+            HasInvalidValueBeenConfirmed = true,
+            HasErrorOccurred = false,
+            Message = 
+                "Sorry, but inputted user name including profanity. " +
+                "Please select another user name without swearing."
+          }
+        },
+        {
+          "Check 4",
+          new YamatoDaiwa.Frontend.GUI_Components.Controls.Validation.InputtedValueValidation.AsynchronousCheck.Status
+          {
+            IsPending = false,
+            HasValidValueBeenConfirmed = false,
             HasInvalidValueBeenConfirmed = false,
             HasErrorOccurred = true,
-            Message = "Error occurred"
+            Message = 
+                "The malfunction has occurred during the checking of the user name for the availability. " +
+                "If the internet connection has been lost, would you please to input the user name once again when the " +
+                  "internet connection will recover?" +
+                "If the internet connection is fine, we are sorry, but it is the system failure. " +
+                "Could you please to notify the customers support?"
           }
         }
       }

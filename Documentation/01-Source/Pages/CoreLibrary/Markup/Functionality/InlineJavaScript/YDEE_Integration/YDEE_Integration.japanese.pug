@@ -105,17 +105,17 @@ block append SpecificContent
 
             li.ProductCard
 
-              - const productTitle = getRandomString({ minimalCharactersCount: 6, minimalCharactersCount: 32 });
+              - const productTitle = YDF.getRandomString({ minimalCharactersCount: 6, minimalCharactersCount: 32 });
 
               span.ProductCard-Title= productTitle
 
               img.ProductCard-Photo(
-                src=getRandomObjectPropertyValue(DummyImagesURIs)
+                src=YDF.getRandomObjectPropertyValue(YDF.DummyImagesURIs)
                 alt=`「${ productTitle }」商品の写真`
               )
 
               span.ProductCard-PriceLabel
-                span.ProductCard-PriceLabel-Amount= getRandomInteger({ minimalValue: 1000, maximalValue: 10000 })
+                span.ProductCard-PriceLabel-Amount= YDF.getRandomInteger({ minimalValue: 100, maximalValue: 100000 })
                 span.ProductCard-PriceLabel-Currency 円
 
     p.Article-Paragraph
@@ -129,7 +129,8 @@ block append SpecificContent
             assets.$children.
             DummyImagesURIs.$URI
       }) DummyImagesURIs
-      |   #[+Term--YDID 連想配列型]の#[+Term__Contrast--YDID 定数]は#[+ImportantEntity--YDID YDF]の一部。
+      |   #[+Term--YDID 連想配列型]の#[+Term__Contrast--YDID 定数]は#[+ImportantEntity--YDID YDF]の一部ではあるが
+      |   #[+ImportantEntity--YDID YDEE]の一部になってはいない。
       | 其の結果、各カードに於いて下記の様なコード#[+Term--YDID HTMLコード]が生成される
       |   (#[+SecondaryEntity__Code--YDID img]#[+Term--YDID タグ]に於いて#[+SecondaryEntity__Code--YDID src]
       |   #[+Term--YDID アトリビュート]の値は空間を占めすぎない様に部分的省略)。

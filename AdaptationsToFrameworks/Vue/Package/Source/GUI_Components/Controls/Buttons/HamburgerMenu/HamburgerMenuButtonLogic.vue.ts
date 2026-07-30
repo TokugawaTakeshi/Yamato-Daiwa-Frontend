@@ -229,8 +229,8 @@ class HamburgerMenuButton extends VueComponent {
 
   /* ━━━ Transforming to Options API ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static applyStaticMembersToInheritorTransformedToOptionAPI(
-    inheritedComponent: object
-  ): object {
+    inheritedComponent: typeof HamburgerMenuButton
+  ): typeof HamburgerMenuButton {
     return Object.defineProperties(
       inheritedComponent,
       {

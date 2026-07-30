@@ -121,7 +121,7 @@ block append SpecificContent
         certain limitations for generating correct #[+Term--YDID HTML code].
 
 
-    //- ━━━ Problems ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ Problems ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.problems.$heading,
@@ -211,7 +211,7 @@ block append SpecificContent
         #[+Keyphrase--YDID without spending time searching for relevant documentation].
 
 
-    //- ━━━ The YDF solution ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ The YDF Solution ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.YDF_Solution.$heading,
@@ -274,7 +274,7 @@ block append SpecificContent
               foo,
               bar,
               baz
-            } = processObjectTypeParameterOfPugMixin({
+            } = YDF.processObjectTypeParameterOfPugMixin({
               rawParameter: compoundParameter,
               parameterNumber: 1,
               parameterName: "compoundParameter",
@@ -286,7 +286,7 @@ block append SpecificContent
                 },
                 bar: {
                   type: Number,
-                  numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
+                  numbersSet: YDF.RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
                   required: true,
                   minimalValue: 10
                 },
@@ -328,14 +328,14 @@ block append SpecificContent
         without specifying them, it could be unclear where exactly the issue has occurred.
 
 
-    //- ━━━ The Properties of the Sole Parameter ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ The Properties of the Sole Parameter ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.singleParameterProperties.$heading,
       HTML_ID: localizedSectioning.singleParameterProperties.$anchor
     }).Article-Heading2
 
-    //- ─── `rawParameter` ─────────────────────────────────────────────────────────────────────────────────────────────
+    //- ┅┅┅ `rawParameter` ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 3,
       innerHTML: localizedSectioning.singleParameterProperties.$children.rawParameter.$heading,
@@ -375,7 +375,7 @@ block append SpecificContent
           const {
             foo,
             bar
-          } = processObjectTypeParameterOfPugMixin({
+          } = YDF.processObjectTypeParameterOfPugMixin({
             rawParameter: compoundParameter,
             parameterNumber: 1,
             parameterName: "compoundParameter",
@@ -387,7 +387,7 @@ block append SpecificContent
               },
               bar: {
                 type: Number,
-                numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
+                numbersSet: YDF.RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
                 defaultValue: 10
               }
             },
@@ -404,7 +404,7 @@ block append SpecificContent
             #[+Term--YDID object].
 
 
-    //- ─── `parameterPropertiesSpecification` ─────────────────────────────────────────────────────────────────────────
+    //- ┅┅┅ `parameterPropertiesSpecification` ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 3,
       innerHTML: localizedSectioning.singleParameterProperties.$children.parameterPropertiesSpecification.$heading,
@@ -456,7 +456,8 @@ block append SpecificContent
         #[+ImportantEntity--YDID TypeScript] file and define all desired properties there, when pasting the value to the
         #[+Term--YDID Pug code].
 
-    //- ─── The Logging Properties — `parameterNumber`, `parameterName`, `mixinName` ───────────────────────────────────
+
+    //- ╍╍╍ The Logging Properties — `parameterNumber`, `parameterName`, `mixinName` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
     +Heading--YDF({
       level: 3,
       innerHTML: localizedSectioning.singleParameterProperties.$children.loggingProperties.$heading,
@@ -490,7 +491,7 @@ block append SpecificContent
       (...)
 
 
-    //- ━━━ Quick input in IntelliJ IDEA family of IDEs ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ Steps for Using the Live Templates ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance({
       imageURI:
           "@AssociatedWithPages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/" +
@@ -557,7 +558,7 @@ block append SpecificContent
             #[+Term--YDID Pug mixin].
 
 
-    //- ━━━ External links ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    //- ┅┅┅ External Links ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +Heading--YDF({
       level: 2,
       text: localizedSectioning.externalLinks.$heading,
@@ -567,15 +568,17 @@ block append SpecificContent
     +LinksCardsFlow--YDF
 
       +LinksCardsFlow-ItemWithSVG_Icon--YDF({
-        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
-            "Package/Markup/InlineECMAScript/Source/PugExtensions/processObjectTypeParameterOfPugMixin.ts",
+        unendorsedExternalURI:
+            GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/Markup/InlineECMAScript/Source/PugExtensions/processObjectTypeParameterOfPugMixin.ts",
         title: "Source code"
       }): +File__SourceCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
 
 
       +LinksCardsFlow-ItemWithSVG_Icon--YDF({
-        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-ES-Extensions/blob/master/CoreLibrary/" +
-            "Package/Documentation/RawObjectDataProcessor/RawObjectDataProcessor.md",
+        unendorsedExternalURI:
+            GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/Documentation/RawObjectDataProcessor/RawObjectDataProcessor.md",
         title: "RawObjectDataProcessor"
       })
         +Bookmark__Outlined--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
@@ -584,8 +587,9 @@ block append SpecificContent
             by #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin] #[+Term--YDID function]
 
       +LinksCardsFlow-ItemWithSVG_Icon--YDF({
-        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
-            "Package/Components/Controls/TextBox/TextBox.pug",
+        unendorsedExternalURI:
+            GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/GUI_Components/Controls/Validatables/TextBox/TextBox.pug",
         title: "Live example"
       })
         +File__SourceCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon

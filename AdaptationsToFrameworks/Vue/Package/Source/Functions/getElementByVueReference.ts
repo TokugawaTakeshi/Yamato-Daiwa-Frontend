@@ -3,7 +3,6 @@ import {
   Logger,
   DOM_ElementRetrievingFailedError,
   isUndefined,
-  isNotUndefined,
   UnexpectedEventError
 } from "@yamato-daiwa/es-extensions";
 
@@ -110,7 +109,14 @@ export default function getElementByVueReference<DOM_ElementSubtype extends Elem
   }
 
 
-  if (isNotUndefined(expectedDOM_ElementSubtype) && !(referenceContent instanceof expectedDOM_ElementSubtype)) {
+  if (isUndefined(expectedDOM_ElementSubtype)) {
+    /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
+     * If `expectedDOM_ElementSubtype` is not specified, then `DOM_ElementSubtype` is `Element`. */
+    return referenceContent as DOM_ElementSubtype;
+  }
+
+
+  if (!(referenceContent instanceof expectedDOM_ElementSubtype)) {
     Logger.throwErrorWithFormattedMessage({
       errorInstance: new UnexpectedEventError(
         `The Vue reference with ID "${ vueReferenceID }" refers instance of \`Element\` but contrary to expectations ` +
@@ -122,6 +128,6 @@ export default function getElementByVueReference<DOM_ElementSubtype extends Elem
   }
 
 
-  return null;
+  return referenceContent;
 
 }

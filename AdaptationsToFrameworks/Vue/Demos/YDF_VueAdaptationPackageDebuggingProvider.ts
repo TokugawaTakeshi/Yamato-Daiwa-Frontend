@@ -77,7 +77,7 @@ export default class YDF_VueAdaptationPackageDebuggingProvider {
 
       Logger.logInfo({
         title: "[ YDF Vue Adaptation Package Debugging Provider ]",
-        description: "Watching for the \"Distributable\" directory of \"@yamato-daiwa/es-extensions-nodejs\" for changes...",
+        description: "Watching for the \"Distributable\" directory of \"@yamato-daiwa/frontend-vue\" for changes...",
         compactLayout: true
       });
 

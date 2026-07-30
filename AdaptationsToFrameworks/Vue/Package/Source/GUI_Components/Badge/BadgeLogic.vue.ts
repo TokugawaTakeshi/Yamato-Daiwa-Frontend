@@ -187,9 +187,9 @@ class Badge extends VueComponent {
 
 
   /* ━━━ Transforming to Options API ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static applyStaticMembersToInheritorTransformedToOptionAPI(inheritedComponent: object): object {
+  public static applyStaticMembersToInheritorTransformedToOptionAPI(inheritedComponentClass: typeof Badge): typeof Badge {
     return Object.defineProperties(
-      inheritedComponent,
+      inheritedComponentClass,
       {
         CSS_NAMESPACE: { value: Badge.CSS_NAMESPACE },
         Themes: { value: Badge.Themes },

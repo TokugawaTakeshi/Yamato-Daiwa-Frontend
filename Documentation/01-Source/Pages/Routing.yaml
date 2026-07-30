@@ -45,15 +45,25 @@ coreLibrary:
                           japanese: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/TableOfContents/processObjectTypeParameterOfPugMixin.toc.japanese.yaml
                           russian: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/TableOfContents/processObjectTypeParameterOfPugMixin.toc.russian.yaml
 
+                    HeadingsLevelsCoordinator:
+                      $heading: "<code>HeadingsLevelsCoordinator</code>"
+                      $URI: `@All/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/HeadingsLevelsCoordinator/HeadingsLevelsCoordinator.${ fileNameLocalizationExtensions }`
+                      $sectioning:
+                        $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/HeadingsLevelsCoordinator/TableOfContents/HeadingsLevelsCoordinator.toc.yaml
+                        $localizations:
+                          english: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/HeadingsLevelsCoordinator/TableOfContents/HeadingsLevelsCoordinator.toc.english.yaml
+                          japanese: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/HeadingsLevelsCoordinator/TableOfContents/HeadingsLevelsCoordinator.toc.japanese.yaml
+                          russian: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/HeadingsLevelsCoordinator/TableOfContents/HeadingsLevelsCoordinator.toc.russian.yaml
+
                     RoutingEmulator:
                       $heading: "<code>RoutingEmulator</code>"
                       $URI: `@All/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/RoutingEmulator.${ fileNameLocalizationExtensions }`
                       $sectioning:
-                        $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/TableOfContents/TableOfContents.toc.yaml
+                        $specificationFileRelativePath: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/TableOfContents/RoutingEmulator.toc.yaml
                         $localizations:
-                          english: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/TableOfContents/TableOfContents.toc.english.yaml
-                          japanese: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/TableOfContents/TableOfContents.toc.japanese.yaml
-                          russian: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/TableOfContents/TableOfContents.toc.russian.yaml
+                          english: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/TableOfContents/RoutingEmulator.toc.english.yaml
+                          japanese: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/TableOfContents/RoutingEmulator.toc.japanese.yaml
+                          russian: 01-Source/Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/TableOfContents/RoutingEmulator.toc.russian.yaml
 
                 assets:
 
@@ -152,19 +162,21 @@ coreLibrary:
 #                  japanese: 01-Source/Pages/CoreLibrary/Styles/Assets/FundamentalConstantsAndEnums/TableOfContents/FundamentalConstantsAndEnums.toc.japanese.yaml
 #                  russian: 01-Source/Pages/CoreLibrary/Styles/Assets/FundamentalConstantsAndEnums/TableOfContents/FundamentalConstantsAndEnums.toc.russian.yaml
 
-              $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md"
+              $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md"
 
               $children:
 
                 DataTypes:
-                  $heading: "<code>DataTypes</code>"
-                  $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md#datatypes---stylus-data-types"
-                  # $URI: `@All/CoreLibrary/Styles/Assets/FundamentalConstantsAndEnums/DataTypes/DataTypes.${ fileNameLocalizationExtensions }`
+                  $heading: "<code>DataTypes--YDF</code>"
+                  $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md#datatypes--ydf---stylus-data-types"
 
                 NARROWEST_SCREEN_WIDTH_UNIT:
-                  $heading: "<code>NARROWEST_SCREEN_WIDTH_UNIT</code>"
-                  $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md#narrowest_screen_width_unit---the-narrowest-screen-width-unit"
-                  # $URI: `@All/CoreLibrary/Styles/Assets/FundamentalConstantsAndEnums/NARROWEST_SCREEN_WIDTH_UNIT/NARROWEST_SCREEN_WIDTH_UNIT.${ fileNameLocalizationExtensions }`
+                  $heading: "<code>NARROWEST_SCREEN_WIDTH_UNIT--YDF</code>"
+                  $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md#narrowest_screen_width_unit--ydf---the-narrowest-screen-width-unit"
+
+                SMALLEST_DIVISION_OF_CSS_PIXEL:
+                  $heading: "<code>SMALLEST_DIVISION_OF_CSS_PIXEL--YDF</code>"
+                  $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md#smallest_division_of_css_pixel--ydf---the-smallest-division-of-css-pixel"
 
             colors:
 
@@ -175,7 +187,7 @@ coreLibrary:
 
                   $heading: `coreLibrary.styles.assets.colors.PracticalColorCoordinateSystem.$heading`
 
-                  $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/01-Assets/02-Colors/PracticalColorCoordinateSystem/PracticalColorCoordinateSystem.md"
+                  $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/02-Colors/PracticalColorCoordinateSystem.md"
 
 #                  $URI: `@All/CoreLibrary/Styles/Assets/Colors/PracticalColorCoordinateSystem/PracticalColorCoordinateSystem.${ fileNameLocalizationExtensions }`
 #                  $sectioning:
@@ -189,7 +201,7 @@ coreLibrary:
 
                   $heading: `coreLibrary.styles.assets.colors.TemporarySemitransparentHighlighting.$heading`
 
-                  $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/01-Assets/02-Colors/TemporaryHighlighting/TemporaryHighlighting.md"
+                  $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/02-Colors/TemporaryHighlighting/TemporaryHighlighting.md"
 
 #                  $URI: `@All/CoreLibrary/Styles/Assets/Colors/TemporarySemitransparentHighlighting/TemporarySemitransparentHighlighting.${ fileNameLocalizationExtensions }`
 #                  $sectioning:
@@ -203,7 +215,7 @@ coreLibrary:
 
                   $heading: `coreLibrary.styles.assets.colors.W3C_39_ShadesOfGray.$heading`
 
-                  $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/01-Assets/02-Colors/ShadesOfGray__39ColorsW3C_Palette/ShadesOfGray__39ColorsW3C_Palette.md"
+                  $URI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Styles/01-Assets/02-Colors/ShadesOfGray__39ColorsW3C_Palette/ShadesOfGray__39ColorsW3C_Palette.md"
 
 #                  $URI: `@All/CoreLibrary/Styles/Assets/Colors/W3C_39_ShadesOfGray/W3C_39_ShadesOfGray.${ fileNameLocalizationExtensions }`
 #                  $sectioning:

@@ -12,12 +12,10 @@ import DecorativeVariationVuePropertyValidator from "../../../_VuePropertiesVali
 import preventNullForOptionalVueProperty from "../../../_Decorators/preventNullForOptionalVueProperty";
 
 /* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-import {
-  type TextBoxLocalization,
-  TextBoxYDF_GUI_ComponentLocalization__English
-} from "@yamato-daiwa/frontend";
+import { type TextBoxLocalization, TextBoxYDF_GUI_ComponentLocalization__English } from "@yamato-daiwa/frontend";
 
 /* ┅┅┅ GUI Components ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+import ValidatableControl from "../ValidatableControl";
 import InputtableControl from "../InputtableControl.vue";
 import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShellLogic.vue";
 import Button from "../../Buttons/Plain/ButtonLogic.vue";
@@ -32,12 +30,12 @@ import {
 } from "vue-facing-decorator";
 
 /* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-import ValidatableControl from "../ValidatableControl";
 import InvalidVuePropertyError from "../../../_Errors/InvalidVueProperty/InvalidVuePropertyError";
 import YDF_ComponentsCoordinator from "../../../YDF_ComponentsCoordinator";
 import getElementByVueReference from "../../../../Functions/getElementByVueReference";
 import AccessibleFromTemplateAsNonReactive from "../../../_Decorators/AccessibleFromTemplateAsNonReactive";
 import NonReactiveVueData from "../../../_Decorators/NonReactiveVueData";
+import TextAreaResizer from "autosize";
 import {
   type ElementOfPseudoEnumeration,
   Logger,
@@ -64,7 +62,8 @@ class TextBox<
   /* ━━━ Common Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static CSS_NAMESPACE: string = "TextBox--YDF";
 
-  public static HTML_Types: TextBox.HTML_Types = {
+  @AccessibleFromTemplateAsNonReactive
+  public static readonly HTML_Types: TextBox.HTML_Types = {
     regular: "text",
     email: "email",
     number: "number",
@@ -228,6 +227,13 @@ class TextBox<
 
   /* ┅┅┅ Converting of Inputted Values ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   @VueProperty({
+    type: Function,
+    required: false
+  })
+  @preventNullForOptionalVueProperty
+  protected readonly rawInputTransformer?: (rawInput: string) => NonEmptyValueType | EmptyValueType;
+
+  @VueProperty({
     default: false,
     get validator(): VuePropertyValidator {
       return BooleanVuePropertyValidator({
@@ -286,8 +292,16 @@ class TextBox<
   protected onValueCopiedExternalEventHandler?: (value: string) => unknown;
 
   protected onValueCopyingButtonClicked(): void {
-    navigator.clipboard.writeText(this.rawInput).catch(Logger.logPromiseError);
-    this.onValueCopiedExternalEventHandler?.(this.rawInput);
+
+    navigator.clipboard.
+        writeText(this.rawInput).
+        then((): void => {
+          this.onValueCopiedExternalEventHandler?.(this.rawInput);
+        }).
+        catch(Logger.logPromiseError);
+
+    this.$emit("valueCopied", this.rawInput);
+
   }
 
 
@@ -313,6 +327,7 @@ class TextBox<
 
   protected onPasswordDisplayingToggleClicked(): void {
     this.isPasswordDisplaying = !this.isPasswordDisplaying;
+    this.focus();
   }
 
 
@@ -334,13 +349,17 @@ class TextBox<
       componentName: TextBox.CSS_NAMESPACE
     })
   })
-  protected readonly validatablePayload!:
+  protected readonly payload!:
       ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>;
 
   protected rawInput: string = "";
 
 
   /* ┅┅┅ Highlighting ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  public static readonly ValidityHighlightingActivationModes:
+      typeof ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes =
+          ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes;
+
   @VueProperty({
     required: true,
     get validator(): VuePropertyValidator {
@@ -356,7 +375,7 @@ class TextBox<
   protected validityHighlightingActivationMode!:
       ElementOfPseudoEnumeration<typeof ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes>;
 
-  @NonReactiveVueData(null)
+  @NonReactiveVueData({ initialValue: null })
   protected initialValidityHighlightingActivationMode!:
       ElementOfPseudoEnumeration<typeof ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes>;
 
@@ -364,12 +383,12 @@ class TextBox<
   protected mustHighlightInputtedValueValidity: boolean = false;
 
   protected get mustHighlightInvalidInputtedValue(): boolean {
-    return this.validatablePayload.isInvalid && this.mustHighlightInputtedValueValidity;
+    return this.payload.isInvalid && this.mustHighlightInputtedValueValidity;
   }
 
   protected get mustHighlightValidInputtedValue(): boolean {
     return this.mustHighlightValidInputWhenItIsValid &&
-        !this.validatablePayload.isInvalid &&
+        !this.payload.isInvalid &&
         this.mustHighlightInputtedValueValidity;
   }
 
@@ -439,6 +458,12 @@ class TextBox<
     }
 
 
+    if (isNotUndefined(this.rawInputTransformer)) {
+      this.updateVModel(this.rawInputTransformer(rawValue));
+      return;
+    }
+
+
     if (this.HTML_Type === TextBox.HTML_Types.number) {
 
       if (this.mustConvertEmptyValueToZero && this.rawInput.startsWith("0")) {
@@ -477,12 +502,15 @@ class TextBox<
     /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions --
     * It is unlikely that there is a way to specify the correspondence between each waw inputted value and
     *   `NonEmptyValueType | EmptyValueType`. */
-    return this.validatablePayload.updateImmutably(newValue as NonEmptyValueType | EmptyValueType);
+    return this.payload.updateImmutably(newValue as NonEmptyValueType | EmptyValueType);
   }
 
-  @emitVueEvent("BLUR")
-  protected onFocusOut(): void {
+  @emitVueEvent("focusOut")
+  protected onFocusOut():
+      ValidatableControl.Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>
+  {
     this.mustHighlightInputtedValueValidity = true;
+    return this.payload;
   }
 
 
@@ -800,12 +828,66 @@ class TextBox<
       label: this.labelElementHTML_ID ?? `${ this.INSTANCE_ID }-LABEL`
     };
 
-    if (isString(this.validatablePayload.value)) {
-      this.rawInput = this.validatablePayload.value;
-    } else if (isNumber(this.validatablePayload.value, { mustConsiderNaN_AsNumber: true })) {
-      this.rawInput = String(this.validatablePayload.value);
+    if (isString(this.payload.value)) {
+      this.rawInput = this.payload.value;
+    } else if (isNumber(this.payload.value, { mustConsiderNaN_AsNumber: true })) {
+      this.rawInput = String(this.payload.value);
     } else {
       this.rawInput = "";
+    }
+
+  }
+
+  protected mounted(): void {
+
+    if (this.multiline && this.autoResizingForMultilineMode) {
+      this.
+          $nextTick(
+            (): void => {
+              TextAreaResizer(
+                getElementByVueReference({
+                  vueReferenceID: TextBox.INPUT_OR_TEXT_AREA_ELEMENT_VUE_REFERENCE_ID,
+                  parentVueComponent: this,
+                  mustExpectExactlyOneElement: true
+                })
+              );
+            }
+          ).
+          catch(Logger.logPromiseError);
+    }
+
+  }
+
+  protected updated(): void {
+
+    if (this.multiline && this.autoResizingForMultilineMode) {
+      this.
+          $nextTick(
+            (): void => {
+              TextAreaResizer.update(
+                getElementByVueReference({
+                  vueReferenceID: TextBox.INPUT_OR_TEXT_AREA_ELEMENT_VUE_REFERENCE_ID,
+                  parentVueComponent: this,
+                  mustExpectExactlyOneElement: true
+                })
+              );
+            }
+          ).
+          catch(Logger.logPromiseError);
+    }
+
+  }
+
+  protected unmounted(): void {
+
+    if (this.multiline && this.autoResizingForMultilineMode) {
+      TextAreaResizer.destroy(
+        getElementByVueReference({
+          vueReferenceID: TextBox.INPUT_OR_TEXT_AREA_ELEMENT_VUE_REFERENCE_ID,
+          parentVueComponent: this,
+          mustExpectExactlyOneElement: true
+        })
+      );
     }
 
   }
@@ -816,13 +898,44 @@ class TextBox<
   public static localization: TextBoxLocalization = TextBoxYDF_GUI_ComponentLocalization__English;
 
 
+  /* ━━━ Raw Input Transformers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public static convertToNumberHerewithEmptyStringToZero(rawValue: string): number {
+
+      if (rawValue === "") {
+        return 0;
+      }
+
+
+      const numericValue: number = Number(rawValue);
+
+      return isNaN(numericValue) ? 0 : numericValue;
+
+    }
+
+    public static convertToIntegerHerewithEmptyStringToNull(rawValue: string): number | null {
+
+      if (rawValue === "") {
+        return null;
+      }
+
+
+      const numericValue: number = Number(rawValue);
+
+      return Number.isInteger(numericValue) ? numericValue : null;
+
+    }
+
+
   /* ━━━ Transforming to Options API ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static applyStaticMembersToInheritorTransformedToOptionAPI(inheritedComponent: object): object {
+  public static applyStaticMembersToInheritorTransformedToOptionAPI(
+    inheritedComponentClass: typeof TextBox
+  ): typeof TextBox {
     return Object.defineProperties(
-      inheritedComponent,
+      inheritedComponentClass,
       {
         CSS_NAMESPACE: { value: TextBox.CSS_NAMESPACE },
         HTML_Types: { value: TextBox.HTML_Types },
+        ValidityHighlightingActivationModes: { value: TextBox.ValidityHighlightingActivationModes },
         Themes: { value: TextBox.Themes },
         defineThemes: { value: TextBox.defineThemes },
         GeometricVariations: { value: TextBox.GeometricVariations },
@@ -830,7 +943,9 @@ class TextBox<
         geometricModifiers: { value: TextBox.GeometricModifiers },
         DecorativeVariations: { value: TextBox.DecorativeVariations },
         defineDecorativeVariations: { value: TextBox.defineDecorativeVariations },
-        localization: { value: TextBox.localization }
+        localization: { value: TextBox.localization },
+        convertToNumberHerewithEmptyStringToZero: { value: TextBox.convertToNumberHerewithEmptyStringToZero },
+        convertToIntegerHerewithEmptyStringToNull: { value: TextBox.convertToIntegerHerewithEmptyStringToNull }
       }
     );
   }
