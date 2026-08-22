@@ -1,0 +1,322 @@
+//- ━━━ Краткий обзор ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+mixin AdmonitionBlockComponent-Abstract
+
+  p.Article-Paragraph.
+    Рамки с текстом использовались ещё задолго до компьютеризации — в книгах и другой печатной продукции.
+    Хотя чаще всего рамкой выделяют важный текст, иногда рамкой обрамляются заметки, примечания и прочая
+      второстепенная информация.
+
+  p.Article-Paragraph.
+    В разработке сайтов и приложений, выделение блока текста в рамку стало более продвинутым и частым.
+
+  ul.Article-UnorderedList
+
+    li.
+      Как и в печатной продукции, рамка используется на сайтах с большим количеством текста для выделения его фрагментов.
+      Чтобы посетитель мог мгновенно оценить важность выделяемого текста, используется цветовая кодировка: для важных
+        блоков обычно выбирают тёплые цвета (красный, оранжевый, жёлтый), в остальных случаях — холодные
+        (синий, голубой, зелёный) или ахроматические (чёрная или серая рамка с белым или светло-серым фоном).
+      Кроме того, иногда используются иконки.
+
+    li.
+      В #[+Term--YDID графических пользовательских интерфейсах] (#[+Term--YDID GUI]) рамка с текстом
+        приобрела дополнительную функцию, став одним из способов оповещения пользователя.
+      В отличие от #[+Term--YDID всплывающих сообщений], отображающихся короткий промежуток времени, рамка с текстом
+        обычно отображается постоянно или до тех пор, пока пока пользователь&nbsp;не уберёт её с помощью
+        соответствующей кнопки (если таковая имеется).
+      Рекомендуется также предложить пользователю отреагировать на сообщение, добавив внутрь рамки дополнительные кнопки.
+
+  p.Article-Paragraph.
+    Использовать рамку с текстом для оповещения пользователя рекомендуется в следующих случаях:
+
+  dl.Article-DescriptionList
+
+    dt Отображение ошибки при #[+Keyword--YDID получении] данных с #[+Term--YDID сервера]
+    dd В этом случае рекомендуется добавить кнопку для инициирования повторной попытки получения данных.
+
+    dt Отображение сообщения об отсутствии данных, которые можно показать
+    dd.
+      Следует подготовить #[+Keyword--YDID отдельные] сообщения для случаев, когда нет&nbsp;данных, удовлетворяющих
+        поисковому запросу, и для случая, когда данных нет&nbsp;вообще.
+      Предложить пользователю отреагировать на сообщение тоже следует по-разному: в первом случае — подготовить копку
+        для сброса поискового запроса, а во втором — предложить добавить данные, если пользователю это позволено
+        авторизованному на данный момент пользователю.
+
+    dt Отображение #[+Keyword--YDID коротких] инструкций по использованию сайта или приложения
+    dd.
+      Это очень важно делать для не&nbsp;только для новых пользователей конкретно Вашего сайта или приложения, но и
+        для пользователей с низким уровнем компьютерной грамотности, которых ещё очень много.
+
+    dt Побуждение пользователей к конкретному действию
+    dd.
+      Например, если на Вашем сайте или приложении регистрация опциональная, то можно предложить пользователю
+        зарегистрироваться и объяснить, какие преимущества это даст.
+      Разумеется, в данном случае должны быть ссылки на страницу регистрации и авторизации (для уже загеристрированных
+        пользователей).
+
+  p.Article-Paragraph.
+    Напротив, в следующих случах рамка с текстом #[+Keyword--YDID не]&nbsp;является лучших выбором:
+
+  ul.Article-UnorderedList
+    li Отображение ошибки при #[+Keyword--YDID отправке] данных
+    li Отображение сообщения об успешной отправке данных
+    li Отображение сообщения об успешном входе в систему или выходе из неё
+
+  p.Article-Paragraph.
+    Для этих сценариев гораздо лучше подходят #[+Term--YDID всплывающие сообщения] (в #[+ImportantEntity--YDID YDF]
+      это компонент #[+ImportantEntity--YDID Snackbar]).
+
+
+//- ━━━ Сводка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  AdmonitionBlockGUI_ComponentOverviewLocalization.setLocalizer(
+    () => ({
+      themes: {
+        [AdmonitionBlock__YDF.Themes.regular]: "Базовая (по умолчанию)"
+      },
+      geometricVariations: {
+        [AdmonitionBlock__YDF.GeometricVariations.regular]: "Базовая (по умолчанию)",
+        [AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike]: "Похожая на клейкие листочки"
+      },
+      decorativeVariations: {
+        [AdmonitionBlock__YDF.DecorativeVariations.notice]: "Заметка",
+        [AdmonitionBlock__YDF.DecorativeVariations.error]: "Ошибка либо критически важное примечание",
+        [AdmonitionBlock__YDF.DecorativeVariations.warning]: "Предупреждение",
+        [AdmonitionBlock__YDF.DecorativeVariations.success]: "Успешное выполнение действия",
+        [AdmonitionBlock__YDF.DecorativeVariations.guidance]: "Объяснение",
+        [AdmonitionBlock__YDF.DecorativeVariations.question]: "Вопрос"
+      }
+    })
+  );
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  AdmonitionBlockComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources = {
+    pugMixinParametersLocalization: [ { localizedName: "Свойства" } ],
+    propertiesLocalizedInterpretations: {
+      title: "Заголовок",
+      SVG_Icon: "SVG-иконка",
+      dismissible: "Возможно ли убрать",
+      react: {
+        actionBarContent: "Содержимое панели действий",
+        rootElementAttributes: "HTML-атрибуты корневого элемента"
+      },
+      blazor: {
+        hasDefaultSVG_Icon: "Имеет ли SVG-иконку по умолчанию",
+        HTML_ID: "HTML-идентификатор"
+      }
+    }
+  };
+
+
+//- ━━━ Демо ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+mixin AdmonitionBlockComponent-MinimalExampleDescription(properties)
+
+  -
+
+    const { framework } = properties ?? {};
+
+    const exampleTitle = [
+      "Примеры отображения компонента «AdmonitionBlock» с минимальными настройками (библиотека: «Yamato Daiwa Frontend",
+      ...isNotUndefined(framework) ? [ ` ${ toUpperCamelCase(framework) }` ] : [],
+      "», сокращённо: «YDF",
+      ...isNotUndefined(framework) ? [ ` ${ toUpperCamelCase(framework) }` ] : [],
+      "»."
+    ].join("")
+
+    const exampleURI = (() => {
+
+      switch (framework) {
+
+        case SupportedFrameworks.vue:
+            return "$Demos:Vue/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-Minimal.html"
+
+        default:
+            return "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-Minimal.html"
+
+      }
+
+    })();
+
+  +WebPageViewer--YDF({
+    URI: exampleURI,
+    title: exampleTitle
+  })
+
+  p.Article-Paragraph
+    | #[+Keyphrase--YDID В простейшем случае], из #[+Term--YDID свойств] #[+Keyword--YDID необходимо] указать
+    |   #[+Keyword--YDID только] #[+Term--YDID декоративную вариацию], поскольку #[+Term--YDID декоративной вариации]
+    |   по умолчанию #[+Keyword--YDID нет].
+    | С помощью #[+Term--YDID декоративной вариации] кодируется важность сообщения.
+
+    if framework
+
+      | Текст сообщения либо его #[+Term--YDID HTML-код] указываются как дочерний элемент:
+
+    else
+
+      | Текст сообщения либо его #[+Term--YDID HTML-код] указывается через
+      |
+      +Link--YDF({
+        unendorsedExternalURI: sharedExternalLinks.pug.homePage.mixinBlocks
+      }) блок Pug-примеси
+      | :
+
+
+mixin AdmonitionBlockComponent-TitlePropertyDescription(properties)
+
+  -
+
+    const { framework } = properties ?? {};
+
+    const exampleURI = (() => {
+
+      switch (framework) {
+
+        case SupportedFrameworks.vue:
+            return "$Demos:Vue/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-Titles.html"
+
+        default:
+            return "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-Titles.html"
+
+      }
+
+    })();
+
+    const exampleTitle = [
+      "Примеры отображения компонента «AdmonitionBlock» с заголовками (библиотека: «Yamato Daiwa Frontend",
+      ...isNotUndefined(framework) ? [ ` ${ toUpperCamelCase(framework) }` ] : [],
+      "», сокращённо: «YDF",
+      ...isNotUndefined(framework) ? [ ` ${ toUpperCamelCase(framework) }` ] : [],
+      "»."
+    ].join("");
+
+
+  +WebPageViewer--YDF({ URI: exampleURI, title: exampleTitle })
+
+  p.Article-Paragraph
+    | Сообщение в рамке будет с большей вероятностью прочитано и осмыслено, если снабдить его
+    |   #[+Keyphrase--YDID кратким и чётким] заголовком.
+    | В условиях острого дефицита времени, характерного для современного образа жизни, люди часто
+    |   #[+Keyword--YDID не]&nbsp;читают страницу полностью, а пробегают глазами по заголовкам, и если какой-то
+    |   из них для конкретного человека чем-то важен, то только тогда он начнёт читать связанный с этим заголовком
+    |   текст.
+    | Хотя добавленный заголовок #[+Keyword--YDID не]&nbsp;будет использовать #[+Term--YDID тэги] HTML-заголовков
+    |   (#[+ImportantEntity__Code--YDID h1-h6]), он будет #[+Keyword--YDID семантически] связан с содержимым
+    |
+
+    case framework
+
+      when SupportedFrameworks.vue
+
+        +Link--YDF({ unendorsedExternalURI: sharedExternalLinks.vue.officialSite.slots }) vue-слота
+
+      default
+
+        +Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.mixinBlocks }) блока Pug-примеси
+
+    | .
+
+
+mixin AdmonitionBlockComponent-ButtonsUsageCommonDescription(properties)
+
+  -
+
+    const { framework } = properties ?? {};
+
+    const exampleURI = (() => {
+
+      switch (framework) {
+
+        case SupportedFrameworks.vue:
+            return "$Demos:Vue/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-Titles.html"
+
+        default:
+            return "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-CenteredButton.html"
+
+      }
+
+    })();
+
+    const exampleTitle = [
+      "Примеры отображения компонента «AdmonitionBlock» с центрированной кнопкой (библиотека: «Yamato Daiwa Frontend",
+      ...isNotUndefined(framework) ? [ ` ${ toUpperCamelCase(framework) }` ] : [],
+      "», сокращённо: «YDF",
+      ...isNotUndefined(framework) ? [ ` ${ toUpperCamelCase(framework) }` ] : [],
+      "»."
+    ].join("")
+
+
+  +WebPageViewer--YDF({ URI: exampleURI, title: exampleTitle })
+
+  p.Article-Paragraph.
+      Многие сообщения могут вызвать ступор у пользователей с низкой компьютерной грамотностью, а таковых всё ещё немало.
+      Чтобы повысить комфорт таких пользователей, следует предложить им как-либо отреагировать на сообщение, при этом
+        подготовить кнопку для соответствующего действия.
+      Например:
+
+  ul.Article-UnorderedList
+
+    li.
+      В случае сообщения об ошибке при получении данных можно подготовить кнопку, которая запустит процесс повторного
+        получения данных.
+      Если ошибка произошла из-за нестабильного интернет соединения, то при его восстановлении повторная попытка
+        получения данных может завершиться успешно.
+
+    li.
+      В случае сообщения о том, что данных пока нет, можно предложить пользователю эти данные добавить, если у него
+        есть на это право.
+      Если для добавления данных существует отдельная страница, то кнопка в данном случае будет ссылкой,
+        ведущей на эту страницу.
+
+    li.
+      Если же вообще данные есть, но нет данных, соответствующей конкретному фильтру, то соответствующему сообщению
+        можно добавить кнопку сброса фильтров.
+
+
+mixin AdmonitionBlockComponent-DismissingFunctionalityCommonDescription(properties)
+
+  -
+
+    const { framework } = properties ?? {};
+
+    const exampleURI = (() => {
+
+      switch (framework) {
+
+        case SupportedFrameworks.vue:
+            return "$Demos:Vue/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-Titles.html"
+
+        default:
+            return "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-DismissingButton.html"
+
+      }
+
+    })();
+
+    const exampleTitle = [
+      "Примеры отображения компонента «AdmonitionBlock» с кнопкой для убирания (библиотека: «Yamato Daiwa Frontend",
+      ...isNotUndefined(framework) ? [ ` ${ toUpperCamelCase(framework) }` ] : [],
+      "», сокращённо: «YDF",
+      ...isNotUndefined(framework) ? [ ` ${ toUpperCamelCase(framework) }` ] : [],
+      "»."
+    ].join("")
+
+
+  +WebPageViewer--YDF({ URI: exampleURI, title: exampleTitle })
+
+  +AdmonitionBlock--YDF({
+      title: "«Убирание» и «сокрытие» — не одно и тоже",
+      SVG_Icon: true,
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning,
+    }).
+      Хотя вместо редко используемого слова «убирание» хочется использовать слова «скрывание» или «сокрытие», они
+        #[+Keyphrase--YDID для веб-разработчиков] являются #[+Keyword--YDID неточными].
+      Если #[+Term--YDID DOM-элемент] «скрыт», то это ещё #[+Keyword--YDID не]&nbsp;значит, что его больше нет
+        в #[+Term--YDID DOM-древе]: у него может быть стопроцентная прозрачность, или установлено
+        #[+SecondaryEntity__Code--YDID display: none] через #[+ImportantEntity--YDID CSS], или же у него нулевые
+        ширина и высота, но при этом установлено #[+SecondaryEntity__Code--YDID overflow: hidden], и так далее.
+      «Убирание» же означает, что #[+Term--YDID элемент] #[+Keyword--YDID удалён] из #[+Term--YDID DOM-древа].

@@ -1,0 +1,35 @@
+problems:
+
+  $heading: "Problems"
+
+YDF_Solution:
+
+  $heading: "The YDF solution"
+
+singleParameterProperties:
+
+  $heading: "The Properties of the Sole Parameter"
+
+  rawParameter:
+
+    $heading: "<code>rawParameter</code>"
+
+  parameterPropertiesSpecification:
+
+    $heading: "<code>parameterPropertiesSpecification</code>"
+
+  loggingProperties:
+
+    $heading: "The Logging Properties — <code>parameterNumber</code>, <code>parameterName</code>, <code>mixinName</code>"
+
+IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance:
+
+  $heading: "Quick input in IntelliJ IDEA family of IDEs"
+
+  steps:
+
+    $heading: "Steps for using the Live templates"
+
+externalLinks:
+
+  $heading: "External links"

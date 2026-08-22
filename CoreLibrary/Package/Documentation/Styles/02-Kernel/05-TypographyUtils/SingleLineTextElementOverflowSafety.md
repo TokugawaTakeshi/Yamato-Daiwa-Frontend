@@ -1,13 +1,13 @@
-# SingleLineTextElementOverflowSafety
+# SingleLineTextElementOverflowSafety--YDF
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-slteos-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 ```
-SingleLineTextElementOverflowSafety({
-  displayEllipsis?: DataTypes.boolean;
-  supportCrossAxisCenteredFlexChild?: DataTypes.boolean;
-  lineHeight?: DataTypes.dimensionalAmount | DataTypes.dimensionlessAmount;
-  verticalSymmetricPaddings?: DataTypes.dimensionalAmount;
+SingleLineTextElementOverflowSafety--YDF({
+  displayEllipsis?: DataTypes--YDF.boolean;
+  supportCrossAxisCenteredFlexChild?: DataTypes--YDF.boolean;
+  lineHeight?: DataTypes--YDF.dimensionalQuantity | DataTypes--YDF.dimensionlessQuantity;
+  verticalSymmetricPaddings?: DataTypes--YDF.dimensionalQuantity;
 })
 ```
 
@@ -18,13 +18,13 @@ spaces (like `foobarbazhogefuga` and so on).
 ```
 .NameLabel
 
-  SingleLineTextElementOverflowSafety({ displayEllipsis: true })
+  SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
 ```
 
 
 ## Caveats
 
-Works perfectly inside the table cells (by the way, the `TableCellWidthSizing` using the `SingleLineTextElementOverflowSafety`
+Works perfectly inside the table cells (by the way, the `TableCellWidthSizing--YDF` using the `SingleLineTextElementOverflowSafety--YDF`
 when option `truncateOnOverflow` is `true`) and elements with vertical paddings like buttons. Unfortunately the CSS limitations
 does not allow to make this mixin working in all cases and intuitive.
 
@@ -43,7 +43,7 @@ Other solution is add `max-width: 100%` to label. This what `supportCrossAxisCen
 ### Grid with equal-withs columns
 
 To prevent the overflow in grid layout (`display: grid | inline-grid`) with equal-width columns where the grandchildren 
-elements using `SingleLineTextElementOverflowSafety` (for example, the card is the child element and it's labels are 
+elements using `SingleLineTextElementOverflowSafety--YDF` (for example, the card is the child element and it's labels are 
 grandchildren elements), it's required to use `minmax` function: 
 
 ```stylus
@@ -51,17 +51,17 @@ grandchildren elements), it's required to use `minmax` function:
 
   display grid
   
-  // Will not prevent overflow even grandchildren has `SingleLineTextElementOverflowSafety`:
+  // Will not prevent overflow even grandchildren has `SingleLineTextElementOverflowSafety--YDF`:
   // grid-template-columns repeat(2, 1fr); 
 
-  // It will prevent overflow if grandchildren elements has `SingleLineTextElementOverflowSafety`
+  // It will prevent overflow if grandchildren elements has `SingleLineTextElementOverflowSafety--YDF`
   grid-template-columns repeat(2, minmax(0, 1fr));
 ```
 
 
 ### Handing over character truncating
 
-As is obvious and MUST BE obvious from the mixin name, `SingleLineTextElementOverflowSafety` is for single-line elements
+As is obvious and MUST BE obvious from the mixin name, `SingleLineTextElementOverflowSafety--YDF` is for single-line elements
 only. The logically right methodology is set the height of this line height equals to font-size. However, it to do it,
 because of `overflow: hidden` the tails of hanging characters (like `g` of `j`) will be cut off.
 
@@ -84,7 +84,7 @@ of mixin:
 ```stylus
 .NameLabel
   
-  SingleLineTextElementOverflowSafety({
+  SingleLineTextElementOverflowSafety--YDF({
     displayEllipsis: true,
     lineHeight: 1.2
   })

@@ -1,0 +1,594 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.english.pug
+  include ../../../../../../../SharedComponents/SharedComponents.english.pug
+
+  -
+
+    const compoundParameterPropertiesSpecification = {
+      rawParameter: {
+        type: "ParsedJSON_Object",
+        requiredIf: {
+          descriptionForLogging: "At least one of \"parameterPropertiesSpecification\"'s properties is marked as required"
+        }
+      },
+      parameterPropertiesSpecification: {
+        type: "RawObjectDataProcessor.PropertiesSpecification",
+        required: true
+      },
+      parameterNumber: {
+        type: "number",
+        required: true
+      },
+      parameterName: {
+        type: "string",
+        required: true
+      },
+      mixinName: {
+        type: "string",
+        required: true
+      }
+    };
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("processObjectTypeParameterOfPugMixin"),
+        description: MetaDescriptionTemplates.pugFunction({
+          functionName: "processObjectTypeParameterOfPugMixin",
+          whatFunctionDoes:
+              "processes the object-type parameter of a Pug mixin, including the validation of the properties and " +
+                "substitution of default values."
+        })
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute(
+      "coreLibrary.markup.functionality.inlineJavaScript.functionsAndClasses.processObjectTypeParameterOfPugMixin"
+    );
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      japanese: routing.japanese.coreLibrary.$children.markup.$children.functionality.$children.
+          inlineJavaScript.$children.functionsAndClasses.$children.processObjectTypeParameterOfPugMixin.$URI,
+      russian: routing.russian.coreLibrary.$children.markup.$children.functionality.$children.
+          inlineJavaScript.$children.functionsAndClasses.$children.processObjectTypeParameterOfPugMixin.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = routing.english.coreLibrary.$children.markup.$children.functionality.$children.inlineJavaScript.$children.
+        functionsAndClasses.$children.processObjectTypeParameterOfPugMixin;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: "processObjectTypeParameterOfPugMixin",
+      genericParameters: [
+        {
+          name: "ProcessedObjectTypeMixinParameter",
+          extends: "ParsedJSON_Object"
+        }
+      ],
+      parametersSpecification: [
+        {
+          genericTechnicalName: "compoundParameter",
+          type: "CompoundParameter",
+          required: true
+        }
+      ],
+      returnedValue: "ProcessedObjectTypeMixinParameter",
+      headingTag: "h1"
+    })
+      +ObjectTypeAbstract--YDF_DK({
+        typeName: "CompoundParameter",
+        propertiesSpecification: compoundParameterPropertiesSpecification
+      })
+
+    p.Article-Paragraph
+      | Validates and processes the #[+Keyword--YDID object-type] #[+Term--YDID parameter] of the
+      |
+      +Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.mixins }) Pug mixin
+      | .
+
+    p.Article-Paragraph.
+      Such functionality should be required when implementing #[+Term--YDID GUI components] or other
+        #[+Term--YDID markup] fragments using #[+Term--YDID Pug mixins] with a large number of
+        #[+Keyword--YDID customizable] #[+Term--YDID properties], wherein some (sometimes all) of them must satisfy
+        certain limitations for generating correct #[+Term--YDID HTML code].
+
+
+    //- ━━━ Problems ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.problems.$heading,
+      HTML_ID: localizedSectioning.problems.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph
+      | The #[+Term--YDID HTML preprocessor] #[+ImportantEntity--YDID Pug], like
+      |
+      +Link--YDF({
+        unendorsedExternalURI: sharedExternalLinks.pug.homePage.inlineJavaScript
+      }) internal JavaScript
+      |   is&nbsp;#[+Keyword--YDID not]&nbsp;a&nbsp;#[+Term--YDID statically-typed language].
+      | When using #[+Term--YDID Pug mixins] with #[+Term--YDID parameters], if the specified
+      |   #[+Term--YDID parameters] are invalid (the number of #[+Term--YDID parameters] or their #[+Term--YDID types],
+      |   etc.), there will&nbsp;be&nbsp;#[+Keyword--YDID no]&nbsp;#[+Keyword__Contrast--YDID advance] notification
+      |   to the developer.
+      | Even if an error occurs during #[+Term--YDID Pug-to-HTML conversion], the cause and location of the error could
+      |   be unclear, sometimes resulting in unexpected #[+Term--YDID HTML] code without any errors, which
+      |   developers might&nbsp;not&nbsp;notice for a long time.
+      | This is especially critical when the #[+Term--YDID mixins] are provided by third-party libraries, not&nbsp;written
+      |   by yourself, including when implementing #[+Term--YDID GUI components] via #[+Term__Contrast--YDID Pug mixins].
+
+    p.Article-Paragraph.
+      The #[+Keyword--YDID primitive] solution to this problem is checking the #[+Term--YDID types] of
+        #[+Term__Contrast--YDID parameters] and other #[+Term--YDID properties] such as character count or
+        #[+Term--YDID number set] using #[+Keyword--YDID native] #[+ImportantEntity--YDID JavaScript].
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+        :html_special_characters_to_html_entities
+          mixin Example(foo, bar, baz)
+
+            -
+
+              if (typeof foo !== "string") {
+                throw new Error(
+                  `The type of the 1st parameter of the "Example" mixin must be a string. Type found: "${ typeof foo }".`
+                );
+              }
+
+              if (foo.length < 2) {
+                throw new Error("1st parameter of the \"Example\" mixin must have at least two characters.");
+              }
+
+              if (typeof bar !== "number") {
+                throw new Error(
+                  `The type of the 2nd parameter of the "Example" mixin must be a number. Type found: "${ typeof bar }".`
+                );
+              }
+
+              if (!Number.isInteger(bar)) {
+                throw new Error("The 2nd parameter of \"Example\" mixin must be an integer.");
+              }
+
+              if (bar < 10) {
+                throw new Error(
+                  `The 2nd parameter of "Example" has been specified as ${ bar }, while the required minimal value is 10.`
+                );
+              }
+
+              if (typeof baz !== "boolean") {
+                throw new Error(
+                  `The type of the 3rd parameter of the "Example" mixin must be a boolean. Type found: ${ typeof baz }".`
+                );
+              }
+
+    p.Article-Paragraph.
+      As you can see, validating even three #[+Term--YDID parameters] takes a significant part of the code of the
+        #[+Term--YDID Pug mixin], and the error messages are formulaic so, in other #[+Term--YDID mixins], almost the same
+        phrases need to be typed.
+      Now, what if there are not&nbsp;just three #[+Term--YDID parameters], but more?
+      Also, what if there are tens of such #[+Term--YDID mixins]?
+      This situation is #[+Keyphrase--YDID entirely realistic] because, for the #[+Keyword--YDID average] web
+        application, having #[+ImportantEntity--YDID 20-30] #[+Term--YDID GUI components] with flexible settings via
+        plenty of #[+Term--YDID parameters] is normal.
+      Thus, manually validating #[+Term--YDID parameters] like in the above example would consume a lot of time,
+        mental energy, and lines of code.
+
+    p.Article-Paragraph.
+      Here, the question about a #[+Keyword--YDID unified] mechanism for parameter #[+Term--YDID validation] arises.
+      Such a mechanism must check the #[+Term--YDID parameters] and their #[+Term--YDID properties].
+      If something is wrong, it should log the details about #[+Keyword--YDID all] violations,
+        (#[+Keyword__Contrast--YDID not]&nbsp;only the first one).
+      The terminal output must be understandable enough so that users of the #[+Term--YDID Pug mixin] can quickly
+        fix the violation #[+Keyword--YDID themselves]
+        #[+Keyphrase--YDID without spending time searching for relevant documentation].
+
+
+    //- ━━━ The YDF solution ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.YDF_Solution.$heading,
+      HTML_ID: localizedSectioning.YDF_Solution.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph
+      | Using the
+      |
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            YDEE_Integration.$URI
+      }) YDEE integration
+      |   , specifically
+      |
+      +Link--YDF({
+        internalURI: sharedExternalLinks.YamatoDaiwaES_Extensions.RawObjectDataProcessor.top
+      }) RawObjectDataProcessor class
+      |   the #[+Term--YDID function] #[+ImportantEntity--YDID processObjectTypeParameterOfPugMixin] has been developed.
+      | As it is clear from the #[+Term--YDID function] name, this #[+Term__Contrast--YDID function] processes one
+      |   #[+Keyword--YDID object-type] #[+Term__Contrast--YDID parameter] of the #[+Term--YDID Pug mixin].
+
+    p.Article-Paragraph.
+      The tool for the validation of an arbitrary number of #[+Term--YDID parameters] of any type
+        (as in the #[+SecondaryEntity__Code--YDID +Example(foo, bar, baz)] example) has&nbsp;#[+Keyword--YDID not]
+        been developed because #[+Term--YDID mixins] (same as #[+Term__Contrast--YDID functions]) with a large number
+        of #[+Term--YDID parameters] cause problems in #[+Keyword--YDID both] maintenance and usage.
+      For example, in the #[+SecondaryEntity__Code--YDID +Example("top", 2, false)], it is unclear what
+        semantically means #[+SecondaryEntity__Code--YDID 2] and #[+SecondaryEntity__Code--YDID false].
+      Even if the #[+Term--YDID IDE] displays hints, in services like #[+SecondaryEntity--YDID GitHub], they
+        will&nbsp;not&nbsp;be available during code review (and finding a code editor or plugin that displays hints for
+        the #[+Term--YDID parameters] of #[+Term__Contrast--YDID Pug mixins] can be a challenge).
+      Fortunately, this problem can be easily solved with JavaScript-like #[+Term--YDID Pug] syntax by combining the
+        #[+Term--YDID parameters] into a single #[+Keyword--YDID object] #[+Term--YDID type]:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+        :html_special_characters_to_html_entities
+          mixin Example(compoundParameter)
+
+            const { foo, bar, baz } = compoundParameter;
+
+    p.Article-Paragraph.
+      In the above example, using #[+Term--YDID destructuring assignment], #[+Keyword--YDID all]
+        #[+Term__Contrast--YDID properties] have been extracted to separate #[+Term--YDID constants],
+        and now they can be used as if they were individual #[+Term--YDID parameters].
+      When using #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin], you need to destructure
+        the value that this #[+Term--YDID function] returns, #[+Keyword--YDID not]&nbsp;the&nbsp;#[+Term--YDID parameter]
+        #[+SecondaryEntity__Code--YDID compoundParameter] in the above example:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+        :html_special_characters_to_html_entities
+          mixin Example(compoundParameter)
+
+            const {
+              foo,
+              bar,
+              baz
+            } = processObjectTypeParameterOfPugMixin({
+              rawParameter: compoundParameter,
+              parameterNumber: 1,
+              parameterName: "compoundParameter",
+              parameterPropertiesSpecification: {
+                foo: {
+                  type: String,
+                  required: true,
+                  minimalCharactersCount: 2
+                },
+                bar: {
+                  type: Number,
+                  numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
+                  required: true,
+                  minimalValue: 10
+                },
+                baz: {
+                  type: Boolean,
+                  required: true
+                }
+              },
+              mixinName: "Example"
+            });
+
+    p.Article-Paragraph.
+      As you can see, this #[+Term--YDID function] #[+Keyword--YDID also] accepts the #[+Keyword--YDID sole]
+        #[+Term--YDID parameter] of the #[+Keyword--YDID object] #[+Term--YDID type].
+      The reasons are the same as described above for the #[+Term--YDID Pug mixins].
+      Among the #[+Term--YDID properties] of this #[+Term--YDID parameter] is
+        #[+ImportantEntity__Code--YDID rawParameter].
+      This one accepts the specific #[+Term--YDID parameter] of the #[+Keyword--YDID Pug mixin].
+      (In the above example, there is only one.)
+      Another important #[+Term--YDID property], #[+ImportantEntity__Code--YDID parameterPropertiesSpecification],
+        #[+Keyword--YDID must] be defined with the validation rules and, optionally, the processing such as default
+        value substitutions.
+
+    p.Article-Paragraph
+      | The #[+ImportantEntity__Code--YDID parameterPropertiesSpecification] #[+Term--YDID property] has the
+      |
+      +Link--YDF({
+        endorsedExternalURI: sharedExternalLinks.YamatoDaiwaES_Extensions.RawObjectDataProcessor.PropertiesSpecification
+      }) ObjectSubtypes.fixedKeyAndValuePairsObject
+      |   type.
+      | In fact, it is an #[+Keyphrase--YDID associative array-type] #[+Term--YDID object] whose
+      |    #[+Keyword--YDID keys] #[+Keyword__Contrast--YDID must] #[+Keyword--YDID match] the
+      |    #[+Term--YDID keys] of the target #[+Term--YDID parameter] #[+Keyphrase--YDID of the #[+Term--YDID Pug mixin]].
+
+    p.Article-Paragraph.
+      The #[+Keyword--YDID remaining] three #[+Term--YDID properties], #[+ImportantEntity__Code--YDID parameterNumber],
+        #[+ImportantEntity__Code--YDID parameterName] and #[+ImportantEntity__Code--YDID mixinName], are required
+        #[+Keyword--YDID only] for #[+Keyword__Contrast--YDID logging]; however, they are also important because,
+        without specifying them, it could be unclear where exactly the issue has occurred.
+
+
+    //- ━━━ The Properties of the Sole Parameter ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.singleParameterProperties.$heading,
+      HTML_ID: localizedSectioning.singleParameterProperties.$anchor
+    }).Article-Heading2
+
+    //- ─── `rawParameter` ─────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.singleParameterProperties.$children.rawParameter.$heading,
+      HTML_ID: localizedSectioning.singleParameterProperties.$children.rawParameter.$anchor
+    }).Article-Heading3
+
+    +PropertyMetadata--YDF_DK(compoundParameterPropertiesSpecification.rawParameter)
+
+    p.Article-Paragraph.
+      The #[+Term--YDID parameter] of the #[+Term__Contrast--YDID Pug mixin] #[+Keyphrase--YDID in the initial state].
+
+    ul.Article-UnorderedList
+
+      li.
+        Here, "raw" means that no&nbsp;manipulations such as default value substitution have been executed
+          #[+Keyword--YDID yet] on this #[+Term--YDID parameter].
+
+      li.
+        Must be of the #[+Keyword--YDID object] #[+Term--YDID type]; #[+Keyword--YDID otherwise],
+          #[+Keyphrase--YDID the validation will be #[+Keyword--YDID immediately] completed with an error].
+        The #[+Keyword--YDID only] #[+Keyword__Contrast--YDID exception] is when #[+Keyword--YDID all]
+          #[+Term--YDID properties] have been specified as #[+Keyword--YDID optional] in
+          #[+ImportantEntity__Code--YDID parameterPropertiesSpecification].
+        In this case, #[+ImportantEntity__Code--YDID rawParameter] could be of the
+          #[+ImportantEntity__Code--YDID undefined] #[+Term--YDID type] (in other words, be #[+Keyword--YDID omitted]
+          when invoking the #[+Term--YDID mixin]).
+        This way, #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin] will #[+Keyword--YDID replace]
+          the omitted #[+Term--YDID parameter] with the #[+Keyword--YDID empty] #[+Term--YDID object] and also
+          substitute the default values if those have been requested for the
+          #[+ImportantEntity__Code--YDID parameterPropertiesSpecification] #[+Term--YDID parameter].
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          mixin Example(compoundParameter)
+
+          const {
+            foo,
+            bar
+          } = processObjectTypeParameterOfPugMixin({
+            rawParameter: compoundParameter,
+            parameterNumber: 1,
+            parameterName: "compoundParameter",
+            parameterPropertiesSpecification: {
+              foo: {
+                type: String,
+                required: false,
+                minimalCharactersCount: 2
+              },
+              bar: {
+                type: Number,
+                numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
+                defaultValue: 10
+              }
+            },
+            mixinName: "Example"
+          });
+        +CodeViewer-Explanation--YDF.
+          According to the definitions in #[+ImportantEntity__Code--YDID parameterPropertiesSpecification] above, the
+            #[+SecondaryEntity__Code--YDID foo] #[+Term--YDID property] is #[+Keyword--YDID optional], and the
+            #[+SecondaryEntity__Code--YDID bar] property has the default value.
+          This means that the #[+SecondaryEntity__Code--YDID = {}] in
+            #[+SecondaryEntity__Code--YDID mixin Example(compoundParameter = {})] #[+Keyword--YDID can] be
+            #[+Keyword__Contrast--YDID omitted] because
+            #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin] will provide an #[+Keyword--YDID empty]
+            #[+Term--YDID object].
+
+
+    //- ─── `parameterPropertiesSpecification` ─────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.singleParameterProperties.$children.parameterPropertiesSpecification.$heading,
+      HTML_ID: localizedSectioning.singleParameterProperties.$children.parameterPropertiesSpecification.$anchor
+    }).Article-Heading3
+
+    +PropertyMetadata--YDF_DK(compoundParameterPropertiesSpecification.parameterPropertiesSpecification)
+
+    p.Article-Paragraph
+      | The rules of the validation and processing of the target #[+Term--YDID parameter] of the #[+Term--YDID Pug mixin]
+      |   in
+      |
+      +Link--YDF({
+        endorsedExternalURI: sharedExternalLinks.YamatoDaiwaES_Extensions.RawObjectDataProcessor.PropertiesSpecification
+      }) ObjectSubtypes.fixedKeyAndValuePairsObject
+      |
+      | format.
+      | In fact, it is an #[+Keyword--YDID associative array-type] #[+Term--YDID object], in which the
+      |   #[+Term--YDID keys] #[+Keyword--YDID must] match the #[+Term--YDID keys] of the target #[+Term--YDID parameter]
+      |   of the #[+Term__Contrast--YDID Pug mixin].
+
+    p.Article-Paragraph
+      | There are various options that you can select as the values of the
+      |   #[+ImportantEntity__Code--YDID ObjectSubtypes.fixedKeyAndValuePairsObject] #[+Term--YDID associative array],
+      |   but for #[+Keyword--YDID each] property of the #[+Term--YDID mixin], you need to specify
+      |   #[+Keyphrase--YDID at least] the #[+Term--YDID type] and #[+Term--YDID requirement] (#[+Term--YDID property]
+      |   with #[+ImportantEntity__Code--YDID "required"] name.
+      | If you want to provide the default value, specify #[+ImportantEntity__Code--YDID defaultValue]
+      |   #[+Term--YDID property] #[+Keyword--YDID instead]).
+      | Refer to the
+      |
+      +Link--YDF({
+        endorsedExternalURI: sharedExternalLinks.YamatoDaiwaES_Extensions.RawObjectDataProcessor.PropertiesSpecification
+      }) documentation for RawObjectDataProcessor
+      |   for details.
+
+    p.Article-Paragraph.
+      Unfortunately, since you are forced to use #[+ImportantEntity--YDID JavaScript] instead of
+        #[+ImportantEntity--YDID TypeScript] when using #[+ImportantEntity--YDID Pug], it is easy for you to make
+        mistakes when specifying the validation rules, which could lead to incorrect execution of the
+        #[+Term--YDID function], and it could take you some time to notice and locate the mistake.
+      However, it does #[+Keyword--YDID not]&nbsp;devalue the usage of
+        #[+ImportantEntity__Code--YDID parameterPropertiesSpecification], because the presence of the validation is
+        better than absence, and also with #[+ImportantEntity__Code--YDID parameterPropertiesSpecification], the routine
+        code volume will be #[+Keyword--YDID significantly] less. (In fact, we need to specify only what to validate and
+        under which rules to validate without caring about the implementation of the validation.)
+      To reduce the probability of a mistake when specifying the validation rules, you can define the
+        variable of the #[+ImportantEntity--YDID ObjectSubtypes.fixedKeyAndValuePairsObject] type in the
+        #[+ImportantEntity--YDID TypeScript] file and define all desired properties there, when pasting the value to the
+        #[+Term--YDID Pug code].
+
+    //- ─── The Logging Properties — `parameterNumber`, `parameterName`, `mixinName` ───────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.singleParameterProperties.$children.loggingProperties.$heading,
+      HTML_ID: localizedSectioning.singleParameterProperties.$children.loggingProperties.$anchor
+    }).Article-Heading3
+
+    +PropertyMetadata--YDF_DK(compoundParameterPropertiesSpecification.parameterNumber)
+    +PropertyMetadata--YDF_DK(compoundParameterPropertiesSpecification.parameterName)
+    +PropertyMetadata--YDF_DK(compoundParameterPropertiesSpecification.mixinName)
+
+    p.Article-Paragraph.
+      These properties are used #[+Keyword--YDID exclusively] for logging any validation errors.
+      The number of the #[+Keyword--YDID mixin] #[+Term--YDID parameter] — #[+ImportantEntity__Code--YDID parameterNumber]
+        — #[+Keyword--YDID must] be a #[+Term--YDID natural number]; the other two #[+Term--YDID properties]
+        #[+Keyword--YDID must] be #[+Term--YDID strings].
+      Here is an example of the console output fragment for #[+SecondaryEntity__Code--YDID { parameterNumber: 1 }],
+        #[+SecondaryEntity__Code--YDID { parameterName: "properties" }], and
+        #[+SecondaryEntity__Code--YDID { mixinName: "Badge--YDF" }]:
+
+    +ConsoleOutput--YDF: :html_special_characters_to_html_entities
+        4| mixin Badge--YDF(properties)
+        5|
+      > 6|   -
+        7|
+        8|     const {
+        9|
+
+      Invalid parameter value
+      Object-type parameter No. 1 (named as "properties") of the Pug mixin "Badge--YDF" has one or more invalid properties:
+
+      (...)
+
+
+    //- ━━━ Quick input in IntelliJ IDEA family of IDEs ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance({
+      imageURI:
+          "@AssociatedWithPages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/" +
+              "processObjectTypeParameterOfPugMixin/Images/processObjectTypeParameterOfPugMixin-LiveTemplate",
+      target: "function",
+      relatedTableOfContentsMetadata: localizedSectioning.IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance
+    })
+
+      p.Article-Paragraph
+        | Before using the #[+Term--YDID Live template], you need to declare the #[+Term--YDID Pug-mixin]
+        |   and specify the #[+Term--YDID parameter(s)].
+        | You also need to prepare the
+        |
+        +Link--YDF({
+          unendorsedExternalURI: sharedExternalLinks.pug.homePage.inlineJavaScript
+        }) JavaScript-block
+        |   inside the #[+Term--YDID mixin] #[+Keyword--YDID body] because the following manipulations
+        |   #[+Keyword--YDID must] be executed #[+Keyword--YDID inside] this block.
+
+      ol.Article-OrderedList
+
+        li.
+          Begin to input the name of the #[+Term--YDID function]
+            #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin].
+          With the current support of the #[+Term--YDID Pug] language, most likely, the IDE will not&nbsp;know about
+            the existence of the #[+Term--YDID function]
+            #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin] if it is not among the project files
+            (excluding dependencies in #[+ImportantEntity__Code--YDID node_modules]). Therefore, the IDE will
+            offer you only one autocompletion variant.
+          Nonetheless, if two autocompletion variants have appeared — with the letter in the center of the
+            circle and with the cliché, then choose the #[+Keyword--YDID second] variant.
+
+        li.
+          Fill in the #[+Term--YDID property] #[+ImportantEntity__Code--YDID rawParameter] with a reference to the
+            desired #[+Term--YDID parameter] of the #[+Term--YDID mixin].
+          Initially, the #[+ImportantEntity__Code--YDID properties] name will be suggested; however, your
+            #[+Term--YDID parameter] of the #[+Term--YDID Pug mixin] may have a different name.
+          When you are done, press #[+ImportantEntity--YDID Enter].
+
+        li.
+          Fill in the #[+ImportantEntity__Code--YDID parameterNumber] #[+Term--YDID property] with the number of
+            parameters of the #[+Term--YDID Pug mixin].
+          You will be suggested to select the #[+Term--YDID parameter] number from #[+ImportantEntity--YDID 1] to
+            #[+ImportantEntity--YDID 3] in the dropdown list; therefore, if you have between #[+ImportantEntity--YDID 1]
+            and #[+ImportantEntity--YDID 3] parameters, then choose the desired number using the arrow keys and press
+            #[+ImportantEntity--YDID Enter].
+          If you have #[+ImportantEntity--YDID 4] or more parameters, then press #[+ImportantEntity--YDID Esc]
+            to close the dropdown list, input the desired number, then press #[+ImportantEntity--YDID Enter].
+
+        li.
+          Fill in the #[+ImportantEntity__Code--YDID parameterName] #[+Term--YDID property] with the name of the
+            #[+Term--YDID parameter] of the #[+Term--YDID Pug mixin].
+
+        li.
+          Fill in the #[+ImportantEntity__Code--YDID parameterPropertiesSpecification] #[+Term--YDID property] of the
+            #[+Term--YDID object] of the #[+ImportantEntity__Code--YDID ObjectSubtypes.fixedKeyAndValuePairsObject]
+            #[+Term--YDID type].
+          To reduce the probability of a mistake, it is recommended that you create a variable of this type in the
+            TypeScript file and copy the value from there.
+          Also, of course, you can input the code directly.
+
+        li.
+          Fill in the #[+ImportantEntity__Code--YDID mixinName] #[+Term--YDID property] with the name of the
+            #[+Term--YDID Pug mixin].
+
+
+    //- ━━━ External links ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.externalLinks.$heading,
+      HTML_ID: localizedSectioning.externalLinks.$anchor
+    }).Article-Heading2
+
+    +LinksCardsFlow--YDF
+
+      +LinksCardsFlow-ItemWithSVG_Icon--YDF({
+        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
+            "Package/Markup/InlineECMAScript/Source/PugExtensions/processObjectTypeParameterOfPugMixin.ts",
+        title: "Source code"
+      }): +File__SourceCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
+
+
+      +LinksCardsFlow-ItemWithSVG_Icon--YDF({
+        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-ES-Extensions/blob/master/CoreLibrary/" +
+            "Package/Documentation/RawObjectDataProcessor/RawObjectDataProcessor.md",
+        title: "RawObjectDataProcessor"
+      })
+        +Bookmark__Outlined--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
+        .LinksCardsFlow--YDF-Description.
+          The class of #[+ImportantEntity--YDID "Yamato Daiwa E(CMA)Script Extensions"] library which is being used
+            by #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin] #[+Term--YDID function]
+
+      +LinksCardsFlow-ItemWithSVG_Icon--YDF({
+        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
+            "Package/Components/Controls/TextBox/TextBox.pug",
+        title: "Live example"
+      })
+        +File__SourceCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
+        .LinksCardsFlow--YDF-Description.
+          The usage of #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin] #[+Term--YDID function]
+            in the #[+Term--YDID Pug mixin] #[+ImportantEntity__Code--YDID TextBox--YDF] GUI component

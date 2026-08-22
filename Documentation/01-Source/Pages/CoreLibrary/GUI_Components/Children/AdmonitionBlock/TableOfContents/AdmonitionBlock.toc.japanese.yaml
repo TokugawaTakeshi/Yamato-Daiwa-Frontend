@@ -1,0 +1,47 @@
+overview:
+
+  $heading: "概要"
+
+usage:
+
+  $heading: "利用"
+
+  markup:
+
+    $heading: "マークアップ"
+
+    includingToProject:
+
+      $heading: "プロジェクトへの取り組み"
+
+    pugMixin:
+
+      $heading: "Pug混入の<code>AdmonitionBlock--YDF</code>"
+
+      minimalExample:
+
+        $heading: "最低限の例（必須プロパティのみ）"
+
+      title:
+
+        $heading: "見出し (<code>title</code>プロパティ)"
+
+      SVG_Icon:
+
+        $heading: "SVGアイコン (<code>SVG_Icon</code>プロパティ)"
+
+        custom:
+
+          $heading: "カスタムなアイコン"
+
+      buttons:
+
+        $heading: "ボタン"
+
+      dismissing:
+
+        $heading: "無くし"
+
+  logic:
+
+    $heading: "ロジック"

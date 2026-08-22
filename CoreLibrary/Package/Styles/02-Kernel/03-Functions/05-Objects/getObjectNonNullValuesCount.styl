@@ -1,0 +1,11 @@
+getObjectNonNullValuesCount--YDF(targetObject)
+
+  nonNullObjectValuesCount = 0
+
+  for key, value in targetObject
+
+    if isNotNull--YDF(value)
+
+      nonNullObjectValuesCount = nonNullObjectValuesCount + 1
+
+  return nonNullObjectValuesCount

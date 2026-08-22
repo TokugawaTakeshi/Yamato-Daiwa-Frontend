@@ -1,0 +1,15 @@
+mixin NumberBoxGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("NumberBox__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("NumberBox__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("NumberBox__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) NumberBox Component Demos

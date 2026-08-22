@@ -1,215 +1,171 @@
-@require "../../Functionality"
+@require "../../Functionality.styl"
+@require "../../GUI_Components.styl"
 
 
-CrossBrowserStylesReset()
-InitialGlobalCSS_Rules()
+CrossBrowserStylesReset--YDF()
+InitialGlobalCSS_Rules--YDF()
 
 
-.AnywherePage
-
-  PRIMARY_COLOR = #ff9068
-  ACCENTED_COLOR = #fd746c
+Badge--YDF-generateStyles()
+Link--YDF-generateStyles()
 
 
-  Centerer__CustomMinAndMaxWidths({ maximalWidth: 960px })
-  padding 12px 10px 24px
+.StaticPreviewAnywherePage--YDF
+
+  Centerer--YDF({ maximalWidth: 2*NARROWEST_SCREEN_WIDTH_UNIT--YDF })
+  padding 0.8rem 0.6rem 2rem
 
 
   &-TopHeading
 
-    MultiLineTextElementOverflowSafetyWithoutExtraSpaceCausedByLineHeight({ fontSize: 32px, lineHeight: 36px })
-    color ACCENTED_COLOR
-
-
-  &-TopSubheading
-
-    MultiLineTextElementOverflowSafetyWithoutExtraSpaceCausedByLineHeight({ fontSize: 22px, lineHeight: 26px })
-    font-weight bold
-    color: ShadesOfGray__39ColorsW3C_Palette[24]
-
-    retireFrom({ targetElementSelector: ".AnywherePage-TopHeading", y: 12px })
-
-
-  &-PagesGroupHeading
-
-    MultiLineTextElementOverflowSafetyWithoutExtraSpaceCausedByLineHeight({ fontSize: 28px, lineHeight: 32px })
-    font-weight bold
-    color ACCENTED_COLOR
-
-    retireFrom({ targetElementSelector: ".AnywherePage-TopHeading", y: 24px })
-    retireFrom({ targetElementSelector: ".AnywherePage-TopSubheading", y: 18px })
-
-
-  &-PagesSubgroupHeading
-
-    MultiLineTextElementOverflowSafetyWithoutExtraSpaceCausedByLineHeight({ fontSize: 22px, lineHeight: 26px })
-    font-weight bold
-    color PRIMARY_COLOR
-
-    retireFrom({ targetElementSelector: ".AnywherePage-PagesGroupHeading", y: 6px })
-
-
-  &-PagesSubsubgroupHeading
-
-    MultiLineTextElementOverflowSafetyWithoutExtraSpaceCausedByLineHeight({ fontSize: 18px, lineHeight: 20px })
-    font-weight bold
-    color: ShadesOfGray__39ColorsW3C_Palette[24]
-
-    retireFrom({ targetElementSelector: ".AnywherePage-PagesSubgroupHeading", y: 4px })
-
-
-  // --- リンク -----------------------------------------------------------------------------------------------------------
-  ProgressBadge()
-
-    border-radius 10px
-    padding 8px 12px
-    MultiLineTextElementOverflowSafetyWithoutExtraSpaceCausedByLineHeight({ fontSize: 14px, lineHeight: 16px })
-    text-align center
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: 2.4rem,
+      lineSpacing: 0.2,
+      mustAllowWordsBreakingAnywhere: true
+    })
 
     font-weight bold
-    color white
+    color #fd746c
 
 
-    .AnywherePage-PageLink__ImplementationWaiting &
+  &-Navigation
 
-      background #c0392b
-
-
-    .AnywherePage-PageLink__ImplementationInProgress &,
-    .AnywherePage-PageLink__ImprovementInProgress &,
-    .AnywherePage-PageLink__FixingInProgress &
-
-      background #2980b9
+    margin-top 1rem
 
 
-    .AnywherePage-PageLink__SpecificationClarification &,
-    .AnywherePage-PageLink__ImprovementWaiting &,
-    .AnywherePage-PageLink__FixingWaiting &,
-    .AnywherePage-PageLink__ReviewWaiting &,
-    .AnywherePage-PageLink__CustomerEvaluationWaiting &
+  &-SectionHeading
 
-      background #f39c12
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: 2rem,
+      lineSpacing: 0.2,
+      mustAllowWordsBreakingAnywhere: true
+    })
 
-
-    .AnywherePage-PageLink__Accepted &
-
-      background #16a085
+    font-weight bold
+    color #fd746c
 
 
-  PageLink-CommonSettings()
+  &-SubsectionHeading
 
-    display flex
-    padding 8px 6px
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: 1.6rem,
+      lineSpacing: 0.2,
+      mustAllowWordsBreakingAnywhere: true
+    })
 
-    PositionalRelationship({
-      definitions: (".AnywherePage-TopHeading" { retireFromIt: { y: 8px } })\
-          (".AnywherePage-PagesGroupHeading" { retireFromIt: { y: 9px }, pushItFromSelf: { y: 16px } })\
-          (".AnywherePage-PagesSubgroupHeading" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 12px } })\
-          (".AnywherePage-PageSubsubgroupHeading" { retireFromIt: { y: 4px }, pushItFromSelf: { y: 8px } })
+    font-weight bold
+    color #ff9068
+
+    retireFrom--YDF({ targetElementSelector: ".StaticPreviewAnywherePage--YDF-SectionHeading", y: 0.2rem })
+
+
+  &-SubsubsectionHeading
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: 1.2rem,
+      lineSpacing: 0.2,
+      mustAllowWordsBreakingAnywhere: true
+    })
+
+    font-weight bold
+    color: W3C_39_ShadesOfGray--YDF[24]
+
+    retireFrom--YDF({ targetElementSelector: ".StaticPreviewAnywherePage--YDF-SubsectionHeading", y: 0.2rem })
+
+
+  &-CardsFlow
+
+    PositionalRelationship--YDF({
+      definitions:\
+        (".StaticPreviewAnywherePage--YDF-SectionHeading" { retireFromIt: { y: 0.5rem }, pushItFromSelf: { y: 1rem } })\
+        (".StaticPreviewAnywherePage--YDF-SubsectionHeading" { retireFromIt: { y: 0.5rem }, pushItFromSelf: { y: 1rem } })\
+        (".StaticPreviewAnywherePage--YDF-SubsubsectionHeading" { retireFromIt: { y: 0.5rem }, pushItFromSelf: { y: 1rem } })
     })
 
 
-  PageLinkText-CommonSettings()
+  &-Card
 
-    MultiLineTextElementOverflowSafetyWithoutExtraSpaceCausedByLineHeight({ fontSize: 14px, lineHeight: 18px })
-
-    color #0075c4
-
-
-  &-PageLink
-
-    PageLink-CommonSettings()
+    display grid
+    grid-template-columns auto minmax(0, 1fr)
+    column-gap 0.5rem
     align-items center
 
+    border-radius 3px
+    padding 0.4rem
+    box-shadow 0 0 4px 1px alpha(black, 0.25)
 
-    &:hover
-
-      background rgba(ACCENTED_COLOR, 0.1)
-      transition background-color .5s
-
-
-    &:active
-
-      background rgba(ACCENTED_COLOR, 0.25)
+    retireFromElementWithSameSelector--YDF({ y: 0.6rem })
 
 
-    +whenTargetWithSameSelectorGoingJustAfterIt()
+    &-Title
 
-      border-top 1px solid lightgray
-
-
-    &-ProgressBadge
-
-      ProgressBadge()
-      flex 0 0 120px
-
-
-    &-Text
-
-      margin-left 12px
-      PageLinkText-CommonSettings()
-
-
-  &-SinglePageRelatedLinksGroup
-
-    PageLink-CommonSettings()
-    align-items flex-start
-
-
-    +whenItJustAfter({ targetElementSelector: ".AnywherePage-PageLink" })
-
-      border-top 1px solid lightgray
-
-
-    +whenTargetWithSameSelectorGoingJustAfterIt()
-
-      border-top 1px solid lightgray
-
-
-    +whenTargetGoingJustAfterIt({ targetElementSelector: ".AnywherePage-PageLink" })
-
-      border-top 1px solid lightgray
-
-
-    &-ProgressBadge
-
-      ProgressBadge()
-      flex 0 0 120px
-
-
-    &-MainSection
-
-      display flex
-      flex-direction column
-      align-items flex-start
-      flex-grow 1
-      margin-left 12px
-
-
-    &-Heading
-
-      MultiLineTextElementOverflowSafetyWithoutExtraSpaceCausedByLineHeight({ fontSize: 18px, lineHeight: 22px })
-
+      font-size 1.2rem
       font-weight bold
-      color PRIMARY_COLOR
+
+      color: W3C_39_ShadesOfGray--YDF[12]
 
 
     &-Link
 
-      cursor pointer
-      PageLinkText-CommonSettings()
-
-      retireFrom({ targetElementSelector: ".AnywherePage-SinglePageRelatedLinksGroup-Heading", y: 12px })
-      retireFromElementWithSameSelector({ y: 6px })
+      line-height 1.3
 
 
-      &:hover
+    ul
 
-        color rgba(ACCENTED_COLOR, 0.75)
-        border-bottom-color rgba(ACCENTED_COLOR, 0.75)
+      list-style-type "■"
+      list-style-position outside
+
+      grid-column span 2
+      margin-top 0.3rem
 
 
-      &:active
+      li
 
-        color rgba(ACCENTED_COLOR, 0.5)
-        border-bottom-color rgba(ACCENTED_COLOR, 0.5)
+        margin-left 1rem
+        padding-left 0.6rem
+
+
+        &::marker
+
+          color: W3C_39_ShadesOfGray--YDF[12]
+
+
+        +li
+
+          margin-top 0.1rem
+
+
+    &-ScrollingContainerForTable
+
+      overflow-x auto
+      overflow-y hidden
+
+      grid-column span 2
+      margin-top 0.4rem
+
+
+      table
+
+        border-collapse collapse
+
+
+      th,
+      td
+
+        border-width 1px
+        padding 0.4rem
+
+        border-style solid
+        border-color W3C_39_ShadesOfGray--YDF[24]
+
+        white-space nowrap
+
+
+      th
+
+        font-size 1rem
+        text-align right
+
+        font-weight bold
+
+        color: W3C_39_ShadesOfGray--YDF[12]

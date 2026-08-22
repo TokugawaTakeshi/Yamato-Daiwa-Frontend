@@ -1,0 +1,21 @@
+include _Constants.pug
+include _HTML_PageMetadata.pug
+include _generateSharedExternalLinks.pug
+include _GUI_Components.common.pug
+
+include Localizations/Japanese/MetaDescriptionTemplates.japanese.pug
+include Localizations/Japanese/SharedExternalLinksLocalization.japanese.pug
+include Localizations/Japanese/ReusableFragments.japanese.pug
+include Localizations/Japanese/ReusableTextings.japanese.pug
+
+include ThirdPartyEmbeddableScripts/GoogleAnalyticsScript.pug
+
+
+-
+
+  RegularWebPageTemplate__YDF.metadata.locale = "ja";
+
+  const localizedRouting = routing.japanese;
+  YDF.RoutingEmulator.initialize(localizedRouting);
+
+  const sharedExternalLinks = generateSharedExternalLinks(sharedExternalLinksJapaneseLocalization);

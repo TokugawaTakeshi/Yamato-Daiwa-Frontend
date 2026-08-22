@@ -1,0 +1,80 @@
+ModalDialog--YDF-generateStyles()
+
+  VERTICAL_SPACE_BETWEEN_MODAL_BORDER_AND_VIEWPORT_EDGE = 10px
+
+
+  .ModalDialog--YDF
+
+    display flex
+    flex-direction column
+    justify-content center
+    align-items center
+
+    FixedTranslucentDimLayer--YDF()
+
+
+    &[hidden]
+
+      display none
+
+
+    &-Body
+
+      max-height 100%
+
+      display flex
+      flex-direction column
+
+      border-radius 5px
+      Paddings--YDF({ horizontalSymmetric: 12px })
+
+      background white
+
+
+      /.ModalDialog--YDF__CompactType &
+
+        width 280px
+
+
+      /.ModalDialog--YDF__FillingOfScreenWithSmallGapsType &
+
+        LEFT_OR_RIGHT_EQUAL_PADDINGS = 12px
+        BORDER_RADIUS__NON_FULL_SCREEN_SIZING = 8px
+
+        width "calc(100% - %s)" % LEFT_OR_RIGHT_EQUAL_PADDINGS
+        height "calc(100% - 2*%s)" % VERTICAL_SPACE_BETWEEN_MODAL_BORDER_AND_VIEWPORT_EDGE
+        border-radius BORDER_RADIUS__NON_FULL_SCREEN_SIZING
+
+
+      /.ModalDialog--YDF__FullScreenType &
+
+        justify-self stretch
+        align-self stretch
+
+
+    &-Header
+
+      display flex
+      justify-content space-between
+      align-items center
+      column-gap 12px
+
+      margin-top 6px
+      flex-shrink 0
+
+
+    &-Title
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: 16px,
+        lineSpacing: 4px,
+        mustAllowWordsBreakingAnywhere: true
+      })
+
+      font-weight bold
+      color #123d52
+
+
+    &-DismissingButton
+
+      flex-shrink 0

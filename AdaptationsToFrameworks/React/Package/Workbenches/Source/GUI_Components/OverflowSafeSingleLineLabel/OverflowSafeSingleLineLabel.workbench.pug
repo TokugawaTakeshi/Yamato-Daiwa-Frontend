@@ -1,0 +1,21 @@
+extends ../../../../node_modules/@yamato-daiwa/frontend/PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "OverflowSafeSingleLineLabel Component Testing"
+      },
+      stylesSheetsURIs: [ "@Workbenches/GUI_Components/OverflowSafeSingleLineLabel/OverflowSafeSingleLineLabel.workbench" ],
+      scriptsURIs: {
+        atEndOfBody: [ "@Workbenches/GUI_Components/OverflowSafeSingleLineLabel/OverflowSafeSingleLineLabel.workbench" ]
+      }
+    });
+
+
+block append PageContent
+
+  #APPLICATION

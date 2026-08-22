@@ -1,164 +1,211 @@
-provideCallableExpressionSchemeAndRelatedComponentStyles()
+CallableExpressionScheme--YDF_DK = {
+  CSS_NAMESPACE: "CallableExpressionScheme--YDF_DK"
+}
 
-  .CallableExpressionScheme
 
-    &-TechnicalNameRow,
-    &-ClosingBracket
+provideCallableExpressionYDF_DK_Component()
 
-      font-family Consolas, monaco, Meiryo UI, monospace
-      MultilineTextWithoutExtraSpaceCausedByLineHeight({ fontSize: 1.2rem, lineHeight: 1.4rem })
+  .CallableExpressionScheme--YDF_DK
+
+    &-TechnicalNameHeading
+
+      font-family Consolas, monaco, monospace
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: 1.4rem,
+        lineSpacing: 0.2rem,
+        mustAllowWordsBreakingAnywhere: true
+      })
 
       font-weight bold
-      color ShadesOfGray__39ColorsW3C_Palette[12]
+      color: W3C_39_ShadesOfGray--YDF[12]
 
 
     &-LocalizedDescriptiveHeading
 
-      Paddings({ horizontalSymmetric: 1rem })
-      MultiLineTextElementOverflowSafetyWithoutExtraSpaceCausedByLineHeight({ fontSize: 1rem, lineHeight: 1.2rem })
-      color ShadesOfGray__39ColorsW3C_Palette[20]
-
-      margin-top 0.2rem
-
-
-    &-GridFlow
-
-      display grid
-      grid-template-columns repeat(auto-fill, minmax(280px, 1fr));
-      gap 6px
-
-      Paddings({ horizontalSymmetric: 8px })
-
-      PositionalRelationship({
-        definitions:\
-            (".CallableExpressionScheme-FunctionNameRow" { retireFromIt: { y: 6px } })\
-            (".CallableExpressionScheme-FunctionNameLocalizedInterpretation" { retireFromIt: { y: 8px } })
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: 1.2rem,
+        lineSpacing: 0.2rem,
+        mustAllowWordsBreakingAnywhere: true
       })
 
-    &-ClosingBracketRow
+      color: W3C_39_ShadesOfGray--YDF[16]
+
+      margin-top 0.1rem
+
+
+    &-SignaturesFlow
+
+      retireFrom--YDF({
+        definitions:\
+            (".CallableExpressionScheme--YDF_DK-TechnicalNameHeading" { y: 4px })\
+            (".CallableExpressionScheme--YDF_DK-LocalizedDescriptiveHeading" { y: 12px })
+      })
+
+
+    &-Signature
+
+      display flex
+      flex-wrap wrap
+
+      retireFrom--YDF({ targetElementSelector: ".CallableExpressionScheme--YDF_DK-Signature", y: 8px })
+
+
+      &-Heading
+
+        font-family "Arial Black", "Arial Bold", "Gadget", sans-serif
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({ fontSize: 1.2rem, lineSpacing: 0.2rem })
+
+        color: W3C_39_ShadesOfGray--YDF[12]
+
+        flex 1 1 100%
+
+
+      &-LocalizedDescriptiveHeading
+
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+          fontSize: 1.1rem,
+          lineSpacing: 0.2rem,
+          mustAllowWordsBreakingAnywhere: true
+        })
+
+        font-weight bold
+        color: W3C_39_ShadesOfGray--YDF[16]
+
+        flex 1 1 100%
+        margin-top 0.1rem
+
+
+    &-GenericExpressionLabel
+
+      font-family Consolas, monaco, Meiryo UI, monospace
+
+
+    &-ParametersAndReturnedValuesGroup
+
+      display flex
+      flex-wrap wrap
+      align-items baseline
+
+      retireFrom--YDF({ targetElementSelector: ".CallableExpressionScheme--YDF_DK-GenericExpressionLabel", y: 6px })
+
+
+      /.CallableExpressionScheme--YDF_DK-Signature &
+
+        flex 1 1 100%
+
+
+    &-Bracket
+
+      font-family "Arial Black", "Arial Bold", "Gadget", sans-serif
+
+      font-weight bold
+      color: W3C_39_ShadesOfGray--YDF[12]
+
+      flex-shrink 0
+
+
+      &__OneLine
+
+        flex-grow 1
+        flex-basis 100%
+
+
+    &-GenericParameter
+
+      &-Name
+
+        font-family Consolas, monaco, Meiryo UI, monospace
+        font-size 16px
+
+        font-weight bold
+        color: YDF_ColorPalette.red.mediumDark
+
+        flex-shrink 0
+        PositionalRelationship--YDF({
+          definitions: (".CallableExpressionScheme--YDF_DK-Bracket" { retireFromIt: { x: 0.2rem }, pushItFromSelf: { x: 0.2rem } })
+        })
+
+
+      &-ExtendingNotation
+
+        color: W3C_39_ShadesOfGray--YDF[12]
+
+        flex-shrink 0
+        margin-left 0.5rem
+
+        pushTargetFromSelf--YDF({ targetElementSelector: ".CallableExpressionScheme--YDF_DK-GenericParameter-Name", x: 0.5rem })
+
+
+      &-Comma
+
+        color darkgoldenrod
+
+        flex-shrink 0
+        margin-left 0.5rem
+
+
+    &-ParametersFlow
 
       display grid
-      grid-template-columns auto minmax(0, 1fr)
-      align-items baseline
-      grid-column-gap 4px
+      grid-template-columns repeat(auto-fill, minmax(250px, 1fr));
+      gap 0.5rem
 
-      margin-top 6px
+      border-left-width 2px
+      padding-left 0.6rem
+
+      border-left-style solid
+      border-left-color: W3C_39_ShadesOfGray--YDF[32]
+
+      margin-top 0.4rem
+      margin-left 0.2rem
+      flex 1 1 100%
+
+
+      >*:first-child:last-child
+
+        grid-column 1 / -1
+
+
+    &-ClosingBracket
+
+      font-family "Arial Black", "Arial Bold", "Gadget", sans-serif
+
+      font-weight bold
+      color: W3C_39_ShadesOfGray--YDF[12]
+
+      flex-shrink 0
+      retireFrom--YDF({ targetElementSelector: ".CallableExpressionScheme--YDF_DK-ParametersFlow", y: 6px })
 
 
     &-ReturnedValue
 
       font-family Consolas, monaco, Meiryo UI, monospace
+
       font-weight bold
-      color ShadeOfGray__12--W3C_Palette
+      color darkred
+
+      flex-shrink 0
+      margin-left 4px
 
 
-    &-UsedTypesGridFlow
+      /.CallableExpressionScheme--YDF_DK-ParametersFlow + .CallableExpressionScheme--YDF_DK-ClosingBracket + &
+
+        margin-top 8px
+
+
+    &-AppendixGridFlow
 
       display grid
-      grid-template-columns repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns repeat(auto-fill, minmax(250px, 1fr));
       gap 6px
 
-      retireFrom({ targetElementSelector: ".CallableExpressionScheme-ClosingBracketRow", y: 8px })
+      retireFrom--YDF({
+        definitions:\
+            (".CallableExpressionScheme--YDF_DK-ParametersAndReturnedValuesGroup" { y: 0.4rem })\
+            (".CallableExpressionScheme--YDF_DK-SignaturesFlow" { y: 0.8rem })
+      })
 
 
-  .FunctionParameterAbstract
+      >*:first-child:last-child
 
-    display grid
-    grid-template-columns auto minmax(0, 1fr)
-    grid-gap 6px 12px
-    align-items start
-
-    border-width 1px
-    border-radius 3px
-    padding 6px 10px
-
-    border-style solid
-    border-color: JQueryUI_BaseTheme.content.borderColor
-    color: JQueryUI_BaseTheme.content.fontColor
-
-
-    &-HeaderRow
-
-      grid-column-start span 2
-
-      display flex
-      align-items center
-
-
-    &-Title
-
-      font-size 13px
-      font-weight bold
-      color: ShadesOfGray__39ColorsW3C_Palette[18]
-
-
-    &-RequirementBadge
-
-      margin-left 6px
-
-
-    &-HeaderCell
-
-      text-align right
-
-      color: ShadesOfGray__39ColorsW3C_Palette[20]
-
-
-    &-LocalizedName
-
-      MultiLineTextElementOverflowSafetyWithoutExtraSpaceCausedByLineHeight({ fontSize: 1rem, lineHeight: 1.2rem })
-      color: ShadesOfGray__39ColorsW3C_Palette[14]
-
-
-    &-Type
-
-      font-family Consolas, monaco, Meiryo UI, monospace
-      MultiLineTextElementOverflowSafetyWithoutExtraSpaceCausedByLineHeight({ fontSize: 1rem, lineHeight: 1.2rem })
-      font-weight bold
-      color: YamatoDaiwaInformationDesignColors.importantEntity
-
-  //
-  //    &-OneOfComposition
-  //
-  //      SQUARE_BRACKET_WIDTH = 5px
-  //      HORIZONTAL_SPACE_BETWEEN_BRACKET_AND_ALTERNATIVES_FLOW = 6px
-  //
-  //
-  //      LinearFlow({
-  //        mainAxeDirection: Directions.bottom,
-  //        constantSpaceBetweenItems: 4px
-  //      })
-  //
-  //      position relative
-  //
-  //
-  //      &:before
-  //
-  //        THICKNESS = 1px
-  //
-  //        content ""
-  //        position absolute
-  //        left 0
-  //        top -(THICKNESS)
-  //
-  //        width SQUARE_BRACKET_WIDTH
-  //        height 100%
-  //
-  //        border-top-width THICKNESS
-  //        border-left-width THICKNESS
-  //        border-bottom-width THICKNESS
-  //        border-right-width 0
-  //
-  //        border-style solid
-  //        border-color ShadeOfGray__16--W3C_Palette
-  //
-  //
-  //      &-Alternative
-  //
-  //        margin-left SQUARE_BRACKET_WIDTH + HORIZONTAL_SPACE_BETWEEN_BRACKET_AND_ALTERNATIVES_FLOW
-  //
-  //
-  //  &-GenericTechnicalName
-  //
-  //    font-family Consolas__SmoothJapaneseSymbols--FontsStack
-  //    MultilineTextWithoutExtraSpaceCausedByLineHeight({ fontSize: 13px, lineHeight: 1.1 })
+        grid-column 1 / -1

@@ -1,0 +1,560 @@
+-
+
+  class TextBox__YDF {
+
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
+    static CSS_NAMESPACE = "TextBox--YDF";
+
+    /**
+     * @public
+     * @readonly
+     * @type {
+     *   Readonly<{
+     *     regular: string;
+     *     email: string;
+     *     number: string;
+     *     password: string;
+     *     phoneNumber: string;
+     *     URI: string;
+     *     hidden: string;
+     *   }>
+     * }
+     */
+    static HTML_Types = {
+      regular: "text",
+      email: "email",
+      number: "number",
+      password: "password",
+      phoneNumber: "tel",
+      URI: "url"
+    };
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @type { { [themeName: string]: string } }
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
+    static Themes = { regular: "REGULAR" };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsThemesCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsThemesCorrespondence() {
+      return TextBox__YDF._selfAndChildrenComponentsThemesCorrespondence ?? (
+        TextBox__YDF._selfAndChildrenComponentsThemesCorrespondence = {
+          validatableControlShell: { [TextBox__YDF.Themes.regular]: ValidatableControlShell__YDF.Themes.regular },
+          valueCopyingButton: { [TextBox__YDF.Themes.regular]: Button__YDF.Themes.regular }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingChildrenThemesDefinition
+     *
+     * @returns { typeof TextBox__YDF }
+     *
+     * @example
+     * TextBox__YDF.defineThemes({
+     *   redmond: {
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.redmond
+     *   },
+     *   cupertino: {
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.cupertino
+     *   }
+     * });
+     */
+    static defineThemes(ownAndCorrespondingChildrenThemesDefinition) {
+      return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingChildrenThemesDefinition, TextBox__YDF
+      );
+    }
+
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @public
+     * @returns { typeof TextBox__YDF }
+     * */
+    static considerThemesAsCommon() {
+      TextBox__YDF.areThemesCSS_ClassesCommon = true;
+      return TextBox__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL",
+      labelLike: "LABEL_LIKE"
+    };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsGeometricVariationsCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsGeometricVariationsCorrespondence() {
+      return TextBox__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence ?? (
+        TextBox__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence = {
+          validatableControlShell: {
+            [TextBox__YDF.GeometricVariations.regular]: ValidatableControlShell__YDF.GeometricVariations.regular,
+            [TextBox__YDF.GeometricVariations.small]: ValidatableControlShell__YDF.GeometricVariations.small,
+            [TextBox__YDF.GeometricVariations.labelLike]: ValidatableControlShell__YDF.GeometricVariations.regular
+          },
+          valueCopyingButton: {
+            [TextBox__YDF.GeometricVariations.regular]: Button__YDF.GeometricVariations.regular,
+            [TextBox__YDF.GeometricVariations.small]: Button__YDF.GeometricVariations.small,
+            [TextBox__YDF.GeometricVariations.labelLike]: Button__YDF.GeometricVariations.linkLike
+          }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingChildrenGeometricVariationsDefinition
+     *
+     * @returns { typeof TextBox__YDF }
+     *
+     * @example
+     * TextBox__YDF.defineGeometricVariations({
+     *   large: {
+     *     validatableControlShell: ValidatableControlShell__YDF.GeometricVariation.large
+     *   },
+     *   extraLarge: {
+     *     validatableControlShell: ValidatableControlShell__YDF.GeometricVariation.extraLarge
+     *   }
+     * });
+     */
+    static defineGeometricVariations(ownAndCorrespondingChildrenGeometricVariationsDefinition) {
+      return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingChildrenGeometricVariationsDefinition, TextBox__YDF
+      );
+    }
+
+    /**
+     * @public
+     * @readonly
+     * @type {
+     *   Readonly<{
+     *     noRoundings: string;
+     *   }>
+     * }
+     */
+    static GeometricModifiers = {
+      noRoundings: "NO_ROUNDINGS"
+    };
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = {
+      regular: "REGULAR",
+      labelLike: "LABEL_LIKE"
+    };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsDecorativeVariationsCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsDecorativeVariationsCorrespondence() {
+      return TextBox__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
+        TextBox__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
+          validatableControlShell: {
+            [TextBox__YDF.DecorativeVariations.regular]: ValidatableControlShell__YDF.DecorativeVariations.regular,
+            [TextBox__YDF.DecorativeVariations.labelLike]: ValidatableControlShell__YDF.DecorativeVariations.regular
+          },
+          valueCopyingButton: {
+            [TextBox__YDF.DecorativeVariations.regular]: Button__YDF.DecorativeVariations.regular,
+            [TextBox__YDF.DecorativeVariations.labelLike]: Button__YDF.DecorativeVariations.linkLike
+          }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingChildrenDecorativeVariationsDefinition
+     *
+     * @returns { typeof TextBox__YDF }
+     *
+     * @example
+     * TextBox__YDF.defineDecorativeVariations({
+     *   modest: {
+     *     validatableControlShell: ValidatableControlShell__YDF.DecorativeVariation.modest
+     *   },
+     *   catchy: {
+     *     validatableControlShell: ValidatableControlShell__YDF.DecorativeVariation.catchy
+     *   }
+     * });
+     */
+    static defineDecorativeVariations(ownAndCorrespondingChildrenDecorativeVariationsDefinition) {
+      return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingChildrenDecorativeVariationsDefinition, TextBox__YDF
+      );
+    }
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * */
+    static propertiesSpecification = {
+
+      HTML_Type: {
+        type: String,
+        undefinedValueSubstitution: TextBox__YDF.HTML_Types.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.entries(TextBox__YDF.HTML_Types).
+            map(([key, value]) => ({ key: `TextBox__YDF.HTML_Types.${ key }`, value }))
+      },
+
+      label: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      guidance: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      accessibilityGuidance: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      externalLabelHTML_ID: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      placeholder: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      /** @see https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill */
+      autocomplete: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      value: {
+        preValidationModifications: rawValue => isNumber(rawValue, { mustConsiderNaN_AsNumber: false }) ? String(rawValue) : rawValue,
+        type: String,
+        undefinedValueSubstitution: "",
+        isNullForbidden: true
+      },
+
+      multiline: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      autoResizingForMultilineMode: {
+        type: Boolean,
+        undefinedValueSubstitution: true,
+        isNullForbidden: true
+      },
+
+      disabled: {
+        type: Boolean,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      readonly: {
+        type: Boolean,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      required: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustDisplayAppropriateBadgeIfInputIsRequired: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustDisplayAppropriateBadgeIfInputIsOptional: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      minimalCharactersCount: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      maximalCharactersCount: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        customValidators: {
+          validationFunction: ({ value: maximalCharactersCount, rawData__currentObjectDepth }) =>
+              YDF.isUndefined(rawData__currentObjectDepth.minimalCharactersCount) ||
+              (
+                YDF.isNumber(rawData__currentObjectDepth.minimalCharactersCount, { mustConsiderNaN_AsNumber: false }) &&
+                    maximalCharactersCount >= rawData__currentObjectDepth.minimalCharactersCount
+              ),
+          descriptionForLogging: "\"maximalCharactersCount\" can not be less than \"minimalCharactersCount\"."
+        }
+      },
+
+      minimalNumericValue: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      maximalNumericValue: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        customValidators: {
+          validationFunction: ({ value: maximalNumericValue, rawData__currentObjectDepth }) =>
+              YDF.isUndefined(rawData__currentObjectDepth.minimalNumericValue) ||
+              (
+                YDF.isNumber(rawData__currentObjectDepth.minimalNumericValue, { mustConsiderNaN_AsNumber: false }) &&
+                    maximalNumericValue >= rawData__currentObjectDepth.minimalNumericValue
+              ),
+          descriptionForLogging: "\"maximalNumericValue\" can not be less than \"minimalNumericValue\"."
+        }
+      },
+
+      hasValueCopyingButton: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      hasPasswordDisplayingToggle: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      /** @description
+       * 1 minimal character is definitely not enough for unique string, but in MVC mode it can be a variable. */
+      instanceID_UniqueDynamicPart: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      HTML_IDs: {
+
+        type: Object,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+
+        properties: {
+
+          inputOrTextArea: {
+            type: String,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          },
+
+          label: {
+            type: String,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          }
+
+        }
+
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: TextBox__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(TextBox__YDF.Themes).
+            map(([ key, value ]) => ({ key: `TextBox__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: TextBox__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: TextBox__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(TextBox__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `TextBox__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      geometricModifiers: {
+        type: Array,
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+        element: {
+          type: String,
+          allowedAlternatives: Object.
+              entries(Button__YDF.GeometricModifiers).
+              map(([ key, value ]) => ({ key: `TextBox__YDF.GeometricModifiers.${ key }`, value }))
+        }
+      },
+
+      decorativeVariation: {
+        type: String,
+        undefinedValueSubstitution: TextBox__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(TextBox__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `Button__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    };
+
+
+    /* ━━━ State Simulations Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * */
+    static statesSimulationsSpecification = ComponentsAuxiliaries.generateValidatableControlGeneralStatesSimulationsSpecification({
+      invalidInputHighlightingIfAnyValidationErrorsMessages: true,
+      validValueHighlightingIfNoValidationErrorsMessages: true,
+      validationErrorsMessages: true,
+      asynchronousValidationsStatuses: true
+    });
+
+
+    /* ━━━ ID Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @private
+     * @type { number }
+     */
+    static counterForID_Generating = 0;
+
+    /**
+     * @public
+     * @param { string } [uniqueDynamicPart] Required mainly for MVC where the iterative rendering is not under Pug control.
+     * @return { string } Generated ID
+     */
+    static generateInstanceID(uniqueDynamicPart) {
+      return `TEXT_BOX--YDF-${ uniqueDynamicPart ?? ++TextBox__YDF.counterForID_Generating }`;
+    }
+
+
+    /* ━━━ DOM Access ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @readonly
+     * @type { ValidatableControlShell.DOM_AccessResources }
+     * */
+    static DOM_AccessResources = TextBoxYDF_GUI_ComponentDOM_AccessResources;
+
+
+    /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @type { TextBoxLocalization }
+     * */
+    static localization = TextBoxYDF_GUI_ComponentLocalization__English;
+
+  }

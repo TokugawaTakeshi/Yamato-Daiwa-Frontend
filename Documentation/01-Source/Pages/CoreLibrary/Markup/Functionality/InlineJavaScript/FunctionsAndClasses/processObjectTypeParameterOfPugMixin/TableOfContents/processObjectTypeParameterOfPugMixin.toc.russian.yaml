@@ -1,0 +1,35 @@
+problems:
+
+  $heading: "Проблематика"
+
+YDF_Solution:
+
+  $heading: "Решение YDF"
+
+singleParameterProperties:
+
+  $heading: "Свойства единственного параметра"
+
+  rawParameter:
+
+    $heading: "<code>rawParameter</code> — параметр примеси в момент начала её выполнения"
+
+  parameterPropertiesSpecification:
+
+    $heading: "<code>parameterPropertiesSpecification</code> — спецификация свойств параметра примеси"
+
+  loggingProperties:
+
+    $heading: "Свойства логирования — <code>parameterNumber</code>, <code>parameterName</code>, <code>mixinName</code>"
+
+IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance:
+
+  $heading: "Быстрый ввод в интегрированных средах разработки семейства IntelliJ IDEA"
+
+  steps:
+
+    $heading: "Пошаговое описание процесса использования шаблона"
+
+externalLinks:
+
+  $heading: "Внешние ссылки"

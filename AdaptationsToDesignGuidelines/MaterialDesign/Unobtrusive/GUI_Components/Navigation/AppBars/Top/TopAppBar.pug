@@ -1,0 +1,24 @@
+mixin TopAppBar--YDF-MD(properties)
+
+  -
+
+    const {
+
+      /** @type { ?string | undefined } */
+      title,
+
+      /** @type { string } [ h1 ] */
+      titleTag = "h1",
+
+      /** @type { string | undefined } */
+      color
+
+    } = properties ?? {};
+
+  header.TopAppBar--YDF-MD&attributes(attributes)
+
+    if title
+
+      #{ titleTag }.TopAppBar--YDF-MD= title
+
+    block

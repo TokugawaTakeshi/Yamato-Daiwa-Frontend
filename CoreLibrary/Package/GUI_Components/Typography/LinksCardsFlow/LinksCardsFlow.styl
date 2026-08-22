@@ -1,0 +1,106 @@
+LinksCardsFlow--YDF = {
+  CSS_NAMESPACE: "LinksCardsFlow--YDF"
+}
+
+
+LinksCardsFlow--YDF-generateStyles()
+
+  .LinksCardsFlow--YDF
+
+    &-Item
+
+      container-type inline-size
+
+      padding 0.5rem
+
+      background-color white
+      box-shadow 0 0 2px 2px alpha(black, 25%)
+      cursor pointer
+
+      retireFromElementWithSameSelector--YDF({ y: 0.8rem })
+
+
+      &:hover
+
+        box-shadow 0 0 4px 4px alpha(black, 25%)
+
+
+      &:has(.LinksCardsFlow--YDF-Link:focus)
+
+        box-shadow: 0 0 4px 4px alpha(JQueryUI_BaseTheme.clickableElements.focusState.shadowColor, 25%)
+
+
+      &:active
+
+        opacity 75%
+
+
+    &-Link
+
+      display grid
+      grid-template-areas\
+          "IMAGE TITLE"\
+          "IMAGE SUBTITLE"\
+          "IMAGE DESCRIPTION"
+      grid-template-rows auto auto 1fr
+      grid-template-columns auto minmax(0, 1fr)
+
+      row-gap 0.1rem
+      column-gap 0.8rem
+
+
+    &-Image
+
+      width 4rem
+
+      grid-area IMAGE
+
+
+    &-SVG_Icon
+
+      width 4rem
+      height 4rem
+
+      fill: W3C_39_ShadesOfGray--YDF[12]
+
+      grid-area IMAGE
+
+
+    &-Title
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: 2rem,
+        lineSpacing: 0.2rem,
+        mustAllowWordsBreakingAnywhere: true
+      })
+
+      font-family Arial Black, Arial Bold, Gadget, sans-serif
+
+      font-weight bold
+      color: W3C_39_ShadesOfGray--YDF[16]
+
+      grid-area TITLE
+
+
+      /.LinksCardsFlow--YDF:not(:has(.LinksCardsFlow--YDF-Description)):not(:has(.LinksCardsFlow--YDF-Subtitle)) &
+
+        grid-row: 1 / -1
+        align-self center
+
+
+    &-Description
+
+      grid-area DESCRIPTION
+
+
+      /.LinksList-Image + .LinksList-Title:last-child,
+      /.LinksList-SVG_Icon + .LinksList-Title:last-child
+
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+          fontSize: 1rem,
+          lineSpacing: 4px,
+          mustAllowWordsBreakingAnywhere: true
+        })
+
+        align-self center
+        grid-row 1 / -1

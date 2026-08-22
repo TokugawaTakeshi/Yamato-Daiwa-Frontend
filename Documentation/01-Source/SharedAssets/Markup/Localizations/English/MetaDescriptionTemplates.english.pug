@@ -1,0 +1,68 @@
+-
+
+  const MetaDescriptionTemplates = {
+
+    pugFunction: ({ functionName, whatFunctionDoes }) =>
+        `The function "${ functionName }" of "Yamato Daiwa Frontend" ` +
+          `(abbreviation: "YDF") library for the Pug pre-processor ${ whatFunctionDoes }`,
+
+    stylusFunction: ({ functionName, whatFunctionDoes }) =>
+        `The function "${ functionName }" of "Yamato Daiwa Frontend" ` +
+          `(abbreviation: "YDF") library for the Stylus pre-processor ${ whatFunctionDoes }`,
+
+    realiseNotes: ({ version }) =>
+        "The changes log (new functionality, changing of the existing functionality and removing of the previous one) of " +
+          `the version ${ version } of the library "Yamato Daiwa Frontend" (abbreviation: "YDF") for ` +
+          "the frontend web development.",
+
+    GUI_Components: {
+
+      AdmonitionBlock:
+          "The component \"AdmonitionBlock\" of \"Yamato Daiwa Frontend\" library (abbreviation: \"YDF\") constitutes " +
+            "the framed text and sometimes additional content. " +
+          "In Graphic User Interfaces, it is one of tools for the notifying of the users with possibility to suggest " +
+            "the reaction to uses by the buttons. " +
+          "In the typography, this component is being used for the highlighting of the text block of various levels of " +
+            "importance.",
+
+      Badge:
+          "In \"Yamato Daiwa Frontend\" library (abbreviation: \"YDF\") and its adaptations to JavaScript frameworks, " +
+            "the \"Badge\" is the non-interactive component for the displaying of important metadata such as " +
+            "the product category, the date and and time of some event etc.",
+
+      controls: {
+
+        ValidatableControlShell:
+            "The \"ValidatableControlShell\" component of \"Yamato Daiwa Frontend\" library (abbreviation: \"YDF\") and " +
+              "its adaptations to frameworks is intended to be used as a part of user data input components, " +
+              "especially for data that needs to be validated. " +
+            "This component provides such auxiliary elements as a header label, a \"required field\" mark, " +
+              "a list of validation messages, and so on.",
+
+        buttons: {
+
+          Button:
+            "The \"Button\" component of \"Yamato Daiwa Frontend\" library (abbreviation: \"YDF\") is one of most " +
+              "popular control. " +
+            "Reacting to mouse click or touch of a touchscreen. " +
+            "Despite the apparent simplicity the button may have pretty complicated markup and styles, but YDF " +
+              "encapsulates this complexity as possible."
+
+        },
+
+        validatables: {
+
+          TextBox:
+            "The \"TextBox\" component of \"Yamato Daiwa Frontend\" library (abbreviation: \"YDF\") is one of most " +
+              "popular control. " +
+            "Accepts the keyboard input of a plain text or other data can be represented as a characters sequence " +
+              "such as a email address, password, URL, phone number etc. " +
+            "The multiline mode, inputted value copying button and other demanded additional functionality is available."
+
+        }
+
+      }
+
+    }
+
+  };

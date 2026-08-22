@@ -1,11 +1,11 @@
-# `FixedTranslucentDimLayer`
+# `FixedTranslucentDimLayer--YDF`
 
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-ftdl-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 ```
-FixedTranslucentDimLayer({
-  ZIndex: DataTypes.unit = ZIndexes.blockingOverlay,
-  backgroundColor: DataTypes.colorDefinition = rgba(black, 0.25)
+FixedTranslucentDimLayer--YDF({
+  ZIndex: DataTypes--YDF.unit = ZIndexes.blockingOverlay,
+  backgroundColor: DataTypes--YDF.colorDefinition = rgba(black, 0.25)
 })
 ```
 
@@ -17,7 +17,7 @@ Such element is frequently being used as underlay for modal dialogs.
 
   &-DimUnderlay
 
-    FixedTranslucentDimLayer({
+    FixedTranslucentDimLayer--YDF({
       ZIndex: 1,
       backgroundColor: rgb(255, 255, 128)
     })

@@ -1,4 +1,4 @@
-# buildBEM_ClassName: generating of BEM class name
+# buildBEM_ClassName--YDF: generating of BEM class name
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-bbcn-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -8,19 +8,19 @@ basic variables which could be redefined.
 
 
 ```stylus
-p(buildBEM_ClassName({ block: "Button" })) 
+p(buildBEM_ClassName--YDF({ block: "Button" })) 
 // => "Button"
 
-p(buildBEM_ClassName({ block: "Button", element: "Icon" })) 
+p(buildBEM_ClassName--YDF({ block: "Button", element: "Icon" })) 
 // => "Button__Icon"
 
-p(buildBEM_ClassName({ block: "Button", modifier: "BasicTheme" })) 
+p(buildBEM_ClassName--YDF({ block: "Button", modifier: "BasicTheme" })) 
 // => "Button_BasicTheme"
 
-p(buildBEM_ClassName({ block: "Header", element: "Icon", modifier: "BasicTheme" })) 
+p(buildBEM_ClassName--YDF({ block: "Header", element: "Icon", modifier: "BasicTheme" })) 
 // => "Header__Icon_BasicTheme"
 
-p(buildBEM_ClassName({
+p(buildBEM_ClassName--YDF({
   block: "Header",
   element: "Icon",
   modifier: "BasicTheme",

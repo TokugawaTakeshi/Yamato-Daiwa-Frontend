@@ -1,4 +1,4 @@
-# `BordersSizing` mixin
+# `BordersSizing--YDF` mixin
 
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-bds-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -6,34 +6,34 @@ The alternative to native CSS method of defining of the border width (thickness)
 customizable components development.
 
 ```
-BordersSizing({
+BordersSizing--YDF({
 
   thickness: {
   
-    all: DataTypes.dimensionalAmount;
+    all: DataTypes--YDF.dimensionalQuantity;
 
-    horizontalSymmetric: DataTypes.dimensionalAmount;,
-    left: DataTypes.dimensionalAmount;,
-    right: DataTypes.dimensionalAmount;
+    horizontalSymmetric: DataTypes--YDF.dimensionalQuantity;,
+    left: DataTypes--YDF.dimensionalQuantity;,
+    right: DataTypes--YDF.dimensionalQuantity;
 
-    verticalSymmetric: DataTypes.dimensionalAmount; 
-    top: DataTypes.dimensionalAmount;
-    bottom: DataTypes.dimensionalAmount;
+    verticalSymmetric: DataTypes--YDF.dimensionalQuantity; 
+    top: DataTypes--YDF.dimensionalQuantity;
+    bottom: DataTypes--YDF.dimensionalQuantity;
   },
 
   radius: {
 
-    all: DataTypes.dimensionalAmount;
+    all: DataTypes--YDF.dimensionalQuantity;
 
-    topLeft: DataTypes.dimensionalAmount;
-    topRight: DataTypes.dimensionalAmount;
-    bottomLeft: DataTypes.dimensionalAmount;
-    bottomRight: DataTypes.dimensionalAmount;
+    topLeft: DataTypes--YDF.dimensionalQuantity;
+    topRight: DataTypes--YDF.dimensionalQuantity;
+    bottomLeft: DataTypes--YDF.dimensionalQuantity;
+    bottomRight: DataTypes--YDF.dimensionalQuantity;
     
-    leftFillets: DataTypes.dimensionalAmount;
-    rightFillets: DataTypes.dimensionalAmount;
-    topFillets: DataTypes.dimensionalAmount;
-    bottomFillets: DataTypes.dimensionalAmount;
+    leftFillets: DataTypes--YDF.dimensionalQuantity;
+    rightFillets: DataTypes--YDF.dimensionalQuantity;
+    topFillets: DataTypes--YDF.dimensionalQuantity;
+    bottomFillets: DataTypes--YDF.dimensionalQuantity;
   }
 })
 ```
@@ -48,7 +48,7 @@ BordersSizing({
     &-All
 
       // Equivalent of `border-width: 1px`
-      BordersSizing({
+      BordersSizing--YDF({
         thickness: {
           all: 1px
         }
@@ -58,7 +58,7 @@ BordersSizing({
     &-Symmetric
 
       // Equivalent of `border-width: 4px 6px`
-      BordersSizing({
+      BordersSizing--YDF({
         thickness: {
           horizontalSymmetric: 4px,
           verticalSymmetric: 6px
@@ -69,7 +69,7 @@ BordersSizing({
     &-Separate
 
       // Equivalent of `border-width: 1px 2px 6px 4px`
-      BordersSizing({
+      BordersSizing--YDF({
         thickness: {
           top: 1px,
           left: 2px,
@@ -84,7 +84,7 @@ BordersSizing({
     &-All
 
       // Equivalent of `border-radius: 6px`
-      BordersSizing({
+      BordersSizing--YDF({
         radius: {
           all: 6px
         }
@@ -94,7 +94,7 @@ BordersSizing({
     &-LeftFillets
 
       // No single-line CSS equivalent. `border-radius: 6px 0 0 6px` applies explicit `0` while below mixin usage - no.
-      BordersSizing({
+      BordersSizing--YDF({
         radius: {
           leftFillets: 6px
         }
@@ -104,7 +104,7 @@ BordersSizing({
     &-RightFillets
 
       // No single-line CSS equivalent. `border-radius: 0 6px 6px 0` applies explicit `0` while below mixin usage - no.
-      BordersSizing({
+      BordersSizing--YDF({
         radius: {
           rightFillets: 6px
         }
@@ -114,7 +114,7 @@ BordersSizing({
     &-TopFillets
 
       // No single-line CSS equivalent. `border-radius: 6px 6px 0 0` applies explicit `0` while below mixin usage - no.
-      BordersSizing({
+      BordersSizing--YDF({
         radius: {
           topFillets: 6px
         }
@@ -124,7 +124,7 @@ BordersSizing({
     &-BottomFillets
 
       // No single-line CSS equivalent. `border-radius: 0 0 6px 6px` applies explicit `0` while below mixin usage - no.
-      BordersSizing({
+      BordersSizing--YDF({
         radius: {
           bottomFillets: 6px
         }
@@ -134,7 +134,7 @@ BordersSizing({
     &-Separate
 
       // Equivalent of `border-radius: 1px 2px 3px 4px`
-      BordersSizing({
+      BordersSizing--YDF({
         radius: {
           topLeft: 1px,
           topRight: 2px,

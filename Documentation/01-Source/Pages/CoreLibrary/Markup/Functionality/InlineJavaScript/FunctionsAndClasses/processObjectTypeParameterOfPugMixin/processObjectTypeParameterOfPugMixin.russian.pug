@@ -1,0 +1,604 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../../../../../SharedComponents/SharedComponents.russian.pug
+
+  -
+
+    const compoundParameterPropertiesSpecification = {
+      rawParameter: {
+        localizedInterpretation: "Необработанный параметр примеси",
+        type: "ParsedJSON_Object",
+        requiredIf: {
+          descriptionForLogging: "Хотя бы одно свойство в «parameterPropertiesSpecification» объявлено как обязательное"
+        }
+      },
+      parameterPropertiesSpecification: {
+        localizedInterpretation: "Спецификация свойств параметра примеси",
+        type: "RawObjectDataProcessor.PropertiesSpecification",
+        required: true
+      },
+      parameterNumber: {
+        localizedInterpretation: "Номер параметра примеси",
+        type: "number",
+        required: true
+      },
+      parameterName: {
+        localizedInterpretation: "Имя параметра примеси",
+        type: "string",
+        required: true
+      },
+      mixinName: {
+        localizedInterpretation: "Имя примеси",
+        type: "string",
+        required: true
+      }
+    };
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("processObjectTypeParameterOfPugMixin"),
+        description: MetaDescriptionTemplates.pugFunction({
+          functionName: "processObjectTypeParameterOfPugMixin",
+          whatFunctionDoes:
+              "обрабатывает параметр Pug-примеси типа «объект» включая валидацию свойств и подстановку значений по " +
+                "умолчанию."
+        })
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute(
+      "coreLibrary.markup.functionality.inlineJavaScript.functionsAndClasses.processObjectTypeParameterOfPugMixin"
+    );
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.markup.$children.functionality.$children.
+          inlineJavaScript.$children.functionsAndClasses.$children.processObjectTypeParameterOfPugMixin.$URI,
+      japanese: routing.japanese.coreLibrary.$children.markup.$children.functionality.$children.
+          inlineJavaScript.$children.functionsAndClasses.$children.processObjectTypeParameterOfPugMixin.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = routing.english.coreLibrary.$children.markup.$children.functionality.$children.inlineJavaScript.$children.
+        functionsAndClasses.$children.processObjectTypeParameterOfPugMixin;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: "processObjectTypeParameterOfPugMixin",
+      localizedDescriptiveHeading: "Обработать параметр Pug-примеси типа «объект»",
+      genericParameters: [
+        {
+          name: "ProcessedObjectTypeMixinParameter",
+          extends: "ParsedJSON_Object"
+        }
+      ],
+      parametersSpecification: [
+        {
+          genericTechnicalName: "compoundParameter",
+          localizedName: "Составной параметр",
+          type: "CompoundParameter",
+          required: true
+        }
+      ],
+      returnedValue: "ProcessedObjectTypeMixinParameter",
+      headingTag: "h1"
+    })
+      +ObjectTypeAbstract--YDF_DK({
+        typeName: "CompoundParameter",
+        localizedDescriptiveHeading: "Составной параметр",
+        propertiesSpecification: compoundParameterPropertiesSpecification
+      })
+
+    p.Article-Paragraph
+      | Валидирует и обрабатывает #[+Term--YDID параметр]
+      |
+      +Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.mixins }) Pug-примеси
+      |   #[+Term--YDID типа] #[+Term__Contrast--YDID «объект»].
+
+    p.Article-Paragraph.
+      Подобная функциональность востребована в случаях, когда с помощью #[+Term--YDID Pug-примесей] реализуются
+        #[+Term--YDID GUI-компоненты] или другие фрагменты #[+Term--YDID разметки] с большим количеством
+        #[+Keyword--YDID настраиваемых] #[+Term--YDID свойств], некоторые из которых (а иногда и все) для корректной
+        генерации #[+Term--YDID HTML-кода] должны соответствовать определённым ограничениям.
+
+
+    //- ━━━ Проблематика ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.problems.$heading,
+      HTML_ID: localizedSectioning.problems.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph
+      | #[+Term--YDID HTML-препроцессор] #[+ImportantEntity--YDID Pug], как и
+      |
+      +Link--YDF({
+        unendorsedExternalURI: sharedExternalLinks.pug.homePage.inlineJavaScript
+      }) встроенный в него JavaScript
+      |   #[+Keyword--YDID не]&nbsp;являются #[+Term--YDID статически типизированными языками].
+      | В случае с использованием #[+Term--YDID Pug-примесей] с #[+Term__Contrast--YDID параметрами] это означает, что
+      |   если #[+Term--YDID параметры] указаны неверно (количество #[+Term--YDID параметров], или же их
+      |   #[+Term--YDID тип] и т. д.), то об этом #[+Keyword--YDID заранее] #[+Keyword__Contrast--YDID никаким] образом
+      |   #[+Keyword--YDID не]&nbsp;будет сообщено разработчику.
+      | Но даже если в ходе преобразования #[+ImportantEntity--YDID Pug] в #[+ImportantEntity--YDID HTML] и возникнет
+      |   ошибка, то часто оказывается неясно, что именно и где было нарушено, а иногда и вовсе будет просто сгенерирован
+      |   отличный от желаемого #[+Term--YDID HTML-код] без ошибок, что может быть замечено лишь через длительное время.
+      | Особенно это критично, когда #[+Term--YDID примеси] поставляются сторонней библиотекой, а не&nbsp;написаны
+      |   самостоятельно, в том числе и в случае с реализацией #[+Term--YDID GUI-компонентов] с помощью
+      |   #[+Term--YDID Pug-примесей].
+
+    p.Article-Paragraph.
+      #[+Keyword--YDID Примитивное] решение этой проблемы — проверка #[+Term--YDID параметров] на
+        #[+Term__Contrast--YDID тип] и другие #[+Term--YDID свойства] (такие как количество символов или
+        #[+Term--YDID множество чисел]) с помощью #[+Keyword--YDID нативного] #[+ImportantEntity--YDID JavaScript]-а:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+        :html_special_characters_to_html_entities
+          mixin Example(foo, bar, baz)
+
+            -
+
+              if (typeof foo !== "string") {
+                throw new Error(
+                  `Тип 1-ого параметра примеси "Example" должен быть строкой в то время как он имеет тип "${ typeof foo }".`
+                );
+              }
+
+              if (foo.length < 2) {
+                throw new Error("1-ый параметр примеси \"Example\" должен иметь как минимум 2 символа.");
+              }
+
+              if (typeof bar !== "number") {
+                throw new Error(
+                  `Тип 2-ого параметра примеси "Example" должен быть числом в то время как он имеет тип "${ typeof bar }".`
+                );
+              }
+
+              if (!Number.isInteger(bar)) {
+                throw new Error("2-ой параметр примеси \"Example\" должен быть целым числом.");
+              }
+
+              if (bar < 10) {
+                throw new Error(
+                  `2-ой параметр примеси "Example" имеет значение ${ bar } в то время как минимальное значение — 10.`
+                );
+              }
+
+              if (typeof baz !== "boolean") {
+                throw new Error(
+                  `Тип 3-его параметра примеси "Example" должен быть булевским в то время как он имеет тип "${ typeof baz }".`
+                );
+              }
+
+    p.Article-Paragraph.
+      Как видно, валидация даже трёх #[+Term--YDID параметров] заняла достаточно объёмную часть кода
+        #[+Term--YDID Pug-примеси], при этом сообщения об ошибках шаблонные, потому в других #[+Term--YDID примесях] их
+        почти без изменений придётся печатать каждый раз.
+      А что, если #[+Term--YDID параметров] не 3, а 10 и больше?
+      А что, если таких #[+Term--YDID примесей] — несколько десятков?
+      Такая ситуация #[+Keyphrase--YDID вполне реальная], потому что для #[+Keyword--YDID среднего] веб-приложения
+        #[+ImportantEntity--YDID 20-30] #[+Term--YDID GUI-компонентов] с возможностью гибкой настройки через множество
+        свойств — это норма, а потому подобная «ручная» проверка #[+Term--YDID параметров] будет занимать очень много
+        времени, сил и строк кода.
+
+    p.Article-Paragraph.
+      Здесь возникает вопрос о #[+Keyword--YDID едином] механизме #[+Term--YDID валидации]
+        #[+Term__Contrast--YDID параметров], который должен проверить их #[+Term--YDID свойства] и
+        если что-то не&nbsp;так, то подробно логировать #[+Keyword--YDID все] нарушения (а
+        #[+Keyword--YDID не]&nbsp;только первое из них).
+      При этом вывод информации в терминал должен быть достаточно понятен для того, чтобы пользователь
+        #[+Term--YDID Pug-примеси] мог #[+Keyword--YDID самостоятельно] и #[+Keyword--YDID быстро] устранить нарушения
+        #[+Keyphrase--YDID без траты времени на поиск нужной справки в документации].
+
+
+    //- ━━━ Решение YDF ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.YDF_Solution.$heading,
+      HTML_ID: localizedSectioning.YDF_Solution.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph
+      | С использованием
+      |
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            YDEE_Integration.$URI
+      }) интеграции YDEE
+      |   , в частности
+      |
+      +Link--YDF({
+        internalURI: sharedExternalLinks.YamatoDaiwaES_Extensions.RawObjectDataProcessor.top
+      }) класса RawObjectDataProcessor
+      |   была разработана #[+Term--YDID функция] #[+ImportantEntity--YDID processObjectTypeParameterOfPugMixin], которая,
+      |   в соответствии с прямым переводом, обрабатывает #[+Keyword--YDID один] #[+Term--YDID параметр] типа
+      |   #[+Term--YDID «объект»] #[+Keyword__Contrast--YDID Pug-примеси].
+
+    p.Article-Paragraph.
+      Инструмента для валидации произвольного количества #[+Term--YDID параметров] любого типа
+        (как в примере с #[+SecondaryEntity__Code--YDID +Example(foo, bar, baz)]) разработано
+        #[+Keyword--YDID не]&nbsp;было, потому что #[+Term--YDID примеси] (как и #[+Term--YDID функции]) с
+        большим количеством #[+Term--YDID параметров] создают трудности как в их обслуживании, так и в использовании.
+      Например, в #[+SecondaryEntity__Code--YDID +Example("top", 2, false)] непонятно, какой смысл имеют значения
+        #[+SecondaryEntity__Code--YDID 2] и #[+SecondaryEntity__Code--YDID false], и даже если в
+        #[+Term--YDID интегрированной среде разработки] отображаются подсказки, то, например,
+        в #[+SecondaryEntity--YDID GitHub] или аналогичном сервисе при рецензировании кода их
+        #[+Keyword--YDID не]&nbsp;будет (да и то, это надо ещё поискать такой редактор кода или плагин, который
+        отображает имена #[+Term--YDID параметров] #[+Term__Contrast--YDID Pug-примесей]).
+      К счастью, с JavaScript-подобным синтаксисом в #[+ImportantEntity--YDID Pug] эту проблему легко решить,
+        объединив несколько #[+Term--YDID параметров] в один #[+Term--YDID типа] #[+Term__Contrast--YDID «объект»]:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+        :html_special_characters_to_html_entities
+          mixin Example(compoundParameter)
+
+            const { foo, bar, baz } = compoundParameter;
+
+    p.Article-Paragraph.
+      В примере выше с помощью #[+Term--YDID деструктурирующего присваивания] #[+Keyword--YDID все]
+        #[+Term__Contrast--YDID свойства]　#[+Term--YDID параметра] типа #[+Term--YDID «объект»] были вынесены в
+        #[+Term--YDID константы] и теперь ими
+        можно пользоваться как если бы это были отдельные #[+Term--YDID параметры].
+      Используя #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin], деструктурировать нужно
+        #[+Keyword--YDID не]&nbsp;сам #[+Term--YDID параметр] (#[+SecondaryEntity__Code--YDID compoundParameter] в
+        примере выше), а возвращаемое этой #[+Term--YDID функцией] значение:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+        :html_special_characters_to_html_entities
+          mixin Example(compoundParameter)
+
+            const {
+              foo,
+              bar,
+              baz
+            } = processObjectTypeParameterOfPugMixin({
+              rawParameter: compoundParameter,
+              parameterNumber: 1,
+              parameterName: "compoundParameter",
+              parameterPropertiesSpecification: {
+                foo: {
+                  type: String,
+                  required: true,
+                  minimalCharactersCount: 2
+                },
+                bar: {
+                  type: Number,
+                  numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
+                  required: true,
+                  minimalValue: 10
+                },
+                baz: {
+                  type: Boolean,
+                  required: true
+                }
+              },
+              mixinName: "Example"
+            });
+
+    p.Article-Paragraph.
+      Как видно, эта #[+Term--YDID функция] #[+Keyword--YDID также] принимает #[+Keyword--YDID единственный]
+        #[+Term--YDID параметр] #[+Term__Contrast--YDID типа] #[+Term--YDID «объект»] — по тем же причинам, что описаны
+        выше для #[+Term--YDID Pug-примесей].
+      Среди #[+Term--YDID свойств] этого #[+Keyword--YDID объектного] #[+Term--YDID параметра] есть и
+        #[+ImportantEntity__Code--YDID rawParameter] — именно через него #[+Keyword--YDID необходимо] передать
+        #[+Keyword--YDID конкретный] #[+Term--YDID параметр] #[+Keyword--YDID Pug-примеси] (в примере выше у
+        #[+Term--YDID Pug-примеси] #[+Term__Contrast--YDID параметр] только один).
+      Другое важное #[+Term--YDID свойство] — #[+ImportantEntity__Code--YDID parameterPropertiesSpecification];
+        в нём необходимо указать правила валидации, и, если нужно, то обработки (такие как подстановка значений по
+        умолчанию).
+
+    p.Article-Paragraph
+      | Свойство #[+ImportantEntity__Code--YDID parameterPropertiesSpecification] имеет #[+Term--YDID тип]
+      |
+      +Link--YDF({
+        endorsedExternalURI: sharedExternalLinks.YamatoDaiwaES_Extensions.RawObjectDataProcessor.PropertiesSpecification
+      }) ObjectSubtypes.fixedKeyAndValuePairsObject
+      |   — по сути это #[+Term--YDID объект] типа #[+Term--YDID «ассоциативный массив»], #[+Keyword--YDID ключи]
+      |   которого #[+Keyword--YDID должны] #[+Keyword__Contrast--YDID совпадать] с #[+Term--YDID ключами] целевого
+      |   #[+Term__Contrast--YDID параметра] #[+Keyword--YDID Pug-примеси].
+
+    p.Article-Paragraph.
+      #[+Keyword--YDID Остальные] #[+ImportantEntity--YDID 3] #[+Term--YDID свойства] —
+        #[+ImportantEntity__Code--YDID parameterNumber], #[+ImportantEntity__Code--YDID parameterName] и
+        #[+ImportantEntity__Code--YDID mixinName] предназначены #[+Keyword--YDID исключительно] для
+        #[+Keyword__Contrast--YDID логирования], однако они #[+Keyword--YDID также] важны, так как без их заполнения
+        может быть неясно, где именно произошло нарушение.
+
+
+    //- ━━━ Свойства единственного параметра ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.singleParameterProperties.$heading,
+      HTML_ID: localizedSectioning.singleParameterProperties.$anchor
+    }).Article-Heading2
+
+    //- ─── `rawParameter` — параметр примеси в момент начала её выполнения ────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.singleParameterProperties.$children.rawParameter.$heading,
+      HTML_ID: localizedSectioning.singleParameterProperties.$children.rawParameter.$anchor
+    }).Article-Heading3
+
+    +PropertyMetadata--YDF_DK(compoundParameterPropertiesSpecification.rawParameter)
+
+    p.Article-Paragraph.
+      #[+Term--YDID Параметр] #[+Term__Contrast--YDID Pug-примеси] #[+Keyphrase--YDID в исходном состоянии].
+
+    ul.Article-UnorderedList
+
+      li.
+        Слово «raw» («сырой») #[+Keyword--YDID здесь] означает, что над этим #[+Term--YDID параметром]
+         #[+Keyword--YDID ещё]&nbsp;#[+Keyword__Contrast--YDID не]&nbsp;было проведено #[+Keyword--YDID никаких]
+         манипуляций, таких как подстановка значений по умолчанию.
+
+      li.
+        Должен иметь тип #[+Term--YDID «объект»],
+          #[+Keyphrase--YDID валидация #[+Keyword--YDID сразу] же завершится с ошибкой].
+        #[+Keyword--YDID Единственное] #[+Keyword__Contrast--YDID исключение] — когда #[+Keyword--YDID все]
+          #[+Term--YDID свойства] в #[+ImportantEntity__Code--YDID parameterPropertiesSpecification] объявлены как
+          #[+Keyword--YDID необязательные], #[+Keyphrase--YDID в этом случае]
+          #[+ImportantEntity__Code--YDID rawParameter] может быть иметь #[+Term--YDID тип]
+          #[+ImportantEntity__Code--YDID undefined] (в частности, быть не&nbsp;указанным при вызове
+          #[+Term--YDID примеси]).
+        Тогда #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin] заменит этот пропущенный
+          #[+Term--YDID параметр] на пустой #[+Term--YDID объект], а также подставит значения по умолчанию,
+          если таковые были указаны в #[+Term--YDID параметре]
+          #[+ImportantEntity__Code--YDID parameterPropertiesSpecification]:
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          mixin Example(compoundParameter)
+
+          const {
+            foo,
+            bar
+          } = processObjectTypeParameterOfPugMixin({
+            rawParameter: compoundParameter,
+            parameterNumber: 1,
+            parameterName: "compoundParameter",
+            parameterPropertiesSpecification: {
+              foo: {
+                type: String,
+                required: false,
+                minimalCharactersCount: 2
+              },
+              bar: {
+                type: Number,
+                numbersSet: RawObjectDataProcessor.NumbersSets.nonNegativeIngeter,
+                defaultValue: 10
+              }
+            },
+            mixinName: "Example"
+          });
+        +CodeViewer-Explanation--YDF.
+          Согласно определению #[+Term--YDID свойств] в #[+ImportantEntity__Code--YDID parameterPropertiesSpecification]
+            выше, #[+Term--YDID свойство] #[+SecondaryEntity__Code--YDID foo] является #[+Keyword--YDID необязательным],
+            а у #[+SecondaryEntity__Code--YDID bar] есть значение по умолчанию.
+          Это значит, что #[+SecondaryEntity__Code--YDID = {}] в
+            #[+SecondaryEntity__Code--YDID mixin Example(compoundParameter = {})] #[+Keyword--YDID можно]
+            #[+Keyword__Contrast--YDID опустить], так как
+            #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin] #[+Keyword--YDID сама] создаст
+            #[+Keyword--YDID пустой] #[+Term--YDID объект].
+
+
+    //- ─── `parameterPropertiesSpecification` — спецификация свойств параметра примеси ────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.singleParameterProperties.$children.parameterPropertiesSpecification.$heading,
+      HTML_ID: localizedSectioning.singleParameterProperties.$children.parameterPropertiesSpecification.$anchor
+    }).Article-Heading3
+
+    +PropertyMetadata--YDF_DK(compoundParameterPropertiesSpecification.parameterPropertiesSpecification)
+
+    p.Article-Paragraph
+      | Правила валидации и обработки #[+Term--YDID параметра] #[+ImportantEntity__Code--YDID rawParameter]
+      |   #[+Term--YDID Pug-примеси] в формате
+      |
+      +Link--YDF({
+        endorsedExternalURI: sharedExternalLinks.YamatoDaiwaES_Extensions.RawObjectDataProcessor.PropertiesSpecification
+      }) ObjectSubtypes.fixedKeyAndValuePairsObject
+      | .
+      | По сути, это #[+Term--YDID объект] типа #[+Term__Contrast--YDID «ассоциативный массив»], #[+Term--YDID ключи]
+      |   которого #[+Keyword--YDID должны] совпадать с #[+Term--YDID ключами] целевого #[+Term--YDID параметра]
+      |  #[+Term__Contrast--YDID Pug-примеси].
+
+    p.Article-Paragraph
+      | В #[+Keyword--YDID значениях] #[+Term--YDID ассоциативного массива]
+      |   #[+ImportantEntity__Code--YDID ObjectSubtypes.fixedKeyAndValuePairsObject]
+      |   есть много разных опций, но для #[+Keyword--YDID каждого] #[+Term--YDID свойства] #[+Term--YDID примеси]
+      |   #[+Keyword--YDID необходимо] указать нужно #[+Keyphrase--YDID как минимум] #[+Term--YDID тип]
+      |   (#[+ImportantEntity__Code--YDID type]) и #[+Term--YDID обязательность] #[+ImportantEntity__Code--YDID required],
+      |   при этом когда планируется обеспечить значение по умолчанию, #[+Keyword--YDID вместо]
+      |   #[+ImportantEntity__Code--YDID required] нужно указать #[+ImportantEntity__Code--YDID defaultValue].
+      | Более подробную информацию об этих и других опциях Вы можете получить в
+      |
+      +Link--YDF({
+        endorsedExternalURI: sharedExternalLinks.YamatoDaiwaES_Extensions.RawObjectDataProcessor.PropertiesSpecification
+      }) документации для RawObjectDataProcessor
+      | .
+
+    p.Article-Paragraph.
+      К сожалению ввиду того, что внутри #[+ImportantEntity--YDID Pug] используется #[+ImportantEntity--YDID JavaScript],
+        а&nbsp;#[+Keyword--YDID не]&nbsp; #[+ImportantEntity--YDID TypeScript], при указании правил валидации велика
+        вероятность ошибки, что может привести к некорректному выполнению #[+Term--YDID функции], а обнаружить это сразу
+        возможно #[+Keyword--YDID не]&nbsp;всегда.
+      Однако это #[+Keyword--YDID не]&nbsp;обесценивает использование
+        #[+ImportantEntity__Code--YDID parameterPropertiesSpecification],
+        поэтому что наличие валидации лучше её отсутствия, а с
+        #[+ImportantEntity__Code--YDID parameterPropertiesSpecification] рутинного кода будет #[+Keyword--YDID значительно]
+        меньше, поскольку этой #[+Term--YDID функции] нужно лишь указать, что и по каким правилам валидировать
+        не&nbsp;занимаясь при этом реализаций валидации.
+      Чтобы снизить вероятность ошибки при определении правил валидации, можно в #[+ImportantEntity--YDID TypeScript-файле]
+        объявить #[+Term--YDID переменную] типа　#[+ImportantEntity__Code--YDID ObjectSubtypes.fixedKeyAndValuePairsObject]
+        и определить в ней все #[+Term--YDID свойства], а затем вставить значение в #[+Term--YDID Pug-код].
+
+
+    //- ─── Свойства логирования — `parameterNumber`, `parameterName`, `mixinName` ─────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.singleParameterProperties.$children.loggingProperties.$heading,
+      HTML_ID: localizedSectioning.singleParameterProperties.$children.loggingProperties.$anchor
+    }).Article-Heading3
+
+    +PropertyMetadata--YDF_DK(compoundParameterPropertiesSpecification.parameterNumber)
+    +PropertyMetadata--YDF_DK(compoundParameterPropertiesSpecification.parameterName)
+    +PropertyMetadata--YDF_DK(compoundParameterPropertiesSpecification.mixinName)
+
+    p.Article-Paragraph.
+      Используются #[+Keyword--YDID исключительно] для логирования ошибок валидации, если таковые будут допущены.
+      Номер #[+Term--YDID параметра] #[+Keyword--YDID примеси] — #[+ImportantEntity__Code--YDID parameterNumber] —
+        #[+Keyword--YDID должен] быть #[+Term--YDID натуральным числом]; остальные два #[+Term--YDID свойства]
+        #[+Keyword--YDID должны] иметь #[+Keyword--YDID строчные] значения.
+
+    p.Article-Paragraph.
+      Вот как, например, будет выглядеть фрагмент вывода в консоль при #[+SecondaryEntity__Code--YDID { parameterNumber: 1 }],
+        #[+SecondaryEntity__Code--YDID { parameterName: "properties" }] и
+        #[+SecondaryEntity__Code--YDID { mixinName: "Badge--YDF" }]:
+
+    +ConsoleOutput--YDF: :html_special_characters_to_html_entities
+        4| mixin Badge--YDF(properties)
+        5|
+      > 6|   -
+        7|
+        8|     const {
+        9|
+
+      Invalid parameter value
+      Object-type parameter No. 1 (named as "properties") of the Pug mixin "Badge--YDF" has one or more invalid properties:
+
+      (...)
+
+
+    //- ━━━ Быстрый ввод в интегрированных средах разработки семейства IntelliJ IDEA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance({
+      imageURI:
+          "@AssociatedWithPages/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/" +
+              "processObjectTypeParameterOfPugMixin/Images/processObjectTypeParameterOfPugMixin-LiveTemplate",
+      target: "function",
+      relatedTableOfContentsMetadata: localizedSectioning.IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance
+    })
+
+      p.Article-Paragraph
+        | Перед тем, как начать использовать #[+Term--YDID Live template], необходимо объявить #[+Term--YDID Pug-примесь]
+        |   с указанием #[+Term--YDID параметров] либо нескольких таковых.
+        | Также, потребуется в #[+Keyword--YDID теле] #[+Term--YDID примеси] заготовить
+        |
+        +Link--YDF({
+          unendorsedExternalURI: sharedExternalLinks.pug.homePage.inlineJavaScript
+        }) JavaScript-блок
+        |   — все описанные ниже действия предстоит выполнять именно в нём.
+
+      ol.Article-OrderedList
+
+        li.
+          Начните набирать имя #[+Term--YDID функции] —
+            #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin].
+          При текущей поддержке языка #[+ImportantEntity--YDID Pug] интегрированная среда разработки, скорее всего,
+            не&nbsp;будет знать о существовании #[+Term--YDID функции]
+            #[+ImportantEntity--YDID processObjectTypeParameterOfPugMixin], если её нет среди файлов проекта
+            (не&nbsp;включая зависимости в #[+ImportantEntity__Code--YDID node_modules]), потому предложит только один
+            вариант автодополнения.
+          Но всё же если появилось два одноимённых варианта автодополнения — с буквой в центре круга и с клише,
+            то выберете #[+Keyword--YDID второй] вариант.
+
+        li.
+          Заполните #[+Term--YDID свойство] #[+ImportantEntity__Code--YDID rawParameter] ссылкой на нужный
+            #[+Term--YDID параметр] #[+Term__Contrast--YDID примеси].
+          Изначально будет предложено имя #[+SecondaryEntity__Code--YDID properties], однако Ваш
+            #[+Term--YDID параметр] #[+Term__Contrast--YDID Pug-примеси] может иметь другое имя.
+          Когда закончите — нажмите #[+ImportantEntity--YDID Enter].
+
+        li.
+          Заполните #[+Term--YDID свойство] #[+ImportantEntity__Code--YDID parameterNumber] номером целевого
+            #[+Term--YDID параметра] #[+Term__Contrast--YDID примеси].
+          Вам будет предложено выбрать число от #[+ImportantEntity--YDID 1] до #[+ImportantEntity--YDID 3] в выпадающем
+            списке, потому если Ваш #[+Term--YDID параметр] имеет номер в этом диапазоне, то выберете нужное число с
+            помощью клавиш со стрелками и нажмите #[+ImportantEntity--YDID Enter].
+          Если же Ваш #[+Term--YDID параметр] имеет номер #[+ImportantEntity--YDID 4] или больше, то нажмите
+            #[+ImportantEntity--YDID Esc], чтобы закрыть выпадающий список, введите нужное число и затем нажмите
+            #[+ImportantEntity__Code--YDID Enter].
+
+        li.
+          Заполните свойство #[+ImportantEntity__Code--YDID parameterName] именем целевого #[+Term--YDID параметра] и
+            нажмите #[+ImportantEntity__Code--YDID Enter].
+
+        li.
+          Заполните свойство #[+ImportantEntity__Code--YDID parameterPropertiesSpecification] #[+Term--YDID объектом]
+            #[+Term--YDID типа] #[+ImportantEntity__Code--YDID ObjectSubtypes.fixedKeyAndValuePairsObject].
+          Чтобы снизить вероятность ошибки, которые могли быть тут же обнаружены при наличии статической типизации,
+            рекомендуется создать переменную этого типа в TypeScript-файле и скопировать ещё значение сюда.
+          Но разумеется, можно ввести код и напрямую.
+
+        li.
+          Заполните #[+Term--YDID свойство] #[+ImportantEntity__Code--YDID mixinName] именем Вашей #[+Term--YDID примеси].
+
+
+    //- ━━━ Внешние ссылки ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.externalLinks.$heading,
+      HTML_ID: localizedSectioning.externalLinks.$anchor
+    }).Article-Heading2
+
+    +LinksCardsFlow--YDF
+
+      +LinksCardsFlow-ItemWithSVG_Icon--YDF({
+        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
+            "Package/Markup/InlineECMAScript/Source/PugExtensions/processObjectTypeParameterOfPugMixin.ts",
+        title: "Исходный код"
+      }): +File__SourceCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
+
+      +LinksCardsFlow-ItemWithSVG_Icon--YDF({
+        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-ES-Extensions/blob/master/CoreLibrary/" +
+            "Package/Documentation/RawObjectDataProcessor/RawObjectDataProcessor.md",
+        title: "RawObjectDataProcessor"
+      })
+        +Bookmark__Outlined--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
+        .LinksCardsFlow--YDF-Description.
+          Класс библиотеки #[+ImportantEntity--YDID «Yamato Daiwa E(CMA)Script Extensions»], #[+Term--YDID API] которого
+            используется #[+Term--YDID функцией] #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin]
+
+      +LinksCardsFlow-ItemWithSVG_Icon--YDF({
+        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
+            "Package/Components/Controls/TextBox/TextBox.pug",
+        title: "Практический пример"
+      })
+        +File__SourceCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
+        .LinksCardsFlow--YDF-Description.
+          Использование #[+Term--YDID функции] #[+ImportantEntity__Code--YDID processObjectTypeParameterOfPugMixin]
+            при генерировании разметки  #[+Term--YDID Pug-примеси] GUI-компонента
+            #[+SecondaryEntity__Code--YDID «TextBox»]

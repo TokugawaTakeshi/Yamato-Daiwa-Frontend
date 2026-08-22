@@ -1,0 +1,307 @@
+include GUI_ComponentOverviewLocalization.english.pug
+
+
+-
+
+  class GUI_ComponentOverview {
+
+    static localization = GUI_ComponentOverviewGUI_ComponentLocalization__english;
+
+  }
+
+  /* [ Approach ] Can be made to static method of `GUI_ComponentOverview` but without files reorganization
+  *    `GUI_ComponentOverview` will be used before initialization that will cause an error. */
+  function generateOverviewLocalizationWorkpieceForSpecificGUI_Component() {
+
+    return {
+
+      /** @type { Function | null } */
+      localizer: null,
+
+      localizedAssets: null,
+
+      setLocalizer(localizer) {
+        this.localizer = localizer;
+      },
+
+      getLocalizedAssets() {
+
+        if (isNotNull(this.localizedAssets)) {
+          return this.localizedAssets;
+        }
+
+
+        this.localizedAssets = this.localizer();
+        this.localizer = null;
+
+        return this.localizedAssets;
+
+      }
+
+    };
+
+  }
+
+
+mixin GUI_ComponentOverview(properties)
+
+  -
+
+    const {
+
+      framework,
+
+      metadataClass: MetadataClass,
+
+      /** @type {
+       * {
+       *   native: Readonly<{
+       *     autocompleteLike: string;
+       *     abbreviation: string;
+       *   }>;
+       *   vue: Readonly<{
+       *     pugSyntax: Readonly<{
+       *       autocompleteLike: string;
+       *       abbreviation: string;
+       *     }>;
+       *     HTMLSyntax: Readonly<{
+       *       autocompleteLike: string;
+       *       abbreviation: string;
+       *     }>;
+       *   }>;
+       *   react: Readonly<{
+       *     autocompleteLike: string;
+       *     abbreviation: string;
+       *   }>;
+       * }
+       } */
+      intelliJ_IDEA_FamilyIDEsLiveTemplate
+
+    } = properties;
+
+    const { localization } =  GUI_ComponentOverview;
+    const componentClassName = MetadataClass.name.replace("__YDF", "");
+
+
+  dl.Article-DescriptionList
+
+    //- ━━━ Pug Mixin or Component Class ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if framework
+      dt= localization.componentClassName
+      dd: +ImportantEntity__Code--YDID= componentClassName
+
+    else
+      dt= localization.pugMixin
+      dd: +ImportantEntity__Code--YDID= MetadataClass.name.replace("__", "--")
+
+
+
+    //- ━━━ IntelliJ IDEA Live Template ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if intelliJ_IDEA_FamilyIDEsLiveTemplate && framework !== SupportedFrameworks.blazor
+
+      -
+
+        let headingTemplate;
+
+        switch (framework) {
+
+          case SupportedFrameworks.vue: {
+            headingTemplate = localization.liveTemplates.headings.vueComponent;
+            break;
+          }
+
+          case SupportedFrameworks.react: {
+            headingTemplate = localization.liveTemplates.headings.reactComponent;
+            break;
+          }
+
+          default: {
+            headingTemplate = localization.liveTemplates.headings.pugMixin;
+          }
+        }
+
+        const formattedHeading = replaceMarkdownLink__YDF(
+          headingTemplate,
+          ({ URI, anchorText }) =>
+              `<a ` +
+                `class="Link--YDF" ` +
+                `href="${ URI }" ` +
+                `target="_blank" ` +
+                `rel="noopener noreferrer nofollow"` +
+              `>` +
+                `${ anchorText }` +
+              `</a>`
+        );
+
+
+      dt!=formattedHeading
+      dd
+
+        dl
+
+          case framework
+
+            when SupportedFrameworks.vue
+
+              dt= localization.liveTemplates.autocompleteLike
+              dd
+
+                dl
+
+                  dt= localization.liveTemplates.pugSyntax
+                  dd #[+ImportantEntity__Code--YDID #{ properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.vue.autocompleteLike.pugSyntax }]
+
+                  dt= localization.liveTemplates.HTML_Syntax
+                  dd #[+ImportantEntity__Code--YDID #{ properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.vue.autocompleteLike.HTML_Syntax }]
+
+              dt= localization.liveTemplates.abbreviation
+              dd
+
+                dl
+
+                  dt= localization.liveTemplates.pugSyntax
+                  dd #[+ImportantEntity__Code--YDID #{ properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.vue.abbreviation.pugSyntax }]
+
+                  dt= localization.liveTemplates.HTML_Syntax
+                  dd #[+ImportantEntity__Code--YDID #{ properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.vue.abbreviation.HTML_Syntax }]
+
+              if properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.vue.loadingPlaceholder
+
+                dt= localization.liveTemplates.loadingPlaceholder
+                dd
+
+                  dl
+
+                    dt= localization.liveTemplates.pugSyntax
+                    dd #[+ImportantEntity__Code--YDID #{ properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.vue.loadingPlaceholder.pugSyntax }]
+
+                    dt= localization.liveTemplates.HTML_Syntax
+                    dd #[+ImportantEntity__Code--YDID #{ properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.vue.loadingPlaceholder.HTML_Syntax }]
+
+
+            when SupportedFrameworks.react
+
+              dt= localization.liveTemplates.autocompleteLike
+              dd #[+ImportantEntity__Code--YDID #{ properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.react.autocompleteLike }]
+
+              dt= localization.liveTemplates.abbreviation
+              dd #[+ImportantEntity__Code--YDID #{ properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.react.abbreviation }]
+
+              if properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.react.loadingPlaceholder
+
+                dt= localization.liveTemplates.loadingPlaceholder
+                dd #[+ImportantEntity__Code--YDID #{ properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.react.loadingPlaceholder }]
+
+            default
+
+              dt= localization.liveTemplates.autocompleteLike
+              dd #[+ImportantEntity__Code--YDID #{ properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.native.autocompleteLike }]
+
+              dt= localization.liveTemplates.abbreviation
+              dd #[+ImportantEntity__Code--YDID #{ properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.native.abbreviation }]
+
+              if localization.liveTemplates.loadingPlaceholder
+
+                dt Loading Placeholder
+                dd #[+ImportantEntity__Code--YDID #{ properties.intelliJ_IDEA_FamilyIDEsLiveTemplate.native.loadingPlaceholder }]
+
+
+    //- ━━━ Stylus Mixin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    dt= localization.stylusMixin
+    dd: +ImportantEntity__Code--YDID= `${ componentClassName }--YDF-generateStyles`
+
+
+    //- ━━━ Pre-made Themes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    dt= localization.preMadeThemes
+    dd
+      dl
+        each themeValue, themeKey in properties.metadataClass.Themes
+          dt: +ImportantEntity__Code--YDID
+
+            -
+
+              const themeKeyLabel = [
+                framework ? componentClassName : properties.metadataClass.name,
+                `${ framework === SupportedFrameworks.blazor ? "Standard" : "" }Themes`,
+                themeKey
+              ].join(".");
+
+            | #{ themeKeyLabel }
+
+          dd= properties.themesNamesTranslations[themeValue]
+
+
+    //- ━━━ Pre-made Geometric Variations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    dt= localization.preMadeGeometricVariations
+    dd
+      dl
+        each geometricVariationValue, geometricVariationKey in properties.metadataClass.GeometricVariations
+          dt: +ImportantEntity__Code--YDID
+
+            -
+
+              const geometricVariationKeyLabel = [
+                framework ? componentClassName : properties.metadataClass.name,
+                `${ framework === SupportedFrameworks.blazor ? "Standard" : "" }GeometricVariations`,
+                geometricVariationKey
+              ].join(".");
+
+            | #{ geometricVariationKeyLabel }
+
+          dd= properties.geometricVariationsTranslations[geometricVariationValue]
+
+
+    //- ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if properties.metadataClass.GeometricModifiers
+      dt= localization.geometricModifiers
+      dd
+        dl
+          each geometricModifierValue, geometricModifierKey in properties.metadataClass.GeometricModifiers
+            dt: +ImportantEntity__Code--YDID
+              | #{ framework ? componentClassName : properties.metadataClass.name }.GeometricModifiers.#{ geometricModifierKey }
+            dd= properties.geometricModifiersNamesTranslations[geometricModifierValue]
+
+
+    //- ━━━ Pre-made Decorative Variations ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    dt= localization.preMadeDecorativeVariations
+    dd
+      dl
+        each decorativeVariationValue, decorativeVariationKey in properties.metadataClass.DecorativeVariations
+          dt: +ImportantEntity__Code--YDID
+
+            -
+
+              const decorativeVariationKeyLabel = [
+                framework ? componentClassName : properties.metadataClass.name,
+                `${ framework === SupportedFrameworks.blazor ? "Standard" : "" }DecorativeVariations`,
+                decorativeVariationKey
+              ].join(".");
+
+            | #{ decorativeVariationKeyLabel }
+
+          dd= properties.decorativeVariationsTranslations[decorativeVariationValue]
+
+
+    //- ━━━ Decorative Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if properties.metadataClass.DecorativeModifiers
+      dt= localization.decorativeModifiers
+      dd
+        dl
+          each decorativeModifierValue, decoratingModifierKey in properties.metadataClass.DecorativeModifiers
+            dt: +ImportantEntity__Code--YDID
+              | #{ properties.metadataClass.name }.DecorativeModifiers.#{ decoratingModifierKey }
+            dd= properties.decorativeModifiersNamesTranslations[decorativeModifierValue]
+
+
+    //- ━━━ Loading Placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    dt= localization.loadingPlaceholder.title
+    dd
+
+      if properties.loadingPlaceholderPugMixinName
+        +ImportantEntity__Code--YDID= properties.loadingPlaceholderPugMixinName
+
+      else if properties.loadingPlaceholder
+        | #{ localization.loadingPlaceholder.available }
+
+      else
+        | #{ localization.loadingPlaceholder.unavailable }

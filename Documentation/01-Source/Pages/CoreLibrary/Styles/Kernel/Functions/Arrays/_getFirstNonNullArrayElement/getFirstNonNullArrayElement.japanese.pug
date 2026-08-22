@@ -1,0 +1,76 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.japanese.pug
+  include ../../../../../../../SharedComponents/SharedComponents.japanese.pug
+
+
+block append Metadata
+
+  -
+
+    HTML_PAGE_LANGUAGE = "ja";
+    HTML_PAGE_TITLE = buildHTML_PageTitle("getFirstNonNullArrayElement");
+    HTML_PageMetaData = {
+      description: "",
+      author: HTML_PAGE_AUTHOR
+    };
+
+    FAVICON_URI = "@MustBeInPublicRoot/favicon";
+
+    styleSheetsURIs = [
+      "$CommonStyles",
+      "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+      "$PreMadesStyles",
+      "@CustomizedExternalComponents"
+    ];
+
+    scriptsURIs.endOfBody = [ "$CommonLogic" ];
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.styles.kernel.functions.arrays.getFirstNonNullArrayElement");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: "./getFirstNonNullArrayElement.english.html",
+      russian: "./getFirstNonNullArrayElement.russian.html"
+    });
+
+    const pageTableOfContents = localizedRouting.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.arrays.$children.getFirstNonNullArrayElement.$sectioning;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: "getFirstNonNullArrayElement",
+      headingTag: "h1",
+      localizedDescriptiveHeading: "配列の最初の非null要素を取得",
+      parametersSpecification: [
+        {
+          localizedName: "目標的並列",
+          type: "Array<arbitrary>",
+          required: true,
+          genericTechnicalName: "targetArray"
+        }
+      ],
+      returnedValue: "Element | null"
+    })
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript })
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          console.log("OK");
+
+        +CodeViewer-Explanation--YDF
+          p.Article-Paragraph.
+            "OK"をコンソールに取得させる（キャプテン・オブヴィアス、ありがとう）。

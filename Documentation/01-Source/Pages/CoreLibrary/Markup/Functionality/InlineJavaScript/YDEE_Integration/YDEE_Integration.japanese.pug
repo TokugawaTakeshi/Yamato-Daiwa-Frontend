@@ -1,0 +1,253 @@
+extends ../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../SharedAssets/Markup/SharedAssets.japanese.pug
+  include ../../../../../../SharedComponents/SharedComponents.japanese.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("@yamato-daiwa/es-extensions(YDEE)との結合"),
+        description:
+            "フロントエンドウェブ開発専用の「やまとダイワフロントエンド」（技術名：「Yamato Daiwa Frontend」、略：「YDF」）はPugプリプロセッサ内の" +
+            "JavaScriptにおいて「やまとダイワECMAScript拡張機能」（技術名：「Yamato Daiwa ES Extensions」、略：「YDEE」）ライブラリの機能の利用が" +
+              "可能。"
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.markup.functionality.inlineJavaScript.YDEE_Integration");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.markup.$children.functionality.$children.
+          inlineJavaScript.$children.YDEE_Integration.$URI,
+      russian: routing.russian.coreLibrary.$children.markup.$children.functionality.$children.
+          inlineJavaScript.$children.YDEE_Integration.$URI
+    });
+
+    const {
+      $heading: topHeading
+    } = routing.japanese.coreLibrary.$children.markup.$children.functionality.$children.inlineJavaScript.
+        $children.YDEE_Integration;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ @yamato-daiwa/es-extensions(YDEE)との結合 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.notCheckedByNativeSpeakers })
+
+    p.Article-Paragraph
+      | #[+ImportantEntity--YDID @yamato-daiwa/frontend]と言う#[+Term--YDID npmパッケージ]の#[+Keyword--YDID ルート]ディレクトリに在る
+      |   #[+ImportantEntity--YDID Functionality.pug]ファイルを
+      |   #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.includes }) 含む]と、
+      +Link--YDF({
+        endorsedExternalURI: sharedExternalLinks.YamatoDaiwaES_Extensions.top
+      }) @yamato-daiwa/es-extensions
+      |   （略：#[+ImportantEntity--YDID 「YDEE」]）の#[+ImportantEntity--YDID #{ ACTUAL_YDEE_VERSION }]バージョンの全機能
+      |   （#[+Term--YDID インターフェース]や#[+Term--YDID タイプアリアス]の様に#[+ImportantEntity--YDID TypeScript]を
+      |    #[+ImportantEntity--YDID JavaScript]への変更の際存在しなく成る機能#[+Keyword--YDID 以外]）が利用可能に成る。
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          include ../../node_modules/@yamato-daiwa/frontend/Functionality.pug
+        +CodeViewer-Explanation--YDF.
+          貴方の#[+Term--YDID Pugファイル]場合、#[+ImportantEntity--YDID node_modules]への#[+Term--YDID 相対パス]が異なる可能性が有ります。
+
+    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning, SVG_Icon: true }).
+      #[+ImportantEntity--YDID Pug]#[+Term--YDID プリプロセッサ]の必要な#[+Keyword--YDID 最低]バージョン：#[+ImportantEntity--YDID 3.0]。
+
+    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning, SVG_Icon: true })
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+      }) ウェブページの原型
+      |   を使う場合、#[+ImportantEntity__Code--YDID Functionality.pug]ファイルは#[+Keyword--YDID 既に]含めてあり、
+      |   #[+Keyword__Contrast--YDID 再び]含む行為は#[+Keyphrase--YDID エラーを発生させる]。
+
+    p.Article-Paragraph
+      | 当機能が求められる主な場合は
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$children.
+            StaticPreviewAnywherePage.$sectioning.staticPreviewConcept.$URI
+      }) 静的プレビュー
+      |   作成の段階での簡易な#[+Term--YDID データモキング]。
+      |   例えば、下記の様にデータ（意味のない文字列でも此の段階では問題が無い）に満たされている16件のカードのマークアップを早く作成できます。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({
+        codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
+      }): :html_special_characters_to_html_entities
+        ul.ProductsList
+
+          each index in Array.from(new Array(16).keys())
+
+            li.ProductCard
+
+              - const productTitle = getRandomString({ minimalCharactersCount: 6, minimalCharactersCount: 32 });
+
+              span.ProductCard-Title= productTitle
+
+              img.ProductCard-Photo(
+                src=getRandomObjectPropertyValue(DummyImagesURIs)
+                alt=`「${ productTitle }」商品の写真`
+              )
+
+              span.ProductCard-PriceLabel
+                span.ProductCard-PriceLabel-Amount= getRandomInteger({ minimalValue: 1000, maximalValue: 10000 })
+                span.ProductCard-PriceLabel-Currency 円
+
+    p.Article-Paragraph
+      | 此処で#[+SecondaryEntity--YDID getRandomString]、#[+SecondaryEntity--YDID getRandomObjectPropertyValue]、
+      |   #[+SecondaryEntity--YDID getRandomInteger]と言う#[+SecondaryEntity--YDID YDEE]の#[+Term--YDID 関数]が利用され、但し
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            assets.$children.
+            DummyImagesURIs.$URI
+      }) DummyImagesURIs
+      |   #[+Term--YDID 連想配列型]の#[+Term__Contrast--YDID 定数]は#[+ImportantEntity--YDID YDF]の一部。
+      | 其の結果、各カードに於いて下記の様なコード#[+Term--YDID HTMLコード]が生成される
+      |   (#[+SecondaryEntity__Code--YDID img]#[+Term--YDID タグ]に於いて#[+SecondaryEntity__Code--YDID src]
+      |   #[+Term--YDID アトリビュート]の値は空間を占めすぎない様に部分的省略)。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({
+        codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML
+      }): :html_special_characters_to_html_entities
+        <li class="ProductCard">
+
+          <span class="ProductCard-Title">5XDoHI8G9qbjrvfFAq0ZrjX2KP4qcFsHzDXS9IW6nJjOnvB0FQgulYL</span>
+
+          <img
+            class="ProductCard-Photo"
+            src="data:image/svg+xml;base64,PHN2ZyB4b(...)"
+            alt="「5XDoHI8G9qbjrvfFAq0ZrjX2KP4qcFsHzDXS9IW6nJjOnvB0FQgulYL」商品の写真"
+          >
+
+          <span class="ProductCard-PriceLabel">
+            <span class="ProductCard-PriceLabel-Amount">8301</span>
+            <span class="ProductCard-PriceLabel-Currency">円</span>
+          </span>
+
+        </li>
+
+    p.Article-Paragraph
+      | 上記の様な#[+ImportantEntity--YDID YDEE]の利用が予定されていなくても、#[+ImportantEntity--YDID YDF]の#[+Term--YDID マークアップ]
+      |   関連機能の正常稼働に#[+Keyword--YDID 必要]で、例えば
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            functionsAndClasses.$children.
+            processObjectTypeParameterOfPugMixin.$URI,
+      }) Pug混入の引数の妥当性確認
+      |   をするのに使われています。
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          include ../../node_modules/@yamato-daiwa/frontend/Components.pug
+
+          +Badge--YDF({ value: [] })
+        +CodeViewer-Explanation--YDF.
+          此の様な#[+SecondaryEntity--YDID Badge]#[+Term--YDID コンポーネント]（#[+Term__Contrast--YDID Pug混入]で実装）の使い方は不正です。
+          単一の#[+Term--YDID 引数]の#[+SecondaryEntity__Code--YDID value]#[+Term--YDID プロパティ]の#[+Term--YDID 型]が間違っており、
+            もう一つの必須な#[+Term--YDID プロパティ]が欠けています。
+          然し、#[+ImportantEntity--YDID YDEE]を使って#[+Term--YDID プロパティ]の#[+Term__Contrast--YDID 妥当性確認]が実装してある御蔭で、
+            #[+ImportantEntity--YDID Pug]からの#[+ImportantEntity--YDID HTML]への変換が#[+Keyphrase--YDID エラーで落ち]、
+            英文の中級読解程度が出来れば、#[+Keyphrase--YDID 説明書を読まなくても]エラーで表示された情報で不備が直せます。
+
+
+    h2.Article-Heading2 よく有る質問・批判への返事
+
+    +QuestionAndAnswerBox--YDF({
+      type: QuestionAndAnswerBox__YDF.Types.criticism,
+      question: "と言う事は、Pugコードの中にYDEEライブラリの殆どのコードが埋めてある？やりすぎなのではないか？"
+    }).
+      #[+Keyword--YDID 全ての]機能に就いて#[+ImportantEntity--YDID やまとダイワ族]のライブラリに追加される機能は、#[+Keyword--YDID 実践上]
+        需要が発生した為#[+Keyword--YDID だと言う]事です。
+      #[+ImportantEntity--YDID YDEE]との結合に関しては、#[+Keyphrase--YDID 需要が過去にも、現在も有ります]（活用の事例が上に論述されました）。
+      何方かの機能の需要が今後無く成った場合、其の機能を置き換えるか、削除する場合も有ります（#[+ImportantEntity--YDID YDF]が公開されたのは最近ですが、
+        数年前から#[+ImportantEntity--YDID YDF]と#[+ImportantEntity--YDID YDF]のプロトタイプはアルファテストの利用が行われていました）。
+      ですが、#[+ImportantEntity--YDID YDEE]との結合は、実践上、需要が高いままなので、#[+ImportantEntity--YDID YDEE]との結合の取り除きは
+        予定#[+Keyword--YDID されていません]。
+
+    +QuestionAndAnswerBox--YDF({
+      type: QuestionAndAnswerBox__YDF.Types.question,
+      question: "サーバ側でMVCフレームワークと同時に使用する場合、YDEEコードの存在はPugからHTMLへの変換の速度に悪影響しないのか？"
+    })
+
+      p.Article-Paragraph.
+        影響を及ぼします。
+        其れに#[+Keyphrase--YDID 実質が有る]程度 (#[+ImportantEntity--YDID 約2-3秒]ですが、サーバ側でレスポンス生成する場合
+          許容#[+Keyword--YDID されない]時間です)。
+
+      p.Article-Paragraph
+        | #[+ImportantEntity--YDID YDEE]結合は#[+Keyword--YDID 主に]
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$children.
+              StaticPreviewAnywherePage.$sectioning.staticPreviewConcept.$URI
+        }) 静的プレビュー
+        |   段階専用ですが、
+        +Keyphrase--YDID.
+          #[+ImportantEntity--YDID Pug]から#[+ImportantEntity--YDID HTML]への変換がウェブサイト・アプリケーションの納品の
+            #[+Keyword--YDID 前に]済まされる場合、
+        |   他の開発段階に使っても特に問題有りません。
+
+      p.Article-Paragraph
+        | 又、#[+Term--YDID MVC]パータンを用いてサーバ側レンダリングを実装する段階でも、例えば
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              markup.$children.
+              functionality.$children.
+              inlineJavaScript.$children.
+              functionsAndClasses.$children.
+              processObjectTypeParameterOfPugMixin.$URI,
+        }) Pug混入の引数の妥当性確認
+        |   （
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$URI
+        }) UI・UXコンポーネント
+        |   の混入を含む）が動く様に、又は
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+        }) ページの原型
+        |   が使える様に、#[+Keyphrase--YDID パフォーマンスの低下無しで]#[+ImportantEntity--YDID YDEE]結合を使用する方法を下記に示します。
+        | 方法としては
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.markup.$children.usageOnServerSide.$URI
+        }) 専用説明書
+        |   が用意してありますが、簡単に説明すると、源#[+Term--YDID Pugコード]を出力#[+Term--YDID HTMLコード]への#[+Keyword--YDID ２段階]
+        |   変換を確保しなければいけません。
+        | #[+Keyword--YDID １段階目]の際、#[+Keyword--YDID 中間]テンプレートファイルが生成され、#[+Keyword--YDID 各]ファイルが
+        |   #[+Term--YDID データベース]からのデータの様に#[+Term--YDID 動的データ]に応じて#[+Keyword--YDID 変わりません]。
+        | 但し、#[+Keyword--YDID １段階目]はウェブサイト・ウェブアプリケーションの#[+Keyword--YDID 各]バージョンの納品（デプロイ）の
+        |   #[+Keyword--YDID 前]に#[+Keyword__Contrast--YDID 一度]#[+Keyword--YDID だけ]行われます。
+        | #[+Keyword--YDID ２段階目]の際、#[+Term--YDID 動的データ]が挿入され、#[+Keyword--YDID 最終の]#[+Term--YDID HTMLコード]が
+        |   生成されます。

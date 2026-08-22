@@ -1,82 +1,143 @@
-mixin CallableExpressionScheme(properties)
+include CallableExpressionScheme.class.pug
+
+
+mixin CallableExpressionScheme--YDF_DK(properties)
 
   -
     const {
       technicalName,
+      headingTag = "div",
       localizedDescriptiveHeading,
+      genericParameters,
       parametersSpecification = [],
-      returnedValue
+      returnedValue,
+      signatures
     } = properties
 
 
-  .CallableExpressionScheme&attributes(attributes)
+  mixin GenericParametersFlow(genericParameters)
 
-    .CallableExpressionScheme-TechnicalNameRow= `${technicalName}(`
-    .CallableExpressionScheme-LocalizedDescriptiveHeading= localizedDescriptiveHeading
+    -
+      genericParameters = genericParameters ?? [];
+      const genericParametersCount = genericParameters.length;
 
-    .CallableExpressionScheme-GridFlow
+    if genericParametersCount === 1
 
-      each argumentSpecification, index in parametersSpecification
+      - const genericParameter = genericParameters[0];
 
-        - argumentSpecification.number = index + 1
+      span.CallableExpressionScheme--YDF_DK-Bracket= "<"
 
-        +ArgumentAbstract(argumentSpecification)
+      if isString(genericParameter)
 
-    .CallableExpressionScheme-ClosingBracketRow
-      .CallableExpressionScheme-ClosingBracket ):
-      .CallableExpressionScheme-ReturnValue
-        if returnedValue
-          | #{returnedValue}
+        span.CallableExpressionScheme--YDF_DK-GenericParameter-Name= genericParameter
+
+      else
+
+        span.CallableExpressionScheme--YDF_DK-GenericParameter-Name= genericParameter.name
+        span.CallableExpressionScheme--YDF_DK-GenericParameter-ExtendingNotation ➝
+        span.CallableExpressionScheme--YDF_DK-GenericParameter-Name= genericParameter.extends
+
+      span.CallableExpressionScheme--YDF_DK-Bracket= ">"
+
+    else if genericParametersCount > 1
+
+      span.CallableExpressionScheme--YDF_DK-Bracket.CallableExpressionScheme--YDF_DK-Bracket__OneLine= "<"
+
+      each genericParameter, index in genericParameters
+
+        if isString(genericParameter)
+
+          span.CallableExpressionScheme--YDF_DK-GenericParameter-Name= genericParameter
+
         else
-          | void
+
+          span.CallableExpressionScheme--YDF_DK-GenericParameter-Name= genericParameter.name
+          span.CallableExpressionScheme--YDF_DK-GenericParameter-ExtendingNotation ➝
+          span.CallableExpressionScheme--YDF_DK-GenericParameter-Name= genericParameter.extends
+
+        if index < genericParametersCount - 1
+
+          span.CallableExpressionScheme--YDF_DK-GenericParameter-Comma ,
+
+      span.CallableExpressionScheme--YDF_DK-Bracket= ">"
+
+
+  figure.CallableExpressionScheme--YDF_DK&attributes(attributes)
+
+    #{headingTag}.CallableExpressionScheme--YDF_DK-TechnicalNameHeading= `${ technicalName }`
+
+    if localizedDescriptiveHeading
+
+      .CallableExpressionScheme--YDF_DK-LocalizedDescriptiveHeading= localizedDescriptiveHeading
+
+
+    if isNonEmptyArray(signatures)
+
+      .CallableExpressionScheme--YDF_DK-SignaturesFlow
+
+        each signature, index in signatures
+
+          -
+            const overloadNumberLabel = CallableExpressionScheme__YDF_DK.localization.buildOverloadNumberLabel({
+              overloadNumber: index + 1
+            });
+
+          .CallableExpressionScheme--YDF_DK-Signature
+
+            .CallableExpressionScheme--YDF_DK-Signature-Heading=overloadNumberLabel
+            .CallableExpressionScheme--YDF_DK-Signature-LocalizedDescriptiveHeading= signature.localizedDescriptiveHeading
+
+            +GenericParametersFlow(signature.genericParameters)
+
+            .CallableExpressionScheme--YDF_DK-ParametersAndReturnedValuesGroup
+
+              span.CallableExpressionScheme--YDF_DK-OpeningCurlyBracket (
+
+              if isNonEmptyArray(signature.parametersSpecification)
+
+                .CallableExpressionScheme--YDF_DK-ParametersFlow
+
+                  each parameterSpecification, index in signature.parametersSpecification
+
+                    - parameterSpecification.number = index + 1
+
+                    +ParameterMetadata--YDF_DK(parameterSpecification)
+
+              span.CallableExpressionScheme--YDF_DK-ClosingBracket ):
+              span.CallableExpressionScheme--YDF_DK-ReturnedValue
+                if signature.returnedValue
+                  | #{signature.returnedValue}
+                else
+                  | void
+
+
+    else
+
+      .CallableExpressionScheme--YDF_DK-ParametersAndReturnedValuesGroup
+
+        +GenericParametersFlow(genericParameters)
+
+        span.CallableExpressionScheme--YDF_DK-Bracket (
+
+        if isNonEmptyArray(parametersSpecification)
+
+          .CallableExpressionScheme--YDF_DK-ParametersFlow
+
+            each parameterSpecification, index in parametersSpecification
+
+              - parameterSpecification.number = index + 1
+
+              +ParameterMetadata--YDF_DK(parameterSpecification)
+
+        span.CallableExpressionScheme--YDF_DK-ClosingBracket ):
+        span.CallableExpressionScheme--YDF_DK-ReturnedValue
+          if returnedValue
+            | #{returnedValue}
+          else
+            | void
+
 
     if block
-      .CallableExpressionScheme-UsedTypesGridFlow
+
+      .CallableExpressionScheme--YDF_DK-AppendixGridFlow
         block
-
-
-mixin ArgumentAbstract(argumentSpecification)
-
-  .FunctionParameterAbstract
-
-    .FunctionParameterAbstract-HeaderRow
-
-      .FunctionParameterAbstract-Title= `Parameter No. ${argumentSpecification.number}`
-
-      if argumentSpecification.required === true
-        span.FunctionParameterAbstract-RequirementBadge.FunctionParameterAbstract-RequirementBadge__Required 必須
-        //-
-          +ParameterOrPropertyRequirementBadge({
-            status: ParameterOrPropertyRequirementBadge.RequirementStatuses.required
-          }).FunctionParameterAbstract-RequirementBadge
-      else if argumentSpecification.required === false
-        //-
-          +ParameterOrPropertyRequirementBadge({
-            status: ParameterOrPropertyRequirementBadge.RequirementStatuses.optional
-          }).FunctionParameterAbstract-RequirementBadge
-      else if typeof argumentSpecification.defaultValue !== "undefined"
-        //-
-          +ParameterOrPropertyRequirementBadge({
-            status: ParameterOrPropertyRequirementBadge.RequirementStatuses.optional
-          }).FunctionParameterAbstract-RequirementBadge
-
-    .FunctionParameterAbstract-HeaderCell 一般技術名
-    .FunctionParameterAbstract-GenericTechnicalName= argumentSpecification.genericTechnicalName
-
-    .FunctionParameterAbstract-HeaderCell 型
-      .FunctionParameterAbstract-Type
-
-        if Array.isArray(argumentSpecification.type)
-          .FunctionParameterAbstract-Type-OneOfComposition
-            each alternative in argumentSpecification.type
-              .FunctionParameterAbstract-Type-OneOfComposition-Alternative= alternative
-
-        else
-          | #{argumentSpecification.type}
-
-      //-
-
-
-
-        .FunctionParameterAbstract-HeaderCell 日本語名
-        .FunctionParameterAbstract-LocalizedName= argumentSpecification.localizedName

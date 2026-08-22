@@ -1,0 +1,193 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../../../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    HTML_PAGE_LANGUAGE = "ru";
+    HTML_PAGE_TITLE = buildHTML_PageTitle("getLineHeightByFontSizeAndLineSpacing");
+    HTML_PageMetaData = {
+      description: "",
+      author: HTML_PAGE_AUTHOR
+    };
+
+    FAVICON_URI = "@MustBeInPublicRoot/favicon";
+
+    styleSheetsURIs = [
+      "$CommonStyles",
+      "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+      "$PreMadesStyles",
+      "@CustomizedExternalComponents"
+    ];
+
+    scriptsURIs.endOfBody = [ "$CommonLogic" ];
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.styles.kernel.functions.quantities.getLineHeightByFontSizeAndLineSpacing");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: "./getLineHeightByFontSizeAndLineSpacing.english.html",
+      japanese: "./getLineHeightByFontSizeAndLineSpacing.japanese.html"
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    h1 getLineHeightByFontSizeAndLineSpacing
+
+    h2 Примеры
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript })
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          getLineHeightByFontSizeAndLineSpacing({
+            fontSize: 10px,
+            lineSpacing: 0,
+            mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true,
+            mustOutputDimensionalQuantityIfPossible: true
+          })
+        +CodeViewer-Explanation--YDF
+
+          p.Article-Paragraph.
+            Здесь высота строки будет равна #[+SecondaryEntity__Code--YDID 10px].
+
+          p.Article-Paragraph.
+            Параметр #[+SecondaryEntity__Code--YDID lineSpacing] со значением #[+SecondaryEntity__Code--YDID 0] — это
+              неоднозначность, из-за которой высота строки не&nbsp;может быть однозначно вычислен (она может иметь любое
+              значение в диапазоне от 0 до 1).
+            Для разрешения этой неоднозначности необходимо указать значения свойств
+              mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0 и mustOutputDimensionalQuantityIfPossible,
+              а обязательными они сделаны чтобы принудить программиста к осознанию возможности возникновения данной
+              неоднозначности.
+
+          p.Article-Paragraph.
+            В данном случае через #[+SecondaryEntity__Code--YDID mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true]
+              мы указываем, что когда расстояние между строку равно нулю, необходимо принять его равным размеру шрифта,
+              а через #[+SecondaryEntity__Code--YDID mustOutputDimensionalQuantityIfPossible: true] мы просим результат
+              в виде размерной величины, если это возможно.
+            Поскольку в данном случае это возможно, то результат будет #[+SecondaryEntity__Code--YDID 10px].
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          getLineHeightByFontSizeAndLineSpacing({
+            fontSize: 10px,
+            lineSpacing: 0,
+            mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true,
+            mustOutputDimensionalQuantityIfPossible: false
+          })
+        +CodeViewer-Explanation--YDF
+
+          p.Article-Paragraph.
+            Здесь высота строки будет равна #[+SecondaryEntity__Code--YDID 1].
+
+          p.Article-Paragraph.
+            Как и в предыдущем примере, мы через
+              #[+SecondaryEntity__Code--YDID mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true] указываем,
+              что при расстоянии между строками высота строки принимается равной размеру шрифта, однако на этот раз
+              мы просим результат в виде безразмерной величины.
+            Такой величиной будет множитель, который при умножении на размер шрифта должен дать размерную высоту строки.
+            В данном случае такой множитель будет равен 1.
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          getLineHeightByFontSizeAndLineSpacing({
+            fontSize: 10px,
+            lineSpacing: 0,
+            mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: false,
+            mustOutputDimensionalQuantityIfPossible: true
+          })
+        +CodeViewer-Explanation--YDF
+
+          p.Article-Paragraph.
+            В данном случае функция вернёт значение #[+SecondaryEntity__Code--YDID 0px].
+
+          p.Article-Paragraph.
+            В отличие от предыдущего примера, мы через
+              #[+SecondaryEntity__Code--YDID mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: false]
+              указываем, что если межстрочный интервал равен 0, то и высоту строки тоже нужно считать равной 0
+              вне зависимости от размера шрифта.
+            Поскольку через #[+SecondaryEntity__Code--YDID mustOutputDimensionalQuantityIfPossible: true] мы запрашиваем
+              размерную величину, а она в данном случае может быть вычислена, то на выходе получаем
+              #[+SecondaryEntity__Code--YDID 0px], а не #[+SecondaryEntity__Code--YDID 0] хотя обычно
+              при значение #[+SecondaryEntity__Code--YDID 0] размерность можно опустить.
+            При #[+SecondaryEntity__Code--YDID mustOutputDimensionalQuantityIfPossible: true] у нас будет на выходе 0.
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          getLineHeightByFontSizeAndLineSpacing({
+            fontSize: 10px,
+            lineSpacing: 4px,
+            mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true,
+            mustOutputDimensionalQuantityIfPossible: true
+          })
+        +CodeViewer-Explanation--YDF
+
+          p.Article-Paragraph.
+            В данном случае функция вернёт значение #[+SecondaryEntity__Code--YDID 14px].
+
+          p.Article-Paragraph.
+            Хотя межстрочный интервал у нас указан #[+SecondaryEntity__Code--YDID 4px], а не
+              #[+SecondaryEntity__Code--YDID 0], свойство
+              #[+SecondaryEntity__Code--YDID mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0] всё равно необходимо
+              указывать, потому что на практике при вызове функции мы значения параметров часто заранее знать не&nbsp;будем,
+              а значит возможно возникновение неопределённости, когда межстрочный интервал окажется равным нулю,
+              и это неопределённость надо будет разрешить так, как нужно разработчику.
+
+          p.Article-Paragraph.
+            Здесь размер шрифта и межстрочный интервал имеют одну и ту размерность, а потому эти величины можно
+              сложить и получить однозначное значение для высоты строки.
+            Поскольку мы через #[+SecondaryEntity__Code--YDID mustOutputDimensionalQuantityIfPossible: true]
+              запросили на выходе размерную величину по возможности, то на выходе будет #[+SecondaryEntity__Code--YDID 14px].
+
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          getLineHeightByFontSizeAndLineSpacing({
+            fontSize: 10px,
+            lineSpacing: 4px,
+            mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true,
+            mustOutputDimensionalQuantityIfPossible: false
+          })
+        +CodeViewer-Explanation--YDF
+
+          p.Article-Paragraph.
+            В данном случае функция вернёт безразмерное значение #[+SecondaryEntity__Code--YDID 1.4].
+
+          p.Article-Paragraph.
+            Как и в предыдущем примере, здесь размер шрифта и межстрочный интервал имеют одну размерность, а потому
+              эти величины можно сложить и получить #[+SecondaryEntity__Code--YDID 14px], однако ввиду того, что мы
+              через #[+SecondaryEntity__Code--YDID mustOutputDimensionalQuantityIfPossible: false] запросили безразмерное
+              значение, то получим #[+SecondaryEntity__Code--YDID 1.4].
+
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          getLineHeightByFontSizeAndLineSpacing({
+            fontSize: 1rem,
+            lineSpacing: 4px,
+            mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: true,
+            mustOutputDimensionalQuantityIfPossible: false
+          })
+        +CodeViewer-Explanation--YDF
+
+          p.Article-Paragraph.
+            В данном случае функция вернёт #[+Term--YDID calc-выражение] #[+SecondaryEntity__Code--YDID calc(1rem + 4px)].
+
+          p.Article-Paragraph.
+            Поскольку размер рифта и межстрочный интервал имеют разную размерность, то в общем случае высота строки
+              не может быть однозначно вычислена на стадии формирования выходного HTML-кода.
+            Конкретно в данном случае можно было бы получить однозначный результат, зная чему
+              #[+SecondaryEntity__Code--YDID 1rem] (по умолчанию это #[+ImportantEntity--YDID 16px], но это значение может
+              быть переопределено), однако не для всех комбинаций это работает, и в большинстве случаев конечное значение
+              в пикселях может вычислить только браузер во время рендеринга.

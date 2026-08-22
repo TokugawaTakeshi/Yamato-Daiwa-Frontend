@@ -1,0 +1,39 @@
+overview:
+
+  $heading: "Сводка"
+
+usage:
+
+  $heading: "Использование"
+
+  markup:
+
+    $heading: "Разметка"
+
+    includingToProject:
+
+      $heading: "Подключение в проект"
+
+    pugMixin:
+
+      $heading: "Pug-примесь <code>Button--YDF</code>"
+
+      minimalExample:
+
+        $heading: "Минимальный пример"
+
+      overflowControl:
+
+        $heading: "Контроль переполнения"
+
+      SVG_Icons:
+
+        $heading: "SVG-иконки"
+
+        customIcons:
+
+          $heading: "Пользовательские иконки"
+
+  logic:
+
+    $heading: "Логика"

@@ -1,9 +1,9 @@
-# substituteNull - substituting of null value 
+# substituteNull--YDF - substituting of null value 
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-sn-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 ```
-substituteNull<NonNullable>(targetValue: NonNullable | null, defaultValue: NonNullable): NonNullable
+substituteNull--YDF<NonNullable>(targetValue: NonNullable | null, defaultValue: NonNullable): NonNullable
 ```
 
 Substitutes the second parameter `defaultValue` when the first parameter `targetValue` is explicit null or not defined
@@ -14,7 +14,7 @@ by concept.
 sample1 = "ALPHA"
 sample2 = null
 
-p(substituteNull(sample1, "BRAVO"))  // => "ALPHA" ("sample1" is defined, no need to substitute the default value)
-p(substituteNull(sample2, "BRAVO"))  // => "BRAVO" ("sample2" is explicit null, default value has been substituted)
-p(substituteNull(sample3, "BRAVO"))  // => "BRAVO" ("sample3" is not defined, default value has been substituted)
+p(substituteNull--YDF(sample1, "BRAVO"))  // => "ALPHA" ("sample1" is defined, no need to substitute the default value)
+p(substituteNull--YDF(sample2, "BRAVO"))  // => "BRAVO" ("sample2" is explicit null, default value has been substituted)
+p(substituteNull--YDF(sample3, "BRAVO"))  // => "BRAVO" ("sample3" is not defined, default value has been substituted)
 ```

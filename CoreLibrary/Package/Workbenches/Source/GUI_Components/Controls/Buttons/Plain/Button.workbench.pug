@@ -1,0 +1,26 @@
+extends ../../../../../../PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "Button Component Development"
+      },
+      stylesSheetsURIs: [ "@Workbenches/GUI_Components/Controls/Buttons/Plain/Button.workbench" ]
+    });
+
+
+block append Requirements
+
+  include ../../../../../../GUI_Components.pug
+
+
+block append PageContent
+
+  +Button--YDF({
+    label: "Click me",
+    HTML_Type: Button__YDF.HTML_Types.inputButton
+  })

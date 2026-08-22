@@ -1,6 +1,6 @@
 {
   "name": "@yamato-daiwa/frontend",
-  "version": "1.2.1",
+  "version": "2.0.0-beta.12",
   "description": "Toolkit for the frontend development with Pug and Stylus pre-processors.",
   "keywords": [
     "frontend",
@@ -12,46 +12,65 @@
     "email": "tokugawa.takesi@gmail.com"
   },
   "license": "MIT",
+  "homepage": "https://frontend.yamato-daiwa.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TokugawaTakeshi/yamato_daiwa-frontend.git"
+    "url": "git+https://github.com/TokugawaTakeshi/yamato_daiwa-frontend.git"
   },
   "bugs": {
     "url": "https://github.com/TokugawaTakeshi/yamato_daiwa-frontend/issues",
     "email": "tokugawa.takesi@gmail.com"
   },
   "files": [
-    "Components",
-    "!Components/**/*.ts",
-    "!Components/**/*.template.pug",
+    "GUI_Components",
+    "!GUI_Components/**/*.ts",
+    "!GUI_Components/**/*.template.pug",
+    "LogicDistributable",
     "Markup",
     "!Markup/Source",
     "PagesTemplates",
     "!PagesTemplates/StaticPreviewAnywherePage/StaticPreviewAnywherePage.styl",
     "Styles",
-    "Components.pug",
-    "Components.styl",
     "Functionality.pug",
-    "Functionality.styl"
+    "Functionality.styl",
+    "GUI_Components.pug",
+    "GUI_Components.styl"
   ],
+  "module": "./LogicDistributable/index.js",
+  "types": "./LogicDistributable/index.d.ts",
+  "sideEffects": false,
   "dependencies": {
-    "@yamato-daiwa/es-extensions": "1.4.0",
-    "@yamato-daiwa/es-extensions-browserjs": "1.4.0",
     "clipboard": "2.0.11",
-    "prismjs": "1.28.0"
+    "fundamental-constants": "0.9.0",
+    "prismjs": "1.30.0"
+  },
+  "peerDependencies": {
+    "@yamato-daiwa/es-extensions": "~1.9.0",
+    "@yamato-daiwa/es-extensions-browserjs": "~1.9.0"
   },
   "devDependencies": {
-    "@types/prismjs": "1.26.0",
-    "@yamato-daiwa/automation": "0.0.9",
-    "stylus": "0.55.0",
-    "ts-node": "10.4.0",
-    "typescript": "4.5.2",
-    "yamato-daiwa_code_quality_management": "0.0.19"
+    "@types/node": "22.19.19",
+    "@types/prismjs": "1.26.6",
+    "@yamato-daiwa/automation": "../../../../../IntelliJ IDEA/InHouseDevelopment/YamatoDaiwaAutomation/MainPackage",
+    "@yamato-daiwa/es-extensions": "1.9.1",
+    "@yamato-daiwa/es-extensions-browserjs": "1.9.1",
+    "@yamato-daiwa/style_guides": "0.14.3",
+    "rimraf": "6.1.3",
+    "tsx": "4.23.0",
+    "typescript": "6.0.3"
   },
   "scripts": {
-    "Production building of Pug extensions": "yda build --selectiveExecution PugExtensions --mode PRODUCTION && ts-node Markup/Source/PugExtensionsOutputFileGenerator.ts ",
-    "AnywherePageStyles:IncrementalBuild": "yda build --selectiveExecution StaticPreviewAnywherePage --mode DEVELOPMENT",
-    "Tests": "yda build --selectiveExecution StylesAndComponentsTesting --mode DEVELOPMENT",
-    "Alpha realize": "npm publish --tag alpha"
-  }
+    "Check Types": "tsc --noEmit",
+    "Lint": "eslint",
+    "Build Pug Auxiliaries for Production": "yda build --selectiveExecution PugAuxiliaries --mode PRODUCTION && tsx Markup/InlineECMAScript/PugAuxiliariesOutputFileGenerator.ts",
+    "Building Logic for Production": "rimraf LogicDistributable && yda build --selectiveExecution Logic --mode PRODUCTION && tsc --project tsconfig.declarations.json --declaration --emitDeclarationOnly --outDir LogicDistributable",
+    "Production Building of Anywhere Page Template Styles": "yda build --selectiveExecution StaticPreviewAnywherePage --mode PRODUCTION",
+    "Tests": "yda build --selectiveExecution StylesAndComponentsTesting --mode LOCAL_DEVELOPMENT",
+    "Start Workbenches": "yda build --selectiveExecution Workbenches --mode LOCAL_DEVELOPMENT",
+    "Realize Alpha": "npm publish --tag alpha",
+    "Realize Beta": "npm publish --tag beta",
+    "Realize RC": "npm publish --tag rc",
+    "Project Structure Visualizing": "wsl tree -I \".git|.idea|node_modules|LogicDistributable|Build\" || tree -I \".git|.idea|node_modules|LogicDistributable|Build\""
+  },
+  "funding": "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend?sponsor=1"
 }

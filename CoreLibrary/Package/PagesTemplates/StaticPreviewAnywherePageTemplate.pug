@@ -1,0 +1,356 @@
+extends RegularWebPageTemplate.pug
+
+
+block append Functionality
+
+  include ../GUI_Components.pug
+  include StaticPreviewAnywherePage/StaticPreviewAnywherePageLocalization.english.pug
+
+  -
+
+    /**
+     * @typedef {
+     *   {
+     *     heading?: string;
+     *     pages: Array<Page>;
+     *     sections: Array<Section>;
+     *   }
+     * } TableOfContentspolymorphicElement
+     *
+     * @typedef {
+     *   {
+     *     title: string;
+     *     progressStatus: string;
+     *   } &
+     *   (
+     *     { URI: string } |
+     *     { linksList: Array<{ label: string; URI: string; }>; } |
+     *     {
+     *       linksTable: Array<{
+     *         rowLabel: string;
+     *         progressStatus: string;
+     *         columns: Array<{ label: string; URI: string; }>;
+     *       }>
+     *     }
+     *   )
+     * } Page
+     *
+     * @typedef {
+     *   {
+     *     heading: string;
+     *     pages: Array<Page>;
+     *     sections: Array<Section>
+     *   }
+     * } Section
+     *
+     */
+
+    class StaticPreviewAnywherePage__YDF {
+
+      /**
+       * @type { string | undefined }
+       * @private
+       */
+      static topHeading;
+
+      /**
+       * @type Array<TableOfContentspolymorphicElement>
+       * @private
+       */
+      static tableOfContents = [];
+
+      /**
+       * @public
+       * @type {
+       *   Readonly<{
+       *     waitingForImplementation: string;
+       *     implementationInProgress: string;
+       *     improvementWaiting: string;
+       *     improvementInProgress: string;
+       *     fixingWaiting: string;
+       *     fixingInProgress: string;
+       *     specificationClarification: string;
+       *     reviewWaiting: string;
+       *     customerEvaluationWaiting: string;
+       *     accepted: string;
+       *   }>
+       * }
+       * @readonly
+       */
+      static PageDevelopmentProgressStatuses = {
+
+        waitingForImplementation: "WAITING_FOR_IMPLEMENTATION",
+        implementationInProgress: "IMPLEMENTATION_IN_PROGRESS",
+
+        improvementWaiting: "IMPROVEMENT_WAITING",
+        improvementInProgress: "IMPROVEMENT_IN_PROGRESS",
+
+        fixingWaiting: "FIXING_WAITING",
+        fixingInProgress: "FIXING_IN_PROGRESS",
+
+        specificationClarification: "SPECIFICATION_CLARIFICATION",
+
+        reviewWaiting: "REVIEW_WAITING",
+        customerEvaluationWaiting: "CUSTOMER_EVALUATION_WAITING",
+
+        accepted: "ACCEPTED"
+
+      }
+
+      static localization = staticPreviewAnywherePageLocalization__english;
+
+      /**
+       * @param {
+       *   Readonly<{
+       *     topHeading: string;
+       *     tableOfContents: Array<TableOfContentspolymorphicElement>
+       *     metadata: {
+       *       locale?: string;
+       *       title?: string;
+       *       description?: string | null;
+       *       keywords?: string | null;
+       *       author?: string | null;
+       *     };
+       *     faviconURI?: string;
+       *     AMP_VersionURI?: string;
+       *     stylesSheetsURIs?: Array<string>;
+       *     scriptsURIs: {
+       *       atEndOfHead?: Array<string>;
+       *       atEndOfBody: Array<string>;
+       *     }
+       *   }>
+       * } options
+       * @returns { typeof RegularWebPageTemplate__YDF }
+       * @public
+       */
+      static configure(
+        {
+          topHeading,
+          tableOfContents,
+          localization,
+          ...regularWebPageTemplateOptions
+        }
+      ) {
+
+        RegularWebPageTemplate__YDF.configure(regularWebPageTemplateOptions);
+
+        StaticPreviewAnywherePage__YDF.topHeading = topHeading;
+        StaticPreviewAnywherePage__YDF.tableOfContents = tableOfContents;
+
+        if (isNotUndefined(localization)) {
+          StaticPreviewAnywherePage__YDF.localization = localization;
+        }
+
+      }
+
+      static getPageDevelopmentProgressStatusDependentBadgeDecorativeVariation(pageDevelopmentProgressStatus) {
+
+        switch (pageDevelopmentProgressStatus) {
+
+          case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.waitingForImplementation:
+              return Badge__YDF.DecorativeVariations.veryCatchyPastel;
+
+          case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.improvementWaiting:
+          case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.fixingWaiting:
+              return Badge__YDF.DecorativeVariations.catchyPastel;
+
+          case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress:
+          case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.improvementInProgress:
+          case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.fixingInProgress:
+              return Badge__YDF.DecorativeVariations.modestlyCalmingPastel;
+
+          case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.specificationClarification:
+              return Badge__YDF.DecorativeVariations.modestlyCatchyPastel;
+
+          case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.reviewWaiting:
+          case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.customerEvaluationWaiting:
+              return Badge__YDF.DecorativeVariations.neutralPastel;
+
+          case StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted:
+              return Badge__YDF.DecorativeVariations.calmingPastel;
+
+        }
+
+      }
+
+    }
+
+
+  mixin RegularWebPageTemplate-Link--YDF(properties)
+
+    +Link--YDF({ internalURI: properties.URI })&attributes(attributes)= properties.title || properties.label
+
+
+  mixin RegularWebPageTemplate-LinksList--YDF(links)
+
+    ul
+
+      each link in links
+
+        li
+
+          +Link--YDF({ internalURI: link.URI })= link.label
+
+
+  mixin RegularWebPageTemplate-Card--YDF(page)
+
+    li.StaticPreviewAnywherePage--YDF-Card
+
+      +Badge--YDF({
+        valueLabel: StaticPreviewAnywherePage__YDF.localization.progressStatusBadgesText[page.progressStatus],
+        geometricModifiers: [ Badge__YDF.GeometricModifiers.pillShape ],
+        decorativeVariation: StaticPreviewAnywherePage__YDF.
+            getPageDevelopmentProgressStatusDependentBadgeDecorativeVariation(page.progressStatus)
+      }).StaticPreviewAnywherePage--YDF-Card-Badge
+
+      if page.URI
+
+        +RegularWebPageTemplate-Link--YDF(page).StaticPreviewAnywherePage--YDF-Card-Link
+
+      else if page.linksList
+
+        span.StaticPreviewAnywherePage--YDF-Card-Title= page.title
+
+        ul
+
+          each link in page.linksList
+
+            li
+
+              +Link--YDF({ internalURI: link.URI }).StaticPreviewAnywherePage--YDF-Card-Link= link.label
+
+      else if page.linksTable
+
+        span.StaticPreviewAnywherePage--YDF-Card-Title= page.title
+
+        .StaticPreviewAnywherePage--YDF-Card-ScrollingContainerForTable
+
+          table
+
+            tbody
+
+              each stateDependentVariation in page.linksTable
+
+                tr
+
+                  th= stateDependentVariation.rowLabel
+
+                  each column in stateDependentVariation.columns
+
+                    td
+
+                      +RegularWebPageTemplate-Link--YDF(column)
+
+  mixin RegularWebPageTemplate-SectionsFlow--YDF(sections)
+
+    -
+
+      HeadingsLevelsCoordinator__YDF.incrementLevel();
+
+      let headingCSS_Class;
+
+      switch (HeadingsLevelsCoordinator__YDF.currentLevel) {
+
+        case 3: {
+          headingCSS_Class = "StaticPreviewAnywherePage--YDF-SubsectionHeading";
+          break;
+        }
+
+
+        case 4: {
+          headingCSS_Class = "StaticPreviewAnywherePage--YDF-SubsubsectionHeading";
+        }
+
+      }
+
+
+    each section in sections
+
+      #{ HeadingsLevelsCoordinator__YDF.getHeadingTagOfCurrentLevel() }(
+        class=headingCSS_Class
+      )= section.heading
+
+      if section.pages
+
+        ul.StaticPreviewAnywherePage--YDF-CardsFlow
+
+          each page in section.pages
+
+            +RegularWebPageTemplate-Card--YDF(page)
+
+      if section.sections
+
+        +RegularWebPageTemplate-SectionsFlow--YDF(section.sections)
+
+    - HeadingsLevelsCoordinator__YDF.decrementLevel();
+
+
+block append Styles
+
+  style
+
+    include StaticPreviewAnywherePage/StaticPreviewAnywherePage.css
+
+
+block append PageContent
+
+  .StaticPreviewAnywherePage--YDF
+
+    block TableOfContents
+
+    if StaticPreviewAnywherePage__YDF.topHeading
+
+      #{ HeadingsLevelsCoordinator__YDF.getHeadingTagOfCurrentLevel() }.StaticPreviewAnywherePage--YDF-TopHeading
+        | #{ StaticPreviewAnywherePage__YDF.topHeading }
+
+
+    if StaticPreviewAnywherePage__YDF.tableOfContents.length > 0
+
+      -
+
+        const tableOfContentsItems = [ ...StaticPreviewAnywherePage__YDF.tableOfContents ];
+        HeadingsLevelsCoordinator__YDF.incrementLevel();
+
+
+      nav.StaticPreviewAnywherePage--YDF-Navigation
+
+
+        //- ━━━ Leading Unsectioned Pages ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        if StaticPreviewAnywherePage__YDF.tableOfContents[0].title
+
+          -
+            let currentPageIndex = 0;
+            let currentItem = StaticPreviewAnywherePage__YDF.tableOfContents[currentPageIndex];
+
+          ul.StaticPreviewAnywherePage--YDF-CardsFlow
+
+            while currentItem && currentItem.title
+
+              +RegularWebPageTemplate-Card--YDF(currentItem)
+
+              -
+                currentPageIndex++;
+                currentItem = StaticPreviewAnywherePage__YDF.tableOfContents[currentPageIndex]
+
+          - tableOfContentsItems.slice(currentPageIndex);
+
+
+        //- ━━━ Sectioned Pages ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        each polymorphicElement in tableOfContentsItems
+
+          if polymorphicElement.heading
+
+            #{ HeadingsLevelsCoordinator__YDF.getHeadingTagOfCurrentLevel() }.StaticPreviewAnywherePage--YDF-SectionHeading
+              | #{ polymorphicElement.heading }
+
+          if polymorphicElement.pages
+
+            ul.StaticPreviewAnywherePage--YDF-CardsFlow
+
+              each page in polymorphicElement.pages
+
+                +RegularWebPageTemplate-Card--YDF(page)
+
+          if polymorphicElement.sections
+
+            +RegularWebPageTemplate-SectionsFlow--YDF(polymorphicElement.sections)

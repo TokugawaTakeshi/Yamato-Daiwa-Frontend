@@ -1,0 +1,41 @@
+extends ../../../../node_modules/@yamato-daiwa/frontend/PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Requirements
+
+  include  ../../../../node_modules/@yamato-daiwa/frontend-demos/Source/Galleries/GalleryConfigurator.pug
+  include  ../../../../node_modules/@yamato-daiwa/frontend-demos/Source/CompletePages/GUI_Components/Badge/_BadgeGalleryPage.partials.pug
+  include  ../../../_addDataAttributesGeneratingMethodToGalleryConfiguratorClass.pug
+
+
+block append Metadata
+
+  -
+
+    /**
+     * @param { string } [partialTitle]
+     * @returns { string }
+     * */
+    function generateHTML_PageTitle(partialTitle) {
+      return [
+        "Badge Component Demos",
+        ...partialTitle ? [ ` — ${ partialTitle }` ] : [],
+        " — Yamato Daiwa Frontend (YDF - React)"
+      ].join("");
+    }
+
+    RegularWebPageTemplate__YDF.configure({
+      stylesSheetsURIs: [
+        "$ExternalStyles/YDF-Demos-Primer.css",
+        "$ExternalStyles/YDF-Demos-CommonRequirements.css",
+        "$ExternalStyles/GUI_Components/Badge/BadgeGalleryPage.css"
+      ],
+      scriptsURIs: {
+        atEndOfBody: [ "@CompletePages/GUI_Components/Badge/BadgeGalleryPage" ]
+      }
+    });
+
+
+block append PageContent
+
+  .YDF_Gallery#APPLICATION&attributes(GalleryConfigurator.generateDataAttributes())

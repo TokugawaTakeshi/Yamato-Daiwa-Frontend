@@ -1,0 +1,68 @@
+﻿@page "/"
+
+@using Microsoft.JSInterop
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.ValidatableControlShell
+@using YamatoDaiwa.Frontend.Helpers
+
+@inject IJSRuntime JS
+
+
+<ValidatableControlShell
+  label="Label"
+  guidance="Guidance"
+  validationErrorsMessages=@validationErrorsMessages
+  mustDisplayErrorsMessagesIfAny=@true
+>
+  <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+</ValidatableControlShell>
+
+<button
+  type="button"
+  onclick=@switchValidationErrorsMessages
+>
+   Switch VEM
+</button>
+
+<button
+  type="button"
+  onclick=@TryJavaScriptFunctionality
+  @ref=@buttonElement
+>
+  Call YDF.test
+</button>
+
+
+@code {
+
+  protected string[] validationErrorsMessages = [];
+
+  protected Microsoft.AspNetCore.Components.ElementReference buttonElement;
+
+  private readonly JavaScriptFunctionality javaScriptFunctionality = JavaScriptFunctionality.GetNotInitializedYetInstance();
+
+  protected override async Task OnAfterRenderAsync(bool firstRender)
+  {
+    if (firstRender)
+    {
+      await javaScriptFunctionality.Load(JS);
+    }
+  }
+
+  private void switchValidationErrorsMessages()
+  {
+    this.validationErrorsMessages =
+        this.validationErrorsMessages.Length == 0 ?
+            [
+              "This field is required",
+              "Invalid email format",
+              "Value must be at least 3 characters long"
+            ] :
+            [];
+  }
+
+  private async Task TryJavaScriptFunctionality()
+  {
+    Console.WriteLine(await this.javaScriptFunctionality.GetDOM_ElementOffsetCoordinates(this.buttonElement));
+  }
+  
+}

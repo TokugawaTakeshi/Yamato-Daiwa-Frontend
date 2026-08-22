@@ -1,0 +1,339 @@
+-
+
+  class ComponentsAuxiliaries {
+
+    static areComponentsThemesCommon = false;
+
+    static generateValidatableControlGeneralStatesSimulationsSpecification(
+      {
+        invalidInputHighlightingIfAnyValidationErrorsMessages = false,
+        validValueHighlightingIfNoValidationErrorsMessages = false,
+        validationErrorsMessages = false,
+        asynchronousValidationsStatuses = false
+      }
+    ) {
+      return {
+
+        ...invalidInputHighlightingIfAnyValidationErrorsMessages ?
+
+            {
+              invalidInputHighlightingIfAnyValidationErrorsMessages: {
+                type: Boolean,
+                undefinedValueSubstitution: false,
+                isNullForbidden: true
+              }
+            } :
+            null,
+
+        ...validValueHighlightingIfNoValidationErrorsMessages ?
+
+            {
+              validValueHighlightingIfNoValidationErrorsMessages: {
+                type: Boolean,
+                undefinedValueSubstitution: false,
+                isNullForbidden: true
+              }
+            } :
+            null,
+
+        ...validationErrorsMessages ?
+
+            {
+              validationErrorsMessages: {
+                type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+                undefinedValueSubstitution: false,
+                isNullForbidden: true,
+                alternatives: [
+                  {
+                    type: Array,
+                    areUndefinedElementsForbidden: true,
+                    areNullElementsForbidden: true,
+                    element: {
+                      type: String,
+                      minimalCharactersCount: 1
+                    }
+                  },
+                  {
+                    type: Boolean
+                  }
+                ]
+              }
+            } :
+            null,
+
+        ...asynchronousValidationsStatuses ?
+
+            {
+
+              asynchronousValidationsStatuses: {
+                type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+                undefinedValueSubstitution: false,
+                isNullForbidden: true,
+                alternatives: [
+                  {
+                    type: Array,
+                    areUndefinedElementsForbidden: true,
+                    areNullElementsForbidden: true,
+                    element: {
+                      type: Object,
+                      properties: {
+                        ID: {
+                          type: String,
+                          isUndefinedForbidden: true,
+                          isNullForbidden: true,
+                          allowedAlternatives: Object.values(AsynchronousValidations__YDF.Statuses)
+                        },
+                        message: {
+                          type: String,
+                          isUndefinedForbidden: true,
+                          isNullForbidden: true,
+                          minimalCharactersCount: 1
+                        }
+                      }
+                    }
+                  },
+                  {
+                    type: Boolean
+                  }
+                ]
+              }
+
+            } :
+            null
+
+      };
+    }
+
+    static defineThemes(themesNames, TargetComponentClass) {
+
+      for (const themeName of themesNames) {
+        TargetComponentClass.Themes[YDF.toLowerCamelCase(themeName)] = YDF.toScreamingSnakeCase(themeName);
+      }
+
+      return TargetComponentClass;
+
+    }
+
+    static defineGeometricVariations(geometricVariationsNames, TargetComponentClass) {
+
+      for (const geometricVariationName of geometricVariationsNames) {
+        TargetComponentClass.GeometricVariations[toLowerCamelCase(geometricVariationName)] =
+            toScreamingSnakeCase(geometricVariationName);
+      }
+
+      return TargetComponentClass;
+
+    }
+
+    static defineDecorativeVariations(decorativeVariationsNames, TargetComponentClass) {
+
+      for (const decorativeVariationName of decorativeVariationsNames) {
+        TargetComponentClass.DecorativeVariations[toLowerCamelCase(decorativeVariationName)] =
+            toScreamingSnakeCase(decorativeVariationName);;
+      }
+
+      return TargetComponentClass;
+
+    }
+
+
+    /**
+     * @param {
+     *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingChildrenThemesDefinition
+     * @param { Object } TargetComponentClass
+     */
+    static defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
+      ownAndCorrespondingChildrenThemesDefinition, TargetComponentClass
+    ){
+
+      ComponentsAuxiliaries.defineThemes(Object.keys(ownAndCorrespondingChildrenThemesDefinition), TargetComponentClass);
+
+      //- [ Approach ] Triggering the initialization of `_selfAndChildrenComponentsThemesCorrespondence`.
+      TargetComponentClass.selfAndChildrenComponentsThemesCorrespondence;
+
+      for (
+        const [ ownThemeName, correspondenceWithThemesOfChildrenComponents ] of
+            Object.entries(ownAndCorrespondingChildrenThemesDefinition)
+      ) {
+
+        const ownThemeName__screamingSnakeCase = toScreamingSnakeCase(ownThemeName);
+
+        for (
+          const [ childComponentName, childComponent_sThemeName ] of
+              Object.entries(correspondenceWithThemesOfChildrenComponents)
+        ) {
+
+          if (isUndefined(TargetComponentClass._selfAndChildrenComponentsThemesCorrespondence[childComponentName])) {
+            TargetComponentClass._selfAndChildrenComponentsThemesCorrespondence[childComponentName] = {
+              [ownThemeName__screamingSnakeCase]: toScreamingSnakeCase(childComponent_sThemeName)
+            };
+          } else {
+            TargetComponentClass.
+                _selfAndChildrenComponentsThemesCorrespondence[childComponentName][ownThemeName__screamingSnakeCase] =
+                    toScreamingSnakeCase(childComponent_sThemeName);
+          }
+
+        }
+
+      }
+
+      return TargetComponentClass;
+
+    }
+
+    /**
+     * @param {
+     *   { [ ownGeometricVariationName: string ]: { [ childrenComponentName: string ]: string; } }
+     * } ownAndCorrespondingChildrenGeometricVariationsDefinition
+     * @param { Object } TargetComponentClass
+     */
+    static defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+      ownAndCorrespondingChildrenGeometricVariationsDefinition, TargetComponentClass
+    ){
+
+      ComponentsAuxiliaries.defineGeometricVariations(
+        Object.keys(ownAndCorrespondingChildrenGeometricVariationsDefinition), TargetComponentClass
+      );
+
+      //- [ Approach ] Triggering the initialization of `_selfAndChildrenComponentsGeometricVariationsCorrespondence`.
+      TargetComponentClass.selfAndChildrenComponentsGeometricVariationsCorrespondence;
+
+      for (
+        const [ ownGeometricVariationName, correspondenceWithGeometricVariationsOfChildrenComponents ] of
+            Object.entries(ownAndCorrespondingChildrenGeometricVariationsDefinition)
+      ) {
+
+        const ownGeometricVariationName__screamingSnakeCase = toScreamingSnakeCase(ownGeometricVariationName);
+
+        for (
+          const [ childComponentName, childComponent_sGeometricVariationName ] of
+              Object.entries(correspondenceWithGeometricVariationsOfChildrenComponents)
+        ) {
+
+          if (isUndefined(TargetComponentClass.selfAndChildrenComponentsGeometricVariationsCorrespondence[childComponentName])) {
+            TargetComponentClass.selfAndChildrenComponentsGeometricVariationsCorrespondence[childComponentName] = {
+              [ownGeometricVariationName__screamingSnakeCase]: toScreamingSnakeCase(childComponent_sGeometricVariationName)
+            };
+          } else {
+            TargetComponentClass.
+                selfAndChildrenComponentsGeometricVariationsCorrespondence[childComponentName]
+                    [ownGeometricVariationName__screamingSnakeCase] =
+                        toScreamingSnakeCase(childComponent_sGeometricVariationName)
+          }
+
+        }
+
+      }
+
+      return TargetComponentClass;
+
+    }
+
+    /**
+     * @param {
+     *   { [ ownDecorativeVariationName: string ]: { [ childrenComponentName: string ]: string; } }
+     * } ownAndCorrespondingChildrenDecorativeVariationsDefinition
+     * @param { Object } TargetComponentClass
+     */
+    static defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+      ownAndCorrespondingChildrenDecorativeVariationsDefinition, TargetComponentClass
+    ){
+
+      ComponentsAuxiliaries.defineDecorativeVariations(
+        Object.keys(ownAndCorrespondingChildrenDecorativeVariationsDefinition), TargetComponentClass
+      );
+
+      //- [ Approach ] Triggering the initialization of `_selfAndChildrenComponentsDecorativeVariationsCorrespondence`.
+      TargetComponentClass.selfAndChildrenComponentsDecorativeVariationsCorrespondence;
+
+      for (
+        const [ ownDecorativeVariationName, correspondenceWithDecorativeVariationsOfChildrenComponents ] of
+            Object.entries(ownAndCorrespondingChildrenDecorativeVariationsDefinition)
+      ) {
+
+        const ownDecorativeVariationName__screamingSnakeCase = toScreamingSnakeCase(ownDecorativeVariationName);
+
+        for (
+          const [ childComponentName, childComponent_sDecorativeVariationName ] of
+              Object.entries(correspondenceWithDecorativeVariationsOfChildrenComponents)
+        ) {
+
+          if (isUndefined(TargetComponentClass.selfAndChildrenComponentsDecorativeVariationsCorrespondence[childComponentName])) {
+            TargetComponentClass.selfAndChildrenComponentsDecorativeVariationsCorrespondence[childComponentName] = {
+              [ownDecorativeVariationName__screamingSnakeCase]: toScreamingSnakeCase(childComponent_sDecorativeVariationName)
+            };
+          } else {
+            TargetComponentClass.
+                selfAndChildrenComponentsDecorativeVariationsCorrespondence[childComponentName]
+                    [ownDecorativeVariationName__screamingSnakeCase] =
+                        toScreamingSnakeCase(childComponent_sDecorativeVariationName)
+          }
+
+        }
+
+      }
+
+      return TargetComponentClass;
+
+    }
+
+
+    static addThemeCSS_ClassToArrayIfMust(
+      {
+        theme,
+        allThemes,
+        areThemesCSS_ClassesCommon,
+        CSS_Namespace
+      }
+    ) {
+      return Object.entries(allThemes).length > 1 && !areThemesCSS_ClassesCommon ?
+          [ `${ CSS_Namespace }__${ toUpperCamelCase(theme) }Theme` ] : [];
+    }
+
+    static addGeometricVariationCSS_ClassToArrayIfMust(
+      {
+        geometricVariation,
+        allGeometricVariations,
+        CSS_Namespace
+      }
+    ) {
+      return Object.entries(allGeometricVariations).length > 1 ?
+          [ `${ CSS_Namespace }__${ toUpperCamelCase(geometricVariation) }GeometricVariation` ] : [];
+    }
+
+    static addDecorativeVariationCSS_ClassToArrayIfMust(
+      {
+        decorativeVariation,
+        allDecorativeVariations,
+        CSS_Namespace
+      }
+    ) {
+      return Object.entries(allDecorativeVariations).length > 1 ?
+          [ `${ CSS_Namespace }__${ toUpperCamelCase(decorativeVariation) }DecorativeVariation` ] : [];
+    }
+
+
+    /**
+     * @param { string } CSS_Namespace
+     * @param { Array<string> } demandedGeometricModifiersNames
+     * @return Array<string>
+     * */
+    static generateDemandedGeometricModifiersCSS_Classes(CSS_Namespace, demandedGeometricModifiersNames) {
+      return demandedGeometricModifiersNames.map(
+        geometricModifierName => `${ CSS_Namespace }__${ toUpperCamelCase(geometricModifierName) }GeometricModifier`
+      )
+    }
+
+    /**
+     * @param { string } CSS_Namespace
+     * @param { Array<string> } demandedDecorativeModifiersNames
+     * @return Array<string>
+     * */
+    static generateDemandedDecorativeModifiersCSS_Classes(CSS_Namespace, demandedDecorativeModifiersNames) {
+      return demandedDecorativeModifiersNames.map(
+        decorativeModifierName => `${ CSS_Namespace }__${ toUpperCamelCase(decorativeModifierName) }DecorativeModifier`
+      )
+    }
+
+  }

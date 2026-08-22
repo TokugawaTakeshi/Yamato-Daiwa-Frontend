@@ -1,27 +1,27 @@
-# `provideClippedShadowsAndOutlinesVisibility`
+# `provideClippedShadowsAndOutlinesVisibility--YDF`
 
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-pcsaov-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 ```
-provideClippedShadowsAndOutlinesVisibility({
+provideClippedShadowsAndOutlinesVisibility--YDF({
      
-  requiredHorizontalSymmetricSpace?: DataTypes.unit,
+  requiredHorizontalSymmetricSpace?: DataTypes--YDF.unit,
   // OR
-  requiredSpaceAtLeft?: DataTypes.unit,
-  requiredSpaceAtRight?: DataTypes.unit,
+  requiredSpaceAtLeft?: DataTypes--YDF.unit,
+  requiredSpaceAtRight?: DataTypes--YDF.unit,
   
-  requiredVerticalSymmetricSpace?: DataTypes.unit,
+  requiredVerticalSymmetricSpace?: DataTypes--YDF.unit,
   // OR
-  requiredSpaceAtTop?: DataTypes.unit,
-  requiredSpaceAtBottom?: DataTypes.unit,
+  requiredSpaceAtTop?: DataTypes--YDF.unit,
+  requiredSpaceAtBottom?: DataTypes--YDF.unit,
   
-  noCompensatingNegativeTopMargins?: DataTypes.boolean,
-  noCompensatingNegativeBottomMargins?: DataTypes.boolean,
-  noCompensatingNegativeLeftMargins?: DataTypes.boolean,
-  noCompensatingNegativeRightMargins?: DataTypes.boolean,
+  noCompensatingNegativeTopMargins?: DataTypes--YDF.boolean,
+  noCompensatingNegativeBottomMargins?: DataTypes--YDF.boolean,
+  noCompensatingNegativeLeftMargins?: DataTypes--YDF.boolean,
+  noCompensatingNegativeRightMargins?: DataTypes--YDF.boolean,
   
-  useBeforePseudoElementWithCompensatingNegativeTopMargins?: DataTypes.boolean,
-  useAfterPseudoElementWithCompensatingNegativeBottomMargins?: DataTypes.boolean
+  useBeforePseudoElementWithCompensatingNegativeTopMargins?: DataTypes--YDF.boolean,
+  useAfterPseudoElementWithCompensatingNegativeBottomMargins?: DataTypes--YDF.boolean
 })
 ```
 
@@ -86,13 +86,13 @@ Button = {
 
   &-ButtonsBar
 
-    provideClippedShadowsAndOutlinesVisibility({
+    provideClippedShadowsAndOutlinesVisibility--YDF({
       requiredHorizontalSymmetricSpace: Button.outlineWidth,
       requiredSpaceAtBottom: Button.outlineWidth
     })
 ```
 
-With above options, `provideClippedShadowsAndOutlinesVisibility` adds negative margins to left, right and bottom and
+With above options, `provideClippedShadowsAndOutlinesVisibility--YDF` adds negative margins to left, right and bottom and
 corresponding paddings:
 
 ```css

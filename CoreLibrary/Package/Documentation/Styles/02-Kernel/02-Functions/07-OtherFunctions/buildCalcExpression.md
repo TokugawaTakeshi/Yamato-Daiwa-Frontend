@@ -1,9 +1,9 @@
-# `buildCalcExpression`
+# `buildCalcExpression--YDF`
 
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-bce-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 ```
-buildCalcExpression(formula: string, variables: { [variableName: string]: value }): CSS_Function
+buildCalcExpression--YDF(formula: string, variables: { [variableName: string]: value }): CSS_Function
 ```
 
 Generates [`calc()`](https://developer.mozilla.org/en-US/docs/Web/CSS/calc()) expression; interpolation
@@ -13,7 +13,7 @@ is available.
 ```stylus
 .Example
 
-  width: buildCalcExpression("${a} - ${b}", { a: 100%, b: 30px })
+  width: buildCalcExpression--YDF("${a} - ${b}", { a: 100%, b: 30px })
 ```
 
 Output:
@@ -27,11 +27,11 @@ Output:
 Note that colon after CSS property name is required otherwise below Stylus error will occur.
 
 ```
-ParseError: Tests/Styles/02-Kernel/02-Functions/07-OtherFunctions/buildCalcExpression.test.styl:12:1
+ParseError: Tests/Styles/02-Kernel/02-Functions/07-OtherFunctions/buildCalcExpression--YDF.test.styl:12:1
     8|
     9| .Example
    10|
-   11|   width buildCalcExpression("${a} - ${b}", { a: 100%, b: 30px })
+   11|   width buildCalcExpression--YDF("${a} - ${b}", { a: 100%, b: 30px })
    12|
 -------^
 
@@ -51,5 +51,5 @@ The native interpolation approach of `calc` expression is [`sprintf`](https://st
   width "calc(%s - %s)" % (a b)
 ```
 
-If you are satisfied with this approach, you don't need `buildCalcExpression`, but the expression such this could have
+If you are satisfied with this approach, you don't need `buildCalcExpression--YDF`, but the expression such this could have
 poor readability with multiple variables and complicated arithmetics.

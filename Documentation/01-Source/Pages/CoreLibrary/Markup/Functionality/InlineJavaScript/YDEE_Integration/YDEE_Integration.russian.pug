@@ -1,0 +1,278 @@
+extends ../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("Интеграция с @yamato-daiwa/es-extensions (YDEE)"),
+        description:
+            "Библиотека для клиентской веб-разработки «Yamato Daiwa Frontend» (сокращённо: «YDF») " +
+              "даёт возможность использовать функциональность библиотеки «Yamato Daiwa ES Extensions» " +
+              "(сокращённо: «YDEE») во внутреннем JavaScript-коде препроцессора «Pug»."
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.markup.functionality.inlineJavaScript.YDEE_Integration");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.markup.$children.functionality.$children.
+          inlineJavaScript.$children.YDEE_Integration.$URI,
+      japanese: routing.japanese.coreLibrary.$children.markup.$children.functionality.$children.
+          inlineJavaScript.$children.YDEE_Integration.$URI
+    });
+
+    const {
+      $heading: topHeading
+    } = routing.russian.coreLibrary.$children.markup.$children.functionality.$children.inlineJavaScript.
+        $children.YDEE_Integration;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ Интеграция с @yamato-daiwa/es-extensions (YDEE) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    p.Article-Paragraph
+      | После #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.includes }) включения]
+      |   файла #[+ImportantEntity__Code--YDID Functionality.pug] (находится в #[+Keyword--YDID корневой] директории
+      |   #[+Term--YDID npm-пакета] #[+ImportantEntity--YDID @yamato-daiwa/frontend]) становятся доступна вся
+      |   функциональность
+      |
+      +Link--YDF({
+        endorsedExternalURI: sharedExternalLinks.YamatoDaiwaES_Extensions.top
+      }) библиотеки «@yamato-daiwa/es-extensions»
+      |   (сокращённо: #[+ImportantEntity--YDID «YDEE»]) версии #[+ImportantEntity--YDID #{ ACTUAL_YDEE_VERSION }]
+      |   #[+Keyword--YDID кроме] той, которая прекращает своё существование после #[+Term--YDID транспайлинга]
+      |   #[+ImportantEntity--YDID TypeScript] в #[+ImportantEntity--YDID JavaScript] (#[+Term--YDID интерфейсы],
+      |   #[+Term--YDID псевдонимы типов] и т.д.).
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          include ../../node_modules/@yamato-daiwa/frontend/Functionality.pug
+        +CodeViewer-Explanation--YDF.
+          В случае Вашего #[+Term--YDID pug-файла] #[+Term__Contrast--YDID относительный путь] к директории
+            #[+ImportantEntity--YDID node_modules] может быть другим.
+
+    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning, SVG_Icon: true }).
+      #[+Keyword--YDID Минимальная] требуемая версия #[+Term--YDID препроцессора] #[+ImportantEntity--YDID Pug]:
+        #[+ImportantEntity--YDID 3.0].
+
+    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning, SVG_Icon: true })
+      | При использовании
+      |
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+      }) шаблонов страниц
+      |   файл #[+ImportantEntity__Code--YDID Functionality.pug] #[+Keyword--YDID уже] подключён;
+      |   #[+Keyword__Contrast--YDID повторное] его подключение #[+Keyphrase--YDID приведёт к ошибке].
+
+    p.Article-Paragraph
+      | Основной случай, когда такая функциональность востребована — простейший #[+Term--YDID мокинг данных] на стадии
+      |   #[+Term--YDID вёрстки] (
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$children.
+            StaticPreviewAnywherePage.$sectioning.staticPreviewConcept.$URI
+      }) статического превью
+      | ).
+      | Вот как, например, можно быстро написать разметку 16 карточек товаров с пускай и бессмысленными, но данными:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({
+        codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
+      }): :html_special_characters_to_html_entities
+        ul.ProductsList
+
+          each index in Array.from(new Array(16).keys())
+
+            li.ProductCard
+
+              - const productTitle = getRandomString({ minimalCharactersCount: 6, minimalCharactersCount: 32 });
+
+              span.ProductCard-Title= productTitle
+
+              img.ProductCard-Photo(
+                src=getRandomObjectPropertyValue(DummyImagesURIs)
+                alt=`Фотография товар «${ productTitle }»`
+              )
+
+              span.ProductCard-PriceLabel
+                span.ProductCard-PriceLabel-Amount= getRandomInteger({ minimalValue: 100, maximalValue: 100000 })
+                span.ProductCard-PriceLabel-Currency ₽
+
+    p.Article-Paragraph
+      | Здесь были использованы #[+Term--YDID функции] #[+SecondaryEntity__Code--YDID getRandomString],
+      |   #[+SecondaryEntity__Code--YDID getRandomObjectPropertyValue] и #[+SecondaryEntity__Code--YDID getRandomInteger]
+      |   из #[+ImportantEntity--YDID YDEE], при этом #[+Term--YDID константа]
+      |
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            assets.$children.
+            DummyImagesURIs.$URI
+      }) DummyImagesURIs
+      |   типа #[+Term__Contrast--YDID «ассоциативный массив»] является #[+Keyword--YDID частью]
+      |   #[+ImportantEntity--YDID YDF].
+      | В результате, для каждой карточки будет сгенерирован #[+Term--YDID HTML-код], подобный приведённому ниже
+      |   (значение #[+Term--YDID атрибута]&nbsp;#[+SecondaryEntity__Code--YDID src] у #[+Term--YDID тэга]
+      |   #[+SecondaryEntity__Code--YDID img] частично опущено, чтобы не&nbsp;занимать место):
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({
+        codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML
+      }): :html_special_characters_to_html_entities
+        <li class="ProductCard">
+
+          <span class="ProductCard-Title">5XDoHI8G9qbjrvfFAq0ZrjX2KP4qcFsHzDXS9IW6nJjOnvB0FQgulYL</span>
+
+          <img
+            class="ProductCard-Photo"
+            src="data:image/svg+xml;base64,PHN2ZyB4b(...)"
+            alt="Фотография товара «5XDoHI8G9qbjrvfFAq0ZrjX2KP4qcFsHzDXS9IW6nJjOnvB0FQgulYL»"
+          >
+
+          <span class="ProductCard-PriceLabel">
+            <span class="ProductCard-PriceLabel-Amount">8301</span>
+            <span class="ProductCard-PriceLabel-Currency">₽</span>
+          </span>
+
+        </li>
+
+    p.Article-Paragraph
+      | Однако, даже если Вы не&nbsp;планируете такое использование #[+ImportantEntity--YDID YDEE], она всё равно
+      |   #[+Keyword--YDID необходима] для нормальной работы функциональности #[+ImportantEntity--YDID YDF], связанной
+      |   с #[+Term--YDID разметкой], например для
+      |
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            functionsAndClasses.$children.
+            processObjectTypeParameterOfPugMixin.$URI,
+      }) валидации параметров Pug-примесей
+      | :
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          include ../../node_modules/@yamato-daiwa/frontend/Components.pug
+
+          +Badge--YDF({ value: [] })
+        +CodeViewer-Explanation--YDF.
+          Неверное использование #[+Term--YDID компонента] #[+SecondaryEntity--YDID Badge] (реализован с помощью
+            #[+Term--YDID Pug-примеси]): у #[+Term--YDID свойства] #[+SecondaryEntity__Code--YDID value] единственного
+            #[+Term--YDID параметра] указано значение неверного типа, кроме того, отсутствует обязательное
+            #[+Term--YDID свойство].
+          Однако поскольку с использованием #[+ImportantEntity--YDID YDEE] реализована #[+Term--YDID валидация]
+            #[+Term--YDID свойств] #[+Term__Contrast--YDID примеси], то #[+Term--YDID преобразование]
+            #[+ImportantEntity--YDID Pug] в #[+ImportantEntity--YDID HTML] #[+Keyphrase--YDID завершится с ошибкой],
+            при этом в консоли отобразится информация, благодаря которой при владении базовым английским можно будет
+            самостоятельно исправить ошибки #[+Keyphrase--YDID без обращения к документации].
+
+
+    h2.Article-Heading2 Ответы на часто задаваемые вопросы и критику
+
+    +QuestionAndAnswerBox--YDF({
+      type: QuestionAndAnswerBox__YDF.Types.criticism,
+      question: "То есть в Pug-коде содержится почти весь код библиотеки YDEE? Это не перебор?"
+    }).
+      #[+Keyword--YDID Любая] функциональность добавляется в #[+ImportantEntity--YDID YD]-библиотеки
+        #[+Keyword--YDID только] после того, как в ней появляется #[+Keyword--YDID практическая] необходимость.
+      В отношении интеграции с #[+ImportantEntity--YDID YDEE]&nbsp;практическая необходимость
+        #[+Keyphrase--YDID была и есть] — примеры прямого и опосредованного использования были приведены выше.
+      Если в какой-то функциональности необходимость со временем исчезает, то мы её заменяем на новую или в редких
+        случаях удаляем (хотя #[+ImportantEntity--YDID YDF] — библиотека, опубликованная относительно недавно,
+        она и её прототипы проходили альфа-тестирование несколько лет).
+      Однако потребность в интеграции с #[+ImportantEntity--YDID YDEE] устойчивая, а потому её удаление
+        #[+Keyword--YDID не] планируется.
+
+    +QuestionAndAnswerBox--YDF({
+      type: QuestionAndAnswerBox__YDF.Types.question,
+      question: "Не снизит ли наличие YDEE-кода скорость преобразования Pug-кода в HTML при использовании " +
+          "с MVC-фреймворками на серверной стороне?"
+    })
+
+      p.Article-Paragraph.
+        Снизит, и #[+Keyword--YDID значительно] (где-то на #[+ImportantEntity--YDID 2-3 секунды], но для формирования
+          ответа сервером это считается #[+Keyword--YDID неприемлемым]).
+
+      p.Article-Paragraph
+        | Интеграция с #[+ImportantEntity--YDID YDEE] предназначена #[+Keyword--YDID в основном] для стадии
+        |   #[+Keyword--YDID вёрстки] (
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$children.
+              StaticPreviewAnywherePage.$sectioning.staticPreviewConcept.$URI
+        }) статического превью
+        |   ), однако
+        |
+        +Keyphrase--YDID.
+          при условии, что преобразование из #[+ImportantEntity--YDID Pug] в #[+ImportantEntity--YDID HTML] осуществляется
+          #[+Keyword--YDID заранее] #[+Keyword__Contrast--YDID до] публикации каждой версии сайта или приложения
+        |   , интеграцию с #[+ImportantEntity--YDID YDEE] можно использовать и на других этапах разработки.
+
+      p.Article-Paragraph
+        | Вероятно, Вы задаёте этот вопрос потому, что хотите знать, что делать в случаях, когда функциональность
+        |   #[+ImportantEntity--YDID YDEE] нужна и на стадии создания интерактивного сайта или приложения с рендерингом
+        |   на серверной стороне и использованием #[+Term--YDID паттерна MVC], например для того, чтобы работала
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              markup.$children.
+              functionality.$children.
+              inlineJavaScript.$children.
+              functionsAndClasses.$children.
+              processObjectTypeParameterOfPugMixin.$URI
+        }) валидация параметров Pug-примесей
+        |   (в частности #[+Term--YDID примесей]
+        |
+        +Link--YDF({ internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$URI }) GUI компонентов
+        |   ) или чтобы по-прежнему можно было пользоваться
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+        }) шаблонами страниц
+        |   , но #[+Keyphrase--YDID без потерь в производительности].
+        | По этому вопросу было подготовлено
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.markup.$children.usageOnServerSide.$URI
+        }) отдельное руководство
+        |   , но если кратко, то необходимо организовать #[+Keyword--YDID двухэтапное] преобразование исходного
+        |   #[+Term--YDID Pug-кода] в выходной #[+Term--YDID HTML-код].
+        | На #[+Keyword--YDID первом] этапе формируются #[+Keyword--YDID промежуточные] файлы-шаблоны,
+        |   #[+Keyword--YDID каждый] из которых
+        |   #[+Keyphrase--YDID неизменен вне зависимости от #[+Term--YDID динамических данных]] (таких данные из
+        |   #[+Term--YDID базы данных]).
+        | При этом, эти файлы-шаблоны формируются #[+Keyword--YDID только] #[+Keyword__Contrast--YDID один] раз перед
+        |   публикацией (деплоем) #[+Keyword--YDID каждой] версии сайта или приложения.
+        | На #[+Keyword--YDID втором] этапе подставляются #[+Term--YDID динамические данные] в
+        |   #[+Term__Contrast--YDID промежуточный шаблон], в результате чего формируется #[+Keyword--YDID окончательный]
+        |   #[+Term--YDID HTML-код].

@@ -1,0 +1,91 @@
+extends ../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../SharedAssets/Markup/SharedAssets.english.pug
+  include ../../../../SharedComponents/SharedComponents.english.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("Core package - Markup - Usage on server side"),
+        description: ""
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.markup.usageOnServerSide");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      japanese: routing.japanese.coreLibrary.$children.markup.$children.usageOnServerSide.$URI,
+      russian: routing.russian.coreLibrary.$children.markup.$children.usageOnServerSide.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = localizedRouting.coreLibrary.$children.markup.$children.usageOnServerSide;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    h1.Article-Heading1 Usage on server side
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
+
+    //-
+      p.Article-Paragraph
+        | File #[+ImportantEntity--YDID Functionality.pug], required for the usage of the most functionality
+        |   #[+ImportantEntity--YDID YDF] related with the #[+Term--YDID markup] contains a large volume of
+        |
+        +Link--YDF({
+          unendorsedExternalURI: sharedExternalLinks.pug.homePage.inlineJavaScript
+        }) JavaScript code
+        | and
+        |
+        +Link--YDF({ unendorsedExternalURI: "sharedExternalLinks.pug.homePage.mixins" }) Pug mixins
+        | .
+        | This file also being used by
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+        }) pages templates
+        | .
+        | There is more #[+Term--YDID JavaScript code] and #[+Term--YDID Pug-примесей] in the file
+        |   #[+ImportantEntity--YDID Components.pug], which provides the #[+Term--YDID markup] for the
+        |   #[+Term--YDID GUI component].
+        | Although it is not&nbsp;wasting of the performance, such large volume of the code inevitably
+        |   affects of the #[+ImportantEntity--YDID Pug-to-HTML] compiling, but because this functionality
+        |   is indented to be used #[+Keyword--YDID mainly] for the
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$children.StaticPreviewAnywherePage.$sectioning.staticPreviewConcept.$URI,
+        }) static preview mode
+        |   and other cases when #[+ImportantEntity--YDID Pug] is being #[+Keyword--YDID preliminary] compiled to
+        |   #[+ImportantEntity--YDID HTML] before deploying of newest version of the web-site or the web application,
+        |   this performance impact is #[+Keyword--YDID negligible].
+
+      p.Article-Paragraph.
+        However the #[+Term--YDID page templates], #[+Term--YDID GUI components] and other #[+ImportantEntity--YDID YDF]
+          functionality integrated with #[+ImportantEntity--YDID Pug] is desired to be used also at the server side
+          #[+Term--YDID rendering] using the #[+ImportantEntity--YDID MVC pattern], otherwise the huge volume of the
+          routine work and the website or web application maintainability impact.

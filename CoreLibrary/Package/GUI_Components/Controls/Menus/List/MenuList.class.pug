@@ -1,0 +1,113 @@
+-
+
+  class MenuList__YDF {
+
+    /**
+     * @type { string }
+     * @public
+     * @readonly
+     */
+    static CSS_NAMESPACE = "MenuList--YDF";
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @type { { [themeName: string]: string } }
+     * @public
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
+    static Themes = { regular: "REGULAR" };
+
+    /**
+     * @param { Array<string> } themesNames
+     * @return { typeof MenuList__YDF }
+     */
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineNewThemes(themesNames, MenuList__YDF);
+    }
+
+    /**
+     * @type { boolean } [areThemesCSS_ClassesCommon=ComponentsAuxiliaries.areComponentsThemesCommon]
+     * @private
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @returns { typeof MenuList__YDF }
+     * @public
+     * */
+    static considerThemesAsCommon() {
+      MenuList__YDF.areThemesCSS_ClassesCommon = true;
+      return MenuList__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @type { { [geometricVariationName: string]: string } }
+     * @public
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL"
+    };
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @public
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = { regular: "REGULAR" };
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * @public
+     * @readonly
+     * */
+    static propertiesSpecification = {
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: MenuList__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(MenuList__YDF.Themes).
+            map(([ key, value ]) => ({ key: `MenuList__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: MenuList__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: MenuList__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(MenuList__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `MenuList__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      decorativeVariation: {
+        type: String,
+        undefinedValueSubstitution: MenuList__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(MenuList__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `MenuList__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    };
+
+  }

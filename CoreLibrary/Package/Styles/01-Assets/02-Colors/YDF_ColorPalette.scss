@@ -1,0 +1,497 @@
+$YDF_ColorPalette--YDF: (
+
+  red: (
+
+    dark: hsl(0, 100%, 20%),
+    mediumDark: hsl(0, 100%, 30%),
+    slightlyDark: hsl(0, 100%, 40%),
+
+    bright: hsl(0, 100%, 50%),
+
+    slightlyLight: hsl(0, 100%, 60%),
+    mediumLight: hsl(0, 100%, 70%),
+    light: hsl(0, 100%, 80%),
+
+    pastelBright: hsl(0, 100%, 90%),
+    pastelSlightlyLight: hsl(0, 100%, 92%),
+    pastelMediumLight: hsl(0, 100%, 94%),
+    pastelLight: hsl(0, 100%, 96%),
+
+    faded: hsl(0, 100%, 98%),
+
+    pastelGradient: "hsl(0, 100%, 96%), hsl(0, 100%, 84%)",
+    lightGradient: "hsl(0, 100%, 84%), hsl(0, 100%, 66%)",
+    darkGradient: "hsl(0, 100%, 42%), hsl(0, 100%, 24%)",
+    glossyGradient: "hsl(0, 100%, 85%) 0%, hsl(0, 100%, 60%) 50%, hsl(0, 100%, 46%) 51%, hsl(0, 100%, 70%) 100%"
+
+  ),
+
+  deepOrange: (
+
+    dark: hsl(15, 100%, 20%),
+    mediumDark: hsl(15, 100%, 30%),
+    slightlyDark: hsl(15, 100%, 40%),
+
+    bright: hsl(15, 100%, 50%),
+
+    slightlyLight: hsl(15, 100%, 60%),
+    mediumLight: hsl(15, 100%, 70%),
+    light: hsl(15, 100%, 80%),
+
+    pastelBright: hsl(15, 100%, 90%),
+    pastelSlightlyLight: hsl(15, 100%, 92%),
+    pastelMediumLight: hsl(15, 100%, 94%),
+    pastelLight: hsl(15, 100%, 96%),
+
+    faded: hsl(15, 100%, 98%),
+
+    pastelGradient: "hsl(15, 100%, 96%), hsl(15, 100%, 84%)",
+    lightGradient: "hsl(15, 100%, 84%), hsl(15, 100%, 66%)",
+    darkGradient: "hsl(15, 100%, 42%), hsl(15, 100%, 24%)",
+    glossyGradient: "hsl(15, 100%, 85%) 0%, hsl(15, 100%, 60%) 50%, hsl(15, 100%, 50%) 51%, hsl(15, 100%, 70%) 100%"
+
+  ),
+
+  orange: (
+
+    dark: hsl(25, 100%, 20%),
+    mediumDark: hsl(25, 100%, 30%),
+    slightlyDark: hsl(25, 100%, 40%),
+
+    bright: hsl(25, 100%, 50%),
+
+    slightlyLight: hsl(25, 100%, 60%),
+    mediumLight: hsl(25, 100%, 70%),
+    light: hsl(25, 100%, 80%),
+
+    pastelBright: hsl(25, 100%, 90%),
+    pastelSlightlyLight: hsl(25, 100%, 92%),
+    pastelMediumLight: hsl(25, 100%, 94%),
+    pastelLight: hsl(25, 100%, 96%),
+
+    faded: hsl(25, 100%, 98%),
+
+    pastelGradient: "hsl(25, 100%, 96%), hsl(25, 100%, 84%)",
+    lightGradient: "hsl(25, 100%, 84%), hsl(25, 100%, 66%)",
+    darkGradient: "hsl(25, 100%, 42%), hsl(25, 100%, 24%)",
+    glossyGradient: "hsl(25, 100%, 85%) 0%, hsl(25, 100%, 60%) 50%, hsl(25, 100%, 50%) 51%, hsl(25, 100%, 70%) 100%"
+
+  ),
+
+  amber: (
+
+    dark: hsl(35, 100%, 20%),
+    mediumDark: hsl(35, 100%, 30%),
+    slightlyDark: hsl(35, 100%, 40%),
+
+    bright: hsl(35, 100%, 50%),
+
+    slightlyLight: hsl(35, 100%, 60%),
+    mediumLight: hsl(35, 100%, 70%),
+    light: hsl(35, 100%, 80%),
+
+    pastelBright: hsl(35, 100%, 90%),
+    pastelSlightlyLight: hsl(35, 100%, 92%),
+    pastelMediumLight: hsl(35, 100%, 94%),
+    pastelLight: hsl(35, 100%, 96%),
+
+    faded: hsl(35, 100%, 98%),
+
+    pastelGradient: "hsl(35, 100%, 96%), hsl(35, 100%, 84%)",
+    lightGradient: "hsl(35, 100%, 84%), hsl(35, 100%, 66%)",
+    darkGradient: "hsl(35, 100%, 42%), hsl(35, 100%, 24%)",
+    glossyGradient: "hsl(35, 100%, 85%) 0%, hsl(35, 100%, 60%) 50%, hsl(35, 100%, 50%) 51%, hsl(35, 100%, 70%) 100%"
+
+  ),
+
+  deepYellow: (
+
+    dark: hsl(45, 100%, 20%),
+    mediumDark: hsl(45, 100%, 30%),
+    slightlyDark: hsl(45, 100%, 40%),
+
+    bright: hsl(45, 100%, 50%),
+
+    slightlyLight: hsl(45, 100%, 60%),
+    mediumLight: hsl(45, 100%, 70%),
+    light: hsl(45, 100%, 80%),
+
+    pastelBright: hsl(45, 100%, 90%),
+    pastelSlightlyLight: hsl(45, 100%, 92%),
+    pastelMediumLight: hsl(45, 100%, 94%),
+    pastelLight: hsl(45, 100%, 96%),
+
+    faded: hsl(45, 100%, 98%),
+
+    pastelGradient: "hsl(45, 100%, 96%), hsl(45, 100%, 84%)",
+    lightGradient: "hsl(45, 100%, 84%), hsl(45, 100%, 66%)",
+    darkGradient: "hsl(45, 100%, 42%), hsl(45, 100%, 24%)",
+    glossyGradient: "hsl(45, 100%, 85%) 0%, hsl(45, 100%, 60%) 50%, hsl(45, 100%, 50%) 51%, hsl(45, 100%, 70%) 100%"
+
+  ),
+
+  yellow: (
+
+    dark: hsl(55, 100%, 20%),
+    mediumDark: hsl(55, 100%, 30%),
+    slightlyDark: hsl(55, 100%, 40%),
+
+    bright: hsl(55, 100%, 50%),
+
+    slightlyLight: hsl(55, 100%, 60%),
+    mediumLight: hsl(55, 100%, 70%),
+    light: hsl(55, 100%, 80%),
+
+    pastelBright: hsl(55, 100%, 90%),
+    pastelSlightlyLight: hsl(55, 100%, 92%),
+    pastelMediumLight: hsl(55, 100%, 94%),
+    pastelLight: hsl(55, 100%, 96%),
+
+    faded: hsl(55, 100%, 98%),
+
+    pastelGradient: "hsl(55, 100%, 96%), hsl(55, 100%, 84%)",
+    lightGradient: "hsl(55, 100%, 84%), hsl(55, 100%, 66%)",
+    darkGradient: "hsl(55, 100%, 42%), hsl(55, 100%, 24%)",
+    glossyGradient: "hsl(55, 100%, 85%) 0%, hsl(55, 100%, 60%) 50%, hsl(55, 100%, 46%) 51%, hsl(55, 100%, 70%) 100%"
+
+  ),
+
+  youngFoliage: (
+
+    dark: hsl(75, 100%, 20%),
+    mediumDark: hsl(75, 100%, 30%),
+    slightlyDark: hsl(75, 100%, 40%),
+
+    bright: hsl(75, 100%, 50%),
+
+    slightlyLight: hsl(75, 100%, 60%),
+    mediumLight: hsl(75, 100%, 70%),
+    light: hsl(75, 100%, 80%),
+
+    pastelBright: hsl(75, 100%, 90%),
+    pastelSlightlyLight: hsl(75, 100%, 92%),
+    pastelMediumLight: hsl(75, 100%, 94%),
+    pastelLight: hsl(75, 100%, 96%),
+
+    faded: hsl(75, 100%, 98%),
+
+    pastelGradient: "hsl(75, 100%, 96%), hsl(75, 100%, 84%)",
+    lightGradient: "hsl(75, 100%, 84%), hsl(75, 100%, 66%)",
+    darkGradient: "hsl(75, 100%, 42%), hsl(75, 100%, 24%)",
+    glossyGradient: "hsl(75, 100%, 85%) 0%, hsl(75, 100%, 60%) 50%, hsl(75, 100%, 44%) 51%, hsl(75, 100%, 70%) 100%"
+
+  ),
+
+  green: (
+
+    dark: hsl(120, 100%, 20%),
+    mediumDark: hsl(120, 100%, 30%),
+    slightlyDark: hsl(120, 100%, 40%),
+
+    bright: hsl(120, 100%, 50%),
+
+    slightlyLight: hsl(120, 100%, 60%),
+    mediumLight: hsl(120, 100%, 70%),
+    light: hsl(120, 100%, 80%),
+
+    pastelBright: hsl(120, 100%, 90%),
+    pastelSlightlyLight: hsl(120, 100%, 92%),
+    pastelMediumLight: hsl(120, 100%, 94%),
+    pastelLight: hsl(120, 100%, 96%),
+
+    faded: hsl(120, 100%, 98%),
+
+    pastelGradient: "hsl(120, 100%, 96%), hsl(120, 100%, 84%)",
+    lightGradient: "hsl(120, 100%, 84%), hsl(120, 100%, 66%)",
+    darkGradient: "hsl(120, 100%, 42%), hsl(120, 100%, 24%)",
+    glossyGradient: "hsl(120, 100%, 85%) 0%, hsl(120, 100%, 60%) 50%, hsl(120, 100%, 44%) 51%, hsl(120, 100%, 70%) 100%"
+
+  ),
+
+  mint: (
+
+    dark: hsl(160, 100%, 20%),
+    mediumDark: hsl(160, 100%, 30%),
+    slightlyDark: hsl(160, 100%, 40%),
+
+    bright: hsl(160, 100%, 50%),
+
+    slightlyLight: hsl(160, 100%, 60%),
+    mediumLight: hsl(160, 100%, 70%),
+    light: hsl(160, 100%, 80%),
+
+    pastelBright: hsl(160, 100%, 90%),
+    pastelSlightlyLight: hsl(160, 100%, 92%),
+    pastelMediumLight: hsl(160, 100%, 94%),
+    pastelLight: hsl(160, 100%, 96%),
+
+    faded: hsl(160, 100%, 98%),
+
+    pastelGradient: "hsl(160, 100%, 96%), hsl(160, 100%, 84%)",
+    lightGradient: "hsl(160, 100%, 84%), hsl(160, 100%, 66%)",
+    darkGradient: "hsl(160, 100%, 42%), hsl(160, 100%, 24%)",
+    glossyGradient: "hsl(160, 100%, 85%) 0%, hsl(160, 100%, 60%) 50%, hsl(160, 100%, 43%) 51%, hsl(160, 100%, 70%) 100%"
+
+  ),
+
+  cyan: (
+
+    dark: hsl(180, 100%, 20%),
+    mediumDark: hsl(180, 100%, 30%),
+    slightlyDark: hsl(180, 100%, 40%),
+
+    bright: hsl(180, 100%, 50%),
+
+    slightlyLight: hsl(180, 100%, 60%),
+    mediumLight: hsl(180, 100%, 70%),
+    light: hsl(180, 100%, 80%),
+
+    pastelBright: hsl(180, 100%, 90%),
+    pastelSlightlyLight: hsl(180, 100%, 92%),
+    pastelMediumLight: hsl(180, 100%, 94%),
+    pastelLight: hsl(180, 100%, 96%),
+
+    faded: hsl(180, 100%, 98%),
+
+    pastelGradient: "hsl(180, 100%, 96%), hsl(180, 100%, 84%)",
+    lightGradient: "hsl(180, 100%, 84%), hsl(180, 100%, 66%)",
+    darkGradient: "hsl(180, 100%, 42%), hsl(180, 100%, 24%)",
+    glossyGradient: "hsl(180, 100%, 85%) 0%, hsl(180, 100%, 60%) 50%, hsl(180, 100%, 43%) 51%, hsl(180, 100%, 70%) 100%"
+
+  ),
+
+  skyBlue: (
+
+    dark: hsl(195, 100%, 20%),
+    mediumDark: hsl(195, 100%, 30%),
+    slightlyDark: hsl(195, 100%, 40%),
+
+    bright: hsl(195, 100%, 50%),
+
+    slightlyLight: hsl(195, 100%, 60%),
+    mediumLight: hsl(195, 100%, 70%),
+    light: hsl(195, 100%, 80%),
+
+    pastelBright: hsl(195, 100%, 90%),
+    pastelSlightlyLight: hsl(195, 100%, 92%),
+    pastelMediumLight: hsl(195, 100%, 94%),
+    pastelLight: hsl(195, 100%, 96%),
+
+    faded: hsl(195, 100%, 98%),
+
+    pastelGradient: "hsl(195, 100%, 96%), hsl(195, 100%, 84%)",
+    lightGradient: "hsl(195, 100%, 84%), hsl(195, 100%, 66%)",
+    darkGradient: "hsl(195, 100%, 42%), hsl(195, 100%, 24%)",
+    glossyGradient: "hsl(195, 100%, 85%) 0%, hsl(195, 100%, 60%) 50%, hsl(195, 100%, 50%) 51%, hsl(195, 100%, 70%) 100%"
+
+  ),
+
+  deepSkyBlue: (
+
+    dark: hsl(205, 100%, 20%),
+    mediumDark: hsl(205, 100%, 30%),
+    slightlyDark: hsl(205, 100%, 40%),
+
+    bright: hsl(205, 100%, 50%),
+
+    slightlyLight: hsl(205, 100%, 60%),
+    mediumLight: hsl(205, 100%, 70%),
+    light: hsl(205, 100%, 80%),
+
+    pastelBright: hsl(205, 100%, 90%),
+    pastelSlightlyLight: hsl(205, 100%, 92%),
+    pastelMediumLight: hsl(205, 100%, 94%),
+    pastelLight: hsl(205, 100%, 96%),
+
+    faded: hsl(205, 100%, 98%),
+
+    pastelGradient: "hsl(205, 100%, 96%), hsl(205, 100%, 84%)",
+    lightGradient: "hsl(205, 100%, 84%), hsl(205, 100%, 66%)",
+    darkGradient: "hsl(205, 100%, 42%), hsl(205, 100%, 24%)",
+    glossyGradient: "hsl(205, 100%, 85%) 0%, hsl(205, 100%, 60%) 50%, hsl(205, 100%, 50%) 51%, hsl(205, 100%, 70%) 100%"
+
+  ),
+
+  blue: (
+
+    dark: hsl(240, 100%, 20%),
+    mediumDark: hsl(240, 100%, 30%),
+    slightlyDark: hsl(240, 100%, 40%),
+
+    bright: hsl(240, 100%, 50%),
+
+    slightlyLight: hsl(240, 100%, 60%),
+    mediumLight: hsl(240, 100%, 70%),
+    light: hsl(240, 100%, 80%),
+
+    pastelBright: hsl(240, 100%, 90%),
+    pastelSlightlyLight: hsl(240, 100%, 92%),
+    pastelMediumLight: hsl(240, 100%, 94%),
+    pastelLight: hsl(240, 100%, 96%),
+
+    faded: hsl(240, 100%, 98%),
+
+    pastelGradient: "hsl(240, 100%, 96%), hsl(240, 100%, 84%)",
+    lightGradient: "hsl(240, 100%, 84%), hsl(240, 100%, 66%)",
+    darkGradient: "hsl(240, 100%, 42%), hsl(240, 100%, 24%)",
+    glossyGradient: "hsl(240, 100%, 85%) 0%, hsl(240, 100%, 60%) 50%, hsl(240, 100%, 50%) 51%, hsl(240, 100%, 70%) 100%"
+
+  ),
+
+  indigo: (
+
+    dark: hsl(260, 100%, 20%),
+    mediumDark: hsl(260, 100%, 30%),
+    slightlyDark: hsl(260, 100%, 40%),
+
+    bright: hsl(260, 100%, 50%),
+
+    slightlyLight: hsl(260, 100%, 60%),
+    mediumLight: hsl(260, 100%, 70%),
+    light: hsl(260, 100%, 80%),
+
+    pastelBright: hsl(260, 100%, 90%),
+    pastelSlightlyLight: hsl(260, 100%, 92%),
+    pastelMediumLight: hsl(260, 100%, 94%),
+    pastelLight: hsl(260, 100%, 96%),
+
+    faded: hsl(260, 100%, 98%),
+
+    pastelGradient: "hsl(260, 100%, 96%), hsl(260, 100%, 84%)",
+    lightGradient: "hsl(260, 100%, 84%), hsl(260, 100%, 66%)",
+    darkGradient: "hsl(260, 100%, 42%), hsl(260, 100%, 24%)",
+    glossyGradient: "hsl(260, 100%, 85%) 0%, hsl(260, 100%, 60%) 50%, hsl(260, 100%, 50%) 51%, hsl(260, 100%, 70%) 100%"
+
+  ),
+
+  deepPurple: (
+
+    dark: hsl(270, 100%, 20%),
+    mediumDark: hsl(270, 100%, 30%),
+    slightlyDark: hsl(270, 100%, 40%),
+
+    bright: hsl(270, 100%, 50%),
+
+    slightlyLight: hsl(270, 100%, 60%),
+    mediumLight: hsl(270, 100%, 70%),
+    light: hsl(270, 100%, 80%),
+
+    pastelBright: hsl(270, 100%, 90%),
+    pastelSlightlyLight: hsl(270, 100%, 92%),
+    pastelMediumLight: hsl(270, 100%, 94%),
+    pastelLight: hsl(270, 100%, 96%),
+
+    faded: hsl(270, 100%, 98%),
+
+    pastelGradient: "hsl(270, 100%, 96%), hsl(270, 100%, 84%)",
+    lightGradient: "hsl(270, 100%, 84%), hsl(270, 100%, 66%)",
+    darkGradient: "hsl(270, 100%, 42%), hsl(270, 100%, 24%)",
+    glossyGradient: "hsl(270, 100%, 85%) 0%, hsl(270, 100%, 60%) 50%, hsl(270, 100%, 50%) 51%, hsl(270, 100%, 70%) 100%"
+
+  ),
+
+  purple: (
+
+    dark: hsl(285, 100%, 20%),
+    mediumDark: hsl(285, 100%, 30%),
+    slightlyDark: hsl(285, 100%, 40%),
+
+    bright: hsl(285, 100%, 50%),
+
+    slightlyLight: hsl(285, 100%, 60%),
+    mediumLight: hsl(285, 100%, 70%),
+    light: hsl(285, 100%, 80%),
+
+    pastelBright: hsl(285, 100%, 90%),
+    pastelSlightlyLight: hsl(285, 100%, 92%),
+    pastelMediumLight: hsl(285, 100%, 94%),
+    pastelLight: hsl(285, 100%, 96%),
+
+    faded: hsl(285, 100%, 98%),
+
+    pastelGradient: "hsl(285, 100%, 96%), hsl(285, 100%, 84%)",
+    lightGradient: "hsl(285, 100%, 84%), hsl(285, 100%, 66%)",
+    darkGradient: "hsl(285, 100%, 42%), hsl(285, 100%, 24%)",
+    glossyGradient: "hsl(285, 100%, 85%) 0%, hsl(285, 100%, 60%) 50%, hsl(285, 100%, 50%) 51%, hsl(285, 100%, 70%) 100%"
+
+  ),
+
+  magenta: (
+
+    dark: hsl(300, 100%, 20%),
+    mediumDark: hsl(300, 100%, 30%),
+    slightlyDark: hsl(300, 100%, 40%),
+
+    bright: hsl(300, 100%, 50%),
+
+    slightlyLight: hsl(300, 100%, 60%),
+    mediumLight: hsl(300, 100%, 70%),
+    light: hsl(300, 100%, 80%),
+
+    pastelBright: hsl(300, 100%, 90%),
+    pastelSlightlyLight: hsl(300, 100%, 92%),
+    pastelMediumLight: hsl(300, 100%, 94%),
+    pastelLight: hsl(300, 100%, 96%),
+
+    faded: hsl(300, 100%, 98%),
+
+    pastelGradient: "hsl(300, 100%, 96%), hsl(300, 100%, 84%)",
+    lightGradient: "hsl(300, 100%, 84%), hsl(300, 100%, 66%)",
+    darkGradient: "hsl(300, 100%, 42%), hsl(300, 100%, 24%)",
+    glossyGradient: "hsl(300, 100%, 85%) 0%, hsl(300, 100%, 60%) 50%, hsl(300, 100%, 50%) 51%, hsl(300, 100%, 70%) 100%"
+
+  ),
+
+  pink: (
+
+    dark: hsl(320, 100%, 20%),
+    mediumDark: hsl(320, 100%, 30%),
+    slightlyDark: hsl(320, 100%, 40%),
+
+    bright: hsl(320, 100%, 50%),
+
+    slightlyLight: hsl(320, 100%, 60%),
+    mediumLight: hsl(320, 100%, 70%),
+    light: hsl(320, 100%, 80%),
+
+    pastelBright: hsl(320, 100%, 90%),
+    pastelSlightlyLight: hsl(320, 100%, 92%),
+    pastelMediumLight: hsl(320, 100%, 94%),
+    pastelLight: hsl(320, 100%, 96%),
+
+    faded: hsl(320, 100%, 98%),
+
+    pastelGradient: "hsl(320, 100%, 96%), hsl(320, 100%, 84%)",
+    lightGradient: "hsl(320, 100%, 84%), hsl(320, 100%, 66%)",
+    darkGradient: "hsl(320, 100%, 42%), hsl(320, 100%, 24%)",
+    glossyGradient: "hsl(320, 100%, 85%) 0%, hsl(320, 100%, 60%) 50%, hsl(320, 100%, 50%) 51%, hsl(320, 100%, 70%) 100%"
+
+  ),
+
+  deepPink: (
+
+    dark: hsl(355, 100%, 20%),
+    mediumDark: hsl(355, 100%, 30%),
+    slightlyDark: hsl(355, 100%, 40%),
+
+    bright: hsl(355, 100%, 50%),
+
+    slightlyLight: hsl(355, 100%, 60%),
+    mediumLight: hsl(355, 100%, 70%),
+    light: hsl(355, 100%, 80%),
+
+    pastelBright: hsl(355, 100%, 90%),
+    pastelSlightlyLight: hsl(355, 100%, 92%),
+    pastelMediumLight: hsl(355, 100%, 94%),
+    pastelLight: hsl(355, 100%, 96%),
+
+    faded: hsl(355, 100%, 98%),
+
+    pastelGradient: "hsl(355, 100%, 96%), hsl(355, 100%, 84%)",
+    lightGradient: "hsl(355, 100%, 84%), hsl(355, 100%, 66%)",
+    darkGradient: "hsl(355, 100%, 42%), hsl(355, 100%, 24%)",
+    glossyGradient: "hsl(355, 100%, 85%) 0%, hsl(355, 100%, 60%) 50%, hsl(355, 100%, 50%) 51%, hsl(355, 100%, 70%) 100%"
+
+  )
+
+);

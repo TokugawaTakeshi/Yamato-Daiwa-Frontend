@@ -1,4 +1,4 @@
-# `Centerer`
+# `Centerer--YDF`
 
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-cnt-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -20,11 +20,11 @@ Basically not need to use this mixin inside `flex` and `grid`.
   &-Header
 
     // The minimal and maximal width will be GRID_MINIMAL_WIDTH and GRID_MAXIMAL_WIDTH respectively
-    Centerer()
+    Centerer--YDF()
 
     
   &-Footer
     
     // Custom minimal and maximal widths
-    Centerer({ minimalWidth: 420px, maximalWidth: 670px })
+    Centerer--YDF({ minimalWidth: 420px, maximalWidth: 670px })
 ```

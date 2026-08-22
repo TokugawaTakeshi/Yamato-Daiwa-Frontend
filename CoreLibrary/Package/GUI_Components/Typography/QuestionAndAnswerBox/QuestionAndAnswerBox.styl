@@ -1,0 +1,89 @@
+QuestionAndAnswerBox--YDF = {
+  CSS_NAMESPACE: "QuestionAndAnswerBox--YDF"
+}
+
+
+QuestionAndAnswerBox--YDF-generateStyles()
+
+  .QuestionAndAnswerBox--YDF
+
+    padding 0.6rem 0.8rem
+
+
+    &__QuestionDecorativeVariation
+
+      background-color: YDF_ColorPalette.deepSkyBlue .pastelLight
+
+
+    &__ObjectionDecorativeVariation
+
+      background-color: YDF_ColorPalette.deepYellow.pastelLight
+
+
+    &__CriticismDecorativeVariation
+
+      background-color: YDF_ColorPalette.deepOrange.pastelLight
+
+
+    &-Icon
+
+      height 6em
+      aspect-ratio 1/1
+
+      float left
+      margin-right 0.8em
+      margin-bottom 0.4em
+
+
+      ../.QuestionAndAnswerBox--YDF__QuestionDecorativeVariation &
+
+        fill: YDF_ColorPalette.deepSkyBlue.mediumDark
+
+
+      ../.QuestionAndAnswerBox--YDF__ObjectionDecorativeVariation &
+
+        fill: YDF_ColorPalette.deepYellow.mediumDark
+
+
+      ../.QuestionAndAnswerBox--YDF__CriticismDecorativeVariation &
+
+        fill: YDF_ColorPalette.deepOrange.mediumDark
+
+
+    &-Title
+
+      font-size 1.4rem
+
+      font-weight bold
+
+
+      ../.QuestionAndAnswerBox--YDF__QuestionDecorativeVariation &
+
+        color: YDF_ColorPalette.deepSkyBlue.mediumDark
+
+
+      ../.QuestionAndAnswerBox--YDF__ObjectionDecorativeVariation &
+
+        color: YDF_ColorPalette.deepYellow.mediumDark
+
+
+      ../.QuestionAndAnswerBox--YDF__CriticismDecorativeVariation &
+
+        color: YDF_ColorPalette.deepOrange.mediumDark
+
+
+    &-Text
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: Configuration--YDF.textGeometry.basicFontSize,
+        lineHeight: Configuration--YDF.textGeometry.basicLineHeightInMultilineTextBlocks
+      })
+
+      color: W3C_39_ShadesOfGray--YDF[12]
+
+      grid-area QUESTION
+      margin-top 0.2rem
+
+      PositionalRelationship--YDF({
+        definitions: (".QuestionAndAnswerBox--YDF-Title" { retireFromIt: { y: 0.4rem }, pushItFromSelf: { y: 1rem } })
+      })

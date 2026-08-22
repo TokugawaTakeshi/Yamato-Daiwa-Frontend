@@ -1,0 +1,31 @@
+extends ../../../../../../PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Requirements
+
+  include ../../../../../../GUI_Components.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "TextBox Component Development"
+      },
+      stylesSheetsURIs: [ "@Workbenches/GUI_Components/Controls/Validatables/TextBox/TextBox.workbench" ],
+      scriptsURIs: {
+        atEndOfBody: [ "@Workbenches/GUI_Components/Controls/Validatables/TextBox/TextBox.workbench" ]
+      }
+    });
+
+
+block append PageContent
+
+  +TextBox--YDF({
+    label: "Test",
+    hasPasswordDisplayingToggle: true,
+    HTML_Type: TextBox__YDF.HTML_Types.password,
+    value: "1ioasdfiohjsdf"
+  })#TEXT_BOX-1

@@ -1,0 +1,565 @@
+-
+
+  class GUI_ComponentPugMixinOrClassSynopsisLocalization {
+
+    /**
+     * @public
+     * @type {
+     *   Readonly<{
+     *     componentProperties: string;
+     *     propertiesLocalizedInterpretations: Readonly<{
+     *       [
+     *         keys in
+     *             "theme" |
+     *             "areThemesCSS_ClassesCommon" |
+     *             "geometricVariation" |
+     *             "geometricModifiers" |
+     *             "decorativeVariation" |
+     *             "decorativeModifiers" |
+     *             "rootElementTag"
+     *       ]: string;
+     *     }>;
+     *     statesSimulationsLocalizedInterpretations: Readonly<{
+     *       [
+     *         keys in
+     *             "invalidInputHighlightingIfAnyValidationErrorsMessages" |
+     *             "validValueHighlightingIfNoValidationErrorsMessages" |
+     *             "validationErrorsMessages" |
+     *             "asynchronousValidationsStatuses"
+     *        ]: string;
+     *     }>;
+     *     customThemingGuidanceGenerator: (constantExpression: string) => string;
+     *   }>
+     * }
+     * @description Intended to be initialized in "ReusableFragments.[LOCALE].pug"
+     * */
+    static localizationOfReusables = null;
+
+    /**
+     * @public
+     * @description
+     * Cannot accept the classes like "AdmonitionBlock__YDF" via parameter because when invoke this method, such
+     *   a class is not initialized yet.
+     * For the same reason, the `localizedPropertiesSpecification` in the returned object is being initialized on the
+     *   first invocation of "XXXComponent-PugMixinOrClassSynopsis" mixin.
+     * */
+    static generateInitialLocalizationObjectForSpecificGUI_Component() {
+
+      return {
+
+        /**
+         * @description
+         * Initialized via `getLocalizedPropertiesSpecification` on the first invocation of
+         *   "XXXComponent-PugMixinOrClassSynopsis" mixin for the described above reason.
+         * */
+        localizedPropertiesSpecification: null,
+
+        /**
+         * @description
+         * Initialized via `getLocalizedStatesSimulationsSpecification` on the first invocation of
+         *   "XXXComponent-PugMixinOrClassSynopsis" mixin for the described above reason.
+         * */
+        localizedStatesSimulationsSpecification: null,
+
+        /**
+        * @description
+        * Intended to be initialized in "[ GUI Component Name ]-ReusableFragments.[ Locale ].pug" file.
+        */
+        GUI_ComponentSpecificStringResources: null,
+
+        /**
+         * @description
+         * Intended to be invoked in target mixin.
+         * When invoking the mixin, `MetadataClass` like "AdmonitionBlock__YDF" already initialized
+         */
+        getLocalizedPropertiesSpecification(MetadataClass, framework) {
+
+          if (isNotNull(this.localizedPropertiesSpecification)) {
+            return this.localizedPropertiesSpecification;
+          }
+
+
+          this.localizedPropertiesSpecification = ValuesDeepCopier.
+              deeplyCloneObjectLikeValueAsPossible(MetadataClass.propertiesSpecification);
+
+          /* ━━━ Theme ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+          if (isNotUndefined(this.localizedPropertiesSpecification.theme)) {
+
+            /* ┅┅┅ Default Value ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+            if (isNotUndefined(this.localizedPropertiesSpecification.theme.undefinedValueSubstitution)) {
+
+              const defaultThemeKey = Object.entries(MetadataClass.Themes).
+                  find(
+                    ([ , value ]) =>
+                        value === this.localizedPropertiesSpecification.theme.undefinedValueSubstitution
+                  )[0];
+
+              /* [ Theory ] Here `undefinedValueSubstitution` is not replaced with `defaultValue` for the Blazor case. */
+              this.localizedPropertiesSpecification.theme.undefinedValueSubstitution =
+                  new PropertyMetadata__YDF_DK.RawValue(
+                    (() => {
+
+                      switch (framework) {
+
+                        case SupportedFrameworks.vue:
+                        case SupportedFrameworks.react:
+
+                          return `${ MetadataClass.name.replace("__YDF", "") }.Themes.${ defaultThemeKey }`;
+
+                        case SupportedFrameworks.blazor:
+
+                          return `${ MetadataClass.name.replace("__YDF", "") }.StandardThemes.${ defaultThemeKey }`;
+
+                        default:
+
+                          return `${ MetadataClass.name }.Themes.${ defaultThemeKey }`;
+
+                      }
+
+                    })()
+                  );
+
+            }
+
+            /* ┅┅┅ Allowed Alternatives ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+            this.localizedPropertiesSpecification.theme.allowedAlternatives = [
+              ...this.localizedPropertiesSpecification.theme.allowedAlternatives.map(
+                (allowedAlternative) => {
+
+                  switch (framework) {
+
+                    case SupportedFrameworks.vue:
+                    case SupportedFrameworks.react:
+
+                      return ({ ...allowedAlternative, key: allowedAlternative.key.replace("__YDF", "") });
+
+
+                    case SupportedFrameworks.blazor:
+
+                      return ({
+                        ...allowedAlternative,
+                        key: allowedAlternative.key.
+                            replace("__YDF", "").
+                            replace(".Themes.", ".StandardThemes.")
+                      });
+
+                    default: return allowedAlternative;
+
+                  }
+
+                }
+              ),
+              `(${
+                GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables.customThemingGuidanceGenerator(
+                  (() => {
+
+                    switch (framework) {
+
+                      case SupportedFrameworks.vue:
+                      case SupportedFrameworks.react:
+
+                        return `${ MetadataClass.name.replace("__YDF", "") }.defineThemes(themesNames)`;
+
+                      case SupportedFrameworks.blazor:
+
+                        return `${ MetadataClass.name.replace("__YDF", "") }.defineCustomThemes(CustomThemesEnumeration)`;
+
+                      default: return `${ MetadataClass.name }.defineThemes(themesNames)`;
+
+                    }
+
+                  })()
+                )
+              })`
+            ];
+
+          }
+
+
+          /* ━━━ Are Themes CSS Classes Common ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+          if (isNotUndefined(this.localizedPropertiesSpecification.areThemesCSS_ClassesCommon)) {
+
+            switch (framework) {
+
+              case SupportedFrameworks.vue:
+              case SupportedFrameworks.react:
+
+                this.localizedPropertiesSpecification.areThemesCSS_ClassesCommon.undefinedValueSubstitution =
+                    new PropertyMetadata__YDF_DK.RawValue(
+                      `${ MetadataClass.name.replace("__YDF", "") }.areThemesCSS_ClassesCommon`
+                    );
+
+                break;
+
+              case SupportedFrameworks.blazor:
+
+                this.localizedPropertiesSpecification.areThemesCSS_ClassesCommon.defaultValue =
+                    new PropertyMetadata__YDF_DK.RawValue(
+                      `${ MetadataClass.name.replace("__YDF", "") }.areThemesCSS_ClassesCommon`
+                    );
+
+                break;
+
+              default:
+
+                this.localizedPropertiesSpecification.areThemesCSS_ClassesCommon.undefinedValueSubstitution =
+                    new PropertyMetadata__YDF_DK.RawValue(`${ MetadataClass.name }.areThemesCSS_ClassesCommon`);
+
+            }
+
+          }
+
+
+          /* ━━━ Geometric Variation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+          if (isNotUndefined(this.localizedPropertiesSpecification.geometricVariation)) {
+
+            /* ┅┅┅ Default Value ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+            if (isNotUndefined(this.localizedPropertiesSpecification.geometricVariation.undefinedValueSubstitution)) {
+
+              const defaultGeometricVariationKey = Object.entries(MetadataClass.GeometricVariations).
+                  find(
+                    ([ , value ]) =>
+                        value === this.localizedPropertiesSpecification.geometricVariation.undefinedValueSubstitution
+                  )[0];
+
+              /* [ Theory ] Here `undefinedValueSubstitution` is not replaced with `defaultValue` for the Blazor case. */
+              this.localizedPropertiesSpecification.geometricVariation.undefinedValueSubstitution =
+                  new PropertyMetadata__YDF_DK.RawValue(
+                    (() => {
+
+                      switch (framework) {
+
+                        case SupportedFrameworks.vue:
+                        case SupportedFrameworks.react:
+
+                          return `${ MetadataClass.name.replace("__YDF", "") }.GeometricVariations.${ defaultGeometricVariationKey }`;
+
+                        case SupportedFrameworks.blazor:
+
+                          return `${ MetadataClass.name.replace("__YDF", "") }.StandardGeometricVariations.${ defaultGeometricVariationKey }`;
+
+                        default:
+
+                          return `${ MetadataClass.name }.GeometricVariations.${ defaultGeometricVariationKey }`;
+
+                      }
+
+                    })()
+                  );
+
+            }
+
+            /* ┅┅┅ Allowed Alternatives ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+            this.localizedPropertiesSpecification.geometricVariation.allowedAlternatives = [
+
+              ...this.localizedPropertiesSpecification.geometricVariation.allowedAlternatives.map(
+                (allowedAlternative) => {
+
+                  switch (framework) {
+
+                    case SupportedFrameworks.vue:
+                    case SupportedFrameworks.react:
+
+                      return ({ ...allowedAlternative, key: allowedAlternative.key.replace("__YDF", "") });
+
+                    case SupportedFrameworks.blazor:
+
+                      return ({
+                        ...allowedAlternative,
+                        key: allowedAlternative.key.
+                            replace("__YDF", "").
+                            replace(".GeometricVariations.", ".StandardGeometricVariations.")
+                      });
+
+                    default: return allowedAlternative;
+
+                  }
+
+                }
+              ),
+
+              `(${
+                GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables.customThemingGuidanceGenerator(
+                  (() => {
+
+                    switch (framework) {
+
+                      case SupportedFrameworks.vue:
+                      case SupportedFrameworks.react:
+
+                        return `${ MetadataClass.name.replace("__YDF", "") }.defineGeometricVariations(geometricVariationsNames)`;
+
+                      case SupportedFrameworks.blazor:
+
+                        return MetadataClass.name.replace("__YDF", "") +
+                            ".defineCustomGeometricVariations(CustomGeometricVariationsNamesEnumeration)";
+
+                      default: return `${ MetadataClass.name }.defineGeometricVariations(geometricVariationsNames)`;
+
+                    }
+
+                  })()
+                )
+              })`
+
+            ];
+
+          }
+
+
+          /* ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+          if (isNotUndefined(this.localizedPropertiesSpecification.geometricModifiers)) {
+
+            this.localizedPropertiesSpecification.geometricModifiers.element.allowedAlternatives =
+                this.localizedPropertiesSpecification.geometricModifiers.element.allowedAlternatives.map(
+                  (allowedAlternative) =>
+                      framework ?
+                          ({ ...allowedAlternative, key: allowedAlternative.key.replace("__YDF", "") }) :
+                          allowedAlternative
+                );
+
+            if (framework === SupportedFrameworks.blazor) {
+              delete this.localizedPropertiesSpecification.geometricModifiers.areUndefinedElementsForbidden;
+              delete this.localizedPropertiesSpecification.geometricModifiers.areNullElementsForbidden;
+            }
+
+          }
+
+
+          /* ━━━ Decorative Variation ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+          if (isNotUndefined(this.localizedPropertiesSpecification.decorativeVariation)) {
+
+            /* ┅┅┅ Default Value ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+            if (isNotUndefined(this.localizedPropertiesSpecification.decorativeVariation.undefinedValueSubstitution)) {
+
+              const defaultDecorativeVariationKey = Object.entries(MetadataClass.DecorativeVariations).
+                  find(
+                    ([ , value ]) =>
+                        value === this.localizedPropertiesSpecification.decorativeVariation.undefinedValueSubstitution
+                  )[0];
+
+              /* [ Theory ] Here `undefinedValueSubstitution` is not replaced with `defaultValue` for the Blazor case. */
+              this.localizedPropertiesSpecification.decorativeVariation.undefinedValueSubstitution =
+                  new PropertyMetadata__YDF_DK.RawValue(
+                    (() => {
+
+                      switch (framework) {
+
+                        case SupportedFrameworks.vue:
+                        case SupportedFrameworks.react:
+
+                          return `${ MetadataClass.name.replace("__YDF", "") }.DecorativeVariations.${ defaultDecorativeVariationKey }`;
+
+                        case SupportedFrameworks.blazor:
+
+                          return `${ MetadataClass.name.replace("__YDF", "") }.StandardDecorativeVariations.${ defaultDecorativeVariationKey }`;
+
+                        default:
+
+                          return `${ MetadataClass.name }.DecorativeVariations.${ defaultDecorativeVariationKey }`;
+
+                      }
+
+                    })()
+                  );
+
+            }
+
+            /* ┅┅┅ Allowed Alternatives ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+            this.localizedPropertiesSpecification.decorativeVariation.allowedAlternatives = [
+
+              ...this.localizedPropertiesSpecification.decorativeVariation.allowedAlternatives.map(
+                (allowedAlternative) => {
+
+                  switch (framework) {
+
+                    case SupportedFrameworks.vue:
+                    case SupportedFrameworks.react:
+
+                      return ({ ...allowedAlternative, key: allowedAlternative.key.replace("__YDF", "") });
+
+
+                    case SupportedFrameworks.blazor:
+
+                      return ({
+                        ...allowedAlternative,
+                        key: allowedAlternative.key.
+                            replace("__YDF", "").
+                            replace(".DecorativeVariations.", ".StandardDecorativeVariations.")
+                      });
+
+                    default: return allowedAlternative;
+
+                  }
+
+                }
+              ),
+
+              `(${
+                GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables.customThemingGuidanceGenerator(
+                  (() => {
+
+                    switch (framework) {
+
+                      case SupportedFrameworks.vue:
+                      case SupportedFrameworks.react:
+
+                        return `${ MetadataClass.name.replace("__YDF", "") }.defineDecorativeVariations(decorativeVariationsNames)`;
+
+                      case SupportedFrameworks.blazor:
+
+                        return MetadataClass.name.replace("__YDF", "") +
+                            ".defineCustomDecorativeVariations(CustomDecorativeVariationsEnumeration)";
+
+                      default: return `${ MetadataClass.name }.defineDecorativeVariations(decorativeVariationsNames)`;
+
+                    }
+
+                  })()
+                )
+              })`
+
+            ];
+
+          }
+
+
+          /* ━━━ Decorative Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+          if (isNotUndefined(this.localizedPropertiesSpecification.decorativeModifiers)) {
+
+            this.localizedPropertiesSpecification.decorativeModifiers.element.allowedAlternatives =
+                this.localizedPropertiesSpecification.decorativeModifiers.element.allowedAlternatives.map(
+                  (allowedAlternative) =>
+                      framework ?
+                          ({ ...allowedAlternative, key: allowedAlternative.key.replace("__YDF", "") }) :
+                          allowedAlternative
+                );
+
+            if (framework === SupportedFrameworks.blazor) {
+              delete this.localizedPropertiesSpecification.decorativeModifiers.areUndefinedElementsForbidden;
+              delete this.localizedPropertiesSpecification.decorativeModifiers.areNullElementsForbidden;
+            }
+
+          }
+
+
+          switch (framework) {
+
+            case SupportedFrameworks.react: {
+
+              this.localizedPropertiesSpecification.className = {
+                type: String,
+                isUndefinedForbidden: false,
+                isNullForbidden: true,
+                minimalCharactersCount: 1
+              };
+
+              break;
+
+            }
+
+            case SupportedFrameworks.blazor: {
+
+              /* [ Approach ] `isUndefinedForbidden`/`isNullForbidden` is not actual for C#, use `required` instead */
+              for (const propertySpecification of Object.values(this.localizedPropertiesSpecification)) {
+
+                if (propertySpecification.isUndefinedForbidden && propertySpecification.isNullForbidden) {
+                  propertySpecification.required = true;
+                } else if (isNotUndefined(propertySpecification.undefinedValueSubstitution)) {
+                  propertySpecification.defaultValue = propertySpecification.undefinedValueSubstitution;
+                } else if (propertySpecification.isUndefinedForbidden === false || propertySpecification.isNullForbidden === false) {
+                  propertySpecification.required = false;
+                }
+
+                delete propertySpecification.isUndefinedForbidden;
+                delete propertySpecification.isNullForbidden;
+                delete propertySpecification.undefinedValueSubstitution;
+                delete propertySpecification.nullValueSubstitution;
+
+              }
+
+              this.localizedPropertiesSpecification.rootElementModifierCSS_Class = {
+                type: String,
+                required: false
+              };
+
+              this.localizedPropertiesSpecification.rootElementModifierCSS_Classes = {
+                type: Array,
+                required: false,
+                element: {
+                  type: String
+                }
+              };
+
+              this.localizedPropertiesSpecification.rootElementSpaceSeparatedModifierCSS_Classes = {
+                type: String,
+                required: false,
+              };
+
+            }
+
+          }
+
+          for (const [ propertyName, propertySpecification ] of Object.entries(this.localizedPropertiesSpecification)) {
+
+            propertySpecification.localizedInterpretation =
+                GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables?.propertiesLocalizedInterpretations?.[propertyName] ??
+                this.GUI_ComponentSpecificStringResources.propertiesLocalizedInterpretations?.[propertyName];
+
+            if (propertySpecification.undefinedForbiddenIf) {
+
+              const localizedPropertyConditionalRequirementDescription =
+                  GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables?.propertiesConditionalRequirementDescriptions?.[propertyName] ??
+                  this.GUI_ComponentSpecificStringResources.propertiesConditionalRequirementDescriptions?.[propertyName];
+
+              if (isNotUndefined(localizedPropertyConditionalRequirementDescription)) {
+                propertySpecification.undefinedForbiddenIf.descriptionForLogging = localizedPropertyConditionalRequirementDescription;
+              }
+
+            }
+
+          }
+
+          return this.localizedPropertiesSpecification;
+
+        },
+
+        /**
+         * @description
+         * Intended to be invoked in target mixin.
+         * When invoking the mixin, `MetadataClass` like "AdmonitionBlock__YDF" already initialized
+         */
+        getLocalizedStatesSimulationsSpecification(MetadataClass) {
+
+          if (isNotNull(this.localizedStatesSimulationsSpecification)) {
+            return this.localizedStatesSimulationsSpecification;
+          }
+
+
+          this.localizedStatesSimulationsSpecification = ValuesDeepCopier.
+              deeplyCloneObjectLikeValueAsPossible(MetadataClass.statesSimulationsSpecification);
+
+
+          for (const [ propertyName, propertySpecification ] of Object.entries(this.localizedStatesSimulationsSpecification)) {
+
+            propertySpecification.localizedInterpretation =
+                GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables?.statesSimulationsLocalizedInterpretations?.[propertyName] ??
+                this.GUI_ComponentSpecificStringResources.statesSimulationsLocalizedInterpretations?.[propertyName];
+
+          }
+
+          return this.localizedStatesSimulationsSpecification;
+
+        }
+
+      };
+    }
+
+  }
+
+
+include Common/ReusableFragments/GUI_Components/AdmonitionBlock-ReusableFragments.pug
+include Common/ReusableFragments/GUI_Components/Badge-ReusableFragments.pug
+include Common/ReusableFragments/GUI_Components/Controls/Button-ReusableFragments.pug
+include Common/ReusableFragments/GUI_Components/Controls/ValidatableControlShell-ReusableFragments.pug
+include Common/ReusableFragments/GUI_Components/Controls/Validatables/TextBox-ReusableFragments.pug

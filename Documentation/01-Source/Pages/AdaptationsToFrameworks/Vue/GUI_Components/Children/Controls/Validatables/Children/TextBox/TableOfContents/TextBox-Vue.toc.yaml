@@ -1,0 +1,16 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+TextBoxClass:
+
+  $heading: `TextBoxClass.$heading`
+  $anchor: TEXT_BOX_CLASS--SECTION
+
+  $children:
+
+    vueProperties:
+
+      $heading: `TextBoxClass.vueProperties.$heading`
+      $anchor: TEXT_BOX_CLASS-VUE_PROPERTIES--SECTION

@@ -1,117 +1,16 @@
--
+include Markup/InlineECMAScript/PugExtensions.generated.pug
 
-  /* [ Theory ] Required for HTML validity */
-  const HTML_PAGE_DEFAULT_LANGUAGE_SPECIFICATION__BCP47 = "en";
-
-  let BEM_ELEMENT_SEPARATOR = "-";
-  let BEM_MODIFIER_SEPARATOR = "__";
-
-  const textOverflowSafetyTest = "OverflowTest:ÀÇĤfhjgpjklbĜiEstosTreMalfacileEnvolverLaVicoAbcdefghijklmnopqrstuvwxyza" +
-          "bcdefgghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghi" +
-          "jklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx";
-
-  const DummyImageURLs = {
-    aspectRatio19x6: "https://dummyimage.com/960x540/626ffc/e6e6e6.png",
-    aspectRatio4x3: "https://dummyimage.com/960x720/626ffc/e6e6e6.png",
-    wideAndLow: "https://dummyimage.com/2000x100/626ffc/e6e6e6.png",
-    highAndNarrow: "https://dummyimage.com/100x1000/626ffc/e6e6e6.png",
-    small: "https://dummyimage.com/64x64/626ffc/e6e6e6.png"
-  };
-
-
-mixin HighDummy(backgroundColor)
-  - backgroundColor = backgroundColor || "cornflowerblue"
-  div(style=`width: 100px; height: 2000px; background: ${backgroundColor};`)
-
-mixin WideDummy(backgroundColor)
-  - backgroundColor = backgroundColor || "cornflowerblue"
-  div(style=`width: 2000px; height: 100px; background: ${backgroundColor};`)
-
-
-include Markup/PugExtensions.generated.pug
 
 -
 
-  const {
-
-    /* === Numbers ================================================================================================== */
-    formatNumberWith4KetaKanji,
-    isStringifiedNonNegativeIntegerOfRegularNotation,
-    separateEach3DigitsGroupWithComma,
-    separateEach4DigitsGroupWithComma,
-
-    /* === Strings ================================================================================================== */
-    replace2OrMoreSpacesTo1,
-
-    /* === Random values generators ================================================================================= */
-    getRandomArrayElement,
-    getRandomBoolean,
-    getRandomInteger,
-
-    /* === Specialities for Pug ===================================================================================== */
-    buildEmailLinkHREF_ArttributeValue,
-    buildPhoneNumberLinkHREF_ArttributeValue
-    // -----------------------------------------------------------------------------------------------------------------
-    /*
-    areStringifiedDigitsOnly,
-    capitalizeFirstSymbol,
-    getLastSymbol,
-    getPositionsOfAllSubstringOccurrences,
-    insertSubstring,
-    insertSubstringIf,
-    removeAllSpecifiedCharacters,
-    removeNonDigitsCharacters,
-    removeNthSymbol,
-    replace2OrMoreSpacesTo1,
-    replaceBrHTML_TagToNewLineEscapeSequence,
-    reverseString,
-    splitString,
-    stringifyAndFormatUnknownAtAdvanceEntity,
-
-    /!* === Arrays =================================================================================================== *!/
-    getArrayElementWhichMustExistByPredicate,
-    getLastElementOfNonEmptyArray,
-    getIndexesOfArrayElementsWhichSatisfiesToPredicate,
-    getIndexOfArrayElementByPredicate,
-
-    /!* === Sets ===================================================================================================== *!/
-    addMultipleElementsToSet,
-
-    /!* === Maps ===================================================================================================== *!/
-    addMultiplePairsToMap,
-    createMapBasedOnOtherMap,
-    filterMap,
-
-    /!* === Type guards ============================================================================================== *!/
-    /!* --- Numbers -------------------------------------------------------------------------------------------------- *!/
-    isDecimalFractionOfAnySign,
-    isNaturalNumber,
-    isNegativeDecimalFraction,
-    isNegativeInteger,
-    isNegativeIntegerOrZero,
-    isNonNegativeInteger,
-    isNumber,
-    isPositiveDecimalFraction,
-
-    /!* --- Strings -------------------------------------------------------------------------------------------------- *!/
-    isEmptyString,
-    isNonEmptyString,
-    isString,
-    isStringOfLength,
-
-    /!* --- Objects -------------------------------------------------------------------------------------------------- *!/
-    isArbitraryObject,
-    isEmptyObject,
-    isNonEmptyObject,
-    isNonNullArbitraryObject,
-    isNonNullObject,
-    */
-
-  } = global.__PUG_EXTENSIONS_EXPORTS__;
+  /* [ Theory ]
+   * `global` is actual for "gulp-pug" with Pug 3, while "globalThis" for "pug-plugin" for Webpack.
+   * This declaration is not required for the "gulp-pug" case but required for the "pug-plugin" case.
+   */
+  const YDF = global?.YDF ?? globalThis.YDF;
 
 
 include Markup/Assets/Dummies.pug
 include Markup/Assets/SVG_Icons/SVG_Icons.pug
 
-include Markup/BuildInPlugins/PrismJS_Integration.pug
 include Markup/BuildInPlugins/YamatoDaiwaInformationDesign.pug

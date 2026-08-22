@@ -1,0 +1,36 @@
+extends ../../../../../../PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Requirements
+
+  include ../../../../../../GUI_Components.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "RadioButtonsGroup Component Testing"
+      },
+      stylesSheetsURIs: [
+        "@Workbenches/GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup.workbench"
+      ],
+      scriptsURIs: {
+        atEndOfBody: [
+          "@Workbenches/GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup.workbench"
+        ]
+      }
+    });
+
+
+block append PageContent
+
+  +RadioButtonsGroup--YDF({
+    label: "Who are you?",
+    selectingOptions: [
+      { key: "INDIVIDUAL", label: "Individual" },
+      { key: "CORPORATION", label: "Corporation" }
+    ]
+  })#SAMPLE

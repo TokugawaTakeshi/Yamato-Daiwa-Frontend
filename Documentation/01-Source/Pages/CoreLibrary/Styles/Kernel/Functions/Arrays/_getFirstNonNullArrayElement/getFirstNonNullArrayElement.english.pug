@@ -1,0 +1,86 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.english.pug
+  include ../../../../../../../SharedComponents/SharedComponents.english.pug
+
+
+block append Metadata
+
+  -
+
+    HTML_PAGE_LANGUAGE = "en";
+    HTML_PAGE_TITLE = buildHTML_PageTitle("getFirstNonNullArrayElement");
+    HTML_PageMetaData = {
+      description: "",
+      author: HTML_PAGE_AUTHOR
+    };
+
+    FAVICON_URI = "@MustBeInPublicRoot/favicon";
+
+    styleSheetsURIs = [
+      "$CommonStyles",
+      "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+      "$PreMadesStyles",
+      "@CustomizedExternalComponents"
+    ];
+
+    scriptsURIs.endOfBody = [ "$CommonLogic" ];
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.styles.kernel.functions.arrays.getFirstNonNullArrayElement");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      japanese: "./getFirstNonNullArrayElement.japanese.html",
+      russian: "./getFirstNonNullArrayElement.russian.html"
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: "getFirstNonNullArrayElement",
+      genericParameters: [ "Element" ],
+      parametersSpecification: [
+        {
+          type: "Array<Element>",
+          required: true,
+          genericTechnicalName: "targetArray"
+        }
+      ],
+      returnedValue: "Element | null",
+      headingTag: "h1",
+    })
+
+    p.Article-Paragraph.
+      Returns first non-null element if such element exists, or null if there is no such elements.
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript })
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          sample1 = null null "ALPHA" null "BRAVO"
+          p(getFirstNonNullArrayElement(sample1));
+
+        +CodeViewer-Explanation--YDF.
+          As is clear from the function name, #[+ImportantEntity__Code--YDID "ALPHA"] will be returned as first
+            non-null element of #[+SecondaryEntity__Code--YDID sample1] array.
+
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          sample2 = null null null
+          p(getFirstNonNullArrayElement(sample2));
+
+        +CodeViewer-Explanation--YDF.
+          There is no non-null element is #[+SecondaryEntity__Code--YDID sample2] thus
+            #[+SecondaryEntity__Code--YDID null] will be returned.

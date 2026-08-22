@@ -1,118 +1,234 @@
-projectBuilding:
+$projectBuilding:
 
-  commonSettings:
+  $commonSettings:
 
-    selectiveExecutions:
+    $selectiveExecutions:
 
-      PugExtensions:
-        tasksAndSourceFilesSelection:
-          ECMA_ScriptLogicProcessing: [ PugExtensions ]
+      PugAuxiliaries:
+        $tasksAndSourceFilesSelection:
+          $ECMA_ScriptLogicProcessing: [ PugExtensions, GUI_ComponentsRequirements ]
+
+      Logic:
+        $tasksAndSourceFilesSelection:
+          $ECMA_ScriptLogicProcessing: [ Logic ]
 
       StylesAndComponentsTesting:
 
-        tasksAndSourceFilesSelection:
-          markupProcessing: [ StylesAndComponentsTesting ]
-          stylesProcessing: [ StylesAndComponentsTesting ]
-#          ECMA_ScriptLogicProcessing: [ StylesAndComponentsTesting ]
+        $tasksAndSourceFilesSelection:
+          $markupProcessing: [ StylesAndComponentsTesting ]
+          $stylesProcessing: [ StylesAndComponentsTesting ]
+          $ECMA_ScriptLogicProcessing: [ StylesAndComponentsTesting ]
 
-        browserLiveReloadingSetupID: StylesAndComponentsTesting
+        $browserLiveReloadingSetupID: StylesAndComponentsTesting
+
+      Workbenches:
+
+        $tasksAndSourceFilesSelection:
+          $markupProcessing: [ Workbenches ]
+          $stylesProcessing: [ Workbenches ]
+          $ECMA_ScriptLogicProcessing: [ Workbenches ]
+
+        $browserLiveReloadingSetupID: Workbenches
 
       StaticPreviewAnywherePage:
-        tasksAndSourceFilesSelection:
-          stylesProcessing: [ StaticPreviewAnywherePage ]
+        $tasksAndSourceFilesSelection:
+          $stylesProcessing: [ StaticPreviewAnywherePage ]
 
 
-  # === Markup =========================================================================================================
-  markupProcessing:
-    entryPointsGroups:
+  # ━━━ Markup Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $markupProcessing:
 
-      StylesAndComponentsTesting:
-        entryPointsSourceFilesTopDirectoryOrSingleFileRelativePath: Tests
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
-        buildingModeDependent:
-          DEVELOPMENT:
-            outputBaseDirectoryRelativePath: Tests/Build
+    $common:
 
+      $buildingModeDependent:
 
-  # === Styles =========================================================================================================
-  stylesProcessing:
+        $localDevelopment:
 
-    entryPointsGroups:
+          $mustResolveResourcesPointersToRelativePaths: true
+
+    $entryPointsGroups:
 
       StylesAndComponentsTesting:
+        $sourceFilesTopDirectoryRelativePath: Tests/Source
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Tests/Build
 
-        entryPointsSourceFilesTopDirectoryOrSingleFileRelativePath: Tests
+      Workbenches:
+        $sourceFilesTopDirectoryRelativePath: Workbenches/Source
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Workbenches/Build
 
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
-          excludeSubdirectoriesWithNames: [ "CompiledCodeCheckOnly" ]
 
-        buildingModeDependent:
-          DEVELOPMENT:
-            outputBaseDirectoryRelativePath: Tests/Build
+  # ━━━ Styles Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $stylesProcessing:
+
+    $entryPointsGroups:
+
+      StylesAndComponentsTesting:
+
+        $sourceFilesTopDirectoryRelativePath: Tests/Source
+
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
+          $excludeSubdirectoriesWithNames: [ "CompiledCodeCheckOnly" ]
+
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Tests/Build
+
+      Workbenches:
+
+        $sourceFilesTopDirectoryRelativePath: Workbenches/Source
+
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
+
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Workbenches/Build
 
       OutputCheck:
 
-        entryPointsSourceFilesTopDirectoryOrSingleFileRelativePath: Tests/Source/OutputCheckOnly
+        $sourceFilesTopDirectoryRelativePath: Tests/Source/OutputCheckOnly
 
-        buildingModeDependent:
-          DEVELOPMENT:
-            outputBaseDirectoryRelativePath: Tests/Build/OutputCheck
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Tests/Build/OutputCheck
 
 
       StaticPreviewAnywherePage:
 
-        entryPointsSourceFilesTopDirectoryOrSingleFileRelativePath: PagesTemplates/StaticPreviewAnywherePage/StaticPreviewAnywherePage.styl
+        $singleEntryPointSourceFileRelativePath: PagesTemplates/StaticPreviewAnywherePage/StaticPreviewAnywherePage.styl
 
-        buildingModeDependent:
-          DEVELOPMENT:
-            outputBaseDirectoryRelativePath: PagesTemplates/StaticPreviewAnywherePage
+        $buildingModeDependent:
+          $production:
+            $outputTopDirectoryRelativePath: PagesTemplates/StaticPreviewAnywherePage
+            $revisioning: { $disable: true }
 
 
-  # === フロントエンド挙動制御記法事前処理 ======================================================================================
-  ECMA_ScriptLogicProcessing:
+  # ━━━ ECMAScript Logic Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $ECMA_ScriptLogicProcessing:
 
-    entryPointsGroups:
+    $entryPointsGroups:
 
-      StylesAndComponentsTesting:
+      Logic:
 
-        entryPointsSourceFilesTopDirectoryOrSingleFileRelativePath: Tests/Source
-        targetRuntime:
-          type: BROWSER
+        $singleEntryPointSourceFileRelativePath: index.ts
 
-        partialsRecognition:
-          excludeFilesWithPrefixes: "_"
-          excludeSubdirectoriesWithPrefixes: "_"
+        $targetRuntime:
+          $type: BROWSER
 
-        buildingModeDependent:
-          DEVELOPMENT:
-            outputBaseDirectoryRelativePath: Tests/Build
+        $distributing:
+          $exposingOfExportsFromEntryPoints:
+            $mustExpose: true
+          $typeScriptTypesDeclarations:
+            $mustGenerate: true
+          $externalizingDependencies:
+            - @yamato-daiwa/es-extensions
+            - @yamato-daiwa/es-extensions-browserjs
+
+        $buildingModeDependent:
+
+          $production:
+            $outputTopDirectoryRelativePath: "LogicDistributable"
+            $revisioning: { $disable: true }
+
 
       PugExtensions:
 
-        entryPointsSourceFilesTopDirectoryOrSingleFileRelativePath: Markup/Source/PugExtensions.ts
+        $singleEntryPointSourceFileRelativePath: Markup/InlineECMAScript/Source/PugExtensions.ts
 
-        targetRuntime:
-          type: PUG
+        $targetRuntime:
+          $type: PUG
 
-        distributing:
-          exposingOfExportsFromEntryPoints:
-            mustExpose: true
-            namespace: __PUG_EXTENSIONS_EXPORTS__
+        $distributing:
+          $exposingOfExportsFromEntryPoints:
+            $mustExpose: true
+            $namespace: YDF
 
-        buildingModeDependent:
-          PRODUCTION:
-            outputBaseDirectoryRelativePath: Markup/Source
-            revisioning: { disable: true }
+        $buildingModeDependent:
+          $production:
+            $outputTopDirectoryRelativePath: Markup/InlineECMAScript/Temporary
+            $revisioning: { $disable: true }
 
 
-  # === Development server =============================================================================================
-  browserLiveReloading:
+      GUI_ComponentsRequirements:
 
-    StylesAndComponentsTesting:
+        $singleEntryPointSourceFileRelativePath: Markup/InlineECMAScript/Source/GUI_ComponentsRequirements.ts
 
-      customStartingFilenameWithExtension: Tests.html
-      targetFilesRootDirectoryRelativePath: Tests/Build
+        $targetRuntime:
+          $type: PUG
+
+        $distributing:
+          $exposingOfExportsFromEntryPoints:
+            $mustExpose: true
+            $namespace: __YDF_GUI_COMPONENTS_REQUIREMENTS__
+
+        $buildingModeDependent:
+          $production:
+            $outputTopDirectoryRelativePath: Markup/InlineECMAScript/Temporary
+            $revisioning: { $disable: true }
+
+      StylesAndComponentsTesting:
+
+        $sourceFilesTopDirectoryRelativePath: Tests/Source
+
+        $targetRuntime:
+          $type: BROWSER
+
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
+
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Tests/Build
+
+      Workbenches:
+
+        $sourceFilesTopDirectoryRelativePath: Workbenches/Source
+
+        $targetRuntime:
+          $type: BROWSER
+
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
+
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Workbenches/Build
+
+
+  # ━━━ Browser Live Reloading ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $browserLiveReloading:
+
+    $setups:
+
+      StylesAndComponentsTesting:
+
+        $localServer:
+
+          $rootDirectoryRelativePath: Tests/Build
+          $customStartingFileNameWithExtension: Tests.html
+
+        $openInBrowsers: chrome
+
+      Workbenches:
+
+        $localServer:
+
+          $rootDirectoryRelativePath: Workbenches/Build
+          $customStartingFileNameWithExtension: Workbenches.html
+
+        $openInBrowsers: chrome

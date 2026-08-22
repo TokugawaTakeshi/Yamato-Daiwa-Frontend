@@ -1,0 +1,33 @@
+markup:
+
+  $heading: `markup.$heading`
+  $anchor: MARKUP--SECTION
+
+  $children:
+
+    providing:
+      $heading: `markup.providing.$heading`
+      $anchor: MARKUP-PROVIDING--SECTION
+
+    performanceInMVC_Applications:
+      $heading: `markup.performanceInMVC_Applications.$heading`
+      $anchor: MARKUP-PERFORMANCE_IN_MVC_APPLICATIONS--SECTION
+
+styles:
+
+  $heading: `styles.$heading`
+  $anchor: STYLES--SECTION
+
+  $children:
+
+    providing:
+      $heading: `styles.providing.$heading`
+      $anchor: STYLES-PROVIDING--SECTION
+
+themes:
+  $heading: `themes.$heading`
+  $anchor: THEMES--SECTION
+
+customization:
+  $heading: `customization.$heading`
+  $anchor: CUSTOMIZATION--SECTION

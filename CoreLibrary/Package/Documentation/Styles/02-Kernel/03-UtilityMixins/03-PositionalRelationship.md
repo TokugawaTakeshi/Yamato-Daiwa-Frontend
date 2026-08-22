@@ -92,7 +92,7 @@ Will be compiled to:
 Now how to get same output CSS with less code.
 
 
-## `PositionalRelationship` mixin
+## `PositionalRelationship--YDF` mixin
 
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-prs-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -111,7 +111,7 @@ Low-level mixin for the defining of the vertical space between two or more eleme
   
   &-Paragraph
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions: (".Article1-Heading" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px } })
     })
 ```
@@ -131,7 +131,7 @@ will be compiled to:
 
 ### Example for the case with combinators
 
-If to leave the `PositionalRelationship` usage as in above example but for `.Article2 p` rule, 
+If to leave the `PositionalRelationship--YDF` usage as in above example but for `.Article2 p` rule, 
 
 ```stylus
 .Article2
@@ -143,7 +143,7 @@ If to leave the `PositionalRelationship` usage as in above example but for `.Art
   
   p
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions: ("h2" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px } })
     })
 ```
@@ -160,7 +160,7 @@ h2 + .Article2 p {
 }
 ```
 
-The first rule does not match with desired because the `PositionalRelationship` can not know that
+The first rule does not match with desired because the `PositionalRelationship--YDF` can not know that
 we want to define the positional relationship just inside `.Article2`. It can know only current selector
 by `selector()` build-in function (in above example it is the `.Article2 p`). 
 
@@ -177,7 +177,7 @@ the positional relationship - the reference element:
   
   p
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions: ("h2" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px } }),
       contextSelector: ".Article2",
       referenceElementSelector: "p"
@@ -220,7 +220,7 @@ At in obvious and must be obvious from `definitions` property name, here could b
 
   &-Paragraph
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions:\
           (".Article3-Heading" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px } })\
           (".Article3-OrderedList" { retireFromIt: { y: 4px }, pushItFromSelf: { y: 8px } })
@@ -259,7 +259,7 @@ could be used for defining of the vertical space between two elements - as excep
 
     MultilineTextWithoutExtraSpaceCausedByLineHeight({ fontSize: 14px, lineHeight: 17px, doNotUsePseudoElements: true })
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions:\
           (".EmailMagazine-Heading" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px }, usePaddingsInsteadOfMargins: true })
     })
@@ -287,10 +287,10 @@ The output CSS without optimizations by PostCSS plugins will be:
 ```
 
 
-## `retireFrom` mixin
+## `retireFrom--YDF` mixin
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-rf-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
-The shorthand for `PositionalRelationship` indented to be used when `retiredFromIt` property only demanded (without `pushItFromSelf`). 
+The shorthand for `PositionalRelationship--YDF` indented to be used when `retiredFromIt` property only demanded (without `pushItFromSelf`). 
 
 ```stylus
 .Example1
@@ -302,7 +302,7 @@ The shorthand for `PositionalRelationship` indented to be used when `retiredFrom
   
   &-ElementB
 
-    retireFrom({ targetElementSelector: ".Example1-ElementA", x: 2px, y: 4px })
+    retireFrom--YDF({ targetElementSelector: ".Example1-ElementA", x: 2px, y: 4px })
 ```
 
 It is equivalent to:
@@ -318,7 +318,7 @@ It is equivalent to:
   
   &-ElementB
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions: (".Example1-ElementA" { retireFromIt: { x: 2px, y: 4px } })
     })
 ```
@@ -326,7 +326,7 @@ It is equivalent to:
 
 ### Case with combinators
 
-As in `PositionalRelationship`, the `referenceElementSelector` and `contextSelector` are required for scoped definition. 
+As in `PositionalRelationship--YDF`, the `referenceElementSelector` and `contextSelector` are required for scoped definition. 
 
 ```stylus
 .Example2
@@ -337,7 +337,7 @@ As in `PositionalRelationship`, the `referenceElementSelector` and `contextSelec
   
   p
 
-    retireFrom({ 
+    retireFrom--YDF({ 
       targetElementSelector: "h1", 
       y: 14px, 
       referenceElementSelector: "p", 
@@ -373,7 +373,7 @@ and set `definitions` instead:
   
   p
 
-    retireFrom({
+    retireFrom--YDF({
       definitions: ("h1" { y: 12px }) ("h2" { y: 8px }),
       referenceElementSelector: "p",
       contextSelector: ".Example4"
@@ -402,7 +402,7 @@ Be careful with row breaking to avoid the Stylus unclear errors:
   
   p
 
-    retireFrom({
+    retireFrom--YDF({
       definitions:\
           (".LongBlockName-LongSelectorForRowBreakingTest1" { y: 12px })\
           (".LongBlockName-LongSelectorForRowBreakingTest2" { y: 8px }),
@@ -412,10 +412,10 @@ Be careful with row breaking to avoid the Stylus unclear errors:
 
 ```
 
-## `pushTargetFromSelf` mixin
+## `pushTargetFromSelf--YDF` mixin
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-ptfs-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
-The shorthand for `PositionalRelationship` indented to be used when `pushItFromSelf` property only demanded (without `retiredFromIt`).
+The shorthand for `PositionalRelationship--YDF` indented to be used when `pushItFromSelf` property only demanded (without `retiredFromIt`).
 
 ```stylus
 .Example1
@@ -427,7 +427,7 @@ The shorthand for `PositionalRelationship` indented to be used when `pushItFromS
 
   &-ElementB
 
-    pushTargetFromSelf({ targetElementSelector: ".Example1-ElementA", y: 4px })
+    pushTargetFromSelf--YDF({ targetElementSelector: ".Example1-ElementA", y: 4px })
 ```
 
 It is equivalent to:
@@ -443,7 +443,7 @@ It is equivalent to:
   
   &-ElementB
 
-    PositionalRelationship({
+    PositionalRelationship--YDF({
       definitions: (".Example1-ElementA" { pushItFromSelf: { y: 4px } })
     })
 ```
@@ -451,7 +451,7 @@ It is equivalent to:
 
 ### Case with combinators
 
-As in `PositionalRelationship`, the `referenceElementSelector` and `contextSelector` are required for scoped definition.
+As in `PositionalRelationship--YDF`, the `referenceElementSelector` and `contextSelector` are required for scoped definition.
 
 ```stylus
 .Example2
@@ -463,7 +463,7 @@ As in `PositionalRelationship`, the `referenceElementSelector` and `contextSelec
 
   p
 
-    pushTargetFromSelf({
+    pushTargetFromSelf--YDF({
       targetElementSelector: "h2",
       y: 24px,
       referenceElementSelector: "p",
@@ -497,7 +497,7 @@ and set `definitions` instead:
 
   &-ElementC
 
-    pushTargetFromSelf({
+    pushTargetFromSelf--YDF({
       definitions:\
         (".Example3-ElementA" { x: 2px, y: 4px })\
         (".Example3-ElementB" { x: 6px, y: 8px, usePaddingsInsteadOfMargins: true })
@@ -511,18 +511,18 @@ Be careful with row breaking to avoid the Stylus unclear errors:
 * Do not user the backslash after last definition.
 
 
-## `retireFromElementWithSameSelector` mixin
+## `retireFromElementWithSameSelector--YDF` mixin
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-rfewss-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 Define how much element with certain selector must retire from other element with same selector.
-The same effect as `retireFrom` when `targetElementSelector` is even with `referenceElementSelector`.
+The same effect as `retireFrom--YDF` when `targetElementSelector` is even with `referenceElementSelector`.
 
 ```stylus
 .Block
 
   &-ElementA
 
-    retireFromElementWithSameSelector({ x: 2px, y: 4px })
+    retireFromElementWithSameSelector--YDF({ x: 2px, y: 4px })
 ```
 
 will be compiled to:
@@ -544,7 +544,7 @@ If above definition must be actual for certain context, use `contextSelector` an
 
     li
 
-      retireFromElementWithSameSelector({ y: 8px, contextSelector: ".Block ul", referenceElementSelector: "li" })
+      retireFromElementWithSameSelector--YDF({ y: 8px, contextSelector: ".Block ul", referenceElementSelector: "li" })
 ```
 
 will be compiled to:
@@ -558,7 +558,7 @@ will be compiled to:
 
 ## Applying of arbitrary CSS properties depending on position in order
 
-### `whenItGoingFirst` mixin
+### `whenItGoingFirst--YDF` mixin
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-wigf-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 Allows to define `margin-top` and other properties for the case when target element going first in container.
@@ -568,7 +568,7 @@ Below example:
 ```stylus
 .Child
   
-  whenItGoingFirst({ verticalSpaceAbove: 4px })
+  whenItGoingFirst--YDF({ verticalSpaceAbove: 4px })
 ```
 
 will be compiled to:
@@ -584,17 +584,17 @@ but this problem is solvable (for example by flexbox with `flex-direction: colum
 
 
 You can specify any other CSS properties as content of the [block mixin](https://www.w3schools.com/css/css_margin_collapse.asp),
-just don't forget to append `+` to `whenItGoingFirst()`: 
+just don't forget to append `+` to `whenItGoingFirst--YDF()`: 
 
 
 ```stylus
-+whenItGoingFirst()
++whenItGoingFirst--YDF()
 
   border-top 1px solid gray
 ```
 
 
-### `whenItGoingLast` mixin
+### `whenItGoingLast--YDF` mixin
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-wigl-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 Allows to define `margin-bottom` and other properties for the case when target element going last in container.
@@ -604,7 +604,7 @@ Below example:
 ```stylus
 .Child
 
-  whenItGoingLast({ verticalSpaceBelow: 4px })
+  whenItGoingLast--YDF({ verticalSpaceBelow: 4px })
 ```
 
 will be compiled to:
@@ -618,11 +618,11 @@ will be compiled to:
 
 
 You can specify any other CSS properties as content of the [block mixin](https://www.w3schools.com/css/css_margin_collapse.asp),
-just don't forget to append `+` to `whenItGoingFirst()`: 
+just don't forget to append `+` to `whenItGoingFirst--YDF()`: 
 
 
 ```stylus
-+whenItGoingLast({ verticalSpaceBelow: 36px })
++whenItGoingLast--YDF({ verticalSpaceBelow: 36px })
 
   border-bottom 2px solid gray
 ```
@@ -637,23 +637,23 @@ count is only 1, it's required to consider the case when the list view going las
 
   &-CardsFlow
 
-    whenItGoingLast({ verticalSpaceBelow: 32px })
+    whenItGoingLast--YDF({ verticalSpaceBelow: 32px })
 
 
   &-Pagination
 
-    retireFrom({ targetElementSelector: ".UsersListPage-CardsFlow", y: 12px })
+    retireFrom--YDF({ targetElementSelector: ".UsersListPage-CardsFlow", y: 12px })
 
-    whenItGoingLast({ verticalSpaceBelow: 28px })
+    whenItGoingLast--YDF({ verticalSpaceBelow: 28px })
 ```
 
 
-### `whenItJustAfter`
+### `whenItJustAfter--YDF`
 
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-wija-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 Allows to specify any CSS properties for element `B` when it is going after element `A`.
-In contrast to this `retireFrom` mixin allows to specfiy `margin-top` (or `padding-top`) only.
+In contrast to this `retireFrom--YDF` mixin allows to specfiy `margin-top` (or `padding-top`) only.
 
 
 ```stylus
@@ -671,7 +671,7 @@ In contrast to this `retireFrom` mixin allows to specfiy `margin-top` (or `paddi
 
   &-ChildB
 
-    +whenItJustAfter({ targetElementSelector: ".Block-ChildA1" })
+    +whenItJustAfter--YDF({ targetElementSelector: ".Block-ChildA1" })
 
       background gold
 ```
@@ -697,7 +697,7 @@ For the scoping, define `contextSelector` and `referenceElementSelector` explici
 
   p
 
-    +whenItJustAfter({ targetElementSelector: "h2", contextSelector: ".Block2", referenceElementSelector: "p" })
+    +whenItJustAfter--YDF({ targetElementSelector: "h2", contextSelector: ".Block2", referenceElementSelector: "p" })
 
       background silver
 ```
@@ -711,7 +711,7 @@ Above example will be compiled to:
 ```
 
 
-### `whenTargetGoingJustAfterIt` 
+### `whenTargetGoingJustAfterIt--YDF` 
 
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-wtgjai-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -727,7 +727,7 @@ Allows to specify any CSS properties for the target element `X` when it is going
 
   &-ChildB
 
-    +whenTargetGoingJustAfterIt({ targetElementSelector: ".Block-ChildA" })
+    +whenTargetGoingJustAfterIt--YDF({ targetElementSelector: ".Block-ChildA" })
 
       background gold
 ```
@@ -753,7 +753,7 @@ For the scoping, define `contextSelector` and `referenceElementSelector` explici
 
   p
 
-    +whenTargetGoingJustAfterIt({ targetElementSelector: "h2", contextSelector: ".Block2", referenceElementSelector: "p" })
+    +whenTargetGoingJustAfterIt--YDF({ targetElementSelector: "h2", contextSelector: ".Block2", referenceElementSelector: "p" })
 
       background silver
 ```
@@ -767,11 +767,11 @@ Above example will be compiled to:
 ```
 
 
-### `whenTargetWithSameSelectorGoingJustAfterIt`
+### `whenTargetWithSameSelectorGoingJustAfterIt--YDF`
 
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-wtwssgjat-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
-The equivalent of `+whenTargetGoingJustAfterIt({ targetElementSelector: ".X" })` for the case when reference element's
+The equivalent of `+whenTargetGoingJustAfterIt--YDF({ targetElementSelector: ".X" })` for the case when reference element's
 selector is also `.X`.
 
 ```stylus
@@ -779,7 +779,7 @@ selector is also `.X`.
 
   &-ElementA
 
-    +whenTargetWithSameSelectorGoingJustAfterIt()
+    +whenTargetWithSameSelectorGoingJustAfterIt--YDF()
 
       background goldenrod
 ```
@@ -799,7 +799,7 @@ For the scoping, define `referenceElementSelector` and `contextSelector` explici
 
   p
 
-    +whenTargetWithSameSelectorGoingJustAfterIt({ referenceElementSelector: "p", contextSelector: ".Block" })
+    +whenTargetWithSameSelectorGoingJustAfterIt--YDF({ referenceElementSelector: "p", contextSelector: ".Block" })
 
       border-top 1px solid black
 ```

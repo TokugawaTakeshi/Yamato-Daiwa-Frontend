@@ -1,0 +1,270 @@
+@require "06-Typography/01-Headings.styl"
+@require "06-Typography/02-Subheadings.styl"
+@require "06-Typography/03-ParagraphLikeBlocks.styl"
+@require "06-Typography/04-Lists.styl"
+
+
+YDF_TypographyDefaultDefinitions = {
+
+  CSS_NamespacePrefix: null,
+
+  elements: {
+
+    heading1: deeplyCloneAndOverrideObject--YDF(Heading1DefaultProperties--YDF, {
+      class: "Heading1",
+      mixin: Heading1--YDF,
+      skip: false
+    }),
+    heading2: deeplyCloneAndOverrideObject--YDF(Heading2DefaultProperties--YDF, {
+      class: "Heading2",
+      mixin: Heading2--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading1: { whenItJustBefore: 16px }
+      }
+    }),
+    heading3: deeplyCloneAndOverrideObject--YDF(Heading3DefaultProperties--YDF, {
+      class: "Heading3",
+      mixin: Heading3--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading2: { whenItJustBefore: 12px }
+      }
+    }),
+    heading4: deeplyCloneAndOverrideObject--YDF(Heading4DefaultProperties--YDF, {
+      class: "Heading4",
+      mixin: Heading4--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading3: { whenItJustBefore: 10px }
+      }
+    }),
+    heading5: deeplyCloneAndOverrideObject--YDF(Heading5DefaultProperties--YDF, {
+      class: "Heading5",
+      mixin: Heading5--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading4: { whenItJustBefore: 8px }
+      }
+    }),
+    heading6: deeplyCloneAndOverrideObject--YDF(Heading6DefaultProperties--YDF, {
+      class: "Heading6",
+      mixin: Heading6--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading5: { whenItJustBefore: 6px }
+      }
+    }),
+
+    subheading1: deeplyCloneAndOverrideObject--YDF(Subheading1DefaultProperties--YDF, {
+      class: "Subheading1",
+      mixin: Subheading1--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading1: { whenItJustBefore: 4px },
+        heading2: { whenItJustAfter: 12px }
+      }
+    }),
+    subheading2: deeplyCloneAndOverrideObject--YDF(Subheading2DefaultProperties--YDF, {
+      class: "Subheading2",
+      mixin: Subheading2--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading2: { whenItJustBefore: 4px },
+        heading3: { whenItJustAfter: 12px }
+      }
+    }),
+    subheading3: deeplyCloneAndOverrideObject--YDF(Subheading3DefaultProperties--YDF, {
+      class: "Subheading3",
+      mixin: Subheading3--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading3: { whenItJustBefore: 2px },
+        heading4: { whenItJustAfter: 10px }
+      }
+    }),
+    subheading4: deeplyCloneAndOverrideObject--YDF(Subheading4DefaultProperties--YDF, {
+      class: "Subheading4",
+      mixin: Subheading4--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading4: { whenItJustBefore: 4px },
+        heading5: { whenItJustAfter: 10px }
+      }
+    }),
+    subheading5: deeplyCloneAndOverrideObject--YDF(Subheading5DefaultProperties--YDF, {
+      class: "Subheading5",
+      mixin: Subheading5--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading5: { whenItJustBefore: 4px },
+        heading6: { whenItJustAfter: 10px }
+      }
+    }),
+    subheading6: deeplyCloneAndOverrideObject--YDF(Subheading6DefaultProperties--YDF, {
+      class: "Subheading6",
+      mixin: Subheading6--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading6: { whenItJustBefore: 4px }
+      }
+    }),
+
+    paragraph: deeplyCloneAndOverrideObject--YDF(ParagraphDefaultProperties--YDF, {
+      class: "Paragraph",
+      mixin: Paragraph--YDF,
+      skip: false,
+      positionalRelationship: {
+        paragraph: { whenItJustBefore: 0.8rem },
+        heading1: { whenItJustBefore: 1rem },
+        subheading1: { whenItJustBefore: 1rem },
+        heading2: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        subheading2: { whenItJustBefore: 1rem },
+        heading3: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        subheading3: { whenItJustBefore: 1rem },
+        heading4: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        subheading4: { whenItJustBefore: 1rem },
+        heading5: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        subheading5: { whenItJustBefore: 1rem },
+        heading6: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        subheading6: { whenItJustBefore: 1rem }
+      }
+    }),
+
+    unorderedList: deeplyCloneAndOverrideObject--YDF(UnorderedListDefaultProperties--YDF, {
+      class: "UnorderedList",
+      mixin: UnorderedList--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading1: { whenItJustBefore: 1rem },
+        heading2: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        heading3: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        heading4: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        heading5: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        heading6: { whenItJustBefore: 0.6rem, whenItJustAfter: 1.2rem },
+        paragraph: { whenItJustBefore: 12px, whenItJustAfter: 1.2rem },
+        unorderedList: { whenItJustBefore: 12px }
+      }
+    }),
+
+    orderedList: deeplyCloneAndOverrideObject--YDF(OrderedListDefaultProperties--YDF, {
+      class: "OrderedList",
+      mixin: OrderedList--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading1: { whenItJustBefore: 1.6rem },
+        heading2: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        heading3: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        heading4: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        heading5: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        heading6: { whenItJustBefore: 0.6rem, whenItJustAfter: 1.2rem },
+        paragraph: { whenItJustBefore: 12px, whenItJustAfter: 1.2rem },
+        unorderedList: { whenItJustBefore: 12px }
+      }
+    }),
+
+    descriptionList: deeplyCloneAndOverrideObject--YDF(DescriptionListDefaultProperties--YDF, {
+      class: "DescriptionList",
+      mixin: DescriptionList--YDF,
+      skip: false,
+      positionalRelationship: {
+        heading1: { whenItJustBefore: 1rem },
+        heading2: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        heading3: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        heading4: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        heading5: { whenItJustBefore: 1rem, whenItJustAfter: 1.6rem },
+        paragraph: { whenItJustBefore: 0.8rem, whenItJustAfter: 1.2rem },
+        unorderedList: { whenItJustBefore: 12px }
+      }
+    })
+  }
+}
+
+
+generateTypographyElementsKeysAndCSS_ClassesMap(typographyDefinition)
+
+  elementsKeysAndCSS_ClassesMap = {}
+
+  for elementKey, elementProperties in typographyDefinition.elements
+
+    elementsKeysAndCSS_ClassesMap[elementKey] = isNotNull--YDF(typographyDefinition.CSS_NamespacePrefix) ?\
+        typographyDefinition.CSS_NamespacePrefix + "-" + elementProperties.class :\
+        elementProperties.class
+
+  return elementsKeysAndCSS_ClassesMap
+
+
+provideYDF_Typography(
+  preset = YDF_TypographyDefaultDefinitions,
+  overridings = {},
+  options = {
+    geometryOnly: false,
+    decorationOnly: false
+  }
+)
+
+  typographyDefinition = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+  elementsKeysAndCSS_ClassesMap = generateTypographyElementsKeysAndCSS_ClassesMap(typographyDefinition)
+
+
+  setPositionalRelationshipForSpecificElement(positionalRelationship)
+
+    if isNotNull--YDF(positionalRelationship)
+      for elementKey, positionalRelationshipParameters in positionalRelationship
+        PositionalRelationship--YDF({
+          definitions: ("." + elementsKeysAndCSS_ClassesMap[elementKey] {
+            retireFromIt: { y: positionalRelationshipParameters.whenItJustBefore },
+            pushItFromSelf: { y: positionalRelationshipParameters.whenItJustAfter }
+          })
+        })
+
+
+  for elementKey, elementProperties in typographyDefinition.elements
+
+    TARGET_ELEMENT_CSS_CLASS = elementsKeysAndCSS_ClassesMap[elementKey]
+
+    if isFalse--YDF(elementProperties.skip)
+
+      .{TARGET_ELEMENT_CSS_CLASS}
+
+        MixinForTargetElement = elementProperties.mixin
+
+        MixinForTargetElement(elementProperties, {}, options)
+
+        if !options.decorationOnly
+
+          setPositionalRelationshipForSpecificElement(elementProperties.positionalRelationship)
+
+
+providePositionalRelationshipWithTypographyElements(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "providePositionalRelationshipWithTypographyElements",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {},
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  iterateObjectSkippingNullValues--YDF(compoundParameter.presets, @(presetName, preset) {
+
+    if isNotNull--YDF(preset.typographyDefinition) && isNotNull--YDF(preset.spacingDefinitions) {
+
+      elementsKeysAndCSS_ClassesMap = generateTypographyElementsKeysAndCSS_ClassesMap(preset.typographyDefinition)
+
+      for elementKey, spacingDefinitions in preset.spacingDefinitions {
+
+        TARGET_ELEMENT_CSS_CLASS = elementsKeysAndCSS_ClassesMap[elementKey]
+
+        PositionalRelationship--YDF({
+          definitions: ("." + TARGET_ELEMENT_CSS_CLASS {
+            retireFromIt: { y: spacingDefinitions.whenItJustAfter },
+            pushItFromSelf: { y: spacingDefinitions.whenItJustBefore }
+          }),
+          referenceElementSelector: "." + compoundParameter.componentRootClass
+        })
+
+      }
+    }
+  })

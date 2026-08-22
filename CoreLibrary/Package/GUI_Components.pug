@@ -1,0 +1,118 @@
+//- === Must be defined primarily ======================================================================================
+include Markup/InlineECMAScript/GUI_ComponentsRequirements.generated.pug
+
+-
+
+  const {
+
+    AccordionYDF_GUI_ComponentDOM_AccessResources,
+    AdmonitionBlockYDF_GUI_ComponentLocalization__English,
+    SnackbarYDF_GUI_ComponentLocalization__English,
+
+    /* ━━━ Controls ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    PaginationYDF_GUI_ComponentLocalization__English,
+
+    /* ┅┅┅ Validatable Control Shell ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+    ValidatableControlShellYDF_GUI_ComponentLocalization__English,
+    ValidatableControlShellYDF_GUI_ComponentDOM_AccessResources,
+
+    /* ┅┅┅ Buttons ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+    ClosingButtonYDF_GUI_ComponentLocalization__English,
+    HamburgerMenuButtonYDF_GUI_ComponentLocalization__English,
+
+    /* ┅┅┅ Validatables ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+    /* ╍╍╍ Date Time Picker ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+    DateTimePickerYDF_GUI_ComponentDOM_AccessResources,
+    DateTimePickerYDF_GUI_ComponentLocalization__English,
+
+    /* ╍╍╍ Drop Down Lists ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+    DropDownListYDF_GUI_ComponentLocalization__English,
+
+    /* ╍╍╍ Files Uploader ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+    FilesUploaderYDF_ComponentLocalization__English,
+
+    /* ╍╍╍ Number Box ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+    NumberBoxYDF_GUI_ComponentLocalization__English,
+
+    /* ╍╍╍ TextBox ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+    TextBoxYDF_GUI_ComponentDOM_AccessResources,
+    TextBoxYDF_GUI_ComponentLocalization__English,
+
+
+    /* ━━━ Typography ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    QuestionAndAnswerBoxYDF_GUI_ComponentLocalization__English,
+
+
+    /* ━━━ Viewers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    CodeViewerYDF_GUI_ComponentLocalization__English,
+    SingleImageViewerYDF_GUI_ComponentLocalization__English,
+
+    /* ━━━ Auxiliaries ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    AsynchronousValidations: AsynchronousValidations__YDF
+
+  } = (
+    //- [ Theory ] `global` is actual for "gulp-pug" with Pug 3, while `globalThis` for `pug-plugin` for Webpack.
+    global ?? globalThis
+  ).__YDF_GUI_COMPONENTS_REQUIREMENTS__;
+
+include GUI_Components/_Auxiliaries/ComponentsAuxiliaries.pug
+include GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell.pug
+//- ====================================================================================================================
+
+
+include GUI_Components/Accordion/Accordion.pug
+include GUI_Components/AdmonitionBlock/AdmonitionBlock.pug
+include GUI_Components/Badge/Badge.pug
+include GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay.pug
+include GUI_Components/Breadcrumb/Breadcrumb.pug
+
+include GUI_Components/Controls/Buttons/Closing/ClosingButton.pug
+include GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton.pug
+include GUI_Components/Controls/Buttons/Plain/Button.pug
+
+include GUI_Components/Controls/Chip/Chip.pug
+include GUI_Components/Controls/Menus/Drawer/DrawerMenu.pug
+include GUI_Components/Controls/Menus/List/MenuList.pug
+include GUI_Components/Controls/ModalDialogs/Common/ModalDialog.pug
+include GUI_Components/Controls/ModalDialogs/Confirmation/ConfirmationModalDialog.pug
+include GUI_Components/Controls/Pagination/Pagination.pug
+include GUI_Components/Controls/RadioButton/RadioButton.pug
+include GUI_Components/Controls/SearchBox/SearchBox.pug
+include GUI_Components/Controls/Tabs/Tabs.pug
+
+include GUI_Components/Controls/Validatables/Checkbox/Checkbox.pug
+include GUI_Components/Controls/Validatables/ComboBox/ComboBox.pug
+include GUI_Components/Controls/Validatables/DateTimePicker/DateTimePicker.pug
+include GUI_Components/Controls/Validatables/DropDownLists/Plain/DropDownList.pug
+include GUI_Components/Controls/Validatables/DropDownLists/Language/LanguageDropDownList.pug
+include GUI_Components/Controls/Validatables/FilesUploader/FilesUploader.pug
+include GUI_Components/Controls/Validatables/NumberBox/NumberBox.pug
+include GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup.pug
+include GUI_Components/Controls/Validatables/TextBox/TextBox.pug
+
+include GUI_Components/InformationSourceReference/InformationSourceReference.pug
+include GUI_Components/LoadingIndicator/LoadingIndicator.pug
+include GUI_Components/OverflowSafeSingleLineLabel/OverflowSafeSingleLineLabel.pug
+include GUI_Components/Popover/Popover.pug
+
+include GUI_Components/Prototyping/DummyLogoLink/DummyLogoLink.pug
+
+include GUI_Components/Snackbar/Snackbar.pug
+
+include GUI_Components/Testing/ThemesShowcase.pug
+
+include GUI_Components/Typography/ArticleAbstract/ArticleAbstract.pug
+include GUI_Components/Typography/ConsoleOutput/ConsoleOutput.pug
+include GUI_Components/Typography/CodeListing/CodeListing.pug
+include GUI_Components/Typography/Footnote/Footnote.pug
+include GUI_Components/Typography/Heading/Heading.pug
+include GUI_Components/Typography/Blockquote/Blockquote.pug
+include GUI_Components/Typography/ImprovedList/ImprovedList.pug
+include GUI_Components/Typography/Link/Link.pug
+include GUI_Components/Typography/LinksCardsFlow/LinksCardsFlow.pug
+include GUI_Components/Typography/QuestionAndAnswerBox/QuestionAndAnswerBox.pug
+include GUI_Components/Typography/Table/Table.pug
+
+include GUI_Components/Viewers/Code/CodeViewer.pug
+include GUI_Components/Viewers/SingleImage/SingleImageViewer.pug
+include GUI_Components/Viewers/WebPageViewer/WebPageViewer.pug

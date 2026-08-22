@@ -1,0 +1,97 @@
+extends ../node_modules/@yamato-daiwa/frontend/PagesTemplates/StaticPreviewAnywherePageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    StaticPreviewAnywherePage__YDF.configure({
+
+      metadata: {
+        title: "YDF Vue — Demos"
+      },
+
+      topHeading: "YDF Vue — Demos",
+
+      tableOfContents: [
+
+        {
+
+          heading: "GUI Components",
+
+          pages: [
+
+            {
+              title: "AdmonitionBlock",
+              URI: "@CompletePages/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            },
+
+            {
+              title: "Badge",
+              URI: "@CompletePages/GUI_Components/Badge/BadgeGalleryPage",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            }
+
+          ],
+
+          sections: [
+
+            {
+
+              heading: "Controls",
+
+              pages: [
+
+                {
+                  title: "ValidatableControlShell",
+                  URI: "@CompletePages/GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellGalleryPage",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                }
+
+              ],
+
+              sections: [
+
+                {
+
+                  heading: "Buttons",
+
+                  pages: [
+
+                    {
+                      title: "Button",
+                      URI: "@CompletePages/GUI_Components/Controls/Buttons/Plain/ButtonGalleryPage",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+                    }
+
+                  ]
+
+                }
+
+              ]
+
+            }
+
+          ]
+
+        },
+
+        {
+
+          heading: "Controls Groups",
+
+          pages: [
+
+            {
+              title: "Simple Integrated Controls Group",
+              URI: "@CompletePages/ControlsGroups/Simple/Integrated/SimpleIntegratedControlsGroupPage",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            }
+
+          ]
+
+        }
+
+      ]
+    });

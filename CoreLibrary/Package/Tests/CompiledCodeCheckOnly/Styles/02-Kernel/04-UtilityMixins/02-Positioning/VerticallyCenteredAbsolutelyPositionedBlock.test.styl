@@ -1,0 +1,19 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/02-Positioning/VerticallyCenteredAbsolutelyPositionedBlock.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/02-Positioning/VerticallyCenteredAbsolutelyPositionedBlock.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.Test1
+
+  VerticallyCenteredAbsolutelyPositionedBlock--YDF()
+
+
+.Test2
+
+  VerticallyCenteredAbsolutelyPositionedBlock--YDF({ upwardShifting: 1px })

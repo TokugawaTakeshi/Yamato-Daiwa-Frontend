@@ -1,0 +1,57 @@
+include ParameterMetadata.class.pug
+
+
+mixin ParameterMetadata--YDF_DK(parameterSpecification)
+
+  - const TITLE_HTML_ID = ParameterMetadata__YDF_DK.generateComponentID();
+
+  .ParameterMetadata--YDF_DK
+
+    .ParameterMetadata--YDF_DK-ParameterNumberTitle(
+      id=TITLE_HTML_ID
+    )
+      | #{ ParameterMetadata__YDF_DK.localization.buildParametersNumberLabel({ parameterNumber: parameterSpecification.number }) }
+
+
+    if parameterSpecification.required === true
+
+      +Badge--YDF({
+        valueLabel: ParameterMetadata__YDF_DK.localization.requirementLabels.required,
+        decorativeVariation: Badge__YDF.DecorativeVariations.veryCatchyPastel
+      }).ParameterMetadata--YDF_DK-RequirementBadge
+
+    else if parameterSpecification.required === false
+
+      +Badge--YDF({
+        valueLabel: ParameterMetadata__YDF_DK.localization.requirementLabels.optional,
+        decorativeVariation: Badge__YDF.DecorativeVariations.calmingPastel
+      }).ParameterMetadata--YDF_DK-RequirementBadge
+
+    else if isNotUndefined(parameterSpecification.defaultValue)
+
+      +Badge--YDF({
+        valueLabel: ParameterMetadata__YDF_DK.localization.requirementLabels.hasDefaultValue,
+        decorativeVariation: Badge__YDF.DecorativeVariations.neutralPastel
+      }).ParameterMetadata--YDF_DK-RequirementBadge
+
+
+    dl.ParameterMetadata--YDF_DK-Metadata(
+      aria-labelledby=TITLE_HTML_ID
+    )
+
+      dt.ParameterMetadata--YDF_DK-Metadata-Key= ParameterMetadata__YDF_DK.localization.metadataKeys.genericTechnicalName
+      dd.ParameterMetadata--YDF_DK-Metadata-Value&attributes({
+        class: [ "ParameterMetadata--YDF_DK-Metadata-Value__ProgrammaticFont" ]
+      })= parameterSpecification.genericTechnicalName
+
+      if parameterSpecification.localizedName
+        dt.ParameterMetadata--YDF_DK-Metadata-Key= ParameterMetadata__YDF_DK.localization.metadataKeys.localizedName
+        dd.ParameterMetadata--YDF_DK-Metadata-Value= parameterSpecification.localizedName
+
+      dt.ParameterMetadata--YDF_DK-Metadata-Key= ParameterMetadata__YDF_DK.localization.metadataKeys.type
+      dd.ParameterMetadata--YDF_DK-Metadata-Value&attributes({
+        class: [
+          "ParameterMetadata--YDF_DK-Metadata-Value__ProgrammaticFont",
+          "ParameterMetadata--YDF_DK-Metadata-Value__Accented"
+        ]
+      })= parameterSpecification.type

@@ -1,0 +1,20 @@
+@require "../../_ComponentTestingPage.styl"
+
+
+provideBadgeYDF_Component()
+
+provideCallableExpressionYDF_DK_Component()
+provideObjectTypeAbstractYDF_DK_Component()
+provideParameterMetadataYDF_DK_Component()
+providePropertyMetadataYDF_DK_Component()
+
+@require "../../../Components/Infographics/CallableExpressionScheme/CallableExpressionSchemeDemo.styl"
+
+
+.{CallableExpressionScheme--YDF_DK.CSS_NAMESPACE}
+
+  retireFromElementWithSameSelector({ y: 8px })
+
+  PositionalRelationship({
+    definitions: (".Heading2" { retireFromIt: { y: 12px }, pushItFromSelf: { y: 24px } })
+  })

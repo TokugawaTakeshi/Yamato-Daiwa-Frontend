@@ -1,0 +1,53 @@
+include ../../../Functionality.pug
+include ../../../GUI_Components.pug
+
+include ../../../Markup/Assets/SVG_Icons/ExclamationMark/ExclamationMarkIcon__Circled__Filled.pug
+include ../../../Markup/Assets/SVG_Icons/Checkmark/CheckmarkIcon__Circled__Filled.pug
+include ../../../Markup/Assets/SVG_Icons/MultiplicationSign/MultiplicationSignIcon__Boxed__Filled.pug
+
+
+template
+
+  ul.ValidatableControlShell--YDF-ValidationErrorsMessagesList&attributes({
+    [ValidatableControlShell__YDF.DOM_AccessResources.validationErrorsMessagesList.DATA_ATTRIBUTE_KEY]: ""
+  })
+    li.ValidatableControlShell--YDF-ValidationErrorsMessagesList-Item&attributes({
+      [ValidatableControlShell__YDF.DOM_AccessResources.validationErrorsMessagesList.item.DATA_ATTRIBUTE_KEY]: ""
+    })
+
+  ul.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList&attributes({
+    [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesList.DATA_ATTRIBUTE_KEY]: ""
+  })
+
+    li.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item&attributes({
+      class: "ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__InProgressState",
+      [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesList.item.DATA_ATTRIBUTE_KEY]: "",
+      [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesList.item.byStates.inProgress.DATA_ATTRIBUTE_KEY]: ""
+    })
+      +LoadingIndicator--YDF({
+        type: LoadingIndicator__YDF.Types.variableWidthArcSpinner,
+        geometricVariation: LoadingIndicator__YDF.GeometricVariations.small
+      }).ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-LoadingIndicator
+      p.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text&attributes({
+        [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesList.item.text.DATA_ATTRIBUTE_KEY]: ""
+      })
+
+    li.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item&attributes({
+      class: "ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__SucceededAndValidState",
+      [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesList.item.DATA_ATTRIBUTE_KEY]: "",
+      [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesList.item.byStates.succeededAndValid.DATA_ATTRIBUTE_KEY]: ""
+    })
+      +Checkmark__Circled__Filled--YDF_Icon.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon
+      p.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text&attributes({
+        [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesList.item.text.DATA_ATTRIBUTE_KEY]: ""
+      })
+
+    li.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item&attributes({
+      class: "ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item__MalfunctionState",
+      [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesList.item.DATA_ATTRIBUTE_KEY]: "",
+      [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesList.item.byStates.malfunction.DATA_ATTRIBUTE_KEY]: ""
+    })
+      +MultiplicationSign__Boxed__Filled--YDF_Icon.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon
+      p.ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text&attributes({
+        [ValidatableControlShell__YDF.DOM_AccessResources.asynchronousValidationsStatusesList.item.text.DATA_ATTRIBUTE_KEY]: ""
+      })

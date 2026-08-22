@@ -4,20 +4,20 @@
 
 ```
 WidtnSizing(parametersObject: {
-  fixedWidth?: DataTypes.dimensionalAmount;
-  minimalWidth?: DataTypes.dimensionalAmount;
-  maximalWidth?: DataTypes.dimensionalAmount;
-  takeMaximumSpaceAsPossible?: DataTypes.boolean;
-  truncateOnOverflow?: DataTypes.boolean;
-  displayEllipsisOnOverflow?: DataTypes.unit;
-  leftOrRightSymmetricBordersWidths?: DataTypes.dimensionalAmount;
-  leftBorderWidth?: DataTypes.dimensionalAmount;
-  rightBorderWidth?: DataTypes.dimensionalAmount;
-  explicitBorderNoneDeclarationRequired?: DataTypes.unit;
-  leftOrRightSymmetricPaddings?: DataTypes.dimensionalAmount;
-  leftPadding?: DataTypes.dimensionalAmount;
-  rightPadding?: DataTypes.dimensionalAmount;
-  explicitPaddingZeroDeclarationRequired?: DataTypes.boolean;
+  fixedWidth?: DataTypes--YDF.dimensionalQuantity;
+  minimalWidth?: DataTypes--YDF.dimensionalQuantity;
+  maximalWidth?: DataTypes--YDF.dimensionalQuantity;
+  takeMaximumSpaceAsPossible?: DataTypes--YDF.boolean;
+  truncateOnOverflow?: DataTypes--YDF.boolean;
+  displayEllipsisOnOverflow?: DataTypes--YDF.unit;
+  leftOrRightSymmetricBordersWidths?: DataTypes--YDF.dimensionalQuantity;
+  leftBorderWidth?: DataTypes--YDF.dimensionalQuantity;
+  rightBorderWidth?: DataTypes--YDF.dimensionalQuantity;
+  isExplicitBorderNoneDeclarationRequired?: DataTypes--YDF.unit;
+  leftOrRightSymmetricPaddings?: DataTypes--YDF.dimensionalQuantity;
+  leftPadding?: DataTypes--YDF.dimensionalQuantity;
+  rightPadding?: DataTypes--YDF.dimensionalQuantity;
+  isExplicitPaddingZeroDeclarationRequired?: DataTypes--YDF.boolean;
 })
 ```
 
@@ -33,7 +33,7 @@ It is implied that all of above values are unknown at advance and will be define
 ```stylus
 .Element1
 
-  WidthSizing({ fixedWidth: 120px })
+  WidthSizing--YDF({ fixedWidth: 120px })
 ```
 
 will be transpiled to
@@ -50,7 +50,7 @@ will be transpiled to
 ```stylus
 .Element2-1
 
-  WidthSizing({
+  WidthSizing--YDF({
     minimalWidth: 120px,
     maximalWidth: 240px
   })
@@ -70,7 +70,7 @@ Add `takeMaximumSpaceAsPossible: true` to make `.Element2-1` take `240px` while 
 ```stylus
 .Element2-2
 
-  WidthSizing({
+  WidthSizing--YDF({
     minimalWidth: 120px,
     maximalWidth: 240px,
     takeMaximumSpaceAsPossible: true
@@ -98,7 +98,7 @@ Please note that `fixedWidth` is incompatible with `minimalWidth`, `maximalWidth
 ```stylus
 .Element3
 
-  WidthSizing({
+  WidthSizing--YDF({
     leftOrRightSymmetricBordersWidths: 1px,
     leftOrRightSymmetricPaddings: 8px
   })
@@ -121,7 +121,7 @@ will be transpiled to:
 ```stylus
 .Element4
 
-  WidthSizing({
+  WidthSizing--YDF({
     leftBorderWidth: 1px,
     rightBorderWidth: 2px,
     leftPadding: 8px,
@@ -149,23 +149,23 @@ Below ruleset will not change them.
 ```stylus
 .Element5-0
   
-  WidthSizing({ fixedWidth: 200px })
+  WidthSizing--YDF({ fixedWidth: 200px })
 ```
 
 If you want set the paddings at appropriate side to `none` when `leftBorderWidth`, `rightBorderWidth` or 
 `leftOrRightSymmetricBordersWidths` are implicit `null` (it means "not specified" for Stylus) or explicit `null`,
-set `explicitBorderNoneDeclarationRequired` flag to `true`.
+set `isExplicitBorderNoneDeclarationRequired` flag to `true`.
 
-There is similar flag `explicitPaddingZeroDeclarationRequired` for paddings, but when `leftPadding`, `rightPadding`
+There is similar flag `isExplicitPaddingZeroDeclarationRequired` for paddings, but when `leftPadding`, `rightPadding`
 or `leftOrRightSymmetricPaddings` are `null` the appropriate CSS property will be set to `0`.
 
 ```stylus
 .Element5-1
 
-  WidthSizing({
+  WidthSizing--YDF({
     fixedWidth: 200px,
-    explicitBorderNoneDeclarationRequired: true,
-    explicitPaddingZeroDeclarationRequired: true
+    isExplicitBorderNoneDeclarationRequired: true,
+    isExplicitPaddingZeroDeclarationRequired: true
   })
 ```
 
@@ -187,11 +187,11 @@ and left padding - to 0:
 ```stylus
 .Element5-2
 
-  WidthSizing({
+  WidthSizing--YDF({
     leftBorderWidth: 1px,
-    explicitBorderNoneDeclarationRequired: true,
+    isExplicitBorderNoneDeclarationRequired: true,
     rightPadding: 12px,
-    explicitPaddingZeroDeclarationRequired: true
+    isExplicitPaddingZeroDeclarationRequired: true
   })
 ```
 

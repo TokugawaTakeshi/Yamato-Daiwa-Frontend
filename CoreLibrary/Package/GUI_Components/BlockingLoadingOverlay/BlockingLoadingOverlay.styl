@@ -1,0 +1,73 @@
+BlockingLoadingOverlay--YDF = {
+
+  defaultProperties: {
+    backgroundColor:  rgba(black, 0.5),
+    loadingIndicatorColor: W3C_39_ShadesOfGray--YDF[6]
+  }
+
+}
+
+
+BlockingLoadingOverlay--YDF-generateStyles(
+  preset = BlockingLoadingOverlay--YDF.defaultProperties,
+  overrides = {}
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overrides)
+
+
+  .BlockingLoadingOverlay--YDF
+
+    position fixed
+    top 0
+    left 0
+    z-index: Configuration--YDF.zIndexes.blockingOverlay
+
+    width 100%
+    height 100%
+
+    display flex
+    justify-content center
+    align-items center
+
+    background-color: properties.backgroundColor
+    cursor not-allowed
+
+
+    &[hidden]
+
+      display none
+
+
+    &-LoadingIndicator
+
+      LoadingIndicator--YDF-customize(
+        (
+          LoadingIndicator--YDF.Types.variableWidthArcSpinner\
+          {
+            geometry: {
+              diameter: 6rem,
+              thickness: 0.8em
+            },
+            decoration: {
+              color: properties.loadingIndicatorColor
+            }
+          }
+        )
+      )
+
+
+BlockingLoadingOverlay--YDF-setCustomColorOfInnerLoadingIndicator(COLOR)
+
+  .BlockingLoadingOverlay--YDF-LoadingIndicator
+
+    LoadingIndicator--YDF-customize(
+      (
+        LoadingIndicator--YDF.Types.variableWidthArcSpinner\
+        {
+          decoration: {
+            color: COLOR
+          }
+        }
+      )
+    )

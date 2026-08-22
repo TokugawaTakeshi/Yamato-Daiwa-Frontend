@@ -1,0 +1,53 @@
+-
+
+  Object.defineProperties(
+    ValidatableControlShellYDF_GUI_ComponentLocalization__English,
+    {
+      sampleValidationErrorsMessages: {
+
+        value: [
+
+          "The user name must have at least 3 characters. " +
+            "Please input more characters.",
+
+          "Inputted user name is including the following forbidden characters: \"$\", \"'\". " +
+            "Please input the other user name without next characters: \"$\", \"&\", \"'\", \"\"\"."
+
+        ],
+
+        enumerable: true
+      },
+
+      sampleAsynchronousValidationsStatuses: {
+
+        value: [
+          {
+            ID: AsynchronousValidations__YDF.Statuses.inProgress,
+            message: "Checking of the inputted user name for the availability ..."
+          },
+          {
+            ID: AsynchronousValidations__YDF.Statuses.finishedAndValid,
+            message: "The user name is available"
+          },
+          {
+            ID: AsynchronousValidations__YDF.Statuses.finishedButInvalid,
+            message:
+                "Sorry, but inputted user name including profanity. " +
+                "Please select another user name without swearing."
+          },
+          {
+            ID: AsynchronousValidations__YDF.Statuses.malfunction,
+            message:
+                "The malfunction has occurred during the checking of the user name for the availability. " +
+                "If the internet connection has been lost, would you please to input the user name once again when the " +
+                "internet connection will recover?" +
+                "If the internet connection is fine, we are sorry, but it is the system failure. " +
+                "Could you please to notify the customers support?"
+          }
+        ],
+
+        enumerable: true
+
+      }
+    }
+  )

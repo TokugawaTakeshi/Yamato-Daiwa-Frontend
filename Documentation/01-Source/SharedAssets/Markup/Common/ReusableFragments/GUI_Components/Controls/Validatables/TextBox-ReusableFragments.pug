@@ -1,0 +1,116 @@
+//- ━━━ Overview ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- const TextBoxGUI_ComponentOverviewLocalization = generateOverviewLocalizationWorkpieceForSpecificGUI_Component();
+
+
+mixin TextBoxComponent-Overview(properties)
+
+  -
+
+    const {
+      framework
+    } = properties?? {};
+
+    const localizedAssets = TextBoxGUI_ComponentOverviewLocalization.getLocalizedAssets();
+
+  +GUI_ComponentOverview({
+    framework,
+    metadataClass: TextBox__YDF,
+    intelliJ_IDEA_FamilyIDEsLiveTemplate: {
+      native: {
+        autocompleteLike: "TextBox--YDF",
+        abbreviation: "tb-ydf"
+      },
+      vue: {
+        autocompleteLike: {
+          pugSyntax: "TextBox--YDF-Vue-Pug",
+          HTML_Syntax: "TextBox--YDF-Vue-HTML"
+        },
+        abbreviation: {
+          pugSyntax: "tb-ydf-vue-pug",
+          HTML_Syntax: "tb-ydf-vue-html"
+        }
+      },
+      react: {
+        autocompleteLike: "TextBox--YDF-React",
+        abbreviation: "tb-ydf-react"
+      }
+    },
+    themesNamesTranslations: localizedAssets.themes,
+    geometricVariationsTranslations: localizedAssets.geometricVariations,
+    geometricModifiersNamesTranslations: localizedAssets.geometricModifiers,
+    decorativeVariationsTranslations: localizedAssets.decorativeVariations
+  })
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  const TextBoxComponentPugMixinOrClassSynopsisLocalization =
+      GUI_ComponentPugMixinOrClassSynopsisLocalization.generateInitialLocalizationObjectForSpecificGUI_Component();
+
+
+mixin TextBoxComponent-PugMixinOrClassSynopsis(properties)
+
+  -
+
+    const {
+
+      framework
+
+    } = properties ?? {};
+
+    const propertiesSpecification = {
+      ...TextBoxComponentPugMixinOrClassSynopsisLocalization.
+          getLocalizedPropertiesSpecification(TextBox__YDF, framework)
+    };
+
+    const statesSimulations = {
+      ...ValidatableControlShellComponentPugMixinOrClassSynopsisLocalization.
+          getLocalizedStatesSimulationsSpecification(TextBox__YDF)
+    };
+
+
+  if framework
+
+    +ObjectTypeAbstract--YDF_DK({
+      typeName: `TextBox.Properties`,
+      propertiesSpecification
+    })
+
+  else
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: isUndefined(framework) ? "TextBox--YDF" : "TextBox",
+      parametersSpecification: [
+        {
+          genericTechnicalName: "properties",
+          localizedName: TextBoxComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.
+              pugMixinParametersLocalization[0].
+              localizedName,
+          type: "Properties",
+          required: true
+        },
+        {
+          genericTechnicalName: "statesSimulations",
+          localizedName: TextBoxComponentPugMixinOrClassSynopsisLocalization.
+              GUI_ComponentSpecificStringResources.
+              pugMixinParametersLocalization[1].
+              localizedName,
+          type: "StatesSimulations",
+          required: false
+        }
+      ],
+      hiddenReturnValue: true
+    })
+
+      +ObjectTypeAbstract--YDF_DK({
+        typeName: `TextBox.propertiesSpecification`,
+        propertiesSpecification
+      }).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem
+
+      +ObjectTypeAbstract--YDF_DK({
+        typeName: `TextBox.statesSimulations`,
+        propertiesSpecification: statesSimulations
+      }).CallableExpressionScheme--YDF_DK-AppendixGridFlow-FullWidthItem

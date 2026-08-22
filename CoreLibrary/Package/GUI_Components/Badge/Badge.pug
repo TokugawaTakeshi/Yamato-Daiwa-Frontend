@@ -1,0 +1,160 @@
+include Badge.class.pug
+
+
+mixin Badge--YDF(properties)
+
+  -
+
+    const {
+
+      /** @type { string | undefined } */
+      keyLabel,
+
+      /** @type { string } */
+      valueLabel,
+
+      /**
+       * @type { string }
+       * @default Badge__YDF.Themes.regular
+       */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default Badge__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default Badge__YDF.GeometricVariations.regular
+       */
+      geometricVariation,
+
+      /**
+       * @type { Array<Badge__YDF.GeometricModifiers> }
+       * @default []
+       */
+      geometricModifiers,
+
+      /** @type { string } */
+      decorativeVariation,
+
+      /**
+       * @type { Array<Badge__YDF.DecorativeModifiers> }
+       * @default []
+       */
+      decorativeModifiers,
+
+      /**
+       * @type { string }
+       * @default "span"
+       */
+      rootElementTag
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: Badge__YDF.propertiesSpecification,
+      mixinName: Badge__YDF.CSS_NAMESPACE
+    })
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes = [
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: Badge__YDF.Themes,
+        CSS_Namespace: Badge__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: Badge__YDF.GeometricVariations,
+        CSS_Namespace: Badge__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(Badge__YDF.CSS_NAMESPACE, geometricModifiers),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: Badge__YDF.DecorativeVariations,
+        CSS_Namespace: Badge__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedDecorativeModifiersCSS_Classes(Badge__YDF.CSS_NAMESPACE, decorativeModifiers)
+
+    ];
+
+
+  #{ rootElementTag }.Badge--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
+
+    if block
+
+      block
+
+
+    if keyLabel
+
+      span.Badge--YDF-KeyLabel= keyLabel
+
+    span.Badge--YDF-ValueLabel= valueLabel
+
+
+mixin Badge--YDF-LoadingPlaceholder(properties)
+
+  -
+
+    const {
+
+      /** @type { string } [ theme = Badge__YDF.Themes.regular ] */
+      theme,
+
+      /** @type { boolean } [ areThemesCSS_ClassesCommon = Badge__YDF.areThemesCSS_ClassesCommon ] */
+      areThemesCSS_ClassesCommon,
+
+      /** @type { string } [ geometricVariation = Badge__YDF.GeometricVariations.regular ] */
+      geometricVariation,
+
+      /** @type { Array<Badge__YDF.GeometricModifiers> } [ geometricModifiers = [] ] */
+      geometricModifiers
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: {
+        theme: Badge__YDF.propertiesSpecification.theme,
+        areThemesCSS_ClassesCommon: Badge__YDF.propertiesSpecification.areThemesCSS_ClassesCommon,
+        geometricVariation: Badge__YDF.propertiesSpecification.geometricVariation,
+        geometricModifiers: Badge__YDF.propertiesSpecification.geometricModifiers
+      },
+      mixinName: `${ Badge__YDF.CSS_NAMESPACE }-LoadingPlaceholder`
+    });
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes = [
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: Badge__YDF.Themes,
+        CSS_Namespace: Badge__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: Badge__YDF.GeometricVariations,
+        CSS_Namespace: Badge__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(Badge__YDF.CSS_NAMESPACE, geometricModifiers)
+
+    ];
+
+
+  span.Badge--YDF.Badge--YDF__LoadingPlaceholder(
+    class=rootElementModifierCSS_Classes
+  )&attributes(attributes)

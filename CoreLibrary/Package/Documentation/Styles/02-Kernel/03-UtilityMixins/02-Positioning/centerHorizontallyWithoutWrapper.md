@@ -1,15 +1,15 @@
-# `centerHorizontallyWithoutWrapper` 
+# `centerHorizontallyWithoutWrapper--YDF` 
 
 [![Official plugin](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-chww-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
 ```
-centerHorizontallyWithoutWrapper({
-  targetElementType: HorizontalCenteringWithoutWrapper.TargetElementTypes,
-  maximalWidth?: DataTypes.unit,
-  horizontalSpaceBetweenSelfAndParent?: DataTypes.unit 
+centerHorizontallyWithoutWrapper--YDF({
+  targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes,
+  maximalWidth?: DataTypes--YDF.unit,
+  horizontalSpaceBetweenSelfAndParent?: DataTypes--YDF.unit 
 })
 
-enum HorizontalCenteringWithoutWrapper.TargetElementTypes {
+enum HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes {
   block = "BLOCK",
   inlineBlock = "INLINE_BLOCK"
 }
@@ -68,12 +68,12 @@ left and right margins with value `auto`.
   transform translateX(-50%)
 ```
 
-With `centerHorizontallyWithoutWrapper`, it's possible to reduce above code to:
+With `centerHorizontallyWithoutWrapper--YDF`, it's possible to reduce above code to:
 
 ```stylus
 .card .button
 
-  centerHorizontallyWithoutWrapper({ targetElementType: HorizontalCenteringWithoutWrapper.TargetElementTypes.inlineBlock }) 
+  centerHorizontallyWithoutWrapper--YDF({ targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.inlineBlock }) 
 ```
 
 A little bit long, but with <kbd>hcww</kbd> live template of IntelliJ IDEA family IDE, it could be inputted in about
@@ -91,12 +91,12 @@ It's required to specify respective parameter explicitly:
 
   &-Message
   
-    centerHorizontallyWithoutWrapper({ targetElementType: HorizontalCenteringWithoutWrapper.TargetElementTypes.block }) 
+    centerHorizontallyWithoutWrapper--YDF({ targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.block }) 
 
     
   &-Button
 
-    centerHorizontallyWithoutWrapper({ targetElementType: HorizontalCenteringWithoutWrapper.TargetElementTypes.inlineBlock })
+    centerHorizontallyWithoutWrapper--YDF({ targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.inlineBlock })
 ```
 
 In the case of block element, you may want to specify the maximal width of the element. 
@@ -107,8 +107,8 @@ You are free to do it via `max-width`, but there is also optional parameter `max
 
   &-Message
   
-    centerHorizontallyWithoutWrapper({ 
-      targetElementType: HorizontalCenteringWithoutWrapper.TargetElementTypes.block,
+    centerHorizontallyWithoutWrapper--YDF({ 
+      targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.block,
       maximalWidth: 640px 
     })
 ```
@@ -124,8 +124,8 @@ for some reason, you can specify `horizontalSpaceBetweenSelfAndParent` parameter
 
   &-Message
   
-    centerHorizontallyWithoutWrapper({ 
-      targetElementType: HorizontalCenteringWithoutWrapper.TargetElementTypes.block,
+    centerHorizontallyWithoutWrapper--YDF({ 
+      targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.block,
       maximalWidth: 640px,
       horizontalSpaceBetweenSelfAndParent: 20px 
     })

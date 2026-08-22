@@ -1,0 +1,15 @@
+interpolationMethodsComparison:
+
+  $heading: "String Building Methods Comparison"
+
+  concatenation:
+
+    $heading: "String Concatenation (Native)"
+
+  sprintf:
+
+    $heading: "Sprintf (Native)"
+
+  buildString:
+
+    $heading: "<code>buildString</code> (YDF)"

@@ -1,0 +1,34 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/02-ValueTransformers/nullToZero.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/02-ValueTransformers/nullToZero.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+testForEquality--YDF(
+  "Null has been transformed to zero",
+  nullToZero--YDF(null),
+  0
+)
+
+testForEquality--YDF(
+  "Empty string has been left as is",
+  nullToZero--YDF(""),
+  ""
+)
+
+testForEquality--YDF(
+  "Non-empty string has been left as is",
+  nullToZero--YDF("ABC"),
+  "ABC"
+)
+
+testForEquality--YDF(
+  "Number has been left as is",
+  nullToZero--YDF(1),
+  1
+)

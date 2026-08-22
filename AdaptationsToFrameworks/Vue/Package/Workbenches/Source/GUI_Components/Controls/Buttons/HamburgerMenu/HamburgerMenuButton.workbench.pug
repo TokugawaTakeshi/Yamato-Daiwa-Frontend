@@ -1,0 +1,20 @@
+extends ../../../../../../node_modules/@yamato-daiwa/frontend/PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "Hamburger Menu Button Component Testing"
+      },
+      scriptsURIs: {
+        atEndOfBody: [ "@Workbenches/GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton.workbench" ]
+      }
+    });
+
+
+block append PageContent
+
+  #APPLICATION

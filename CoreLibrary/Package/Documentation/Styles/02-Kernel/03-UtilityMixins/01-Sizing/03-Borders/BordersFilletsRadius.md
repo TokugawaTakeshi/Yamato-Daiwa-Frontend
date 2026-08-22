@@ -9,22 +9,22 @@ Four mixin for defining of borders fillets radius.
 
   &-Top
 
-    BorderTopFilletsRadius(2px)
+    BorderTopFilletsRadius--YDF(2px)
 
 
   &-Bottom
 
-    BorderBottomFilletsRadius(3px)
+    BorderBottomFilletsRadius--YDF(3px)
 
 
   &-Left
 
-    BorderLeftFilletsRadius(4px)
+    BorderLeftFilletsRadius--YDF(4px)
 
 
   &-Right
 
-    BorderRightFilletsRadius(5px)
+    BorderRightFilletsRadius--YDF(5px)
 ```
 
 will output:

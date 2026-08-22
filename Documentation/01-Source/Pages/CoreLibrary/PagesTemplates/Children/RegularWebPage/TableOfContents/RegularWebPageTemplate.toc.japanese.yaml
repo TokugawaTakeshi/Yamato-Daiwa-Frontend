@@ -1,0 +1,11 @@
+configurationClass:
+
+  $heading: "<code>RegularWebPageTemplate__YDF</code>コンフィグレーションクラス"
+
+pugBlocks:
+
+  $heading : "Pugブロック"
+
+multiLevelInheritance:
+
+  $heading: "多階層継承"

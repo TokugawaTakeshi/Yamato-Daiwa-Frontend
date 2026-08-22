@@ -1,0 +1,113 @@
+provideParameterMetadataYDF_DK_Component()
+
+  .ParameterMetadata--YDF_DK
+
+    WIDE_CONTAINERS_CONFIGURATION_MINIMAL_WIDTH = 300px
+
+    WideContainersConfiguration()
+      @media container and (min-width: WIDE_CONTAINERS_CONFIGURATION_MINIMAL_WIDTH)
+        {block}
+
+    NarrowContainersConfiguration()
+      @media container and (max-width: WIDE_CONTAINERS_CONFIGURATION_MINIMAL_WIDTH - 1)
+        {block}
+
+
+    display grid
+    grid-template-areas\
+        "TITLE REQUIREMENT_BADGE"\
+        "METADATA METADATA"
+    grid-template-rows auto 1fr
+    grid-template-columns auto minmax(0, 1fr)
+    justify-items start
+    align-items center
+    row-gap 0.4rem
+    column-gap 0.6rem
+
+    container-type inline-size
+
+    border-width 1px
+    border-radius 3px
+    padding 0.3rem 0.5rem
+
+    border-style solid
+    border-color: JQueryUI_BaseTheme.content.borderColor
+
+
+    &-ParameterNumberTitle
+
+      font-family "Arial Black", "Arial Bold", "Gadget", sans-serif
+      font-size 1.2rem
+
+      font-weight bold // [ Theory ] Required for non-alphabet languages
+      color: W3C_39_ShadesOfGray--YDF[12]
+
+      grid-area TITLE
+
+
+    &-RequirementBadge
+
+      font-size 0.8rem
+
+      grid-area REQUIREMENT_BADGE
+
+
+    &-Metadata
+
+      grid-area METADATA
+
+
+      +WideContainersConfiguration()
+
+        display grid
+        grid-template-columns minmax(0, 1fr) minmax(0, 2fr)
+        column-gap 0.8rem
+        row-gap 0.6rem
+        align-items baseline
+
+
+      &-Key
+
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+          fontSize: 1rem,
+          lineSpacing: 0.2rem,
+          mustAllowWordsBreakingAnywhere: true
+        })
+
+        font-weight bold
+        color: W3C_39_ShadesOfGray--YDF[12]
+
+
+        +WideContainersConfiguration()
+
+          text-align right
+
+
+      &-Value
+
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+          fontSize: 1rem,
+          lineSpacing: 0.2rem,
+          mustAllowWordsBreakingAnywhere: true
+        })
+
+        color: W3C_39_ShadesOfGray--YDF[12]
+
+
+        +NarrowContainersConfiguration()
+
+          margin-left 1rem
+          PositionalRelationship--YDF({
+            definitions: (".ParameterMetadata--YDF_DK-Metadata-Key" { retireFromIt: { y: 0.2rem }, pushItFromSelf: { y: 0.8rem } })
+          })
+
+
+        &__ProgrammaticFont
+
+          font-family Consolas, monaco, monospace
+
+
+        &__Accented
+
+          font-weight bold
+          color: YDF_ColorPalette.red.mediumDark

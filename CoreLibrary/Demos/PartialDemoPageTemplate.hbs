@@ -1,0 +1,12 @@
+extends {{ relativePathToPathTemplate }}
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.metadata.title = generateHTML_PageTitle("{{ pageTitleSpecificPart }}");
+
+    GalleryConfigurator.
+        setPartialToRender(GalleryConfigurator.Partials.{{ partialKey }}).
+        visuallyHideAllHeadings();

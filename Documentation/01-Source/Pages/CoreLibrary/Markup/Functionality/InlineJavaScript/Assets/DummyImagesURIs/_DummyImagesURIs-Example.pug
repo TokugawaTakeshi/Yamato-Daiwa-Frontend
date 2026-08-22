@@ -1,0 +1,30 @@
+mixin DummyImagesURIs-Example(localization)
+
+  +CodeViewer--YDF
+
+    +CodeViewer-Listing--YDF({
+      fileLabel: localization.fileLabels.markup,
+      codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
+    }).
+      ul.DummyImagesURIsGallery
+
+        each imageURI, key in DummyImagesURIs
+
+          li
+
+            button(
+              aria-label=#{ localization.copyingButtonAccessibilityGuidanceRawValue }
+            )
+
+              span(
+                role="presentation"
+                style=`background-image: url("${ imageURI }");`
+              )
+
+
+    +CodeViewer-Listing--YDF({
+      fileLabel: localization.fileLabels.styles,
+      codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus
+    })
+      //- include:html_special_characters_to_html_entities DummyImagesURIs.styl
+      include DummyImagesURIs.styl

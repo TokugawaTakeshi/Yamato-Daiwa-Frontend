@@ -1,0 +1,424 @@
+﻿-
+
+  class RadioButtonsGroup__YDF {
+
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
+    static CSS_NAMESPACE = "RadioButtonsGroup--YDF";
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @type { { [themeName: string]: string } }
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
+    static Themes = { regular: "REGULAR" };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsThemesCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsThemesCorrespondence() {
+      return RadioButtonsGroup__YDF._selfAndChildrenComponentsThemesCorrespondence ?? (
+        RadioButtonsGroup__YDF._selfAndChildrenComponentsThemesCorrespondence = {
+          validatableControlShell: { [RadioButtonsGroup__YDF.Themes.regular]: ValidatableControlShell__YDF.Themes.regular },
+          radioButton: { [RadioButtonsGroup__YDF.Themes.regular]: RadioButton__YDF.Themes.regular }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellThemesDefinition
+     *
+     * @returns { typeof RadioButtonsGroup__YDF }
+     *
+     * @example
+     * RadioButtonsGroup__YDF.defineThemes({
+     *   redmond: {
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.redmond,
+     *     radioButton: RadioButton__YDF.Themes.redmond
+     *   },
+     *   cupertino: {
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.cupertino,
+     *     radioButton: RadioButton__YDF.Themes.cupertino
+     *   }
+     * });
+     */
+    static defineThemes(ownAndCorrespondingValidatableControlShellThemesDefinition) {
+      return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellThemesDefinition, RadioButtonsGroup__YDF
+      );
+    }
+
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @public
+     * @returns { typeof RadioButtonsGroup__YDF }
+     * */
+    static considerThemesAsCommon() {
+      RadioButtonsGroup__YDF.areThemesCSS_ClassesCommon = true;
+      return RadioButtonsGroup__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL"
+    };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsGeometricVariationsCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsGeometricVariationsCorrespondence() {
+      return RadioButtonsGroup__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence ?? (
+        RadioButtonsGroup__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence = {
+          validatableControlShell: {
+            [RadioButtonsGroup__YDF.GeometricVariations.regular]: ValidatableControlShell__YDF.GeometricVariations.regular,
+            [RadioButtonsGroup__YDF.GeometricVariations.small]: ValidatableControlShell__YDF.GeometricVariations.small
+          },
+          radioButton: {
+            [RadioButtonsGroup__YDF.GeometricVariations.regular]: RadioButton__YDF.GeometricVariations.regular,
+            [RadioButtonsGroup__YDF.GeometricVariations.small]: RadioButton__YDF.GeometricVariations.small
+          }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition
+     *
+     * @returns { typeof RadioButtonsGroup__YDF }
+     *
+     * @example
+     * RadioButtonsGroup__YDF.defineGeometricVariations({
+     *   large: {
+     *     validatableControlShell: ValidatableControlShell__YDF.GeometricVariation.large,
+     *     radioButton: RadioButton__YDF.GeometricVariations.large
+     *   },
+     *   extraLarge: {
+     *     validatableControlShell: ValidatableControlShell__YDF.GeometricVariation.extraLarge,
+     *     radioButton: RadioButton__YDF.GeometricVariations.extraLarge
+     *   }
+     * });
+     */
+    static defineGeometricVariations(ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition) {
+      return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition, RadioButtonsGroup__YDF
+      );
+    }
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = { regular: "REGULAR" };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsDecorativeVariationsCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsDecorativeVariationsCorrespondence() {
+      return RadioButtonsGroup__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
+        RadioButtonsGroup__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
+          validatableControlShell: {
+            [RadioButtonsGroup__YDF.DecorativeVariations.regular]: ValidatableControlShell__YDF.DecorativeVariations.regular
+          },
+          radioButton: {
+            [RadioButtonsGroup__YDF.DecorativeVariations.regular]: RadioButton__YDF.DecorativeVariations.regular
+          }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition
+     *
+     * @returns { typeof RadioButtonsGroup__YDF }
+     *
+     * @example
+     * RadioButtonsGroup__YDF.defineDecorativeVariations({
+     *   modest: {
+     *     validatableControlShell: ValidatableControlShell__YDF.DecorativeVariation.modest
+     *     radioButton: Button__YDF.GeometricVariations.modest
+     *   },
+     *   catchy: {
+     *     validatableControlShell: ValidatableControlShell__YDF.DecorativeVariation.catchy,
+     *     radioButton: Button__YDF.GeometricVariations.catchy
+     *   }
+     * });
+     */
+    static defineDecorativeVariations(ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition) {
+      return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition, RadioButtonsGroup__YDF
+      );
+    }
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static propertiesSpecification = {
+
+      label: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      accessibilityGuidance: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      externalLabelHTML_ID: {
+        type: String,
+        undefinedForbiddenIf: {
+          predicate: ({ rawData__full: properties }) =>
+              !YDF.isNonEmptyString(properties.label) &&
+              !YDF.isNonEmptyString(properties.accessibilityGuidance),
+          descriptionForLogging:
+              "Neither \"label\" nor \"accessibilityGuidance\" has been specified with non-empty strings"
+        },
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      guidance: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      selectingOptions: {
+
+        type: Array,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+
+        element: {
+          type: Object,
+          properties: {
+            key: {
+              type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+              isUndefinedForbidden: true,
+              isNullForbidden: true,
+              alternatives: [
+                {
+                  type: String,
+                  minimalCharactersCount: 1
+                },
+                {
+                  type: Number,
+                  numbersSet: YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber,
+                  isNaN_Forbidden: true
+                }
+              ]
+            },
+            label: {
+              type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+              isUndefinedForbidden: true,
+              isNullForbidden: true,
+              alternatives: [
+                {
+                  type: String,
+                  minimalCharactersCount: 1
+                },
+                {
+                  type: Number,
+                  numbersSet: YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber,
+                  isNaN_Forbidden: true
+                }
+              ]
+            }
+          }
+        }
+
+      },
+
+      initiallySelectedOptionKey: {
+        type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        alternatives: [
+          {
+            type: String,
+            minimalCharactersCount: 1
+          },
+          {
+            type: Number,
+            numbersSet: YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber,
+            isNaN_Forbidden: true
+          }
+        ]
+      },
+
+      radioButtonsHTML_Name: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      disabled: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      readonly: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      required: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustDisplayAppropriateBadgeIfInputIsRequired: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustDisplayAppropriateBadgeIfInputIsOptional: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      labelElementHTML_ID: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: RadioButtonsGroup__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(RadioButtonsGroup__YDF.Themes).
+            map(([ key, value ]) => ({ key: `RadioButtonsGroup__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: RadioButtonsGroup__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true,
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: RadioButtonsGroup__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(RadioButtonsGroup__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `RadioButtonsGroup__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      decorativeVariation: {
+        type: String,
+        isNullForbidden: true,
+        undefinedValueSubstitution: RadioButtonsGroup__YDF.DecorativeVariations.regular,
+        allowedAlternatives: Object.
+            entries(RadioButtonsGroup__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `RadioButtonsGroup__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    };
+
+
+    /* ━━━ State simulations specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * */
+    static statesSimulationsSpecification = ComponentsAuxiliaries.generateValidatableControlGeneralStatesSimulationsSpecification({
+      invalidInputHighlightingIfAnyValidationErrorsMessages: true,
+      validValueHighlightingIfNoValidationErrorsMessages: true,
+      validationErrorsMessages: true,
+      asynchronousValidationsStatuses: true
+    });
+
+    /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── ID generating ──────────────────────────────────────────────────────────────────────────────────────────── */
+    static counterForID_Generating = 0;
+
+    static generateComponentID() {
+      RadioButtonsGroup__YDF.counterForID_Generating++;
+      return `RADIO_BUTTONS_GROUP--YDF-${ RadioButtonsGroup__YDF.counterForID_Generating }`;
+    }
+
+  }

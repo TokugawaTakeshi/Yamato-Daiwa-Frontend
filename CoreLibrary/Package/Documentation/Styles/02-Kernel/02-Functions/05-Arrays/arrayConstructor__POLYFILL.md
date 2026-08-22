@@ -1,4 +1,4 @@
-# arrayConstructor__POLYFILL: the array constructor fixing one of Stylus issues
+# arrayConstructor__POLYFILL--YDF: the array constructor fixing one of Stylus issues
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-arrayConstructor__POLYFILL-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -17,10 +17,10 @@ p(borderRadiusSpecification.all borderRadiusSpecification.topSideFillets borderR
 // => (null) ((null) ((null)))
 ```
 
-The second and third element has been braced. The `arrayConstructor__POLYFILL` solves it.
+The second and third element has been braced. The `arrayConstructor__POLYFILL--YDF` solves it.
 
 ```stylus
-p(arrayConstructor__POLYFILL(borderRadiusSpecification.all, borderRadiusSpecification.topSideFillets, borderRadiusSpecification.leftSideFillets))
+p(arrayConstructor__POLYFILL--YDF(borderRadiusSpecification.all, borderRadiusSpecification.topSideFillets, borderRadiusSpecification.leftSideFillets))
 // => null (null) (null)
 ```
 
@@ -89,7 +89,7 @@ Button = {
 
             rootElement: {
               // ...
-              paddings: specifyPaddings({
+              paddings: specifyPaddings--YDF({
                 horizontalSymmetric: 15px,
                 verticalSymmetric: 6px
               })
@@ -110,21 +110,21 @@ In the **Paddings** mixin, we had:
 
 ```stylus
 
-Paddings(paddingsSpecification, restParameters__MUST_NOT_BE...)
+Paddings--YDF(paddingsSpecification, restParameters__MUST_NOT_BE...)
 
-  validateObjectTypeParameter({
+  validateObjectTypeParameter--YDF({
     mixinOrFunctionName: "Paddings",
     targetParameterNumber: 1,
     targetParameter: paddingsSpecification,
-    schema: PaddingsSpecificationSchema,
+    schema: PaddingsSpecificationSchema--YDF,
     followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
   })
 
-  log("===============================================================================================================")
-  log(paddingsSpecification.all)
-  log(paddingsSpecification.horizontalSymmetric)
-  log(paddingsSpecification.left)
-  log(paddingsSpecification.all paddingsSpecification.horizontalSymmetric paddingsSpecification.left)
+  log--YDF("===============================================================================================================")
+  log--YDF(paddingsSpecification.all)
+  log--YDF(paddingsSpecification.horizontalSymmetric)
+  log--YDF(paddingsSpecification.left)
+  log--YDF(paddingsSpecification.all paddingsSpecification.horizontalSymmetric paddingsSpecification.left)
 ```
 
 Output:
@@ -140,16 +140,16 @@ Each scalar value has nothing extraordinary: `null`, `15px`, `null`.
 But if we try to print the array... We have no idea what braces means and why Stylus grouped the second and third element, 
 but this phenomenon already known for us.
 
-Now, let us try to construct the array by **arrayConstructor__POLYFILL**. We'll print the **paddingsSpecification**
+Now, let us try to construct the array by **arrayConstructor__POLYFILL--YDF**. We'll print the **paddingsSpecification**
 object before and after:
 
 ```stylus
-log("===============================================================================================================")
-log(paddingsSpecification)
-log(arrayConstructor__POLYFILL(
+log--YDF("===============================================================================================================")
+log--YDF(paddingsSpecification)
+log--YDF(arrayConstructor__POLYFILL--YDF(
   paddingsSpecification.all, paddingsSpecification.horizontalSymmetric, paddingsSpecification.left
 ))
-log(paddingsSpecification)
+log--YDF(paddingsSpecification)
 ```
 
 Output:
@@ -158,7 +158,7 @@ Output:
 inspect: '{
   all: null,
   horizontalSymmetric: 15px,
-  verticalUpwardShifting: null,
+  upwardShifting: null,
   verticalSymmetric: 6px,
   top: null,
   bottom: null,
@@ -171,7 +171,7 @@ inspect: null (15px) (null)
 inspect: '{
   all: null 15px null,
   horizontalSymmetric: 15px,
-  verticalUpwardShifting: null,
+  upwardShifting: null,
   verticalSymmetric: 6px,
   top: null,
   bottom: null,
@@ -180,11 +180,11 @@ inspect: '{
 }'
 ```
 
-The **paddingsSpecification.all** has been mutated! First thought: something wrong **arrayConstructor__POLYFILL**.
-At that time, the implementation of **arrayConstructor__POLYFILL** was:
+The **paddingsSpecification.all** has been mutated! First thought: something wrong **arrayConstructor__POLYFILL--YDF**.
+At that time, the implementation of **arrayConstructor__POLYFILL--YDF** was:
 
 ```stylus
-arrayConstructor__POLYFILL(elements...)
+arrayConstructor__POLYFILL--YDF(elements...)
 
   accumulatingArray = elements[0]
 
@@ -220,7 +220,7 @@ Button = {
 
             rootElement: {
               // ...
-              paddings: specifyPaddings({
+              paddings: specifyPaddings--YDF({
                 all: 13px
               })
             },
@@ -242,7 +242,7 @@ Try to get output again:
 inspect: '{
   all: 13px,
   horizontalSymmetric: null,
-  verticalUpwardShifting: null,
+  upwardShifting: null,
   verticalSymmetric: null,
   top: null,
   bottom: null,
@@ -253,7 +253,7 @@ inspect: 13px (null) (null)
 inspect: '{
   all: 13px null null,
   horizontalSymmetric: null,
-  verticalUpwardShifting: null,
+  upwardShifting: null,
   verticalSymmetric: null,
   top: null,
   bottom: null,
@@ -265,10 +265,10 @@ inspect: '{
 The mutating left however with `accumulatingArray = elements[0]` we just copied the scalar value.
 No understanding for us what is going on.
 
-Next, we tried to change the implementation of `arrayConstructor__POLYFILL` to:
+Next, we tried to change the implementation of `arrayConstructor__POLYFILL--YDF` to:
 
 ```stylus
-arrayConstructor__POLYFILL(elements...)
+arrayConstructor__POLYFILL--YDF(elements...)
 
   accumulatingArray = null
 
@@ -282,7 +282,7 @@ arrayConstructor__POLYFILL(elements...)
 It no use, the mutating left. ...If we do not skip the first element:
 
 ```stylus
-arrayConstructor__POLYFILL(elements...)
+arrayConstructor__POLYFILL--YDF(elements...)
 
   accumulatingArray = null
 
@@ -301,7 +301,7 @@ But it is not the solution.
 Finally, we stopped at this implementation:
 
 ```stylus
-arrayConstructor__POLYFILL(elements...)
+arrayConstructor__POLYFILL--YDF(elements...)
 
   accumulatingArray = null
 

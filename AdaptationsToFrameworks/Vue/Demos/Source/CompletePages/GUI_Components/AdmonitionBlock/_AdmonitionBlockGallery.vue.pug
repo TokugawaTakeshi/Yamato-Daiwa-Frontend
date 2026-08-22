@@ -1,0 +1,264 @@
+h1.Heading1(
+  :class="mustVisuallyHideTopHeading ? 'YDF_Gallery-InvisibleHeading' : null"
+) AdmonitionBlock Component Demos
+
+
+//- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.minimal"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Minimal
+
+  ThemesShowcase(
+    :themes="AdmonitionBlock.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="AdmonitionBlock.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="AdmonitionBlock.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      AdmonitionBlock(
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        lang="la"
+      ).
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+//- ━━━ Titles ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.titles"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Titles
+
+  ThemesShowcase(
+    :themes="AdmonitionBlock.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="AdmonitionBlock.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="AdmonitionBlock.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      AdmonitionBlock(
+        title="Titulo"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        lang="la"
+      ).
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+//- ━━━ Default SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.defaultSVG_Icons"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Default SVG Icons
+
+  ThemesShowcase(
+    :themes="AdmonitionBlock.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="AdmonitionBlock.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="AdmonitionBlock.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      AdmonitionBlock(
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :hasDefaultSVG_Icon="true"
+        lang="la"
+      ).
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+//- ━━━ Custom SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.customSVG_Icons"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Custom SVG Icons
+
+  AdmonitionBlock.AdmonitionBlockGallery-LoneAdmonitionBlock(
+    :decorativeVariation="AdmonitionBlock.DecorativeVariations.warning"
+    lang="la"
+  )
+
+    | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+    |   magna aliqua.
+    | Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+    template(v-slot:CustomSVG_Icon): ExclamationMarkIcon__Squared.AdmonitionBlock--YDF-SVG_Icon
+
+
+//- ━━━ Titles and SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.titlesAndSVG_Icons"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Titles and SVG Icons
+
+  ThemesShowcase(
+    :themes="AdmonitionBlock.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="AdmonitionBlock.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="AdmonitionBlock.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      AdmonitionBlock(
+        title="Titulo"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :hasDefaultSVG_Icon="true"
+        lang="la"
+      ).
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+//- ━━━ Dismissing Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.dismissingButton"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Dismissing Button
+
+  ThemesShowcase(
+    :themes="AdmonitionBlock.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="AdmonitionBlock.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="AdmonitionBlock.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      AdmonitionBlock(
+        title="Titulo"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :hasDefaultSVG_Icon="true"
+        :dismissible="true"
+        lang="la"
+      ).
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+//- ━━━ Centered Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.centeredButton"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Centered Button
+
+  ThemesShowcase(
+    :themes="AdmonitionBlock.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="AdmonitionBlock.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="AdmonitionBlock.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      AdmonitionBlock(
+        title="Titulo"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :hasDefaultSVG_Icon="true"
+        :dismissible="true"
+        lang="la"
+      )
+
+        p.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+        Button.AdmonitionBlock--YDF-CenteredButton(
+          label="Alklaku min"
+        )
+
+
+//- ━━━ Action Bar ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.actionBar"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Action Bar
+
+  ThemesShowcase(
+    :themes="AdmonitionBlock.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="AdmonitionBlock.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="AdmonitionBlock.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      AdmonitionBlock(
+        title="Titulo"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :hasDefaultSVG_Icon="true"
+        lang="la"
+      )
+
+        | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        |   magna aliqua.
+        | Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+        template(v-slot:ActionBarContent)
+          Button(label="Ago 1")
+          Button(label="Ago 2")

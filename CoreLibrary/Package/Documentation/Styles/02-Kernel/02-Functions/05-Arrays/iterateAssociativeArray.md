@@ -1,4 +1,4 @@
-# `iterateAssociativeArray`: Iterating of associative array 
+# `iterateAssociativeArray--YDF`: Iterating of associative array 
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-iterateAssociativeArray-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -11,7 +11,7 @@ only string could be the key.
 ```stylus
 sample1 = (".Selector1" {  alpha: 1, bravo: "FOO" }) (".Selector2" {  alpha: 2, bravo: "BAR" })
 
-iterateAssociativeArray(sample1, @(key, value) {
+iterateAssociativeArray--YDF(sample1, @(key, value) {
   p("Key: " + key);
   p("Value: " + value)
 })
@@ -45,12 +45,12 @@ Output:
 'Value: .Selector2 {"alpha":"(2)","bravo":"(\"BAR\")"}'
 ```
 
-`iterateAssociativeArray` support the single-entire case:
+`iterateAssociativeArray--YDF` support the single-entire case:
 
 ```stylus
 sample2 = (".Selector1" {  alpha: 1, bravo: "FOO" })
 
-iterateAssociativeArray(sample2, @(key, value) {
+iterateAssociativeArray--YDF(sample2, @(key, value) {
   p("Key: " + key);
   p("Value: " + value)
 })

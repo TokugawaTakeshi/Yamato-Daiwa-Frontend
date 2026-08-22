@@ -1,0 +1,8 @@
+{
+  "private": "true",
+  "name": "@yamato-daiwa/frontend-additional_themes",
+  "version": "0.0.0",
+  "dependencies": {
+    "@yamato-daiwa/frontend": "2.0.0-alpha.2"
+  }
+}

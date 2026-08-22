@@ -1,0 +1,54 @@
+ParagraphDefaultProperties--YDF = {
+  geometry: {
+    text: {
+      size: Configuration--YDF.textGeometry.basicFontSize,
+      lineSpacing: null,
+      lineHeight: Configuration--YDF.textGeometry.basicLineHeightInMultilineTextBlocks
+    },
+    customDeclarations: null
+  },
+  decoration: {
+    text: {
+      fontWeight: null,
+      color: null
+    },
+    customDeclarations: null
+  }
+}
+
+
+Paragraph--YDF(
+  preset = ParagraphDefaultProperties--YDF,
+  overridings = {},
+  options = {
+    geometryOnly: false,
+    decorationOnly: false
+  }
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  mustGenerateGeometry = isTrue--YDF(options.geometryOnly) || isFalse--YDF(options.decorationOnly)
+  mustGenerateDecoration = isTrue--YDF(options.decorationOnly) || isFalse--YDF(options.geometryOnly)
+
+
+  if mustGenerateGeometry
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: properties.geometry.text.size,
+      lineHeight: properties.geometry.text.lineHeight,
+      lineSpacing: properties.geometry.text.lineSpacing,
+      mustTryToProvideHyphenations: true
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.geometry.customDeclarations)
+
+
+  if mustGenerateDecoration
+
+    applyIfNotNull--YDF({
+      font-weight: properties.decoration.text.fontWeight,
+      color: properties.decoration.text.color
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.decoration.customDeclarations)

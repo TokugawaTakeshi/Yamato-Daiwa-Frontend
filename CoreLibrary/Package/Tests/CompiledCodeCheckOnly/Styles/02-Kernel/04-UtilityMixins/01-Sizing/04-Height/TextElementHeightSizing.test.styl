@@ -1,0 +1,65 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/01-Sizing/04-Height/TextElementHeightSizing.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/01-Sizing/04-Height/TextElementHeightSizing.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+// Single-line element natural sizing (applicable to input-type buttons, badges etc.)
+.SingleLineElement-NaturalHeightSizing-LineHeight
+
+  TextElementHeightSizing--YDF({
+    type: TextElementHeightSizingTypes--YDF.natural,
+    borders: {
+      verticalSymmetric: 1px
+    },
+    isExplicitBorderNoneDeclarationRequired: true,
+    paddings: {
+      verticalSymmetric: 6px,
+      upwardShifting: 1px
+    },
+    isExplicitPaddingZeroDeclarationRequired: true,
+    fontSize: 14px,
+    lineHeight: 1
+  })
+
+
+// Same, with no paddings and borders
+//.Example1-1
+//
+//  TextElementHeightSizing--YDF({
+//    type: TextElementHeightSizingTypes--YDF.natural,
+//    isExplicitBorderNoneDeclarationRequired: true,
+//    isExplicitPaddingZeroDeclarationRequired: true,
+//    fontSize: 14px
+//  })
+
+
+// Single-line element fixed sizing
+//.Example2
+//
+//  TextElementHeightSizing--YDF({
+//    type: TextElementHeightSizingTypes--YDF.fixed,
+//    fixedHeight: 60px,
+//    topOrBottomSymmetricBordersWidths: 1px,
+//    isExplicitBorderNoneDeclarationRequired: true,
+//    isExplicitPaddingZeroDeclarationRequired: true
+//  })
+
+
+//.PaddingCorrection
+//
+//  TextElementHeightSizing--YDF({
+//    type: TextElementHeightSizingTypes--YDF.natural,
+//    fontSize: 20px,
+//    lineSpacing: 4px,
+//    paddings: {
+//      verticalSymmetric: 6px
+//      //upwardShifting: 1px
+//    },
+//    mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight: true
+//  })

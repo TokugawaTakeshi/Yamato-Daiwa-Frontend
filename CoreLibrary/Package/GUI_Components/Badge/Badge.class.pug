@@ -1,0 +1,227 @@
+-
+
+  class Badge__YDF {
+
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
+    static CSS_NAMESPACE = "Badge--YDF";
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @type { { [themeName: string]: string } }
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
+    static Themes = { regular: "REGULAR" };
+
+    /**
+     * @public
+     * @param { Array<string> } themesNames
+     * @return { typeof Badge__YDF }
+     */
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineThemes(themesNames, Badge__YDF);
+    }
+
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @public
+     * @returns { typeof Badge__YDF }
+     * @public
+     * */
+    static considerThemesAsCommon() {
+      Badge__YDF.areThemesCSS_ClassesCommon = true;
+      return Badge__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL"
+    };
+
+    /**
+     * @public
+     * @param { Array<string> } geometricVariationsNames
+     * @return { typeof Badge__YDF }
+     */
+    static defineGeometricVariations(geometricVariationsNames) {
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, Badge__YDF);
+    }
+
+    /**
+     * @public
+     * @readonly
+     * @type {
+     *   Readonly<{
+     *     pillShape: string;
+     *     singleLine: string;
+     *   }>
+     * }
+     */
+    static GeometricModifiers = {
+      pillShape: "PILL_SHAPE",
+      singleLine: "SINGLE_LINE"
+    };
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = {
+      veryCatchyBright: "VERY_CATCHY_BRIGHT",
+      catchyBright: "CATCHY_BRIGHT",
+      modestlyCatchyBright: "MODESTLY_CATCHY_BRIGHT",
+      neutralBright: "NEUTRAL_BRIGHT",
+      modestlyCalmingBright: "MODESTLY_CALMING_BRIGHT",
+      calmingBright: "CALMING_BRIGHT",
+      achromaticBright: "ACHROMATIC_BRIGHT",
+      veryCatchyPastel: "VERY_CATCHY_PASTEL",
+      catchyPastel: "CATCHY_PASTEL",
+      modestlyCatchyPastel: "MODESTLY_CATCHY_PASTEL",
+      neutralPastel: "NEUTRAL_PASTEL",
+      modestlyCalmingPastel: "MODESTLY_CALMING_PASTEL",
+      calmingPastel: "CALMING_PASTEL",
+      achromaticPastel: "ACHROMATIC_PASTEL"
+    };
+
+    /**
+     * @public
+     * @param { Array<string> } decorativeVariationsNames
+     * @return { typeof Badge__YDF }
+     */
+    static defineDecorativeVariations(decorativeVariationsNames) {
+      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, Badge__YDF);
+    }
+
+    /**
+     * @public
+     * @readonly
+     * @type {
+     *   Readonly<{
+     *     bordersDisguising: string;
+     *     noBackground: string;
+     *   }>
+     * }
+     */
+    static DecorativeModifiers = {
+      bordersDisguising: "BORDERS_DISGUISING",
+      noBackground: "NO_BACKGROUND"
+    };
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * */
+    static propertiesSpecification = {
+
+      keyLabel: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      valueLabel: {
+        type: String,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: Badge__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Badge__YDF.Themes).
+            map(([ key, value ]) => ({ key: `Badge__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: Badge__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: Badge__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Badge__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `Badge__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      geometricModifiers: {
+        type: Array,
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+        element: {
+          type: String,
+          allowedAlternatives: Object.
+              entries(Badge__YDF.GeometricModifiers).
+              map(([ key, value ]) => ({ key: `Badge__YDF.GeometricModifiers.${ key }`, value }))
+        }
+      },
+
+      decorativeVariation: {
+        type: String,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Badge__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `Badge__YDF.DecorativeVariations.${ key }`, value }))
+      },
+
+      decorativeModifiers: {
+        type: Array,
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+        element: {
+          type: String,
+          allowedAlternatives: Object.
+            entries(Badge__YDF.DecorativeModifiers).
+            map(([ key, value ]) => ({ key: `Badge__YDF.DecorativeModifiers.${ key }`, value }))
+        }
+      },
+
+      rootElementTag: {
+        type: String,
+        undefinedValueSubstitution: "span",
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      }
+
+    };
+
+  }

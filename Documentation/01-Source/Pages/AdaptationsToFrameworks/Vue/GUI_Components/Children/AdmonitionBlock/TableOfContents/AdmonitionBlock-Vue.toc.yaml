@@ -1,0 +1,48 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+AdmonitionBlockClass:
+
+  $heading: `AdmonitionBlockClass.$heading`
+  $anchor: ADMONITION_BLOCK_CLASS--SECTION
+
+  $children:
+
+    vueProperties:
+
+      $heading: `AdmonitionBlockClass.vueProperties.$heading`
+      $anchor: ADMONITION_BLOCK_CLASS-VUE_PROPERTIES--SECTION
+
+#    examples:
+#
+#      $heading: `AdmonitionBlockClass.examples.$heading`
+#      $anchor: ADMONITION_BLOCK_CLASS-EXAMPLES--SECTION
+#
+#      $children:
+#
+#        minimal:
+#
+#          $heading: `AdmonitionBlockClass.examples.minimal.$heading`
+#          $anchor: ADMONITION_BLOCK_CLASS-EXAMPLES-MINIMAL--SECTION
+#
+#        title:
+#
+#          $heading: `AdmonitionBlockClass.examples.title.$heading`
+#          $anchor: ADMONITION_BLOCK_CLASS-EXAMPLES-TITLE--SECTION
+#
+#        SVG_Icons:
+#
+#          $heading: `AdmonitionBlockClass.examples.SVG_Icons.$heading`
+#          $anchor: ADMONITION_BLOCK_CLASS-EXAMPLES-SVG_ICONS--SECTION
+#
+#        buttons:
+#
+#          $heading: `AdmonitionBlockClass.examples.buttons.$heading`
+#          $anchor: ADMONITION_BLOCK_CLASS-EXAMPLES-BUTTONS--SECTION
+#
+#        dismissing:
+#
+#          $heading: `AdmonitionBlockClass.examples.dismissing.$heading`
+#          $anchor: ADMONITION_BLOCK_CLASS-EXAMPLES-DISMISSING--SECTION

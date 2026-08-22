@@ -1,0 +1,566 @@
+mixin TextBoxGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("TextBoxGallery__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("TextBoxGallery__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("TextBoxGallery__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
+
+    function skipDecorativeVariationIf(iterationData) {
+      return (
+        iterationData.decorativeVariation.value === TextBox__YDF.DecorativeVariations.labelLike &&
+        iterationData.geometricVariation.value !== TextBox__YDF.GeometricVariations.labelLike
+      ) ||
+      (
+        iterationData.decorativeVariation.value !== TextBox__YDF.DecorativeVariations.labelLike &&
+        iterationData.geometricVariation.value === TextBox__YDF.GeometricVariations.labelLike
+      );
+    }
+
+    const propertiesForTextBoxesOfEachType = {
+      [TextBox__YDF.HTML_Types.regular]: {
+        label: "Sample",
+        guidance: "Please input the name",
+        accessibilityGuidance: "Sample",
+        value: "sample サンプル",
+        autocomplete: "name"
+      },
+      [TextBox__YDF.HTML_Types.email]: {
+        label: "Email",
+        guidance: "Please input the email address.",
+        accessibilityGuidance: "Email",
+        value: "example@example.com",
+        autocomplete: "email"
+      },
+      [TextBox__YDF.HTML_Types.number]: {
+        label: "Age",
+        guidance: "Please input you age.",
+        accessibilityGuidance: "Age",
+        value: 30,
+        /* Wrong autocomplete, but there is not "age" one. */
+        autocomplete: "bday-year"
+      },
+      [TextBox__YDF.HTML_Types.password]: {
+        label: "Password",
+        guidance: "Please input the password.",
+        accessibilityGuidance: "Password",
+        value: "r1H5qf.hr:}]'\\4{qF+gu%im",
+        autocomplete: "current-password"
+      },
+      [TextBox__YDF.HTML_Types.phoneNumber]: {
+        label: "Phone Number",
+        guidance: "Please input your phone number.",
+        accessibilityGuidance: "Phone Number",
+        value: "132-4567-8901",
+        autocomplete: "tel"
+      },
+      [TextBox__YDF.HTML_Types.URI]: {
+        label: "Website",
+        guidance: "Please input the valid URL.",
+        accessibilityGuidance: "Website",
+        value: "https://frontend.yamato-daiwa.com/",
+        autocomplete: "url"
+      }
+    };
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) TextBox Component Demos
+
+  //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Minimal
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "TextBoxGallery-VerticalLinearFlow"
+    })
+
+      each properties, HTML_Type in propertiesForTextBoxesOfEachType
+
+        +TextBox--YDF({
+          HTML_Type,
+          accessibilityGuidance: properties.accessibilityGuidance,
+          value: properties.value,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+  //- ━━━ Surrounding ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.surrounding]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Surrounding
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "TextBoxGallery-VerticalLinearFlow"
+    })
+
+      each properties, HTML_Type in propertiesForTextBoxesOfEachType
+
+        +TextBox--YDF({
+          HTML_Type,
+          label: properties.label,
+          guidance: properties.guidance,
+          required: true,
+          mustDisplayAppropriateBadgeIfInputIsRequired: true,
+          value: properties.value,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+  //- ━━━ External Labels ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.externalLabels]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) External Labels
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "TextBoxGallery-VerticalLinearFlow"
+    })
+
+      table.TextBoxGallery-Table
+
+        thead: tr
+
+          th(scope="col") Label
+          th(scope="col") TextBox
+
+        tbody
+
+          each properties, HTML_Type in propertiesForTextBoxesOfEachType
+
+            -
+
+              const LABEL_CELL_HTML_ID = [
+                HTML_Type,
+                themeShowcaseCurrentIterationData.theme.value,
+                themeShowcaseCurrentIterationData.geometricVariation.value,
+                themeShowcaseCurrentIterationData.decorativeVariation.value,
+              ].join("-")
+
+
+            tr
+
+              th(
+                id=LABEL_CELL_HTML_ID
+                scope="row"
+              )= properties.label
+
+              td
+
+                +TextBox--YDF({
+                  HTML_Type,
+                  externalLabelHTML_ID: LABEL_CELL_HTML_ID,
+                  guidance: properties.guidance,
+                  required: true,
+                  mustDisplayAppropriateBadgeIfInputIsRequired: true,
+                  value: properties.value,
+                  theme: themeShowcaseCurrentIterationData.theme.value,
+                  geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+                  decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+                })
+
+
+  //- ━━━ Placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.placeholder]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Placeholder
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "TextBoxGallery-VerticalLinearFlow"
+    })
+
+      each properties, HTML_Type in propertiesForTextBoxesOfEachType
+
+        +TextBox--YDF({
+          HTML_Type,
+          placeholder: properties.label,
+          accessibilityGuidance: properties.accessibilityGuidance,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+  //- ━━━ Multiline ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.multiline]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Multiline
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "TextBoxGallery-VerticalLinearFlow"
+    })#MULTILINE_TEXT_BOXES-THEMES_SHOWCASE
+
+      +TextBox--YDF({
+        multiline: true,
+        label: "Description",
+        guidance: "Please input the description",
+        required: true,
+        mustDisplayAppropriateBadgeIfInputIsRequired: true,
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      })
+
+
+  //- ━━━ Prepended Icon ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.prependedIcon]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Prepended Icon
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+
+      +TextBox--YDF({
+        label: "User Name",
+        value: "TokugawaT__YD",
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      }): +Person--YDF_Icon.TextBox--YDF-PrependedSVG_Icon
+
+
+  //- ━━━ Appended Icon ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.appendedIcon]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Appended Icon
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+
+      +TextBox--YDF({
+        label: "User Name",
+        value: "TokugawaT__YD".repeat(10),
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      })
+
+        +Person--YDF_Icon.TextBox--YDF-AppendedSVG_Icon
+
+
+  //- ━━━ Password Displaying Toggle ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.passwordDisplayingToggle]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Password Displaying Toggle
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData
+    })#TEXT_BOXES_WITH_PASSWORD_DISPLAYING_TOGGLE-THEMES_SHOWCASE
+
+      +TextBox--YDF({
+        HTML_Type: TextBox__YDF.HTML_Types.password,
+        label: "Password",
+        value: "SecretXD".repeat(30),
+        hasPasswordDisplayingToggle: true,
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      })
+
+
+  //- ━━━ Invalid State Highlighting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.invalidStateHighlighting]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Invalid State Highlighting
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "TextBoxGallery-VerticalLinearFlow"
+    })
+
+      +TextBox--YDF(
+        {
+          label: "User Name",
+          value: "$",
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        },
+        {
+          invalidInputHighlightingIfAnyValidationErrorsMessages: true,
+          validationErrorsMessages: true,
+          asynchronousValidationsStatuses: true
+        }
+      ): +Person--YDF_Icon.TextBox--YDF-PrependedSVG_Icon
+
+      +TextBox--YDF(
+        {
+          HTML_Type: TextBox__YDF.HTML_Types.password,
+          label: "Password",
+          value: "aaaa",
+          hasPasswordDisplayingToggle: true,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        },
+        {
+          invalidInputHighlightingIfAnyValidationErrorsMessages: true,
+          validationErrorsMessages: [ "Inputted password has not enough characters. Please input at least 16 characters" ]
+        }
+      ): +Person--YDF_Icon.TextBox--YDF-PrependedSVG_Icon
+
+
+    //- ━━━ Valid State Highlighting ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.validStateHighlighting]
+
+      h2.Heading2(
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      ) Valid State Highlighting
+
+      +ThemesShowcase--YDF({
+        themes: TextBox__YDF.Themes,
+        geometricVariations: TextBox__YDF.GeometricVariations,
+        decorativeVariations: TextBox__YDF.DecorativeVariations,
+        skipDecorativeVariationIf,
+        iterationData: themeShowcaseCurrentIterationData,
+        decorativeVariationsListItemAdditionalCSS_Classes: "TextBoxGallery-VerticalLinearFlow"
+      })
+
+        +TextBox--YDF(
+          {
+            label: "User Name",
+            value: "$",
+            hasPasswordDisplayingToggle: true,
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+          },
+          { validValueHighlightingIfNoValidationErrorsMessages: true }
+        ): +Person--YDF_Icon.TextBox--YDF-PrependedSVG_Icon
+
+        +TextBox--YDF(
+        {
+          HTML_Type: TextBox__YDF.HTML_Types.password,
+          label: "Password",
+          value: "aaaa",
+          hasPasswordDisplayingToggle: true,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        },
+        { validValueHighlightingIfNoValidationErrorsMessages: true }
+      ): +Person--YDF_Icon.TextBox--YDF-PrependedSVG_Icon
+
+
+  //- ━━━ Readonly and Disabled ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.readonlyAndDisabled]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Readonly And Disabled
+
+
+    //- ╍╍╍ Has Inputted Value ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    h3.Heading3 Has Inputted Value
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "TextBoxGallery-GridFlow"
+    })
+
+      +TextBox--YDF({
+        HTML_Type: TextBox__YDF.HTML_Types.password,
+        accessibilityGuidance: propertiesForTextBoxesOfEachType[TextBox__YDF.HTML_Types.password].accessibilityGuidance,
+        value: propertiesForTextBoxesOfEachType[TextBox__YDF.HTML_Types.password].value,
+        readonly: true,
+        hasPasswordDisplayingToggle: true,
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      }): +Person--YDF_Icon.TextBox--YDF-PrependedSVG_Icon
+
+      +TextBox--YDF({
+        HTML_Type: TextBox__YDF.HTML_Types.password,
+        accessibilityGuidance: propertiesForTextBoxesOfEachType[TextBox__YDF.HTML_Types.password].accessibilityGuidance,
+        value: propertiesForTextBoxesOfEachType[TextBox__YDF.HTML_Types.password].value,
+        disabled: true,
+        hasPasswordDisplayingToggle: true,
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      }): +Person--YDF_Icon.TextBox--YDF-PrependedSVG_Icon
+
+
+    //- ╍╍╍ Placeholder Only ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    h3.Heading3 Placeholder Only
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "TextBoxGallery-GridFlow"
+    })
+
+      +TextBox--YDF({
+        HTML_Type: TextBox__YDF.HTML_Types.password,
+        accessibilityGuidance: propertiesForTextBoxesOfEachType[TextBox__YDF.HTML_Types.password].accessibilityGuidance,
+        placeholder: propertiesForTextBoxesOfEachType[TextBox__YDF.HTML_Types.password].label,
+        readonly: true,
+        hasPasswordDisplayingToggle: true,
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      }): +Person--YDF_Icon.TextBox--YDF-PrependedSVG_Icon
+
+      +TextBox--YDF({
+        HTML_Type: TextBox__YDF.HTML_Types.password,
+        accessibilityGuidance: propertiesForTextBoxesOfEachType[TextBox__YDF.HTML_Types.password].accessibilityGuidance,
+        placeholder: propertiesForTextBoxesOfEachType[TextBox__YDF.HTML_Types.password].label,
+        disabled: true,
+        hasPasswordDisplayingToggle: true,
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      }): +Person--YDF_Icon.TextBox--YDF-PrependedSVG_Icon
+
+
+  //- ━━━ Value Copying Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.valueCopyingButton]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Value Copying Button
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData
+    })#TEXT_BOXES_WITH_VALUES_COPYING_BUTTONS-THEMES_SHOWCASE
+
+      +TextBox--YDF({
+        label: "User Name",
+        value: "TokugawaT__YD",
+        hasValueCopyingButton: true,
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      })
+
+
+  //- ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.mustRenderGeometricModifiersSection
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Geometric Modifiers
+
+  //- ─── No Roundings ───────────────────────────────────────────────────────────────────────────────────────────────
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noRoundingsGeometricModifier]
+
+    h3.Heading3(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) No Roundings
+
+    +ThemesShowcase--YDF({
+      themes: TextBox__YDF.Themes,
+      geometricVariations: TextBox__YDF.GeometricVariations,
+      decorativeVariations: TextBox__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "TextBoxGallery-VerticalLinearFlow"
+    })
+
+      each properties, HTML_Type in propertiesForTextBoxesOfEachType
+
+        +TextBox--YDF({
+          HTML_Type,
+          accessibilityGuidance: properties.accessibilityGuidance,
+          value: properties.value,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          geometricModifiers: [ TextBox__YDF.GeometricModifiers.noRoundings ],
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+  //- ━━━ Loading Placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.loadingPlaceholder]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Loading Placeholder
+
+
+    .TextBoxGallery-VerticalLinearFlow
+
+      //-
+        each geometricVariation in Object.values(Button__YDF.GeometricVariations)
+
+          +TextBox--YDF-LoadingPlaceholder

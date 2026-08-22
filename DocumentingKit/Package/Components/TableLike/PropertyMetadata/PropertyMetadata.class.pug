@@ -1,0 +1,17 @@
+include PropertyMetadataLocalization.english.pug
+
+
+-
+
+  class PropertyMetadata__YDF_DK {
+
+    static localization = propertyMetadataYDF_DK_ComponentLocalization__english;
+
+    /* [ Approach ] Has implemented as the class for `instanceof` check only. */
+    static RawValue = class {
+      constructor(value) {
+        this.$value = value;
+      }
+    }
+
+  }

@@ -1,0 +1,74 @@
+.ButtonGallery
+
+  WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 400px
+
+  WideScreensConfiguration()
+    @media (min-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH)
+      {block}
+
+  NarrowScreensConfiguration()
+    @media (max-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)
+      {block}
+
+
+  &-PseudoTable
+
+    margin 0 //* [ Resetting of defaults ]
+
+
+    +WideScreensConfiguration()
+
+      display grid
+      grid-auto-flow column
+      grid-template-rows auto 1fr
+      grid-template-columns repeat(3, minmax(0, 1fr));
+      column-gap 0.5rem
+      row-gap 0.3rem
+      justify-items center
+      align-items center
+
+
+    +NarrowScreensConfiguration()
+
+      text-align center
+
+
+    dt
+
+      font-weight bold
+
+
+    dd
+
+      margin 0 //* [ Resetting of defaults ]
+
+      max-width 100%
+      overflow hidden
+
+
+      >*
+
+        max-width 100%
+
+
+      +NarrowScreensConfiguration()
+
+        PositionalRelationship--YDF({
+          definitions: ("dt" { retireFromIt: { y: 6px }, pushItFromSelf: { y: 12px } }),
+          contextSelector: ".ButtonGallery-PseudoTable",
+          referenceElementSelector: "dd"
+        })
+
+
+  &-LinearFlow
+
+    display flex
+    column-gap 0.5rem
+    align-items center
+
+    retireFrom--YDF({ targetElementSelector: ".Heading2", y: 0.6rem })
+
+
+  &-NarrowContainer
+
+    width 50px

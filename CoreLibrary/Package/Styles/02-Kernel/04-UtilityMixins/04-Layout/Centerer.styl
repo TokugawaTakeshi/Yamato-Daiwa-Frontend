@@ -1,0 +1,26 @@
+Centerer--YDF(compoundParameter = {}, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "Centerer--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      minimalWidth: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        defaultValue: NARROWEST_SCREEN_WIDTH_UNIT--YDF
+      },
+      maximalWidth: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        defaultValue: 3*NARROWEST_SCREEN_WIDTH_UNIT--YDF
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  width 100%
+  min-width: compoundParameter.minimalWidth
+  max-width: compoundParameter.maximalWidth
+
+  margin-left auto
+  margin-right auto

@@ -1,0 +1,168 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.english.pug
+  include ../../../../../../../SharedComponents/SharedComponents.english.pug
+
+  include _DummyImagesURIs-Example.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("DummyImagesURIs"),
+        description:
+            "Associative array-like object \"DummyImagesURIs\" of \"Yamato Daiwa Frontend\" library (abbreviation: \"YDF\") " +
+              "includes the 64base-encoded images of various sizes and aspect ratios of sides. " +
+            "Intended to be used for testing purposes during providing of correct displaying of images in adaptive layouts."
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents",
+        "@Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/DummyImagesURIs/DummyImagesURIs"
+      ]
+    });
+
+    if (__IS_PRODUCTION_BUILDING_MODE__) {
+      RegularWebPageTemplate__YDF.addScriptsToEndOfBody(
+        "@Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/DummyImagesURIs/DummyImagesURIs"
+      );
+    }
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.markup.functionality.inlineJavaScript.assets.DummyImagesURIs");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      japanese: routing.japanese.coreLibrary.$children.markup.$children.functionality.$children.
+          inlineJavaScript.$children.assets.$children.DummyImagesURIs.$URI,
+      russian: routing.russian.coreLibrary.$children.markup.$children.functionality.$children.
+          inlineJavaScript.$children.assets.$children.DummyImagesURIs.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = routing.english.coreLibrary.$children.markup.$children.functionality.$children.inlineJavaScript.$children.
+        assets.$children.DummyImagesURIs;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ `DummyImagesURIs` ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.notCheckedByNativeSpeakers })
+
+    p.Article-Paragraph.
+      The #[+Keyword--YDID associative array-like] #[+Term--YDID object] including the primitive images
+        (in fact, the monochrome background with label written the lengths of sides), encoded in
+        #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.wikipedia.Base64 }) Base64]
+        thanks to which, no internet connection required to display the image).
+      Such images are convenient to be used as the test ones during the layout adaptation for the images of various sizes,
+        or just as the placeholders at the early stages of development when there are no real images samples at hand.
+
+    p.Article-Paragraph.
+      As default, #[+ImportantEntity__Code--YDID DummyImagesURIs] has the following #[+Term--YDID keys]:
+
+    dl.Article-DescriptionList
+
+      dt #[+ImportantEntity__Code--YDID aspectRatio19x6]
+      dd Image with aspect ratio #[+ImportantEntity--YDID 19 x 6]
+
+      dt #[+ImportantEntity__Code--YDID aspectRatio4x3]
+      dd Image with aspect ratio #[+ImportantEntity--YDID 4 x 3]
+
+      dt #[+ImportantEntity__Code--YDID wideAndLow]
+      dd Ultra wide image with small height
+
+      dt #[+ImportantEntity__Code--YDID highAndNarrow]
+      dd Ultra high image with small width
+
+      dt #[+ImportantEntity__Code--YDID small]
+      dd Small image
+
+    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.guidance, SVG_Icon: true }).
+      Click the image to copy the calling expression of the needed property of
+        #[+ImportantEntity__Code--YDID DummyImagesURIs] #[+Term--YDID object] to the clipboard.
+
+
+    ul.DummyImagesURIsGallery(
+      data-snackbar_text="Copied: {{ expression }}"
+    )
+
+      each imageURI, key in YDF.DummyImagesURIs
+
+        li
+
+          button(
+            aria-label=`Copy the calling expression of \"${ key }\" property of \"DummyImagesURIs\" object`
+            data-clipboard-text=`DummyImagesURIs.${ key }`
+          )
+
+            span(
+              role="presentation"
+              style=`background-image: url("${ imageURI }");`
+            )
+
+            code= key
+
+    //- ━━━ Problematics ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.problematics.$heading,
+      HTML_ID: localizedSectioning.problematics.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph.
+      Although it would be convenient for web developers if homogeneous images (e.g., photos of the same product that
+        should be displayed in the mini-gallery) were of the same size or at least had the same aspect ratios,
+        in practice, this convenience often turns out to be impossible.
+      The customers provide images of different sizes and proportions, expecting the performers to aesthetically display
+        all these images without any problems due to the high level of qualification.
+
+    p.Article-Paragraph.
+      To be more or less confident that the prepared layout is indeed adapted to different images, it is necessary to have
+        several test images of different sizes and proportions ready, up to extreme cases, for example, when the image has
+        a height several times greater than its width.
+      If you have such images, you can use them.
+      But most likely, you do not have such a set of images at hand, as well as enough time to search for them.
+      This is exactly what #[+ImportantEntity__Code--YDID DummyImagesURIs] are intended for.
+
+
+    //- ━━━ Example ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.example.$heading,
+      HTML_ID: localizedSectioning.example.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph.
+      The clickable cards with images represented above has been created with the following code:
+
+    +DummyImagesURIs-Example({
+      fileLabels: {
+        markup: "Markup",
+        styles: "Styles"
+      },
+      copyingButtonAccessibilityGuidanceRawValue:
+          "`Copy the calling expression of \"${ key }\" property of \"DummyImagesURIs\" object`"
+    })
+
+    p.Article-Paragraph.
+      If you need to create a mini gallery with the photos for the ES store or something like, you may take above code
+        as the base and add the large area for the displaying of the currently select photography.

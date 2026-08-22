@@ -1,4 +1,4 @@
-YamatoDaiwaInformationDesignColors = {
+YamatoDaiwaInformationDesignColors--YDF = {
   importantEntity: hsl(0, 100, 40),
   secondaryEntity: hsl(40, 100, 40),
   definableTerm: hsl(110, 100, 40),
@@ -12,16 +12,44 @@ YamatoDaiwaInformationDesignColors = {
 DefinableTerm--YDID()
 
   font-weight bold
-  color: YamatoDaiwaInformationDesignColors.definableTerm
+  font-style normal
+  color: YamatoDaiwaInformationDesignColors--YDF.definableTerm
+
+
+Term--YDID()
+
+  font-style normal
+  color: YamatoDaiwaInformationDesignColors--YDF.term
+
+Term__Contrast--YDID()
+
+  font-style normal
+  color: YamatoDaiwaInformationDesignColors--YDF.term__variation
+
+
+Keyword--YDID()
+
+  font-style: normal
+  color: YamatoDaiwaInformationDesignColors--YDF.keyword
+
+Keyword__Contrast--YDID()
+
+  font-style: normal
+  color: YamatoDaiwaInformationDesignColors--YDF.keyword__variation
 
 
 ImportantEntity--YDID()
 
+  word-break break-all
+
   font-weight bold
-  color: YamatoDaiwaInformationDesignColors.importantEntity
+  font-style normal
+  color: YamatoDaiwaInformationDesignColors--YDF.importantEntity
 
 
 ImportantEntity__Code--YDID()
+
+  word-break break-all
 
   ImportantEntity--YDID()
   font-family Consolas, monaco, Meiryo UI, monospace
@@ -29,40 +57,27 @@ ImportantEntity__Code--YDID()
 
 SecondaryEntity--YDID()
 
+  word-break break-all
+
   font-weight bold
-  color: YamatoDaiwaInformationDesignColors.secondaryEntity
+  font-style normal
+  color: YamatoDaiwaInformationDesignColors--YDF.secondaryEntity
 
 
 SecondaryEntity__Code--YDID()
+
+  word-break break-all
 
   SecondaryEntity--YDID()
   font-family Consolas, monaco, Meiryo UI, monospace
 
 
-Term--YDID()
-
-  color: YamatoDaiwaInformationDesignColors.term
-
-
-Term__Contrast--YDID()
-
-  color: YamatoDaiwaInformationDesignColors.term__variation
-
-
-Keyword--YDID()
-
-  color: YamatoDaiwaInformationDesignColors.keyword
-
-
-Keyword__Contrast--YDID()
-
-  color: YamatoDaiwaInformationDesignColors.keyword__variation
-
-
 Keyphrase--YDID()
 
   padding-bottom 1px
-  box-shadow: inset -3px -6px 0 -4px YamatoDaiwaInformationDesignColors.importantEntity
+
+  font-weight normal
+  box-shadow: inset -3px -6px 0 -4px YamatoDaiwaInformationDesignColors--YDF.importantEntity
 
 
 provideYamatoDaiwaInformationDesignClasses()

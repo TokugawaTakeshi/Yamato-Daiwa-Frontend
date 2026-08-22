@@ -1,5 +1,11 @@
+/LogicDistributable/
+/Markup/InlineECMAScript/Temporary/
 /Tests/Build/
+/Workbenches/Build/
 
 /node_modules/
 
 **/.DS_Store
+
+# Temporary
+/.yda/

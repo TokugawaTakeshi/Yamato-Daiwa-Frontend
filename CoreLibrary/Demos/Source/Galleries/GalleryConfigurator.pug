@@ -1,0 +1,101 @@
+-
+
+  /** @description Intended to be single per entry point. */
+  class GalleryConfigurator {
+
+    /* ━━━ Partials ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @type { { [ key: partialKey ]: string; } }
+     * @description Intended to be set via `setPartials`, or files generating will not work.
+     * */
+    static Partials = {};
+
+    /**
+     * @public
+     * @param { { [ key: partialKey ]: string; } } partials
+     * @returns { typeof GalleryConfigurator }
+     * */
+    static setPartials(partials) {
+      GalleryConfigurator.Partials = partials;
+      return GalleryConfigurator;
+    }
+
+    /**
+     * @public
+     * @returns { { [ key: partialKey ]: boolean; } }
+     * */
+    static get partialsRenderingFlags() {
+      return Object.values(GalleryConfigurator.Partials).reduce(
+        (objectWorkpiece, partialValue) => {
+          objectWorkpiece[partialValue] = true;
+          return objectWorkpiece;
+        },
+        {}
+      );
+    }
+
+
+    /**
+     * @public
+     * @param { string } targetPartialValue
+     * @returns { typeof GalleryConfigurator }
+     * */
+    static setPartialToRender(targetPartialValue) {
+
+      for (const [ partialKey, partialValue ] of Object.entries(GalleryConfigurator.Partials)) {
+        GalleryConfigurator.partialsRenderingFlags[partialValue] =
+            GalleryConfigurator.Partials[partialKey] === targetPartialValue;
+      }
+
+      return GalleryConfigurator;
+
+    }
+
+    static get mustRenderGeometricModifiersSection() {
+      return !!Object.entries(GalleryConfigurator.partialsRenderingFlags).
+          filter(([ partialKey ]) => partialKey.includes("GEOMETRIC_MODIFIER")).
+          find(([, mustRender ]) => mustRender)
+    }
+
+    static get mustRenderDecorativeModifiersSection() {
+      return !!Object.entries(GalleryConfigurator.partialsRenderingFlags).
+          filter(([ partialKey ]) => partialKey.includes("DECORATIVE_MODIFIER")).
+          find(([, mustRender]) => mustRender)
+    }
+
+
+    /* ━━━ Headings ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @type { boolean }
+     * */
+    static mustVisuallyHideTopHeading = false;
+
+    /**
+     * @public
+     * @type { boolean }
+     * */
+    static mustVisuallyHideAllHeadings = false;
+
+    /**
+     * @public
+     * @param { boolean } condition
+     * @returns { typeof GalleryConfigurator }
+     * */
+    static visuallyHideTopHeadingIf(condition) {
+      GalleryConfigurator.mustVisuallyHideTopHeading = condition;
+      return GalleryConfigurator;
+    }
+
+    /**
+     * @public
+     * @returns { typeof GalleryConfigurator }
+     * */
+    static visuallyHideAllHeadings() {
+      GalleryConfigurator.mustVisuallyHideAllHeadings = true;
+      GalleryConfigurator.mustVisuallyHideTopHeading = true;
+      return GalleryConfigurator;
+    }
+
+  }

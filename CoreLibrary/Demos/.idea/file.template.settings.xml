@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExportableFileTemplateSettings">
+    <default_templates>
+      <template name="Component Gallery.pug" file-name="${COMPONENT_NAME}Gallery" reformat="false" live-template-enabled="false">
+        <template name="Component Gallery.pug.child.0.styl" file-name="${COMPONENT_NAME}Gallery" reformat="false" live-template-enabled="false" />
+      </template>
+      <template name="Component Gallery Page.pug" file-name="_${COMPONENT_NAME}GalleryPage.template" reformat="false" live-template-enabled="false">
+        <template name="Component Gallery Page.pug.child.2.pug" file-name="_${COMPONENT_NAME}GalleryPage.partials" reformat="false" live-template-enabled="false" />
+        <template name="Component Gallery Page.pug.child.0.pug" file-name="${COMPONENT_NAME}GalleryPage" reformat="false" live-template-enabled="false" />
+        <template name="Component Gallery Page.pug.child.1.styl" file-name="${COMPONENT_NAME}GalleryPage" reformat="false" live-template-enabled="false" />
+      </template>
+      <template name="Component Gallery Page.pug.child.0.pug" file-name="${COMPONENT_NAME}GalleryPage" reformat="false" live-template-enabled="false" />
+      <template name="Component Gallery Page.pug.child.1.styl" file-name="${COMPONENT_NAME}GalleryPage" reformat="false" live-template-enabled="false" />
+      <template name="Component Gallery Page.pug.child.2.pug" file-name="_${COMPONENT_NAME}GalleryPage.partials" reformat="false" live-template-enabled="false" />
+      <template name="Component Gallery.pug.child.0.styl" file-name="${COMPONENT_NAME}Gallery" reformat="false" live-template-enabled="false" />
+    </default_templates>
+  </component>
+</project>

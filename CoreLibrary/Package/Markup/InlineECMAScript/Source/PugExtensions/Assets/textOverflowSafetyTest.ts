@@ -1,0 +1,4 @@
+export const textOverflowSafetyTest: string =
+    "OverflowTest:ÀÇĤfhjgpjklbĜiEstosTreMalfacileEnvolverLaVicoAbcdefghijklmnopqrstuvwxyza" +
+    "bcdefgghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghi" +
+    "jklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx";

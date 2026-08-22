@@ -1,0 +1,246 @@
+@page "/AdmonitionBlock"
+
+
+@using YamatoDaiwa.Frontend.GUI_Components.AdmonitionBlock;
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.Buttons.Plain;
+@using Demos.GUI_Components.ThemesShowcase;
+
+
+<div class="YDF_Gallery">
+  
+  <h1 class="Heading1">AdmonitionBlock Component Demos</h1>
+
+  @* ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Minimal</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(AdmonitionBlock.StandardThemes)
+    themeKeyLabelPrefix=@AdmonitionBlockDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(AdmonitionBlock.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@AdmonitionBlockDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(AdmonitionBlock.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@AdmonitionBlockDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsWrapperAdditionalCSS_Classes=@([ "BadgeGallery-TwoColumnsTable" ])
+  >
+    <ComponentSlot>
+      <AdmonitionBlock
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        lang="la"
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+        magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </AdmonitionBlock>  
+    </ComponentSlot>
+  </ThemesShowcase>
+
+
+  @* ━━━ Titles ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Titles</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(AdmonitionBlock.StandardThemes)
+    themeKeyLabelPrefix=@AdmonitionBlockDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(AdmonitionBlock.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@AdmonitionBlockDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(AdmonitionBlock.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@AdmonitionBlockDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <AdmonitionBlock
+        title="Titulo"
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        lang="la"
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+        magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </AdmonitionBlock>  
+    </ComponentSlot>
+  </ThemesShowcase>
+
+
+  @* ━━━ Default SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Default SVG Icons</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(AdmonitionBlock.StandardThemes)
+    themeKeyLabelPrefix=@AdmonitionBlockDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(AdmonitionBlock.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@AdmonitionBlockDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(AdmonitionBlock.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@AdmonitionBlockDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <AdmonitionBlock
+        hasDefaultSVG_Icon=@true
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        lang="la"
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+        magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </AdmonitionBlock>  
+    </ComponentSlot>
+  </ThemesShowcase>
+
+
+  @* ━━━ Custom SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Custom SVG Icons</h2>
+   
+  <AdmonitionBlock
+    decorativeVariation=@AdmonitionBlock.StandardDecorativeVariations.warning
+    lang="la"
+    rootElementModifierCSS_Class="AdmonitionBlockGallery-LoneAdmonitionBlock"
+  >
+    
+    <ChildContent>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  
+    </ChildContent>
+
+    <CustomSVG_Icon>
+      <ExclamationMark__Squared__MaterialDesignIcon rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon" />
+    </CustomSVG_Icon>
+    
+  </AdmonitionBlock>  
+  
+  
+  @* ━━━ Titles and SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Default SVG Icons</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(AdmonitionBlock.StandardThemes)
+    themeKeyLabelPrefix=@AdmonitionBlockDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(AdmonitionBlock.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@AdmonitionBlockDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(AdmonitionBlock.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@AdmonitionBlockDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <AdmonitionBlock
+        title="Titulo"
+        hasDefaultSVG_Icon=@true
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        lang="la"
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+        magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </AdmonitionBlock>  
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Dismissing Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Dismissing Button</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(AdmonitionBlock.StandardThemes)
+    themeKeyLabelPrefix=@AdmonitionBlockDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(AdmonitionBlock.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@AdmonitionBlockDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(AdmonitionBlock.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@AdmonitionBlockDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <AdmonitionBlock
+        title="Titulo"
+        hasDefaultSVG_Icon=@true
+        dismissible=@true
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        lang="la"
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+        magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </AdmonitionBlock>  
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Centered Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Centered Button</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(AdmonitionBlock.StandardThemes)
+    themeKeyLabelPrefix=@AdmonitionBlockDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(AdmonitionBlock.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@AdmonitionBlockDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(AdmonitionBlock.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@AdmonitionBlockDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <AdmonitionBlock
+        title="Titulo"
+        hasDefaultSVG_Icon=@true
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        lang="la"
+      >
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  
+        </p>
+        
+         <Button
+          label="Alklaku min"
+          rootElementModifierCSS_Class="AdmonitionBlock--YDF-CenteredButton"
+        />
+        
+      </AdmonitionBlock>  
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Action Bar ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Action Bar</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(AdmonitionBlock.StandardThemes)
+    themeKeyLabelPrefix=@AdmonitionBlockDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(AdmonitionBlock.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@AdmonitionBlockDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(AdmonitionBlock.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@AdmonitionBlockDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+  >
+    <ComponentSlot>
+      <AdmonitionBlock
+        title="Titulo"
+        hasDefaultSVG_Icon=@true
+        theme=@context.themeValue
+        geometricVariation=@context.geometricVariationValue
+        decorativeVariation=@context.decorativeVariationValue
+        lang="la"
+      >
+
+        <ChildContent>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </ChildContent>
+
+        <ActionBarContent>
+           <Button label="Ago 1"/>
+           <Button label="Ago 2"/>
+        </ActionBarContent>
+        
+      </AdmonitionBlock>  
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+</div>

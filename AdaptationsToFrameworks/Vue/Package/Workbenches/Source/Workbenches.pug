@@ -1,0 +1,115 @@
+extends ../../node_modules/@yamato-daiwa/frontend/PagesTemplates/StaticPreviewAnywherePageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    StaticPreviewAnywherePage__YDF.configure({
+
+      metadata: {
+        title: "YDF Vue — Workbenches"
+      },
+
+      topHeading: "YDF Vue — Workbenches",
+
+      tableOfContents: [
+
+        {
+          title: "Decorators",
+          URI: "@Workbenches/Decorators/Decorators.workbench",
+          progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+        },
+
+        {
+
+          heading: "GUI Components",
+
+          pages: [
+
+            {
+              title: "AdmonitionBlock",
+              URI: "@Workbenches/GUI_Components/AdmonitionBlock/AdmonitionBlock.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            },
+
+            {
+              title: "Badge",
+              URI: "@Workbenches/GUI_Components/Badge/Badge.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            },
+
+            {
+              title: "OverflowSafeSingleLineLabel",
+              URI: "@Workbenches/GUI_Components/OverflowSafeSingleLineLabel/OverflowSafeSingleLineLabel.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+            }
+
+          ],
+
+          sections: [
+
+            {
+
+              heading: "Controls",
+
+              pages: [
+
+                {
+                  title: "ValidatableControlShell",
+                  URI: "@Workbenches/GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell.workbench",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                }
+
+              ],
+
+              sections: [
+
+                {
+
+                  heading: "Validatables",
+
+                  pages: [
+
+                    {
+                      title: "TextBox",
+                      URI: "@Workbenches/GUI_Components/Controls/Validatable/TextBox/TextBox.workbench",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    }
+
+                  ]
+
+                },
+
+                {
+
+                  heading: "Buttons",
+
+                  pages: [
+
+                    {
+                      title: "Plain Button",
+                      URI: "@Workbenches/GUI_Components/Controls/Buttons/Plain/Button.workbench",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+                    },
+
+                    {
+                      title: "Hamburger Menu Button",
+                      URI: "@Workbenches/GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton.workbench",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    }
+
+                  ]
+
+                }
+
+              ]
+
+            }
+
+          ]
+
+        }
+
+      ]
+    });

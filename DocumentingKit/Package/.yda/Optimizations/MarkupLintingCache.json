@@ -1,0 +1,70 @@
+{
+  "Components.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-04-20T07:09:10.983Z"
+  },
+  "Tests/Tests.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-01-06T02:46:23.484Z"
+  },
+  "Components/CompactTableOfContents/CompactTableOfContents.class.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-05-05T02:02:50.303Z"
+  },
+  "Components/CompactTableOfContents/CompactTableOfContents.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-05-05T02:02:50.561Z"
+  },
+  "Components/ProgrammaticEntityHeading/ProgrammaticEntityHeading.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2022-07-18T06:43:10.147Z"
+  },
+  "Components/ParameterMetadata/ParameterMetadata.class.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-04-24T02:40:49.265Z"
+  },
+  "Components/ParameterMetadata/ParameterMetadata.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-05-30T06:58:23.665Z"
+  },
+  "Components/ParameterMetadata/ParameterMetadataLocalization.english.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-05-30T06:47:01.070Z"
+  },
+  "Components/Infographics/CallableExpressionScheme/CallableExpressionScheme.class.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-04-24T02:26:53.236Z"
+  },
+  "Components/Infographics/CallableExpressionScheme/CallableExpressionScheme.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-06-08T03:58:09.127Z"
+  },
+  "Components/Infographics/CallableExpressionScheme/CallableExpressionSchemeLocalization.english.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-05-07T01:57:48.243Z"
+  },
+  "Components/Infographics/ObjectTypeAbstract/ObjectTypeAbstract.pug": {
+    "issues": [
+      {
+        "code": "PUG:SYNTAX_ERROR",
+        "message": "Syntax Error: Unexpected token",
+        "sourceListing": "mixin ObjectTypeAbstract--YDF_DK(propertiesObject)\n\n  -\n\n    const {\n      typeName,\n      localizedDescriptiveHeading,\n      propertiesSpecification\n    } = propertiesObject;\n\n\n  .ObjectTypeAbstract--YDF_DK&attributes(attributes)\n\n    .ObjectTypeAbstract--YDF_DK-TypeNameHeading= typeName\n\n    if localizedDescriptiveHeading\n\n      .ObjectTypeAbstract--YDF_DK-LocalizedDescriptiveHeading= localizedDescriptiveHeading\n\n\n    if Array.isArray(propertiesSpecification.$intersection)\n\n      .ObjectTypeAbstract--YDF_DK-Bracket {\n\n      each intersectionCompound, intersectionCompoundIndex in propertiesSpecification.$intersection\n\n        if Array.isArray(intersectionCompound)\n\n          - const internalUnion = intersectionCompound;\n\n          div.ObjectTypeAbstract--YDF_DK-Bracket (\n\n          .ObjectTypeAbstract--YDF_DK-Bracket.ObjectTypeAbstract--YDF_DK-Bracket__NewLineAndIncreasedIndentation {\n\n          each internalUnionCompound, internalUnionCompoundIndex in internalUnion\n\n            +ObjectTypeAbstract-PropertiesSpecification--YDF_DK(internalUnionCompound)\n\n            if internalUnionCompoundIndex < internalUnion.length - 1\n\n              .ObjectTypeAbstract--YDF_DK-Bracket.ObjectTypeAbstract--YDF_DK-Bracket__NewLineAndIncreasedIndentation } ИЛИ {\n\n            else\n\n              .ObjectTypeAbstract--YDF_DK-Bracket.ObjectTypeAbstract--YDF_DK-Bracket__NewLineAndIncreasedIndentation }\n\n              if intersectionCompoundIndex < propertiesSpecification.$intersection.length - 1\n\n                .ObjectTypeAbstract--YDF_DK-Bracket ) И\n\n              else\n\n                .ObjectTypeAbstract--YDF_DK-Bracket )\n\n        else\n\n          +ObjectTypeAbstract-PropertiesSpecification--YDF_DK(intersectionCompound)\n\n          if intersectionCompoundIndex < propertiesSpecification.$intersection.length - 1\n\n            .ObjectTypeAbstract--YDF_DK-Bracket } И\n\n          else\n\n            | }\n\n        //-\n          if index < propertiesSpecification.$intersection.length - 1\n            .ObjectTypeAbstract--YDF_DK-Bracket } 又は {\n\n\n    else if Array.isArray(propertiesSpecification.$union)\n\n      div $union\n\n    else\n\n      .ObjectTypeAbstract--YDF_DK-Bracket {\n\n      +ObjectTypeAbstract-PropertiesSpecification--YDF_DK(propertiesSpecification)\n\n      .ObjectTypeAbstract--YDF_DK-Bracket }\n\n\nmixin ObjectTypeAbstract-PropertiesSpecification--YDF_DK(propertiesSpecification)\n\n  dl.ObjectTypeAbstract--YDF_DK-PropertiesList()\n\n    each propertySpecification, propertyKey in propertiesSpecification\n\n      dt.ObjectTypeAbstract--YDF_DK-PropertiesList-Key= propertyKey\n      dd.ObjectTypeAbstract--YDF_DK-PropertiesList-Value\n        +ObjectTypeAbstract-PropertySpecification--YDF_DK({\n          ...propertySpecification,\n          ...{ key: propertyKey }\n        })\n\n\nmixin ObjectTypeAbstract-PropertySpecification--YDF_DK(propertySpecification)\n\n  dl.ObjectTypeAbstract-PropertySpecification--YDF_DK\n\n    if propertySpecification.localizedInterpretation\n\n      dt.ObjectTypeAbstract-PropertySpecification--YDF_DK-Key Русскоязычное наименование\n      dd.ObjectTypeAbstract-PropertySpecification--YDF_DK-Value= propertySpecification.localizedInterpretation\n\n      dt.ObjectTypeAbstract-PropertySpecification--YDF_DK-Key Тип\n      dd.ObjectTypeAbstract-PropertySpecification--YDF_DK-Value(\n        class=\"ObjectTypeAbstract-PropertySpecification--YDF_DK-Value__Accented\"\n      )= propertySpecification.type\n\n      if propertySpecification.required === true\n\n        dt.ObjectTypeAbstract-PropertySpecification--YDF_DK-Key Обязательный\n        dd.ObjectTypeAbstract-PropertySpecification--YDF_DK-Value Да\n\n      else if propertySpecification.required === false\n\n        dt.ObjectTypeAbstract-PropertySpecification--YDF_DK-Key Обязательный\n        dd.ObjectTypeAbstract-PropertySpecification--YDF_DK-Value Нет\n\n      else if isNotUndefined(propertySpecification.defaultValue)\n\n        dt.ObjectTypeAbstract-PropertySpecification--YDF_DK-Key Значение по умолчанию\n        dd.ObjectTypeAbstract-PropertySpecification--YDF_DK-Value= propertySpecification.defaultValue\n",
+        "lineNumber": 94,
+        "columnNumber": 11
+      }
+    ],
+    "modificationDatetime__ISO_8601": "2023-06-08T03:55:39.128Z"
+  },
+  "Components/Controls/LanguageDropDownList/LanguageDropDownList.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-05-19T05:04:27.431Z"
+  },
+  "Tests/Infographics/CallableExpressionScheme/CallableExpressionScheme.test.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-06-08T03:36:54.269Z"
+  },
+  "Components/Controls/LanguageDropDownList/LanguageDropDownListLocalization.english.pug": {
+    "issues": [],
+    "modificationDatetime__ISO_8601": "2023-05-14T05:32:56.269Z"
+  }
+}

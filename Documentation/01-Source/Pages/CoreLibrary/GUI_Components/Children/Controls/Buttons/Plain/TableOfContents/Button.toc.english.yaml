@@ -1,0 +1,39 @@
+overview:
+
+  $heading: "Overview"
+
+usage:
+
+  $heading: "Usage"
+
+  markup:
+
+    $heading: "Markup"
+
+    includingToProject:
+
+      $heading: "Including to Project"
+
+    pugMixin:
+
+      $heading: "Pug Mixin <code>Button--YDF</code>"
+
+      minimalExample:
+
+        $heading: "Minimal Example"
+
+      overflowControl:
+
+        $heading: "Overflow Control"
+
+      SVG_Icons:
+
+        $heading: "SVG Icons"
+
+        customIcons:
+
+          $heading: "Custom Icons"
+
+  logic:
+
+    $heading: "Logic"

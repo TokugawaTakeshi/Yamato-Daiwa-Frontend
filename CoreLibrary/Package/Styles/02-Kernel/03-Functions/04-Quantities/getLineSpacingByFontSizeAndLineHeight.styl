@@ -1,0 +1,71 @@
+getLineSpacingByFontSizeAndLineHeight--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "getLineSpacingByFontSizeAndLineHeight--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      fontSize: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: true
+      },
+      lineHeight: {
+        type: DataTypes--YDF.dimensionalQuantity DataTypes--YDF.dimensionlessQuantity,
+        required: true
+      },
+      mustOutputDimensionalQuantityIfPossible: {
+        type: DataTypes--YDF.boolean,
+        required: true
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  fontSize = compoundParameter.fontSize
+  lineHeight = compoundParameter.lineHeight
+  mustOutputDimensionalQuantityIfPossible = compoundParameter.mustOutputDimensionalQuantityIfPossible
+
+  isSpecifiedLineHeightTheDimensionalAmount = isDimensionalQuantity--YDF(
+    lineHeight, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY"
+  )
+
+
+  if isSpecifiedLineHeightTheDimensionalAmount
+
+    // [ Approach ] According the above condition, `0` is being considered as dimensional amount for this case
+
+    if lineHeight == 0
+
+      if mustOutputDimensionalQuantityIfPossible
+
+        appendUnit--YDF(0, unit(fontSize))
+
+      else
+
+        return 0
+
+
+    else if unit(lineHeight) == unit(fontSize)
+
+      if mustOutputDimensionalQuantityIfPossible
+
+        return lineHeight - fontSize
+
+      else
+
+        return removeUnitFromAmount--YDF((lineHeight - fontSize)/fontSize)
+
+    else
+
+      return buildCalcExpression--YDF(
+        "${ lineHeight } - ${ fontSize }",
+        { lineHeight: lineHeight, fontSize: fontSize }
+      )
+
+  else if mustOutputDimensionalQuantityIfPossible
+
+    return fontSize*lineHeight - fontSize
+
+  else
+
+    return lineHeight - 1

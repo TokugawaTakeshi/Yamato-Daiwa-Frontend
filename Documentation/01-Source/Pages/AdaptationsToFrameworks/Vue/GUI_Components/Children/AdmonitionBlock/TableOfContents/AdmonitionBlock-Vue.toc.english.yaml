@@ -1,0 +1,35 @@
+overview:
+
+  $heading: "Overview"
+
+AdmonitionBlockClass:
+
+  $heading: "<code>AdmonitionBlockClass</code> Class"
+
+  vueProperties:
+
+    $heading: "Vue Properties"
+
+  examples:
+
+    $heading: "Examples"
+
+    minimal:
+
+      $heading: "Minimal Example (Required Properties Only)"
+
+    title:
+
+      $heading: "Title"
+
+    SVG_Icons:
+
+      $heading: "SVG Icons"
+
+    buttons:
+
+      $heading: "Buttons"
+
+    dismissing:
+
+      $heading: "Dismissing"

@@ -1,0 +1,21 @@
+@using YamatoDaiwa.CSharpExtensions
+
+
+<span 
+  class=@classAttributeValueForRootElement
+  @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary
+>
+
+  @if (PrependedSVG_Icon is not null)
+  {
+    @PrependedSVG_Icon
+  }
+
+  @if (!String.IsNullOrEmpty(keyLabel))
+  {
+    <span class="Badge--YDF-KeyLabel">@keyLabel</span>
+  }
+
+  <span class="Badge--YDF-ValueLabel">@valueLabel</span>
+
+</span>

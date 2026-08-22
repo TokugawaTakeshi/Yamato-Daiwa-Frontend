@@ -1,0 +1,21 @@
+@require "../../../../../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+@require "../../../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
+
+
+filesUploaderDefaultPropertiesOverriding = {};
+
+// <==  [ Testing ] Comment out if need to display standard themes only
+//filesUploaderDefaultPropertiesOverriding = {
+//
+//}
+// ==> =================================================================================================================
+
+FilesUploader--YDF-generateStyles(
+  overridings: filesUploaderDemoDefaultPropertiesOverriding
+)
+
+Button--YDF-generateStyles()
+ValidatableControlShell--YDF-generateStyles()
+
+
+@require "../../../../../Galleries/GUI_Components/Controls/Validatables/FilesUploader/FilesUploaderGallery.styl"

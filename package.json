@@ -1,9 +1,34 @@
 {
   "private": true,
   "scripts": {
-    "Install all dependendies": "lerna bootstrap"
+    "Set Version and Symlinkify Internal Dependencies": "ydmh version",
+    "Desymlinkify Internal Dependencies and Publish": "ydmh publish"
   },
   "devDependencies": {
-    "lerna": "4.0.0"
+    "@yamato-daiwa/monorepo-helper": "0.1.0"
+  },
+  "ydmh": {
+    "packages": [
+      {
+        "relativePath": "AdaptationsToFrameworks/React/Package",
+        "productionBuildingScript": "Rebuild Distributable"
+      },
+      {
+        "relativePath": "AdaptationsToFrameworks/Vue/Package",
+        "productionBuildingScript": "Rebuild Distributable"
+      },
+      {
+        "relativePath": "CoreLibrary/OfficialLocalizations/Japanese",
+        "productionBuildingScript": "Rebuild Distributable"
+      },
+      {
+        "relativePath": "CoreLibrary/OfficialLocalizations/Russian",
+        "productionBuildingScript": "Rebuild Distributable"
+      },
+      {
+        "relativePath": "CoreLibrary/Package",
+        "productionBuildingScript": "Rebuild Distributable"
+      }
+    ]
   }
 }

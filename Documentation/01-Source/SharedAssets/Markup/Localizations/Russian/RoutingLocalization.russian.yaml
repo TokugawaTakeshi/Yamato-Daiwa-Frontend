@@ -1,0 +1,264 @@
+fileNameLocalizationExtensions: "russian"
+
+top:
+
+  $heading: "Главная страница"
+  $URI: "@All/Top/TopPage.russian"
+
+coreLibrary:
+
+  $heading: "Основная библиотека"
+
+  markup:
+
+    $heading: "Pug-разметка"
+
+    functionality:
+
+      $heading: "Функциональность"
+
+      inlineJavaScript:
+
+        $heading: "Внутренний JavaScript"
+
+        YDEE_Integration:
+
+          $heading: "Интеграция с @yamato-daiwa/es-extensions (YDEE)"
+
+        functionsAndClasses:
+
+          $heading: "Функции и классы"
+
+        assets:
+
+          $heading: "Ассеты"
+
+      pugMixins:
+
+        $heading: "Pug-примеси"
+
+        dummies:
+
+          $heading: "<code>WideDummy</code> и <code>HighDummy</code>"
+
+        SVG_Icons:
+
+          $heading: "SVG-иконки"
+
+#        yamatoDaiwaInformationDesign:
+#
+#          $heading: "Информационный дизайн «Ямато Дайва»"
+
+      pagesTemplates:
+
+        $heading: "Шаблоны страниц"
+
+      usageOnServerSide:
+
+        $heading: "Использование на серверной стороне"
+
+  styles:
+
+    $heading: "Стили"
+
+    assets:
+
+      $heading: "Ассеты"
+
+      fundamentalConstantsAndEnums:
+
+        $heading: "Фундаментальные константы и перечисления"
+
+      colors:
+
+        $heading: "Цвета"
+
+        PracticalColorCoordinateSystem:
+
+          $heading: "Палитра PCCS (<code>PracticalColorCoordinateSystem--YDF</code>)"
+
+        TemporarySemitransparentHighlighting:
+
+          $heading: "Временная полупрозрачная подсветка (<code>TemporarySemitransparentHighlighting--YDF</code>)"
+
+        W3C_39_ShadesOfGray:
+
+          $heading: "W3C Палитра 39 оттенков серого (<code>W3C_39_ShadesOfGray--YDF</code>)"
+
+        YDF_ColorPalette:
+
+          $heading: "Палитра YDF (<code>YDF_ColorPalette</code>)"
+
+    kernel:
+
+      $heading: "Фундаментальная функциональность"
+
+      YDF_Configuration:
+
+        $heading: "<code>YDF_Configuration</code> — Конфигурация стилей YDF"
+
+        fontsStacks:
+
+          $heading: "Стэки шрифтов"
+
+        textGeometry:
+
+          $heading: "Переменные размеров"
+
+        zIndexes:
+
+          $heading: "z-индексы"
+
+      specificationsSchemas:
+
+        $heading: "Схемы спецификаций"
+
+      functions:
+
+        $heading: "Функции"
+
+        typeCheckers:
+
+          $heading: "Проверка типов значений"
+
+          strings:
+
+            $heading: "Строковые значения"
+
+          quantities:
+
+            $heading: "Величины"
+
+          booleans:
+
+            $heading : "Булевские значения"
+
+          nullables:
+
+            $heading : "Пустые значения"
+
+          others:
+
+            $heading : "Остальные"
+
+        valueTransformers:
+
+          $heading: "Преобразователи значений"
+
+        strings:
+
+          $heading: "Работа со строками"
+
+        quantities:
+
+          $heading: "Работа с величинами"
+
+        objects:
+
+          $heading: "Работа с объектами"
+
+        arrays:
+
+          $heading: "Работа с массивами"
+
+        YDF_Arrays:
+
+          $heading: "Работа с YDF-массивами"
+
+        parametersValidation:
+
+          $heading: "Валидация параметров"
+
+        other:
+
+          $heading: "Другие функции"
+
+      mixins:
+
+        $heading: "Утилитарные примеси"
+
+        general:
+
+          $heading: "Общего назначения"
+
+        sizing:
+
+          $heading: "Задание размеров"
+
+          width:
+
+            $heading: "Ширина"
+
+        positioning:
+
+          $heading: "Позиционирование"
+
+        positionalRelationship:
+
+          $heading: "Взаимное позиционирование"
+
+        layout:
+
+          $heading: "Компоновка"
+
+        typography:
+
+          $heading: "Типографика"
+
+        other:
+
+          $heading: "Другие"
+
+      stylesInitialization:
+
+        $heading: "Инициализация стилей"
+
+    buildInPlugins:
+
+      $heading: "Плагины в комплекте"
+
+      additionalColorPalettes:
+
+        $heading: "Дополнительные цветовые палитры"
+
+  GUI_Components:
+
+    $heading: "GUI-компоненты"
+
+    controls:
+
+      $heading: "Управляющие"
+
+      buttons:
+
+        $heading: "Кнопки"
+
+      validatables:
+
+        $heading: "Валидируемые"
+
+adaptationsToFrameworks:
+
+  $heading: "Адаптации для JavaScript-фреймворков"
+
+  vue:
+
+    GUI_Components:
+
+      $heading: "GUI-компоненты"
+
+  react:
+
+    GUI_Components:
+
+      $heading: "GUI-компоненты"
+
+  blazor:
+
+    GUI_Components:
+
+      $heading: "GUI-компоненты"
+
+realiseNotes:
+
+  $heading: "Что нового"

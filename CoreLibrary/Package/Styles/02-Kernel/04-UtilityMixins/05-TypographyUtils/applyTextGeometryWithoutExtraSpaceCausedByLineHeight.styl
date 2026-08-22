@@ -1,0 +1,252 @@
+applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+
+      fontSize: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: true
+      },
+
+      lineHeight: {
+        type: DataTypes--YDF.dimensionalQuantity DataTypes--YDF.dimensionlessQuantity,
+        required: false
+      },
+
+      lineSpacing: {
+        type: DataTypes--YDF.dimensionalQuantity DataTypes--YDF.dimensionlessQuantity,
+        requiredIf: {
+          predicate: @(compoundParameter) { return isNull--YDF(compoundParameter.lineHeight) },
+          descriptionForLogging: "The 'lineHeight' is not specified"
+        },
+        incompatibleWith: "lineHeight"
+      },
+
+      mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: true
+      },
+
+      mustApplyDimensionalLineHeightIfPossible: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+
+      mustApplyNegativeMarginsToRootElement: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+
+      paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins: {
+        type: DataTypes--YDF.object,
+        required: false,
+        properties: PaddingsSpecificationSchema--YDF
+      },
+
+      mustComputeAbsoluteExtraSpaceIfPossible: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+
+      mustAllowWordsBreakingAnywhere: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+
+      mustTryToProvideHyphenations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: true
+      },
+
+      mustSkipFontSizeApplying: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      }
+
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  fontSize = compoundParameter.fontSize
+  lineHeight = null
+  extraSpaceCausedByLineHeightAtTopOrBottom = null
+  mustApplyDimensionalLineHeightIfPossible = compoundParameter.mustApplyDimensionalLineHeightIfPossible
+  mustComputeAbsoluteExtraSpaceIfPossible = compoundParameter.mustComputeAbsoluteExtraSpaceIfPossible
+  paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins = compoundParameter.paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins
+
+  if isNull--YDF(compoundParameter.lineHeight)
+
+    lineSpacing = compoundParameter.lineSpacing
+
+    lineHeight = getLineHeightByFontSizeAndLineSpacing--YDF({
+      fontSize: fontSize,
+      lineSpacing: lineSpacing,
+      mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: compoundParameter.mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0,
+      mustOutputDimensionalQuantityIfPossible: mustApplyDimensionalLineHeightIfPossible
+    })
+
+
+    if removeUnitFromAmount--YDF(lineSpacing) == 0
+
+      // === [ Branch A1 ] 0 line spacing
+      extraSpaceCausedByLineHeightAtTopOrBottom = 0
+
+    else if isDimensionlessQuantity--YDF(lineSpacing)
+
+      // === [ Branch A2 ] Dimensionless line spacing
+      extraSpaceCausedByLineHeightAtTopOrBottom = fontSize * lineSpacing / 2
+
+    else if unit(fontSize) == unit(lineSpacing)
+
+      // === [ Branch A3 ] Font size and line spacing of same unit
+      extraSpaceCausedByLineHeightAtTopOrBottom = lineSpacing / 2
+
+    else
+
+      // === [ Branch A4 ] Font size and line spacing of different units
+      extraSpaceCausedByLineHeightAtTopOrBottom = buildCalcExpression--YDF(
+        "${ fontSize } * (${ lineSpacing } / 2)" , { fontSize: fontSize, lineSpacing: lineSpacing }
+      )
+
+  else
+
+    lineHeight = compoundParameter.lineHeight
+
+    if removeUnitFromAmount--YDF(lineHeight) == 0
+
+      // === [ Branch B1 ] 0 line height: basically it could not be but must be processed correctly
+      extraSpaceCausedByLineHeightAtTopOrBottom = 0
+
+    else if isDimensionlessQuantity--YDF(lineHeight)
+
+      // === [ Branch B2 ] Dimensionless line height
+      extraSpaceCausedByLineHeightAtTopOrBottom = ((fontSize * lineHeight) - fontSize) / 2
+
+      if mustApplyDimensionalLineHeightIfPossible
+
+        lineHeight = fontSize * lineHeight
+
+    else if unit(fontSize) == unit(lineHeight)
+
+      // === [ Branch B3 ] Font size and line height of same unit
+      extraSpaceCausedByLineHeightAtTopOrBottom = (lineHeight - fontSize) / 2
+
+      if !mustApplyDimensionalLineHeightIfPossible
+
+        lineHeight = removeUnitFromAmount--YDF(lineHeight / fontSize)
+
+    else
+
+      // === [ Branch B4 ] Font size and line height of different units
+      extraSpaceCausedByLineHeightAtTopOrBottom = buildCalcExpression--YDF(
+        "(${ lineHeight } - ${ fontSize }) / 2" , { fontSize: fontSize, lineHeight: lineHeight }
+      )
+
+
+  if !compoundParameter.mustSkipFontSizeApplying
+
+    font-size fontSize
+
+
+  line-height lineHeight
+
+
+  if extraSpaceCausedByLineHeightAtTopOrBottom != 0
+
+    if isNotNull--YDF(paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins)
+
+      topPadding = getFirstNonNullArrayElement--YDF(
+        arrayConstructor__POLYFILL--YDF(
+          paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.all,
+          paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.verticalSymmetric,
+          paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.top
+        )
+      )
+
+      bottomPadding = getFirstNonNullArrayElement--YDF(
+        arrayConstructor__POLYFILL--YDF(
+          paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.all,
+          paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.verticalSymmetric,
+          paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.bottom
+        )
+      )
+
+      upwardShifting = nullToZero--YDF(paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.upwardShifting)
+
+      topPadding = buildCalcExpression--YDF(
+        "${ topPadding } - ${ upwardShifting } - ${ extraSpaceCausedByLineHeightAtTopOrBottom }",
+        {
+          topPadding: nullToZero--YDF(topPadding),
+          upwardShifting: upwardShifting,
+          extraSpaceCausedByLineHeightAtTopOrBottom: extraSpaceCausedByLineHeightAtTopOrBottom
+        }
+      )
+
+      bottomPadding = buildCalcExpression--YDF(
+        "${ topPadding } + ${ upwardShifting } - ${ extraSpaceCausedByLineHeightAtTopOrBottom }",
+        {
+          topPadding: nullToZero--YDF(bottomPadding),
+          upwardShifting: upwardShifting,
+          extraSpaceCausedByLineHeightAtTopOrBottom: extraSpaceCausedByLineHeightAtTopOrBottom
+        }
+      )
+
+      padding-top: topPadding
+      padding-bottom: bottomPadding
+
+
+    else if compoundParameter.mustApplyNegativeMarginsToRootElement
+
+      if isDimensionalOrDimensionlessQuantity--YDF(extraSpaceCausedByLineHeightAtTopOrBottom)
+
+        margin-top: -(extraSpaceCausedByLineHeightAtTopOrBottom)
+        margin-bottom: -(extraSpaceCausedByLineHeightAtTopOrBottom)
+
+      else
+
+        margin-top: "calc(-1*%s)" % extraSpaceCausedByLineHeightAtTopOrBottom
+        margin-bottom: "calc(-1*%s)" % extraSpaceCausedByLineHeightAtTopOrBottom
+
+    else
+
+      &:before,
+      &:after
+
+        content ''
+        display block
+
+
+      &:before
+
+        if isDimensionalOrDimensionlessQuantity--YDF(extraSpaceCausedByLineHeightAtTopOrBottom)
+
+          margin-top: -(extraSpaceCausedByLineHeightAtTopOrBottom)
+
+        else
+
+          margin-top: "calc(-1*%s)" % extraSpaceCausedByLineHeightAtTopOrBottom
+
+
+      &:after
+
+        if isDimensionalOrDimensionlessQuantity--YDF(extraSpaceCausedByLineHeightAtTopOrBottom)
+
+          margin-bottom: -(extraSpaceCausedByLineHeightAtTopOrBottom)
+
+        else
+
+          margin-bottom: "calc(-1*%s)" % extraSpaceCausedByLineHeightAtTopOrBottom
+
+
+  if compoundParameter.mustAllowWordsBreakingAnywhere
+
+    word-break break-all
+
+
+  if compoundParameter.mustTryToProvideHyphenations
+
+    hyphens auto

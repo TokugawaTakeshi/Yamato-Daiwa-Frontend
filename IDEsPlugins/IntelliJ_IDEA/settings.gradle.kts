@@ -1,1 +1,1 @@
-rootProject.name = "temp"
+rootProject.name = "YDF - IntelliJ IDEA Plugin"

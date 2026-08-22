@@ -1,4 +1,4 @@
-# fillViewportWidthIgnoringParentPaddings: filling the viewport width ignoring parent's paddings
+# fillViewportWidthIgnoringParentPaddings--YDF: filling the viewport width ignoring parent's paddings
 
 [![Official IntelliJ IDEA plugin live template](https://img.shields.io/badge/IntelliJ_IDEA_Live_Template-fillViewportWidthIgnoringParentPaddings-blue.svg?style=flat)](https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend)
 
@@ -19,7 +19,7 @@ The tabs on narrow screens taking full viewport width is preferred by many desig
 
   &-Tabs
 
-    fillViewportWidthIgnoringParentPaddings()
+    fillViewportWidthIgnoringParentPaddings--YDF()
 ```
 
 ## Limitation

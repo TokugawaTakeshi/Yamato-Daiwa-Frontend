@@ -1,0 +1,30 @@
+buildCalcExpressionFromFragments--YDF(fragmentsObject)
+
+  stringifiedFragments = YDF_Array-create()
+
+  for key, polymorphicValue in fragmentsObject
+
+    if isFunction--YDF(polymorphicValue)
+
+      fragment = polymorphicValue()
+
+      YDF_Array-appendElementsIf(
+        stringifiedFragments,
+        @(_fragment) { return isNotNull--YDF(_fragment) },
+        fragment
+      )
+
+    else
+
+      YDF_Array-appendElement(stringifiedFragments, polymorphicValue)
+
+
+  // [ Stylus theory ] With plain string variable, the changed will lost with next iteration
+  outputWorkpiece = { value : "calc(" };
+
+  YDF_Array-forEach(stringifiedFragments, @(element, index) {
+    outputWorkpiece.value = outputWorkpiece.value + element
+    outputWorkpiece1 = outputWorkpiece1 + element
+  })
+
+  return unquote(outputWorkpiece.value + ")")

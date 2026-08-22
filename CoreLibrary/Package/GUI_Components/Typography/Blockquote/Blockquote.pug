@@ -1,0 +1,77 @@
+include Blockquote.class.pug
+
+
+mixin Blockquote--YDF(properties)
+
+  -
+
+    const {
+
+      authorPhotoURI,
+      authorPhotoAlternatingText,
+      publicationPhotoURI,
+      publicationPhotoAlternatingText,
+
+      theme,
+      areThemesCSS_ClassesCommon,
+      geometricVariation,
+      decorativeVariation
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: Blockquote__YDF.propertiesSpecification,
+      mixinName: Blockquote__YDF.CSS_NAMESPACE
+    })
+
+    const rootElementModifierCSS_Classes = [
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: Blockquote__YDF.Themes,
+        CSS_Namespace: Blockquote__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: Blockquote__YDF.GeometricVariations,
+        CSS_Namespace: Blockquote__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: Blockquote__YDF.DecorativeVariations,
+        CSS_Namespace: Blockquote__YDF.CSS_NAMESPACE
+      })
+
+    ];
+
+
+  blockquote.Blockquote--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
+
+    //- [ Why one more container required? ] Because of container query usage
+    .Blockquote--YDF-GridFlow
+
+      +QuoteMark__Downward__Filled--YDF_Icon.Blockquote--YDF-SVG_Icon
+
+      if authorPhotoURI
+
+        .Blockquote--YDF-Image.Blockquote--YDF-Image__Author(
+          style=`background-image: url(${ authorPhotoURI });`
+          role="img"
+          aria-label=authorPhotoAlternatingText
+        )
+
+      if publicationPhotoURI
+
+        .Blockquote--YDF-Image.Blockquote--YDF-Image__Publication(
+          style=`background-image: url(${ publicationPhotoURI });`
+          role="img"
+          aria-label=publicationPhotoAlternatingText
+        )
+
+      .Blockquote--YDF-Text
+
+        block

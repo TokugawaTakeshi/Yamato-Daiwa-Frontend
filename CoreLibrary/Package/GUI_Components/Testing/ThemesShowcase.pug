@@ -1,0 +1,110 @@
+-
+
+  const ThemesShowcase__YDF = {
+
+    initializeCurrentIterationData() {
+      return {
+        theme: { key: null, value: null },
+        geometricVariation: { key: null, value: null },
+        decorativeVariation: { key: null, value: null }
+      };
+    },
+
+
+    defaultThemeKeyLabelPrefix: "",
+
+    setDefaultThemeKeyLabelPrefix(themeKeyLabelPrefix) {
+      this.defaultThemeKeyLabelPrefix = themeKeyLabelPrefix;
+      return this;
+    },
+
+
+    defaultGeometricVariationLabelPrefix: "",
+
+    setDefaultGeometricVariationLabelPrefix(geometricVariationLabelPrefix) {
+      this.defaultGeometricVariationLabelPrefix = geometricVariationLabelPrefix;
+      return this;
+    },
+
+
+    defaultDecorativeVariationLabelPrefix: "",
+
+    setDefaultDecorativeVariationLabelPrefix(decorativeVariationLabelPrefix) {
+      this.defaultDecorativeVariationLabelPrefix = decorativeVariationLabelPrefix;
+      return this;
+    }
+
+  };
+
+
+mixin ThemesShowcase--YDF(properties)
+
+  -
+
+    const {
+      themes,
+      themeKeyLabelPrefix = ThemesShowcase__YDF.defaultThemeKeyLabelPrefix,
+      geometricVariations,
+      geometricVariationLabelPrefix = ThemesShowcase__YDF.defaultGeometricVariationLabelPrefix,
+      decorativeVariations,
+      decorativeVariationLabelPrefix = ThemesShowcase__YDF.defaultDecorativeVariationLabelPrefix,
+      skipDecorativeVariationIf = () => false,
+      iterationData,
+      decorativeVariationsWrapperTag = "dl",
+      decorativeVariationsWrapperAdditionalCSS_Classes,
+      decorativeVariationsListItemAdditionalCSS_Classes
+    } = properties;
+
+
+  dl.ThemesShowcase--YDF&attributes(attributes)
+
+    each themeValue, themeKey in themes
+
+      -
+        iterationData.theme = {
+          key: themeKey,
+          value: themeValue
+        };
+
+      dt.ThemesShowcase--YDF-KeyLabel= `${ themeKeyLabelPrefix }${ themeKey }`
+      dd.ThemesShowcase--YDF-ValueSection
+
+        dl.ThemesShowcase--YDF-ChildList
+
+          each geometricVariationValue, geometricVariationKey in geometricVariations
+
+            -
+              iterationData.geometricVariation = {
+                key: geometricVariationKey,
+                value: geometricVariationValue
+              };
+
+            dt.ThemesShowcase--YDF-KeyLabel= `${ geometricVariationLabelPrefix }${ geometricVariationKey }`
+            dd.ThemesShowcase--YDF-ValueSection
+
+              #{ decorativeVariationsWrapperTag }.ThemesShowcase--YDF-ChildList(
+                class=decorativeVariationsWrapperAdditionalCSS_Classes
+              )
+
+                each decorativeVariationValue, decorativeVariationKey in decorativeVariations
+
+                  -
+                    iterationData.decorativeVariation = {
+                      key: decorativeVariationKey,
+                      value: decorativeVariationValue
+                    };
+
+                  if !skipDecorativeVariationIf(iterationData)
+
+                    if decorativeVariationsWrapperTag === "dl"
+
+                      dt.ThemesShowcase--YDF-KeyLabel= `${ decorativeVariationLabelPrefix }${ decorativeVariationKey }`
+                      dd.ThemesShowcase--YDF-ValueSection(
+                        class=decorativeVariationsListItemAdditionalCSS_Classes
+                      )
+
+                        block
+
+                    else
+
+                      block

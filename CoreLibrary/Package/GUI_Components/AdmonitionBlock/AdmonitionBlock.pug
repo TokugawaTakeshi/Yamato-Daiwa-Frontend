@@ -1,0 +1,145 @@
+include AdmonitionBlock.class.pug
+
+
+mixin AdmonitionBlock--YDF(properties)
+
+  -
+
+    const {
+
+      /** @type { string | undefined } */
+      title,
+
+      /** @type {
+       *    {
+       *      innerElementID: string;
+       *      SVG_ElementAttributes: { [attibuteName: string]: string };
+       *    } |
+       *    undefined
+       *  }
+       * */
+      SVG_Icon,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      dismissible,
+
+      /**
+       * @type { string }
+       * @default AdmonitionBlock__YDF.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default AdmonitionBlock__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default AdmonitionBlock__YDF.GeometricVariations.regular
+       */
+      geometricVariation,
+
+      /** @type { string } */
+      decorativeVariation
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: AdmonitionBlock__YDF.propertiesSpecification,
+      mixinName: AdmonitionBlock__YDF.CSS_NAMESPACE
+    });
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes = [
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: AdmonitionBlock__YDF.Themes,
+        CSS_Namespace: AdmonitionBlock__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: AdmonitionBlock__YDF.GeometricVariations,
+        CSS_Namespace: AdmonitionBlock__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation: decorativeVariation,
+        allDecorativeVariations: AdmonitionBlock__YDF.DecorativeVariations,
+        CSS_Namespace: AdmonitionBlock__YDF.CSS_NAMESPACE
+      })
+
+    ];
+
+    /** @type { string | undefined } */
+    let INSTANCE_ID;
+
+    /** @type { string | undefined } */
+    let TITLE_HTML_ID;
+
+    if (title) {
+      INSTANCE_ID = AdmonitionBlock__YDF.generateInstanceID();
+      TITLE_HTML_ID = `${ INSTANCE_ID }-TITLE`;
+    }
+
+
+  .AdmonitionBlock--YDF&attributes(attributes)(
+    role="alert"
+    class=rootElementModifierCSS_Classes
+  )
+
+    if SVG_Icon === true
+
+      case decorativeVariation
+
+        when AdmonitionBlock__YDF.DecorativeVariations.notice
+          +Pencil__Circled__Filled--YDF_Icon.AdmonitionBlock--YDF-SVG_Icon
+
+        when AdmonitionBlock__YDF.DecorativeVariations.error
+          +ExclamationMark__Circled__Filled--YDF_Icon.AdmonitionBlock--YDF-SVG_Icon
+
+        when AdmonitionBlock__YDF.DecorativeVariations.warning
+          +ExclamationMark__Triangled__Filled--YDF_Icon.AdmonitionBlock--YDF-SVG_Icon
+
+        when AdmonitionBlock__YDF.DecorativeVariations.success
+          +Checkmark__Circled__Filled--YDF_Icon.AdmonitionBlock--YDF-SVG_Icon
+
+        when AdmonitionBlock__YDF.DecorativeVariations.guidance
+          +InfoSign__Circled__Filled--YDF_Icon.AdmonitionBlock--YDF-SVG_Icon
+
+        when AdmonitionBlock__YDF.DecorativeVariations.question
+          +QuestionMark__Circled__Filled--YDF_Icon.AdmonitionBlock--YDF-SVG_Icon
+
+    else if YDF.isArbitraryObject(SVG_Icon)
+
+      svg.AdmonitionBlock--YDF-SVG_Icon&attributes(SVG_Icon.SVG_ElementAttributes)
+        use(xlink:href=`#${ SVG_Icon.innerElementID }`)
+
+
+    if title
+
+      .AdmonitionBlock--YDF-Title(
+        id=TITLE_HTML_ID
+      )= title
+
+    .AdmonitionBlock--YDF-MainContent(
+      role="group"
+      aria-labelledby=(title ? TITLE_HTML_ID : null)
+    )
+
+      block
+
+
+    if dismissible
+      button.AdmonitionBlock--YDF-DismissingButton(
+        type="button"
+        aria-label= AdmonitionBlock__YDF.localization.dismissingButton.accessibilityGuidance
+      ): +MultiplicationSign__Boxed__Filled--YDF_Icon.AdmonitionBlock--YDF-DismissingButton-Icon

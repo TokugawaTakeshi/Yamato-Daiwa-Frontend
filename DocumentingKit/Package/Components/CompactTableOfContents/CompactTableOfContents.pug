@@ -1,0 +1,76 @@
+include CompactTableOfContents.class.pug
+
+
+mixin CompactTableOfContents--YDF_DK(localizedRouting, options, iterationData)
+
+  if localizedRouting
+
+    -
+
+      options = options ?? {
+        mustApplyAnchorsInsteadOfURIs: false
+      };
+
+      iterationData = iterationData ?? {
+        currentDepthLevel__numerationFrom0: -1,
+        currentRouteSegments: []
+      }
+
+    ul.CompactTableOfContents--YDF_DK&attributes(attributes)
+
+      each metadata, key in localizedRouting
+
+        -
+          iterationData.currentDepthLevel__numerationFrom0++;
+          iterationData.currentRouteSegments[iterationData.currentDepthLevel__numerationFrom0] = key;
+          const route = iterationData.currentRouteSegments.join(".");
+
+
+        li.CompactTableOfContents--YDF_DK-Item
+
+          -
+
+            let children;
+
+            if (isNotUndefined(metadata.$children)) {
+              children = metadata.$children;
+            } else if (isNotUndefined(metadata.$sectioning) && metadata.$mustDisplayDirectDecadentSectioning) {
+              children = metadata.$sectioning;
+            }
+
+
+          if children
+
+            button.CompactTableOfContents--YDF_DK-Item-CollapsingToggle(
+              type="button"
+              aria-label="Collapse"
+            ): +Triangle__Upward__Circled__Filled--YDF_Icon.CompactTableOfContents--YDF_DK-Item-CollapsingToggle-Icon
+
+          if metadata.$URI
+
+
+            -
+
+              const isCurrentRoute = route === YDF.RoutingEmulator.currentRoute;
+              const linkModifierCSS_Classes = isCurrentRoute ? [ "CompactTableOfContents--YDF_DK-Item-Link__Current" ] : [];
+
+              const anchorURI = options.mustApplyAnchorsInsteadOfURIs === true ? `#${ metadata.$anchor }` : metadata.$URI;
+
+
+            a.CompactTableOfContents--YDF_DK-Item-Link(
+              href=anchorURI
+              class=linkModifierCSS_Classes
+              aria-current=isCurrentRoute ? "page" : null
+            )!= metadata.$heading
+
+          else
+
+            span.CompactTableOfContents--YDF_DK-Item-Title!= metadata.$heading
+
+          if children
+
+            +CompactTableOfContents--YDF_DK(children, options, iterationData)
+
+        -
+          iterationData.currentDepthLevel__numerationFrom0--;
+          iterationData.currentRouteSegments.splice(-1, 1);

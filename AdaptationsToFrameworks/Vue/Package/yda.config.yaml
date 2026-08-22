@@ -1,0 +1,126 @@
+$projectBuilding:
+
+  $commonSettings:
+
+    $selectiveExecutions:
+
+      Distributable:
+
+        $tasksAndSourceFilesSelection:
+
+          $ECMA_ScriptLogicProcessing: [ Distributable ]
+
+      Workbenches:
+
+        $tasksAndSourceFilesSelection:
+
+          $markupProcessing: [ Workbenches ]
+          $stylesProcessing: [ Workbenches ]
+          $ECMA_ScriptLogicProcessing: [ Workbenches ]
+
+        $browserLiveReloadingSetupID: Workbenches
+
+
+  # ━━━ Markup Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $markupProcessing:
+
+    $common:
+      $buildingModeDependent:
+        $localDevelopment: { $mustResolveResourcesPointersToRelativePaths: true }
+
+    $entryPointsGroups:
+
+      Workbenches:
+
+        $sourceFilesTopDirectoryRelativePath: Workbenches/Source
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
+
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Workbenches/Build
+
+
+  # ━━━ Styles Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $stylesProcessing:
+
+    $entryPointsGroups:
+
+      Workbenches:
+
+        $sourceFilesTopDirectoryRelativePath: Workbenches/Source
+
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
+
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Workbenches/Build
+
+
+  # ━━━ ECMAScript Logic Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $ECMA_ScriptLogicProcessing:
+
+    $entryPointsGroups:
+
+      Distributable:
+
+        $singleEntryPointSourceFileRelativePath: Source/index.ts
+
+        $targetRuntime:
+          $type: BROWSER
+
+        $distributing:
+          $exposingOfExportsFromEntryPoints:
+            $mustExpose: true
+          $externalizingDependencies:
+            - @yamato-daiwa/es-extensions
+            - @yamato-daiwa/es-extensions-browserjs
+            - @yamato-daiwa/frontend
+            - vue
+            - vue-facing-decorator
+            - vue-router
+          $typeScriptTypesDeclarations:
+            $mustGenerate: true
+
+        $buildingModeDependent:
+
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Distributable
+
+          $production:
+            $outputTopDirectoryRelativePath: Distributable
+            $revisioning: { $disable: true }
+
+
+      Workbenches:
+
+        $sourceFilesTopDirectoryRelativePath: Workbenches/Source
+
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
+
+        $targetRuntime:
+          $type: BROWSER
+
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: Workbenches/Build
+
+
+  # ━━━ Browser Live Reloading ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $browserLiveReloading:
+
+    $setups:
+
+      Workbenches:
+
+        $localServer:
+
+          $rootDirectoryRelativePath: Workbenches/Build
+          $customStartingFileNameWithExtension: Workbenches.html
+
+        $openInBrowsers: chrome

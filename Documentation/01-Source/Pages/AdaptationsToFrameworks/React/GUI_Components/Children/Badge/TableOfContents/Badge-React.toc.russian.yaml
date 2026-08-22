@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "Краткий обзор"
+
+BadgeClass:
+
+  $heading: "Класс <code>Badge</code>"
+
+  reactProperties:
+
+    $heading: "React-свойства"

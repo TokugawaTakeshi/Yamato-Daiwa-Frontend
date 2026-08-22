@@ -1,0 +1,205 @@
+extends ../../PagesTemplates/StaticPreviewAnywherePageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    StaticPreviewAnywherePage__YDF.configure({
+
+      metadata: {
+        title: "Workbenches"
+      },
+
+      topHeading: "Workbenches",
+
+      tableOfContents: [
+
+        {
+
+          heading: "Animations",
+
+          pages: [
+
+            {
+              title: "Expanding / Collapsing",
+              URI: "@Workbenches/Animations/ExpandingAndCollapsing/ExpandingAndCollapsingAnimation.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+            }
+
+          ]
+
+        },
+
+        {
+
+          heading: "Assets",
+
+          pages: [
+
+            {
+              title: "YDF Color Palette",
+              URI: "@Workbenches/Assets/Colors/YDF_ColorPalette.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            }
+
+          ]
+
+        },
+
+        {
+
+          heading: "GUI Components",
+
+          pages: [
+
+            {
+              title: "Accordion",
+              URI: "@Workbenches/GUI_Components/Accordion/Accordion.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+            },
+
+            {
+              title: "AdmonitionBlock",
+              URI: "@Workbenches/GUI_Components/AdmonitionBlock/AdmonitionBlock.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            },
+
+            {
+              title: "Badge",
+              URI: "@Workbenches/GUI_Components/Badge/Badge.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            },
+
+            {
+              title: "BlockingLoadingOverlay",
+              URI: "@Workbenches/GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+            },
+
+            {
+              title: "LoadingIndicator",
+              URI: "@Workbenches/GUI_Components/LoadingIndicator/LoadingIndicator.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+            }
+
+          ],
+
+          sections: [
+
+            {
+
+              heading: "Controls",
+
+              pages: [
+
+                {
+                  title: "Button",
+                  URI: "@Workbenches/GUI_Components/Controls/Buttons/Plain/Button.workbench",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+                },
+
+                {
+                  title: "ClosingButton",
+                  URI: "@Workbenches/GUI_Components/Controls/Buttons/Closing/ClosingButton.workbench",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                },
+
+                {
+                  title: "HamburgerMenuButton",
+                  URI: "@Workbenches/GUI_Components/Controls/Buttons/Hamburger/HamburgerMenuButton.workbench.pug",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                },
+
+                {
+                  title: "DateTimePicker",
+                  URI: "@Workbenches/GUI_Components/Controls/DateTimePicker/DateTimePicker.workbench",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                },
+
+                {
+                  title: "MenuList",
+                  URI: "@Workbenches/GUI_Components/Controls/MenuList/MenuList.workbench",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                },
+
+                {
+                  title: "RadioButton",
+                  URI: "@Workbenches/GUI_Components/Controls/RadioButton/RadioButton.workbench",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                }
+
+              ],
+
+              sections: [
+
+                {
+
+                  heading: "Validatables",
+
+                  pages: [
+
+                    {
+                      title: "Checkbox",
+                      URI: "@Workbenches/GUI_Components/Controls/Validatables/Checkbox/Checkbox.workbench",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    },
+
+                    {
+                      title: "NumberBox",
+                      URI: "@Workbenches/GUI_Components/Controls/Validatables/NumberBox/NumberBox.workbench",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    },
+
+                    {
+                      title: "TextBox",
+                      URI: "@Workbenches/GUI_Components/Controls/Validatables/TextBox/TextBox.workbench",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    }
+
+                  ]
+
+                },
+
+                {
+
+                  heading: "Validatables",
+
+                  pages: [
+
+                    {
+                      title: "Table",
+                      URI: "@Workbenches/GUI_Components/Typography/Table/Table.workbench",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    }
+
+                  ]
+
+                }
+
+              ]
+
+            }
+
+          ]
+
+        },
+
+        {
+
+          heading: "Pages Templates",
+
+          pages: [
+
+            {
+              title: "Static Preview Anywhere Page",
+              URI: "@Workbenches/PagesTemplates/StaticPreviewAnywherePage.workbench.pug",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            }
+
+          ]
+
+        }
+
+      ]
+    });

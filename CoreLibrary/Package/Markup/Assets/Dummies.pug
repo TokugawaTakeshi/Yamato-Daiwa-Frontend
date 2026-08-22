@@ -1,7 +1,11 @@
-mixin HighDummy(backgroundColor)
-  - backgroundColor = backgroundColor || "cornflowerblue"
-  div(style=`width: 100px; height: 2000px; background: ${backgroundColor};`)
+mixin HighDummy--YDF(backgroundColor)
 
-mixin WideDummy(backgroundColor)
-  - backgroundColor = backgroundColor || "cornflowerblue"
-  div(style=`width: 2000px; height: 100px; background: ${backgroundColor};`)
+  - backgroundColor = backgroundColor ?? "cornflowerblue"
+
+  div(style=`width: 100px; height: 2000px; background: ${ backgroundColor };`)
+
+mixin WideDummy--YDF(backgroundColor)
+
+  - backgroundColor = backgroundColor ?? "gold"
+
+  div(style=`width: 2000px; height: 100px; background: ${ backgroundColor };`)

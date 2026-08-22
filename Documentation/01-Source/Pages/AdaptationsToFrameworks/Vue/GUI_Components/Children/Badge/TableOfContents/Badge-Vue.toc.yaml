@@ -1,0 +1,16 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+BadgeClass:
+
+  $heading: `BadgeClass.$heading`
+  $anchor: BADGE_CLASS--SECTION
+
+  $children:
+
+    vueProperties:
+
+      $heading: `BadgeClass.vueProperties.$heading`
+      $anchor: BADGE_CLASS-VUE_PROPERTIES--SECTION

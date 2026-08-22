@@ -1,0 +1,76 @@
+@require "../../../../../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+@require "../../../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
+
+//@require "../../../../../../node_modules/@yamato-daiwa/frontend-additional_themes/RegularTheme.styl"
+//@require "../../../../../../node_modules/@yamato-daiwa/frontend-additional_themes/CupertinoTheme.styl"
+
+
+buttonComponentDefaultPropertiesOverriding = {
+  themes: {
+    regular: {
+      geometricVariations: {
+
+        regular: {
+          SVG_Icon: {
+            specials: {
+              Button--YDF-SVG_Icon__Menu__ThreeDots__Horizontal: {
+                width: 1rem
+              }
+            }
+          }
+        },
+
+        small: {
+          SVG_Icon: {
+            specials: {
+              Button--YDF-SVG_Icon__Menu__ThreeDots__Horizontal: {
+                width: 0.8rem
+              }
+            }
+          }
+        },
+
+        linkLike: {
+          SVG_Icon: {
+            specials: {
+              Button--YDF-SVG_Icon__Menu__ThreeDots__Horizontal: {
+                width: 1rem
+              }
+            }
+          }
+        }
+
+      }
+    }
+  }
+};
+
+// <==  [ Testing ] Comment out if need to display standard themes only
+//buttonComponentDefaultPropertiesOverriding = {
+//  themes: {
+//    regular: {
+//      geometricVariations: {
+//        large: Button-RegularTheme-LargeGeometry--YDF
+//      },
+//      decorativeVariations: {
+//        danger: Button-RegularTheme-DangerDecoration--YDF
+//      }
+//    },
+//    cupertino: {
+//      decorativeVariations: {
+//        regular: Button-CupertinoTheme-RegularDecoration--YDF,
+//        accented: Button-CupertinoTheme-AccentedDecoration--YDF,
+//        linkLike: Button-CupertinoTheme-LinkLikeDecoration--YDF
+//      }
+//    }
+//  }
+//}
+// ==> =================================================================================================================
+
+
+Button--YDF-generateStyles(
+  overridings: buttonComponentDefaultPropertiesOverriding
+)
+
+
+@require "../../../../../Galleries/GUI_Components/Controls/Buttons/Plain/ButtonGallery.styl"
