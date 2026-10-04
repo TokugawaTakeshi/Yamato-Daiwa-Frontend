@@ -1,0 +1,125 @@
+Button-CupertinoTheme-LinkLikeDecoration--YDF = {
+
+  rootElement: {
+    text: {
+      color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor,
+      underline: {
+        type: solid,
+        thickness: 1px,
+        color: red
+      }
+    },
+    background: {
+      color: null
+    },
+    borders: {
+      style: null,
+      color: null
+    },
+    outline: null,
+    shadow: null
+  },
+
+  SVG_Icon: {
+    color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor
+  },
+
+
+  stateDependent: {
+
+    hover: {
+
+      rootElement: {
+        text: {
+          color: null,
+          underline: {
+            type: solid,
+            thickness: 1px,
+            color: alpha(JQueryUI_BaseTheme.clickableElements.activeState.borderColor, 0.75)
+          }
+        },
+        background: {
+          color: null
+        },
+        borders: {
+          style: null,
+          color: null
+        },
+        outline: null,
+        shadow: null
+      },
+
+      SVG_Icon: {
+        color: JQueryUI_BaseTheme.clickableElements.hoverState.fontColor
+      }
+    },
+
+    focus: {
+      rootElement: {
+        text: {
+          color: null,
+          underline: null
+        },
+        background: {
+          color: null
+        },
+        borders: {
+          style: null,
+          color: null
+        },
+        outline: null,
+        shadow: {
+          blurRadius: 3px,
+          spreadRadius: 1px,
+          color: #007fff
+        }
+      }
+    },
+
+    active: {
+
+      rootElement: {
+        text: {
+          color: alpha(JQueryUI_BaseTheme.clickableElements.activeState.borderColor, 0.75),
+          underline: {
+            type: solid,
+            thickness: 1px,
+            color: alpha(JQueryUI_BaseTheme.clickableElements.activeState.borderColor, 0.75)
+          }
+        },
+        background: {
+          color: null
+        },
+        borders: {
+          style: null,
+          color: null
+        },
+        outline: null
+      },
+
+      SVG_Icon: {
+        color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor
+      }
+    },
+
+    disabled: {
+
+      rootElement: {
+        text: {
+          color: W3C_39_ShadesOfGray--YDF[24]
+        },
+        background: {
+          color: W3C_39_ShadesOfGray--YDF[36]
+        },
+        borders: {
+          style: null,
+          color: W3C_39_ShadesOfGray--YDF[32]
+        }
+      },
+
+      SVG_Icon: {
+        color: W3C_39_ShadesOfGray--YDF[24]
+      }
+    }
+  }
+}

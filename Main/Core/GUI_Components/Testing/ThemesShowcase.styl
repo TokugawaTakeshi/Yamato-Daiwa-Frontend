@@ -1,0 +1,60 @@
+ThemesShowcase--YDF = {
+ CSS_NAMESPACE: "ThemesShowcase--YDF"
+}
+
+
+ThemesShowcase--YDF-generateStyles()
+
+  .ThemesShowcase--YDF
+
+    margin 0
+
+
+    &-KeyLabel
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: 1.2rem,
+        lineSpacing: 0.2,
+        mustAllowWordsBreakingAnywhere: true
+      })
+
+      font-weight bold
+      color: W3C_39_ShadesOfGray--YDF[12]
+
+
+    &-ValueSection
+
+      border-left-width 3px
+      padding-left 8px
+
+      border-left-style solid
+      border-left-color: W3C_39_ShadesOfGray--YDF[32]
+
+      margin-left 0     //* [ Reset defaults ]
+      margin-top 0.3rem
+
+
+      .ThemesShowcase--YDF-ValueSection .ThemesShowcase--YDF-ValueSection
+
+        border-left none
+        padding-left 0
+
+
+      pushTargetFromSelf--YDF({ targetElementSelector: ".ThemesShowcase--YDF-KeyLabel", y: 2rem })
+
+      pushTargetFromSelf--YDF({
+        targetElementSelector: ".ThemesShowcase--YDF-KeyLabel",
+        y: 1.2rem,
+        contextSelector: ".ThemesShowcase--YDF-ChildList"
+      })
+
+      pushTargetFromSelf--YDF({
+        targetElementSelector: ".ThemesShowcase--YDF-KeyLabel",
+        y: 0.8rem,
+        contextSelector: ".ThemesShowcase--YDF-ChildList .ThemesShowcase--YDF-ChildList"
+      })
+
+
+    &-ChildList
+
+      margin 0  //* [ Reset defaults ]

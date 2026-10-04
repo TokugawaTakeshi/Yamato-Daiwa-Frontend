@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "Сводка"
+
+{{ GUI_ComponentName__pascalCase }}Class:
+
+  $heading: "Класс <code>{{ GUI_ComponentName__pascalCase }}</code>"
+
+  vueProperties:
+
+    $heading: "Vue-свойства"

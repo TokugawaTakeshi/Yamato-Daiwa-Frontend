@@ -1,0 +1,160 @@
+@require "Themes/Regular/GeometricVariations/Accordion-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Accordion-RegularTheme-RegularDecorativeVariation.styl"
+
+
+Accordion--YDF = {
+
+  componentIndependentCSS_Class: "RegularTheme--YDF",
+
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        geometricVariations: {
+          regular: Accordion-RegularTheme-RegularGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          regular: Accordion-RegularTheme-RegularDecorativeVariation--YDF
+        }
+
+      }
+    }
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true,
+    geometricModifiers: {
+      pillShape: true,
+      squareShape: true,
+      singleLine: true
+    },
+    decorativeModifiers: {
+      bordersDisguising: true
+    }
+  }
+
+}
+
+
+Accordion--YDF-generateStyles(
+  preset = Accordion--YDF.defaultProperties,
+  overridings = {},
+  options = Accordion--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "Accordion--YDF-generateStyles",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Accordion--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Accordion--YDF.defaultOptions.externalThemes
+      },
+      loadingPlaceholder: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Accordion--YDF.defaultOptions.loadingPlaceholder
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Accordion--YDF.defaultOptions.themeIndependentGeometricVariations
+      },
+      geometricModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          pillShape: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Accordion--YDF.defaultOptions.geometricModifiers.pillShape
+          },
+          squareShape: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Accordion--YDF.defaultOptions.geometricModifiers.squareShape
+          },
+          singleLine: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Accordion--YDF.defaultOptions.geometricModifiers.singleLine
+          }
+        },
+        defaultValue: Accordion--YDF.defaultOptions.geometricModifiers
+      },
+      decorativeModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          bordersDisguising: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Accordion--YDF.defaultOptions.decorativeModifiers.bordersDisguising
+          }
+        },
+        defaultValue: Accordion--YDF.defaultOptions.decorativeModifiers.bordersDisguising
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .Accordion--YDF
+
+      //* [ Why?! ] To make the height of this element adjustable in flex/grid containers. */
+      display flex
+      flex-direction column
+
+
+      &-Button
+
+        width 100%
+        justify-content flex-start !important
+
+
+      &-Panel
+
+        &[hidden]
+
+          display none
+
+
+  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "Accordion.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+
+  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "Accordion.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+
+  // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  applyComponentThemes--YDF({
+    CSS_Namespace: "Accordion--YDF",
+    themes: properties.themes,
+    applyGeometricVariation: applyGeometricVariation,
+    applyDecorativeVariation: applyDecorativeVariation
+  })

@@ -1,0 +1,12 @@
+extends ../../../../CompletePages/GUI_Components/Controls/ValidatableControlShell/_ValidatableControlShellGalleryPage.template.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.metadata.title = generateHTML_PageTitle("Labels And Guidances");
+
+    GalleryConfigurator.
+        setPartialToRender(GalleryConfigurator.Partials.labelsAndGuidances).
+        visuallyHideAllHeadings();

@@ -1,0 +1,35 @@
+problems:
+
+  $heading: "問題の考察"
+
+YDF_Solution:
+
+  $heading: "YDFの解決"
+
+singleParameterProperties:
+
+  $heading: "単一引数のプロパティ"
+
+  rawParameter:
+
+    $heading: "<code>rawParameter</code>：ミックスイン実行時点のミックスイン引数"
+
+  parameterPropertiesSpecification:
+
+    $heading: "<code>parameterPropertiesSpecification</code>：—単一の引数のプロパティの仕様"
+
+  loggingProperties:
+
+    $heading: "ロギング変数：<code>parameterNumber</code>、<code>parameterName</code>、<code>mixinName</code>"
+
+IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance:
+
+    $heading: "「IntelliJ IDEA」ファミリー統合開発環境に於ける高速入力"
+
+    steps:
+
+      $heading: "Live Templateの利用手順"
+
+externalLinks:
+
+  $heading: "外部リンク"

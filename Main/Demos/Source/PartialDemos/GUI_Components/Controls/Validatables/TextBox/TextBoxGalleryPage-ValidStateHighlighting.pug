@@ -1,0 +1,12 @@
+extends ../../../../../CompletePages/GUI_Components/Controls/Validatables/TextBox/_TextBoxGalleryPage.template.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.metadata.title = generateHTML_PageTitle("Valid State Highlighting");
+
+    GalleryConfigurator.
+        setPartialToRender(GalleryConfigurator.Partials.validStateHighlighting).
+        visuallyHideAllHeadings();

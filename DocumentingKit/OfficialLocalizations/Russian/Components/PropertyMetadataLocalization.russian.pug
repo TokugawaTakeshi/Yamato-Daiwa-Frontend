@@ -1,0 +1,92 @@
+-
+
+  const propertyMetadataYDF_DK_ComponentLocalization__russian = {
+
+    localizedInterpretation: "Русскоязычное наименование",
+    type: "Тип",
+    types: {
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.number]: "число",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.string]: "строка",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.boolean]: "булевский",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.fixedSchemaObject]: "объект фиксированной структуры",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.associativeArray]: "объект типа «ассоциативный массив»",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.indexedArray]: "индексный массив",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.tuple]: "кортеж",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.ambiguousObject]: "неоднозначный объект",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.ambiguousArray]: "неоднозначный массив",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic]: "полиморфный"
+    },
+
+    /* ━━━ Undefindability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    isUndefinedForbidden: "Запрещён ли undefined",
+    undefinedForbiddenIf: "undefined запрещён если",
+    undefinedValueSubstitution: "Замещение значения undefined",
+    mustTransformUndefinedToNull: "Будет ли undefined рассматриваться наравне с null",
+    mustBeUndefinedIf: "Должен быть undefined если",
+
+    /* ━━━ Nullability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    isNullForbidden: "Запрещён ли null",
+    nullForbiddenIf: "null запрещён если",
+    nullValueSubstitution: "Замещение значения null",
+    mustTransformNullToUndefined: "Будет ли null рассматриваться наравне с undefined",
+    mustBeNullIf: "Должен быть null если",
+
+    /* ━━━ Common Requirement for Languages With Single Empty Type ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    defaultValue: "Значение по умолчанию",
+    required: "Обязательное",
+    requiredIf: "Обязательное если",
+
+    /* ━━━ By Types ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── Fixed Shema Objects ────────────────────────────────────────────────────────────────────────────────────── */
+    objectTypeSchema: "Структура объекта",
+
+    /* ─── Associative Array ──────────────────────────────────────────────────────────────────────────────────────── */
+    areUndefinedTypeValuesForbidden: "Запрещены ли значения типа undefined",
+    areNullTypeValuesForbidden: "Запрещены ли значения типа null",
+    minimalEntriesCount: "Минимум пар",
+    allowedKeys: "Допустимые ключи",
+    associativeArrayValues: "Значения ассоциативного массива",
+
+    /* ─── Indexed Array Property ─────────────────────────────────────────────────────────────────────────────────── */
+    arrayElements: "Элементы массива",
+    minimalElementsCount: "Минимум элементов",
+    areUndefinedElementsForbidden: "Запрещены ли элементы типа undefined",
+    areNullElementsForbidden: "Запрещены ли элементы типа null",
+
+    /* ─── Numbers ────────────────────────────────────────────────────────────────────────────────────────────────── */
+    numbersSet: "Множество чисел",
+    numbersSets: {
+      [YDF.RawObjectDataProcessor.NumbersSets.naturalNumber]: "Натуральное число",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero]: "Положительное целое число либо ноль",
+      [YDF.RawObjectDataProcessor.NumbersSets.naturalNumberOrZero]: "Натуральное число либо ноль",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeInteger]: "Отрицательное целое число",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero]: "Отрицательное целое число либо ноль",
+      [YDF.RawObjectDataProcessor.NumbersSets.anyInteger]: "Любое целое число",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveDecimalFraction]: "Положительная десятичная дробь",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveDecimalFractionOrZero]: "Положительная десятичная дробь либо ноль",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeDecimalFraction]: "Отрицательная десятичная дробь",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeDecimalFractionOrZero]: "Отрицательная десятичная дробь либо ноль",
+      [YDF.RawObjectDataProcessor.NumbersSets.anyDecimalFraction]: "Любая десятичная дробь",
+      [YDF.RawObjectDataProcessor.NumbersSets.anyDecimalFractionOrZero]: "Любая десятичная дробь либо ноль",
+      [YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber]: "Любое действительное число",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveRealNumber]: "Положительное действительное число",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeRealNumber]: "Отрицательное действительное число",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveRealNumberOrZero]: "Положительное действительное число либо ноль",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeRealNumberOrZero]: "Отрицательное действительное число либо ноль"
+    },
+    minimalValue: "Минимальное значение",
+    maximalValue: "Максимальное значение",
+    allowedAlternatives: "Допустимые варианты",
+
+    /* ─── Strings ────────────────────────────────────────────────────────────────────────────────────────────────── */
+    minimalCharactersCount: "Минимум символов",
+    maximalCharactersCount: "Максимум символов",
+
+    /* ─── Polymorphic ────────────────────────────────────────────────────────────────────────────────────────────── */
+    polymorphicPropertyVariants: "Варианты",
+
+    /* ━━━ Other ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    yes: "Да",
+    no: "Нет"
+
+  };

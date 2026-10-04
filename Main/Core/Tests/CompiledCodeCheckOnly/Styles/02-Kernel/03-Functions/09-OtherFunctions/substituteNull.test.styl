@@ -1,0 +1,17 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/09-OtherFunctions/substituteNull.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/09-OtherFunctions/substituteNull.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+sample1 = "ALPHA"
+sample2 = null
+
+p(substituteNull--YDF(sample1, "BRAVO"))  // => "ALPHA" ("sample1" is defined, no need to substitute the default value)
+p(substituteNull--YDF(sample2, "BRAVO"))  // => "BRAVO" ("sample2" is explicit null, default value has been substituted)
+p(substituteNull--YDF(sample3, "BRAVO"))  // => "BRAVO" ("sample3" is not defined, default value has been substituted)

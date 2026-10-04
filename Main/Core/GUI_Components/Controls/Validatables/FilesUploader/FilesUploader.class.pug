@@ -1,0 +1,415 @@
+-
+
+  class FilesUploader__YDF {
+
+    static CSS_NAMESPACE = "FilesUploader--YDF";
+
+    static fileNamesExtensionsWithoutDotsOfFilesRecognizedAsImages = [
+      "jpg", "png", "webp", "gif", "png"
+    ];
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static Themes = { regular: "REGULAR" };
+
+    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
+    /** @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null } */
+    static _selfAndChildrenComponentsThemesCorrespondence = null;
+
+    /** @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } } */
+    static get selfAndChildrenComponentsThemesCorrespondence() {
+      return FilesUploader__YDF._selfAndChildrenComponentsThemesCorrespondence ?? (
+        FilesUploader__YDF._selfAndChildrenComponentsThemesCorrespondence = {
+          validatableControlShell: { [FilesUploader__YDF.Themes.regular]: ValidatableControlShell__YDF.Themes.regular },
+          button: { [FilesUploader__YDF.Themes.regular]: Button__YDF.Themes.regular }
+        }
+      );
+    }
+
+    /**
+     * @param {
+     *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellThemesDefinition
+     * @example
+     * FilesUploader__YDF.defineThemes({
+     *   redmond: {
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.redmond,
+     *     button: Button__YDF.Themes.redmond
+     *   },
+     *   cupertino: {
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.cupertino,
+     *     button: Button__YDF.Themes.cupertino
+     *   }
+     * });
+     */
+    static defineThemes(ownAndCorrespondingValidatableControlShellThemesDefinition) {
+      return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellThemesDefinition, FilesUploader__YDF
+      );
+    }
+
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    static considerThemesAsCommon() {
+      FilesUploader__YDF.areThemesCSS_ClassesCommon = true;
+      return FilesUploader__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL"
+    };
+
+    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
+    /** @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null } */
+    static _selfAndChildrenComponentsGeometricVariationsCorrespondence = null;
+
+    /** @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } } */
+    static get selfAndChildrenComponentsGeometricVariationsCorrespondence() {
+      return FilesUploader__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence ?? (
+        FilesUploader__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence = {
+          validatableControlShell: {
+            [FilesUploader__YDF.GeometricVariations.regular]: ValidatableControlShell__YDF.GeometricVariations.regular,
+            [FilesUploader__YDF.GeometricVariations.small]: ValidatableControlShell__YDF.GeometricVariations.small
+          },
+          button: {
+            [FilesUploader__YDF.GeometricVariations.regular]: Button__YDF.GeometricVariations.regular,
+            [FilesUploader__YDF.GeometricVariations.small]: Button__YDF.GeometricVariations.small
+          }
+        }
+      );
+    }
+
+    static defineGeometricVariations(ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition) {
+      return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition, FilesUploader__YDF
+      );
+    }
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    static DecorativeVariations = { regular: "REGULAR" };
+
+    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
+    /** @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null } */
+    static _selfAndChildrenComponentsDecorativeVariationsCorrespondence = null;
+
+    /** @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } } */
+    static get selfAndChildrenComponentsDecorativeVariationsCorrespondence() {
+      return FilesUploader__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
+        FilesUploader__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
+          validatableControlShell: {
+            [FilesUploader__YDF.DecorativeVariations.regular]: ValidatableControlShell__YDF.DecorativeVariations.regular
+          },
+          button: {
+            [FilesUploader__YDF.DecorativeVariations.regular]: ValidatableControlShell__YDF.DecorativeVariations.regular
+          }
+        }
+      );
+    }
+
+    static defineDecorativeVariations(ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition) {
+      return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition, FilesUploader__YDF
+      );
+    }
+
+
+    /* ━━━ Properties specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static propertiesSpecification = {
+
+      label: {
+        type: String,
+         isUndefinedForbidden: false,
+         isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      accessibilityGuidance: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      externalLabelHTML_ID: {
+        type: String,
+        undefinedForbiddenIf: {
+          predicate: ({ rawData__full: properties }) =>
+              !YDF.isNonEmptyString(properties.label) && !YDF.isNonEmptyString(properties.accessibilityGuidance),
+          descriptionForLogging: "Neither \"label\" nor \"accessibilityGuidance\" has been specified with non-empty strings"
+        },
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      guidance: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      value: {
+        type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        alternatives: [
+          {
+            type: String,
+            minimalCharactersCount: 1
+          },
+          {
+            type: Array,
+            areUndefinedElementsForbidden: true,
+            areNullElementsForbidden: true,
+            element: {
+              type: String,
+              minimalCharactersCount: 1
+            }
+          }
+        ]
+      },
+
+      disabled: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      readonly: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      required: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustDisplayAppropriateBadgeIfInputIsRequired: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustDisplayAppropriateBadgeIfInputIsOptional: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      minimalFilesCount: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+        isNaN_Forbidden: true,
+        undefinedValueSubstitution: 1,
+        isNullForbidden: true
+      },
+
+      maximalFilesCount: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.naturalNumber,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        customValidators: {
+          validationFunction: ({ value: maximalFilesCount, rawData__currentObjectDepth }) =>
+              YDF.isUndefined(rawData__currentObjectDepth.minimalFilesCount) ||
+              (
+                YDF.isNumber(rawData__currentObjectDepth.minimalFilesCount, { mustConsiderNaN_AsNumber: false }) &&
+                maximalFilesCount >= rawData__currentObjectDepth.minimalFilesCount
+              ),
+          descriptionForLogging: "\"maximalFilesCount\" could not be less than \"minimalFilesCount\""
+        }
+      },
+
+      supportedFilesNamesExtensions__leadingDotsAreOptional: {
+        type: Array,
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+        element: {
+          type: String,
+          minimalCharactersCount: 1
+        }
+      },
+
+      noFilePickingButton: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      noDragAndDropArea: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true,
+        customValidators: {
+          validationFunction: ({ value: noDragAndDropArea, rawData__currentObjectDepth }) =>
+              noDragAndDropArea === false ||
+                  (noDragAndDropArea === true && rawData__currentObjectDepth.noFilePickingButton !== true),
+          descriptionForLogging:
+              "\"noDragAndDropArea\" could not have \"true\" value if \"noFilePickingButton\" is \"true\" because " +
+                "at least one uploading method must be available."
+        }
+      },
+
+      noDragAndDropAreaOnTouchScreens: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      initialImageAspectRatio: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 3
+      },
+
+      /** @description
+       * 1 minimal character is definitely not enough for unique string, but in MVC mode it could be the variable. */
+      instanceID_UniqueDynamicPart: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      inputElementHTML_ID: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      labelElementHTML_ID: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: FilesUploader__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(FilesUploader__YDF.Themes).
+            map(([ key, value ]) => ({ key: `FilesUploader__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: FilesUploader__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: FilesUploader__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(FilesUploader__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `FilesUploader__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      decorativeVariation: {
+        type: String,
+        undefinedValueSubstitution: FilesUploader__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(FilesUploader__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `FilesUploader__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    }
+
+
+    /* ━━━ State simulations specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static statesSimulationsSpecification = {
+
+      filesProcessingStatuses: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      singleImagePreview: {
+        type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true,
+        alternatives: [
+          {
+            type: Boolean,
+            trueOnly: true
+          },
+          {
+            type: String,
+            minimalCharactersCount: 1
+          }
+        ]
+      },
+
+      multipleImagesPreview: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      dragOver: {
+        type: Boolean,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      busy: {
+        type: Boolean,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      ...ComponentsAuxiliaries.generateValidatableControlGeneralStatesSimulationsSpecification({
+        invalidInputHighlightingIfAnyValidationErrorsMessages: true,
+        validValueHighlightingIfNoValidationErrorsMessages: true,
+        validationErrorsMessages: true,
+        asynchronousValidationsStatuses: true
+      })
+
+    }
+
+
+    /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static localization = FilesUploaderYDF_ComponentLocalization__English;
+
+
+    /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── ID generating ──────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @private
+     * @type { number }
+     */
+    static counterForID_Generating = 0;
+
+    /**
+     * @public
+     * @param { string } [uniqueDynamicPart] Required mainly for MVC where the iterative rendering is not under Pug control.
+     * @return { string } Generated ID
+     */
+    static generateInstanceID(uniqueDynamicPart) {
+      return `FILES_UPLOADER--YDF-${ uniqueDynamicPart ?? ++FilesUploader__YDF.counterForID_Generating }`;
+    }
+
+  };

@@ -1,0 +1,37 @@
+@require "../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+@require "../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
+
+
+provideYDF_Typography()
+
+ThemesShowcase--YDF-generateStyles()
+
+
+.YDF_Gallery
+
+  padding 12px 16px
+
+  Centerer--YDF({ maximalWidth: 2*NARROWEST_SCREEN_WIDTH_UNIT--YDF })
+
+
+  &-InvisibleHeading
+
+    height 0
+    width 0
+    overflow hidden
+
+    position absolute
+
+
+    + *
+
+      margin-top 0 !important
+
+
+PositionalRelationship--YDF({
+  referenceElementSelector: "." + ThemesShowcase--YDF.CSS_NAMESPACE,
+  definitions:
+      (".Heading2" { retireFromIt: { y: 0.8rem }, pushItFromSelf: { y: 1.8rem } })\
+      (".Heading3" { retireFromIt: { y: 0.6rem }, pushItFromSelf: { y: 1.4rem } }),
+  contextSelector: ".YDF_Gallery"
+})

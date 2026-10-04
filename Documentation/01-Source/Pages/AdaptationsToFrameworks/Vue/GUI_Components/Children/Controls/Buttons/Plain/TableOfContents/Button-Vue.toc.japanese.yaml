@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "概要"
+
+ButtonClass:
+
+  $heading: "<code>Button</code>クラス"
+
+  vueProperties:
+
+    $heading: "Vueプロパティ"

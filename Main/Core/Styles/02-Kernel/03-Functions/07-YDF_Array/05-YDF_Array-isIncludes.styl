@@ -1,0 +1,13 @@
+YDF_Array-isIncludes(targetArray, elementOrPredicate)
+
+  for element in values(targetArray)
+
+    if isFunction--YDF(elementOrPredicate) && isTrue--YDF(elementOrPredicate(element))
+
+      return true
+
+    else if element == elementOrPredicate
+
+      return true
+
+  return false

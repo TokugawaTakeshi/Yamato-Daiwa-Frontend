@@ -1,0 +1,70 @@
+.ValidatableControlShellGallery
+
+  &-CoreElementPlaceholder
+
+    box-sizing border-box
+
+    display flex
+    align-items center
+
+    width 100%
+    font-size 1rem
+
+    border-width 4px
+    border-radius 4px
+    padding 0.2rem 0.4rem
+
+    border-style dashed
+    border-color mediumblue
+    font-weight bold
+    color mediumblue
+
+    background-color: alpha(mediumblue, 30%)
+
+
+  &-RequirementBadgesSection
+
+    display flex
+    flex-direction column
+    row-gap 0.8rem
+
+
+    &-HorizontalFlow
+
+      display flex
+      align-items center
+      column-gap 0.8rem
+
+      >*
+
+        flex-grow 1
+
+
+  &-ValidationErrorsMessagesSection
+
+    &-NarrowContainer
+
+      width 60px
+
+
+  &-ValidationErrorsMessagesSection
+
+    &-NarrowContainer
+
+      width 60px
+
+
+  &-LoadingPlaceholderSection
+
+    &-LinearFlow
+
+      display flex
+      flex-wrap wrap
+      align-items flex-end
+
+      column-gap 12px
+      row-gap 6px
+
+
+      retireFrom--YDF({ targetElementSelector: ".Heading2", y: 0.8rem })
+      retireFromElementWithSameSelector--YDF({ y: 8px })

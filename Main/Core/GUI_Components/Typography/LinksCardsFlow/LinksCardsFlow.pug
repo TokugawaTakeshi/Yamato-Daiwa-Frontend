@@ -1,0 +1,132 @@
+include LinksCardsFlow.class.pug
+
+
+mixin LinksCardsFlow--YDF
+
+  ul.LinksCardsFlow--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
+
+    block
+
+
+mixin LinksCardsFlow-ItemWithImage--YDF(properties)
+
+  -
+
+    const {
+      endorsedExternalURI,
+      unendorsedExternalURI,
+      internalURI,
+      title,
+      image = {}
+    } = properties;
+
+
+    let hrefAttributeValue;
+
+    if (endorsedExternalURI) {
+      hrefAttributeValue = endorsedExternalURI;
+    } else if (unendorsedExternalURI) {
+      hrefAttributeValue = unendorsedExternalURI;
+    } else {
+      hrefAttributeValue = internalURI;
+    }
+
+
+    let targetAttributeValue;
+
+    if (endorsedExternalURI || unendorsedExternalURI) {
+      targetAttributeValue = "_blank"
+    }
+
+    let relAttributeValue;
+    const relations = [];
+
+    if (endorsedExternalURI || unendorsedExternalURI) {
+      relations.push("noopener", "noreferrer");
+    }
+
+    if (unendorsedExternalURI) {
+      relations.push("nofollow");
+    }
+
+    if (relations.length > 0) {
+      relAttributeValue = relations.join(" ");
+    }
+
+
+  li.LinksCardsFlow--YDF-Item
+
+    a.LinksCardsFlow--YDF-Link(
+      href=hrefAttributeValue
+      target=targetAttributeValue
+      rel=relAttributeValue
+    )
+
+      img.LinksCardsFlow--YDF-Image(
+        src=image.URI
+        alt=image.alternatingText
+      )
+
+      .LinksCardsFlow--YDF-Title=title
+
+      if block
+
+        .LinksCardsFlow--YDF-Description
+
+          block
+
+mixin LinksCardsFlow-ItemWithSVG_Icon--YDF(properties)
+
+  -
+
+    const {
+      endorsedExternalURI,
+      unendorsedExternalURI,
+      internalURI,
+      title
+    } = properties;
+
+    let hrefAttributeValue;
+
+    if (endorsedExternalURI) {
+      hrefAttributeValue = endorsedExternalURI;
+    } else if (unendorsedExternalURI) {
+      hrefAttributeValue = unendorsedExternalURI;
+    } else {
+      hrefAttributeValue = internalURI;
+    }
+
+
+    let targetAttributeValue;
+
+    if (endorsedExternalURI || unendorsedExternalURI) {
+      targetAttributeValue = "_blank"
+    }
+
+    let relAttributeValue;
+    const relations = [];
+
+    if (endorsedExternalURI || unendorsedExternalURI) {
+      relations.push("noopener", "noreferrer");
+    }
+
+    if (unendorsedExternalURI) {
+      relations.push("nofollow");
+    }
+
+    if (relations.length > 0) {
+      relAttributeValue = relations.join(" ");
+    }
+
+
+  li.LinksCardsFlow--YDF-Item
+
+    a.LinksCardsFlow--YDF-Link(
+      href=hrefAttributeValue
+      target=targetAttributeValue
+      rel=relAttributeValue
+    )
+
+      .LinksCardsFlow--YDF-Title=title
+
+      block

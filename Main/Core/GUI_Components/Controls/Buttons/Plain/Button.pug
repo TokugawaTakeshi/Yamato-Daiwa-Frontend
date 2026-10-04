@@ -1,0 +1,344 @@
+include Button.class.pug
+
+
+mixin Button--YDF(properties)
+
+  -
+
+    const {
+
+      /**
+       * @type { Button__YDF.HTML_Types }
+       * @default Button__YDF.HTML_Types.regular
+       */
+      HTML_Type,
+
+      /** @type { string | number | undefined } */
+      label,
+
+      /** @type { string | undefined } */
+      accessibilityGuidance,
+
+      /** @type { string | undefined } */
+      URI,
+
+      /**
+       * @type { boolean }
+       * @default false
+       */
+      mustOpenLinkInNewTab,
+
+      /**
+       * @type { boolean }
+       * @default false
+       */
+      mustRequestNotFollowLinkForCrawlingToSearchEngine,
+
+      /**
+       * @type { boolean }
+       * @default false
+       */
+      disabled,
+
+      /**
+       * @type { boolean }
+       * @default false
+       */
+      toggled,
+
+      /**
+       * @type { string }
+       * @default Button__YDF.Themes.regular
+       */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default Button__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default Button__YDF.GeometricVariations.regular
+       */
+      geometricVariation,
+
+      /**
+       * @type { Array<Button__YDF.GeometricModifiers> }
+       * @default []
+       */
+      geometricModifiers,
+
+      /**
+       * @type { string }
+       * @default Button__YDF.DecorativeVariations.regular
+       * */
+      decorativeVariation,
+
+      /**
+       * @type { Array<Button__YDF.DecorativeModifiers> }
+       * @default []
+       * */
+      decorativeModifiers
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: Button__YDF.propertiesSpecification,
+      mixinName: Button__YDF.CSS_NAMESPACE
+    });
+
+    /** @type { boolean } */
+    let isButtonTheTagNameOfRootElement = false;
+
+    /** @type { boolean } */
+    let isInputTheTagNameOfRootElement = false;
+
+    /** @type { boolean } */
+    let isAnchorTheTagNameOfRootElement = false;
+
+    /** @type { string } */
+    let typeAttributeValueOfButtonOrInputElement;
+
+
+    if (URI) {
+
+      isAnchorTheTagNameOfRootElement = true;
+
+    } else {
+
+      switch (HTML_Type) {
+
+        case Button__YDF.HTML_Types.regular: {
+
+          isButtonTheTagNameOfRootElement = true;
+          typeAttributeValueOfButtonOrInputElement = "button"
+
+          break;
+        }
+
+        case Button__YDF.HTML_Types.submit: {
+
+          isButtonTheTagNameOfRootElement = true;
+          typeAttributeValueOfButtonOrInputElement = "submit"
+
+          break;
+        }
+
+        case Button__YDF.HTML_Types.inputButton: {
+
+          isInputTheTagNameOfRootElement = true;
+          typeAttributeValueOfButtonOrInputElement = "button";
+
+          break;
+
+        }
+
+        case Button__YDF.HTML_Types.inputSubmit: {
+
+          isInputTheTagNameOfRootElement = true;
+          typeAttributeValueOfButtonOrInputElement = "submit";
+
+          break;
+
+        }
+
+        case Button__YDF.HTML_Types.inputReset: {
+
+          isInputTheTagNameOfRootElement = true;
+          typeAttributeValueOfButtonOrInputElement = "reset";
+
+        }
+
+      }
+
+    }
+
+    /** @type { Array<string> } */
+    const commonCSS_Classes = [
+
+      Button__YDF.CSS_NAMESPACE,
+
+      ...isAnchorTheTagNameOfRootElement && disabled ? [ `${ Button__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: Button__YDF.Themes,
+        CSS_Namespace: Button__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: Button__YDF.GeometricVariations,
+        CSS_Namespace: Button__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(Button__YDF.CSS_NAMESPACE, geometricModifiers),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: Button__YDF.DecorativeVariations,
+        CSS_Namespace: Button__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedDecorativeModifiersCSS_Classes(Button__YDF.CSS_NAMESPACE, decorativeModifiers)
+
+    ];
+
+
+  if isButtonTheTagNameOfRootElement
+
+    //- /** 【 理論 】 No need to pollute the DOM by explicit `aria-pressed="false"`. */
+    button&attributes(attributes)(
+      type=typeAttributeValueOfButtonOrInputElement
+      disabled=disabled
+      aria-label=accessibilityGuidance
+      aria-pressed=(toggled && "true")
+      class=commonCSS_Classes
+    )
+
+      if block
+
+        block
+
+      else if label
+
+        span.Button--YDF-Label= label
+
+  else if isAnchorTheTagNameOfRootElement
+
+    -
+
+      /** @type { string | undefined } */
+      let targetAttributeValue;
+
+      /** @type { string | undefined } */
+      let relAttributeValue;
+
+      /** @type { Array<string> } */
+      let relationshipsBetweenLinkedResourceAndCurrentDocument = [];
+
+      /** @see https://stackoverflow.com/q/57628890/4818123 */
+      /** @see https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md */
+      if (mustOpenLinkInNewTab) {
+        relationshipsBetweenLinkedResourceAndCurrentDocument.push("noopener", "noreferrer");
+        targetAttributeValue = "_blank";
+      }
+
+      /** @see https://backlinko.com/nofollow-link */
+      /** @see https://www.botify.com/learn/basics/what-is-a-nofollow-tag */
+      if (mustRequestNotFollowLinkForCrawlingToSearchEngine) {
+        relationshipsBetweenLinkedResourceAndCurrentDocument.push("nofollow");
+      }
+
+      if (relationshipsBetweenLinkedResourceAndCurrentDocument.length > 0) {
+        relAttributeValue = relationshipsBetweenLinkedResourceAndCurrentDocument.join(" ");
+      }
+
+
+    //- /** 【 理論 】 No need to pollute the DOM by explicit `aria-pressed="false"`. */
+    //-
+      /** 【 理論 】
+       * If to set `aria-pressed` even with `false`, the HTML validator will require `role` attribute additionally.
+       *  Because such scenario does not fit to this component concept, the `toggled` is not supported for anchors.
+       */
+    a&attributes(attributes)(
+      href=(disabled ? null : URI)
+      target=targetAttributeValue
+      rel=relAttributeValue
+      tabindex=(disabled && -1)
+      aria-label=accessibilityGuidance
+      aria-disabled=(disabled && "true")
+      class=[ ...commonCSS_Classes, disabled ? [ `${ Button__YDF.CSS_NAMESPACE }__DisabledState` ] : [] ]
+    )
+
+      if block
+
+        block
+
+      else if label
+
+        span.Button--YDF-Label= label
+
+  else if isInputTheTagNameOfRootElement
+
+    //- /** 【 理論 】 No need to pollute the DOM by explicit `aria-pressed="false"`. */
+    input&attributes(attributes)(
+      type=typeAttributeValueOfButtonOrInputElement
+      value=label
+      disabled=disabled
+      aria-pressed=(toggled && "true")
+      class=commonCSS_Classes
+    )
+
+
+mixin Button--YDF-LoadingPlaceholder(properties)
+
+  -
+
+    const {
+
+      /**
+       * @type { string }
+       * @default Button__YDF.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default Button__YDF.areThemesCSS_ClassesCommon
+       * */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default Button__YDF.GeometricVariations.regular
+       * */
+      geometricVariation,
+
+      /**
+       * @type { Array<Button__YDF.GeometricModifiers> }
+       * @default []
+       * */
+      geometricModifiers
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: {
+        theme: Button__YDF.propertiesSpecification.theme,
+        areThemesCSS_ClassesCommon: Button__YDF.propertiesSpecification.areThemesCSS_ClassesCommon,
+        geometricVariation: Button__YDF.propertiesSpecification.geometricVariation,
+        geometricModifiers: Button__YDF.propertiesSpecification.geometricModifiers
+      },
+      mixinName: `${ Button__YDF.CSS_NAMESPACE }-LoadingPlaceholder`
+    });
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes = [
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: Button__YDF.Themes,
+        CSS_Namespace: Button__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: Button__YDF.GeometricVariations,
+        CSS_Namespace: Button__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(Button__YDF.CSS_NAMESPACE, geometricModifiers)
+
+    ];
+
+
+  span.Button--YDF.Button--YDF__LoadingPlaceholder(
+    class= rootElementModifierCSS_Classes
+  )&attributes(attributes)

@@ -1,0 +1,1 @@
+﻿wsl tree -I 'obj\|bin\|.yda\|node_modules'

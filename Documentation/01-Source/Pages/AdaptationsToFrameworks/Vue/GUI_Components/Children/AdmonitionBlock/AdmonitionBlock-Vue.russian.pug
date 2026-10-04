@@ -1,0 +1,483 @@
+extends ../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = routing.russian.adaptationsToFrameworks.$children.vue.$children.GUI_Components.$children.AdmonitionBlock;
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle(topHeading),
+        description: MetaDescriptionTemplates.GUI_Components.AdmonitionBlock
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("adaptationsToFrameworks.vue.GUI_Components.AdmonitionBlock");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.adaptationsToFrameworks.$children.vue.$children.GUI_Components.$children.AdmonitionBlock.$URI,
+      japanese: routing.japanese.adaptationsToFrameworks.$children.vue.$children.GUI_Components.$children.AdmonitionBlock.$URI
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ `AdmonitionBlock` (Vue) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
+
+    +WebPageViewer--YDF({
+      URI: "$Demos:Vue/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "AdmonitionBlock" })
+    })
+
+    +AdmonitionBlockComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ┅┅┅ Краткий обзор ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
+    }).Article-Heading2
+
+    +AdmonitionBlockComponent-Overview({ framework: SupportedFrameworks.vue })
+
+
+    //- ┅┅┅ Класс `AdmonitionBlock` ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      innerHTML: localizedSectioning.AdmonitionBlockClass.$heading,
+      HTML_ID: localizedSectioning.AdmonitionBlockClass.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ Vue-свойства ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.AdmonitionBlockClass.$children.vueProperties.$heading,
+      HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.vueProperties.$anchor
+    }).Article-Heading3
+
+    +AdmonitionBlockComponent-PugMixinOrClassSynopsis({ framework: SupportedFrameworks.vue })
+
+    //-
+
+      //- ─── Примеры ────────────────────────────────────────────────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 3,
+        text: localizedSectioning.AdmonitionBlockClass.$children.examples.$heading,
+        HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.examples.$anchor
+      }).Article-Heading3
+
+      //- ─── Минимальный пример (только обязательные свойства) ──────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 4,
+        text: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.minimal.$heading,
+        HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.minimal.$anchor
+      }).Article-Heading4
+
+      +AdmonitionBlockComponent-MinimalExampleDescription({ framework: SupportedFrameworks.vue })
+
+      +CodeViewer--YDF
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "Pug-синтаксис",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
+        }): :code_listing--yda
+          AdmonitionBlock(
+            :decorativeVariation="AdmonitionBlock.DecorativeVariations.notice"
+          ).
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "HTML-синтаксис",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML
+        }): :code_listing--yda
+          <AdmonitionBlock
+            :decorativeVariation="AdmonitionBlock.DecorativeVariations.notice"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </AdmonitionBlock>
+
+
+      //- ─── Заголовок (свойство `title`) ───────────────────────────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 4,
+        innerHTML: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.title.$heading,
+        HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.title.$anchor
+      }).Article-Heading4
+
+      +PropertyMetadata--YDF_DK(AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.title)
+
+      +AdmonitionBlockComponent-TitlePropertyDescription({ framework: SupportedFrameworks.vue })
+
+      +CodeViewer--YDF
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "Pug-синтаксис",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
+        }): :code_listing--yda
+          AdmonitionBlock(
+            title="Titulo"
+            :decorativeVariation="AdmonitionBlock.DecorativeVariations.notice"
+          ).
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "HTML-синтаксис",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML
+        }): :code_listing--yda
+          <AdmonitionBlock
+            title="Titulo"
+            :decorativeVariation="AdmonitionBlock.DecorativeVariations.notice"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </AdmonitionBlock>
+
+
+      //- ─── SVG-иконки ─────────────────────────────────────────────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 4,
+        text: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.SVG_Icons.$heading,
+        HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.SVG_Icons.$anchor
+      }).Article-Heading4
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:Vue/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-DefaultSvgIcons.html",
+        title: "Примеры отображения компонента «AdmonitionBlock» с иконками " +
+            "(библиотека: «Yamato Daiwa Frontend Vue», сокращённо: «YDF Vue»). "
+      })
+
+      p.Article-Paragraph.
+        #[+Term--YDID Иконка] вдобавок к цвету фона позволяет лучше передать важность сообщения.
+        Для того, чтобы отобразилась иконка по умолчанию (зависит от #[+Term--YDID декоративной вариации]),
+          #[+Keyword--YDID необходимо] указать #[+Term--YDID Vue-свойству]
+          #[+ImportantEntity__Code--YDID hasDefaultSVG_Icon] значение #[+ImportantEntity__Code--YDID true]:
+
+      +CodeViewer--YDF
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "Pug-синтаксис",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
+        }): :code_listing--yda
+          AdmonitionBlock(
+            :decorativeVariation="AdmonitionBlock.DecorativeVariations.notice"
+            :hasDefaultSVG_Icon="true"
+          ).
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "HTML-синтаксис",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML
+        }): :code_listing--yda
+          <AdmonitionBlock
+            :decorativeVariation="AdmonitionBlock.DecorativeVariations.notice"
+            :hasDefaultSVG_Icon="true"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </AdmonitionBlock>
+
+      p.Article-Paragraph.
+        #[+Keyword--YDID Наиболее] рекомендуемым вариантом является сочетание заголовков и иконок:
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-TitlesAndSvgIcons.html",
+        title: "Примеры отображения компонента «AdmonitionBlock» с заголовками и иконками " +
+            "(библиотека: «Yamato Daiwa Frontend Vue», сокращённо: «YDF Vue»). "
+      })
+
+      +CodeViewer-Listing--YDF({
+        fileLabel: "Pug-синтаксис",
+        codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
+      }): :code_listing--yda
+        AdmonitionBlock(
+          title="Titulo"
+          :decorativeVariation="AdmonitionBlock.DecorativeVariations.notice"
+          :hasDefaultSVG_Icon="true"
+        ).
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+      +CodeViewer-Listing--YDF({
+        fileLabel: "HTML-синтаксис",
+        codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML
+      }): :code_listing--yda
+        <AdmonitionBlock
+          title="Titulo"
+          :decorativeVariation="AdmonitionBlock.DecorativeVariations.notice"
+          :hasDefaultSVG_Icon="true"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </AdmonitionBlock>
+
+      p.Article-Paragraph.
+        Используя
+          #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.vue.officialSite.slots }) Vue-слоты],
+          можно также указать пользовательскую #[+Term--YDID SVG-иконку], при этом у её #[+Keyword--YDID корневого]
+          #[+Term--YDID элемента] #[+Keyword--YDID должен] быть #[+Term--YDID CSS-класс]
+          #[+ImportantEntity__Code--YDID AdmonitionBlock--YDF-SVG_Icon]:
+
+      +CodeViewer--YDF({
+        resultWebViewURI: "$Demos:CorePackage/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-CustomSvgIcons.html"
+      })
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "Pug-синтаксис",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
+        }): :code_listing--yda
+          AdmonitionBlock(
+            :decorativeVariation="AdmonitionBlock.DecorativeVariations.warning"
+          )
+
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            |   magna aliqua.
+            | Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+            template(v-slot:CustomSVG_Icon): ExclamationMarkIcon__Squared.AdmonitionBlock--YDF-SVG_Icon
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "HTML-синтаксис",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML
+        }): :code_listing--yda
+          <AdmonitionBlock
+            :decorativeVariation="AdmonitionBlock.DecorativeVariations.notice"
+          >
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+            <template v-slot:CustomSVG_Icon>
+              <ExclamationMarkIcon__Squared class="AdmonitionBlock--YDF-SVG_Icon"/>
+            </template>
+
+          </AdmonitionBlock>
+
+      p.Article-Paragraph.
+        Как видно, пользовательская иконка меньше по размерам, чем стандартная.
+        На самом деле, высота у них #[+Keyword--YDID одинаковая] (она задана в через #[+Term--YDID стили]), а проблема
+          заключается в том, что у этой иконки между областью, называемой #[+Term--YDID «view box»] и фигурой, которую
+          образует элемент #[+SecondaryEntity__Code--YDID path], имеется зазор.
+        Этот зазор #[+Keyword--YDID не]&nbsp;имеет отношения к #[+Term--YDID CSS-свойствам]
+          #[+ImportantEntity__Code--YDID padding] и #[+ImportantEntity--YDID margin], ровно как и
+          #[+Keyword--YDID не]&nbsp;имеет отношения с #[+ImportantEntity--YDID CSS] как к таковому — дело в самом
+          #[+Term--YDID SVG-изображении].
+        Проблема в том, что у каждого поставщика SVG-иконок своя величина этого зазора, а в
+          #[+ImportantEntity--YDID YDF] такого зазора #[+Keyword--YDID нет], потому что регулировать расстояние до
+          других элементов надлежит уже с помощью #[+ImportantEntity--YDID CSS].
+
+      p.Article-Paragraph.
+        Вероятно, Вы хотите знать, как сделать так, чтобы можно было легко заменять иконки от одного поставщика
+          иконками от другого поставщика, при этом их размеры выглядели одинаково и для всех иконок были одно и те
+          же стили.
+        Короткий ответ: #[+Keyword--YDID никак], из-за того самого зазора, о котором выше шла речь.
+        Придётся либо модифицировать SVG-код иконок с целью сделать им один и тот же зазор (или убрать его),
+          либо регулировать внешнюю геометрию каждой иконки индивидуальными #[+Term--YDID стилями].
+
+
+      //- ─── Кнопки ─────────────────────────────────────────────────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 4,
+        text: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.buttons.$heading,
+        HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.buttons.$anchor
+      }).Article-Heading4
+
+      +AdmonitionBlockComponent-ButtonsUsageCommonDescription
+
+      p.Article-Paragraph.
+        Если кнопка или ссылка одна, и Вы хотите расположить её по центру, то укажите ей #[+Term--YDID CSS-класс]
+          #[+ImportantEntity__Code--YDID AdmonitionBlock--YDF-CenteredButton]:
+
+      +CodeViewer--YDF
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "Pug-синтаксис",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
+        }): :code_listing--yda
+          AdmonitionBlock(
+            :title="Ничего не найдено"
+            :decorativeVariation="AdmonitionBlock.DecorativeVariations.warning"
+            :hasDefaultSVG_Icon="true"
+          )
+
+            p К сожалению, соответствующих указанной Вами фильтрации данных нет.
+
+            Button.AdmonitionBlock--YDF-CenteredButton(
+              label="Сброс фильтров"
+              @click="resetFiltering"
+            )
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "HTML-синтаксис",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML
+        }): :code_listing--yda
+          <AdmonitionBlock
+            :title="Ничего не найдено"
+            :decorativeVariation="AdmonitionBlock.DecorativeVariations.notice"
+            :hasDefaultSVG_Icon="true"
+          >
+
+            <p>К сожалению, соответствующих указанной Вами фильтрации данных нет.</p>
+
+            <Button
+              label="Сброс фильтров"
+              @click="resetFiltering"
+              class="AdmonitionBlock--YDF-CenteredButton"
+            />
+
+          </AdmonitionBlock>
+      //- TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      //-
+        //- ─── Панель действий ────────────────────────────────────────────────────────────────────────────────────────────
+        h5.Article-Heading5 Панель действий
+
+        +WebPageViewer--YDF({
+          URI: "$Demos:Vue/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-ActionBar.html",
+          title: "Примеры отображения компонента «AdmonitionBlock» с панелью действий " +
+              "(библиотека: «Yamato Daiwa Frontend Vue», сокращённо: «YDF Vue»). "
+        })
+
+        p.Article-Paragraph.
+          Если пользователю предлагается несколько способов отреагировать на сообщение, то добавьте кнопки и/или другие
+            элементы управления во #[+Term--YDID vue-слот] #[+ImportantEntity__Code--YDID ActionBarContent]:
+
+        +CodeViewer--YDF
+
+          +CodeViewer-Listing--YDF({
+            fileLabel: "Pug-синтаксис",
+            codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
+          }): :code_listing--yda
+            AdmonitionBlock(
+              title="Конфликт при сохранении данных"
+              :decorativeVariation="AdmonitionBlock.DecorativeVariations.warning"
+              :hasDefaultSVG_Icon="true"
+            )
+
+              | К сожалению, пока Вы редактировали данные, удалённое хранилище было обновлено.
+              | Необходимо сравнить Вашу версию с новейшей из удалённого хранилища и собрать их них окончательную версию.
+
+              template(v-slot:ActionBarContent)
+                Button(label="Разрешить конфликт" @click="resolveConflict")
+                Button(label="Сохранить версию" @click="saveVersion")
+
+
+          +CodeViewer-Listing--YDF({
+            fileLabel: "HTML-синтаксис",
+            codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML
+          }): :code_listing--yda
+            <AdmonitionBlock
+              title="Конфликт при сохранении данных"
+              :decorativeVariation="AdmonitionBlock.DecorativeVariations.warning"
+              :hasDefaultSVG_Icon="true"
+            >
+
+              К сожалению, пока Вы редактировали данные, удалённое хранилище было обновлено.
+              Необходимо сравнить Вашу версию с новейшей из удалённого хранилища и собрать их них окончательную версию.
+
+              <template v-slot:ActionBar>
+                <Button label="Разрешить конфликт" @click="resolveConflict" />
+                <Button label="Сохранить версию" @click="saveVersion" />
+              </div>
+
+            </AdmonitionBlock>
+
+
+        //- ─── Убирание ─────────────────────────────────────────────────────────────────────────────────────────────────
+        h5.Article-Heading5 Убирание
+
+        +PropertyMetadata--YDF_DK(AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.dismissible)
+
+        +WebPageViewer--YDF({
+          URI: "$Demos:Vue/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-DismissingButton.html",
+          title: "Примеры отображения компонента «AdmonitionBlock» с кнопкой для убирания " +
+              "(библиотека: «Yamato Daiwa Frontend Vue», сокращённо: «YDF Vue»). "
+        })
+
+        +AdmonitionBlock--YDF({
+          title: "«Убирание» и «сокрытие» — не одно и тоже",
+          SVG_Icon: true,
+          decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning,
+        }).
+          Хотя вместо редко используемого слова «убирание» хочется использовать слова «скрывание», «сокрытие», они
+            #[+Keyphrase--YDID для веб-разработчиков] являются #[+Keyword--YDID неточными].
+          Если #[+Term--YDID DOM-элемент] «скрыт», то это ещё #[+Keyword--YDID не]&nbsp;значит, что его больше нет
+            в #[+Term--YDID DOM-древе]: у него может быть стопроцентная прозрачность, или установлено
+            #[+SecondaryEntity__Code--YDID display: none] через #[+ImportantEntity--YDID CSS], или же у него нулевые
+            ширина и высота, но при этом установлено #[+SecondaryEntity__Code--YDID overflow: hidden] — способов скрыть
+            объект #[+Keyword--YDID несколько].
+          «Убирание» же означает, что #[+Term--YDID элемент] #[+Keyword--YDID удалён] из #[+Term--YDID DOM-древа].
+
+        p.Article-Paragraph.
+          Укажите #[+Keyword--YDID булевскому] #[+Term--YDID свойству] #[+ImportantEntity__Code--YDID dismissible]
+            значение #[+ImportantEntity__Code--YDID true], чтобы рамку с текстом можно было убрать
+
+        +CodeViewer--YDF
+
+          +CodeViewer-Listing--YDF({
+            fileLabel: "Pug-синтаксис",
+            codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug
+          }): :code_listing--yda
+            AdmonitionBlock(
+              title="Редактирование задач"
+              :decorativeVariation="AdmonitionBlock.DecorativeVariations.warning"
+              :hasDefaultSVG_Icon="true"
+              :dismissible="true"
+            ) Кликните карточку, чтобы начать редактировать сооответствующую задачу.
+
+
+          +CodeViewer-Listing--YDF({
+            fileLabel: "HTML-синтаксис",
+            codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML
+          }): :code_listing--yda
+            <AdmonitionBlock
+              title="Редактирование задач"
+              :decorativeVariation="AdmonitionBlock.DecorativeVariations.warning"
+              :hasDefaultSVG_Icon="true"
+              :dismissible="true"
+            >
+              Кликните карточку, чтобы начать редактировать сооответствующую задачу.
+            </AdmonitionBlock>

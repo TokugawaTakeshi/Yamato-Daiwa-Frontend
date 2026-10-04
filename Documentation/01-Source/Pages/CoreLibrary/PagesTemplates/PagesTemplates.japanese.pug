@@ -1,0 +1,111 @@
+extends ../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../SharedAssets/Markup/SharedAssets.japanese.pug
+  include ../../../SharedComponents/SharedComponents.japanese.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("ページの原型"),
+        description:
+            "フロントエンド開発専用の「Yamato Daiwa Frontend」（略：「YDF」）ライブラリーはウェブページのPugテンプレートを提供し、これらが必須HTMLコード" +
+              "及びよく使われるコードを含めている。"
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.markup.pagesTemplates");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.markup.$children.pagesTemplates.$URI,
+      russian: routing.russian.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ ページの原型 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1= localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$heading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.notCheckedByNativeSpeakers })
+
+    p.Article-Paragraph
+      | #[+ImportantEntity--YDID Pug]は他の本格的な#[+Term--YDID HTMLプリプロセッサ]と同じ様に
+      |
+      +Link--YDF({
+        unendorsedExternalURI: sharedExternalLinks.pug.homePage.templateInheritance
+      }) テンプレートの継承
+      | と言う機能が有る。
+      | 実際のプロジェクトだと、ページ数が多く、上記の#[+Term--YDID 継承]が#[+Keyword--YDID 多層]。
+
+    p.Article-Paragraph.
+      #[+Keyword--YDID 妥当な]#[+Term--YDID HTMLページ]は#[+Keyword--YDID 必須]部分が有り、特定の#[+Term--YDID タグ]に
+        #[+Keyword--YDID 限らず]、これらの#[+Term--YDID ネスティング]且つ特殊の#[+Term--YDID 属性]を含む。
+      #[+ImportantEntity--YDID 2024年]だと、#[+Keyword--YDID 妥当な]#[+Term--YDID HTMLページ]の#[+Keyword--YDID 最少]
+        #[+Term--YDID コード]は下記通り。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML }): :code_listing--yda
+        <!DOCTYPE html>
+        <html lang="ja">
+          <head>
+            <meta charset="utf-8">
+            <title>ページのタイトル</title>
+          </head>
+          <body>
+            <!-- 見える内容 -->
+          </body>
+        </html>
+
+    p.Article-Paragraph.
+      必須部分と他に、任意ではあるが、良く使われているコードの断片も在る。
+      例えば、ページの内容を画面に収まる様に縮小必要は無いと指定する下記の宣言（現在だと、レスポンシブ・アダプティブレイアウトがオプションではなく、事実上必須だから）。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML }): :code_listing--yda
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    p.Article-Paragraph
+      | #[+Term--YDID テンプレート継承]を用いて、必須部分及びよく使われる任意な部分を親ファイルへ抽出可能。
+      | 更に、
+      +Link--YDF({
+        unendorsedExternalURI: sharedExternalLinks.pug.homePage.inlineJavaScript
+      }) 内部JavaScript
+      |
+      |   を使い、コードを生成する事でも出来る。
+      | 例えば、#[+Term--YDID スタイルシート]や#[+Term--YDID スクリプト]へのパスを#[+Term--YDID 定数化し]、親のテンプレートが当#[+Term--YDID 定数]
+      |   を元に適切な#[+Term--YDID タグ]を適切な場所で生成する様に確保出来る。
+
+    p.Article-Paragraph.
+      #[+ImportantEntity--YDID YDF]は、継承される前提で、下記の#[+Keyword--YDID 作成済みの]原形を提供している。
+
+    +CompactTableOfContents--YDF_DK(
+      localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$children
+    )

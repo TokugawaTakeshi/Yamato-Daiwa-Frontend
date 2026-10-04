@@ -1,0 +1,608 @@
+@require "Themes/Regular/GeometricVariations/Badge-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/Badge-RegularTheme-SmallGeometricVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-VeryCatchyBrightDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-CatchyBrightDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-ModestlyCatchyBrightDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-NeutralBrightDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-CalmingBrightDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-ModestlyCalmingBrightDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Badge-RegularTheme-AchromaticBrightDecorativeVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-VeryCatchyPastelDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-CatchyPastelDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-ModestlyCatchyPastelDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-NeutralPastelDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-CalmingPastelDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-ModestlyCalmingPastelDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Badge-RegularTheme-AchromaticPastelDecorativeVariation.styl"
+
+
+Badge--YDF = {
+
+  CSS_NAMESPACE: "Badge--YDF",
+
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF"
+
+        geometricVariations: {
+          regular: Badge-RegularTheme-RegularGeometricVariation--YDF,
+          small: Badge-RegularTheme-SmallGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+
+          veryCatchyBright: Badge-RegularTheme-VeryCatchyBrightDecorativeVariation--YDF,
+          catchyBright: Badge-RegularTheme-CatchyBrightDecorativeVariation--YDF,
+          modestlyCatchyBright: Badge-RegularTheme-ModestlyCatchyBrightDecorativeVariation--YDF,
+          neutralBright: Badge-RegularTheme-NeutralBrightDecorativeVariation--YDF,
+          modestlyCalmingBright: Badge-RegularTheme-ModestlyCalmingBrightDecorativeVariation--YDF,
+          calmingBright: Badge-RegularTheme-CalmingBrightDecorativeVariation--YDF,
+          achromaticBright: Badge-RegularTheme-AchromaticBrightDecorativeVariation--YDF,
+
+          veryCatchyPastel: Badge-RegularTheme-VeryCatchyPastelDecorativeVariation--YDF,
+          catchyPastel: Badge-RegularTheme-CatchyPastelDecorativeVariation--YDF,
+          modestlyCatchyPastel: Badge-RegularTheme-ModestlyCatchyPastelDecorativeVariation--YDF,
+          neutralPastel: Badge-RegularTheme-NeutralPastelDecorativeVariation--YDF,
+          modestlyCalmingPastel: Badge-RegularTheme-ModestlyCalmingPastelDecorativeVariation--YDF,
+          calmingPastel: Badge-RegularTheme-CalmingPastelDecorativeVariation--YDF,
+          achromaticPastel: Badge-RegularTheme-AchromaticPastelDecorativeVariation--YDF
+
+        }
+
+      }
+    }
+
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true,
+    geometricModifiers: {
+      pillShape: true,
+      singleLine: true
+    },
+    decorativeModifiers: {
+      bordersDisguising: true,
+      noBackground: true
+    }
+  }
+
+}
+
+
+Badge--YDF-generateStyles(
+  preset = Badge--YDF.defaultProperties,
+  overrides = {},
+  options = Badge--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overrides)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "Badge--YDF-generateStyles",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Badge--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Badge--YDF.defaultOptions.areThemesCSS_ClassesCommon
+      },
+      loadingPlaceholder: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Badge--YDF.defaultOptions.loadingPlaceholder
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Badge--YDF.defaultOptions.themeIndependentGeometricVariations
+      },
+      geometricModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          pillShape: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Badge--YDF.defaultOptions.geometricModifiers.pillShape
+          },
+          singleLine: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Badge--YDF.defaultOptions.geometricModifiers.singleLine
+          }
+        },
+        defaultValue: Badge--YDF.defaultOptions.geometricModifiers
+      },
+      decorativeModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          bordersDisguising: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Badge--YDF.defaultOptions.decorativeModifiers.bordersDisguising
+          },
+          noBackground: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.decorativeModifiers.noBackground
+          }
+        },
+        defaultValue: Badge--YDF.defaultOptions.decorativeModifiers
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .Badge--YDF
+
+      display inline-flex
+      align-items center
+
+
+    .Badge--YDF-SVG_Icon
+
+      flex-shrink 0
+
+
+    if options.loadingPlaceholder
+
+      .Badge--YDF__LoadingPlaceholder
+
+        display inline-block
+
+
+  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "Badge.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+    cachedValidReusables = extractAndValidateObjectProperties--YDF({
+      targetObject: variation,
+      targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+      extracts: {
+        bordersSizing: { dotSeparatedPath: "rootElement.borders", required: false },
+        keyLabelTextSize: { dotSeparatedPath: "keyLabel.text.size", required: true },
+        valueLabelTextSize: { dotSeparatedPath: "valueLabel.text.size", required: true },
+        valueLabelLineSpacing: { dotSeparatedPath: "valueLabel.text.lineSpacing", required: false },
+        valueLabelLineHeight: { dotSeparatedPath: "valueLabel.text.lineHeight", mustBeInsteadOf: "valueLabel.text.lineSpacing" },
+        valueLabelVerticalSymmetricSpacingAsTopSpacing: {
+          newName: "valueLabelTopSpacing",
+          dotSeparatedPath: "valueLabel.spacing.verticalSymmetric",
+          required: false
+        },
+        valueLabelVerticalSymmetricSpacingAsBottomSpacing: {
+          newName: "valueLabelBottomSpacing",
+          dotSeparatedPath: "valueLabel.spacing.verticalSymmetric",
+          required: false
+        },
+        valueLabelTopSpacing: {
+          dotSeparatedPath: "valueLabel.spacing.top",
+          required: false,
+          incompatibleWith: "SVG_Icon.spacing.verticalSymmetric"
+        },
+        valueLabelBottomSpacing: {
+          dotSeparatedPath: "valueLabel.spacing.bottom",
+          required: false,
+          incompatibleWith: "SVG_Icon.spacing.verticalSymmetric"
+        }
+      }
+    })
+
+
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + Badge--YDF.CSS_NAMESPACE)
+
+      BordersSizing--YDF(cachedValidReusables.bordersSizing)
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
+
+
+    if options.geometricModifiers.pillShape
+
+      &.Badge--YDF__PillShapeGeometricModifier
+
+        BORDER_RADIUS_TO_VALUE_TEXT_SIZE_RATIO = extractAndValidateObjectProperties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          extracts: {
+            borderRadiusToValueTextSizeRatio: {
+              dotSeparatedPath: "rootElement.modifiers.pillShape.borderRadiusToValueTextSizeRatio", required: true
+            }
+          }
+        }).borderRadiusToValueTextSizeRatio
+
+        border-radius cachedValidReusables.valueLabelTextSize * BORDER_RADIUS_TO_VALUE_TEXT_SIZE_RATIO
+
+
+    .Badge--YDF-SVG_Icon
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          width: { dotSeparatedPath: "SVG_Icon.width", required: false },
+          height: {
+            dotSeparatedPath: "SVG_Icon.height",
+            requiredIf: {
+              predicate: @(variation) { return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(variation, "SVG_Icon.width")) },
+              conditionDescription: "'SVG_Icon.width' icon is null"
+            }
+          },
+          verticalSymmetricMarginsAsTopMargin: {
+            newName: "margin-top",
+            dotSeparatedPath: "SVG_Icon.spacing.verticalSymmetric",
+            required: false
+          },
+          verticalSymmetricMarginsAsBottomMargin: {
+            newName: "margin-bottom",
+            dotSeparatedPath: "SVG_Icon.spacing.verticalSymmetric",
+            required: false
+          },
+          topMargin: {
+            newName: "margin-top",
+            dotSeparatedPath: "SVG_Icon.spacing.top",
+            required: false,
+            incompatibleWith: "SVG_Icon.spacing.verticalSymmetric"
+          },
+          bottomMargin: {
+            newName: "margin-bottom",
+            dotSeparatedPath: "SVG_Icon.spacing.bottom",
+            required: false,
+            incompatibleWith: "SVG_Icon.spacing.verticalSymmetric"
+          },
+          margin-left: { dotSeparatedPath: "SVG_Icon.spacing.left", required: true }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
+
+
+    .Badge--YDF-KeyLabel
+
+      // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF`.
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          verticalSymmetricPaddingsAsTopPadding: {
+            newName: "padding-top",
+            dotSeparatedPath: "keyLabel.spacing.verticalSymmetric",
+            required: false
+          },
+          verticalSymmetricPaddingsAsBottomPadding: {
+            newName: "padding-bottom",
+            dotSeparatedPath: "keyLabel.spacing.verticalSymmetric",
+            required: false
+          },
+          topPadding: {
+            newName: "padding-top",
+            dotSeparatedPath: "keyLabel.spacing.top",
+            required: false,
+            incompatibleWith: "keyLabel.spacing.verticalSymmetric"
+          },
+          bottomPadding: {
+            newName: "padding-bottom",
+            dotSeparatedPath: "keyLabel.spacing.bottom",
+            required: false,
+            incompatibleWith: "keyLabel.spacing.verticalSymmetric"
+          }
+        }
+      })
+
+      MultilineKeyLabelStyles(mustSkipFontSizeApplying)
+
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
+          merge(
+            extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: {
+                lineSpacing: { dotSeparatedPath: "keyLabel.text.lineSpacing", required: false },
+                lineHeight: { dotSeparatedPath: "keyLabel.text.lineHeight", mustBeInsteadOf: "keyLabel.text.lineSpacing" }
+              }
+            }),
+            {
+              fontSize: cachedValidReusables.keyLabelTextSize,
+              mustApplyNegativeMarginsToRootElement: true,
+              mustSkipFontSizeApplying: mustSkipFontSizeApplying,
+              mustAllowWordsBreakingAnywhere: isFalse--YDF(options.geometricModifiers.singleLine)
+            }
+          )
+        )
+
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.keyLabel.customDeclarations)
+
+
+      if options.geometricModifiers.singleLine
+
+        font-size: cachedValidReusables.keyLabelTextSize
+
+
+      else
+
+        MultilineKeyLabelStyles(mustSkipFontSizeApplying: false)
+
+
+      &:first-child
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            margin-left: { dotSeparatedPath: "keyLabel.spacing.leftWhenGoingFirst", required: true }
+          }
+        })
+
+
+      if options.geometricModifiers.singleLine
+
+        /{CONTEXT_SELECTOR}:not(.Badge--YDF__SingleLineGeometricModifier) .Badge--YDF-KeyLabel
+
+          MultilineKeyLabelStyles(mustSkipFontSizeApplying: true)
+
+
+    retireFrom--YDF({
+      targetElementSelector: ".Badge--YDF-SVG_Icon",
+      contextSelector: CONTEXT_SELECTOR,
+      referenceElementSelector: ".Badge--YDF-KeyLabel",
+      x: extractAndValidateObjectProperties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        extracts: {
+          spacingAfterSVG_Icon: { dotSeparatedPath: "keyLabel.spacing.afterSVG_Icon", required: true },
+        }
+      }).spacingAfterSVG_Icon
+    })
+
+
+    .Badge--YDF-ValueLabel
+
+      // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF`.
+      applyIfNotNull--YDF({
+        padding-top: cachedValidReusables.valueLabelTopSpacing,
+        padding-bottom: cachedValidReusables.valueLabelBottomSpacing
+      })
+
+      MultilineValueLabelStyles()
+
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+          fontSize: cachedValidReusables.valueLabelTextSize,
+          lineSpacing: cachedValidReusables.valueLabelLineSpacing,
+          lineHeight: cachedValidReusables.valueLabelLineHeight,
+          mustApplyNegativeMarginsToRootElement: true,
+          mustAllowWordsBreakingAnywhere: !options.geometricModifiers.singleLine
+        })
+
+
+      if !options.geometricModifiers.singleLine
+
+        MultilineValueLabelStyles()
+
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.valueLabel.customDeclarations)
+
+
+      &:first-child
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            margin-left: { dotSeparatedPath: "valueLabel.spacing.leftWhenGoingFirst", required: true }
+          }
+        })
+
+
+      &:last-child
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            margin-right: { dotSeparatedPath: "valueLabel.spacing.right", required: true }
+          }
+        })
+
+
+      if options.geometricModifiers.singleLine
+
+        /{CONTEXT_SELECTOR}.Badge--YDF__SingleLineGeometricModifier .Badge--YDF-ValueLabel
+
+          font-size: cachedValidReusables.valueLabelTextSize
+
+
+        /{CONTEXT_SELECTOR}:not(.Badge--YDF__SingleLineGeometricModifier) .Badge--YDF-ValueLabel
+
+          MultilineValueLabelStyles()
+
+
+    retireFrom--YDF({
+      definitions:\
+          (".Badge--YDF-SVG_Icon" {
+            x: extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: { spacingAfterSVG_Icon: { dotSeparatedPath: "valueLabel.spacing.afterSVG_Icon", required: true } }
+            }).spacingAfterSVG_Icon
+          })\
+          (".Badge--YDF-KeyLabel" {
+            x: extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: { spacingAfterKeyLabel: { dotSeparatedPath: "valueLabel.spacing.afterKeyLabel", required: true } }
+            }).spacingAfterKeyLabel
+          }),
+      referenceElementSelector: ".Badge--YDF-ValueLabel",
+      contextSelector: selector()
+    })
+
+
+    if options.loadingPlaceholder
+
+      &.Badge--YDF__LoadingPlaceholder
+
+        LoadingPlaceholder()
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            min-width: { dotSeparatedPath: "rootElement.loadingPlaceholder.minimalWidth", required: true }
+          }
+        })
+
+        HEIGHT = computeTotalHeightByTextElementHeightSizingSpecification--YDF({
+          type: TextElementHeightSizingTypes--YDF.natural,
+          borders: cachedValidReusables.bordersSizing,
+          paddings: {
+            top: cachedValidReusables.valueLabelTopSpacing,
+            bottom: cachedValidReusables.valueLabelBottomSpacing
+          },
+          fontSize: cachedValidReusables.valueLabelTextSize,
+          lineHeight: 1
+        })
+
+        height HEIGHT
+
+
+  applyThemeIndependentGeometricModifiers()
+
+    if options.geometricModifiers.singleLine
+
+      .Badge--YDF-KeyLabel
+
+        /.Badge--YDF__SingleLineGeometricModifier &
+
+          SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
+
+
+        /:not(.Badge--YDF__SingleLineGeometricModifier) &
+
+          word-break break-all
+
+
+      .Badge--YDF-ValueLabel
+
+        /.Badge--YDF__SingleLineGeometricModifier &
+
+          SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
+
+
+        /:not(.Badge--YDF__SingleLineGeometricModifier) &
+
+          word-break break-all
+
+
+  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "Badge.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + Badge--YDF.CSS_NAMESPACE)
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          border-style: { dotSeparatedPath: "rootElement.borders.style", required: false },
+          border-color: { dotSeparatedPath: "rootElement.borders.color", required: false },
+          background-color: { dotSeparatedPath: "rootElement.background.color", required: false },
+          background-image: { dotSeparatedPath: "rootElement.background.image", required: false }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
+
+
+    .Badge--YDF-SVG_Icon
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          fill: { dotSeparatedPath: "SVG_Icon.color", required: false }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
+
+
+    .Badge--YDF-KeyLabel
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          font-weight: { dotSeparatedPath: "keyLabel.text.fontWeight", required: false },
+          color: { dotSeparatedPath: "keyLabel.text.color", required: false }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.keyLabel.customDeclarations)
+
+
+    .Badge--YDF-ValueLabel
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          font-weight: { dotSeparatedPath: "valueLabel.text.fontWeight", required: false },
+          color: { dotSeparatedPath: "valueLabel.text.color", required: false }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.valueLabel.customDeclarations)
+
+
+  applyThemeIndependentDecorativeModifiers()
+
+    if options.decorativeModifiers.bordersDisguising
+
+      .Badge--YDF__BordersDisguisingDecorativeModifier
+
+        border-color transparent
+
+
+    if options.decorativeModifiers.noBackground
+
+      .Badge--YDF__NoBackgroundDecorativeModifier
+
+        background none
+
+
+  // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  if !options.themeIndependentStylesOnly
+
+    applyComponentThemes--YDF({
+      CSS_Namespace: Badge--YDF.CSS_NAMESPACE,
+      themes: properties.themes,
+      areThemesCSS_ClassesCommon: options.areThemesCSS_ClassesCommon,
+      themeIndependentGeometricVariations: options.themeIndependentGeometricVariations,
+      applyGeometricVariation: applyGeometricVariation,
+      applyDecorativeVariation: applyDecorativeVariation
+    })
+
+  applyThemeIndependentGeometricModifiers()
+  applyThemeIndependentDecorativeModifiers()

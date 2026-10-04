@@ -1,0 +1,78 @@
+h1.Heading1(
+  :class="mustVisuallyHideTopHeading ? 'YDF_Gallery-InvisibleHeading' : null"
+) TextBox Component Demos
+
+
+//- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.minimal"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Minimal
+
+  ThemesShowcase(
+    :themes="TextBox.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="TextBox.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="TextBox.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariationsListItemAdditionalCSS_Classes="[ 'TextBoxGallery-VerticalLinearFlow' ]"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      template(
+        v-for="{ HTML_Type, accessibilityGuidance, payload } in minimalTextBoxesRequirements"
+        :key="HTML_Type"
+      )
+        TextBox(
+          :HTML_Type="HTML_Type"
+          :accessibilityGuidance="accessibilityGuidance"
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          :validityHighlightingActivationMode="TextBox.ValidityHighlightingActivationModes.onFocusOut"
+          v-model="payload"
+        )
+
+
+//- ━━━ Surrounding ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.surrounding"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Surrounding
+
+  ThemesShowcase(
+    :themes="TextBox.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="TextBox.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="TextBox.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariationsListItemAdditionalCSS_Classes="[ 'TextBoxGallery-VerticalLinearFlow' ]"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      template(
+        v-for="{ HTML_Type, label, guidance, payload } in minimalTextBoxesRequirements"
+        :key="HTML_Type"
+      )
+        TextBox(
+          :HTML_Type="HTML_Type"
+          :label="label"
+          :guidance="guidance"
+          :required="payload.validation.isInputRequired()"
+          :mustDisplayAppropriateBadgeIfInputIsRequired="true"
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          :validityHighlightingActivationMode="TextBox.ValidityHighlightingActivationModes.onFocusOut"
+          v-model="payload"
+        )

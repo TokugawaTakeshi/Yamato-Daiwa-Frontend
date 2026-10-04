@@ -1,0 +1,17 @@
+extends ../node_modules/@yamato-daiwa/frontend/PagesTemplates/StaticPreviewAnywherePage.pug
+
+
+block append Metadata
+
+  - HTML_PAGE_TITLE = "Tests";
+
+
+block append TableOfContents
+
+  h1.AnywherePage-TopHeading= HTML_PAGE_TITLE
+
+  +PageLink({
+    label: "CallableExpressionScheme系",
+    URI: "@Demos/Infographics/CallableExpressionScheme/CallableExpressionScheme.pug",
+    progressStatus: StaticPreviewAnywherePage.PageDevelopmentProgressStatuses.implementationInProgress
+  })

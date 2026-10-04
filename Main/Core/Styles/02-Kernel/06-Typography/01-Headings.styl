@@ -1,0 +1,351 @@
+// === Heading 1 =======================================================================================================
+Heading1DefaultProperties--YDF = {
+  geometry: {
+    text: {
+      size: 3.4rem,
+      lineSpacing: 0.2rem,
+      lineHeight: null
+    },
+    customDeclarations: null
+  },
+  decoration: {
+    text: {
+      fontWeight: null,
+      color: W3C_39_ShadesOfGray--YDF[4]
+    },
+    customDeclarations: null
+  }
+}
+
+
+Heading1--YDF(
+  preset = Heading1DefaultProperties--YDF,
+  overridings = {},
+  options = {
+    geometryOnly: false,
+    decorationOnly: false
+  }
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  mustGenerateGeometry = isTrue--YDF(options.geometryOnly) || isFalse--YDF(options.decorationOnly)
+  mustGenerateDecoration = isTrue--YDF(options.decorationOnly) || isFalse--YDF(options.geometryOnly)
+
+
+  word-break break-all
+
+
+  if mustGenerateGeometry
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: properties.geometry.text.size,
+      lineHeight: properties.geometry.text.lineHeight,
+      lineSpacing: properties.geometry.text.lineSpacing
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.geometry.customDeclarations)
+
+
+  if mustGenerateDecoration
+
+    applyIfNotNull--YDF({
+      font-weight: properties.decoration.text.fontWeight,
+      color: properties.decoration.text.color
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.decoration.customDeclarations)
+
+
+// === Heading 2 =======================================================================================================
+Heading2DefaultProperties--YDF = {
+  geometry: {
+    text: {
+      size: 3rem,
+      lineSpacing: 0.2rem,
+      lineHeight: null
+    },
+    customDeclarations: null
+  },
+  decoration: {
+    text: {
+      fontWeight: null,
+      color: W3C_39_ShadesOfGray--YDF[8]
+    },
+    customDeclarations: null
+  }
+}
+
+
+Heading2--YDF(
+  preset = Heading2DefaultProperties--YDF,
+  overridings = {},
+  options = {
+    geometryOnly: false,
+    decorationOnly: false
+  }
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  mustGenerateGeometry = isTrue--YDF(options.geometryOnly) || isFalse--YDF(options.decorationOnly)
+  mustGenerateDecoration = isTrue--YDF(options.decorationOnly) || isFalse--YDF(options.geometryOnly)
+
+
+  word-break break-all
+
+
+  if mustGenerateGeometry
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: properties.geometry.text.size,
+      lineHeight: properties.geometry.text.lineHeight,
+      lineSpacing: properties.geometry.text.lineSpacing
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.geometry.customDeclarations)
+
+
+  if mustGenerateDecoration
+
+    applyIfNotNull--YDF({
+      font-weight: properties.decoration.text.fontWeight,
+      color: properties.decoration.text.color
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.decoration.customDeclarations)
+
+
+// === Heading 3 =======================================================================================================
+Heading3DefaultProperties--YDF = {
+  geometry: {
+    text: {
+      size: 2.6rem,
+      lineSpacing: 0.2rem,
+      lineHeight: null
+    },
+    customDeclarations: null
+  },
+  decoration: {
+    text: {
+      fontWeight: null,
+      color: W3C_39_ShadesOfGray--YDF[12]
+    }
+  }
+}
+
+
+Heading3--YDF(
+  preset = Heading3DefaultProperties--YDF,
+  overridings = {},
+  options = {
+    geometryOnly: false,
+    decorationOnly: false
+  }
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  mustGenerateGeometry = isTrue--YDF(options.geometryOnly) || isFalse--YDF(options.decorationOnly)
+  mustGenerateDecoration = isTrue--YDF(options.decorationOnly) || isFalse--YDF(options.geometryOnly)
+
+
+  word-break break-all
+
+
+  if mustGenerateGeometry
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: properties.geometry.text.size,
+      lineHeight: properties.geometry.text.lineHeight,
+      lineSpacing: properties.geometry.text.lineSpacing
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.geometry.customDeclarations)
+
+
+  if mustGenerateDecoration
+
+    applyIfNotNull--YDF({
+      font-weight: properties.decoration.text.fontWeight,
+      color: properties.decoration.text.color
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.decoration.customDeclarations)
+
+
+// === Heading 4 =======================================================================================================
+Heading4DefaultProperties--YDF = {
+  geometry: {
+    text: {
+      size: 2.2rem,
+      lineSpacing: 0.2rem,
+      lineHeight: null
+    },
+    customDeclarations: null
+  },
+  decoration: {
+    text: {
+      fontWeight: null,
+      color: W3C_39_ShadesOfGray--YDF[16]
+    },
+    customDeclarations: null
+  }
+}
+
+
+Heading4--YDF(
+  preset = Heading4DefaultProperties--YDF,
+  overridings = {},
+  options = {
+    geometryOnly: false,
+    decorationOnly: false
+  }
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  mustGenerateGeometry = isTrue--YDF(options.geometryOnly) || isFalse--YDF(options.decorationOnly)
+  mustGenerateDecoration = isTrue--YDF(options.decorationOnly) || isFalse--YDF(options.geometryOnly)
+
+
+  word-break break-all
+
+
+  if mustGenerateGeometry
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: properties.geometry.text.size,
+      lineHeight: properties.geometry.text.lineHeight,
+      lineSpacing: properties.geometry.text.lineSpacing
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.geometry.customDeclarations)
+
+
+  if mustGenerateDecoration
+
+    applyIfNotNull--YDF({
+      font-weight: properties.decoration.text.fontWeight,
+      color: properties.decoration.text.color
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.decoration.customDeclarations)
+
+
+// === Heading 5 =======================================================================================================
+Heading5DefaultProperties--YDF = {
+  geometry: {
+    text: {
+      size: 1.8rem,
+      lineSpacing: 0.2rem,
+      lineHeight: null
+    },
+    customDeclarations: null
+  },
+  decoration: {
+    text: {
+      fontWeight: null,
+      color: W3C_39_ShadesOfGray--YDF[20]
+    },
+    customDeclarations: null
+  }
+}
+
+
+Heading5--YDF(
+  preset = Heading5DefaultProperties--YDF,
+  overridings = {},
+  options = {
+    geometryOnly: false,
+    decorationOnly: false
+  }
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  mustGenerateGeometry = isTrue--YDF(options.geometryOnly) || isFalse--YDF(options.decorationOnly)
+  mustGenerateDecoration = isTrue--YDF(options.decorationOnly) || isFalse--YDF(options.geometryOnly)
+
+
+  word-break break-all
+
+
+  if mustGenerateGeometry
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: properties.geometry.text.size,
+      lineHeight: properties.geometry.text.lineHeight,
+      lineSpacing: properties.geometry.text.lineSpacing
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.geometry.customDeclarations)
+
+
+  if mustGenerateDecoration
+
+    applyIfNotNull--YDF({
+      font-weight: properties.decoration.text.fontWeight,
+      color: properties.decoration.text.color
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.decoration.customDeclarations)
+
+
+// === Heading 6 =======================================================================================================
+Heading6DefaultProperties--YDF = {
+  geometry: {
+    text: {
+      size: 1.4rem,
+      lineSpacing: 0.2rem,
+      lineHeight: null
+    },
+    customDeclarations: null
+  },
+  decoration: {
+    text: {
+      fontWeight: null,
+      color: W3C_39_ShadesOfGray--YDF[24]
+    },
+    customDeclarations: null
+  }
+}
+
+
+Heading6--YDF(
+  preset = Heading6DefaultProperties--YDF,
+  overridings = {},
+  options = {
+    geometryOnly: false,
+    decorationOnly: false
+  }
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  mustGenerateGeometry = isTrue--YDF(options.geometryOnly) || isFalse--YDF(options.decorationOnly)
+  mustGenerateDecoration = isTrue--YDF(options.decorationOnly) || isFalse--YDF(options.geometryOnly)
+
+
+  word-break break-all
+
+
+  if mustGenerateGeometry
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: properties.geometry.text.size,
+      lineHeight: properties.geometry.text.lineHeight,
+      lineSpacing: properties.geometry.text.lineSpacing
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.geometry.customDeclarations)
+
+
+  if mustGenerateDecoration
+
+    applyIfNotNull--YDF({
+      font-weight: properties.decoration.text.fontWeight,
+      color: properties.decoration.text.color
+    })
+
+    applyMixinStoredInObjectIfItIsNotNull--YDF(properties.decoration.customDeclarations)

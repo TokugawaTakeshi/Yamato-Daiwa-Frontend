@@ -1,0 +1,45 @@
+﻿@using YamatoDaiwa.Frontend.SVG_Icons.Checkmark
+@using YamatoDaiwa.Frontend.SVG_Icons.ExclamationMark
+@using YamatoDaiwa.Frontend.SVG_Icons.InfoSign
+@using YamatoDaiwa.Frontend.SVG_Icons.MultiplicationSign
+
+
+@if (this.isDisplaying)
+{
+
+  <div 
+    class=@this.classAttributeValueForRootElement
+    role="status"
+    aria-live="polite"  
+  >
+
+    @switch (this._decorativeVariation)
+    {
+      case nameof(StandardDecorativeVariations.error):
+        <ExclamationMarkIcon__Circled__Filled rootElementModifierCSS_Class="Snackbar--YDF-Icon" />
+        break;
+      case nameof(StandardDecorativeVariations.warning):
+        <ExclamationMarkIcon__Triangled__Filled rootElementModifierCSS_Class="Snackbar--YDF-Icon"/>
+        break;
+      case nameof(StandardDecorativeVariations.info):
+        <InfoSignIcon__Circled__Filled rootElementModifierCSS_Class="Snackbar--YDF-Icon" />
+        break;
+      case nameof(StandardDecorativeVariations.success):
+        <CheckmarkIcon__Circled__Filled rootElementModifierCSS_Class="Snackbar--YDF-Icon" />
+        break;
+    }
+
+    <p class="Snackbar--YDF-Message">@(this.message)</p>
+    
+    <button
+      class="Snackbar--YDF-DismissingButton"
+      type="button"
+      aria-label=@Snackbar.localization.dismissingButton.accessibilityGuidance
+      @onclick=@Snackbar.hide
+    >
+      <MultiplicationSignIcon__Octagoned__Filled rootElementModifierCSS_Class="Snackbar--YDF-DismissingButton-Icon" />  
+    </button>
+
+  </div>
+  
+}

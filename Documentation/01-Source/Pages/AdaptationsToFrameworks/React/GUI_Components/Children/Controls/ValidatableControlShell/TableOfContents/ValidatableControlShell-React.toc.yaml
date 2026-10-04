@@ -1,0 +1,16 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+ValidatableControlShellClass:
+
+  $heading: `ValidatableControlShellClass.$heading`
+  $anchor: VALIDATABLE_CONTROL_SHELL_CLASS--SECTION
+
+  $children:
+
+    reactProperties:
+
+      $heading: `ValidatableControlShellClass.reactProperties.$heading`
+      $anchor: VALIDATABLE_CONTROL_SHELL_CLASS-REACT_PROPERTIES--SECTION

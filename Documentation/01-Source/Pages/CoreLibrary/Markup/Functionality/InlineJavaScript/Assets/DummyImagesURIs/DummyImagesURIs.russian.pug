@@ -1,0 +1,168 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../../../../../SharedComponents/SharedComponents.russian.pug
+
+  include _DummyImagesURIs-Example.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("DummyImagesURIs"),
+        description:
+            "Объект «DummyImagesURIs» типа «ассоциативный массив» из библиотеки «Yamato Daiwa Frontend» (сокращённо: " +
+              "«YDF») содержит в себе закодированные (base64) изображения разных размеров и соотношений сторон. " +
+            "Предназначен для тестирования корректного отображения картинок в адаптивной вёрстке."
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents",
+        "@Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/DummyImagesURIs/DummyImagesURIs"
+      ]
+    });
+
+    if (__IS_PRODUCTION_BUILDING_MODE__) {
+      RegularWebPageTemplate__YDF.addScriptsToEndOfBody(
+        "@Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/DummyImagesURIs/DummyImagesURIs"
+      );
+    }
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.markup.functionality.inlineJavaScript.assets.DummyImagesURIs");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.markup.$children.functionality.$children.
+          inlineJavaScript.$children.assets.$children.DummyImagesURIs.$URI,
+      japanese: routing.japanese.coreLibrary.$children.markup.$children.functionality.$children.
+          inlineJavaScript.$children.assets.$children.DummyImagesURIs.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = routing.russian.coreLibrary.$children.markup.$children.functionality.$children.inlineJavaScript.$children.
+        assets.$children.DummyImagesURIs;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ `DummyImagesURIs` ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    p.Article-Paragraph.
+      #[+Term--YDID Объект] типа #[+Term__Contrast--YDID «ассоциативный массив»], значения которого содержат
+        примитивные изображения разных размеров и пропорций (по сути, монохромный фон с надписью длин сторон),
+        закодированные по стандарту
+        #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.wikipedia.Base64 }) Base64],
+        благодаря чему для их отображения #[+Keyword--YDID не]&nbsp;требуется подключение к интернету.
+      Такие картинки удобно использовать в качестве тестовых при адаптации вёрстки под изображения разных размеров
+        и пропорций, а также просто в качестве заполнителей на ранних этапах разработки, когда под рукой нет образцов
+        реальных изображений.
+
+    p.Article-Paragraph.
+      По умолчанию, #[+ImportantEntity__Code--YDID DummyImagesURIs] имеет следующие #[+Term--YDID ключи]:
+
+    dl.Article-DescriptionList
+
+      dt #[+ImportantEntity__Code--YDID aspectRatio19x6]
+      dd Изображение с соотношением сторон #[+ImportantEntity--YDID 19 x 6]
+
+      dt #[+ImportantEntity__Code--YDID aspectRatio4x3]
+      dd Изображение с соотношением сторон #[+ImportantEntity--YDID 4 x 3]
+
+      dt #[+ImportantEntity__Code--YDID wideAndLow]
+      dd Очень длинное изображение с малой высотой
+
+      dt #[+ImportantEntity__Code--YDID highAndNarrow]
+      dd Очень высокое изображение малой длины
+
+      dt #[+ImportantEntity__Code--YDID small]
+      dd Маленькое изображение
+
+    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.guidance, SVG_Icon: true }).
+      Кликните на изображение, чтобы скопировать выражение вызова нужного свойства #[+Term--YDID объекта]
+        #[+ImportantEntity__Code--YDID DummyImagesURIs] в буфер обмена.
+
+    ul.DummyImagesURIsGallery(
+      data-snackbar_text="Скопировано: {{ expression }}"
+    )
+
+      each imageURI, key in YDF.DummyImagesURIs
+
+        li
+
+          button(
+            aria-label=`Скопировать выражение вызова свойства \"${ key }\" у объекта \"DummyImagesURIs\"`
+            data-clipboard-text=`DummyImagesURIs.${ key }`
+          )
+
+            span(
+              role="presentation"
+              style=`background-image: url("${ imageURI }");`
+            )
+
+            code= key
+
+
+    //- ━━━ Проблематика ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.problematics.$heading,
+      HTML_ID: localizedSectioning.problematics.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph.
+      Хотя для веб-разработчиков было бы удобно, если однородные изображения (например, фотографии одного и того же
+        продукта, которые должны отображаться в мини-галерее) были одного размера или хотя бы имели одинаковые соотношения
+        сторон, на практике это удобство часто оказывается невозможным.
+      Заказчики предоставляют изображения разных размеров и пропорций, при этом ожидают от исполнителей, что последние
+        за счёт высокого уровня квалификации без проблем смогут эстетично отобразить все эти изображения.
+
+    p.Article-Paragraph.
+      Для того, чтобы более-менее быть уверенным в том, что подготовленная вёрстка действительно адаптирована к
+        разным изображениям, следует иметь наготове несколько тестовых картинок разных размеров и пропорций
+        вплоть до крайних случаев, например когда изображение имеет высоту в несколько раз больше ширины.
+      Если у Вас такие изображения есть, то можете их и использовать.
+      Но скорее всего, такого набора изображений у Вас под рукой нет, как и достаточного времени на поиск их.
+      Именно для таких случаев #[+ImportantEntity__Code--YDID DummyImagesURIs] и задуманы.
+
+
+    //- ━━━ Пример ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.example.$heading,
+      HTML_ID: localizedSectioning.example.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph.
+      Кликабельные карточки с изображениями, представленные выше, свёрстаны следующим образом:
+
+    +DummyImagesURIs-Example({
+      fileLabels: {
+        markup: "Разметка",
+        styles: "Стили"
+      },
+      copyingButtonAccessibilityGuidanceRawValue:
+          "`Скопировать выражение вызова свойства \"${ key }\" у объекта \"DummyImagesURIs\"`"
+    })
+
+    p.Article-Paragraph.
+      Если Вам нужно сверстать мини-галерею с фотографиями товара для интернет-магазина или что-то подобное, то можете
+        взять эту разметку за основу, а сверху добавить большую область для отображения выбранной фотографии.

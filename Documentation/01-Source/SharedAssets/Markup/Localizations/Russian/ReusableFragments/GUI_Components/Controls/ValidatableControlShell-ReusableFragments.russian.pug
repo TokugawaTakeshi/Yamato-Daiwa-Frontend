@@ -1,0 +1,76 @@
+//- ━━━ Краткий обзор ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+mixin ValidatableControlShellComponent-Abstract
+
+  p.Article-Paragraph.
+    Такие элементы ввода, как однострочное текстовое поле (#[+SecondaryEntity__Code--YDID ValidatableControlShell(type="text")]),
+      многострочное текстовое ввода (#[+SecondaryEntity__Code--YDID textarea]), выпадающие список
+      (#[+SecondaryEntity__Code--YDID select]) и так далее обычно употребляются не&nbsp;по одиночке, в окружении
+      вспомогательных элементов:
+
+  ul.Article-UnorderedList
+    li Заголовочная надпись (обычно элемент #[+ImportantEntity__Code--YDID label])
+    li Комментарий (например, «тире и скобки можно необязательны» для поля ввода номера телефона)
+    li Метки «обязательное» или «необязательное»
+    li Сообщения валидации
+
+  p.Article-Paragraph.
+    Согласно одному из принципов качественного дизайна, #[+Keyword--YDID все] эти элементы окружения должны быть
+      выполнены в #[+Keyword--YDID едином] стиле, потому появляется потребность в #[+Keyword--YDID шаблонном]
+      #[+Term--YDID компоненте], содержимое которого будет окружать элемент ввода.
+    В #[+ImportantEntity--YDID YDF] таким компонентом является #[+ImportantEntity__Code--YDID ValidatableControlShell] —
+      в дословном переводе: «оболочка валидируемого компонента».
+    Как следует из названия, данный компонент #[+Keyword--YDID не]&nbsp;является самостоятельным, а
+      #[+Keyphrase--YDID должен входить в состав других компонентов], а точнее быть для них #[+Keyword--YDID оболочкой].
+
+  ul.Article-UnorderedList
+
+    li
+      | Сам #[+ImportantEntity__Code--YDID ValidatableControlShell] #[+Keyword--YDID не]&nbsp;является
+      |
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$children.controls.$children.validatables.$URI,
+      }) валидируемым компонентом
+      | , поскольку он лишь отображает переданные ему сообщения валидации, но при этом сам
+      |   #[+Keyword--YDID ничего] #[+Keyword__Contrast--YDID не]&nbsp;валидирует, так как валидация — задача
+      |   основного компонента, который #[+ImportantEntity__Code--YDID ValidatableControlShell] окружает.
+
+    li.
+      При выборе названия избегалось слово «обёртка» («wrapper»), так как оно гораздо более многозначное, чем «оболочка».
+      Так, по отношению к компонентам пользовательского интерфейса «обёртка» может означать не&nbsp;только буквальное
+        обёртывание основного компонента с обеих сторон своими элементами, но и расширение функциональности основного
+        компонента.
+
+
+//- ━━━ Сводка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  ValidatableControlShellGUI_ComponentOverviewLocalization.setLocalizer(
+    () => ({
+      themes: {
+        [ValidatableControlShell__YDF.Themes.regular]: "Базовая (по умолчанию)"
+      },
+      geometricVariations: {
+        [ValidatableControlShell__YDF.GeometricVariations.regular]: "Базовая (по умолчанию)",
+        [ValidatableControlShell__YDF.GeometricVariations.small]: "Компактная"
+      },
+      decorativeVariations: {
+        [ValidatableControlShell__YDF.DecorativeVariations.regular]: "Базовая (по умолчанию)"
+      }
+    })
+  );
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  ValidatableControlShellComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources = {
+    pugMixinParametersLocalization: [
+      { localizedName: "Свойства" },
+      { localizedName: "Симуляции состояний" }
+    ],
+    propertiesLocalizedInterpretations: {
+      coreElementHTML_ID: "HTML-идентификатор элемента-ядра",
+      labelElementHTML_ID: "HTML-идентификатор заголовочной надписи",
+      mainSlotWrapperAdditionalCSS_Classes: "CSS-классы основного слота"
+    }
+  };

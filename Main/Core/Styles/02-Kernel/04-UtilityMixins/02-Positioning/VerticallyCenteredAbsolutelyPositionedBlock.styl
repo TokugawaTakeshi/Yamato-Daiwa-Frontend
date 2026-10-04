@@ -1,0 +1,26 @@
+VerticallyCenteredAbsolutelyPositionedBlock--YDF(compoundParameter = {}, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "VerticallyCenteredAbsolutelyPositionedBlock--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      upwardShifting: {
+        type: DataTypes--YDF.dimensionalQuantity
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  position absolute
+  top 50%
+
+
+  if isNull--YDF(compoundParameter.upwardShifting)
+
+    transform translateY(-50%)
+
+  else
+
+    transform "translateY(calc(-50% - %s))" % compoundParameter.upwardShifting

@@ -1,0 +1,15 @@
+interpolationMethodsComparison:
+
+  $heading: "文字列組み合わせ方法の比較"
+
+  concatenation:
+
+    $heading: "ネイティブ連結"
+
+  sprintf:
+
+    $heading: "Sprintf （ネイティブ）"
+
+  buildString:
+
+    $heading: "<code>buildString</code> (YDF)"

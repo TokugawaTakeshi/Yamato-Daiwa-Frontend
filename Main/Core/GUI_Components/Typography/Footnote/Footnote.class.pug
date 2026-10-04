@@ -1,0 +1,18 @@
+-
+
+  const Footnote__YDF = {
+
+    counterForIDsGenerating: 0,
+
+    initializeFootnotesData() {
+
+      this.counterForIDsGenerating++;
+
+      return {
+        ID: this.counterForIDsGenerating,
+        items: []
+      };
+
+    }
+
+  }

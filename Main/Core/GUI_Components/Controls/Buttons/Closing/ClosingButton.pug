@@ -1,0 +1,126 @@
+include ClosingButton.class.pug
+
+
+mixin ClosingButton--YDF(properties)
+
+  -
+
+    const {
+
+      /** @type { string | undefined } */
+      customLabel,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      noLabel,
+
+      /**
+       * @type { string }
+       * @default ClosingButton__YDF.LabelLetterCases.lowercase
+       * */
+      labelLetterCase,
+
+      /** @type { string | undefined } */
+      accessibilityGuidance,
+
+      /**
+       * @type { string }
+       * @default ClosingButton__YDF.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default ClosingButton__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default ClosingButton__YDF.GeometricVariations.regular
+       */
+      geometricVariation,
+
+      /**
+       * @type { Array<ClosingButton__YDF.GeometricModifiers> }
+       * @default []
+       */
+      geometricModifiers,
+
+      /**
+       * @type { string }
+       * @default ClosingButton__YDF.DecorativeVariations.regular
+       * */
+      decorativeVariation,
+
+      /**
+       * @type { Array<ClosingButton__YDF.DecorativeModifiers> }
+       * @default []
+       */
+      decorativeModifiers
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: ClosingButton__YDF.propertiesSpecification,
+      mixinName: ClosingButton__YDF.CSS_NAMESPACE
+    });
+
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes = [
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: ClosingButton__YDF.Themes,
+        CSS_Namespace: ClosingButton__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: ClosingButton__YDF.GeometricVariations,
+        CSS_Namespace: ClosingButton__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(
+        ClosingButton__YDF.CSS_NAMESPACE, geometricModifiers
+      ),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: ClosingButton__YDF.DecorativeVariations,
+        CSS_Namespace: ClosingButton__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedDecorativeModifiersCSS_Classes(
+        ClosingButton__YDF.CSS_NAMESPACE, decorativeModifiers
+      )
+
+    ];
+
+    /** @type { string } */
+    const labelCSS_ModifierClass =
+        {
+          [ClosingButton__YDF.LabelLetterCases.uppercase]: `${ ClosingButton__YDF.CSS_NAMESPACE }-Label__Uppercase`,
+          [ClosingButton__YDF.LabelLetterCases.lowercase]: `${ ClosingButton__YDF.CSS_NAMESPACE }-Label__Lowercase`,
+          [ClosingButton__YDF.LabelLetterCases.capitalisation]: `${ ClosingButton__YDF.CSS_NAMESPACE }-Label__Capitalisation`
+        }[labelLetterCase];
+
+
+  button.ClosingButton--YDF(
+    type="button"
+    class= rootElementModifierCSS_Classes
+    aria-label= (noLabel ? (accessibilityGuidance || ClosingButton__YDF.localization.defaultAccessibilityGuidance) : null)
+  )&attributes(attributes)
+
+    span.ClosingButton--YDF-Icon(role="presentation")
+
+    if !noLabel
+
+      span.ClosingButton--YDF-Label(
+        class= labelCSS_ModifierClass
+      )= customLabel || ClosingButton__YDF.localization.defaultLabel

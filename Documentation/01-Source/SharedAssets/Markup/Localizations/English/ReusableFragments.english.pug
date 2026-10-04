@@ -1,0 +1,121 @@
+mixin ComponentMarkupProvidingGuidanceFragment(properties)
+
+  -
+    const {
+      componentName,
+      pugMixinName = `${ componentName }--YDF`
+    } = properties
+
+  p.Article-Paragraph
+    | The #[+Term--YDID markup] of this #[+Term--YDID GUI Component] is been provided by the
+    |   #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.mixins }) Pug mixin] with name
+    |   #[+ImportantEntity__Code--YDID #{ pugMixinName }].
+    | The including method is
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$sectioning.markup.$children.providing.$URI
+    }) standard
+    |, by other words, the
+    |
+    +Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.includes }) including of the Pug file
+    |   #[+ImportantEntity__Code--YDID Components.pug] to your #[+Term--YDID Pug file], herewith it is also
+    |   #[+Keyword--YDID required] to include #[+Keyword--YDID preliminary] the
+    |   #[+ImportantEntity__Code--YDID Functionality.pug] file (the #[+Keyword--YDID last] one
+    |   #[+Keyword__Contrast--YDID already] included to
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+    }) pages templates
+    |
+    | so #[+Keyphrase--YDID if it include them one more time, the error will occur]).
+
+  +CodeViewer--YDF
+    +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+      +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+        include ../../node_modules/@yamato-daiwa/frontend/Functionality.pug
+        include ../../node_modules/@yamato-daiwa/frontend/Components.pug
+      +CodeViewer-Explanation--YDF
+        p.Article-Paragraph.
+          In your case the #[+Term--YDID relative path] to #[+ImportantEntity--YDID node_modules]
+            #[+Term--YDID directory] could differ depending on how deep below the #[+Term--YDID project root directory]
+            your #[+Term--YDID Pug file] including above code been stored.
+        p.Article-Paragraph.
+          Recall that #[+Keyword--YDID just] including of these files will&nbsp;#[+Keyword--YDID not] give any output
+            #[+Term--YDID HTML code] because to get the output HTML code of #[+ImportantEntity--YDID #{ componentName }]
+            it is required to call #[+ImportantEntity__Code--YDID #{ pugMixinName }] #[+Term--YDID Pug mixin].
+          Besides this, if #[+Keyword--YDID currently] the #[+Term--YDID styles] has #[+Keyword--YDID not]&nbsp;been
+            provided yet, although the #[+Term--YDID HTML code] will be generated, the displaying will be incorrect.
+          If you don't know how to provide #[+Term--YDID styles] yet, don't worry — it will be explained below.
+
+
+mixin IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance(properties)
+
+  -
+
+    const {
+      imageURI,
+      target,
+      relatedTableOfContentsMetadata
+    } = properties;
+
+    let target__pluralForm__accusativeCase;
+
+    switch (target) {
+      case "function": {
+        target__pluralForm__accusativeCase = "function invocation expression"
+      }
+    }
+
+
+  //- ━━━ Quick input in IntelliJ IDEA family of IDEs ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  +Heading--YDF({
+    level: 2,
+    text: relatedTableOfContentsMetadata.$heading,
+    HTML_ID: relatedTableOfContentsMetadata.$anchor
+  }).Article-Heading2
+
+  +SingleImageViewer--YDF({
+    imageURI: imageURI,
+    imageAlternateText: "Quick input in IntelliJ IDEA family IDEs using the &quot;Live templates&quot; functionality."
+  })
+
+  p.Article-Paragraph.
+    Using the functionality of
+      #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.jetBrains.liveTemplates }) Live templates]
+      in the
+      #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.jetBrains.intelliJ_IDEA_FamilyIDEs }) IntelliJ IDEA]
+      family #[+Term--YDID IDEs] allows you to input code such as the #[+Term--YDID #{ target__pluralForm__accusativeCase }]
+      quickly.
+    To get the #[+Term--YDID Live templates] of the #[+ImportantEntity--YDID YDF] library, installation of the
+      #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.jetBrains.YDF_Plugin }) official plugin]
+      of this library is required.
+
+
+  //- ─── Steps for using the Live templates ───────────────────────────────────────────────────────────────────────────
+  +Heading--YDF({
+    level: 3,
+    text: relatedTableOfContentsMetadata.$children.steps.$heading,
+    HTML_ID: relatedTableOfContentsMetadata.$children.steps.$anchor
+  }).Article-Heading3
+
+  p.Article-Paragraph.
+    If you have not used #[+Term--YDID Live templates] before, do not worry if the instructions below are too complicated.
+    Once you have developed the habit of using #[+Term--YDID Live templates] (similar to the habit of using keyboard
+      shortcuts), the following operations will take a matter of seconds.
+
+  block
+
+
+-
+
+  GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables = {
+    componentProperties: "Parameters",
+    customThemingGuidanceGenerator: constantExpression => `Any of ones defined via \`${ constantExpression }\``
+  }
+
+
+include ReusableFragments/GUI_Components/AdmonitionBlock-ReusableFragments.english.pug
+include ReusableFragments/GUI_Components/Badge-ReusableFragments.english.pug
+include ReusableFragments/GUI_Components/Controls/Button-ReusableFragments.english.pug
+include ReusableFragments/GUI_Components/Controls/ValidatableControlShell-ReusableFragments.english.pug
+include ReusableFragments/GUI_Components/Controls/Validatables/TextBox-ReusableFragments.english.pug

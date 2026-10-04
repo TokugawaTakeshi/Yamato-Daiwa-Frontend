@@ -1,0 +1,25 @@
+-
+
+  GalleryConfigurator.generateDataAttributes = function () {
+
+    const dataAttributes = {};
+
+    if (GalleryConfigurator.mustVisuallyHideAllHeadings) {
+      dataAttributes["data-must_visually_hide_all_headings"] = true;
+      dataAttributes["data-must_visually_hide_top_heading"] = true;
+    } else if (GalleryConfigurator.mustVisuallyHideTopHeading) {
+      dataAttributes["data-must_visually_hide_top_heading"] = true;
+    }
+
+    if (Object.values(GalleryConfigurator.partialsRenderingFlags).includes(false)) {
+      for (const partialValue of Object.values(GalleryConfigurator.Partials)) {
+        if (GalleryConfigurator.partialsRenderingFlags[partialValue] === true) {
+          dataAttributes["data-partial_name"] = partialValue;
+          break;
+        }
+      }
+    }
+
+    return dataAttributes;
+
+  };

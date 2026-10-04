@@ -1,0 +1,111 @@
+BordersSizingSpecificationSchema--YDF = {
+
+  thickness: {
+
+    type: DataTypes--YDF.object,
+    required: false,
+
+    properties: {
+
+      all: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+
+      horizontalSymmetric: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false,
+        incompatibleWith: "thickness.all"
+      },
+
+      left: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false,
+        incompatibleWith: "thickness.all" "thickness.horizontalSymmetric"
+      },
+
+      right: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false,
+        incompatibleWith: "thickness.all" "thickness.horizontalSymmetric"
+      },
+
+      verticalSymmetric: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false,
+        incompatibleWith: "thickness.all"
+      },
+
+      top: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false,
+        incompatibleWith: "thickness.all" "thickness.verticalSymmetric"
+      },
+
+      bottom: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false,
+        incompatibleWith: "thickness.all" "thickness.verticalSymmetric"
+      }
+
+    }
+
+  },
+
+  radius: {
+
+    type: DataTypes--YDF.object,
+    required: false,
+
+    properties: {
+
+      all: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+
+      topLeft: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+
+      topRight: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+
+      bottomLeft: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+
+      bottomRight: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+
+      leftFillets: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        incompatibleWith: "radius.topLeft" "radius.bottomLeft"
+      },
+
+      rightFillets: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        incompatibleWith: "radius.topRight" "radius.bottomRight"
+      },
+
+      topFillets: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        incompatibleWith: "radius.topLeft" "radius.topRight" "radius.leftFillets" "radius.rightFillets"
+      },
+
+      bottomFillets: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        incompatibleWith: "radius.bottomLeft" "radius.bottomRight" "radius.leftFillets" "radius.rightFillets"
+      }
+
+    }
+
+  }
+
+}

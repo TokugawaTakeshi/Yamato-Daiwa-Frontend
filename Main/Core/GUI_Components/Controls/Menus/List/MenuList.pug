@@ -1,0 +1,65 @@
+include MenuList.class.pug
+
+
+mixin MenuList--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      theme,
+
+      areThemesCSS_ClassesCommon,
+
+      geometricVariation,
+
+      decorativeVariation
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: MenuList__YDF.propertiesSpecification,
+      mixinName: MenuList__YDF.CSS_NAMESPACE
+    });
+
+    const rootElementModifierCSS_Classes = [
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: MenuList__YDF.Themes,
+        CSS_Namespace: MenuList__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: MenuList__YDF.GeometricVariations,
+        CSS_Namespace: MenuList__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: MenuList__YDF.DecorativeVariations,
+        CSS_Namespace: MenuList__YDF.CSS_NAMESPACE
+      })
+
+    ];
+
+  ul.MenuList--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
+
+    block
+
+
+mixin MenuList-Item--YDF(properties)
+
+  li.MenuList--YDF-Item
+
+    +Button--YDF({
+      label: properties.label,
+      geometricModifiers: [ Button__YDF.GeometricModifiers.noRoundings ],
+      decorativeModifiers: [
+        Button__YDF.DecorativeModifiers.bordersDisguising,
+        Button__YDF.DecorativeModifiers.noBackgroundInDefaultState
+      ]
+    }).MenuList--YDF-Button

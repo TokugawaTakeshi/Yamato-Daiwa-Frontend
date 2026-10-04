@@ -1,0 +1,171 @@
+@require "../../Functionality.styl"
+@require "../../GUI_Components.styl"
+
+
+CrossBrowserStylesReset--YDF()
+InitialGlobalCSS_Rules--YDF()
+
+
+Badge--YDF-generateStyles()
+Link--YDF-generateStyles()
+
+
+.StaticPreviewAnywherePage--YDF
+
+  Centerer--YDF({ maximalWidth: 2*NARROWEST_SCREEN_WIDTH_UNIT--YDF })
+  padding 0.8rem 0.6rem 2rem
+
+
+  &-TopHeading
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: 2.4rem,
+      lineSpacing: 0.2,
+      mustAllowWordsBreakingAnywhere: true
+    })
+
+    font-weight bold
+    color #fd746c
+
+
+  &-Navigation
+
+    margin-top 1rem
+
+
+  &-SectionHeading
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: 2rem,
+      lineSpacing: 0.2,
+      mustAllowWordsBreakingAnywhere: true
+    })
+
+    font-weight bold
+    color #fd746c
+
+
+  &-SubsectionHeading
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: 1.6rem,
+      lineSpacing: 0.2,
+      mustAllowWordsBreakingAnywhere: true
+    })
+
+    font-weight bold
+    color #ff9068
+
+    retireFrom--YDF({ targetElementSelector: ".StaticPreviewAnywherePage--YDF-SectionHeading", y: 0.2rem })
+
+
+  &-SubsubsectionHeading
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: 1.2rem,
+      lineSpacing: 0.2,
+      mustAllowWordsBreakingAnywhere: true
+    })
+
+    font-weight bold
+    color: W3C_39_ShadesOfGray--YDF[24]
+
+    retireFrom--YDF({ targetElementSelector: ".StaticPreviewAnywherePage--YDF-SubsectionHeading", y: 0.2rem })
+
+
+  &-CardsFlow
+
+    PositionalRelationship--YDF({
+      definitions:\
+        (".StaticPreviewAnywherePage--YDF-SectionHeading" { retireFromIt: { y: 0.5rem }, pushItFromSelf: { y: 1rem } })\
+        (".StaticPreviewAnywherePage--YDF-SubsectionHeading" { retireFromIt: { y: 0.5rem }, pushItFromSelf: { y: 1rem } })\
+        (".StaticPreviewAnywherePage--YDF-SubsubsectionHeading" { retireFromIt: { y: 0.5rem }, pushItFromSelf: { y: 1rem } })
+    })
+
+
+  &-Card
+
+    display grid
+    grid-template-columns auto minmax(0, 1fr)
+    column-gap 0.5rem
+    align-items center
+
+    border-radius 3px
+    padding 0.4rem
+    box-shadow 0 0 4px 1px alpha(black, 0.25)
+
+    retireFromElementWithSameSelector--YDF({ y: 0.6rem })
+
+
+    &-Title
+
+      font-size 1.2rem
+      font-weight bold
+
+      color: W3C_39_ShadesOfGray--YDF[12]
+
+
+    &-Link
+
+      line-height 1.3
+
+
+    ul
+
+      list-style-type "■"
+      list-style-position outside
+
+      grid-column span 2
+      margin-top 0.3rem
+
+
+      li
+
+        margin-left 1rem
+        padding-left 0.6rem
+
+
+        &::marker
+
+          color: W3C_39_ShadesOfGray--YDF[12]
+
+
+        +li
+
+          margin-top 0.1rem
+
+
+    &-ScrollingContainerForTable
+
+      overflow-x auto
+      overflow-y hidden
+
+      grid-column span 2
+      margin-top 0.4rem
+
+
+      table
+
+        border-collapse collapse
+
+
+      th,
+      td
+
+        border-width 1px
+        padding 0.4rem
+
+        border-style solid
+        border-color W3C_39_ShadesOfGray--YDF[24]
+
+        white-space nowrap
+
+
+      th
+
+        font-size 1rem
+        text-align right
+
+        font-weight bold
+
+        color: W3C_39_ShadesOfGray--YDF[12]

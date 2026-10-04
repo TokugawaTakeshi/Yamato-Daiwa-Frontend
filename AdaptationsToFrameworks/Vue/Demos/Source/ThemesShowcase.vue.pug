@@ -1,0 +1,64 @@
+dl.ThemesShowcase--YDF
+
+  template(
+    v-for="(themeValue, themeKey) of themes"
+    :key="themeKey"
+  )
+
+    dt.ThemesShowcase--YDF-KeyLabel {{ themeKeyLabelPrefix }}{{ themeKey }}
+    dd.ThemesShowcase--YDF-ValueSection
+
+      dl.ThemesShowcase--YDF-ChildList
+
+        template(
+          v-for="(geometricVariationValue, geometricVariationKey) of geometricVariations"
+          :key="`${ themeKey }-${ geometricVariationKey }`"
+        )
+
+          dt.ThemesShowcase--YDF-KeyLabel {{ geometricVariationLabelPrefix }}{{ geometricVariationKey }}
+          dd.ThemesShowcase--YDF-ValueSection
+
+            component.ThemesShowcase--YDF-ChildList(
+              :is="decorativeVariationsWrapperTag"
+              :class="decorativeVariationsWrapperAdditionalCSS_Classes"
+            )
+
+              template(
+                v-for="(decorativeVariationValue, decorativeVariationKey) of decorativeVariations"
+                :key="`${ themeKey }-${ geometricVariationKey }-${ decorativeVariationKey }`"
+              )
+
+                template(
+                  v-if="\
+                    !decorativeVariationSkippingCondition({\
+                      theme: { key: themeKey, value: themeValue },\
+                      geometricVariation: { key: geometricVariationKey, value: geometricVariationValue },\
+                      decorativeVariation: { key: decorativeVariationKey, value: decorativeVariationValue }\
+                    }\
+                  )"
+                )
+
+                  template(
+                    v-if="decorativeVariationsWrapperTag === 'dl'"
+                  )
+
+                    dt.ThemesShowcase--YDF-KeyLabel {{ decorativeVariationLabelPrefix }}{{ decorativeVariationKey }}
+                    dd.ThemesShowcase--YDF-ValueSection(
+                      :class="decorativeVariationsListItemAdditionalCSS_Classes"
+                    )
+
+                      slot(
+                        :theme="{ key: themeKey, value: themeValue }"
+                        :geometricVariation="{ key: geometricVariationKey, value: geometricVariationValue }"
+                        :decorativeVariation="{ key: decorativeVariationKey, value: decorativeVariationValue }"
+                      )
+
+                  template(
+                    v-else
+                  )
+
+                    slot(
+                      :theme="{ key: themeKey, value: themeValue }"
+                      :geometricVariation="{ key: geometricVariationKey, value: geometricVariationValue }"
+                      :decorativeVariation="{ key: decorativeVariationKey, value: decorativeVariationValue }"
+                    )

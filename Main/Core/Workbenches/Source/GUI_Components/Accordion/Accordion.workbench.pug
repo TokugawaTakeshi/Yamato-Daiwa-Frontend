@@ -1,0 +1,69 @@
+extends ../../../../PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "Accordion Component Development"
+      },
+      stylesSheetsURIs: [ "@Workbenches/GUI_Components/Accordion/Accordion.workbench" ],
+      scriptsURIs: {
+        atEndOfBody: [ "@Workbenches/GUI_Components/Accordion/Accordion.workbench" ]
+      }
+    });
+
+
+block append Requirements
+
+  include ../../../../GUI_Components.pug
+
+
+block append PageContent
+
+  +Accordion--YDF({
+    title: "Test",
+    initiallyExpanded: true
+  })#SAMPLE_ACCORDION
+
+    p.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fermentum maximus ligula sit amet elementum.
+      Aenean in elit id enim rhoncus porttitor. Integer sit amet dolor eget felis suscipit gravida aliquet ultrices ligula.
+      Donec sed scelerisque ipsum. Nam elit nulla, vulputate eget justo id, feugiat auctor nisl.
+      Fusce aliquet quis nunc non dictum. Quisque non egestas nisl. Praesent sit amet libero erat.
+
+    p.
+      Quisque lobortis, enim id auctor fermentum, lorem elit vulputate massa, nec hendrerit magna quam id libero.
+      Suspendisse vulputate rutrum ex, nec laoreet nisi dictum venenatis.
+      Donec ullamcorper nunc non fringilla ornare.
+      Proin ipsum felis, luctus in magna in, auctor commodo magna.
+      Vestibulum non elit egestas felis posuere tristique.
+      Nullam purus ex, varius vel iaculis eget, semper nec ligula.
+      Suspendisse ipsum lorem, eleifend molestie pellentesque et, mattis eu ex.
+      Aenean malesuada velit lorem, id imperdiet felis gravida vitae. Aenean posuere lectus id finibus tempus.
+      Ut ipsum tellus, sagittis ac rutrum rhoncus, dictum non ante.
+      Pellentesque imperdiet laoreet orci sit amet venenatis.
+      Donec eu mi at neque scelerisque egestas eu nec lacus.
+      Sed diam dui, vestibulum a feugiat nec, placerat vitae ex.
+      Aenean lobortis tortor facilisis enim gravida rhoncus.
+      Etiam turpis massa, aliquet ac libero quis, pellentesque dictum ligula.
+      Donec sit amet magna posuere, euismod diam sit amet, consequat ante.
+
+    p.
+      Curabitur facilisis tempus eleifend. In convallis metus pretium neque pretium accumsan.
+      Nunc sit amet dolor neque.
+      Quisque convallis commodo sapien, auctor accumsan neque accumsan in.
+      Fusce sapien diam, facilisis a consectetur et, luctus vel leo.
+      Donec bibendum bibendum libero, et feugiat nisi aliquet in.
+      Etiam et erat id diam dictum luctus.
+      Nam quis convallis diam.
+      Quisque cursus sagittis elit, at euismod magna.
+      Nam quis cursus felis.
+      Curabitur commodo dolor id elit volutpat sagittis.
+      Sed erat massa, placerat molestie velit ut, sagittis fringilla dui.
+      Vivamus eget purus vel libero rhoncus rhoncus.
+      Duis condimentum elementum sapien ut auctor.
+      Sed et quam dolor.
+      Duis efficitur eleifend libero.

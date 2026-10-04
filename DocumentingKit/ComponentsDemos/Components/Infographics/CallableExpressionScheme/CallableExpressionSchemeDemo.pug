@@ -1,0 +1,760 @@
+mixin CallableExpressionSchemeDemo
+
+  -
+
+    const partials = {
+      simplestCase: true,
+      objectTypeParameterWithGeneric: true,
+      complexParameter: true,
+      overloading: true
+    }
+
+    const languages = {
+      english: true,
+      japanese: true,
+      russian: true
+    }
+
+  h1.Heading1 CallableExpressionScheme
+
+  //- ━━━ Simplest case ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if partials.simplestCase
+
+    h2.Heading2 Simplest case
+
+    if languages.english
+
+      +CallableExpressionScheme--YDF_DK({
+        technicalName: "areStringifiedDigitsOnly",
+        parametersSpecification: [
+          {
+            genericTechnicalName: "targetString",
+            type: "string",
+            required: true
+          }
+        ],
+        returnedValue: "boolean"
+      })
+
+
+    if languages.japanese
+
+      -
+        CallableExpressionScheme__YDF_DK.localization = callableExpressionSchemeYDF_DK_ComponentLocalization__japanese;
+        ParameterMetadata__YDF_DK.localization = parameterMetadataYDF_DK_ComponentLocalization__japanese;
+        ObjectTypeAbstract__YDF_DK.localization = objectTypeAbstractYDF_DK_ComponentLocalization__japanese;
+        PropertyMetadata__YDF_DK.localization = propertyMetadataYDF_DK_ComponentLocalization__japanese;
+
+      +CallableExpressionScheme--YDF_DK({
+        technicalName: "areStringifiedDigitsOnly",
+        localizedDescriptiveHeading: "文字列化した数字ばかりであるか",
+        parametersSpecification: [
+          {
+            genericTechnicalName: "targetString",
+            localizedName: "目標的文字列",
+            type: "string",
+            required: true
+          }
+        ],
+        returnedValue: "boolean"
+      })(lang="ja")
+
+
+    if languages.russian
+
+      -
+        CallableExpressionScheme__YDF_DK.localization = callableExpressionSchemeYDF_DK_ComponentLocalization__russian;
+        ParameterMetadata__YDF_DK.localization = parameterMetadataYDF_DK_ComponentLocalization__russian;
+        ObjectTypeAbstract__YDF_DK.localization = objectTypeAbstractYDF_DK_ComponentLocalization__russian;
+        PropertyMetadata__YDF_DK.localization = propertyMetadataYDF_DK_ComponentLocalization__russian;
+
+      +CallableExpressionScheme--YDF_DK({
+        technicalName: "areStringifiedDigitsOnly",
+        localizedDescriptiveHeading: "Включает ли в себя строка только цифры",
+        parametersSpecification: [
+          {
+            genericTechnicalName: "targetString",
+            localizedName: "Целевая строка",
+            type: "string",
+            required: true
+          }
+        ],
+        returnedValue: "boolean"
+      })(lang="ru")
+
+
+  //- ━━━ Object type parameter with generic ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if partials.objectTypeParameterWithGeneric
+
+    h2.Heading2 Object type parameter with generic
+
+  if languages.english
+
+    -
+      CallableExpressionScheme__YDF_DK.localization = callableExpressionSchemeYDF_DK_ComponentLocalization__english;
+      ParameterMetadata__YDF_DK.localization = parameterMetadataYDF_DK_ComponentLocalization__english;
+      ObjectTypeAbstract__YDF_DK.localization = objectTypeAbstractYDF_DK_ComponentLocalization__english;
+      PropertyMetadata__YDF_DK.localization = propertyMetadataYDF_DK_ComponentLocalization__english;
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: "processPugMixinsObjectTypeParameter",
+      headingTag: "h1",
+      genericParameters: [
+        {
+          name: "ProcessedMixinParameter",
+          extends: "object"
+        }
+      ],
+      parametersSpecification: [
+        {
+          genericTechnicalName: "compoundParameter",
+          type: "CompoundParameter",
+          required: true
+        }
+      ],
+      returnedValue: "ProcessedMixinParameter"
+    })(lang="en")
+      +ObjectTypeAbstract--YDF_DK({
+        typeName: "CompoundParameter",
+        propertiesSpecification: {
+          rawParameter: {
+            type: "string",
+            required: true
+          },
+          parameterPropertiesSpecification: {
+            type: "RawObjectDataProcessor.PropertiesSpecification",
+            required: true
+          },
+          parameterNumber: {
+            type: "number",
+            required: true
+          },
+          parameterName: {
+            type: "string",
+            required: true
+          },
+          mixinName: {
+            type: "string",
+            required: true
+          }
+        }
+      })
+
+
+
+  if languages.japanese
+
+    -
+      CallableExpressionScheme__YDF_DK.localization = callableExpressionSchemeYDF_DK_ComponentLocalization__japanese;
+      ParameterMetadata__YDF_DK.localization = parameterMetadataYDF_DK_ComponentLocalization__japanese;
+      ObjectTypeAbstract__YDF_DK.localization = objectTypeAbstractYDF_DK_ComponentLocalization__japanese;
+      PropertyMetadata__YDF_DK.localization = propertyMetadataYDF_DK_ComponentLocalization__japanese;
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: "processPugMixinsObjectTypeParameter",
+      localizedDescriptiveHeading: "オブジェクト型のPug混入の引数を処理",
+      headingTag: "h1",
+      genericParameters: [
+        {
+          name: "ProcessedMixinParameter",
+          extends: "ObjectSubtypes.fixedKeyAndValuePairsObject"
+        }
+      ],
+      parametersSpecification: [
+        {
+          genericTechnicalName: "compoundParameter",
+          localizedName: "複合引数",
+          type: "CompoundParameter",
+          required: true
+        }
+      ],
+      returnedValue: "ProcessedMixinParameter"
+    })(lang="ja")
+      +ObjectTypeAbstract--YDF_DK({
+        typeName: "CompoundParameter",
+        localizedDescriptiveHeading: "複合引数",
+        propertiesSpecification: {
+          rawParameter: {
+            localizedInterpretation: "（混入の）未処理引数",
+            type: "string",
+            required: true
+          },
+          parameterPropertiesSpecification: {
+            localizedInterpretation: "（混入の）引数のプロパティの仕様",
+            type: "RawObjectDataProcessor.PropertiesSpecification",
+            required: true
+          },
+          parameterNumber: {
+            localizedInterpretation: "（混入の）引数の番号",
+            type: "number",
+            required: true
+          },
+          parameterName: {
+            localizedInterpretation: "（混入の）引数名",
+            type: "string",
+            required: true
+          },
+          mixinName: {
+            localizedInterpretation: "混入名",
+            type: "string",
+            required: true
+          }
+        }
+      })
+
+  if languages.russian
+
+    -
+      CallableExpressionScheme__YDF_DK.localization = callableExpressionSchemeYDF_DK_ComponentLocalization__russian;
+      ParameterMetadata__YDF_DK.localization = parameterMetadataYDF_DK_ComponentLocalization__russian;
+      ObjectTypeAbstract__YDF_DK.localization = objectTypeAbstractYDF_DK_ComponentLocalization__russian;
+      PropertyMetadata__YDF_DK.localization = propertyMetadataYDF_DK_ComponentLocalization__russian;
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: "processPugMixinsObjectTypeParameter",
+      localizedDescriptiveHeading: "Обработать параметр Pug-примеси типа «объект»",
+      headingTag: "h1",
+      genericParameters: [
+        {
+          name: "PropertiesSpecification",
+          extends: "ObjectSubtypes.fixedKeyAndValuePairsObject"
+        }
+      ],
+      parametersSpecification: [
+        {
+          genericTechnicalName: "compoundParameter",
+          localizedName: "Составной параметр",
+          type: "CompoundParameter",
+          required: true
+        }
+      ],
+      returnedValue: "ProcessedMixinParameter"
+    })(lang="ru")
+      +ObjectTypeAbstract--YDF_DK({
+        typeName: "CompoundParameter",
+        localizedDescriptiveHeading: "Составной параметр",
+        propertiesSpecification: {
+          rawParameter: {
+            localizedInterpretation: "Необработанный параметр (примеси)",
+            type: "string",
+            required: true
+          },
+          parameterPropertiesSpecification: {
+            localizedInterpretation: "Спецификация свойств параметра (примеси)",
+            type: "RawObjectDataProcessor.PropertiesSpecification",
+            required: true
+          },
+          parameterNumber: {
+            localizedInterpretation: "Номер параметра (примеси)",
+            type: "number",
+            required: true
+          },
+          parameterName: {
+            localizedInterpretation: "Имя параметра (примеси)",
+            type: "string",
+            required: true
+          },
+          mixinName: {
+            localizedInterpretation: "Имя примеси",
+            type: "string",
+            required: true
+          }
+        }
+      })
+
+
+  //- ━━━ Complex parameter ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if partials.complexParameter
+
+    h2.Heading2 Complex parameter
+
+    if languages.english
+
+      -
+        CallableExpressionScheme__YDF_DK.localization = callableExpressionSchemeYDF_DK_ComponentLocalization__english;
+        ParameterMetadata__YDF_DK.localization = parameterMetadataYDF_DK_ComponentLocalization__english;
+        ObjectTypeAbstract__YDF_DK.localization = objectTypeAbstractYDF_DK_ComponentLocalization__english;
+        PropertyMetadata__YDF_DK.localization = propertyMetadataYDF_DK_ComponentLocalization__english;
+
+      +CallableExpressionScheme--YDF_DK({
+        technicalName: "addElementsToArray",
+        headingTag: "h1",
+        genericParameters: [ "ArrayElement" ],
+        parametersSpecification: [
+          {
+            genericTechnicalName: "sourceData",
+            type: "SourceData",
+            required: true
+          }
+        ],
+        returnedValue: "Array&lt;ArrayElement&gt;"
+      })(lang="en")
+        +ObjectTypeAbstract--YDF_DK({
+          typeName: "SourceData",
+          propertiesSpecification: {
+            $intersection: [
+              {
+                newElements: {
+                  type: "ReadonlyArray&lt;ArrayElement&gt;",
+                  required: true
+                }
+              },
+              [
+                {
+                  mutably: {
+                    type: "boolean (true only)",
+                    required: true
+                  },
+                  targetArray: {
+                    type: "Array&lt;ArrayElement&gt;",
+                    required: true
+                  }
+                },
+                {
+                  mutably: {
+                    type: "boolean (false only)",
+                    required: true
+                  },
+                  targetArray: {
+                    type: "ReadonlyArray&lt;ArrayElement&gt;",
+                    required: true
+                  }
+                }
+              ],
+              [
+                {
+                  toStart: {
+                    type: "boolean (true only)",
+                    required: true
+                  }
+                },
+                {
+                  toEnd: {
+                    type: "boolean (true only)",
+                    required: true
+                  }
+                },
+                {
+                  toPosition__numerationFrom0: {
+                    type: "boolean (true only)",
+                    required: true
+                  }
+                },
+                {
+                  toPosition__numerationFrom1: {
+                    type: "boolean (true only)",
+                    required: true
+                  }
+                }
+              ]
+            ]
+          }
+        })
+
+
+    if languages.japanese
+
+      -
+        CallableExpressionScheme__YDF_DK.localization = callableExpressionSchemeYDF_DK_ComponentLocalization__japanese;
+        ParameterMetadata__YDF_DK.localization = parameterMetadataYDF_DK_ComponentLocalization__japanese;
+        ObjectTypeAbstract__YDF_DK.localization = objectTypeAbstractYDF_DK_ComponentLocalization__japanese;
+        PropertyMetadata__YDF_DK.localization = propertyMetadataYDF_DK_ComponentLocalization__japanese;
+
+      +CallableExpressionScheme--YDF_DK({
+        technicalName: "addElementsToArray",
+        localizedDescriptiveHeading: "配列に要素を追加する",
+        genericParameters: [ "ArrayElement" ],
+        parametersSpecification: [
+          {
+            genericTechnicalName: "sourceData",
+            localizedName: "入力データ",
+            type: "SourceData",
+            required: true
+          }
+        ],
+        returnedValue: "Array&lt;ArrayElement&gt;"
+      })(lang="ja")
+        +ObjectTypeAbstract--YDF_DK({
+          typeName: "SourceData",
+          localizedDescriptiveHeading: "入力データ",
+          propertiesSpecification: {
+            $intersection: [
+              {
+                newElements: {
+                  localizedInterpretation: "新規要素",
+                  type: "ReadonlyArray&lt;ArrayElement&gt;",
+                  required: true
+                }
+              },
+              [
+                {
+                  mutably: {
+                    localizedInterpretation: "変異有無",
+                    type: "boolean (trueのみ)",
+                    required: true
+                  },
+                  targetArray: {
+                    localizedInterpretation: "目標的配列",
+                    type: "Array&lt;ArrayElement&gt;",
+                    required: true
+                  }
+                },
+                {
+                  mutably: {
+                    localizedInterpretation: "変異有無",
+                    type: "boolean (falseのみ)",
+                    required: true
+                  },
+                  targetArray: {
+                    localizedInterpretation: "目標的配列",
+                    type: "Array&lt;ArrayElement&gt;",
+                    required: true
+                  }
+                }
+              ],
+              [
+                {
+                  toStart: {
+                    localizedInterpretation: "最初の位置へ",
+                    type: "boolean (trueのみ)",
+                    required: true
+                  }
+                },
+                {
+                  toEnd: {
+                    localizedInterpretation: "最後に位置へ",
+                    type: "boolean (trueのみ)",
+                    required: true
+                  }
+                },
+                {
+                  toPosition__numerationFrom0: {
+                    localizedInterpretation: "特定位置へ（０からの計算）",
+                    type: "boolean (trueのみ)",
+                    required: true
+                  }
+                },
+                {
+                  toPosition__numerationFrom1: {
+                    localizedInterpretation: "特定位置へ（１からの計算）",
+                    type: "boolean (trueのみ)",
+                    required: true
+                  }
+                }
+              ]
+            ]
+          }
+        })
+
+
+    if languages.russian
+
+      -
+        CallableExpressionScheme__YDF_DK.localization = callableExpressionSchemeYDF_DK_ComponentLocalization__russian;
+        ParameterMetadata__YDF_DK.localization = parameterMetadataYDF_DK_ComponentLocalization__russian;
+        ObjectTypeAbstract__YDF_DK.localization = objectTypeAbstractYDF_DK_ComponentLocalization__russian;
+        PropertyMetadata__YDF_DK.localization = propertyMetadataYDF_DK_ComponentLocalization__russian;
+
+      +CallableExpressionScheme--YDF_DK({
+        technicalName: "addElementsToArray",
+        localizedDescriptiveHeading: "Добавить элементов в массив",
+        genericParameters: [ "ArrayElement" ],
+        parametersSpecification: [
+          {
+            genericTechnicalName: "sourceData",
+            localizedName: "Входные данные",
+            type: "SourceData",
+            required: true
+          }
+        ],
+        returnedValue: "Array&lt;ArrayElement&gt;"
+      })(lang="ru")
+        +ObjectTypeAbstract--YDF_DK({
+          typeName: "SourceData",
+          localizedDescriptiveHeading: "Входные данные",
+          propertiesSpecification: {
+            $intersection: [
+              {
+                newElements: {
+                  localizedInterpretation: "Новые элементы",
+                  type: "ReadonlyArray&lt;ArrayElement&gt;",
+                  required: true
+                }
+              },
+              [
+                {
+                  mutably: {
+                    localizedInterpretation: "Мутабельно",
+                    type: "boolean (только true)",
+                    required: true
+                  },
+                  targetArray: {
+                    localizedInterpretation: "Целевой массив",
+                    type: "Array&lt;ArrayElement&gt;",
+                    required: true
+                  }
+                },
+                {
+                  mutably: {
+                    localizedInterpretation: "Мутабельно",
+                    type: "boolean (только false)",
+                    required: true
+                  },
+                  targetArray: {
+                    localizedInterpretation: "Целевой массив",
+                    type: "ReadonlyArray&lt;ArrayElement&gt;",
+                    required: true
+                  }
+                }
+              ],
+              [
+                {
+                  toStart: {
+                    localizedInterpretation: "В начало",
+                    type: "boolean (только true)",
+                    required: true
+                  }
+                },
+                {
+                  toEnd: {
+                    localizedInterpretation: "В конец",
+                    type: "boolean (только true)",
+                    required: true
+                  }
+                },
+                {
+                  toPosition__numerationFrom0: {
+                    localizedInterpretation: "На конкретную позицию (счёт с 0)",
+                    type: "boolean (только true)",
+                    required: true
+                  }
+                },
+                {
+                  toPosition__numerationFrom1: {
+                    localizedInterpretation: "На конкретную позицию (счёт с 1)",
+                    type: "boolean (только true)",
+                    required: true
+                  }
+                }
+              ]
+            ]
+          }
+        })
+
+
+  //- ━━━ Overloading ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if partials.overloading
+
+    h2.Heading2 Overloading
+
+    if languages.english
+
+      -
+        CallableExpressionScheme__YDF_DK.localization = callableExpressionSchemeYDF_DK_ComponentLocalization__english;
+        ParameterMetadata__YDF_DK.localization = parameterMetadataYDF_DK_ComponentLocalization__english;
+        ObjectTypeAbstract__YDF_DK.localization = objectTypeAbstractYDF_DK_ComponentLocalization__english;
+        PropertyMetadata__YDF_DK.localization = propertyMetadataYDF_DK_ComponentLocalization__english;
+
+      +CallableExpressionScheme--YDF_DK({
+        technicalName: "getArrayElementSatisfiesThePredicateIfSuchElementIsExactlyOne",
+        signatures: [
+
+          {
+            localizedDescriptiveHeading: "If elements satisfying the predicate are 0 or more that 1, null will be returned",
+            genericParameters: [ "ArrayElement" ],
+            parametersSpecification: [
+              {
+                genericTechnicalName: "targetArray",
+                type: "ReadonlyArray&lt;ArrayElement&gt;",
+                required: true
+              },
+              {
+                genericTechnicalName: "predicate",
+                type: "(arrayElement: string) =&gt; boolean",
+                required: true
+              }
+            ],
+            returnedValue: "ArrayElement | null"
+          },
+
+          {
+            localizedDescriptiveHeading: "If elements satisfying the predicate are 0 or more that 1, error will be thrown",
+            genericParameters: [ "ArrayElement" ],
+            parametersSpecification: [
+              {
+                genericTechnicalName: "targetArray",
+                type: "ReadonlyArray&lt;ArrayElement&gt;",
+                required: true
+              },
+              {
+                genericTechnicalName: "predicate",
+                type: "(arrayElement: string) =&gt; boolean",
+                required: true
+              },
+              {
+                genericTechnicalName: "options",
+                type: "Options",
+                required: true
+              }
+            ],
+            returnedValue: "ArrayElement"
+          }
+
+        ]
+      })(lang="en")
+        +ObjectTypeAbstract--YDF_DK({
+          typeName: "Options",
+          propertiesSpecification: {
+            mustThrowErrorIfElementNotFoundOrMoreThan1: {
+              type: "boolean (true only)",
+              required: true
+            }
+          }
+        })
+
+
+    if languages.japanese
+
+      -
+        CallableExpressionScheme__YDF_DK.localization = callableExpressionSchemeYDF_DK_ComponentLocalization__japanese;
+        ParameterMetadata__YDF_DK.localization = parameterMetadataYDF_DK_ComponentLocalization__japanese;
+        ObjectTypeAbstract__YDF_DK.localization = objectTypeAbstractYDF_DK_ComponentLocalization__japanese;
+        PropertyMetadata__YDF_DK.localization = propertyMetadataYDF_DK_ComponentLocalization__japanese;
+
+      +CallableExpressionScheme--YDF_DK({
+        technicalName: "getArrayElementSatisfiesThePredicateIfSuchElementIsExactlyOne",
+        localizedDescriptiveHeading: "プレディケートに満たしている要素が丁度１なら此の要素を取得する",
+        signatures: [
+
+          {
+            localizedDescriptiveHeading: "プレディケートにに満たしている要素が無いか、２以上の場合「null」が返される",
+            genericParameters: [ "ArrayElement" ],
+            parametersSpecification: [
+              {
+                genericTechnicalName: "targetArray",
+                localizedName: "対象配列",
+                type: "ReadonlyArray&lt;ArrayElement&gt;",
+                required: true
+              },
+              {
+                genericTechnicalName: "predicate",
+                localizedName: "プレディケート",
+                type: "Predicate",
+                required: true
+              }
+            ],
+            returnedValue: "ArrayElement | null"
+          },
+
+          {
+            localizedDescriptiveHeading: "プレディケートにに満たしている要素が無いか、２以上の場合エラーを投げる",
+            genericParameters: [ "ArrayElement" ],
+            parametersSpecification: [
+              {
+                genericTechnicalName: "targetArray",
+                localizedName: "対象配列",
+                type: "ReadonlyArray&lt;ArrayElement&gt;",
+                required: true
+              },
+              {
+                genericTechnicalName: "predicate",
+                localizedName: "プレディケート",
+                type: "(arrayElement: string) =&gt; boolean",
+                required: true
+              },
+              {
+                genericTechnicalName: "options",
+                localizedName: "オプション",
+                type: "Options",
+                required: true
+              }
+            ],
+            returnedValue: "ArrayElement"
+          }
+
+        ]
+      })(lang="ja")
+        +ObjectTypeAbstract--YDF_DK({
+          typeName: "Options",
+          localizedDescriptiveHeading: "オプション",
+          propertiesSpecification: {
+            mustThrowErrorIfElementNotFoundOrMoreThan1: {
+              localizedInterpretation: "対象要素が見つかっていないか検索結果が２以上の場合エラーを投げなければいけないか",
+              type: "boolean （trueのみ）",
+              required: true
+            }
+          }
+        })
+
+    if languages.russian
+
+      -
+        CallableExpressionScheme__YDF_DK.localization = callableExpressionSchemeYDF_DK_ComponentLocalization__russian;
+        ParameterMetadata__YDF_DK.localization = parameterMetadataYDF_DK_ComponentLocalization__russian;
+        ObjectTypeAbstract__YDF_DK.localization = objectTypeAbstractYDF_DK_ComponentLocalization__russian;
+        PropertyMetadata__YDF_DK.localization = propertyMetadataYDF_DK_ComponentLocalization__russian;
+
+      +CallableExpressionScheme--YDF_DK({
+        technicalName: "getArrayElementSatisfiesThePredicateIfSuchElementIsExactlyOne",
+        localizedDescriptiveHeading: "Получить элемент массива удовлетворяющего предикату если такой элемент ровно 1",
+        signatures: [
+
+          {
+            localizedDescriptiveHeading: "Если искомого элемента нет либо таковых больше 1, то будет возвращён null",
+            genericParameters: [ "ArrayElement"],
+            parametersSpecification: [
+              {
+                genericTechnicalName: "targetArray",
+                localizedName: "Целевой массив",
+                type: "ReadonlyArray&lt;ArrayElement&gt;",
+                required: true
+              },
+              {
+                genericTechnicalName: "predicate",
+                localizedName: "Предикат",
+                type: "Predicate",
+                required: true
+              }
+            ],
+            returnedValue: "ArrayElement | null"
+          },
+
+          {
+            localizedDescriptiveHeading: "Если искомого элемента нет либо таковых больше 1, будет брошено исключение",
+            genericParameters: [ "ArrayElement" ],
+            parametersSpecification: [
+              {
+                genericTechnicalName: "targetArray",
+                localizedName: "Целевой массив",
+                type: "ReadonlyArray&lt;ArrayElement&gt;",
+                required: true
+              },
+              {
+                genericTechnicalName: "predicate",
+                localizedName: "Предикат",
+                type: "(arrayElement: string) =&gt; boolean",
+                required: true
+              },
+              {
+                genericTechnicalName: "options",
+                localizedName: "Опции",
+                type: "Options",
+                required: true
+              }
+            ],
+            returnedValue: "ArrayElement"
+          }
+
+        ]
+      })(lang="ru")
+        +ObjectTypeAbstract--YDF_DK({
+          typeName: "Options",
+          localizedDescriptiveHeading: "Опции",
+          propertiesSpecification: {
+            mustThrowErrorIfElementNotFoundOrMoreThan1: {
+              localizedInterpretation: "Должен бросить ошибку если элемент не найден либо результатов поиска больше 1",
+              type: "boolean (только true)",
+              required: true
+            }
+          }
+        })

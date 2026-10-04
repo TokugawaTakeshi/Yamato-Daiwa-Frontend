@@ -1,0 +1,51 @@
+﻿mixin SearchBox--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+      accessibilityGuidance = "Please input search request here",
+      placeholder,
+      disabled
+    } = properties ?? {};
+
+    const {
+      tooltip
+    } = statesSimulations ?? {};
+
+  //- [ Reference ] https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/searchbox_role
+  //- [ Reference ] https://www.a11ymatters.com/pattern/accessible-search/
+  .SearchBox--YDF&attributes(attributes)(
+    role="search"
+  )
+
+    input.SearchBox--YDF-InputElement(
+      type="search"
+      placeholder=placeholder
+      disabled= disabled
+      aria-label=accessibilityGuidance
+      value=""
+    )
+
+    +Button--YDF({
+      disabled: disabled,
+      geometricModifiers: [
+        Button__YDF.GeometricModifiers.noLeftBorderAndRoundings,
+        Button__YDF.GeometricModifiers.noRoundings
+      ]
+    })
+      +MultiplicationSign__Octagoned__Filled--YDF_Icon.Button--YDF-SVG_Icon
+      span.Button--YDF-Label Reset
+
+    +Button--YDF({
+      disabled: disabled,
+      geometricModifiers: [ Button__YDF.GeometricModifiers.noLeftBorderAndRoundings ]
+    }).SearchBox--YDF-Test
+      +MagnifyingGlass--YDF_Icon.Button--YDF-SVG_Icon
+      span.Button--YDF-Label Search
+
+
+    if tooltip
+
+      .SearchBox--YDF-Tooltip(
+        role="tooltip"
+      ) Please input at least two characters

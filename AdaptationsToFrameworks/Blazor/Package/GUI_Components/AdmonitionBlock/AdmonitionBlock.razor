@@ -1,0 +1,91 @@
+﻿@using YamatoDaiwa.Frontend.SVG_Icons.Checkmark
+@using YamatoDaiwa.Frontend.SVG_Icons.ExclamationMark
+@using YamatoDaiwa.Frontend.SVG_Icons.InfoSign
+@using YamatoDaiwa.Frontend.SVG_Icons.MultiplicationSign
+@using YamatoDaiwa.Frontend.SVG_Icons.Pencil
+@using YamatoDaiwa.Frontend.SVG_Icons.QuestionMark
+@using YamatoDaiwa.CSharpExtensions;
+
+
+@if (!isDisplaying)
+{
+  return;
+}
+
+
+<div
+  class=@classAttributeValueForRootElement
+  role="alert"
+  id=@HTML_ID
+  @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary
+  @ref=@rootElement
+>
+
+  @if (hasDefaultSVG_Icon)
+  {
+    @switch (_decorativeVariation)
+    {
+      case nameof(StandardDecorativeVariations.notice):
+          <Pencil__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
+          break;
+      case nameof(StandardDecorativeVariations.error):
+          <ExclamationMarkIcon__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon" />
+          break;
+      case nameof(StandardDecorativeVariations.warning):
+          <ExclamationMarkIcon__Triangled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
+          break;
+      case nameof(StandardDecorativeVariations.success):
+          <CheckmarkIcon__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
+          break;
+      case nameof(StandardDecorativeVariations.guidance):
+          <InfoSignIcon__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
+          break;
+      case nameof(StandardDecorativeVariations.question):
+          <QuestionMark__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon" />
+          break;
+    }
+  } else if (CustomSVG_Icon is not null)
+  {
+    @CustomSVG_Icon
+  }
+
+  @if (title is not null)
+  {
+    <div
+      class="AdmonitionBlock--YDF-Title"
+      id=@TITLE_HTML_ID
+    >
+      @title
+    </div>
+  }
+
+  <div
+    class="AdmonitionBlock--YDF-MainContent"
+    role="group"
+    aria-labelledby=@(title is not null ? TITLE_HTML_ID : null)
+  >
+    
+    @ChildContent
+
+    @if (ActionBarContent is not null)
+    {
+      <div class="AdmonitionBlock--YDF-ActionBar">
+        @ActionBarContent  
+      </div>  
+    }
+    
+  </div>
+
+  @if (dismissible)
+  {
+    <button
+      class="AdmonitionBlock--YDF-DismissingButton"
+      type="button"
+      aria-label=@localization.dismissingButton.accessibilityGuidance
+      @onclick=@onClickDismissingButton
+    >
+      <MultiplicationSignIcon__Boxed__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-DismissingButton-Icon" />
+    </button>
+  }
+
+</div>

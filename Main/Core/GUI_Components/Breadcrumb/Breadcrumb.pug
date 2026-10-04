@@ -1,0 +1,49 @@
+mixin Breadcrumb--YDF(properties)
+
+  -
+
+    const {
+      items,
+      noLineBreakingInsideItems = false
+    } = properties;
+    const itemsCount = items.length;
+
+  nav.Breadcrumb--YDF&attributes(attributes)
+
+    ul.Breadcrumb--YDF-List
+
+      each item, index in items
+
+        li.Breadcrumb--YDF-List-Item
+
+          if item.URI
+
+            +Button--YDF({
+              label: item.label,
+              URI: item.URI,
+              geometricVariation: Button__YDF.GeometricVariations.linkLike,
+              geometricModifiers: [],
+              decorativeVariation: Button__YDF.DecorativeVariations.linkLike
+            })
+
+          else if item.interactive
+
+            //- Button__YDF.GeometricModifiers.singleLine
+            +Button--YDF({
+              label: item.label,
+              geometricVariation: Button__YDF.GeometricVariations.linkLike,
+              geometricModifiers: [],
+              decorativeVariation: Button__YDF.DecorativeVariations.linkLike
+            })
+
+          else
+
+            span.Breadcrumb--YDF-List-Item-Label&attributes({
+              class: noLineBreakingInsideItems ?
+                  "Breadcrumb--YDF-List-Item-Label__SingleLine" : "Breadcrumb--YDF-List-Item-Label__MultiLine"
+            })= item.label
+
+
+          if index < itemsCount - 1
+
+            +Chevron__Rightward--YDF_Icon.Breadcrumb--YDF-LinksSeparator

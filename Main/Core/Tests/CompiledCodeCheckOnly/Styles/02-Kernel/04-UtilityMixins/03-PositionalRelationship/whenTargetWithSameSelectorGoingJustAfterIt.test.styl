@@ -1,0 +1,25 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-PositionalRelationship/whenTargetWithSameSelectorGoingJustAfterIt.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-PositionalRelationship/whenTargetWithSameSelectorGoingJustAfterIt.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.Block
+
+  &-ElementA
+
+    +whenTargetWithSameSelectorGoingJustAfterIt--YDF()
+
+      background goldenrod
+
+
+  p
+
+    +whenTargetWithSameSelectorGoingJustAfterIt--YDF({ referenceElementSelector: "p", contextSelector: ".Block" })
+
+      border-top 1px solid black

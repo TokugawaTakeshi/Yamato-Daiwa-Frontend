@@ -1,5 +1,5 @@
 {
-  "name": "@yamato-daiwa/frontend-documenting-kit",
+  "name": "@yamato-daiwa/frontend-documenting_kit",
   "version": "0.0.0",
   "description": "Plugin for @yamato-daiwa/frontend specializing of documenting",
   "keywords": [
@@ -7,7 +7,7 @@
     "pug",
     "stylus",
     "ui-kit",
-    "documentation"
+    "documentating"
   ],
   "author": {
     "name": "Takeshi Tokugawa",
@@ -23,15 +23,19 @@
     "email": "tokugawa.takesi@gmail.com"
   },
   "dependencies": {
-    "@yamato-daiwa/es-extensions": "1.4.0",
-    "@yamato-daiwa/es-extensions-browserjs": "1.4.0",
+    "@yamato-daiwa/es-extensions": "1.6.4",
+    "@yamato-daiwa/es-extensions-browserjs": "1.6.3",
     "clipboard": "2.0.11",
-    "prismjs": "1.28.0"
+    "prismjs": "1.30.0"
   },
   "devDependencies": {
     "@types/prismjs": "1.26.0",
-    "@yamato-daiwa/automation": "../../../YamatoDaiwaAutomation/MainPackage",
-    "typescript": "4.5.2"
+    "@yamato-daiwa/automation": "0.3.0-alpha.0",
+    "@yamato-daiwa/frontend": "../../CoreLibrary/Package",
+    "@yamato-daiwa/style_guides": "0.0.47",
+    "typescript": "5.0.3"
   },
-  "scripts": {}
+  "scripts": {
+    "Tests": "yda build --mode LOCAL_DEVELOPMENT"
+  }
 }

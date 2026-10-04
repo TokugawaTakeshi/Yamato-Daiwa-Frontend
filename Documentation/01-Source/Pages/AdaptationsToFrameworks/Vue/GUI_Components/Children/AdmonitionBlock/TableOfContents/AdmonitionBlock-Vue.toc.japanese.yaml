@@ -1,0 +1,35 @@
+overview:
+
+  $heading: "概要"
+
+AdmonitionBlockClass:
+
+  $heading: "<code>AdmonitionBlockClass</code>クラス"
+
+  vueProperties:
+
+    $heading: "Vueプロパティ"
+
+  examples:
+
+    $heading: "例"
+
+    minimal:
+
+      $heading: "最少例（必須プロパティのみ）"
+
+    title:
+
+      $heading: "見出し（<code>title</code>プロパティ）"
+
+    SVG_Icons:
+
+      $heading: "SVGアイコン"
+
+    buttons:
+
+      $heading: "ボタン"
+
+    dismissing:
+
+      $heading: "取り除き"

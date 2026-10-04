@@ -1,0 +1,533 @@
+provideDefaultSelectorWhenRootAndApply--YDF(defaultSelector)
+
+  if selector() == "&" || selector() == ""
+
+    {defaultSelector}
+
+      {block}
+
+  else
+
+    {block}
+
+
+getCurrentSelectorSubstitutingRoot--YDF(defaultSelector)
+
+  return selector() == "&" || selector() == "" ? defaultSelector : selector()
+
+
+applyComponentThemes--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "applyComponentThemes--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      CSS_Namespace: {
+        type: DataTypes--YDF.string,
+        required: true,
+        minimalCharactersCount: 1
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  CSS_Namespace = compoundParameter.CSS_Namespace
+  themes = compoundParameter.themes
+  areThemesCSS_ClassesCommon = compoundParameter.areThemesCSS_ClassesCommon
+  themeIndependentGeometricVariations = compoundParameter.themeIndependentGeometricVariations
+
+  // [ Theory ] If make "hasThemeIndependentGeometricVariationsBeenApplied" boolean, even its value will be changed
+  //    inside `applyTheme`, when `applyTheme` will be called again, the value of
+  //    "hasThemeIndependentGeometricVariationsBeenApplied" will return to initial one.
+  hasThemeIndependentGeometricVariationsBeenApplied = { value: false }
+
+  // [ Stylus theory ] Functions in object are allowed but must be decomposed to be invoked.
+  applyGeometricVariation = compoundParameter.applyGeometricVariation
+  applyDecorativeVariation = compoundParameter.applyDecorativeVariation
+
+
+  applyTheme(themeName, theme) {
+
+    nonEmptyGeometricVariationsCount = getObjectNonNullValuesCount--YDF(theme.geometricVariations)
+    mustApplyGeometricVariations = !(themeIndependentGeometricVariations && hasThemeIndependentGeometricVariationsBeenApplied.value);
+
+    if(mustApplyGeometricVariations) {
+
+      // [ Theory ] Every value could be set to null by user.
+      iterateObjectSkippingNullValues--YDF(theme.geometricVariations, @(geometricVariationName, geometricVariation) {
+
+        if (nonEmptyGeometricVariationsCount == 1) {
+
+          if (themeIndependentGeometricVariations) {
+            / {
+              applyGeometricVariation(themeName, geometricVariationName, geometricVariation)
+            }
+          } else {
+            applyGeometricVariation(themeName, geometricVariationName, geometricVariation)
+          }
+
+        } else {
+
+          geometricVariationCSS_Class = buildBEM_ClassName--YDF({
+            block: CSS_Namespace,
+            modifier: capitalizeFirstLatinCharacter--YDF(geometricVariationName) + "GeometricVariation"
+            elementSeparator: "-",
+            modifierSeparator: "__"
+          })
+
+          if (themeIndependentGeometricVariations) {
+            /.{geometricVariationCSS_Class} {
+              applyGeometricVariation(themeName, geometricVariationName, geometricVariation)
+            }
+          } else if (selector() == "&" || selector() == "") {
+            .{geometricVariationCSS_Class} {
+              applyGeometricVariation(themeName, geometricVariationName, geometricVariation)
+            }
+          } else {
+            &.{geometricVariationCSS_Class} {
+              applyGeometricVariation(themeName, geometricVariationName, geometricVariation)
+            }
+          }
+        }
+      })
+
+    }
+
+    if (themeIndependentGeometricVariations) {
+      hasThemeIndependentGeometricVariationsBeenApplied.value = true
+    }
+
+    // [ Theory ] Every value could be set to null by user.
+    iterateObjectSkippingNullValues--YDF(theme.decorativeVariations, @(decorativeVariationName, decorativeVariation) {
+
+      nonEmptyDecorativeVariationsCount = getObjectNonNullValuesCount--YDF(theme.decorativeVariations)
+
+      if (nonEmptyDecorativeVariationsCount == 1) {
+
+        applyDecorativeVariation(themeName, decorativeVariationName, decorativeVariation)
+
+      } else {
+
+        decorativeVariationCSS_Class = buildBEM_ClassName--YDF({
+          block: CSS_Namespace,
+          modifier: capitalizeFirstLatinCharacter--YDF(decorativeVariationName) + "DecorativeVariation",
+          elementSeparator: "-",
+          modifierSeparator: "__"
+        })
+
+        if (selector() == "&" || selector() == "" || areThemesCSS_ClassesCommon) {
+          .{decorativeVariationCSS_Class} {
+            applyDecorativeVariation(themeName, decorativeVariationName, decorativeVariation)
+          }
+        } else {
+          &.{decorativeVariationCSS_Class} {
+            applyDecorativeVariation(themeName, decorativeVariationName, decorativeVariation)
+          }
+        }
+      }
+    })
+  }
+
+
+  nonEmptyThemesCount = getObjectNonNullValuesCount--YDF(themes)
+
+  iterateObjectSkippingNullValues--YDF(themes, @(themeName, theme) {
+
+    if (nonEmptyThemesCount == 1) {
+
+      applyTheme(themeName, theme)
+
+    } else {
+
+      if (areThemesCSS_ClassesCommon) {
+
+        if (!isNonEmptyString--YDF(theme.componentIndependentCSS_Class)) {
+          error(
+            buildString--YDF(
+              "The themes of the component with CSS namespace '${ CSS_Namespace }' has been set to external however " +\
+              "the property 'componentIndependentCSS_Class' on the theme specification has not been defined. "+\
+              "Please define it with non-empty string.",
+              {
+                themeName: themeName,
+                CSS_Namespace: CSS_Namespace
+              }
+            )
+          )
+        }
+
+        themeCSS_Class = theme.componentIndependentCSS_Class
+
+      } else {
+
+        themeCSS_Class = buildBEM_ClassName--YDF({
+          block: CSS_Namespace,
+          modifier: capitalizeFirstLatinCharacter--YDF(themeName) + "Theme",
+          elementSeparator: "-",
+          modifierSeparator: "__"
+        })
+
+      }
+
+      .{themeCSS_Class} {
+        applyTheme(themeName, theme)
+      }
+
+    }
+  })
+
+
+provideComponentsPositionalRelationship--YDF(definitions = {})
+
+  iterateAssociativeArray--YDF(definitions, @(componentCSS_Namespace, definitionsForTargetComponent) {
+
+    if isNotNull--YDF(definitionsForTargetComponent.withTypography) {
+
+      iterateObjectSkippingNullValues--YDF(definitionsForTargetComponent.withTypography, @(presetName, preset) {
+
+        if isNotNull--YDF(preset.typographyDefinition) && isNotNull--YDF(preset.spacingDefinitions) {
+
+          elementsKeysAndCSS_ClassesMap = generateTypographyElementsKeysAndCSS_ClassesMap(preset.typographyDefinition)
+
+          for elementKey, spacingDefinitions in preset.spacingDefinitions {
+
+            TARGET_ELEMENT_CSS_CLASS = elementsKeysAndCSS_ClassesMap[elementKey]
+
+            PositionalRelationship--YDF({
+              definitions: ("." + componentCSS_Namespace {
+                retireFromIt: { y: spacingDefinitions.retireFromComponent },
+                pushItFromSelf: { y: spacingDefinitions.pushComponentFromSelf }
+              }),
+              referenceElementSelector: "." + TARGET_ELEMENT_CSS_CLASS
+            })
+          }
+        }
+      })
+    }
+
+    if (isNotNull--YDF(definitionsForTargetComponent.withOtherComponents)) {
+
+      iterateAssociativeArray--YDF(definitionsForTargetComponent.withOtherComponents, @(targetCSS_Class, spacingDefinitions) {
+
+        PositionalRelationship--YDF({
+          definitions: ("." + targetCSS_Class {
+            retireFromIt: { y: spacingDefinitions.retireFromTarget },
+            pushItFromSelf: { y: spacingDefinitions.pushTargetFromSelf }
+          }),
+          referenceElementSelector: "." + componentCSS_Namespace
+        })
+      })
+    }
+  })
+
+
+extractAndValidateObjectProperties--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "extractAndValidateObjectProperties--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      targetObjectName: {
+        type: DataTypes--YDF.string,
+        required: true,
+        minimalCharactersCount: 1
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  targetObject = compoundParameter.targetObject
+  targetObjectName = compoundParameter.targetObjectName
+  extracts = compoundParameter.extracts
+
+  extractedVariables = {}
+
+  for variableName, variableSpecification in extracts
+
+    variableFinalName = isNonEmptyString--YDF(variableSpecification.newName) ? variableSpecification.newName : variableName
+    targetValue = getObjectValueByDotSeparatedPathSafely--YDF(targetObject, variableSpecification.dotSeparatedPath)
+
+    if isNull--YDF(targetValue)
+
+      if variableSpecification.required
+
+        error(
+          buildString--YDF(
+            "The property '${dotSeparatedPath}' must be defined on '${targetObjectName}' while actually is null.",
+            {
+              dotSeparatedPath: variableSpecification.dotSeparatedPath,
+              targetObjectName: targetObjectName
+            }
+          )
+        )
+
+
+      if isNotNull--YDF(variableSpecification.requiredIf)
+
+        // [ Stylus theory ] Functions in objects could be called if and only if destructured
+        predicate = variableSpecification.requiredIf.predicate
+
+        if (isTrue--YDF(predicate(targetObject))) {
+          error(
+            buildString--YDF(
+              "The property '${dotSeparatedPath}' must be defined on '${targetObjectName}' when ${requirementConditionDescription}.",
+              {
+                dotSeparatedPath: variableSpecification.dotSeparatedPath,
+                targetObjectName: targetObjectName,
+                requirementConditionDescription: variableSpecification.requiredIf.conditionDescription
+              }
+            )
+          )
+        }
+
+
+      else if (\
+        isNonEmptyString--YDF(variableSpecification.mustBeInsteadOf) &&\
+        isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(targetObject, variableSpecification.mustBeInsteadOf))
+      )
+
+        error(
+          buildString--YDF(
+            "The property '${targetPropertyDotSeparatedPath}' must be defined on '${targetObjectName}' when " +\
+            "'${oppositePropertyName}' is null.",
+            {
+              targetPropertyDotSeparatedPath: variableSpecification.dotSeparatedPath,
+              targetObjectName: targetObjectName,
+              oppositePropertyName: variableSpecification.mustBeInsteadOf
+            }
+          )
+        )
+
+    else
+
+      if (\
+        isNonEmptyString--YDF(variableSpecification.mustBeInsteadOf) &&\
+        isNotNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(targetObject, variableSpecification.mustBeInsteadOf))
+      )
+
+        error(
+          buildString--YDF(
+            "The properties '${targetPropertyDotSeparatedPath}' and '${oppositePropertyName}' are " +\
+            "incompatible. Specify only one of them.",
+            {
+              targetPropertyDotSeparatedPath: variableSpecification.dotSeparatedPath,
+              targetObjectName: targetObjectName,
+              oppositePropertyName: variableSpecification.mustBeInsteadOf
+            }
+          )
+        )
+
+      if isNotNull--YDF(variableSpecification.incompatibleWith)
+
+        for incompatiblePropertyDotSeparatedPath in variableSpecification.incompatibleWith
+
+          if isNotNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(targetObject, incompatiblePropertyDotSeparatedPath))
+
+            error(
+              buildString--YDF(
+                "The property '${ targetPropertyDotSeparatedPath }' is incompatible with the property " +\
+                "${ incompatiblePropertyDotSeparatedPath } for the '${ targetObjectName }'.",
+                {
+                  targetPropertyDotSeparatedPath: variableSpecification.dotSeparatedPath,
+                  incompatiblePropertyDotSeparatedPath: incompatiblePropertyDotSeparatedPath,
+                  targetObjectName: targetObjectName
+                }
+              )
+            )
+
+
+      extractedVariables[variableFinalName] = targetValue
+
+  return extractedVariables
+
+
+validateAndAssignStoredInObjectCSS_Properties--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "validateAndAssignStoredInObjectCSS_Properties--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      targetObjectName: {
+        type: DataTypes--YDF.string,
+        required: true,
+        minimalCharactersCount: 1
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  extractedCSS_Declarations = extractAndValidateObjectProperties--YDF({
+    targetObject: compoundParameter.targetObject,
+    targetObjectName: compoundParameter.targetObjectName,
+    extracts: compoundParameter.assigments
+  })
+
+  assignedCSS_Properties = null
+
+  for propertyKey, propertySpecification in compoundParameter.assigments
+
+    CSS_Key = isNonEmptyString--YDF(propertySpecification.newName) ? propertySpecification.newName : propertyKey
+    applier = compoundParameter.assigments[propertyKey].applier
+
+    if (isNotNull--YDF(applier))
+
+      value = extractedCSS_Declarations[CSS_Key]
+
+      if isNotNull--YDF(value)
+
+        applier(extractedCSS_Declarations[CSS_Key])
+
+
+    // [ Theory ] The CSS properties with same "newName" but different "propertyKey" could be.
+    else if (!hasPrimitivesArraySpecifiedElement--YDF(assignedCSS_Properties, CSS_Key))
+
+      value = extractedCSS_Declarations[CSS_Key]
+
+      if isNotNull--YDF(value)
+
+        {CSS_Key}: value
+
+        push(assignedCSS_Properties, CSS_Key)
+
+
+applyObjectTypeBoxShadowDefinition--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  // [ Stylus theory ] `isNull--YDF(compoundParameter) { return }` will not work.
+  if isNotNull--YDF(compoundParameter)
+
+    validateObjectTypeParameter--YDF({
+      mixinOrFunctionName: "applyObjectTypeBoxShadowDefinition--YDF",
+      targetParameterNumber: 1,
+      targetParameter: compoundParameter,
+      schema: {
+        inset: {
+          type: DataTypes--YDF.boolean,
+          defaultValue: false
+        },
+        XOffset: {
+          type: DataTypes--YDF.dimensionalQuantity,
+          defaultValue: 0
+        },
+        YOffset: {
+          type: DataTypes--YDF.dimensionalQuantity,
+          defaultValue: 0
+        },
+        blurRadius: {
+          type: DataTypes--YDF.dimensionalQuantity,
+          defaultValue: 0
+        },
+        spreadRadius: {
+          type: DataTypes--YDF.dimensionalQuantity,
+          defaultValue: 0
+        },
+        color: {
+          type: DataTypes--YDF.colorDefinition,
+          required: true
+        }
+      },
+      followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+    })
+
+    box-shadow: unquote(
+      (isTrue--YDF(compoundParameter.inset) ? "inset " : "") +\
+      buildString--YDF(
+        "${XOffset} ${YOffset} ${blurRadius} ${spreadRadius} ${color}",
+        compoundParameter
+      )
+    )
+
+
+applyObjectTypeUnderlineDefinition--YDF(compoundParameter = {}, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "applyObjectTypeUnderlineDefinition--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      position: {
+        type: DataTypes--YDF.string,
+        required: false,
+        considerIdentifierAsString: true,
+        allowedAlternatives: "none" "underline" "overline" "line-through" "blink"
+      },
+      thickness: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+      offset: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+      style: {
+        type: DataTypes--YDF.string,
+        required: false,
+        considerIdentifierAsString: true,
+        allowedAlternatives: "solid" "double" "dotted" "dashed" "wavy"
+      },
+      color: {
+        type: DataTypes--YDF.colorDefinition,
+        required: false
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  if isNotNull--YDF(compoundParameter) && length(keys(compoundParameter)) > 0
+
+    applyIfNotNull--YDF({
+      text-decoration-line: compoundParameter.position,
+      text-decoration-thickness: compoundParameter.thickness,
+      text-underline-offset: compoundParameter.offset,
+      text-decoration-style: compoundParameter.type,
+      text-decoration-color: compoundParameter.color
+    })
+
+
+applyOutlineObjectTypeDefinition--YDF(compoundParameter = {}, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "applyOutlineObjectTypeDefinition--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      thickness: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+      offset: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      }
+      type: {
+        type: DataTypes--YDF.string,
+        required: false,
+        considerIdentifierAsString: true,
+        allowedAlternatives: "dotted" "dashed" "solid" "double" "groove" "ridge" "inset" "outset"
+      },
+      color: {
+        type: DataTypes--YDF.colorDefinition,
+        required: false
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  if isNotNull--YDF(compoundParameter) && length(keys(compoundParameter)) > 0
+
+    applyIfNotNull--YDF({
+      outline-width: compoundParameter.thickness,
+      outline-offset: compoundParameter.offset,
+      outline-style: compoundParameter.type,
+      outline-color: compoundParameter.color
+    })

@@ -1,0 +1,234 @@
+-
+
+  class ClosingButton__YDF {
+
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
+    static CSS_NAMESPACE = "ClosingButton--YDF";
+
+    /**
+     * @readonly
+     * @type {
+     *   Readonly<{
+     *     uppercase: string;
+     *     lowercase: string;
+     *     capitalisation: string;
+     *   }>
+     * }
+     */
+    static LabelLetterCases = {
+      uppercase: "UPPERCASE",
+      lowercase: "LOWERCASE",
+      capitalisation: "CAPITALISATION"
+    };
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @public
+     * @type { { [themeName: string]: string } }
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
+    static Themes = { regular: "REGULAR" };
+
+    /**
+     * @public
+     * @param { Array<string> } themesNames
+     * @return { typeof ClosingButton__YDF }
+     */
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineThemes(themesNames, ClosingButton__YDF);
+    }
+
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @public
+     * @returns { typeof ClosingButton__YDF }
+     * @public
+     * */
+    static considerThemesAsCommon() {
+      ClosingButton__YDF.areThemesCSS_ClassesCommon = true;
+      return ClosingButton__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = { regular: "REGULAR" };
+
+    /**
+     * @public
+     * @param { Array<string> } geometricVariationsNames
+     * @return { typeof ClosingButton__YDF }
+     */
+    static defineGeometricVariations(geometricVariationsNames) {
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, ClosingButton__YDF);
+    }
+
+    /**
+     * @public
+     * @readonly
+     * @type {
+     *   Readonly<{
+     *     noRoundings: string;
+     *   }>
+     * }
+     */
+    static GeometricModifiers = {
+      noRoundings: "NO_ROUNDINGS"
+    };
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = { regular: "REGULAR" };
+
+    /**
+     * @public
+     * @param { Array<string> } decorativeVariationsNames
+     * @return { typeof ClosingButton__YDF }
+     */
+    static defineDecorativeVariations(decorativeVariationsNames) {
+      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, ClosingButton__YDF);
+    }
+
+    /**
+     * @type {
+     *   Readonly<{
+     *     bordersDisguising: string;
+     *     noBackground: string;
+     *     noBackgroundInDefaultState: string;
+     *   }>
+     * }
+     * @readonly
+     */
+    static DecorativeModifiers = {
+      bordersDisguising: "BORDERS_DISGUISING",
+      noBackground: "NO_BACKGROUND",
+      noBackgroundInDefaultState: "NO_BACKGROUND_IN_DEFAULT_STATE"
+    };
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * */
+    static propertiesSpecification = {
+
+      customLabel: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      noLabel: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      labelLetterCase: {
+        type: String,
+        undefinedValueSubstitution: ClosingButton__YDF.LabelLetterCases.lowercase,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(ClosingButton__YDF.LabelLetterCases).
+            map(([ key, value ]) => ({ key: `ClosingButton__YDF.LabelLetterCases.${ key }`, value }))
+      },
+
+      accessibilityGuidance: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: ClosingButton__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(ClosingButton__YDF.Themes).
+            map(([ key, value ]) => ({ key: `ClosingButton__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: ClosingButton__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: ClosingButton__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(ClosingButton__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `ClosingButton__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      geometricModifiers: {
+        type: Array,
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+        element: {
+          type: String,
+          allowedAlternatives: Object.values(ClosingButton__YDF.GeometricModifiers)
+        }
+      },
+
+      decorativeVariation: {
+        type: String,
+        undefinedValueSubstitution: ClosingButton__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(ClosingButton__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `ClosingButton__YDF.DecorativeVariations.${ key }`, value }))
+      },
+
+      decorativeModifiers: {
+        type: Array,
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+        element: {
+          type: String,
+          allowedAlternatives: Object.values(ClosingButton__YDF.DecorativeModifiers)
+        }
+      }
+
+    };
+
+
+    /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @type { ClosingButtonLocalization }
+     * */
+    static localization = ClosingButtonYDF_GUI_ComponentLocalization__English;
+
+  }

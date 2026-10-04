@@ -1,0 +1,115 @@
+extends ../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("Шаблоны страниц"),
+        description:
+            "Библиотека для фронтенд-разработки «Yamato Daiwa Frontend» (сокращённо: «YDF») предлагает Pug-шаблоны " +
+              "веб-страниц, содержащие минимальный HTML-код и некоторые часто используемые фрагменты кода. "
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.markup.pagesTemplates");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.markup.$children.pagesTemplates.$URI,
+      japanese: routing.japanese.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ Шаблоны страниц ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1= localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$heading
+
+    p.Article-Paragraph
+      | Как и другие полноценные #[+Term--YDID HTML-препроцессоры], #[+ImportantEntity--YDID Pug] имеет функциональность
+      |
+      +Link--YDF({
+        unendorsedExternalURI: sharedExternalLinks.pug.homePage.templateInheritance
+      }) наследования шаблонов
+      | .
+      | В реальных проектах с большим количеством страниц, такое наследование #[+Keyword--YDID обычно]
+      |   #[+Keyword__Contrast--YDID многоуровневое].
+
+    p.Article-Paragraph.
+      #[+Keyword--YDID Валидная] #[+Term--YDID HTML-страница] #[+Keyword--YDID должна] включать в себя
+        #[+Keyword--YDID обязательную] часть, и это не&nbsp;только конкретные #[+Term--YDID HTML-тэги], но и
+        их правильная вложенность, а так же определённые #[+Term--YDID атрибуты].
+      Для #[+ImportantEntity--YDID 2024 года] #[+Keyword--YDID минимальный] #[+Term--YDID HTML-код]
+        #[+Keyword--YDID валидной] #[+Term--YDID веб-страницы] таков:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML }): :code_listing--yda
+        <!DOCTYPE html>
+        <html lang="ru">
+          <head>
+            <meta charset="utf-8">
+            <title>Заголовок страницы</title>
+          </head>
+          <body>
+            <!-- Видимое содержимое -->
+          </body>
+        </html>
+
+
+    p.Article-Paragraph.
+      Помимо обязательной части, есть необязательные, но часто используемые фрагменты кода, например следующая
+        декларация, указывающая, что содержимое страницы не&nbsp;нужно вписывать в размеры экрана (ввиду того, что
+        сегодня отзывчивая/адаптивная вёрстка де-факто обязательна):
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML }): :code_listing--yda
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    p.Article-Paragraph
+      | С использованием #[+Term--YDID наследования шаблонов], можно вынести обязательные и частые необязательные части
+      |   в родительский файл, а с помощью
+      |
+      +Link--YDF({
+        unendorsedExternalURI: sharedExternalLinks.pug.homePage.inlineJavaScript
+      }) внутреннего JavaScript
+      |
+      |   можно ещё и сделать генерацию шаблонного кода.
+      | Например, можно лишь указать пути к #[+Term--YDID стилям] и #[+Term--YDID скриптам] через
+      |   #[+Term__Contrast--YDID переменные], а родительский шаблон на основе этих #[+Term--YDID переменных]
+      |   сгенерирует нужные #[+Term--YDID тэги] в нужном месте.
+
+    p.Article-Paragraph.
+      Библиотека #[+ImportantEntity--YDID YDF] предлагает следующие #[+Keyword--YDID готовые] шаблоны для их
+        дальнейшего #[+Term--YDID наследования]:
+
+    +CompactTableOfContents--YDF_DK(
+      localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$children
+    )

@@ -1,0 +1,42 @@
+-
+
+  class ModalDialog__YDF {
+
+    static CSS_NAMESPACE = "ModalDialog--YDF";
+
+    static Types = {
+      compact: "COMPACT",
+      fillingOfScreenWithSmallGaps: "FILLING_OF_SCREEN_WITH_SMALL_GAPS",
+      fullScreens: "FULL_SCREEN"
+    };
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static Themes = { regular: "REGULAR" };
+
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineThemes(themesNames, ModalDialog__YDF);
+    }
+
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    static considerThemesAsCommon() {
+      ModalDialog__YDF.areThemesCSS_ClassesCommon = true;
+      return ModalDialog__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+    static GeometricVariations = { regular: "REGULAR" };
+
+    static defineGeometricVariations(geometricVariationsNames) {
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, Badge__YDF);
+    }
+
+    static GeometricModifiers = {
+      fullScreen: "FULL_SCREEN",
+      fillingOfScreenWithSmallGap: "FILLING_OF_SCREEN_WITH_SMALL_GAP",
+      compact: "COMPACT"
+    };
+
+  }

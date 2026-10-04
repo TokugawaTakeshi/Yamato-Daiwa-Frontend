@@ -1,0 +1,43 @@
+strings:
+
+  $heading: "文字列"
+
+quantities:
+
+  $heading: "量"
+
+booleans:
+
+  $heading: "真偽"
+
+nullables:
+
+  $heading: "Null系"
+
+  theoreticalMinimum:
+
+    $heading: "【最少理論】 Stylusに於けるnull値"
+
+    nullKeyword:
+
+      $heading: "`null`キーワード"
+
+    nonExistingObjectProperty:
+
+      $heading: "オブジェクトの存在していないプロパティー"
+
+    functionOrMixinWithRestParametersOnly:
+
+      $heading: "残りの引数しかない関数・ミックスイン"
+
+    functionOrMixinWithRestParametersInSubsequentPosition:
+
+      $heading: "最初位置の場合を除き残りの引数持ちの関数・ミックスイン"
+
+others:
+
+  $heading: "其の他"
+
+externalLinks:
+
+  $heading: "外部リンク"

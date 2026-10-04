@@ -1,0 +1,327 @@
+extends ../../../../PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "YDF Color Palette"
+      },
+      stylesSheetsURIs: [ "@Workbenches/Assets/Colors/YDF_ColorPalette.workbench" ]
+    });
+
+
+block append PageContent
+
+  .YDF_ColorPaletteWorkbench
+
+    h1.Heading1 YDF Color Palette
+    h2.Heading2 Hues List
+
+    -
+
+      const hueValues = [];
+
+      for (let hue = 0; hue <= 360; hue = hue + 5) {
+        hueValues.push(hue);
+      }
+
+      let lightnessValues = [];
+
+      for (let lightness = 0; lightness <= 100; lightness = lightness + 1) {
+        lightnessValues.push(lightness);
+      }
+
+      lightnessValues = lightnessValues.reverse()
+
+
+    .YDF_ColorPaletteWorkbench-MultilineFlow
+
+      each hue in hueValues
+
+        div(style=`background-color: hsl(${ hue }, 100%, 50%);`)= hue
+
+
+    .YDF_ColorPaletteWorkbench-VerticalFlow
+
+      each hue in hueValues
+
+        div(style=`background-color: hsl(${ hue }, 100%, 50%);`)= hue
+
+
+    h2.Heading2 Lightness
+
+    -
+
+      class HSL_Table {
+
+        static headerCellsContent = ["→ H / ↓ L"];
+        static bodyRows = [];
+
+        static {
+
+          for (let hue = 0; hue <= 360; hue = hue + 5) {
+            HSL_Table.headerCellsContent.push(hue);
+          }
+
+          for (let lightness = 0; lightness <= 100; lightness = lightness + 1) {
+
+            const tableRowCellsData = [ lightness ];
+
+            for (let hue = 0; hue <= 360; hue = hue + 5) {
+
+              tableRowCellsData.push(
+                {
+                  backgroundColor: `hsl(${ hue }, 100%, ${ lightness }%)`,
+                  content: `${ hue }/${ lightness }`
+                }
+              );
+
+            }
+
+            HSL_Table.bodyRows.push(tableRowCellsData);
+
+          }
+
+        }
+
+      }
+
+    .YDF_ColorPaletteWorkbench-TableScroller
+
+      table.YDF_ColorPaletteWorkbench-HSL_Table#HSL_Table
+
+        thead
+          tr
+            each headerCellContent, index in HSL_Table.headerCellsContent
+
+              if index > 0
+
+                th(scope="col")= headerCellContent
+
+              else
+
+                th= headerCellContent
+
+        tbody
+          each tableRowData in HSL_Table.bodyRows
+            tr
+              each cellData, index in tableRowData
+                if index > 0
+
+                  td(
+                    style=`background-color: ${ cellData.backgroundColor }`
+                  )= cellData.content
+
+                else
+
+                  th= cellData
+
+
+    -
+
+      class YDF_PaletteTable {
+
+        static hues = {
+          red: 0,
+          // unused5: 5,
+          // unused10: 10,
+          deepOrange: 15,
+          // unused20: 20,
+          orange: 25,
+          // unused30: 30,
+          amber: 35,
+          // unused40: 40,
+          deepYellow: 45,
+          // unused50: 50,
+          // unused55: 55,
+          yellow: 60,
+          // unused65: 65,
+          // unused70: 70,
+          youngFoliage: 75,
+          // unused80: 80,
+          // unused85: 85,
+          // unused90: 90,
+          // unused95: 95,
+          // unused100: 100,
+          // unused105: 105,
+          // unused110: 110,
+          // unused115: 115,
+          green: 120,
+          // unused125: 125,
+          // unused130: 130,
+          // unused135: 135,
+          // unused140: 140,
+          // unused145: 145,
+          // unused150: 150,
+          // unused155: 155,
+          mint: 160,
+          // unused165: 165,
+          // unused170: 170,
+          // unused175: 175,
+          cyan: 180,
+          // unused185: 185,
+          // unused190: 190,
+          skyBlue: 195,
+          // unused200: 200,
+          deepSkyBlue: 205,
+          // unused210: 210,
+          // unused215: 215,
+          // unused220: 220,
+          // unused225: 225,
+          // unused230: 230,
+          // unused235: 235,
+          blue: 240, // blue
+          // unused245: 245,
+          // unused250: 250,
+          // unused255: 255,
+          indigo: 260,
+          // unused265: 265,
+          deepPurple: 270,
+          // unused275: 275,
+          // unused280: 280,
+          purple: 285,
+          // unused290: 290,
+          // unused295: 295,
+          magenta: 300,
+          // unused305: 305,
+          // unused310: 310,
+          pink: 320,
+          // unused325: 325,
+          // unused330: 330,
+          deepPink: 335
+          // unused340: 340,
+          // unused345: 345,
+          // unused350: 350,
+          // unused355: 355,
+          // unused360: 360
+        };
+
+        static lightnesses = {
+          dark: 20,
+          mediumDark: 30,
+          slightlyDark: 40,
+          bright: 50,
+          slightlyLight: 60,
+          mediumLight: 70,
+          light: 80,
+          pastelBright: 90,
+          pastelSlightlyLight: 92,
+          pastelMediumLight: 94,
+          pastelLight: 96,
+          faded: 98
+        };
+
+        static gradientsTypes = [ "pastel", "light", "dark", "glossy"];
+
+        static headerCellsContent = ["↓ T / → N"];
+        static bodyRows = [];
+
+        static {
+
+          for (const hueName of Object.keys(YDF_PaletteTable.hues)) {
+            YDF_PaletteTable.headerCellsContent.push(hueName)
+          }
+
+
+          for (const [ lightnessName, lightnessAmount ] of Object.entries(YDF_PaletteTable.lightnesses)) {
+
+            const tableRowCellsData = [ lightnessName ];
+
+            for (const [ hueName, hueAmount ] of Object.entries(YDF_PaletteTable.hues)) {
+
+              tableRowCellsData.push({
+                backgroundColor: `hsl(${ hueAmount }, 100%, ${ lightnessAmount }%)`,
+                content: `${ hueName } ${ lightnessName }`
+              });
+
+            }
+
+            YDF_PaletteTable.bodyRows.push(tableRowCellsData);
+
+          }
+
+          const pastelGradientsTableRowCellsData = [ "Pastel Gradients" ];
+
+          for (const hueKey of Object.keys(YDF_PaletteTable.hues)) {
+            pastelGradientsTableRowCellsData.push({
+              CSS_Class:
+                `YDF_ColorPaletteWorkbench-YDFColorPaletteTable-PastelGradientCell__${ YDF.capitalizeFirstCharacter(hueKey) }`
+            });
+          }
+
+          YDF_PaletteTable.bodyRows.push(pastelGradientsTableRowCellsData);
+
+
+          const lightGradientsTableRowCellsData = [ "Light Gradients" ];
+
+          for (const hueKey of Object.keys(YDF_PaletteTable.hues)) {
+            lightGradientsTableRowCellsData.push({
+              CSS_Class:
+                  `YDF_ColorPaletteWorkbench-YDFColorPaletteTable-LightGradientCell__${ YDF.capitalizeFirstCharacter(hueKey) }`
+            });
+          }
+
+          YDF_PaletteTable.bodyRows.push(lightGradientsTableRowCellsData);
+
+
+          const darkGradientsTableRowCellsData = [ "Dark Gradients" ];
+
+          for (const hueKey of Object.keys(YDF_PaletteTable.hues)) {
+            darkGradientsTableRowCellsData.push({
+              CSS_Class:
+                  `YDF_ColorPaletteWorkbench-YDFColorPaletteTable-DarkGradientCell__${ YDF.capitalizeFirstCharacter(hueKey) }`
+            });
+          }
+
+          YDF_PaletteTable.bodyRows.push(darkGradientsTableRowCellsData);
+
+
+          const glossyGradientsTableRowCellsData = [ "Glossy Gradients" ];
+
+          for (const hueKey of Object.keys(YDF_PaletteTable.hues)) {
+            glossyGradientsTableRowCellsData.push({
+              CSS_Class:
+                  `YDF_ColorPaletteWorkbench-YDFColorPaletteTable-GlossyGradientCell__${ YDF.capitalizeFirstCharacter(hueKey) }`
+            });
+          }
+
+          YDF_PaletteTable.bodyRows.push(glossyGradientsTableRowCellsData);
+
+        }
+
+      }
+
+    .YDF_ColorPaletteWorkbench-TableScroller
+
+      table.YDF_ColorPaletteWorkbench-YDFColorPaletteTable#YDFColorPaletteTable
+
+        thead
+          tr
+            each headerCellContent, index in YDF_PaletteTable.headerCellsContent
+
+              if index > 0
+
+                th(scope="col")= headerCellContent
+
+              else
+
+                th= headerCellContent
+
+        tbody
+          each tableRowData in YDF_PaletteTable.bodyRows
+            tr
+              each cellData, index in tableRowData
+
+                if index > 0
+
+                  td(
+                    style={ "background-color": cellData.backgroundColor || "transparent" }
+                    class= cellData.CSS_Class
+                  )= cellData.content
+
+                else
+
+                  th= cellData

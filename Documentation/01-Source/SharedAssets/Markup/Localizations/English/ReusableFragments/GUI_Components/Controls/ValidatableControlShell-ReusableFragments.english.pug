@@ -1,0 +1,70 @@
+mixin ValidatableControlShellComponent-Abstract
+
+  p.Article-Paragraph.
+    Input elements like a single-line text field (#[+SecondaryEntity__Code--YDID ValidatableControlShell(type="text")]),
+      a multi-line text input (#[+SecondaryEntity__Code--YDID textarea]), a dropdown list
+      (#[+SecondaryEntity__Code--YDID select]) and so on are usually not used alone, but surrounded by
+      auxiliary elements:
+
+  ul.Article-UnorderedList
+    li Caption (usually a #[+ImportantEntity__Code--YDID label] element)
+    li Comment (for example, "dashes and brackets are optional" for a phone number input field)
+    li "Required" or "optional" labels
+    li Validation messages
+
+  p.Article-Paragraph.
+    According to one of the principles of quality design, #[+Keyword--YDID all] these surrounding elements should be
+      made in a #[+Keyword--YDID single] style, so there is a need for a #[+Keyword--YDID template]
+      #[+Term--YDID component] whose content will surround the input element.
+    In #[+ImportantEntity--YDID YDF], such a component is #[+ImportantEntity__Code--YDID ValidatableControlShell] —
+      literally, "the shell of a validatable component".
+    As the name implies, this component #[+Keyword--YDID is not] independent, but
+      #[+Keyphrase--YDID must be part of other components], or more precisely, be a #[+Keyword--YDID shell] for them.
+
+  ul.Article-UnorderedList
+
+    li
+      | #[+ImportantEntity__Code--YDID ValidatableControlShell] itself #[+Keyword--YDID is not] a
+      |
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$children.controls.$children.validatables.$URI,
+      }) validatable component
+      | , because it only displays the validation messages passed to it, but at the same time it
+      |   #[+Keyword--YDID does not] validate #[+Keyword__Contrast--YDID anything] itself, since validation is the task
+      |   of the main component that #[+ImportantEntity__Code--YDID ValidatableControlShell] surrounds.
+
+    li.
+      When choosing the name, the word "wrapper" was avoided as it is much more polysemantic than "shell".
+      Thus, in relation to user interface components, "wrapper" can mean not only literally
+        wrapping the main component on both sides with its elements, but also extending the functionality of the main
+        component.
+
+
+//- ━━━ Overview ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  ValidatableControlShellGUI_ComponentOverviewLocalization.setLocalizer(
+    () => ({
+      themes: {
+        [ValidatableControlShell__YDF.Themes.regular]: "Regular (Default)"
+      },
+      geometricVariations: {
+        [ValidatableControlShell__YDF.GeometricVariations.regular]: "Regular (Default)",
+        [ValidatableControlShell__YDF.GeometricVariations.small]: "Small"
+      },
+      decorativeVariations: {
+        [ValidatableControlShell__YDF.DecorativeVariations.regular]: "Regular (Default)"
+      }
+    })
+  );
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  ValidatableControlShellComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources = {
+    pugMixinParametersLocalization: [
+      { localizedName: "Properties" },
+      { localizedName: "States Simulations" }
+    ]
+  };

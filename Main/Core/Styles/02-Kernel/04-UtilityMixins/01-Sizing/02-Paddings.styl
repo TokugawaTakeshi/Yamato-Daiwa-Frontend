@@ -1,0 +1,106 @@
+Paddings--YDF(paddingsSpecification, options = {}, restParameters__MUST_NOT_BE...)
+
+  //* [ Stylus Theory ] Explicit `null` will NOT be substituted. */
+  paddingsSpecification = isNotNull--YDF(paddingsSpecification) ? paddingsSpecification : {}
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "Paddings",
+    targetParameterNumber: 1,
+    targetParameter: paddingsSpecification,
+    schema: PaddingsSpecificationSchema--YDF,
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "Paddings",
+    targetParameterNumber: 2,
+    targetParameter: options,
+    schema: {
+      mustSkipApplyingOfHorizontalPaddings: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+      mustSkipApplyingOfVerticalPaddings: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  leftPadding = getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
+    paddingsSpecification.all, paddingsSpecification.horizontalSymmetric, paddingsSpecification.left
+  ))
+
+  rightPadding = getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
+    paddingsSpecification.all, paddingsSpecification.horizontalSymmetric, paddingsSpecification.right
+  ))
+
+  topPadding = getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
+    paddingsSpecification.all, paddingsSpecification.verticalSymmetric, paddingsSpecification.top
+  ))
+
+  bottomPadding = getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
+    paddingsSpecification.all, paddingsSpecification.verticalSymmetric, paddingsSpecification.bottom
+  ))
+
+
+  if (isNotNull--YDF(paddingsSpecification.upwardShifting) && isNotNull--YDF(topPadding)) {
+    topPadding = buildCalcExpression--YDF(
+      "${ topPadding } - ${ upwardShifting }",
+      { topPadding: topPadding, upwardShifting: paddingsSpecification.upwardShifting }
+    )
+  }
+
+  if isNotNull--YDF(paddingsSpecification.upwardShifting)
+
+    if isNotNull--YDF(topPadding)
+
+      topPadding = buildCalcExpression--YDF(
+        "${ topPadding } - ${ upwardShifting }",
+        { topPadding: topPadding, upwardShifting: paddingsSpecification.upwardShifting }
+      )
+
+    if isNotNull--YDF(bottomPadding)
+
+      bottomPadding = buildCalcExpression--YDF(
+        "${ bottomPadding } + ${ upwardShifting }",
+        { bottomPadding: bottomPadding, upwardShifting: paddingsSpecification.upwardShifting }
+      )
+
+
+  if !options.mustSkipApplyingOfHorizontalPaddings
+
+    applyIfNotNull--YDF({
+      padding-left: leftPadding,
+      padding-right: rightPadding
+    })
+
+  if !options.mustSkipApplyingOfVerticalPaddings
+
+    applyIfNotNull--YDF({
+      padding-top: topPadding,
+      padding-bottom: bottomPadding
+    })
+
+
+specifyPaddings--YDF(paddingsSpecification, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "specifyPaddings--YDF",
+    targetParameterNumber: 1,
+    targetParameter: paddingsSpecification,
+    schema: PaddingsSpecificationSchema--YDF,
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  return {
+    all: paddingsSpecification.all,
+    horizontalSymmetric: paddingsSpecification.horizontalSymmetric,
+    upwardShifting: paddingsSpecification.upwardShifting,
+    verticalSymmetric: paddingsSpecification.verticalSymmetric,
+    top: paddingsSpecification.top,
+    bottom: paddingsSpecification.bottom,
+    left: paddingsSpecification.left,
+    right: paddingsSpecification.right
+  }

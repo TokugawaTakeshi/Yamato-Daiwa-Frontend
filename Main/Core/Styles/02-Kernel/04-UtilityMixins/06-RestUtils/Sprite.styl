@@ -1,0 +1,41 @@
+Sprite--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "Sprite--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      spritesMapURL: {
+        type: DataTypes--YDF.string,
+        required: true,
+        minimalCharactersCount: 1
+      },
+      width: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: true
+      },
+      height: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: true
+      },
+      positiveX_Coordinate: {
+        type: DataTypes--YDF.dimensionlessQuantity,
+        required: true
+      },
+      positiveY_Coordinate: {
+        type: DataTypes--YDF.dimensionlessQuantity,
+        required: true
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  width: compoundParameter.width
+  height: compoundParameter.height
+
+  background-image: "url(%s)" % compoundParameter.spritesMapURL
+  background-repeat no-repeat
+
+  // [ Theory ] Both brackets and colon are required
+  background-position: -(compoundParameter.positiveX_Coordinate)px (-(compoundParameter.positiveY_Coordinate)px)

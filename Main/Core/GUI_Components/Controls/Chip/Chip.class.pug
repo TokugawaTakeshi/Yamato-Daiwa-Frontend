@@ -1,0 +1,128 @@
+-
+
+  class Chip__YDF {
+
+    static CSS_NAMESPACE = "Chip--YDF";
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static Themes = { regular: "REGULAR" };
+
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineThemes(themesNames, Chip__YDF);
+    }
+
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    static considerThemesAsCommon() {
+      Chip__YDF.areThemesCSS_ClassesCommon = true;
+      return Chip__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+    static GeometricVariations = { regular: "REGULAR" };
+
+    static defineGeometricVariations(geometricVariationsNames) {
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, Chip__YDF);
+    }
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    static DecorativeVariations = {
+      veryCatchyBright: "VERY_CATCHY_BRIGHT",
+      catchyBright: "CATCHY_BRIGHT",
+      modestlyCatchyBright: "MODESTLY_CATCHY_BRIGHT",
+      neutralBright: "NEUTRAL_BRIGHT",
+      modestlyCalmingBright: "MODESTLY_CALMING_BRIGHT",
+      calmingBright: "CALMING_BRIGHT",
+      achromaticBright: "ACHROMATIC_BRIGHT",
+      veryCatchyPastel: "VERY_CATCHY_PASTEL",
+      catchyPastel: "CATCHY_PASTEL",
+      modestlyCatchyPastel: "MODESTLY_CATCHY_PASTEL",
+      neutralPastel: "NEUTRAL_PASTEL",
+      modestlyCalmingPastel: "MODESTLY_CALMING_PASTEL",
+      calmingPastel: "CALMING_PASTEL",
+      achromaticPastel: "ACHROMATIC_PASTEL"
+    };
+
+    static defineDecorativeVariations(decorativeVariationsNames) {
+      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, Chip__YDF);
+    }
+
+    static DecorativeModifiers = {
+      bordersDisguising: "BORDERS_DISGUISING",
+      noBackground: "NO_BACKGROUND"
+    };
+
+
+    /* ━━━ Properties specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static propertiesSpecification = {
+
+      key: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      value: {
+        type: String,
+        isUndefinedForbidden: true,
+        isNullForbidden: true
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: Chip__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Chip__YDF.Themes).
+            map(([ key, value ]) => ({ key: `Chip__YDF.Themes.${ key }`, value }))
+      },
+
+      dismissingButtonAccessibilityGuidance: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: Chip__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: Chip__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Chip__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `Chip__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      decorativeVariation: {
+        type: String,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Chip__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `Chip__YDF.DecorativeVariations.${ key }`, value }))
+      },
+
+      decorativeModifiers: {
+        type: Array,
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+        element: {
+          type: String,
+          allowedAlternatives: Object.values(Chip__YDF.DecorativeModifiers)
+        }
+      }
+
+    };
+
+  }

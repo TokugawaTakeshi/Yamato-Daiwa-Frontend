@@ -1,0 +1,20 @@
+whenItGoingFirst--YDF(compoundParameter = {}, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "whenItGoingFirst--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+      schema: {
+        verticalSpaceAbove: {
+        type: DataTypes--YDF.dimensionalQuantity
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  &:first-child
+
+    {block}
+
+    applyIfNotNull--YDF({ margin-top: compoundParameter.verticalSpaceAbove })

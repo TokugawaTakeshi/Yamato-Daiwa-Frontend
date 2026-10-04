@@ -1,0 +1,237 @@
+mixin AdmonitionBlockGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("AdmonitionBlock__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("AdmonitionBlock__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("AdmonitionBlock__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData()
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading": [])
+  ) AdmonitionBlock Component Demos
+
+
+  //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Minimal
+
+    +ThemesShowcase--YDF({
+      themes: AdmonitionBlock__YDF.Themes,
+      geometricVariations: AdmonitionBlock__YDF.GeometricVariations,
+      decorativeVariations: AdmonitionBlock__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +AdmonitionBlock--YDF({
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      })(lang="la").
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+  //- ━━━ Titles ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.titles]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Titles
+
+    +ThemesShowcase--YDF({
+      themes: AdmonitionBlock__YDF.Themes,
+      geometricVariations: AdmonitionBlock__YDF.GeometricVariations,
+      decorativeVariations: AdmonitionBlock__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +AdmonitionBlock--YDF({
+        title: "Titulo",
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      })(lang="la").
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+  //- ━━━ Default SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.defaultSVG_Icons]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Default SVG Icons
+
+    +ThemesShowcase--YDF({
+      themes: AdmonitionBlock__YDF.Themes,
+      geometricVariations: AdmonitionBlock__YDF.GeometricVariations,
+      decorativeVariations: AdmonitionBlock__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +AdmonitionBlock--YDF({
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+        SVG_Icon: true
+      })(lang="la").
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+  //- ━━━ Custom SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.customSVG_Icons]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Custom SVG Icons
+
+    svg.AdmonitionBlockGallery-PreRenderedInvisibleCustomSVG_Icon(
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      style="display: none;"
+    )
+      path#SAMPLE_THIRD_PARTY_ICON_INNER_ELEMENT(
+        d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M13,13V7H11V13H13M13,17V15H11V17H13Z"
+      )
+
+    //-
+      svg.AdmonitionBlockGallery-PreRenderedInvisibleCustomSVG_Icon(
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        style="display: none;"
+      )
+        g#SAMPLE_THIRD_PARTY_ICON_INNER_ELEMENT
+          path(
+            d="M7.25 15.17a.33.33 0 00-.15-.27.37.37 0 00-.3-.08.81.81 0 01-.67-.16.83.83 0 01-.33-.6.39.39 0 00-.15-.28.36.36 0 00-.3-.07h-.32l-.03.14-.41 2.37.5.38 2.16-1 .06-.08v-.33z"
+          )
+          path(
+            d="M18 0H2a2 2 0 00-2 2v16a2 2 0 002 2h16a2 2 0 002-2V2a2 2 0 00-2-2zM7.62 16.06l-3.47 1.61h-.08a.26.26 0 01-.29-.3l.65-3.78 7-9.17L14.6 7zM16.14 5l-1.27 1.69-3.15-2.5 1.22-1.6a.42.42 0 01.3-.17h.12a.27.27 0 01.12 0h.12L16 4.38a.48.48 0 01.14.62z"
+          )
+
+    +AdmonitionBlock--YDF({
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning,
+      SVG_Icon: {
+        innerElementID: "SAMPLE_THIRD_PARTY_ICON_INNER_ELEMENT",
+        SVG_ElementAttributes: {
+          viewBox: "0 0 24 24"
+        }
+      }
+    }).AdmonitionBlockGallery-LoneAdmonitionBlock(lang="la").
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+        dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+  //- ━━━ Titles and SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.titlesAndSVG_Icons]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Titles and SVG Icons
+
+    +ThemesShowcase--YDF({
+      themes: AdmonitionBlock__YDF.Themes,
+      geometricVariations: AdmonitionBlock__YDF.GeometricVariations,
+      decorativeVariations: AdmonitionBlock__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +AdmonitionBlock--YDF({
+        title: "Titolo",
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+        SVG_Icon: true
+      })(lang="la").
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+  //- ━━━ Dismissing Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.dismissingButton]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Dismissing Button
+
+    +ThemesShowcase--YDF({
+      themes: AdmonitionBlock__YDF.Themes,
+      geometricVariations: AdmonitionBlock__YDF.GeometricVariations,
+      decorativeVariations: AdmonitionBlock__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +AdmonitionBlock--YDF({
+        title: "Titolo",
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+        SVG_Icon: true,
+        dismissible: true
+      })(lang="la").
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+  //- ━━━ Centered Button ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.centeredButton]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Centered Button
+
+    +ThemesShowcase--YDF({
+      themes: AdmonitionBlock__YDF.Themes,
+      geometricVariations: AdmonitionBlock__YDF.GeometricVariations,
+      decorativeVariations: AdmonitionBlock__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +AdmonitionBlock--YDF({
+        title: "Titolo",
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+        SVG_Icon: true
+      })(lang="la")
+        p.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        +Button--YDF({ label: "Alklaku min" }).AdmonitionBlock--YDF-CenteredButton
+
+
+  //- ━━━ Action Bar ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.actionBar]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Action Bar
+
+    +ThemesShowcase--YDF({
+      themes: AdmonitionBlock__YDF.Themes,
+      geometricVariations: AdmonitionBlock__YDF.GeometricVariations,
+      decorativeVariations: AdmonitionBlock__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +AdmonitionBlock--YDF({
+        title: "Titolo",
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+        SVG_Icon: true
+      })(lang="la")
+        p.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        .AdmonitionBlock--YDF-ActionBar
+          +Button--YDF({ label: "Ago 1" })
+          +Button--YDF({ label: "Ago 2" })

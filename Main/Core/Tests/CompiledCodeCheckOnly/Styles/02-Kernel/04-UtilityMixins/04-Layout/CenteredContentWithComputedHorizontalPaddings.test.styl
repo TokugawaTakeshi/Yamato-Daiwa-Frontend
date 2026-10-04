@@ -1,0 +1,14 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/04-Layout/CenteredContentWithComputedHorizontalPaddings.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/04-Layout/CenteredContentWithComputedHorizontalPaddings.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.Test
+
+  CenteredContentWithComputedHorizontalPaddings--YDF({ contentWidth: 3*NARROWEST_SCREEN_WIDTH_UNIT--YDF })

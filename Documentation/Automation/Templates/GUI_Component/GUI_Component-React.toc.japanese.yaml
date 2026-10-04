@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "概要"
+
+{{ GUI_ComponentName__pascalCase }}Class:
+
+  $heading: "<code>{{ GUI_ComponentName__pascalCase }}</code>クラス"
+
+  reactProperties:
+
+    $heading: "Reactプロパティ"

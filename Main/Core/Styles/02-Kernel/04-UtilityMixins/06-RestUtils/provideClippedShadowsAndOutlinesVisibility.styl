@@ -1,0 +1,130 @@
+provideClippedShadowsAndOutlinesVisibility--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "provideClippedShadowsAndOutlinesVisibility--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      requiredHorizontalSymmetricSpace: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+      requiredSpaceAtLeft: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false,
+        incompatibleWith: "requiredHorizontalSymmetricSpace"
+      },
+      requiredSpaceAtRight: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false,
+        incompatibleWith: "requiredHorizontalSymmetricSpace"
+      },
+
+      requiredVerticalSymmetricSpace: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+      requiredSpaceAtTop: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false,
+        incompatibleWith: "requiredVerticalSymmetricSpace"
+      },
+      requiredSpaceAtBottom: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false,
+        incompatibleWith: "requiredVerticalSymmetricSpace"
+      },
+
+      noCompensatingNegativeTopMargins: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+      noCompensatingNegativeBottomMargins: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+      noCompensatingNegativeLeftMargins: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+      noCompensatingNegativeRightMargins: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+
+      useBeforePseudoElementWithCompensatingNegativeTopMargins: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+      useAfterPseudoElementWithCompensatingNegativeBottomMargins: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  requiredSpaceAtLeft = getFirstNonNullArrayElement--YDF(
+    compoundParameter.requiredHorizontalSymmetricSpace compoundParameter.requiredSpaceAtLeft
+  )
+
+  requiredSpaceAtRight = getFirstNonNullArrayElement--YDF(
+    compoundParameter.requiredHorizontalSymmetricSpace compoundParameter.requiredSpaceAtRight
+  )
+
+  requiredSpaceAtTop = getFirstNonNullArrayElement--YDF(
+    compoundParameter.requiredVerticalSymmetricSpace compoundParameter.requiredSpaceAtTop
+  )
+
+  requiredSpaceAtBottom = getFirstNonNullArrayElement--YDF(
+    compoundParameter.requiredVerticalSymmetricSpace compoundParameter.requiredSpaceAtBottom
+  )
+
+
+  applyIfNotNull--YDF({
+    padding-left: requiredSpaceAtLeft,
+    padding-right: requiredSpaceAtRight,
+    padding-top: requiredSpaceAtTop,
+    padding-bottom: requiredSpaceAtBottom
+  })
+
+
+  if isNotNull--YDF(requiredSpaceAtLeft) && isFalse--YDF(compoundParameter.noCompensatingNegativeLeftMargins)
+
+    margin-left: -(requiredSpaceAtLeft)
+
+
+  if isNotNull--YDF(requiredSpaceAtRight) && isFalse--YDF(compoundParameter.noCompensatingNegativeRightMargins)
+
+    margin-right: -(requiredSpaceAtRight)
+
+
+  if isNotNull--YDF(requiredSpaceAtTop) && isFalse--YDF(compoundParameter.noCompensatingNegativeTopMargins)
+
+    if isTrue--YDF(compoundParameter.useBeforePseudoElementWithCompensatingNegativeTopMargins)
+
+      &:before
+
+        display block
+        content ""
+        margin-top: -(requiredSpaceAtTop)
+
+    else
+
+      margin-top: -(requiredSpaceAtTop)
+
+
+  if isNotNull--YDF(requiredSpaceAtBottom) && isFalse--YDF(compoundParameter.noCompensatingNegativeBottomMargins)
+
+    if isTrue--YDF(compoundParameter.useAfterPseudoElementWithCompensatingNegativeBottomMargins)
+
+      &:after
+
+        display block
+        content ""
+        margin-bottom: -(requiredSpaceAtBottom)
+
+    else
+
+      margin-bottom: -(requiredSpaceAtBottom)

@@ -1,0 +1,21 @@
+include _Constants.pug
+include _HTML_PageMetadata.pug
+include _generateSharedExternalLinks.pug
+include _GUI_Components.common.pug
+
+include Localizations/English/MetaDescriptionTemplates.english.pug
+include Localizations/English/SharedExternalLinksLocalization.english.pug
+include Localizations/English/ReusableFragments.english.pug
+include Localizations/English/ReusableTextings.english.pug
+
+include ThirdPartyEmbeddableScripts/GoogleAnalyticsScript.pug
+
+
+-
+
+  RegularWebPageTemplate__YDF.metadata.locale = "en";
+
+  const localizedRouting = routing.english;
+  YDF.RoutingEmulator.initialize(localizedRouting);
+
+  const sharedExternalLinks = generateSharedExternalLinks(sharedExternalLinksEnglishLocalization);

@@ -1,0 +1,12 @@
+extends ../../../CompletePages/GUI_Components/AdmonitionBlock/_AdmonitionBlockGalleryPage.template.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.metadata.title = generateHTML_PageTitle("Titles And Svg Icons");
+
+    GalleryConfigurator.
+        setPartialToRender(GalleryConfigurator.Partials.titlesAndSVG_Icons).
+        visuallyHideAllHeadings();

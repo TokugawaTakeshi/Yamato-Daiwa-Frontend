@@ -1,0 +1,19 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/04-Layout/FixedTranslucentDimLayer.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/04-Layout/FixedTranslucentDimLayer.test.css `
+    --include Styles
+*/
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+
+.ModalDialog
+
+  &-DimUnderlay
+
+    FixedTranslucentDimLayer--YDF({
+      ZIndex: 1,
+      backgroundColor: rgb(255, 255, 128)
+    })

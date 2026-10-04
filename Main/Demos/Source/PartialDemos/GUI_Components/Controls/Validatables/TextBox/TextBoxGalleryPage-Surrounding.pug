@@ -1,0 +1,12 @@
+extends ../../../../../CompletePages/GUI_Components/Controls/Validatables/TextBox/_TextBoxGalleryPage.template.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.metadata.title = generateHTML_PageTitle("Surrounding");
+
+    GalleryConfigurator.
+        setPartialToRender(GalleryConfigurator.Partials.surrounding).
+        visuallyHideAllHeadings();

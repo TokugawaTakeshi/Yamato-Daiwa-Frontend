@@ -1,0 +1,406 @@
+extends ../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("Компоненты графического пользовательского интерфейса"),
+        description: ""
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.GUI_Components");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.GUI_Components.$URI,
+      japanese: routing.japanese.coreLibrary.$children.GUI_Components.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = localizedRouting.coreLibrary.$children.GUI_Components;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ GUI-компоненты ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1= topHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten })
+
+    p.Article-Paragraph.
+      #[+Term--YDID Компоненты графического пользовательского интерфейса] появились в #[+ImportantEntity--YDID YDF]
+        начиная с версии #[+ImportantEntity--YDID 2.0.0].
+      В сравнении с существовавшими ранее #[+Term--YDID UI/UX-фреймворками], можно выделить следующие особенности
+        #[+ImportantEntity--YDID YDF]:
+
+    ul.Article-UnorderedList
+
+      li
+
+        | Разметка
+
+        ul.Article-UnorderedList
+
+          li.
+            #[+Term--YDID Разметка] компонентов поставляются в виде
+              #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.mixins }) Pug-примесей].
+            Таким образом, пока #[+Term--YDID примесь] не&nbsp;вызвана, выходного #[+Term--YDID HTML-кода]
+              #[+Keyword--YDID не]&nbsp;прибавится.
+
+          li
+            | Параметры #[+Term--YDID примесей] проходят валидацию с подробным отчётом в случае нарушений, благодаря
+            |   которому в большинстве случаев можно исправить ошибку самостоятельно
+            |   #[+Keyphrase--YDID #[+Keyword--YDID не]&nbsp;обращаясь к документации] (при владении английским со
+            |   словарём).
+            | Во многом именно ради этого было необходимо
+            |
+            +Link--YDF({
+              internalURI: localizedRouting.coreLibrary.$children.
+                  markup.$children.
+                  functionality.$children.
+                  inlineJavaScript.$children.
+                  YDEE_Integration.$URI
+            }) интегрировать в Pug-код
+            |   функциональность библиотеки
+            |
+            +Link--YDF({
+              unendorsedExternalURI: sharedExternalLinks.YamatoDaiwaES_Extensions.top
+            }) @yamato-daiwa/es-extensions
+            | .
+
+          li.
+            #[+Term--YDID Разметка] компонентов написана с учётом #[+Term--YDID доступности] и
+              #[+Term--YDID поисковой оптимизации], однако ввиду того, что эта #[+Term--YDID разметка] инкапсулирована
+              в #[+Term--YDID Pug-примеси], пользователям  #[+ImportantEntity--YDID YDF] #[+Keyword--YDID не]&nbsp;нужно
+              вникать в эти детали, а только указывать нужные свойства при использовании #[+Term--YDID примесей].
+
+      li
+
+        | Стили
+
+        ul.Article-UnorderedList
+
+          li
+            | Все #[+Term--YDID стили] компонентов поставляются в виде
+            |
+            +Link--YDF({
+              unendorsedExternalURI: sharedExternalLinks.stylus.homePage.mixins
+            }) Stylus-примесей.
+            | Таким образом, пока #[+Term--YDID примесь] #[+Keyword--YDID не]&nbsp;вызвана, выходного
+            |   #[+Term--YDID CSS-кода] #[+Keyword--YDID не]&nbsp;прибавится.
+
+          li.
+            Как и в случае с #[+Term--YDID разметкой], #[+Term__Contrast--YDID параметры] #[+Term--YDID примесей]
+              проходят валидацию с подробным отчётом в случае нарушений, благодаря
+              которому в большинстве случаев можно исправить ошибку самостоятельно
+              #[+Keyphrase--YDID #[+Keyword--YDID не]&nbsp;обращаясь к документации] (при владении английским со
+              словарём).
+            К сожалению, валидация #[+Term--YDID параметров] приводит к #[+Keyword--YDID ощутимому] увеличению времени
+              преобразования из #[+ImportantEntity--YDID Stylus] в #[+ImportantEntity--YDID CSS], потому лучше
+              #[+ImportantEntity--YDID YDF]-компоненты собирать в отдельный #[+Term--YDID CSS-файл].
+
+          li.
+            Возможно #[+Keyword--YDID несколько] подходов кастомизации #[+Term--YDID стилей]
+              #[+Term__Contrast--YDID компонентов] от небольшой модификации готовых стилей до полного самостоятельного
+              написания стилей.
+            Но даже в последнем случае #[+ImportantEntity--YDID YDF] представляет ценность, потому что помимо стилей
+              от также предлагает #[+Keyword--YDID качественные] #[+Term--YDID разметку] и #[+Term--YDID логику]
+              (#[+Term--YDID TypeScript-код]).
+
+          li.
+            Хотя помимо основного пакета #[+ImportantEntity--YDID YDF] предлагает адаптации для популярных фронтенд-
+              фреймворков (таких как #[+ImportantEntity--YDID Vue]), #[+Keyword--YDID стили] поставляются
+              #[+Term--YDID основным] #[+Term--YDID npm-пакетом] #[+ImportantEntity--YDID YDF]
+              (#[+ImportantEntity--YDID @yamato-daiwa/frontend]), поскольку они #[+Keyword--YDID не]&nbsp;зависят от
+              конкретного фреймворка.
+
+      li
+
+        | Логика (TypeScript-код)
+
+        ul.Article-UnorderedList
+
+          li.
+            Логика поставляется в виде #[+Term--YDID TypeScript-классов] с #[+Keyword--YDID максимальной]
+              #[+Term--YDID типовой безопасностью] (#[+Keyword--YDID все] #[+Term--YDID типы] прописаны вручную
+               #[+Keyword--YDID без]&nbsp;использования #[+ImportantEntity__Code--YDID any]).
+
+          li.
+            Для использования логики #[+Keyword--YDID необходим] #[+Term--YDID сборщик проектов], такой как
+              #[+ImportantEntity--YDID Webpack].
+
+          li.
+            В рамках #[+Term--YDID объектно-ориентированного программирования], возможно #[+Term--YDID наследование]
+              #[+Term__Contrast--YDID классов] #[+Term--YDID компонентов] с целью добавления новой функциональности
+              или изменения уже существующей.
+
+    +AdmonitionBlock--YDF({
+      geometricVariation: AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike,
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.notice,
+      SVG_Icon: true
+    }).
+      #[+ImportantEntity__Code--YDID YDF] #[+Keyword--YDID не]&nbsp;является #[+Term--YDID CSS-фреймворком] в том смысле,
+        что он #[+Keyword--YDID не]&nbsp;требует подчинения проекта своему образу мыслей, стилистике и так далее.
+      #[+ImportantEntity__Code--YDID YDF] задуман как #[+Keyphrase--YDID набор инструментов] для решения типовых задач
+        #[+Term--YDID фронтенд-разработки] с #[+Keyphrase--YDID возможностью #[+Keyword--YDID выборочного] использования],
+        а #[+Keyword--YDID не]&nbsp;как #[+Term--YDID фреймворк], требующий смены мышления.
+
+
+    //- ━━━ Разметка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.markup.$heading,
+      HTML_ID: localizedSectioning.markup.$anchor
+    }).Article-Heading2
+
+    //- ─── Получение доступа к API ────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.markup.$children.providing.$heading,
+      HTML_ID: localizedSectioning.markup.$children.providing.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph
+      | Для того, чтобы получить доступ к #[+Term--YDID Pug-примесям] #[+Term__Contrast--YDID компонентов],
+      |   #[+Keyword--YDID необходимо]
+      |   #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.includes }) подключить]
+      |   #[+ImportantEntity--YDID 2] файла: #[+ImportantEntity--YDID Functionality.pug] и
+      |   #[+ImportantEntity--YDID Components.pug] #[+Keyphrase--YDID в указанном порядке].
+      | При этом, если Ваш #[+Term--YDID Pug-файл]
+      |
+      +Link--YDF({
+        unendorsedExternalURI: sharedExternalLinks.pug.homePage.templateInheritance
+      }) унаследован
+      |
+      | от
+      |
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+      }) поставляемого YDF шаблона страницы
+      |   , то #[+ImportantEntity--YDID Functionality.pug] #[+Keyword--YDID уже] подключён, #[+Keyword--YDID повторное]
+      |   его подключение #[+Keyphrase--YDID приведёт к ошибке].
+
+    +AdmonitionBlock--YDF({
+      geometricVariation: AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike,
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.guidance,
+      SVG_Icon: true
+    }).
+      Одно только подключение указанных выше файлов #[+Keyword--YDID не]&nbsp;даст #[+Keyword__Contrast--YDID никакого]
+        выходного #[+Term--YDID HTML-кода].
+      Чтобы сгенерировать #[+Term--YDID HTML-код] конкретного #[+Term--YDID GUI-компонента], #[+Keyword--YDID необходимо]
+        вызывать соответствующую ему #[+Term--YDID Pug-примесь].
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+        +CodeViewer-PartialListing--YDF.
+          include "../../node_modules/@yamato-daiwa/frontend/Functionality.pug"
+          include "../../node_modules/@yamato-daiwa/frontend/Components.pug"
+        +CodeViewer-Explanation--YDF.
+          Теперь можно вызывать примеси любых #[+Term--YDID компонентов],
+            #[+Keyphrase--YDID упомянутых в этой документации].
+          В Вашем случае #[+Term--YDID относительный путь] к #[+Term__Contrast--YDID директории]
+            #[+ImportantEntity--YDID node_modules] может быть другим в в зависимости от того, насколько глубже
+            корневой #[+Term--YDID директории] проекта находится Ваш #[+Term--YDID Pug-файл] с этим кодом.
+
+    p.Article-Paragraph.
+      Имена #[+Term--YDID Pug-примесей] #[+Term__Contrast--YDID компонентов] подчиняются #[+Keyword--YDID шаблону]
+        #[+ImportantEntity--YDID &lsqb;ИмяКомпонента&rsqb;--YDF], где #[+ImportantEntity__Code--YDID --YDF] —
+        #[+Term--YDID вендорный постфикс], добавленный с целью значительного уменьшения вероятности возникновения
+        конфликта имён, но также указывающий, что #[+Term--YDID компонент] взят из сторонней библиотеки, а
+        не&nbsp;разработан специально для конкретного проекта.
+      Например, компоненту #[+SecondaryEntity--YDID Button] соответствует примесь #[+SecondaryEntity--YDID Button--YDF].
+
+    p.Article-Paragraph.
+      На этом подключение разметки завершено, однако для корректного отображения #[+Term--YDID компонентов]
+        #[+Keyword--YDID необходимо] подключить #[+Term--YDID стили].
+      Если же Вы хотите ознакомиться с #[+Term--YDID Pug-примесью] конкретного #[+Term--YDID компонента] сейчас, то
+        выберете интересующий Вас #[+Term--YDID компонент]:
+
+    +CompactTableOfContents--YDF_DK(
+      localizedRouting.coreLibrary.$children.GUI_Components.$children
+    )
+
+
+    //- ─── Производительность при использовании в MVC-приложениях ─────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.markup.$children.performanceInMVC_Applications.$heading,
+      HTML_ID: localizedSectioning.markup.$children.performanceInMVC_Applications.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      Генерировать #[+Term--YDID HTML-код] #[+Term__Contrast--YDID GUI компонентов]
+        #[+Keyphrase--YDID на серверной стороне] в ответ на клиентские запросы #[+Keyword--YDID не]&nbsp;рекомендуется,
+        потому что #[+Keyword--YDID необходимые] для этого #[+Term--YDID файлы]
+        #[+ImportantEntity--YDID Functionality.pug] и #[+ImportantEntity--YDID Components.pug] значительно (по меркам
+        современных требований к скорости отображения страницы) увеличивают время генерирования #[+Term--YDID HTML-кода].
+      К тому же, #[+Keyphrase--YDID в большинстве] случаев #[+Term--YDID HTML-код] #[+Term__Contrast--YDID компонентов]
+        #[+Keyword--YDID не]&nbsp;зависит от запроса, таким образом серверу придётся #[+Keyphrase--YDID каждый раз]
+        затрачивать ресурсы на генерирование #[+Keyphrase--YDID одного и того же] #[+Term--YDID HTML-кода].
+
+    p.Article-Paragraph
+      | В то же время, сначала делать статическую версию с использованием #[+Term--YDID Pug-примесей], а потом на основе
+      |  сгенерированного #[+Term--YDID HTML-кода] писать шаблон для MVC-фреймворка — #[+Keyword--YDID неприемлемо] с
+      |  точки зрения современных требований по автоматизации рутин.
+      | О том, как этого избежать, было подготовлено
+      |
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.markup.$children.usageOnServerSide.$URI
+      }) соответствующее руководство
+      | .
+
+
+    //- ━━━ Разметка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.styles.$heading,
+      HTML_ID: localizedSectioning.styles.$anchor
+    }).Article-Heading2
+
+    //- ─── Получение доступа к API ────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.styles.$children.providing.$heading,
+      HTML_ID: localizedSectioning.styles.$children.providing.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph
+      | Для того, чтобы получить доступ к #[+Term--YDID Stylus-примесям] #[+Term__Contrast--YDID компонентов],
+      |   #[+Keyword--YDID необходимо]
+      |   #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.stylus.homePage.includes }) подключить]
+      |   #[+ImportantEntity--YDID 2] файла: #[+ImportantEntity--YDID Functionality.styl] и
+      |   #[+ImportantEntity--YDID Components.styl] #[+Keyphrase--YDID в указанном порядке].
+
+    +AdmonitionBlock--YDF({
+      geometricVariation: AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike,
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.guidance,
+      SVG_Icon: true
+    }).
+      Одно только подключение указанных выше файлов #[+Keyword--YDID не]&nbsp;даст #[+Keyword__Contrast--YDID никакого]
+        выходного #[+Term--YDID CSS-кода].
+      Чтобы сгенерировать #[+Term--YDID CSS-код] конкретного #[+Term--YDID GUI-компонента], #[+Keyword--YDID необходимо]
+        вызывать соответствующую ему #[+Term--YDID Stylus-примесь].
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus })
+        +CodeViewer-PartialListing--YDF.
+          @require "../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+          @require "../../node_modules/@yamato-daiwa/frontend/Components.styl"
+        +CodeViewer-Explanation--YDF.
+          Теперь можно вызывать примеси любых #[+Term--YDID компонентов],
+            #[+Keyphrase--YDID упомянутых в этой документации].
+          В Вашем случае #[+Term--YDID относительный путь] к #[+Term__Contrast--YDID директории]
+            #[+ImportantEntity--YDID node_modules] может быть другим в в зависимости от того, насколько глубже
+            корневой #[+Term--YDID директории] проекта находится Ваш #[+Term--YDID Stylus-файл] с этим кодом.
+
+    //-
+      h3.Article-Heading3 Генерация стилей компонентов
+
+      p.Article-Paragraph.
+        Примеси, генерирующие CSS-стили GUI-компонентов, названы в соответствии с соглашением #[+ImportantEntity__Code--YDID provide[]Styles].
+        Например, для компонента Button это будет #[+ImportantEntity__Code--YDID provideButtonYDF_Component].
+
+      p.Article-Paragraph.
+        Способ использования этих примесей зависит от того, насколько глубоко Вы хотите переопределить стандартные стили.
+
+      h4.Article-Heading4 Использование стилей по умолчанию
+      .Article-Subheading4 Нет времени возиться со стилями, дай мне технически эстетические готовые стили, быстро!
+
+      p.Article-Paragraph.
+        Для этого достаточно вызывать соответствующую примесь без параметров.
+
+      //- Code
+
+      p.Article-Paragraph.
+        Такой подход хорош в следующих случаях:
+
+      ul.Article-UnorderedList
+        li Создаётс я
+
+
+
+
+
+
+      h3.Article-Heading3 Производительность
+
+      p.Article-Paragraph.
+        К сожалению, такие особенности как гибкая кастомизация и валидация параметров дались большими проблемами прозводительности
+          при транслайлинге из Stylus в CSS.
+        Каждый компонент увеличивает время транспайлинга где-то на 1 секунду, и хотя производительность вторична
+          при сборке проектов, многие не готовы ждать по 10-20 секунд.
+        Очевидно, что Stylus и аналогические препроцессоры на такую развитую внутреннюю логику не рассчитаны, тем не менее
+          при разработке фреймворков она востребована.
+
+      p.Article-Paragraph.
+        Решение состоит в том, всё, что касается YDF-компонентов и их кастомизации собрать в отдельный CSS-файл.
+        По пере работы над проектом исходный код будет меняться относительно редко.
+
+
+
+      h2.Article-Heading2 Логика
+
+      h3.Article-Heading3 Подключение функциональности
+
+
+      h2.Article-Heading2(
+        id=localizedRouting.coreLibrary.$children.GUI_Components.$sectioning.themes.$anchor
+      ) Темы
+
+      p.Article-Paragraph.
+        Согласно стереотипному представлению о темах, тема - изменение декоративного оформления (сайта, пользовательского
+          интерфейса приложения и т. д.) без вмешательства в геометрию.
+        Типичный пример - светлая и тёмная темы, при переключение которых меняются в основном цвета фонов, шрифтов и обводок.
+
+      p.Article-Paragraph.
+        Действительно, во многих случаях оно так и есть, однако реальность показывает, что зачастую заказчики хотят большего.
+        Например, при изменении темы должны меняться радиус скруглений или толщина обводки.
+        В общем случае это может быть и вовсе переключение между разнородными направлениями в дизайне:
+          сквеоморфизм, флэт, минималистичность и так далее.
+        Для того, чтобы отвечать всем этим запросам, необходимо изменить понимание термина "тема".
+        Так, YDF пришёл к нижеследующиему определению темы
+
+      p.Article-Paragraph.
+        Тема - это набор геометрических и декоративных вариаций.
+
+
+      h3.Article-Heading3 Внешние темы
+
+      p.Article-Paragraph.
+        Если определено несколько тем (а основной npm-пакет предлагает только одну), то по умолчанию каждому компоненту
+          необходимо в явном виде указывать тему.
+        При таком раскладе переключение темы может быть затруднительным, и чаще требует того, чтобы в зависимости от
+          конкретного CSS-класса, применяемого ...
+        При этом, один класс, обозначающих тему, общий для всех компоеннтов.
+        В YDF Это называется вне
+
+
+      h2.Article-Heading2(
+        id=localizedRouting.coreLibrary.$children.GUI_Components.$sectioning.customization.$anchor
+      ) Кастомизация компонентов

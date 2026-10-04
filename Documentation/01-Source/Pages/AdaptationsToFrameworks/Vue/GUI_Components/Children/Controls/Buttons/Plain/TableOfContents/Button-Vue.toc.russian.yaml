@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "Сводка"
+
+ButtonClass:
+
+  $heading: "Класс <code>Button</code>"
+
+  vueProperties:
+
+    $heading: "Vue-свойства"

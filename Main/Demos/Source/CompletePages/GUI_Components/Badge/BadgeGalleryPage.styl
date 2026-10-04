@@ -1,0 +1,34 @@
+@require "../../../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+@require "../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
+
+
+badgeComponentDefaultPropertiesOverriding = {};
+
+// <==  [ Testing ] Comment out if need to display standard themes only
+//badgeComponentDefaultPropertiesOverriding = {
+//  themes: {
+//    regular: {
+//      geometricVariations: {
+//        small: deeplyCloneAndOverrideObject(
+//          Badge-RegularGeometry--YDF,
+//          {
+//            SVG_Icon: { height: 0.8em },
+//            keyLabel: { text: { size: 0.8em } },
+//            valueLabel: { text: { size: 0.8em } }
+//          }
+//        )
+//      },
+//      decorativeVariations: {
+//
+//      }
+//    }
+//  }
+//}
+// ==> =================================================================================================================
+
+Badge--YDF-generateStyles(
+  overridings: badgeComponentDefaultPropertiesOverriding
+)
+
+
+@require "../../../Galleries/GUI_Components/Badge/BadgeGallery.styl"

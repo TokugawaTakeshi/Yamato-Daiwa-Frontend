@@ -1,0 +1,45 @@
+projectBuilding:
+
+  # === Markup =========================================================================================================
+  markupProcessing:
+    entryPointsGroups:
+
+      Tests:
+        topDirectoryRelativePath: Tests
+        partialsRecognition:
+          excludeFilesWithPrefixes: "_"
+          excludeSubdirectoriesWithPrefixes: "_"
+        buildingModeDependent:
+          LOCAL_DEVELOPMENT:
+            outputTopDirectoryRelativePath: Tests/Build
+
+
+  # === Styles =========================================================================================================
+  stylesProcessing:
+
+    entryPointsGroups:
+
+      Tests:
+
+        topDirectoryRelativePath: Tests
+
+        partialsRecognition:
+          excludeFilesWithPrefixes: "_"
+          excludeSubdirectoriesWithPrefixes: "_"
+
+        buildingModeDependent:
+          LOCAL_DEVELOPMENT:
+            outputTopDirectoryRelativePath: Tests/Build
+
+
+  # === Development server =============================================================================================
+  browserLiveReloading:
+
+    setups:
+
+      Tests:
+
+        localServer:
+
+          rootDirectoryRelativePath: Tests/Build
+          customStartingFileNameWithExtension: Tests.html
