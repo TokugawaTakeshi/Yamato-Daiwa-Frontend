@@ -10,7 +10,7 @@ buildCalcExpressionFromFragments--YDF(fragmentsObject)
 
       YDF_Array-appendElementsIf(
         stringifiedFragments,
-        @(_fragment) { return isNotNull--YDF(_fragment) },
+        @() { return isNotNull--YDF(fragment) && fragment != 0 },
         fragment
       )
 

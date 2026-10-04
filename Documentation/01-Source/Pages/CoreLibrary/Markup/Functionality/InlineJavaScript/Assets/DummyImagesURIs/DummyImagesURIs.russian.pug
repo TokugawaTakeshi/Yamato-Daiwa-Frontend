@@ -27,7 +27,10 @@ block append Metadata
         "$PreMadesStyles",
         "@CustomizedExternalComponents",
         "@Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/DummyImagesURIs/DummyImagesURIs"
-      ]
+      ],
+      scriptsURIs: {
+        atEndOfBody: [ "@Pages/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/DummyImagesURIs/DummyImagesURIs" ]
+      }
     });
 
     if (__IS_PRODUCTION_BUILDING_MODE__) {
@@ -110,7 +113,7 @@ block append SpecificContent
 
           button(
             aria-label=`Скопировать выражение вызова свойства \"${ key }\" у объекта \"DummyImagesURIs\"`
-            data-clipboard-text=`DummyImagesURIs.${ key }`
+            data-clipboard-text=`YDF.DummyImagesURIs.${ key }`
           )
 
             span(

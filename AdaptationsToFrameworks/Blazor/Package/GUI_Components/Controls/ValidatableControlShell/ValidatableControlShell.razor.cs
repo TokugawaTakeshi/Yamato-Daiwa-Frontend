@@ -500,12 +500,30 @@ public partial class ValidatableControlShell:
   
   protected internal static Type? CustomThemes;
   
+  public record SelfAndChildrenComponentsThemesCorrespondenceDefinition
+  {
+    public required Dictionary<string, object> badge;
+  }
+  
   public static void defineThemes(
-    Type customThemes
+    Type customThemes,
+    Dictionary<string, SelfAndChildrenComponentsThemesCorrespondenceDefinition> selfAndChildrenComponentsThemesCorrespondenceDefinition
   ) 
   {
+
     YDF_ComponentsHelper.ValidateCustomTheme(customThemes);
     ValidatableControlShell.CustomThemes = customThemes;
+    
+    foreach (
+      (string ownThemeKey, SelfAndChildrenComponentsThemesCorrespondenceDefinition childThemeName) in 
+          selfAndChildrenComponentsThemesCorrespondenceDefinition
+      )
+    {
+      ValidatableControlShell.SelfAndChildrenComponentsThemesCorrespondence.badge.Add(
+        ownThemeKey, childThemeName
+      );  
+    }
+    
   }
   
   protected string _theme = nameof(ValidatableControlShell.StandardThemes.regular);
@@ -527,9 +545,9 @@ public partial class ValidatableControlShell:
         AssignThemeIfItIsValid<ValidatableControlShell.StandardThemes>(value, ValidatableControlShell.CustomThemes, ref this._theme);
   }
   
-  internal static class SelfAndChildrenComponentsThemesCorrespondence
+  public static class SelfAndChildrenComponentsThemesCorrespondence
   {
-    internal static Dictionary<string, object> badge = new()
+    public static Dictionary<string, object> badge = new()
     {
       { nameof(ValidatableControlShell.StandardThemes.regular), Badge.Badge.StandardThemes.regular }
     };

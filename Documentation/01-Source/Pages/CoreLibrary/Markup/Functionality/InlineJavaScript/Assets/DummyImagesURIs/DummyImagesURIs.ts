@@ -6,7 +6,8 @@ import ClipboardAccess from "clipboard";
 let cachedSnackbarTextTemplate: string | undefined;
 
 new ClipboardAccess(".DummyImagesURIsGallery button").on(
-  "success", (event: ClipboardAccess.Event): void => {
+  "success",
+  (event: ClipboardAccess.Event): void => {
 
     Snackbar.mountAndDisplayForAWhile({
 
