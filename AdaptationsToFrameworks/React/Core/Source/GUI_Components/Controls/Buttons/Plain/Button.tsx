@@ -4,8 +4,8 @@ import React from "react";
 
 /* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import ComponentsAuxiliaries from "../../../ComponentsAuxiliaries";
-import checkForNonEmptyStringReactProperties from "../../../../_ReactPropertiesValidators/checkForNonEmptyStringReactProperties";
-import InvalidReactPropertyError from "../../../../_Errors/InvalidVueProperty/InvalidReactPropertyError";
+import checkForNonEmptyStringReactProperties from "../../../../ReactPropertiesValidators/checkForNonEmptyStringReactProperties";
+import InvalidReactPropertyError from "../../../../Errors/InvalidReactProperty/InvalidReactPropertyError";
 import { Logger, isNotUndefined, isString, isNumber } from "@yamato-daiwa/es-extensions";
 /* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 

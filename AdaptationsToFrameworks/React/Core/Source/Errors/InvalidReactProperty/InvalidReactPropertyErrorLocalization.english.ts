@@ -2,7 +2,7 @@ import type InvalidReactPropertyError from "./InvalidReactPropertyError";
 
 
 export const invalidReactPropertyErrorLocalization__english: InvalidReactPropertyError.Localization = {
-  defaultTitle: "Invalid Vue Property",
+  defaultTitle: "Invalid React Property",
   generateDescription: (
     {
       propertyName,

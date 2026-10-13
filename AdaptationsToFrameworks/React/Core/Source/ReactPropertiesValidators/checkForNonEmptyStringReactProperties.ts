@@ -1,4 +1,4 @@
-import InvalidReactPropertyError from "../_Errors/InvalidVueProperty/InvalidReactPropertyError";
+import InvalidReactPropertyError from "../Errors/InvalidReactProperty/InvalidReactPropertyError";
 import { isUndefined } from "@yamato-daiwa/es-extensions";
 
 

@@ -6,7 +6,7 @@ import Badge from "../../Badge/Badge";
 import React from "react";
 
 /* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-import checkForNonEmptyStringReactProperties from "../../../_ReactPropertiesValidators/checkForNonEmptyStringReactProperties";
+import checkForNonEmptyStringReactProperties from "../../../ReactPropertiesValidators/checkForNonEmptyStringReactProperties";
 import renderReactNodeIf from "../../../Utils/renderReactNodeIf";
 import ComponentsAuxiliaries from "../../ComponentsAuxiliaries";
 import {
@@ -377,7 +377,7 @@ class ValidatableControlShell extends React.Component<ValidatableControlShell.Pr
         {
           renderReactNodeIf(
             isNotUndefined(this.props.guidance),
-            <p dangerouslySetInnerHTML={{ __html: this.formattedGuidance ?? "" }}></p>
+            <p dangerouslySetInnerHTML={{ __html: this.formattedGuidance ?? "" }} />
           )
         }
 
