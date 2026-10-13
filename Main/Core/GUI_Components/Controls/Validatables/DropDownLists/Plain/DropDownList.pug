@@ -1,0 +1,302 @@
+include DropDownList.class.pug
+
+
+//- [ Reference ] https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-autocomplete-both/
+mixin DropDownList--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      /** @type { string | undefined } */
+      label,
+
+      /** @type { string | undefined } */
+      guidance,
+
+      /** @type { string | undefined } */
+      accessibilityGuidances,
+
+      /** @type { string | undefined } */
+      externalLabelHTML_ID,
+
+      /** @type { string | undefined } */
+      placeholder,
+
+      /** @type { ReadonlyArray<Readonly<{ key: string | number; value: string | number; }>> } */
+      selectingOptions,
+
+      /** @type { string | number | undefined } */
+      initiallySelectedOptionKey,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      disabled,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      readonly,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      required,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+
+      /** @type { string | undefined } */
+      instanceID_UniqueDynamicPart,
+
+      /**
+       * @type {
+       *   {
+       *     inputOrTextArea?: string;
+       *     label?: string;
+       *   }
+       *  }
+       * */
+      HTML_IDs,
+
+      /**
+       * @type { TextBox__YDF.Themes }
+       * @default TextBox__YDF.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default DropDownList__YDF.areThemesCSS_ClassesCommon
+       * */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { DropDownList__YDF.GeometricVariations }
+       * @default DropDownList__YDF.GeometricVariations.regular
+       * */
+      geometricVariation,
+
+      /**
+       * @type { DropDownList__YDF.GeometricVariations }
+       * @default DropDownList__YDF.DecorativeVariations.regular
+       * */
+      decorativeVariation
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: DropDownList__YDF.propertiesSpecification,
+      mixinName: DropDownList__YDF.CSS_NAMESPACE
+    });
+
+    /** @type { string } */
+    const INSTANCE_ID = DropDownList__YDF.generateComponentID();
+
+    const {
+
+      /** @type { string } */
+      inputElement: inputElementHTML_ID = `${ INSTANCE_ID }-INPUT_ELEMENT`,
+
+      /** @type { string } */
+      label: labelElementHTML_ID = `${ INSTANCE_ID }-LABEL`,
+
+      /** @type { string } */
+      button: buttonElementHTML_ID = `${ INSTANCE_ID }-BUTTON`,
+
+      /** @type { string } */
+      listBox: listBoxElementHTML_ID = `${ INSTANCE_ID }-LIST_BOX`
+
+    } = HTML_IDs ?? {};
+
+    const {
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      expanded,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      invalidInputHighlightingIfAnyValidationErrorsMessages,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      validValueHighlightingIfNoValidationErrorsMessages,
+
+      /**
+       * @type { boolean | ReadonlyArray<string> }
+       * @default false
+       * */
+      validationErrorsMessages,
+
+      /**
+       * @type { boolean | ReadonlyArray<"IN_PROGRESS" | "FINISHED_BUT_INVALID" | "FINISHED_AND_VALID" | "MALFUNCTION"> }
+       * @default false
+       * */
+      asynchronousValidationsStatuses
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: DropDownList__YDF.statesSimulationsSpecification,
+      mixinName: DropDownList__YDF.CSS_NAMESPACE
+    });
+
+
+    const rootElementModifierCSS_Classes = [
+
+      expanded ?
+          `${ DropDownList__YDF.CSS_NAMESPACE }__ExpandedState` :
+          `${ DropDownList__YDF.CSS_NAMESPACE }__FoldedState`,
+
+      ...disabled ? [ `${ DropDownList__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
+
+      ...invalidInputHighlightingIfAnyValidationErrorsMessages && validationErrorsMessages.length > 0 ?
+          [ `${ DropDownList.CSS_NAMESPACE }__InvalidValueState` ] : [],
+      ...validValueHighlightingIfNoValidationErrorsMessages && validationErrorsMessages.length === 0 ?
+          [ `${ DropDownList.CSS_NAMESPACE }__ValidValueState` ] : [],
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: DropDownList__YDF.Themes,
+        CSS_Namespace: DropDownList__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: DropDownList__YDF.GeometricVariations,
+        CSS_Namespace: DropDownList__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: DropDownList__YDF.DecorativeVariations,
+        CSS_Namespace: DropDownList__YDF.CSS_NAMESPACE
+      })
+
+    ];
+
+    let inputElementInitialValue = "";
+
+    if (YDF.isNotUndefined(initiallySelectedOptionKey) && selectingOptions.length > 0) {
+      inputElementInitialValue = selectingOptions.find(option => option.key === initiallySelectedOptionKey)?.label ?? "";
+    }
+
+
+  +ValidatableControlShell--YDF(
+    {
+
+      label,
+      guidance,
+
+      required,
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+
+      coreElementHTML_ID: inputElementHTML_ID,
+      labelElementHTML_ID,
+
+      mainSlotWrapperAdditionalCSS_Classes: [ "DropDownList--YDF-MainSlotComposition" ],
+
+      theme: DropDownList__YDF.selfAndChildrenComponentsThemesCorrespondence.validatableControlShell[theme],
+      areThemesCSS_ClassesCommon,
+      geometricVariation: DropDownList__YDF.selfAndChildrenComponentsThemesCorrespondence.validatableControlShell[geometricVariation],
+      decorativeVariation: DropDownList__YDF.selfAndChildrenComponentsThemesCorrespondence.validatableControlShell[decorativeVariation]
+
+    },
+    {
+      invalidInputHighlightingIfAnyValidationErrorsMessages,
+      validValueHighlightingIfNoValidationErrorsMessages,
+      validationErrorsMessages,
+      asynchronousValidationsStatuses
+    }
+  ).DropDownList--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
+
+    input.DropDownList--YDF-InputElement(
+      role="combobox"
+      type="text"
+      value=inputElementInitialValue
+      aria-autocomplete="both"
+      aria-expanded=(expanded ? "true" : "false")
+      aria-controls=listBoxElementHTML_ID
+      id=inputElementHTML_ID
+      aria-label=accessibilityGuidances.inputElement
+      aria-labelledby=externalLabelHTML_ID
+    )
+
+    +Button--YDF({
+      accessibilityGuidance: accessibilityGuidances.button,
+      HTML_Type: Button__YDF.HTML_Types.regular,
+      theme: Button__YDF.Themes.regular,
+      geometricVariation: Button__YDF.GeometricVariations.regular,
+      geometricModifiers: [
+        Button__YDF.GeometricModifiers.squareShape,
+        Button__YDF.GeometricModifiers.noLeftBorderAndRoundings
+      ],
+      decorativeVariation: Button__YDF.DecorativeVariations.regular
+    }).DropDownList--YDF-Button(
+      aria-expanded=(expanded ? "true" : "false")
+      aria-controls=listBoxElementHTML_ID
+      tabindex="-1"
+    )
+      +Triangle__Downward__Filled--YDF_Icon.Button--YDF-SVG_Icon(
+        aria-hidden="true"
+        focusable="false"
+      )
+
+    ul.DropDownList--YDF-ListBox(
+      role="listbox"
+      aria-label=accessibilityGuidances.listBox
+      id=listBoxElementHTML_ID
+      hidden=(!expanded)
+    )
+
+      if YDF.isNonEmptyArray(selectingOptions)
+
+        each option in selectingOptions
+
+          li.DropDownList--YDF-ListBox-Option(
+            role="option"
+            data-key=option.key
+          )= option.label
+
+      else
+
+        block
+
+
+mixin DropDownList-SelectingOption--YDF(selectingOption)
+
+  li.DropDownList--YDF-ListBox-Option(
+    role="option"
+    data-key=selectingOption.key
+  )= selectingOption.label

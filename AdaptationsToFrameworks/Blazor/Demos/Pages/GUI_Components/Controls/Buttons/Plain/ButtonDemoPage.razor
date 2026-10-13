@@ -1,0 +1,1205 @@
+﻿@page "/Button"
+
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.Buttons.Plain
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.Buttons.Plain.LoadingPlaceholder
+@using YamatoDaiwa.Frontend.SVG_Icons.Heart
+@using YamatoDaiwa.Frontend.SVG_Icons.Menu
+@using Demos.GUI_Components.ThemesShowcase
+
+
+<div class="YDF_Gallery">
+  
+  <h1 class="Heading1">Button Component Demos</h1>
+  
+  @* ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Minimal</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Long Labels ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Long Labels</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label=@textOverflowSafetyTest
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label=@textOverflowSafetyTest
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label=@textOverflowSafetyTest
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Prepended SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Prepended SVG Icons</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="Like!"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          >
+            <PrependedSVG_Icon>
+              <HeartIcon rootElementModifierCSS_Class="Button--YDF-SVG_Icon"/>
+            </PrependedSVG_Icon>
+          </Button>
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="Like!"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          >
+            <PrependedSVG_Icon>
+              <HeartIcon rootElementModifierCSS_Class="Button--YDF-SVG_Icon"/>
+            </PrependedSVG_Icon>
+          </Button>
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>Unavailable</dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Appended SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Appended SVG Icons</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="Like!"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          >
+            <AppendedSVG_Icon>
+              <HeartIcon rootElementModifierCSS_Class="Button--YDF-SVG_Icon"/>
+            </AppendedSVG_Icon>
+          </Button>
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="Like!"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          >
+            <AppendedSVG_Icon>
+              <HeartIcon rootElementModifierCSS_Class="Button--YDF-SVG_Icon"/>
+            </AppendedSVG_Icon>
+          </Button>
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>Unavailable</dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Lone SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Lone SVG Icons</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            accessibilityGuidance="Like this video"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          >
+            <LoneSVG_Icon>
+              <HeartIcon rootElementModifierCSS_Class="Button--YDF-SVG_Icon"/>
+            </LoneSVG_Icon>
+          </Button>
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            accessibilityGuidance="Like this video"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          >
+            <LoneSVG_Icon>
+              <HeartIcon rootElementModifierCSS_Class="Button--YDF-SVG_Icon"/>
+            </LoneSVG_Icon>
+          </Button>
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>Unavailable</dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+
+  @* ━━━  Custom SVG Icon ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Custom SVG Icon</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="Menu"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          >
+            <PrependedSVG_Icon>
+              <MenuIcon__ThreeDots__Horizontal rootElementModifierCSS_Classes=@([ "Button--YDF-SVG_Icon", "Button--YDF-SVG_Icon__Menu__ThreeDots__Horizontal" ]) />
+            </PrependedSVG_Icon>
+          </Button>
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="Menu"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+          >
+            <PrependedSVG_Icon>
+              <MenuIcon__ThreeDots__Horizontal rootElementModifierCSS_Classes=@([ "Button--YDF-SVG_Icon", "Button--YDF-SVG_Icon__Menu__ThreeDots__Horizontal" ]) />
+            </PrependedSVG_Icon>
+          </Button>
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>Unavailable</dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+
+  
+  @* ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Geometric Modifiers</h2>
+  
+  @* ─── Pill Shape ───────────────────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">Pill Shape</h3>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.pillShape ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.pillShape ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.pillShape ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ─── Square Shape ─────────────────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading2">Square Shape</h3>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            accessibilityGuidance="Like this video"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.squareShape ])
+            decorativeVariation=@context.decorativeVariationValue
+          >
+            <LoneSVG_Icon>
+              <HeartIcon rootElementModifierCSS_Class="Button--YDF-SVG_Icon"/>
+            </LoneSVG_Icon>
+          </Button>
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            accessibilityGuidance="Like this video"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.squareShape ])
+            decorativeVariation=@context.decorativeVariationValue
+          >
+            <LoneSVG_Icon>
+              <HeartIcon rootElementModifierCSS_Class="Button--YDF-SVG_Icon"/>
+            </LoneSVG_Icon>
+          </Button>
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label="❤"
+            accessibilityGuidance="Like this video"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.squareShape ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+
+  @* ─── Square Shape Unless Overflowed ───────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading2">Square Shape Unless Overflowed</h3>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd class="ButtonGallery-LinearFlow">
+
+          <Button
+            accessibilityGuidance="Like this video"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@( [Button.GeometricModifiers.squareShapeUnlessOverflowed ])
+            decorativeVariation=@context.decorativeVariationValue
+          >
+            <LoneSVG_Icon>
+              <HeartIcon rootElementModifierCSS_Class="Button--YDF-SVG_Icon" />
+            </LoneSVG_Icon>
+          </Button>
+          
+          <Button
+            label="Click 押下"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@( [Button.GeometricModifiers.squareShapeUnlessOverflowed ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+
+
+        </dd>
+        
+        <dt>Link</dt>
+        <dd class="ButtonGallery-LinearFlow">
+
+          <Button
+            accessibilityGuidance="Like this video"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@( [Button.GeometricModifiers.squareShapeUnlessOverflowed ])
+            decorativeVariation=@context.decorativeVariationValue
+          >
+            <LoneSVG_Icon>
+              <HeartIcon rootElementModifierCSS_Class="Button--YDF-SVG_Icon" />
+            </LoneSVG_Icon>
+          </Button>
+          
+          <Button
+            label="Click 押下"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@( [Button.GeometricModifiers.squareShapeUnlessOverflowed ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+
+        </dd>
+        
+        <dt>Input</dt>
+        <dd class="ButtonGallery-LinearFlow">
+
+          <Button
+            label="❤"
+            accessibilityGuidance="Like this video"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@( [Button.GeometricModifiers.squareShapeUnlessOverflowed ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+          
+          <Button
+            label="Click 押下"
+            HTML_Type=@Button.HTML_Types.inputButton
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@( [Button.GeometricModifiers.squareShapeUnlessOverflowed ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+
+  @* ─── Single Line ──────────────────────────────────────────────────────────────────────────────────────────────── *@
+  <h2 class="Heading2">Single Line</h2>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label=@textOverflowSafetyTest
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.singleLine ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label=@textOverflowSafetyTest
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.singleLine ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label=@textOverflowSafetyTest
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.singleLine ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ─── No Left Border and Roundings ─────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">No Left Border and Roundings</h3>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noLeftBorderAndRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noLeftBorderAndRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noLeftBorderAndRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ─── No Right Border and Roundings ────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">No Right Border and Roundings</h3>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noRightBorderAndRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noRightBorderAndRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noRightBorderAndRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ─── No Top Border and Roundings ──────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">No Top Border and Roundings</h3>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noTopBorderAndRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noTopBorderAndRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noTopBorderAndRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+
+  @* ─── No Bottom Border and Roundings ───────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">No Bottom Border and Roundings</h3>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noBottomBorderAndRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noBottomBorderAndRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noBottomBorderAndRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ─── No Roundings ─────────────────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">No Roundings</h3>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.noRoundings ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+
+  @* ─── Horizontally Shrinkable ──────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">Horizontally Shrinkable</h3>
+   
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="X"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.horizontallyShrinkable ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="X"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.horizontallyShrinkable ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label="X"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.horizontallyShrinkable ])
+            decorativeVariation=@context.decorativeVariationValue
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ━━━ Decorative Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Decorative Modifiers</h2>
+  
+  @* ─── Borders Disguising ───────────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">Borders Disguising</h3>
+  
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+            decorativeModifiers=@([ Button.DecorativeModifiers.bordersDisguising ])
+          />
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+            decorativeModifiers=@([ Button.DecorativeModifiers.bordersDisguising ])
+          />
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+            decorativeModifiers=@([ Button.DecorativeModifiers.bordersDisguising ])
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ─── No Background ────────────────────────────────────────────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">No Background</h3>
+  
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+            decorativeModifiers=@([ Button.DecorativeModifiers.noBackground ])
+          />
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+            decorativeModifiers=@([ Button.DecorativeModifiers.noBackground ])
+          />
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label="Click 押下"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            decorativeVariation=@context.decorativeVariationValue
+            decorativeModifiers=@([ Button.DecorativeModifiers.noBackground ])
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+  
+  @* ─── No Background in Default State Decorative Modifier ───────────────────────────────────────────────────────── *@
+  <h3 class="Heading3">No Background in Default State Decorative Modifier</h3>
+  
+  <ThemesShowcase
+    themes=@typeof(Button.StandardThemes)
+    themeKeyLabelPrefix=@ButtonDemoPage.THEME_KEY_LABEL_PREFIX
+    geometricVariations=@typeof(Button.StandardGeometricVariations)
+    geometricVariationLabelPrefix=@ButtonDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariations=@typeof(Button.StandardDecorativeVariations)
+    decorativeVariationLabelPrefix=@ButtonDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    decorativeVariationsListItemAdditionalCSS_Classes=@([ "ButtonGallery-DecorativeVariationsListItem" ])
+    decorativeVariationSkippingCondition="mustSkipDecorativeVariation"
+  >
+    <ComponentSlot>
+      <dl class="ButtonGallery-PseudoTable">
+        
+        <dt>Button</dt>
+        <dd>
+          <Button
+            accessibilityGuidance="Like this video"
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.squareShape ])
+            decorativeVariation=@context.decorativeVariationValue
+            decorativeModifiers=@([
+              Button.DecorativeModifiers.noBackgroundInDefaultState,
+              Button.DecorativeModifiers.bordersDisguising
+            ])
+          >
+            <PrependedSVG_Icon>
+              <HeartIcon rootElementModifierCSS_Class="Button--YDF-SVG_Icon"/>
+            </PrependedSVG_Icon>
+          </Button>
+        </dd>
+        
+        <dt>Link</dt>
+        <dd>
+          <Button
+            accessibilityGuidance="Like this video"
+            externalURI="https://frontend.yamato-daiwa.com/"
+            mustOpenLinkInNewTab=@true
+            mustRequestNotFollowLinkForCrawlingToSearchEngine=@true
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.squareShape ])
+            decorativeVariation=@context.decorativeVariationValue
+            decorativeModifiers=@([
+              Button.DecorativeModifiers.noBackgroundInDefaultState, 
+              Button.DecorativeModifiers.bordersDisguising
+            ])
+          >
+            <PrependedSVG_Icon>
+              <HeartIcon rootElementModifierCSS_Class="Button--YDF-SVG_Icon"/>
+            </PrependedSVG_Icon>
+          </Button>
+        </dd>
+        
+        <dt>Input</dt>
+        <dd>
+          <Button
+            label="❤"
+            accessibilityGuidance="Like this video"
+            HTML_Type=@Button.HTML_Types.inputButton
+            theme=@context.themeValue
+            geometricVariation=@context.geometricVariationValue
+            geometricModifiers=@([ Button.GeometricModifiers.squareShape ])
+            decorativeVariation=@context.decorativeVariationValue
+            decorativeModifiers=@([ 
+              Button.DecorativeModifiers.noBackgroundInDefaultState, 
+              Button.DecorativeModifiers.bordersDisguising 
+            ])
+          />
+        </dd>
+        
+      </dl>
+    </ComponentSlot>
+  </ThemesShowcase>
+  
+
+  @* ━━━ Loading Placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <h2 class="Heading2">Loading Placeholder</h2>
+
+  <div class="ButtonGallery-LinearFlow">
+
+    <ButtonLoadingPlaceholder
+      geometricVariation=@Button.StandardGeometricVariations.regular
+    />
+
+    <ButtonLoadingPlaceholder
+      geometricVariation=@Button.StandardGeometricVariations.regular
+      geometricModifiers=@(new []{ Button.GeometricModifiers.pillShape })
+    />
+
+    <ButtonLoadingPlaceholder
+      geometricVariation=@Button.StandardGeometricVariations.small
+    />
+
+    <ButtonLoadingPlaceholder
+      geometricVariation=@Button.StandardGeometricVariations.small
+      geometricModifiers=@(new []{ Button.GeometricModifiers.pillShape })
+    />
+
+  </div>
+
+</div>

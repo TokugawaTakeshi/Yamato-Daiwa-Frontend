@@ -1,0 +1,42 @@
+mixin DropDownListGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("DropDownList__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("DropDownList__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("DropDownList__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) DropDownList Component Demos
+
+  //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Minimal
+
+    +ThemesShowcase--YDF({
+      themes: DropDownList__YDF.Themes,
+      geometricVariations: DropDownList__YDF.GeometricVariations,
+      decorativeVariations: DropDownList__YDF.DecorativeVariations,
+      skipDecorativeVariationIf,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "TextBoxGallery-VerticalLinearFlow"
+    })
+
+      +DropDownList--YDF({
+        accessibilityGuidances: {
+          inputElement: "1",
+          button: "2",
+          listBox: "3"
+        },
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      })

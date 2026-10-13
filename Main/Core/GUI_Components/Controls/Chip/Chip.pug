@@ -1,0 +1,74 @@
+include Chip.class.pug
+
+
+mixin Chip--YDF(properties)
+
+  -
+
+    const {
+
+      key,
+      value,
+
+      theme,
+      dismissingButtonAccessibilityGuidance,
+      areThemesCSS_ClassesCommon,
+      geometricVariation,
+      decorativeVariation,
+      decorativeModifiers
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: Chip__YDF.propertiesSpecification,
+      mixinName: Chip__YDF.CSS_NAMESPACE
+    });
+
+
+    const rootElementModifierCSS_Classes = [
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: Chip__YDF.Themes,
+        CSS_Namespace: Chip__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: Chip__YDF.GeometricVariations,
+        CSS_Namespace: Chip__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: Chip__YDF.DecorativeVariations,
+        CSS_Namespace: Chip__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedDecorativeModifiersCSS_Classes(Chip__YDF.CSS_NAMESPACE, decorativeModifiers)
+
+    ];
+
+
+  span.Chip--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
+
+    if block
+
+      block
+
+
+    if key
+
+      span.Chip--YDF-Key= key
+
+    span.Chip--YDF-Value= value
+
+    if dismissingButtonAccessibilityGuidance
+
+      button.Chip--YDF-Button(
+        type="button"
+        aria-label= dismissingButtonAccessibilityGuidance
+      )
+        +MultiplicationSign--YDF_Icon.Chip--YDF-Button-Icon

@@ -1,0 +1,51 @@
+mixin TabsList--YDF(properties)
+
+  -
+
+    properties = properties ?? {}
+
+    const {
+      accessibilityGuidance,
+      externalLabelHTML_ID
+    } = properties
+
+  .TabsList--YDF&attributes(attributes)(
+    role="tablist"
+    aria-label= accessibilityGuidance
+    aria-labelledby= externalLabelHTML_ID
+  )
+
+    block
+
+
+mixin Tab--YDF(properties)
+
+  button.Tab--YDF(
+    role="tab"
+    type="button"
+    id= properties.tabHTML_ID
+    tabindex= properties.isInitiallySelected ? -1 : 0
+    aria-selected= properties.isInitiallySelected ? "true" : "false"
+    aria-controls= properties.panelHTML_ID
+  )&attributes(attributes)
+
+    if block
+
+      block
+
+    else
+
+      span.Tab--YDF-Label= properties.label
+
+
+mixin TabPanel--YDF(properties)
+
+  .TabPanel--YDF&attributes(attributes)(
+    role="tabpanel"
+    id= properties.panelHTML_ID
+    tabindex= properties.isInitiallySelected ? -1 : 0
+    aria-labelledby= properties.tabHTML_ID
+    hidden= !properties.isInitiallySelected
+  )&attributes(attributes)
+
+    block

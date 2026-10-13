@@ -1,0 +1,47 @@
+overview:
+
+  $heading: "Overview"
+
+usage:
+
+  $heading: "Usage"
+
+  markup:
+
+    $heading: "Markup"
+
+    includingToProject:
+
+      $heading: "Including to Project"
+
+    pugMixin:
+
+      $heading: "Pug Mixin <code>AdmonitionBlock--YDF</code>"
+
+      minimalExample:
+
+        $heading: "Minimal Example (Required Properties Only)"
+
+      title:
+
+        $heading: "Title (<code>title</code> Property)"
+
+      SVG_Icon:
+
+        $heading: "SVG Icon (<code>SVG_Icon</code> Property)"
+
+        custom:
+
+          $heading: "Custom Icons"
+
+      buttons:
+
+        $heading: "Button"
+
+      dismissing:
+
+        $heading: "Dismissing"
+
+  logic:
+
+    $heading: "Logic"

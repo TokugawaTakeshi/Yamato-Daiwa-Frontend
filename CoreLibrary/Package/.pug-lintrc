@@ -1,4 +1,0 @@
-{
-  "extends": "./node_modules/yamato-daiwa_code_quality_management/MarkupLinting-YD-JG-UA-3--0.js",
-  "excludeFiles": [ "Markup/SVG_Icons" ]
-}

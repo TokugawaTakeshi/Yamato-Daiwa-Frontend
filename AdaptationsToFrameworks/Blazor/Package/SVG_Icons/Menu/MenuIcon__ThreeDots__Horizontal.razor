@@ -1,0 +1,29 @@
+﻿@using YamatoDaiwa.Frontend.GUI_Components.Abstractions
+
+
+@implements IFlexibleExternalCSS_ClassesSpecifyingForRootElement
+
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 5"
+  class=@(((IFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes)
+>
+  <circle cx="10.01" cy="2.5" r="2.5"></circle>
+  <circle cx="17.51" cy="2.5" r="2.5"></circle>
+  <circle cx="2.5" cy="2.5" r="2.5"></circle>
+</svg>
+
+
+@code {
+
+  [Microsoft.AspNetCore.Components.Parameter]
+  public string? rootElementModifierCSS_Class { get; set; } = null;
+
+  [Microsoft.AspNetCore.Components.Parameter]
+  public string[]? rootElementModifierCSS_Classes { get; set; } = null;
+
+  [Microsoft.AspNetCore.Components.Parameter]
+  public string? rootElementSpaceSeparatedModifierCSS_Classes { get; set; } = null;
+
+}

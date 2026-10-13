@@ -1,0 +1,92 @@
+-
+
+  const propertyMetadataYDF_DK_ComponentLocalization__japanese = {
+
+    localizedInterpretation: "日本語名",
+    type: "型",
+    types: {
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.number]: "数",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.string]: "文字列",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.boolean]: "ブーリアン",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.fixedSchemaObject]: "固定スキーマのオブジェクト",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.associativeArray]: "連想配列型のオブジェクト",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.indexedArray]: "指数配列",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.tuple]: "タプル",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.ambiguousObject]: "曖昧オブジェクト",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.ambiguousArray]: "曖昧配列",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic]: "多形性"
+    },
+
+    /* ━━━ Undefindability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    isUndefinedForbidden: "undefinedは不可か",
+    undefinedForbiddenIf: "いつundefinedは不可か",
+    undefinedValueSubstitution: "undefinedの代替",
+    mustTransformUndefinedToNull: "undefinedはnullと同じ扱いされるか",
+    mustBeUndefinedIf: "いつundefinedでなければいけないか",
+
+    /* ━━━ Nullability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    isNullForbidden: "nullは不可か",
+    nullForbiddenIf: "いつnullは不可か",
+    nullValueSubstitution: "nullの代替",
+    mustTransformNullToUndefined: "nullはundefinedと同じ扱いされるか",
+    mustBeNullIf: "いつnullでなければいけないか",
+
+    /* ━━━ Common Requirement for Languages With Single Empty Type ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    defaultValue: "規定値",
+    required: "必須",
+    requiredIf: "いつ必要",
+
+    /* ━━━ By Types ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── Fixed Shema Objects ────────────────────────────────────────────────────────────────────────────────────── */
+    objectTypeSchema: "スキーマ",
+
+    /* ─── Associative Array ──────────────────────────────────────────────────────────────────────────────────────── */
+    areUndefinedTypeValuesForbidden: "undefinedバリューが不可か",
+    areNullTypeValuesForbidden: "nullバリューが不可か",
+    minimalEntriesCount: "最少キー・値組み数",
+    allowedKeys: "可能なキー",
+    associativeArrayValues: "連想配列の値",
+
+    /* ─── Indexed Array Property ─────────────────────────────────────────────────────────────────────────────────── */
+    arrayElements: "配列の要素",
+    minimalElementsCount: "最少要素数",
+    areUndefinedElementsForbidden: "undefined要素可否",
+    areNullElementsForbidden: "null要素可否",
+
+    /* ─── Numbers ────────────────────────────────────────────────────────────────────────────────────────────────── */
+    numbersSet: "数の集合",
+    numbersSets: {
+      [YDF.RawObjectDataProcessor.NumbersSets.naturalNumber]: "自然数",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero]: "正の整数・0",
+      [YDF.RawObjectDataProcessor.NumbersSets.naturalNumberOrZero]: "自然数・0",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeInteger]: "負の整数",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero]: "負の整数・0",
+      [YDF.RawObjectDataProcessor.NumbersSets.anyInteger]: "正負不問の整数",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveDecimalFraction]: "正の小数",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveDecimalFractionOrZero]: "正の小数・0",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeDecimalFraction]: "負の小数",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeDecimalFractionOrZero]: "負の小数・0",
+      [YDF.RawObjectDataProcessor.NumbersSets.anyDecimalFraction]: "正負不問の整数小数",
+      [YDF.RawObjectDataProcessor.NumbersSets.anyDecimalFractionOrZero]: "正負不問の整数小数・0",
+      [YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber]: "実数",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveRealNumber]: "正の実数",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeRealNumber]: "負の実数",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveRealNumberOrZero]: "正の実数・0",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeRealNumberOrZero]: "負の実数・0"
+    },
+    minimalValue: "最小限",
+    maximalValue: "最大限",
+    allowedAlternatives: "利用可能な選択肢",
+
+    /* ─── Strings ────────────────────────────────────────────────────────────────────────────────────────────────── */
+    minimalCharactersCount: "最小文字数",
+    maximalCharactersCount: "最大文字数",
+
+    /* ─── Polymorphic ────────────────────────────────────────────────────────────────────────────────────────────── */
+    polymorphicPropertyVariants: "選択肢",
+
+    /* ━━━ Other ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    yes: "はい",
+    no: "いいえ"
+
+  };

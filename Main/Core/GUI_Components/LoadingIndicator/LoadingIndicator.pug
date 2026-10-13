@@ -1,0 +1,35 @@
+include LoadingIndicator.class.pug
+
+
+mixin LoadingIndicator--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      /** @type { LoadingIndicator__YDF.Types } */
+      type
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: LoadingIndicator__YDF.propertiesSpecification,
+      mixinName: LoadingIndicator__YDF.CSS_NAMESPACE
+    });
+
+
+  case type
+
+    when LoadingIndicator__YDF.Types.variableWidthArcSpinner
+
+      .LoadingIndicator--YDF__VariableWidthArcSpinnerType&attributes(attributes)
+        div
+        div
+        div
+        div
+
+
+    when LoadingIndicator__YDF.Types.twoConstantWidthArcsSpinner
+
+      .LoadingIndicator--YDF__TwoConstantWidthArcsSpinnerType&attributes(attributes)

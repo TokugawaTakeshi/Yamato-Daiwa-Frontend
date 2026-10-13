@@ -1,0 +1,25 @@
+@require "../../../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+@require "../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
+
+
+// TODO Replace first letter with small one
+${COMPONENT_NAME}DefaultPropertiesOverriding = {};
+
+// <==  [ Testing ] Comment out if need to display standard themes only
+// TODO Replace first letter with small one
+//${COMPONENT_NAME}DefaultPropertiesOverriding = {
+//
+//}
+// ==> =================================================================================================================
+
+provide${COMPONENT_NAME}YDF_Component(
+  // TODO Replace first letter with small one
+  overridings: ${COMPONENT_NAME}DemoDefaultPropertiesOverriding
+)
+
+// TODO Initialize dependencies if required
+provideButtonYDF_Component()
+
+
+// TODO Correct the relative path
+@require "../../../Galleries/GUI_Components/${COMPONENT_NAME}/${COMPONENT_NAME}Gallery.styl"

@@ -1,0 +1,7 @@
+problematics:
+  $heading: `problematics`
+  $anchor: PROBLEMATICS--SECTION
+
+example:
+  $heading: `example`
+  $anchor: EXAMPLE--SECTION

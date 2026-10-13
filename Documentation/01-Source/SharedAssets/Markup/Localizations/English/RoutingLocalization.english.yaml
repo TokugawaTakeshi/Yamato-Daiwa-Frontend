@@ -1,0 +1,264 @@
+fileNameLocalizationExtensions: "english"
+
+top:
+
+  $heading: "Top"
+  $URI: @All/index
+
+coreLibrary:
+
+  $heading: "Core Library"
+
+  markup:
+
+    $heading: "Pug Markup"
+
+    functionality:
+
+      $heading: "Functionality"
+
+      inlineJavaScript:
+
+        $heading: "Inline JavaScript"
+
+        YDEE_Integration:
+
+          $heading: "Integration with @yamato-daiwa/es-extensions (YDEE)"
+
+        functionsAndClasses:
+
+          $heading: "Functions and Classes"
+
+        assets:
+
+          $heading: "Assets"
+
+      pugMixins:
+
+        $heading: "Pug Mixins"
+
+        dummies:
+
+          $heading: "<code>WideDummy</code> and <code>HighDummy</code>"
+
+        SVG_Icons:
+
+          $heading: "SVG icons"
+
+#        yamatoDaiwaInformationDesign:
+#
+#          $heading: "Yamato Daiwa Information Design"
+
+      pagesTemplates:
+
+        $heading: "Pages Templates"
+
+      usageOnServerSide:
+
+        $heading: "Usage on Server Side"
+
+  styles:
+
+    $heading: "Styles"
+
+    assets:
+
+      $heading: "Assets"
+
+      fundamentalConstantsAndEnums:
+
+        $heading: "Fundamental Constants and Enumerations"
+
+      colors:
+
+        $heading: "Colors"
+
+        PracticalColorCoordinateSystem:
+
+          $heading: "PCCS Palette (<code>PracticalColorCoordinateSystem--YDF</code>)"
+
+        TemporarySemitransparentHighlighting:
+
+          $heading: "Temporary Semitransparent Highlighting (<code>TemporarySemitransparentHighlighting--YDF</code>)"
+
+        W3C_39_ShadesOfGray:
+
+          $heading: "W3C 39 Shades of Gray Palette (<code>W3C_39_ShadesOfGray--YDF</code>)"
+
+        YDF_ColorPalette:
+
+          $heading: "<code>YDF_ColorPalette</code>"
+
+    kernel:
+
+      $heading: "Kernel"
+
+      YDF_Configuration:
+
+        $heading: "<code>YDF_Configuration</code> — YDF Styles Configuration"
+
+        fontsStacks:
+
+          $heading: "Font Stacks"
+
+        textGeometry:
+
+          $heading: "Dimensions"
+
+        zIndexes:
+
+          $heading: "Z-Indexes"
+
+      specificationsSchemas:
+
+        $heading: "Specifications Schemas"
+
+      functions:
+
+        $heading: "Functions"
+
+        typeCheckers:
+
+          $heading: "Values Types Checkers"
+
+          strings:
+
+            $heading: "Strings"
+
+          quantities:
+
+            $heading: "Quantities"
+
+          booleans:
+
+            $heading: "Boolean values"
+
+          nullables:
+
+            $heading: "Nullables"
+
+          others:
+
+            $heading: "Others"
+
+        valueTransformers:
+
+          $heading: "Value Transformers"
+
+        strings:
+
+          $heading: "Working with Strings"
+
+        quantities:
+
+          $heading: "Working with Quantities"
+
+        objects:
+
+          $heading: "Working with Objects"
+
+        arrays:
+
+          $heading: "Working with Arrays"
+
+        YDF_Arrays:
+
+          $heading: "Working with YDF Arrays"
+
+        parametersValidation:
+
+          $heading: "Parameters Validation"
+
+        other:
+
+          $heading: "Other Functions"
+
+      mixins:
+
+        $heading: "Mixins"
+
+        general:
+
+          $heading: "General"
+
+        sizing:
+
+          $heading: "Sizing"
+
+          width:
+
+            $heading: "Width"
+
+        positioning:
+
+          $heading: "Positioning"
+
+        positionalRelationship:
+
+          $heading: "Positional Relationship"
+
+        layout:
+
+          $heading: "Layout"
+
+        typography:
+
+          $heading: "Typography"
+
+        other:
+
+          $heading: "Other"
+
+      stylesInitialization:
+
+        $heading: "Styles Initialization"
+
+    buildInPlugins:
+
+      $heading: "Built-in Plugins"
+
+      additionalColorPalettes:
+
+        $heading: "Additional Color Pallets"
+
+  GUI_Components:
+
+    $heading: "GUI Components"
+
+    controls:
+
+      $heading: "Controls"
+
+      buttons:
+
+        $heading: "Buttons"
+
+      validatables:
+
+        $heading: "Validatables"
+
+adaptationsToFrameworks:
+
+  $heading: "Adaptations to JavaScript Frameworks"
+
+  vue:
+
+    GUI_Components:
+
+      $heading: "GUI Components"
+
+  react:
+
+    GUI_Components:
+
+      $heading: "GUI Components"
+
+  blazor:
+
+    GUI_Components:
+
+      $heading: "GUI Components"
+
+realiseNotes:
+
+  $heading: "Realise Notes"

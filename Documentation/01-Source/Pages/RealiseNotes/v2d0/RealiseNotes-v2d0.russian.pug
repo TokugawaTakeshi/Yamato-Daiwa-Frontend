@@ -1,0 +1,633 @@
+extends ../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("Что нового — v2d0"),
+        description: MetaDescriptionTemplates.realiseNotes({ version: "2.0" })
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("realiseNotes.v2d0");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.realiseNotes.$children.v2d0.$URI,
+      japanese: routing.japanese.realiseNotes.$children.v2d0.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = routing.russian.realiseNotes.$children.v2d0;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    h1.Article-Heading1 Версия 2.0 (Beta)
+
+    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning, SVG_Icon: true }).
+      Версия 2 находится на стадии разработки.
+      Новые возможности и другие изменения будут объявлены на этой странице по мере их готовности.
+
+    h2.Article-Heading2 Основной пакет (@yamato-daiwa/frontend)
+
+    h3.Article-Heading3 Новая функциональность
+
+    h4.Article-Heading4 Разметка
+
+    h5.Article-Heading5 Внутренний JavaScript в Pug
+
+    h6.Article-Heading6 Функции и классы
+
+    ul.Article-UnorderedList
+
+      li: +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            YDEE_Integration.$URI
+      }) Интеграция с @yamato-daiwa/es-extensions (YDEE)
+
+      li: +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            functionsAndClasses.$children.
+            processObjectTypeParameterOfPugMixin.$URI
+      }) processObjectTypeParameterOfPugMixin
+
+      //-
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              markup.$children.
+              functionality.$children.
+              inlineJavaScript.$children.
+              functionsAndClasses.$children.
+              RoutingEmulator.$URI
+        }) RoutingEmulator
+
+
+    h6.Article-Heading6 Ассеты
+
+    ul.Article-UnorderedList
+
+      //-
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              markup.$children.
+              functionality.$children.
+              inlineJavaScript.$children.
+              assets.$children.
+              textOverflowSafetyTest.$URI
+        }) textOverflowSafetyTest
+
+      li: +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            assets.$children.
+            DummyImagesURIs.$URI
+      }) DummyImagesURIs
+
+
+    //- h5.Article-Heading5 Pug-примеси
+
+    //-
+      ul.Article-UnorderedList
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.
+              $children.markup.
+              $children.functionality.
+              $children.pugMixins.
+              $children.dummies.$URI
+        }) WideDummy и HighDummy
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.
+              $children.markup.
+              $children.functionality.
+              $children.pugMixins.
+              $children.SVG_Icons.$URI
+        }) SVG-иконки
+
+
+    h4.Article-Heading4 Стили
+
+    h5.Article-Heading5 Ассеты
+
+    ul.Article-UnorderedList
+
+      li: +Link--YDF({
+        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
+            "Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/" +
+            "FundamentalConstantsAndEnums.md#smallest_division_of_css_pixel--ydf---the-smallest-division-of-css-pixel"
+      }) SMALLEST_DIVISION_OF_CSS_PIXEL--YDF
+
+      li: +Link--YDF({
+        internalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package" +
+          "/Styles/01-Assets/02-Colors/YDF_ColorPalette.styl"
+      }) YDF_ColorPalette
+
+
+    //- h5.Article-Heading5 Ядро
+
+    //-
+      h6.Article-Heading6 Схемы спецификаций
+
+      ul.Article-UnorderedList
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              specificationsSchemas.$children.
+              bordersSizing.$URI
+        }) BordersSizingSpecificationSchema--YDF
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              specificationsSchemas.$children.
+              paddings.$URI
+        }) PaddingsSpecificationSchema--YDF
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              specificationsSchemas.$children.
+              textElementHeightSizing.$URI
+        }) TextElementHeightSizingSpecificationSchema--YDF
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              specificationsSchemas.$children.
+              widthSizing.$URI
+        }) WidthSizingSpecificationSchema--YDF
+
+    //-
+      h6.Article-Heading6 Проверщики типов
+
+      ul.Article-UnorderedList
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              functions.$children.
+              typeCheckers.$sectioning.
+              others.$sectioning.
+              isCalcExpression.$URI
+        }) isCalcExpression
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              functions.$children.
+              typeCheckers.$sectioning.
+              others.$sectioning.
+              isFunction.$URI
+        }) isFunction
+
+
+    h3.Article-Heading3 Критические изменения
+
+    h4.Article-Heading4 Стили
+
+    h5.Article-Heading5 Ассеты
+
+    h5.Article-Heading6 Переименование константы #[code NARROWEST_SCREEN_WIDTH_UNIT]
+
+    p.Article-Paragraph.
+      #[+Term--YDID Константа] #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT] была переименована
+        в #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT--YDF].
+
+    dl.Article-DescriptionList
+
+      dt Причина
+      dd.
+        С целью значительного уменьшения вероятности конфликта имён был добавлен #[+Term--YDID вендорный постфикс]
+          #[+ImportantEntity__Code--YDID --YDF].
+
+      dt Понадобится редактирование Вашего кода, если
+      dd.
+        В Вашем коде есть прямые ссылки на #[+Term--YDID константу]
+          #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT].
+
+      dt Миграция
+      dd.
+        Используя соответствующую функциональнсоть Вашего редактора кода или интегрированной среды разработки,
+          замените #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT] на
+          #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT--YDF] во всех #[+Term--YDID Stylus-файлах]
+          проекта.
+        Например, в интегрированных средах разработки семейства #[+ImportantEntity--YDID IntelliJ IDEA] такая
+          функциональностью доступна с помощью сочетания клавиш #[+SecondaryEntity__Code--YDID Ctrl + Shift + R]
+          (по умолчанию).
+
+
+    h6.Article-Heading6 Переименование перечисления #[code DataTypes] и некоторых его элементов
+
+    ol.Article-OrderedList
+
+      li.
+        #[+Term--YDID Перечисление] #[+ImportantEntity__Code--YDID DataTypes] было переименовано в
+          #[+ImportantEntity__Code--YDID DataTypes--YDF].
+
+      li.
+        #[+Term--YDID Элемент] #[+ImportantEntity__Code--YDID dimensionalAmount] был переименован в
+          #[+ImportantEntity__Code--YDID dimensionalQuantity], а его значение — в
+          #[+ImportantEntity__Code--YDID "DIMENSIONAL_QUANTITY"].
+
+      li.
+        #[+Term--YDID Элемент] #[+ImportantEntity__Code--YDID dimensionlessAmount] был переименован в
+          #[+ImportantEntity__Code--YDID dimensionlessQuantity], а его значение — в
+          #[+ImportantEntity__Code--YDID "DIMENSIONLESS_QUANTITY"].
+
+    dl.Article-DescriptionList
+
+      dt Причина
+      dd
+        ul.Article-UnorderedList
+
+          li.
+            #[+Term--YDID Вендорный постфикс] #[+ImportantEntity__Code--YDID --YDF] был добавлен к имени
+              #[+Term--YDID перечисления] с целью значительного уменьшения вероятности конфликта имён.
+
+          li #[+Term--YDID Элементы] были переименованы с целью приведения к канонической научной терминологии.
+
+      dt Понадобится редактирование Вашего кода, если
+      dd В Вашем коде есть прямые ссылки на #[+Term--YDID перечисление] #[+ImportantEntity__Code--YDID DataTypes].
+
+
+      dt Миграция
+      dd
+
+        p.Article-Paragraph.
+          Используя соответствующую функциональнсоть Вашего редактора кода или интегрированной среды разработки,
+            замените в всех #[+Term--YDID Stylus-файлах] проекта:
+
+        ul.Article-UnorderedList
+
+          li.
+            Имя #[+Term--YDID перечисления] #[+ImportantEntity__Code--YDID DataTypes] на
+              #[+ImportantEntity__Code--YDID DataTypes--YDF].
+
+          li.
+            #[+Term--YDID Элемент перечисления] #[+ImportantEntity__Code--YDID dimensionalAmount] на
+              #[+ImportantEntity__Code--YDID dimensionalQuantity].
+
+          li.
+            #[+Term--YDID Элемент перечисления] #[+ImportantEntity__Code--YDID dimensionlessAmount] на
+              #[+ImportantEntity__Code--YDID dimensionlessQuantity].
+
+        p.Article-Paragraph.
+          Например, в интегрированных средах разработки семейства #[+ImportantEntity--YDID IntelliJ IDEA] такая
+            функциональностью доступна с помощью сочетания клавиш #[+SecondaryEntity__Code--YDID Ctrl + Shift + R]
+            (по умолчанию).
+
+
+    h6.Article-Heading6 Переименование двухуровневого объекта #[code PracticalColorCoordinateSystem]
+
+    p.Article-Paragraph.
+      К имени #[+Term--YDID объекта] #[+ImportantEntity__Code--YDID PracticalColorCoordinateSystem] был добавлен
+        #[+Term--YDID вендорный постфикс] с целью уменьшения вероятности конфликта имён, и теперь этот двухуровневый
+        #[+Term--YDID объект] имеет имя #[+ImportantEntity__Code--YDID PracticalColorCoordinateSystem--YDF].
+
+
+    h6.Article-Heading6 Изменения в двухуровневом объекте #[code TemporaryHighlighting]
+
+    ul.Article-UnorderedList
+
+      li.
+        Объект был #[+Keyword--YDID переименован] в
+          #[+ImportantEntity__Code--YDID TemporarySemitransparentHighlighting--YDF].
+
+      li.
+        Теперь сверхкороткие свойства типа #[+SecondaryEntity__Code--YDID o25], смысл которых не&nbsp;может быть понятен
+          без документации или проверки выходного #[+Term--YDID CSS кода] заменены на более содержательные, такие как
+          #[+SecondaryEntity__Code--YDID opacity25Percent].
+
+    dl.Article-DescriptionList
+
+      dt Причины
+      dd
+
+        ul.Article-UnorderedList
+
+          li Слово «semitransparent» («полупрозрачный») было добавлено для повышения содержательности имени.
+
+          li.
+            #[+Term--YDID Вендорный постфикс] #[+ImportantEntity__Code--YDID --YDF] был добавлен с целью значительного
+              уменьшения конфликта имён.
+
+          li.
+            Свойства второго уровня были переименованы потому что #[+Keyword--YDID все] библиотеки поставщика
+            #[+ImportantEntity--YDID Ямато Дайва] #[+Keyword--YDID не]&nbsp;приемлют имён, смысл которых не&nbsp;может
+            быть раскрыт обычным переводом с английского на русской, и вот теперь это правило распространилось
+            на объект #[+ImportantEntity--YDID TemporarySemitransparentHighlighting--YDF] даже несмотря на то, что он
+            не&nbsp;должен　использоваться в окончательном варианте стилей.
+
+      dt Понадобится редактирование Вашего кода, если
+      dd.
+        Вы, вопреки рекомендации не&nbsp;использовать этот объект с чистовом коде использовали его,
+          либо обновили #[+ImportantEntity--YDID YDF] во время написания чернового кода, в котором использовали
+          #[+Term--YDID объект] #[+ImportantEntity--YDID TemporaryHighlighting].
+
+      dt Миграция
+      dd
+
+        p.Article-Paragraph.
+          Используя соответствующую функциональнсоть редактора кода или интегрированной среды разработки,
+            выполните следующие замены во всех #[+Term--YDID Stylus-файлах].
+
+        ul.Article-UnorderedList
+          li.
+            #[+ImportantEntity__Code--YDID TemporaryHighlighting] ➝
+              #[+ImportantEntity__Code--YDID TemporarySemitransparentHighlighting--YDF]
+          li #[+ImportantEntity__Code--YDID .o10] ➝ #[+ImportantEntity__Code--YDID .opacity10Percent]
+          li #[+ImportantEntity__Code--YDID .o25] ➝ #[+ImportantEntity__Code--YDID .opacity25Percent]
+          li #[+ImportantEntity__Code--YDID .o50] ➝ #[+ImportantEntity__Code--YDID .opacity50Percent]
+          li #[+ImportantEntity__Code--YDID .o75] ➝ #[+ImportantEntity__Code--YDID .opacity75Percent]
+
+
+    h6.Article-Heading6 Переименование массива #[code ShadesOfGray__39ColorsW3C_Palette]
+
+    p.Article-Paragraph.
+      #[+Term--YDID Массив] #[+ImportantEntity__Code--YDID ShadesOfGray__39ColorsW3C_Palette] был
+        #[+Keyword--YDID переименован] в #[+ImportantEntity__Code--YDID W3C_39_ShadesOfGray--YDF].
+
+
+    h5.Article-Heading5 Ядро
+    h6.Article-Heading6 Замена базовых переменных на объект конфигурации
+
+    p.Article-Paragraph
+      | Следующие #[+Term--YDID базовые переменные] (как они назывались в версиях #[+ImportantEntity--YDID 1.X]) были
+      |   заменены на
+      |
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.styles.$children.kernel.$children.YDF_Configuration.$URI
+      }) объект конфигурации YDF_Configuration
+      |   либо удалены по указанным ниже причинам.
+
+    dl.Article-DescriptionList
+
+      dt MAIN_FONT_STACK
+      dd
+        | Заменена на
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              fontsStacks.$children.
+              main.$URI
+        }) YDF_Configuration.fontsStacks.main
+
+      dt MAIN_SANS_SERIF_FONT_STACK
+      dd
+        | Заменена на
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              fontsStacks.$children.
+              mainSansSerif.$URI
+        }) YDF_Configuration.fontsStacks.mainSansSerif
+
+      dt MAIN_SERIF_FONT_STACK
+      dd
+        | Заменена на
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              fontsStacks.$children.
+              mainSerif.$URI
+        }) YDF_Configuration.fontsStacks.mainSerif
+
+      dt MAIN_MONOSPACED_FONT_STACK
+      dd
+        | Заменена на
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              fontsStacks.$children.
+              mainMonospaced.$URI
+        }) YDF_Configuration.fontsStacks.mainMonospaced
+
+
+      dt BASIC_FONT_SIZE
+      dd
+        | Заменена на
+        |
+        +Link--YDF({
+          endorsedExternalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              textGeometry.$children.
+              basicFontSize.$URI
+        }) YDF_Configuration.textGeometry.basicFontSize
+
+      dt BASIC_LINE_HEIGHT
+      dd
+        | Заменена на
+        |
+        +Link--YDF({
+          endorsedExternalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              textGeometry.$children.
+              basicLineHeight.$URI
+        }) YDF_Configuration.textGeometry.basicLineHeight
+
+
+      dt BASIC_LINE_HEIGHT_IN_MULTILINE_TEXT_BLOCKS
+      dd
+        | Заменена на
+        |
+        +Link--YDF({
+          endorsedExternalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              textGeometry.$children.
+              basicLineHeightInMultilineTextBlocks.$URI
+        }) YDF_Configuration.textGeometry.basicLineHeightInMultilineTextBlocks
+
+      dt BASIC_FONT_SIZE_IN_MULTILINE_TEXT_BLOCKS
+      dd.
+        Удалена ввиду того, что более нет нужда в размере шрифта только для многострочных элементов в дополнение
+          к #[+ImportantEntity__Code--YDID YDF_Configuration.textGeometry.basicFontSize] внутри
+          #[+ImportantEntity--YDID YDF]
+
+      dt BEM_ELEMENT_SEPARATOR
+      dd Удалена ввиду того, что больше не&nbsp;используется внутри #[+ImportantEntity--YDID YDF]
+
+      dt BEM_MODIFIER_SEPARATOR
+      dd Удалена ввиду того, что больше не&nbsp;используется внутри #[+ImportantEntity--YDID YDF]
+
+      dt ZIndexes
+      dd
+        | Заменена на
+        |
+        +Link--YDF({
+          endorsedExternalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              zIndexes.$URI
+        }) YDF_Configuration.zIndexes
+
+    dl.Article-DescriptionList
+
+      dt Причина замены на объект конфигурации
+      dd.
+        #[+Term--YDID Переменные] имели слишком общие названия, а на их принадлежность к
+          #[+ImportantEntity--YDID YDF] ничто не&nbsp;указывало.
+        Для решения последней проблемы можно было пометить #[+Term--YDID переменные]
+          #[+Term__Contrast--YDID вендорным постфиксом]
+          (например, #[+SecondaryEntity__Code--YDID MAIN_SANS_SERIF_FONT_STACK] тогда превратилась бы в
+          #[+SecondaryEntity__Code--YDID MAIN_SANS_SERIF_FONT_STACK--YDF]), но #[+Term--YDID переменная] типа
+          #[+Term--YDID «объект»] лучше подходит для хранения конфигурации.
+
+      dt Понадобится редактирование Вашего кода, если
+      dd Вы использовали одну или несколько из упомянутых выше #[+Term--YDID переменных] #[+Keyword--YDID напрямую]
+
+      dt Миграция
+      dd
+
+        ul.Article-UnorderedList
+
+          li.
+            Если Вы хотите продолжить использование #[+Term--YDID базовых переменных] с теми же именами, что и прежде,
+              то определите их самостоятельно с нужными Вам значениями.
+
+          li.
+            Если Вы ранее #[+Keyword--YDID переопределяли] #[+Term--YDID базовые переменные], то
+              #[+Keyword--YDID необходимо] #[+Keyword__Contrast--YDID переопределить] #[+Term--YDID объект]
+              #[+ImportantEntity__Code--YDID YDF_Configuration] #[+Keyphrase--YDID вместо них].
+
+          li.
+            Если Вас устраивает использование объекта #[+ImportantEntity__Code--YDID YDF_Configuration]
+              #[+Keyword--YDID вместо] #[+Term--YDID базовых переменных], то замените ссылки на эти
+              #[+Term--YDID переменные] на обращение к соответствующим #[+Term--YDID свойствам объекта]
+              #[+ImportantEntity__Code--YDID YDF_Configuration].
+            Но имейте ввиду, что данный #[+Term--YDID объект], как следует из называния, предназначен для конфигурации
+              функциональности #[+ImportantEntity--YDID YDF], а эта библиотека является лишь вспомогательным
+              инструментом в Вашем проекте.
+            Поэтому, если у Вас уникальный дизайн, то соответствующие настройки
+              рекомендуется определить #[+Keyword--YDID независимо] от #[+ImportantEntity--YDID YDF], а
+              #[+Term--YDID свойства объекта] #[+ImportantEntity__Code--YDID YDF_Configuration] пусть ссылается на
+              настройки Вашего дизайна.
+
+    //-
+      h6.Article-Heading6 Переименование isDimensionalOrDimensionlessAmount в isDimensionalOrDimensionlessQuantity
+
+      dl.Article-DescriptionList
+
+        dt Причина
+        dd «Quantity» является более каноническим термином, чем #[+ImportantEntity__Code--YDID amount].
+
+        dt Понадобится редактирование Вашего кода, если
+        dd Вы использовали функцию isDimensionalOrDimensionlessAmount
+
+        dt Миграция
+        dd В данном случае достаточно простой замены isDimensionalOrDimensionlessAmount на isDimensionalOrDimensionlessQuantity.
+
+      h6.Article-Heading6 Замена isDimensionalAmount на isDimensionalQuantity с другой сигнатурой
+
+      p.Article-Paragraph.
+        У isDimensionalQuantity в отличие от isDimensionalAmount второй параметр является строчным и имеет иметь
+          значение MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY либо
+          MUST_NOT_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY.
+
+      dl.Article-DescriptionList
+
+        dt Причина
+        dd.
+          «Quantity» является более каноническим термином, чем #[+ImportantEntity__Code--YDID amount].
+          Что касается второго параметра, то ранее он был типа «объект» (например,
+            { considerDimensionlessZeroAsDimensionalAmount: true }), однако из-за бага препроцессора Stylus
+            при вызове isDimensionalAmount(2px, { considerDimensionlessZeroAsDimensionalAmount: true }) внутри
+            блока if происходит ошибка.
+          Конечно, второй параметр можно было просто сделать булевским, однако в isDimensionalAmount(2px, true)
+            непонятно, какой смысл имеет второй параметр, а поскольку именованные параметры в Stylus
+            опциональные, то ввиду человеческой психологии это эквивалентно тому, что именованных параметров нет.
+
+        dt Понадобится редактирование Вашего кода, если
+        dd Вы использовали функцию isDimensionalOrDimensionlessAmount
+
+        dt Миграция
+        dd
+          ol.Article-OrderedList
+
+            li Замените старое имя функции isDimensionalAmount на isDimensionalQuantity
+            li.
+              Если второй параметр имеет значение { considerDimensionlessZeroAsDimensionalAmount: true }, то замените
+                его строкой "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY", в противном случае
+                замените строкой "MUST_NOT_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY".
+
+
+      h6.Article-Heading6 Переименование isDimensionlessAmount в isDimensionlessQuantity
+
+      dl.Article-DescriptionList
+
+        dt Причина
+        dd «Quantity» является более каноническим термином, чем #[+ImportantEntity__Code--YDID amount].
+
+        dt Понадобится редактирование Вашего кода, если
+        dd Вы использовали функцию isDimensionalOrDimensionlessAmount
+
+        dt Миграция
+        dd В данном случае достаточно простой замены isDimensionlessAmount на isDimensionlessQuantity.

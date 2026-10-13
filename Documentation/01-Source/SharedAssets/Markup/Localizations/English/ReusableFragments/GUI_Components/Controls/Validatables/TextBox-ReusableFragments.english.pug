@@ -1,0 +1,157 @@
+mixin TextBoxComponent-Abstract
+
+  p.Article-Paragraph.
+    Along with the button component (#[+ImportantEntity--YDID Button]), the text box is one of the most basic and
+      popular components of a graphical user interface.
+    We are talking about entering text #[+Keyphrase--YDID without formatting] (such as bold or italics), and a
+      text editor with support for text formatting is a separate and rather complex topic.
+    But despite the lack of formatting, there is a lot of data that is accepted from the user through this
+      component: names, addresses, all sorts of titles.
+    Moreover, "text" means not&nbsp;only a set of completed sentences, but also any information
+      that can be represented as a sequence of characters:
+
+  ul.Article-UnorderedList
+    li Email addresses
+    li Passwords
+    li Links
+
+  p.Article-Paragraph.
+    In addition, this component is sometimes used for entering numeric data, although often these are not&nbsp;numbers,
+      but sequences of digits sometimes mixed with auxiliary characters:
+
+  ul.Article-UnorderedList
+    li Phone numbers
+    li Postal codes
+    li Credit card numbers
+
+  p.Article-Paragraph.
+    In most cases, this component does not&nbsp;provide for line breaks, and when a large number of characters is entered,
+      only a part of them is displayed, although scrolling is possible using the arrow keys.
+    However, in cases where the user is required to enter exactly completed sentences (maybe even paragraphs),
+      the possibility of line breaks is required, which can sometimes be considered as simple text formatting.
+    From the point of view of #[+ImportantEntity--YDID HTML], a separate type of element is used for multi-line text (and
+      automatic height adjustment is not&nbsp;initially provided), but in #[+ImportantEntity--YDID YDF] to
+      support multi-line mode, you only need to specify the corresponding option, and automatic height adjustment
+      is also available.
+
+  p.Article-Paragraph
+    | As in the case of buttons, the simplicity of the text field is #[+Keyword--YDID deceptive].
+    | Firstly, the text input field is a
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$children.controls.$children.validatables.$URI,
+    }) validatable component
+    | , and therefore all the complexity of the task of #[+Term--YDID validation] of input data has a #[+Keyword--YDID direct]
+    |   relation to it.
+    | In #[+ImportantEntity--YDID YDF], a text input field, like other components wrapped in the
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$children.controls.$children.
+          ValidatableControlShell.$URI,
+    }) ValidatableControlShell
+    |   component, includes optional auxiliary elements such as a label, a comment, a list of validation errors, and
+    |   so on, although from the point of view of #[+ImportantEntity--YDID HTML] these are all separate elements.
+
+  p.Article-Paragraph.
+    The text input field has many states.
+    #[+Keyphrase--YDID Visually distinguishable] should be #[+Keyphrase--YDID at least]:
+
+  dl.Article-DescriptionList
+
+    dt: +ImportantEntity__Code--YDID :hover
+    dd.
+      Activated when the mouse cursor is hovered over, letting the user know that the system is responding to their actions and if
+        they click on the input field, they will be able to start typing.
+
+    dt: +ImportantEntity__Code--YDID :focus
+    dd.
+      Activated when the text field has taken focus, that is, keyboard input will be accepted inside this
+        text field.
+
+    dt: +ImportantEntity__Code--YDID :readonly/:disabled
+    dd.
+      Active when the input field is read-only.
+      This functionality is not&nbsp;as rare as it seems, because many applications have a
+        view mode and an edit mode.
+
+    dt Invalid state
+    dd.
+      Active when the entered value is not valid, and also if the validity display mode
+        is active.
+      If the input field is initially empty and mandatory, the empty value is #[+Keyword--YDID invalid]
+        #[+Keyword__Contrast--YDID from the beginning], however, before highlighting the field in red and informing the
+        user who has not&nbsp;yet done anything about validation errors, the user should be allowed to fill in this field, and only
+        when they remove focus from the input field can the validity display mode be activated.
+      Note that such a concept #[+Keyphrase--YDID from the HTML/CSS point of view]
+        #[+Keyword--YDID does not exist], and therefore if validation is defined through #[+Term--YDID HTML attributes] like
+        #[+ImportantEntity__Code--YDID required] and #[+ImportantEntity__Code--YDID minlength] and styles for the
+        #[+Term--YDID pseudoclass] #[+ImportantEntity__Code--YDID :invalid], then these styles will be applied regardless
+        of whether the user has started entering data into empty fields or not yet.
+
+  p.Article-Paragraph.
+    Moreover, #[+Keyword--YDID some] of these states can occur #[+Keyword--YDID simultaneously].
+    For example, the #[+ImportantEntity__Code--YDID hover] state can occur #[+Keyword--YDID simultaneously] with
+      #[+ImportantEntity__Code--YDID focus], and #[+Keyword--YDID both] of these states can occur on top of
+      #[+ImportantEntity__Code--YDID invalid].
+    This raises the question of style priority.
+
+  p.Article-Paragraph.
+    Also, in practice, the following additional functionality is in demand for the input field:
+
+  ul.Article-UnorderedList
+
+    li Icons, which, depending on the design, can be either on the left or on the right
+    li Password show/hide button
+    li Button for copying the entered value
+
+  p.Article-Paragraph.
+    All this functionality is available in the #[+ImportantEntity--YDID TextBox] component.
+
+
+//- ━━━ Сводка ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  TextBoxGUI_ComponentOverviewLocalization.setLocalizer(
+    () => ({
+      themes: {
+        [TextBox__YDF.Themes.regular]: "Regular (Default)"
+      },
+      geometricVariations: {
+        [TextBox__YDF.GeometricVariations.regular]: "Regular (Default)",
+        [TextBox__YDF.GeometricVariations.small]: "Small",
+        [TextBox__YDF.GeometricVariations.labelLike]: "Label like"
+      },
+      geometricModifiers: {
+        [TextBox__YDF.GeometricModifiers.noRoundings]: "No roundings"
+      },
+      decorativeVariations: {
+        [TextBox__YDF.DecorativeVariations.regular]: "Regular (Default)",
+        [TextBox__YDF.DecorativeVariations.labelLike]: "Label like"
+      }
+    })
+  );
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  TextBoxComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources = {
+    pugMixinParametersLocalization: [
+      { localizedName: "Properties" },
+      { localizedName: "States Simulations" }
+    ],
+    propertiesLocalizedInterpretations: {
+      HTML_Type: "HTML type",
+      externalLabelHTML_ID: "HTML ID of external header label",
+      autocomplete: "Value of the \"autocomplete\" attribute",
+      value: "Initial value",
+      multiline: "Whether multi-line support is needed",
+      autoResizingForMultilineMode: "Whether automatic height adjustment is needed in multi-line mode",
+      minimalCharactersCount: "Minimal characters count",
+      maximalCharactersCount: "Maximal characters count",
+      minimalNumericValue: "Minimal numeric value",
+      maximalNumericValue: "Maximal numeric value",
+      hasValueCopyingButton: "Whether the value copying button is needed",
+      hasPasswordDisplayingToggle: "Whether the password display toggle is needed"
+    }
+  };

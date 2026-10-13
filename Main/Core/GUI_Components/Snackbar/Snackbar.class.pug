@@ -1,0 +1,131 @@
+-
+
+  class Snackbar__YDF {
+
+    static CSS_NAMESPACE = "Snackbar--YDF";
+
+
+    /* ━━━ Positions ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static Positions = {
+      topLeft: "TOP_LEFT",
+      topMiddle: "TOP_MIDDLE",
+      topRight: "TOP_RIGHT",
+      bottomLeft: "BOTTOM_LEFT",
+      bottomMiddle: "BOTTOM_MIDDLE",
+      bottomRight: "BOTTOM_RIGHT"
+    };
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static Themes = { regular: "REGULAR" };
+
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineThemes(themesNames, Snackbar__YDF);
+    }
+
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    static considerThemesAsCommon() {
+      Snackbar__YDF.areThemesCSS_ClassesCommon = true;
+      return Snackbar__YDF;
+    }
+
+
+    /* ─── Geometric Variations ───────────────────────────────────────────────────────────────────────────────────── */
+    static GeometricVariations = { regular: "REGULAR" };
+
+    static defineGeometricVariations(geometricVariationsNames) {
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, Snackbar__YDF);
+    }
+
+
+    /* ─── Decorative Variations ──────────────────────────────────────────────────────────────────────────────────── */
+    static DecorativeVariations = {
+      error: "ERROR",
+      warning: "WARNING",
+      guidance: "GUIDANCE",
+      success: "SUCCESS"
+    };
+
+    static defineDecorativeVariations(decorativeVariationsNames) {
+      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, Snackbar__YDF);
+    }
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static propertiesSpecification = {
+
+      textOrHTML: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      position: {
+        type: String,
+        undefinedValueSubstitution: Snackbar__YDF.Positions.topMiddle,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Snackbar__YDF.Positions).
+            map(([ key, value ]) => ({ key: `Snackbar__YDF.Positions.${ key }`, value }))
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: Snackbar__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Snackbar__YDF.Themes).
+            map(([ key, value ]) => ({ key: `Snackbar__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: Snackbar__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: Snackbar__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Snackbar__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `Snackbar__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      decorativeVariation: {
+        type: String,
+        undefinedValueSubstitution: Snackbar__YDF.DecorativeVariations.guidance,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Snackbar__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `Snackbar__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    };
+
+
+    /* ━━━ State Simulations Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static statesSimulationsSpecification = {
+
+      mounted: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      hidden: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      }
+
+    };
+
+
+    /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static localization = SnackbarYDF_GUI_ComponentLocalization__English;
+
+  }

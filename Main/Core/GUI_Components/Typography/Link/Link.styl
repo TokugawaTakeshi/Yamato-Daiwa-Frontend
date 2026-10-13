@@ -1,0 +1,172 @@
+@require "Themes/Regular/DecorativeVariations/Link-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/Link-RegularTheme-RegularDecorativeVariation.styl"
+
+
+Link--YDF = {
+
+  CSS_NAMESPACE: "Link--YDF",
+
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF",
+
+        geometricVariations: {
+          regular: Link-RegularTheme-RegularGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          regular: Link-RegularTheme-RegularDecorativeVariation--YDF
+        }
+
+      }
+    }
+
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false
+  }
+
+}
+
+
+Link--YDF-generateStyles(
+  preset = Link--YDF.defaultProperties,
+  overridings = {},
+  options = Link--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "Link--YDF-generateStyles",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Link--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Link--YDF.defaultOptions.externalThemes
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .Link--YDF
+
+      line-height inherit
+      cursor pointer
+
+
+      &__AlwaysSingleLine
+
+        SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
+
+
+      &__LineBreakable
+
+        word-break break-all
+
+
+  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "Link.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + Link--YDF.CSS_NAMESPACE)
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
+
+
+  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "Button.${ themeName }Theme.${ variationName }Decoration",
+      {
+        Link: themeName,
+        variationName: variationName
+      }
+    )
+
+    StateDependentStyles(state)
+
+      Declarations()
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation[state],
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            color: { dotSeparatedPath: "text.color", required: false },
+            underline: { dotSeparatedPath: "text.underline", required: false, applier: applyObjectTypeUnderlineDefinition--YDF },
+            background-color: { dotSeparatedPath: "background.color", required: false },
+            background-image: { dotSeparatedPath: "background.image", required: false },
+            border-style: { dotSeparatedPath: "borders.style", required: false },
+            border-color: { dotSeparatedPath: "borders.color", required: false },
+            outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition--YDF },
+            box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition--YDF }
+          }
+        })
+
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation[state].customDeclarations)
+
+
+      +provideDefaultSelectorWhenRootAndApply--YDF("." + Link--YDF.CSS_NAMESPACE)
+
+        if (state == "defaultState")
+
+          Declarations(state)
+
+        else if (state == "hoverState")
+
+          &:hover
+
+            Declarations(state)
+
+        else if (state == "focusVisibleState")
+
+          &:focus-visible
+
+            Declarations(state)
+
+        else if (state == "activeState")
+
+          &:active,
+          &[aria-pressed="true"]
+
+            Declarations(state)
+
+
+    for state in variation
+
+      StateDependentStyles(state)
+
+
+  // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  if !options.themeIndependentStylesOnly
+
+    applyComponentThemes--YDF({
+      CSS_Namespace: "Link--YDF",
+      themes: properties.themes,
+      areThemesCSS_ClassesCommon: options.externalThemes,
+      themeIndependentGeometricVariations: options.themeIndependentGeometricVariations,
+      applyGeometricVariation: applyGeometricVariation,
+      applyDecorativeVariation: applyDecorativeVariation
+    })

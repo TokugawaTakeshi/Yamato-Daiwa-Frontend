@@ -1,0 +1,16 @@
+include Markup/InlineECMAScript/PugExtensions.generated.pug
+
+
+-
+
+  /* [ Theory ]
+   * `global` is actual for "gulp-pug" with Pug 3, while "globalThis" for "pug-plugin" for Webpack.
+   * This declaration is not required for the "gulp-pug" case but required for the "pug-plugin" case.
+   */
+  const YDF = global?.YDF ?? globalThis.YDF;
+
+
+include Markup/Assets/Dummies.pug
+include Markup/Assets/SVG_Icons/SVG_Icons.pug
+
+include Markup/BuildInPlugins/YamatoDaiwaInformationDesign.pug

@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "Сводка"
+
+TextBoxClass:
+
+  $heading: "Класс <code>TextBox</code>"
+
+  vueProperties:
+
+    $heading: "Vue-свойства"

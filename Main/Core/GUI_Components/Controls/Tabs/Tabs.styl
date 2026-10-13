@@ -1,0 +1,68 @@
+Tabs--YDF-generateStyles()
+
+  .TabsList--YDF
+
+    display flex
+    overflow-x auto
+
+
+  .Tab--YDF
+
+    ButtonLikeElementsPrimer--YDF()
+
+    display inline-flex
+    justify-content center
+    align-items center
+
+    border-left-width 1px
+    border-right-width 0
+    border-top-width 1px
+    border-bottom-width 1px
+
+    Paddings--YDF({
+      horizontalSymmetric: 12px,
+      verticalSymmetric: 6px
+    })
+
+    border-style solid
+    border-color: JQueryUI_BaseTheme.clickableElements.defaultState.borderColor
+    background: JQueryUI_BaseTheme.clickableElements.defaultState.background
+
+    cursor pointer
+
+    flex 1 1 auto
+
+
+    &:hover
+
+      background: JQueryUI_BaseTheme.clickableElements.hoverState.background
+      border-color: JQueryUI_BaseTheme.clickableElements.hoverState.borderColor
+
+
+    &:focus
+
+      box-shadow: inset 0 0 3px 1px #007fff
+
+
+    &:active
+
+      background: JQueryUI_BaseTheme.clickableElements.activeState.background
+      border-color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor
+
+
+    &:first-child
+
+      border-top-left-radius: JQueryUI_BaseTheme.basicBorderRadius
+
+
+    &:last-child
+
+      border-top-right-radius: JQueryUI_BaseTheme.basicBorderRadius
+
+
+    &__SelectedState
+
+      background: JQueryUI_BaseTheme.clickableElements.activeState.background
+      border-color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor
+
+      pointer-events none

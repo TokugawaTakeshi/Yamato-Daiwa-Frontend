@@ -1,0 +1,122 @@
+include CodeViewer.class.pug
+
+
+mixin CodeViewer--YDF(properties)
+
+  -
+
+    const {
+      title,
+      resultWebViewURI,
+      defaultPaddingsInViewport = false
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: CodeViewer__YDF.propertiesSpecification,
+      mixinName: "CodeViewer--YDF"
+    })
+
+
+  .CodeViewer--YDF&attributes(attributes)
+
+    if title
+
+      .CodeViewer--YDF-Title= title
+
+
+    if resultWebViewURI
+
+      iframe.CodeViewer--YDF-IFrame(
+        src= resultWebViewURI
+        class= defaultPaddingsInViewport && "CodeViewer--YDF-IFrame__DefaultPaddings"
+        title="The visual output of the code"
+      )
+
+
+    .CodeViewer--YDF-ActionBar
+
+      +Button--YDF({
+        geometricVariation: Button__YDF.GeometricVariations.small
+      }).CodeViewer--YDF-ActionBar-Button.CodeViewer--YDF-ActionBar-Button__CodeCopying
+        +Copying--YDF_Icon.Button--YDF-SVG_Icon
+        span.Button--YDF-Label= CodeViewer__YDF.localization.actionBar.codeCopyingButton.label
+
+
+    .CodeViewer--YDF-TabsFlow(
+      role="tablist"
+      aria-label= CodeViewer__YDF.localization.tabsFlow.accessibilityGuidance
+    )
+
+
+    block
+
+
+    template.CodeViewer--YDF-TabTemplate
+
+      button.CodeViewer--YDF-Tab(
+        role="tab"
+        type="button"
+        aria-selected="false"
+        tabindex="-1"
+      )
+        span.CodeViewer--YDF-Tab-FileLabel
+        span.CodeViewer--YDF-Tab-LanguageKeyLabel= CodeViewer__YDF.localization.tab.languageKeyLabel
+        span.CodeViewer--YDF-Tab-LanguageValueLabel
+
+
+mixin CodeViewer-TabPanel--YDF(properties, logging)
+
+  -
+
+    const {
+      fileLabel,
+      isActive = false,
+      codeLanguage
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: CodeViewer__YDF.tabPanelPropertiesSpecification,
+      mixinName: logging?.wrapperComponentName ?? "CodeViewer-TabPanel--YDF"
+    });
+
+  .CodeViewer--YDF-TabPanel(
+    data-file_label= fileLabel
+    data-is_active= isActive
+    data-code_language= codeLanguage
+    data-code_language_label= CodeViewer__YDF.languagesAndTitlesMap[codeLanguage]
+    role="tabpanel"
+    hidden= !isActive
+  )&attributes(attributes)
+
+    block
+
+
+mixin CodeViewer-Listing--YDF(properties)
+
+  +CodeViewer-TabPanel--YDF(properties, { wrapperComponentName: "CodeViewer-Listing--YDF" })
+    pre
+      code.CodeViewer--YDF-CodeListing-CodeContainer(
+        class=`language-${ properties.codeLanguage }`
+      )
+        block
+
+
+mixin CodeViewer-PartialListing--YDF(properties)
+
+  pre.CodeViewer--YDF-PartialListing
+    code.CodeViewer--YDF-PartialListing-CodeContainer
+      block
+
+
+mixin CodeViewer-Explanation--YDF(properties)
+
+  .CodeViewer--YDF-Explanation
+
+    svg.CodeViewer--YDF-Explanation-Icon(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20")
+      path(d="M5.07 8.14h-.85v2.35l.4.52.45-.52V8.14z")
+      path(d="M10 0a10 10 0 0 0-6.91 17.22l-.15-2.54h-.45a.64.64 0 0 1-.64-.64V9.11c0-.71.77-1.48 1.48-1.48h3.01c.71 0 1.04.65 1.2 1.48l.29 1.65h1.19c.1 0 .19.02.27.06l2.19-1.59a.3.3 0 0 1 .18-.06c.1 0 .19.05.25.13a.3.3 0 0 1-.07.43l-2.19 1.59v.09c0 .36-.29.64-.64.64h-1.8a.81.81 0 0 1-.79-.67l-.18-.81h-.02l-.32 8.32c0 .08-.02.15-.05.22a9.96 9.96 0 0 0 14.12-9.1A9.99 9.99 0 0 0 10 0ZM4.69 6.93a1.47 1.47 0 1 1 0-2.94 1.47 1.47 0 0 1 0 2.94Zm3.8 7.3v-1.85h.84v1.01h7.54V5.35H9.33v4.51h-.84V4.51h9.22v9.72H8.49Z")
+
+    .CodeViewer--YDF-Explanation-Text
+      block

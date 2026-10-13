@@ -1,0 +1,61 @@
+include ModalDialog.class.pug
+
+
+mixin ModalDialog--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+      type,
+      title = "",
+      bodyAdditionalCSS_Classes,
+      noDismissingButton = false
+    } = properties ?? {};
+
+    const {
+      displaying = false
+    } = statesSimulations ?? {};
+
+    const rootElementModifierCSS_Classes = [];
+
+    switch (type) {
+
+      case ModalDialog__YDF.Types.compact:
+        rootElementModifierCSS_Classes.push("ModalDialog--YDF__CompactType");
+        break;
+
+      case ModalDialog__YDF.Types.fillingOfScreenWithSmallGaps:
+        rootElementModifierCSS_Classes.push("ModalDialog--YDF__FillingOfScreenWithSmallGapsType");
+        break;
+
+      case ModalDialog__YDF.Types.fullScreens:
+        rootElementModifierCSS_Classes.push("ModalDialog--YDF__FullScreenType");
+        break;
+
+    }
+
+
+
+  //- [ Reference ] https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/dialog
+
+  .ModalDialog--YDF(
+    role="dialog"
+    tabindex="-1"
+    hidden=(displaying ? null : "")
+    class= rootElementModifierCSS_Classes
+  )&attributes(attributes)
+
+    .ModalDialog--YDF-Body(
+      role="document"
+      class=bodyAdditionalCSS_Classes
+    )
+
+      .ModalDialog--YDF-Header
+
+        .ModalDialog--YDF-Title= title
+
+        if !noDismissingButton
+
+          +ClosingButton--YDF.ModalDialog--YDF-DismissingButton
+
+      block

@@ -1,0 +1,28 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-PositionalRelationship/whenItGoingFirst.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-PositionalRelationship/whenItGoingFirst.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.Test1
+
+  +whenItGoingFirst--YDF()
+
+    border-top 1px solid gray
+
+
+.Test2
+
+  +whenItGoingFirst--YDF({ verticalSpaceAbove: 2px })
+
+    border-top 1px solid gray
+
+
+.Test3
+
+  whenItGoingFirst--YDF({ verticalSpaceAbove: 4px })

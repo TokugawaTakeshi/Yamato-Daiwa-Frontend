@@ -1,0 +1,137 @@
+extends ../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../SharedAssets/Markup/SharedAssets.japanese.pug
+  include ../../../../../SharedComponents/SharedComponents.japanese.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("YDF_Configuration YDFスタイルの設定"),
+        description: ""
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.$children.styles.$children.kernel.$children.YDF_Configuration");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.styles.$children.kernel.$children.YDF_Configuration.$URI,
+      russian: routing.russian.coreLibrary.$children.styles.$children.kernel.$children.YDF_Configuration.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = localizedRouting.coreLibrary.$children.styles.$children.kernel.$children.YDF_Configuration;
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ `YDF_Configuration` YDFスタイルの設定 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    +PageNotReadyApology--YDPD({
+      currentState: PageNotReadyApology__YDPD.States.initialTextNotWritten
+    })
+
+
+    //- ━━━ プロパティ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.properties.$heading,
+      HTML_ID: localizedSectioning.properties.$anchor
+    }).Article-Heading2
+
+    //- ─── `fontsStacks` ──────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.properties.$children.fontsStacks.$heading,
+      HTML_ID: localizedSectioning.properties.$children.fontsStacks.$anchor
+    }).Article-Heading3
+
+    //- ─── `main` ─────────────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.properties.$children.fontsStacks.$children.main.$heading,
+      HTML_ID: localizedSectioning.properties.$children.fontsStacks.$children.main.$anchor
+    }).Article-Heading4
+
+    //- ─── `mainSansSerif` ────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.properties.$children.fontsStacks.$children.mainSansSerif.$heading,
+      HTML_ID: localizedSectioning.properties.$children.fontsStacks.$children.mainSansSerif.$anchor
+    }).Article-Heading4
+
+    //- ─── `mainSerif` ────────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.properties.$children.fontsStacks.$children.mainSerif.$heading,
+      HTML_ID: localizedSectioning.properties.$children.fontsStacks.$children.mainSerif.$anchor
+    }).Article-Heading4
+
+    //- ─── `mainMonospaced` ───────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.properties.$children.fontsStacks.$children.mainMonospaced.$heading,
+      HTML_ID: localizedSectioning.properties.$children.fontsStacks.$children.mainMonospaced.$anchor
+    }).Article-Heading4
+
+
+    //- ─── `textGeometry` ─────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.properties.$children.textGeometry.$heading,
+      HTML_ID: localizedSectioning.properties.$children.textGeometry.$anchor
+    }).Article-Heading3
+
+    //- ─── `mainSansSerif` ────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.properties.$children.textGeometry.$children.basicFontSize.$heading,
+      HTML_ID: localizedSectioning.properties.$children.textGeometry.$children.basicFontSize.$anchor
+    }).Article-Heading4
+
+    //- ─── `mainSerif` ────────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.properties.$children.textGeometry.$children.basicLineHeight.$heading,
+      HTML_ID: localizedSectioning.properties.$children.textGeometry.$children.basicLineHeight.$anchor
+    }).Article-Heading4
+
+    //- ─── `mainMonospaced` ───────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.properties.$children.textGeometry.$children.basicLineHeightInMultilineTextBlocks.$heading,
+      HTML_ID: localizedSectioning.properties.$children.textGeometry.$children.basicLineHeightInMultilineTextBlocks.$anchor
+    }).Article-Heading4
+
+
+    //- ─── `zIndexes` ─────────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.properties.$children.zIndexes.$heading,
+      HTML_ID: localizedSectioning.properties.$children.zIndexes.$anchor
+    }).Article-Heading3
+
+
+    //- ━━━ カストマイズ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.customizing.$heading,
+      HTML_ID: localizedSectioning.customizing.$anchor
+    }).Article-Heading2

@@ -1,0 +1,306 @@
+-
+
+  class Button__YDF {
+
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
+    static CSS_NAMESPACE = "Button--YDF";
+
+    /**
+     * @readonly
+     * @type {
+     *   Readonly<{
+     *     regular: string;
+     *     submit: string;
+     *     inputButton: string;
+     *     inputSubmit: string;
+     *     inputReset: string;
+     *   }>
+     * }
+     */
+    static HTML_Types = {
+      regular: "BUTTON",
+      submit: "SUBMIT",
+      inputButton: "INPUT_BUTTON",
+      inputSubmit: "INPUT_SUBMIT",
+      inputReset: "INPUT_RESET"
+    };
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @type { { [themeName: string]: string } }
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
+    static Themes = { regular: "REGULAR" };
+
+    /**
+     * @public
+     * @param { Array<string> } themesNames
+     * @return { typeof Button__YDF }
+     */
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineThemes(themesNames, Button__YDF);
+    }
+
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @public
+     * @returns { typeof Button__YDF }
+     * @public
+     * */
+    static considerThemesAsCommon() {
+      Button__YDF.areThemesCSS_ClassesCommon = true;
+      return Button__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL",
+      linkLike: "LINK_LIKE"
+    };
+
+    /**
+     * @public
+     * @param { Array<string> } geometricVariationsNames
+     * @return { typeof Button__YDF }
+     */
+    static defineGeometricVariations(geometricVariationsNames) {
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, Button__YDF);
+    }
+
+    /**
+     * @public
+     * @readonly
+     * @type {
+     *   Readonly<{
+     *     pillShape: string;
+     *     squareShape: string;
+     *     squareShapeUnlessOverflowed: string;
+     *     singleLine: string;
+     *     noLeftBorderAndRoundings: string;
+     *     noRightBorderAndRoundings: string;
+     *     noTopBorderAndRoundings: string;
+     *     noBottomBorderAndRoundings: string;
+     *     noRoundings: string;
+     *     horizontallyShrinkable: string;
+     *   }>
+     * }
+     */
+    static GeometricModifiers = {
+      pillShape: "PILL_SHAPE",
+      squareShape: "SQUARE_SHAPE",
+      squareShapeUnlessOverflowed: "SQUARE_SHAPE_UNLESS_OVERFLOWED",
+      singleLine: "SINGLE_LINE",
+      noLeftBorderAndRoundings: "NO_LEFT_BORDER_AND_ROUNDINGS",
+      noRightBorderAndRoundings: "NO_RIGHT_BORDER_AND_ROUNDINGS",
+      noTopBorderAndRoundings: "NO_TOP_BORDER_AND_ROUNDINGS",
+      noBottomBorderAndRoundings: "NO_BOTTOM_BORDER_AND_ROUNDINGS",
+      noRoundings: "NO_ROUNDINGS",
+      horizontallyShrinkable: "HORIZONTALLY_SHRINKABLE"
+    };
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = {
+      regular: "REGULAR",
+      accented: "ACCENTED",
+      danger: "DANGER",
+      linkLike: "LINK_LIKE"
+    };
+
+    /**
+     * @public
+     * @param { Array<string> } decorativeVariationsNames
+     * @return { typeof Button__YDF }
+     */
+    static defineDecorativeVariations(decorativeVariationsNames) {
+      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, Button__YDF);
+    }
+
+    /**
+     * @type {
+     *   Readonly<{
+     *     bordersDisguising: string;
+     *     noBackground: string;
+     *     noBackgroundInDefaultState: string;
+     *   }>
+     * }
+     * @readonly
+     */
+    static DecorativeModifiers = {
+      bordersDisguising: "BORDERS_DISGUISING",
+      noBackground: "NO_BACKGROUND",
+      noBackgroundInDefaultState: "NO_BACKGROUND_IN_DEFAULT_STATE"
+    };
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * */
+    static propertiesSpecification = {
+
+      HTML_Type: {
+        type: String,
+        undefinedValueSubstitution: Button__YDF.HTML_Types.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.entries(Button__YDF.HTML_Types).
+            map(([key, value]) => ({ key: `Button__YDF.HTML_Types.${ key }`, value }))
+      },
+
+      label: {
+        type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        undefinedForbiddenIf: {
+          predicate: ({ rawData__full: properties }) =>
+              properties.HTML_Type === Button__YDF.HTML_Types.inputButton ||
+              properties.HTML_Type === Button__YDF.HTML_Types.inputSubmit ||
+              properties.HTML_Type === Button__YDF.HTML_Types.inputReset,
+          descriptionForLogging:
+              "`HTML_Type` property specified with `Button__YDF.HTML_Types.inputButton`, " +
+                "`Button__YDF.HTML_Types.inputSubmit` or `Button__YDF.HTML_Types.inputReset`"
+        },
+        isNullForbidden: true,
+        alternatives: [
+          {
+            type: String,
+            minimalCharactersCount: 1
+          },
+          {
+            type: Number,
+            numbersSet: YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber,
+            isNaN_Forbidden: true
+          }
+        ]
+      },
+
+      accessibilityGuidance: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      URI: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        /* [ Theory ] It could be the "#" */
+        minimalCharactersCount: 1
+      },
+
+      mustOpenLinkInNewTab: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      mustRequestNotFollowLinkForCrawlingToSearchEngine: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      disabled: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      toggled: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: Button__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Button__YDF.Themes).
+            map(([ key, value ]) => ({ key: `Button__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: Button__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: Button__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Button__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `Button__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      geometricModifiers: {
+        type: Array,
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+        element: {
+          type: String,
+          allowedAlternatives: Object.
+              entries(Button__YDF.GeometricModifiers).
+              map(([ key, value ]) => ({ key: `Button__YDF.GeometricModifiers.${ key }`, value }))
+        }
+      },
+
+      decorativeVariation: {
+        type: String,
+        undefinedValueSubstitution: Button__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Button__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `Button__YDF.DecorativeVariations.${ key }`, value }))
+      },
+
+      decorativeModifiers: {
+        type: Array,
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+        element: {
+          type: String,
+          allowedAlternatives: Object.
+            entries(Button__YDF.DecorativeModifiers).
+            map(([ key, value ]) => ({ key: `Button__YDF.DecorativeModifiers.${ key }`, value }))
+        }
+      }
+
+    };
+
+  }

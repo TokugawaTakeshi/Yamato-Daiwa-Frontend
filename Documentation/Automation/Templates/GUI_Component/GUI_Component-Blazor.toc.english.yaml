@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "Overview"
+
+{{ GUI_ComponentName__pascalCase }}Class:
+
+  $heading: "<code>{{ GUI_ComponentName__pascalCase }}</code> Class"
+
+  razorComponentParameters:
+
+    $heading: "Razor Component Parameters"

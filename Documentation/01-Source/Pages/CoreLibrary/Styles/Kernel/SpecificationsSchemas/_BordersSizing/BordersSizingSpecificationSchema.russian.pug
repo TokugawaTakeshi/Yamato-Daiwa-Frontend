@@ -1,0 +1,53 @@
+extends ../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../SharedAssets/Markup/SharedAssets.english.pug
+  include ../../../../../../SharedComponents/SharedComponents.english.pug
+
+block append Metadata
+
+  -
+
+    const {
+      $heading: pageTopHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.coreLibrary.$children.styles.$children.kernel.$children.specificationsSchemas.
+        $children.bordersSizing;
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle(pageTopHeading),
+        description: ""
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.styles.kernel.specificationsSchemas.bordersSizing");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.styles.$children.kernel.$children.specificationsSchemas.$children.
+          bordersSizing.$URI,
+      japanese: routing.japanese.coreLibrary.$children.styles.$children.kernel.$children.specificationsSchemas.$children.
+          bordersSizing.$URI
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    h1!= pageTopHeading

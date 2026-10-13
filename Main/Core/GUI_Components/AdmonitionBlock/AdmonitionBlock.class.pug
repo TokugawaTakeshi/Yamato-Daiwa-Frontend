@@ -1,0 +1,246 @@
+-
+
+  class AdmonitionBlock__YDF {
+
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
+    static CSS_NAMESPACE = "AdmonitionBlock--YDF";
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @type { { [themeName: string]: string } }
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
+    static Themes = { regular: "REGULAR" };
+
+    /**
+     * @public
+     * @param { Array<string> } themesNames
+     * @return { typeof AdmonitionBlock__YDF }
+     */
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineThemes(themesNames, AdmonitionBlock__YDF);
+    }
+
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @public
+     * @returns { typeof AdmonitionBlock__YDF }
+     * */
+    static considerThemesAsCommon() {
+      AdmonitionBlock__YDF.areThemesCSS_ClassesCommon = true;
+      return AdmonitionBlock__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      stickyNoteLike: "STICKY_NOTE_LIKE"
+    };
+
+    /**
+     * @public
+     * @param { Array<string> } geometricVariationsNames
+     * @return { typeof AdmonitionBlock__YDF }
+     */
+    static defineGeometricVariations(geometricVariationsNames) {
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, AdmonitionBlock__YDF);
+    }
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = {
+      notice: "NOTICE",
+      error: "ERROR",
+      warning: "WARNING",
+      success: "SUCCESS",
+      guidance: "GUIDANCE",
+      question: "QUESTION"
+    };
+
+    /**
+     * @public
+     * @param { Array<string> } decorativeVariationsNames
+     * @return { typeof AdmonitionBlock__YDF }
+     */
+    static defineDecorativeVariations(decorativeVariationsNames) {
+      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, AdmonitionBlock__YDF);
+    }
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * */
+    static propertiesSpecification = {
+
+      title: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      SVG_Icon: {
+
+        type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+
+        alternatives: [
+          { type: Boolean },
+          {
+
+            type: Object,
+
+            properties: {
+
+              innerElementID: {
+                type: String,
+                isUndefinedForbidden: true,
+                isNullForbidden: true,
+                minimalCharactersCount: 1
+              },
+
+              SVG_ElementAttributes: {
+                type: YDF.RawObjectDataProcessor.ValuesTypesIDs.associativeArray,
+                undefinedValueSubstitution: {},
+                isNullForbidden: true,
+                areUndefinedTypeValuesForbidden: true,
+                areNullTypeValuesForbidden: true,
+                value: {
+                  type: String,
+                  minimalCharactersCount: 1
+                }
+              }
+
+            }
+
+          }
+        ]
+
+      },
+
+      dismissible: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: AdmonitionBlock__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(AdmonitionBlock__YDF.Themes).
+            map(([ key, value ]) => ({ key: `AdmonitionBlock__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: AdmonitionBlock__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: AdmonitionBlock__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(AdmonitionBlock__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `AdmonitionBlock__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      decorativeVariation: {
+        type: String,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(AdmonitionBlock__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `AdmonitionBlock__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    };
+
+
+    /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @type { AdmonitionBlockLocalization }
+     * */
+    static localization = AdmonitionBlockYDF_GUI_ComponentLocalization__English;
+
+
+    /* ━━━ IDs Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @private
+     * @type { number }
+     */
+    static counterForID_Generating = 0;
+
+    /**
+     * @public
+     * @param { string } [uniqueDynamicPart] Required mainly for MVC where the iterative rendering is not under Pug control.
+     * @return { string } Generated ID
+     */
+    static generateInstanceID(uniqueDynamicPart) {
+      return `ADMONITION_BLOCK--YDF-${ uniqueDynamicPart ?? ++AdmonitionBlock__YDF.counterForID_Generating }`;
+    }
+
+
+    /* ─── SVG Icons ──────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @private
+     * @type { number } Integers Only
+     * */
+    static counterForCustomSVG_IconsIDs_Generating = 0;
+
+    /**
+     * @private
+     * @type { string | null } Integers Only
+     * */
+    static customSVG_IconCurrentID = null;
+
+    /**
+     * @public
+     * @returns { string } Generated ID
+     * */
+    static generateCustomIconNewID() {
+
+      AdmonitionBlock__YDF.counterForCustomSVG_IconsIDs_Generating++;
+      AdmonitionBlock__YDF.customSVG_IconCurrentID =
+            `ADMONITION_BLOCK--YDF-SVG_ICON-${ this.counterForCustomSVG_IconsIDs_Generating }`;
+
+      return AdmonitionBlock__YDF.customSVG_IconCurrentID;
+
+    }
+
+  }

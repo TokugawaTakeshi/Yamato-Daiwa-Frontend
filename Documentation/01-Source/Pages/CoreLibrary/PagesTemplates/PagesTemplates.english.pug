@@ -1,0 +1,117 @@
+extends ../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../SharedAssets/Markup/SharedAssets.english.pug
+  include ../../../SharedComponents/SharedComponents.english.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("Pages Templates"),
+        description:
+            "The \"Yamato Daiwa Frontend\" (abbreviation: \"YDF\") library suggesting the Pug template of the Web pages " +
+              "with fre-filled required HTML tags and also frequently used code fragments."
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.markup.pagesTemplates");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      japanese: routing.japanese.coreLibrary.$children.markup.$children.pagesTemplates.$URI,
+      russian: routing.russian.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ Pages Templates ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1= localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$heading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.notCheckedByNativeSpeakers })
+
+    p.Article-Paragraph
+      | As many other full-fledged #[+Term--YDID HTML pre-processors], the #[+ImportantEntity--YDID Pug] has the
+      |
+      +Link--YDF({
+        unendorsedExternalURI: sharedExternalLinks.pug.homePage.templateInheritance
+      }) template inheritance
+      |
+      |   functionality.
+      | In large projects with big number of the pages, such inheritance is #[+Keyword--YDID usually]
+      |   #[+Keyword__Contrast--YDID multilevel].
+
+    p.Article-Paragraph.
+      The #[+Keyword--YDID valid] #[+Term--YDID HTML page] #[+Keyword--YDID must] include the
+        #[+Keyword--YDID required] part, herewith it is not&nbsp;only the certain #[+Term--YDID HTML tags], but also
+        theirs correct nesting and specific #[+Term--YDID attributes].
+      For the #[+ImportantEntity--YDID 2024], the #[+Keyword--YDID minimal] #[+Term--YDID HTML code] of
+        #[+Keyword--YDID valid] #[+Term--YDID web page] is:
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML }): :code_listing--yda
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <title>Page Title</title>
+          </head>
+          <body>
+            <!-- Visible content -->
+          </body>
+        </html>
+
+    p.Article-Paragraph.
+      Besides the required part, there are optional but frequently used code fragment, for example, the below declaration
+        specifying that the page content must&nbsp;not&nbsp;be inscribed into the screen (because today the
+        adaptive/responsive layout is de facto required):
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML }): :code_listing--yda
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    p.Article-Paragraph
+      | Using the #[+Term--YDID template inheritance] we can extract the required and frequently used options parts
+      |   to the parent file, and with
+      |
+      +Link--YDF({
+        unendorsedExternalURI: sharedExternalLinks.pug.homePage.inlineJavaScript
+      }) inline JavaScript
+      |
+      |   we can even generate the template code.
+      | For example, we can specify the paths of #[+Term--YDID stylesheets] and #[+Term--YDID scripts] via
+      |   #[+Term__Contrast--YDID variables], then parent template will generate the corresponding
+      |   #[+Term--YDID tags] at right position.
+
+    p.Article-Paragraph.
+      #[+ImportantEntity--YDID YDF] library suggests the following #[+Keyword--YDID pre-made] templates which intended
+        to be #[+Term--YDID inherited]:
+
+    +CompactTableOfContents--YDF_DK(
+      localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$children
+    )

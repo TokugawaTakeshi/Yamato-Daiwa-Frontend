@@ -1,0 +1,23 @@
+iterateAssociativeArray--YDF(targetArray, iterator)
+
+  areAllChildrenElementsHas1Length(_targetArray)
+
+    allChildrenElementsHas1Length = true
+
+    for value in _targetArray
+
+      if getLengthOfPrimitivesArray--YDF(value) != 1
+
+        return false
+
+    return true
+
+  if areAllChildrenElementsHas1Length(targetArray)
+
+    iterator(targetArray[0], targetArray[1])
+
+  else
+
+    for entire, index in targetArray
+
+      iterator(entire[0], entire[1])

@@ -1,0 +1,35 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/GUI_Components/_StylesApplying/IndividualThemes/ComponentStylesApplyingTest-IndividualThemes-MultipleThemesAnd1ThemeIndependentGeometricVariation.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/GUI_Components/_StylesApplying/IndividualThemes/ComponentStylesApplyingTest-IndividualThemes-MultipleThemesAnd1ThemeIndependentGeometricVariation.test.css `
+    --include Styles
+*/
+
+
+@require "../../../../../Functionality.styl"
+@require "../../../../../GUI_Components.styl"
+@require "../_StylesApplyingTest-SampleComponent.test.styl"
+
+
+provideSampleYDF_Component(
+  overrides: {
+    themes: {
+
+      another: {
+        geometricVariations: {
+          regular: {
+            rootElement: {
+              borderWidth: 1px
+            },
+            child: {
+              fontSize: 14px
+            }
+          }
+        },
+        decorativeVariations: {
+          regular: {}
+        }
+      }
+
+    }
+  }
+)

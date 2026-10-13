@@ -1,0 +1,525 @@
+extends ../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../SharedAssets/Markup/SharedAssets.japanese.pug
+  include ../../../SharedComponents/SharedComponents.japanese.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("リリースノート：v2d0"),
+        description: MetaDescriptionTemplates.realiseNotes({ version: "2.0" })
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("realiseNotes.v2d0");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.realiseNotes.$children.v2d0.$URI,
+      russian: routing.russian.realiseNotes.$children.v2d0.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = routing.japanese.realiseNotes.$children.v2d0;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    h1.Article-Heading1 バージョン2.0（ベータ）
+
+    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning, SVG_Icon: true }).
+      メジャー・バージョン２は開発中。
+      新規機能や他の変化は準備が出来次第発表される。
+
+    h2.Article-Heading2 主要パッケージ（@yamato-daiwa/frontend）
+
+    h3.Article-Heading3 新規機能
+
+    h4.Article-Heading4 マークアップ
+
+    h5.Article-Heading5 Pug内のJavaScript
+
+    h6.Article-Heading6 関数・クラス
+
+    ul.Article-UnorderedList
+
+      li: +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            YDEE_Integration.$URI
+      }) @yamato-daiwa/es-extensions (YDEE)との結合
+
+      li: +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            functionsAndClasses.$children.
+            processObjectTypeParameterOfPugMixin.$URI
+      }) processObjectTypeParameterOfPugMixin
+
+      //-
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              markup.$children.
+              functionality.$children.
+              inlineJavaScript.$children.
+              functionsAndClasses.$children.
+              RoutingEmulator.$URI
+        }) RoutingEmulator
+
+
+    h6.Article-Heading6 アセット
+
+    ul.Article-UnorderedList
+
+      //-
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              markup.$children.
+              functionality.$children.
+              inlineJavaScript.$children.
+              assets.$children.
+              textOverflowSafetyTest.$URI
+        }) textOverflowSafetyTest
+
+      li: +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            assets.$children.
+            DummyImagesURIs.$URI
+      }) DummyImagesURIs
+
+
+    //- h5.Article-Heading5 Pug混入
+
+    //-
+      ul.Article-UnorderedList
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.
+              $children.markup.
+              $children.functionality.
+              $children.pugMixins.
+              $children.dummies.$URI
+        }) WideDummy と HighDummy
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.
+              $children.markup.
+              $children.functionality.
+              $children.pugMixins.
+              $children.SVG_Icons.$URI
+        }) SVGアイコン
+
+
+    h4.Article-Heading4 スタイル
+
+    h5.Article-Heading5 アセット
+
+    ul.Article-UnorderedList
+
+      li: +Link--YDF({
+        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
+            "Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/" +
+            "FundamentalConstantsAndEnums.md#smallest_division_of_css_pixel--ydf---the-smallest-division-of-css-pixel"
+      }) SMALLEST_DIVISION_OF_CSS_PIXEL--YDF
+
+      li: +Link--YDF({
+        internalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package" +
+            "/Styles/01-Assets/02-Colors/YDF_ColorPalette.styl"
+      }) YDF_ColorPalette
+
+    //-
+      h5.Article-Heading5 コア
+
+      h6.Article-Heading6 仕様のスキマ
+
+    //-
+      ul.Article-UnorderedList
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              specificationsSchemas.$children.
+              bordersSizing.$URI
+        }) BordersSizingSpecificationSchema--YDF
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              specificationsSchemas.$children.
+              paddings.$URI
+        }) PaddingsSpecificationSchema--YDF
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              specificationsSchemas.$children.
+              textElementHeightSizing.$URI
+        }) TextElementHeightSizingSpecificationSchema--YDF
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              specificationsSchemas.$children.
+              widthSizing.$URI
+        }) WidthSizingSpecificationSchema--YDF
+
+    h3.Article-Heading3 破壊的変化
+
+    h4.Article-Heading4 スタイル
+
+    h5.Article-Heading5 アセット
+
+    p.Article-Paragraph.
+      #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT]#[+Term--YDID 定数]の名前は
+        #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT--YDF]に変更された。
+
+    dl.Article-DescriptionList
+
+      dt 理由
+      dd 名前コンフリクトの確率を可能な限り減らす為に#[+ImportantEntity__Code--YDID --YDF]と言う#[+Term--YDID ベンダー語尾]が追加された。
+
+      dt 貴方のコードが編集が必要に成る条件
+      dd コードの中に#[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT]が直接使用中。
+
+      dt 対策
+      dd.
+        コードエディター又は結合開発環境の適切な機能を使って、プロジェクト内の全#[+Term--YDID Stylusファイル]ファイルで
+          #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT]を
+          #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT--YDF]に置き換えて下さい。
+        例えば、#[+ImportantEntity--YDID IntelliJ IDEA]ファミリー結合開発環境の場合、当機能を
+          #[+SecondaryEntity__Code--YDID Ctrl + Shift + R]ショートカット（規定）で起動可能。
+
+
+    h6.Article-Heading6 #[code DataTypes]列挙及び此れの一部の要素の名前変更
+
+    ol.Article-OrderedList
+
+      li.
+        #[+ImportantEntity__Code--YDID DataTypes]#[+Term--YDID 列挙]は#[+ImportantEntity__Code--YDID DataTypes--YDF]は
+          に名前変更。
+
+      li.
+        #[+ImportantEntity__Code--YDID dimensionalAmount]#[+Term--YDID 要素]は
+          #[+ImportantEntity__Code--YDID dimensionalQuantity]に名前変更され、此れの値は
+          #[+ImportantEntity__Code--YDID "DIMENSIONAL_QUANTITY"]に成った。
+
+      li.
+        #[+ImportantEntity__Code--YDID dimensionlessAmount]#[+Term--YDID 要素]は
+          #[+ImportantEntity__Code--YDID dimensionlessQuantity]に名前変更され、此れの値は
+          #[+ImportantEntity__Code--YDID "DIMENSIONLESS_QUANTITY"]に成った。
+
+    dl.Article-DescriptionList
+
+      dt 理由
+      dd
+        ul.Article-UnorderedList
+
+          li.
+            #[+ImportantEntity__Code--YDID --YDF]と言う#[+Term--YDID ベンダー語尾]は名前コンフリクトの確率を可能な限り減らす為
+              に追加された。
+
+          li #[+Term--YDID 要素]は正式的科学用語と統一する為に名前変更された。
+
+      dt 貴方のコードが編集が必要に成る条件
+      dd コードの中に#[+ImportantEntity__Code--YDID DataTypes]が直接使用中。
+
+      dt 対策
+      dd
+
+        p.Article-Paragraph.
+          コードエディター又は結合開発環境の適切な機能を使って、プロジェクト内の全#[+Term--YDID Stylusファイル]ファイルで下記の置き換えを
+            実行して下さい。
+
+        ul.Article-UnorderedList
+
+          li.
+            #[+ImportantEntity__Code--YDID DataTypes]#[+Term--YDID 列挙]名を
+              #[+ImportantEntity__Code--YDID DataTypes--YDF]に。
+
+          li.
+            #[+ImportantEntity__Code--YDID dimensionalAmount]#[+Term--YDID 列挙要素]を
+              #[+ImportantEntity__Code--YDID dimensionalQuantity]に.
+
+          li.
+            #[+ImportantEntity__Code--YDID dimensionlessAmount]#[+Term--YDID 列挙要素]を
+              #[+ImportantEntity__Code--YDID dimensionlessQuantity]に.
+
+        p.Article-Paragraph.
+          例えば、#[+ImportantEntity--YDID IntelliJ IDEA]ファミリー結合開発環境の場合、当機能を
+            #[+SecondaryEntity__Code--YDID Ctrl + Shift + R]ショートカット（規定）で起動可能。
+
+
+    h6.Article-Heading6 ２段階の#[code PracticalColorCoordinateSystem]オブジェクトの名前変更
+
+    p.Article-Paragraph.
+      名前コンフリクトの確率を可能な限り減らす為に#[+ImportantEntity__Code--YDID PracticalColorCoordinateSystem]
+        に#[+Term--YDID ベンダー語尾]が追加された結果、当#[+Term--YDID オブジェクト]の名前は
+        #[+ImportantEntity__Code--YDID PracticalColorCoordinateSystem--YDF]に成った。
+
+
+    h6.Article-Heading6 ２段階の#[code TemporaryHighlighting]オブジェクトの名前変更
+
+    ul.Article-UnorderedList
+
+      li.
+        #[+Term--YDID オブジェクト]の名前は#[+ImportantEntity__Code--YDID TemporarySemitransparentHighlighting--YDF]に
+          #[+Keyword--YDID 変更]された。
+
+      li.
+        資料や出力コードを確認しないと意味が分からい、#[+SecondaryEntity__Code--YDID o25]の様に超短名前は充実した
+          #[+SecondaryEntity__Code--YDID opacity25Percent]の様な名前に置き換えられた。
+
+    +AdmonitionBlock--YDF({
+      title: "英語文法関連備考",
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.notice,
+      SVG_Icon: true
+    })
+      p.Article-Paragraph.
+        英語を含めて#[+Term--YDID インド・ヨーロッパ語族]で#[+Keyword--YDID 文法的な]#[+Term--YDID 単数・複数]と言う
+          #[+Term__Contrast--YDID 形態論]が有り、英語が苦手だと言っても、英語はプログラミングにとって独占に成っている限り、
+          エンジニアにとって単数形・複数計の判別が必須能力、さもなくば混乱の原因に成る
+          （※会話力は一切求められていない、話しの対象に成っているのは翻訳力）。
+
+      p.Article-Paragraph
+        | 「percent」に関しては、文法が少し特別。
+        | #[+ImportantEntity--YDID 2以上]#[+Keyword--YDID でも]「percents」ではなく、「percent」に成っている事が多い。
+        +Link--YDF({
+          unendorsedExternalURI: "https://english.stackexchange.com/a/273587/333658"
+        }) 「english.stackexchange.com」
+        |   での説明に依ると、「percent」の最後に「s」の有無は、連想している名詞に依り、「opacity」の様な#[+Term--YDID 不可算名詞]の場合、
+        |   「s」無しでも妥当に成っている。
+        | でも、基本規則を忘れては成らなく、#[+Term--YDID 名詞]を含めている変数名を決める時に「単一なの？其れとも複数なの？」と自分に聞く事。
+
+
+    dl.Article-DescriptionList
+
+      dt 理由
+      dd
+
+        ul.Article-UnorderedList
+
+          li 名前の明確性を高める為に、「semitransparent」（「半透明」）と言う単語が追加された。
+
+          li 名前コンフリクトの確率を可能な限り減らす為に#[+ImportantEntity__Code--YDID --YDF]と言う#[+Term--YDID ベンダー語尾]が追加された。
+
+          li.
+            #[+ImportantEntity--YDID やまとダイワ]は和訳するだけで理解出来ない名前を許可#[+Keyword--YDID していない]事に成り、
+              今回は納品版のコードに有るべきではない#[+ImportantEntity__Code--YDID TemporarySemitransparentHighlighting--YDF]でも、
+
+      dt 貴方のコードが編集が必要に成る条件
+      dd 納品版のコードに使わらない方が良い推薦があっても、使った場合か、下書きコードを書いている間にYDFを更新した
+
+      dt 対策
+      dd
+
+        p.Article-Paragraph.
+          コードエディターや結合開発環境の専用機能を持ちって、全#[+Term--YDID Stylusファイル]で下記の置き換えを行って下さい。
+
+        ul.Article-UnorderedList
+          li #[+ImportantEntity__Code--YDID TemporaryHighlighting] ➝ #[+ImportantEntity__Code--YDID TemporaryHighlighting--YDF]
+          li #[+ImportantEntity__Code--YDID .o10] ➝ #[+ImportantEntity__Code--YDID .opacity10Percent]
+          li #[+ImportantEntity__Code--YDID .o25] ➝ #[+ImportantEntity__Code--YDID .opacity25Percent]
+          li #[+ImportantEntity__Code--YDID .o50] ➝ #[+ImportantEntity__Code--YDID .opacity50Percent]
+          li #[+ImportantEntity__Code--YDID .o75] ➝ #[+ImportantEntity__Code--YDID .opacity75Percent]
+
+
+    h6.Article-Heading6 #[code ShadesOfGray__39ColorsW3C_Palette]配列の名前変更
+
+    p.Article-Paragraph.
+      #[+ImportantEntity__Code--YDID ShadesOfGray__39ColorsW3C_Palette]#[+Term--YDID 配列]は
+        #[+ImportantEntity__Code--YDID W3C_39_ShadesOfGray--YDF]に#[+Keyword--YDID 名前変更]された。
+
+
+    h5.Article-Heading5 コア
+    h6.Article-Heading6 コアの変数をコンフィグレーションオブジェクトへの置き換え
+
+    p.Article-Paragraph
+      | 次の#[+Term--YDID 基本変数]（バージョン#[+ImportantEntity--YDID 1.X]には此の様に呼ばれていた）は
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.styles.$children.kernel.$children.YDF_Configuration.$URI
+      }) YDF_Configurationコンフィグレーションオブジェクト
+      | に置き換えられたが、下記の理由で削除された。
+
+    dl.Article-DescriptionList
+
+      dt MAIN_FONT_STACK
+      dd
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              fontsStacks.$children.
+              main.$URI
+        }) YDF_Configuration.fontsStacks.main
+        | に置き換え済み
+
+      dt MAIN_SANS_SERIF_FONT_STACK
+      dd
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              fontsStacks.$children.
+              mainSansSerif.$URI
+        }) YDF_Configuration.fontsStacks.mainSansSerif
+        | に置き換え済み
+
+      dt MAIN_SERIF_FONT_STACK
+      dd
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              fontsStacks.$children.
+              mainSerif.$URI
+        }) YDF_Configuration.fontsStacks.mainSerif
+        | に置き換え済み
+
+      dt MAIN_MONOSPACED_FONT_STACK
+      dd
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              fontsStacks.$children.
+              mainMonospaced.$URI
+        }) YDF_Configuration.fontsStacks.mainMonospaced
+        | に置き換え済み
+
+
+      dt BASIC_FONT_SIZE
+      dd
+        +Link--YDF({
+          endorsedExternalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              textGeometry.$children.
+              basicFontSize.$URI
+        }) YDF_Configuration.textGeometry.basicFontSize
+        | に置き換え済み
+
+      dt BASIC_LINE_HEIGHT
+      dd
+        +Link--YDF({
+          endorsedExternalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              textGeometry.$children.
+              basicLineHeight.$URI
+        }) YDF_Configuration.textGeometry.basicLineHeight
+        | に置き換え済み
+
+
+      dt BASIC_LINE_HEIGHT_IN_MULTILINE_TEXT_BLOCKS
+      dd
+        +Link--YDF({
+          endorsedExternalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              textGeometry.$children.
+              basicLineHeightInMultilineTextBlocks.$URI
+        }) YDF_Configuration.textGeometry.basicLineHeightInMultilineTextBlocks
+        | に置き換え済み
+
+      dt BASIC_FONT_SIZE_IN_MULTILINE_TEXT_BLOCKS
+      dd.
+        #[+ImportantEntity--YDID YDF]#[+Keyword--YDID 内]には
+          #[+ImportantEntity__Code--YDID YDF_Configuration.textGeometry.basicFontSize]に加えて複数行の本文系予想には
+          追加の活字大小を定義する必要は無い事になったので削除された。
+
+      dt BEM_ELEMENT_SEPARATOR
+      dd #[+ImportantEntity--YDID YDF]#[+Keyword--YDID 内]には使用されなく成ったので削除された
+
+      dt BEM_MODIFIER_SEPARATOR
+      dd #[+ImportantEntity--YDID YDF]#[+Keyword--YDID 内]には使用されなく成ったので削除された
+
+      dt ZIndexes
+      dd
+        +Link--YDF({
+          endorsedExternalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              zIndexes.$URI
+        }) YDF_Configuration.zIndexes
+        | に置き換え済み
+
+    dl.Article-DescriptionList
+
+      dt コンフィグレーションオブジェクトへの置き換え理由
+      dd.
+        #[+Term--YDID 変数名]が非常に意味も広いし、#[+ImportantEntity--YDID YDF]から来る事には何も指していたなかった。
+        二つ目の問題だけだと、ベンターポストフィックスを追加されば（例えば、#[+SecondaryEntity__Code--YDID MAIN_SANS_SERIF_FONT_STACK]を
+          #[+SecondaryEntity__Code--YDID MAIN_SANS_SERIF_FONT_STACK--YDF]にする）解決だが、コンフィグレーションの保管には
+          #[+Keyword--YDID 単一の]#[+Term--YDID オブジェクト]の方が良い。
+
+      dt 貴方のコードが編集が必要に成る条件
+      dd 上記の#[+Term--YDID 変数]の中から少なくとも一件を#[+Keyword--YDID 直接]利用されているまま
+
+      dt 対策
+      dd
+
+        ul.Article-UnorderedList
+
+          li #[+Term--YDID 基本変数]を以前の名前の儘で続けたい場合、望ましい値で自力で定義すると良い。
+
+          li.
+            以前#[+Term--YDID 基本変数]の値を変えた事が有ったら、代わりに#[+ImportantEntity__Code--YDID YDF_Configuration]
+              #[+Term--YDID コンフィグレーションオブジェクト]の該当している#[+Term--YDID プロパティ]を上書きすれば良い。
+
+          li.
+            #[+ImportantEntity__Code--YDID YDF_Configuration]を今迄の#[+Term--YDID 基本変数]の代わりに使っても良いなら、
+              #[+Term--YDID 基本変数]がアクセスされる全ヵ所で#[+ImportantEntity__Code--YDID YDF_Configuration]
+              #[+Term--YDID コンフィグレーションオブジェクト]の該当している#[+Term--YDID プロパティ]に置き換えれば良い。
+            とは言え、「#[+ImportantEntity--YDID YDF]」が入っている名前から分かる通り、当ライブラリは貴方のプロジェクトで補助手段に過ぎない。
+            それで、特殊なデザインの場合、此れの設定を#[+ImportantEntity--YDID YDF]と#[+Keyword--YDID 別当に]定義するべきで、
+              #[+ImportantEntity__Code--YDID YDF_Configuration]のプロパティを当設定に参照させれば良い。

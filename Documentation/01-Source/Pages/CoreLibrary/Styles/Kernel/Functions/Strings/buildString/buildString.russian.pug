@@ -1,0 +1,194 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../../../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("buildString"),
+        description: MetaDescriptionTemplates.stylusFunction({
+          functionName: "buildString",
+          whatFunctionDoes: "позволяет конструировать строки используя синтаксис подобный шаблонным строкам ES6"
+        })
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.styles.kernel.functions.strings.buildString");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.
+          strings.$children.buildString.$URI,
+      japanese: routing.japanese.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.
+          strings.$children.buildString.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = routing.russian.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.
+        strings.$children.buildString;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: "buildString",
+      parametersSpecification: [
+        {
+          genericTechnicalName: "targetString",
+          localizedName: "Целевая строка",
+          type: "string",
+          required: true,
+        },
+        {
+          genericTechnicalName: "templateVariables",
+          localizedName: "Переменные шаблона",
+          type: "object",
+          required: true
+        },
+      ],
+      returnedValue: "string",
+      headingTag: "h1"
+    })
+
+    p.Article-Paragraph
+      | Позволяет конструировать #[+Term--YDID строки], используя синтаксис, подобный
+      |
+      +Link--YDF({
+        unendorsedExternalURI: sharedExternalLinks.mdn.javaScript.string.ES6TemplateLiteral
+      }) шаблонным строкам ES6
+      | .
+      | Однако, ввиду ограничений #[+Term--YDID препроцессора] #[+ImportantEntity--YDID Stylus],
+      |   #[+Keyword--YDID необходимо] указать через #[+Keyword--YDID второй] #[+Term--YDID параметр]
+      |   #[+Term__Contrast--YDID объект] типа #[+Term--YDID «ассоциативный массив»], #[+Term__Contrast--YDID ключи]
+      |   которого #[+Keyword--YDID должны] ссылаться на имена #[+Term--YDID переменных], указанных в
+      |   #[+Term--YDID шаблонной строке].
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus })
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          p(buildString("Good morning, ${name}", { name: "Takeshi" }))
+        +CodeViewer-Explanation--YDF.
+          Если #[+Term--YDID строка] короткая и #[+Term--YDID переменных] всего одна-две, то возможно записать
+            выражение вызова #[+Term--YDID функции] #[+ImportantEntity__Code--YDID buildString] в одну строку.
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          p(buildString("Good morning, ${ name }", { name: "Takeshi" }))
+        +CodeViewer-Explanation--YDF.
+          Вы можете использовать #[+Keyword--YDID пробелы] внутри #[+Keyword--YDID фигурных] #[+Term--YDID скобок].
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          p(
+            buildString(
+              "In the quaint village of ${ villageName }, nestled amidst the rolling hills of the countryside, lived the " +\
+                "${ familyName } family. " +\
+              "Mr. ${ givenName } ${ familyName }, a respected member of the community, was known for his " +\
+                "kindness and generosity.",
+              {
+                villageName: "Willowbrook",
+                familyName: "Thompson",
+                givenName: "Jonathan"
+              }
+            )
+          )
+        +CodeViewer-Explanation--YDF.
+          В общем случае код будет многострочным.
+          Будьте осторожны с переносом строки: #[+ImportantEntity--YDID Stylus] #[+Keyword--YDID не]&nbsp;допускает
+            пробелов после #[+Term--YDID обратный косой черты].
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          p(buildString("You have ${ messagesCount } message(s)", { messagesCount: 2 }))
+        +CodeViewer-Explanation--YDF.
+          Вы можете интерполировать и числовые значения.
+
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          // НЕВЕРНЫЙ СИНТАКСИС!!!
+          p(buildString("Good morning, ${name}", { name }));
+        +CodeViewer-Explanation--YDF.
+          К сожалению, #[+ImportantEntity--YDID Stylus] #[+Keyword--YDID не]&nbsp;поддерживает сокращённую
+            запись для #[+Term--YDID свойств] #[+Term__Contrast--YDID объекта], которая доступна в
+            #[+ImportantEntity--YDID ECMAScript]-языках начиная с #[+ImportantEntity--YDID ECMAScript 2015].
+
+
+    //- ━━━ Сравнение способов интерполяции строк ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.interpolationMethodsComparison.$heading,
+      HTML_ID: localizedSectioning.interpolationMethodsComparison.$anchor
+    }).Article-Heading2
+
+    //- ─── Конкатенация строк (нативный способ) ───────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.interpolationMethodsComparison.$children.concatenation.$heading,
+      HTML_ID: localizedSectioning.interpolationMethodsComparison.$children.concatenation.$anchor
+    }).Article-Heading3
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }).
+        givenName = "Takeshi"
+        familyName = "Tokugawa"
+
+        p("Good morning, " + givenName + " " + familyName)
+
+
+    //- ─── Sprintf (нативный способ) ──────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.interpolationMethodsComparison.$children.sprintf.$heading,
+      HTML_ID: localizedSectioning.interpolationMethodsComparison.$children.sprintf.$anchor
+    }).Article-Heading3
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }).
+        givenName = "Takeshi"
+        familyName = "Tokugawa"
+
+        outputString = "Good morning, %s %s" % (unquote(givenName) unquote(familyName))
+
+        p(outputString)
+
+
+    //- ─── `buildString` (YDF) ────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.interpolationMethodsComparison.$children.buildString.$heading,
+      HTML_ID: localizedSectioning.interpolationMethodsComparison.$children.buildString.$anchor
+    }).Article-Heading3
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }).
+        p(
+          buildString(
+            "Good morning, ${ givenName } ${ familyName }",
+            {
+              givenName: "Takeshi",
+              familyName: "Tokugawa"
+            }
+          )
+        )
