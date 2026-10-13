@@ -28,6 +28,17 @@ module.exports = [
       "n/no-unsupported-features/node-builtins": "off"
     }
 
+  },
+
+  /* Organizing of members by semantic categories. */
+  {
+
+    files: [ "GUI_Components/**/*Metadata.ts" ],
+
+    rules: {
+      "@typescript-eslint/member-ordering": "off"
+    }
+
   }
 
 ];

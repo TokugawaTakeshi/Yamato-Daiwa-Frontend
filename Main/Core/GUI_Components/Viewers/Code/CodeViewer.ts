@@ -48,7 +48,7 @@ export class CodeViewer {
   protected activeTabPanel!: HTMLElement;
 
 
-  /* === Public methods ============================================================================================= */
+  /* ━━━ Public Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static initializeAllInstances(): Array<CodeViewer> {
     return Array.from(document.querySelectorAll(CodeViewer.ROOT_ELEMENT_SELECTOR)).
         map((componentRootElement: Element): CodeViewer => CodeViewer.initializeSingleInstance(componentRootElement));
@@ -76,7 +76,7 @@ export class CodeViewer {
   }
 
 
-  /* === Protected methods ========================================================================================== */
+  /* ━━━ Protected Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected initializeTabsAndIts_Content(): this {
 
     const CURRENT_METHOD_CALLING_NOTATION: string = "CodeViewer.[initializingMethod](namedParameters) -> " +
@@ -94,6 +94,7 @@ export class CodeViewer {
       });
 
       return this;
+
     }
 
 
@@ -104,6 +105,7 @@ export class CodeViewer {
       this.tabsFlow.remove();
 
       return this;
+
     }
 
 

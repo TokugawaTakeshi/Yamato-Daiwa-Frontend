@@ -13,33 +13,33 @@
       :class="rootElementModifierCSS_Classes"
     )
 
-    ExclamationMarkIcon__Circled__Filled.Snackbar--YDF-Icon(
-      v-if="decorativeVariation === DecorativeVariations.error"
-    )
-
-    ExclamationMarkIcon__Triangled__Filled.Snackbar--YDF-Icon(
-      v-else-if="decorativeVariation === DecorativeVariations.warning"
-    )
-
-    InfoSignIcon__Circled__Filled.Snackbar--YDF-Icon(
-      v-else-if="decorativeVariation === DecorativeVariations.guidance"
-    )
-
-    CheckmarkIcon__Circled__Filled.Snackbar--YDF-Icon(
-      v-else-if="decorativeVariation === DecorativeVariations.success"
-    )
-
-
-      p.Snackbar--YDF-Message(
-        v-html="messageTextOrHTML"
+      ExclamationMarkIcon__Circled__Filled.Snackbar--YDF-Icon(
+        v-if="decorativeVariation === DecorativeVariations.error"
       )
 
-      button.Snackbar--YDF-DismissingButton(
-        type="button"
-        aria-label="localization.dismissingButton.accessibilityGuidance"
-        @onclick=onClosedButtonClicked
+      ExclamationMarkIcon__Triangled__Filled.Snackbar--YDF-Icon(
+        v-else-if="decorativeVariation === DecorativeVariations.warning"
       )
-        MultiplicationSignIcon__Octagoned__Filled.Snackbar--YDF-DismissingButton-Icon
+
+      InfoSignIcon__Circled__Filled.Snackbar--YDF-Icon(
+        v-else-if="decorativeVariation === DecorativeVariations.guidance"
+      )
+
+      CheckmarkIcon__Circled__Filled.Snackbar--YDF-Icon(
+        v-else-if="decorativeVariation === DecorativeVariations.success"
+      )
+
+
+        p.Snackbar--YDF-Message(
+          v-html="messageTextOrHTML"
+        )
+
+        button.Snackbar--YDF-DismissingButton(
+          type="button"
+          aria-label="localization.dismissingButton.accessibilityGuidance"
+          @onclick=onClosedButtonClicked
+        )
+          MultiplicationSignIcon__Octagoned__Filled.Snackbar--YDF-DismissingButton-Icon
 
 </template>
 

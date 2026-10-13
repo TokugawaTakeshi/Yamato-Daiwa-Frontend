@@ -1,8 +1,9 @@
 import componentHTML_Workpiece from "./Snackbar.template.pug";
 
+import { SnackbarMetadata } from "./SnackbarMetadata";
+
 import {
   PromisesQueue,
-  toScreamingSnakeCase,
   isUndefined,
   isNull,
   toUpperCamelCase
@@ -16,25 +17,15 @@ import {
 } from "@yamato-daiwa/es-extensions-browserjs";
 
 
-abstract class Snackbar {
-
-  public static DecorativeVariations: Snackbar.DecorativeVariations = {
-    error: "ERROR",
-    warning: "WARNING",
-    guidance: "GUIDANCE",
-    success: "SUCCESS"
-  };
-
+abstract class Snackbar extends SnackbarMetadata {
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected static readonly sessionsQueue: PromisesQueue = new PromisesQueue();
 
 
   /* ┅┅┅ Accessing to DOM ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  protected static readonly CSS_NAMESPACE: string = "Snackbar--YDF";
-
-  protected static readonly HIDDEN_STATE_CSS_CLASS: string = `${ Snackbar.CSS_NAMESPACE }-Transition__HiddenState`;
-  protected static readonly DISPLAYING_STATE_CSS_CLASS: string = `${ Snackbar.CSS_NAMESPACE }-Transition__DisplayingState`;
+  protected static readonly HIDDEN_STATE_CSS_CLASS: string = "Snackbar--YDF-Transition__HiddenState";
+  protected static readonly DISPLAYING_STATE_CSS_CLASS: string = "Snackbar--YDF-Transition__DisplayingState";
 
   protected static readonly SVG_ICON_MOUNTING_POINT_ELEMENT_SELECTOR: string = ".Snackbar--YDF-SVG_MountingPoint";
   protected static readonly SVG_ICON_SELECTOR: string = ".Snackbar--YDF-SVG_Icon";
@@ -108,18 +99,6 @@ abstract class Snackbar {
 
   }
 
-  public static defineDecorativeVariations(
-    decorativeVariationsData: ReadonlyArray<Readonly<{ key: string; } & Snackbar.DecorativeVariationDependents>>
-  ): void {
-
-    for (const { key, CSS_Class, SVG_Icon } of decorativeVariationsData) {
-      Snackbar.decorativeVariationsDependents[key] = { CSS_Class, SVG_Icon };
-      Snackbar.DecorativeVariations[key] = toScreamingSnakeCase(key);
-    }
-
-  }
-
-
   /* ━━━ Protected Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected static async mountAndDisplayForAWhileSingleInstance(
     {
@@ -139,7 +118,7 @@ abstract class Snackbar {
         Snackbar.decorativeVariationsDependents[decorativeVariation];
 
     initializedDOM_Workpiece.classList.add(decorativeVariationsDependent.CSS_Class);
-    initializedDOM_Workpiece.classList.add(`${ Snackbar.CSS_NAMESPACE }__${ toUpperCamelCase(position) }Position`);
+    initializedDOM_Workpiece.classList.add(`Snackbar--YDF__${ toUpperCamelCase(position) }Position`);
 
     Snackbar.SVG_IconMountingPointElement.replaceWith(decorativeVariationsDependent.SVG_Icon);
     Snackbar.messageElement.innerHTML = messageTextOrHTML;
@@ -184,28 +163,28 @@ abstract class Snackbar {
     Snackbar.decorativeVariationsDependents = {
 
       [Snackbar.DecorativeVariations.error]: {
-        CSS_Class: `${ Snackbar.CSS_NAMESPACE }__ErrorDecorativeVariation`,
+        CSS_Class: Snackbar.decorativeVariationsCSS_Classes[Snackbar.DecorativeVariations.error],
         SVG_Icon: getExpectedToBeSingleDOM_Element({
           selector: "[data-icon='ERROR']", contextElement: Snackbar.DOM_Workpiece, expectedDOM_ElementSubtype: SVGElement
         })
       },
 
       [Snackbar.DecorativeVariations.warning]: {
-        CSS_Class: `${ Snackbar.CSS_NAMESPACE }__WarningDecorativeVariation`,
+        CSS_Class: Snackbar.decorativeVariationsCSS_Classes[Snackbar.DecorativeVariations.warning],
         SVG_Icon: getExpectedToBeSingleDOM_Element({
           selector: "[data-icon='WARNING']", contextElement: Snackbar.DOM_Workpiece, expectedDOM_ElementSubtype: SVGElement
         })
       },
 
       [Snackbar.DecorativeVariations.guidance]: {
-        CSS_Class: `${ Snackbar.CSS_NAMESPACE }__GuidanceDecorativeVariation`,
+        CSS_Class: Snackbar.decorativeVariationsCSS_Classes[Snackbar.DecorativeVariations.guidance],
         SVG_Icon: getExpectedToBeSingleDOM_Element({
           selector: "[data-icon='GUIDANCE']", contextElement: Snackbar.DOM_Workpiece, expectedDOM_ElementSubtype: SVGElement
         })
       },
 
       [Snackbar.DecorativeVariations.success]: {
-        CSS_Class: `${ Snackbar.CSS_NAMESPACE }__SuccessDecorativeVariation`,
+        CSS_Class: Snackbar.decorativeVariationsCSS_Classes[Snackbar.DecorativeVariations.success],
         SVG_Icon: getExpectedToBeSingleDOM_Element({
           selector: "[data-icon='SUCCESS']", contextElement: Snackbar.DOM_Workpiece, expectedDOM_ElementSubtype: SVGElement
         })
@@ -237,19 +216,10 @@ abstract class Snackbar {
 
 namespace Snackbar {
 
-  export enum Positions {
-    topLeft = "TOP_LEFT",
-    topMiddle = "TOP_MIDDLE",
-    topRight = "TOP_RIGHT",
-    bottomLeft = "BOTTOM_LEFT",
-    bottomMiddle = "BOTTOM_MIDDLE",
-    bottomRight = "BOTTOM_RIGHT"
-  }
-
   export type CompoundParameter = Readonly<{
     messageTextOrHTML: string;
     decorativeVariation: string;
-    position?: Positions;
+    position?: SnackbarMetadata.Positions;
     parentElementSelector?: string;
     mountingPointElementSelector?: string;
     displayingDuration__seconds?: number;
@@ -260,14 +230,6 @@ namespace Snackbar {
     CSS_Class: string;
     SVG_Icon: SVGElement;
   }>;
-
-  export type DecorativeVariations = {
-    readonly error: "ERROR";
-    readonly warning: "WARNING";
-    readonly guidance: "GUIDANCE";
-    readonly success: "SUCCESS";
-    [custom: string]: string;
-  };
 
 }
 

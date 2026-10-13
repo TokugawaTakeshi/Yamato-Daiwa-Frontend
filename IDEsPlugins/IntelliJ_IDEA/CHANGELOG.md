@@ -3,6 +3,28 @@
 
 # Yamato-Daiwa Frontend IntelliJ IDEA plugin changelog
 
+## [0.2.0]
+
+### Added
+
++ **processObjectTypeParameterOfPugMixin** — Autocomplete imitator for the [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/processObjectTypeParameterOfPugMixin.english.html)
++ **HeadingsLevelsCoordinator** — Autocomplete imitator for the [eponymous class](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/HeadingsLevelsCoordinator/HeadingsLevelsCoordinator.english.html),
+    the selecting of specific getter or member accessing will be also suggested.
++ **RoutingEmulator**  Autocomplete imitator for the [eponymous class](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/RoutingEmulator.english.html),
+    the selecting of specific getter or member accessing will be also suggested.
+
+### Changed
+
++ **processObjectTypeParameterOfPugMixin** has been updated according the newest API
++ **YDF_Configuration** has been replaced with **Configuration--YDF**. **ydfc** is not the alias for **Configuration--YDF**. 
++ **oydfc** has been replaced with **overrideConfiguration--YDF** and **oc** alias.
+
+### Removed
+
++ **buildEmailLinkHREF_AttributeValue** — Autocomplete imitator for for the eponymous function
++ **buildPhoneNumberLinkHrefAttributeValue** — Autocomplete imitator for eponymous function
+
+
 ## [0.1.0]
 
 ### Added 
@@ -193,8 +215,8 @@ The following Live templates has been removed because they actually not related 
 
 - Support IntelliJ IDEA platform build 232 
 - [File template](https://www.jetbrains.com/help/idea/using-file-and-code-templates.html) for **Badge** components styles customization
-- **buildEmailLinkHREF_AttributeValue** - autocomplete imitator for [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildEmailLinkHrefAttributeValue/buildEmailLinkHrefAttributeValue.english.html)
-- **buildPhoneNumberLinkHrefAttributeValue** - autocomplete imitator for [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildPhoneNumberLinkHrefAttributeValue/buildPhoneNumberLinkHrefAttributeValue.english.html)
+- **buildEmailLinkHREF_AttributeValue** - autocomplete imitator for the eponymous function
+- **buildPhoneNumberLinkHrefAttributeValue** - autocomplete imitator for the eponymous function
 
 ### Changed
 
@@ -230,7 +252,7 @@ The following Live templates has been removed because they actually not related 
 ## [0.0.3]
 ### Added
 
-- <kbd>tost</kbd> - live template for [**textOverflowSafetyTest** constant](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Markup/ConstantsAssets/textOverflowSafetyTest/textOverflowSafetyTest.md)
+- <kbd>tost</kbd> - live template for [**textOverflowSafetyTest** constant](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/textOverflowSafetyTest/textOverflowSafetyTest.english.html)
 - <kbd>pl</kbd> - live template for [**PageLink**](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/PagesTemplates/StaticPreviewAnywherePage/StaticPreviewAnywherePage.md#pagelink) mixin usage
 - <kbd>plg</kbd> - live template for [**PagesLinksGroup**](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/PagesTemplates/StaticPreviewAnywherePage/StaticPreviewAnywherePage.md#pagelinksgroup) mixin usage
 - <kbd>dt</kbd> - live template for [**DataTypes**](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/FundamentalConstantsAndEnums.md#datatypes---stylus-data-types) enumeration

@@ -40,10 +40,19 @@ AdmonitionBlock--YDF = {
   },
 
   defaultOptions: {
+
     themeIndependentStylesOnly: false,
     areThemesCSS_ClassesCommon: false,
     themeIndependentGeometricVariations: true,
-    typographyAssimilation: false
+    typographyAssimilation: false,
+
+    features: {
+      SVG_Icon: true,
+      title: true,
+      dismissingButton: true,
+      actionBar: true
+    }
+
   }
 
 }
@@ -84,7 +93,7 @@ AdmonitionBlock--YDF-generateStyles(
   })
 
 
-  //- ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   applyBasicRules()
 
     .AdmonitionBlock--YDF
@@ -100,65 +109,80 @@ AdmonitionBlock--YDF-generateStyles(
       border-width 0 //* [ Why ? ] There is browser-dependent default border-width applied when set `border-style`. */
 
 
-      &-SVG_Icon
+      // ┅┅┅ SVG Icon ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+      if options.features.SVG_Icon
 
-        grid-area PREPENDED_SVG_ICON
+        &-SVG_Icon
 
-
-      &-Title
-
-        grid-area TITLE
+          grid-area PREPENDED_SVG_ICON
 
 
+      // ┅┅┅ Title ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+      if options.features.title
+
+        &-Title
+
+          grid-area TITLE
+
+
+      // ┅┅┅ Main Content ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
       &-MainContent
 
         grid-area MAIN_CONTENT
 
 
-      &-DismissingButton
+      // ┅┅┅ Dismissing Button ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+      if options.features.dismissingButton
 
-        ButtonLikeElementsPrimer--YDF()
+        &-DismissingButton
 
-        cursor pointer
+          ButtonLikeElementsPrimer--YDF()
 
-        grid-area DISMISSING_BUTTON
+          cursor pointer
 
-
-        &:focus
-
-          outline none
+          grid-area DISMISSING_BUTTON
 
 
-        &-Icon
+          &:focus
 
-          display block   // [ Why? ] Te remove the extra space at bottom causes by line-height
-
-
-      &-CenteredButton
-
-        centerHorizontallyWithoutWrapper--YDF({
-          targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.inlineBlock
-        })
+            outline none
 
 
-      &-ActionBar
+          &-Icon
 
-        display flex
-        justify-content center
-        align-items center
+            display block   // [ Why? ] Te remove the extra space at bottom causes by line height
 
 
-  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+      // ┅┅┅ Action Bar ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+      if options.features.actionBar
+
+        &-CenteredButton
+
+          centerHorizontallyWithoutWrapper--YDF({
+            targetElementType: HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.inlineBlock
+          })
+
+
+        &-ActionBar
+
+          display flex
+          justify-content center
+          align-items center
+
+
   applyGeometricVariation(themeName, variationName, variation)
 
+    //** @type { string } */
     VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "AdmonitionBlock.${ themeName }Theme.${ variationName }Geometry",
       { themeName: themeName, variationName: variationName }
     )
 
+    //** @type { string | null } */
     CONTEXT_SELECTOR = selector() == "&" ? null : selector()
 
 
+    // ┅┅┅ Root Element ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +provideDefaultSelectorWhenRootAndApply--YDF("." + AdmonitionBlock--YDF.CSS_NAMESPACE)
 
       validateAndAssignStoredInObjectCSS_Properties--YDF({
@@ -181,59 +205,66 @@ AdmonitionBlock--YDF-generateStyles(
       applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
-    .AdmonitionBlock--YDF-SVG_Icon
+    // ┅┅┅ SVG Icon ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    if options.features.SVG_Icon
 
-      validateAndAssignStoredInObjectCSS_Properties--YDF({
-        targetObject: variation,
-        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-        assigments: {
-          width: { dotSeparatedPath: "SVG_Icon.width", required: false },
-          height: {
-            dotSeparatedPath: "SVG_Icon.height",
-            requiredIf: {
-              predicate: @(variation) { return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(variation, "SVG_Icon.width")) },
-              conditionDescription: "'SVG_Icon.width' icon is null"
+      .AdmonitionBlock--YDF-SVG_Icon
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            width: { dotSeparatedPath: "SVG_Icon.width", required: false },
+            height: {
+              dotSeparatedPath: "SVG_Icon.height",
+              requiredIf: {
+                predicate: @(variation) { return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(variation, "SVG_Icon.width")) },
+                conditionDescription: "'SVG_Icon.width' icon is null"
+              }
             }
           }
-        }
-      })
+        })
 
-      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
 
 
-    .AdmonitionBlock--YDF-Title
+    // ┅┅┅ Title ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    if options.features.title
 
-      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
-        merge(
-          extractAndValidateObjectProperties--YDF({
+      .AdmonitionBlock--YDF-Title
+
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
+          merge(
+            extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: {
+                fontSize: { dotSeparatedPath: "title.text.size", required: true },
+                lineSpacing: { dotSeparatedPath: "title.text.lineSpacing", required: false },
+                lineHeight: { dotSeparatedPath: "title.text.lineHeight", mustBeInsteadOf: "title.text.lineSpacing" }
+              }
+            }),
+            { mustAllowWordsBreakingAnywhere: true }
+          )
+        )
+
+        retireFrom--YDF({
+          targetElementSelector: ".AdmonitionBlock--YDF-SVG_Icon",
+          referenceElementSelector: ".AdmonitionBlock--YDF-Title",
+          contextSelector: CONTEXT_SELECTOR,
+          x: extractAndValidateObjectProperties--YDF({
             targetObject: variation,
             targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
             extracts: {
-              fontSize: { dotSeparatedPath: "title.text.size", required: true },
-              lineSpacing: { dotSeparatedPath: "title.text.lineSpacing", required: false },
-              lineHeight: { dotSeparatedPath: "title.text.lineHeight", mustBeInsteadOf: "title.text.lineSpacing" }
+              spacingAfterSVG_Icon: { dotSeparatedPath: "title.spacing.afterSVG_Icon", required: true }
             }
-          }),
-          { mustAllowWordsBreakingAnywhere: true }
-        )
-      )
+          }).spacingAfterSVG_Icon
+        })
 
-      retireFrom--YDF({
-        targetElementSelector: ".AdmonitionBlock--YDF-SVG_Icon",
-        referenceElementSelector: ".AdmonitionBlock--YDF-Title",
-        contextSelector: CONTEXT_SELECTOR,
-        x: extractAndValidateObjectProperties--YDF({
-          targetObject: variation,
-          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-          extracts: {
-            spacingAfterSVG_Icon: { dotSeparatedPath: "title.spacing.afterSVG_Icon", required: true }
-          }
-        }).spacingAfterSVG_Icon
-      })
-
-      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.title.customDeclarations)
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.title.customDeclarations)
 
 
+    // ┅┅┅ Main Content ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     .AdmonitionBlock--YDF-MainContent
 
       applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
@@ -277,80 +308,87 @@ AdmonitionBlock--YDF-generateStyles(
       applyMixinStoredInObjectIfItIsNotNull--YDF(variation.mainContent.customDeclarations)
 
 
-    .AdmonitionBlock--YDF-DismissingButton
+    // ┅┅┅ Dismissing Button ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    if options.features.dismissingButton
 
-      validateAndAssignStoredInObjectCSS_Properties--YDF({
-        targetObject: variation,
-        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-        assigments: {
-          margin-left: {
-            dotSeparatedPath: "dismissingButton.spacing.afterMainContent",
-            required: true
-          }
-        }
-      })
+      .AdmonitionBlock--YDF-DismissingButton
 
-      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dismissingButton.customDeclarations)
-
-
-    .AdmonitionBlock--YDF-DismissingButton-Icon
-
-      validateAndAssignStoredInObjectCSS_Properties--YDF({
-        targetObject: variation,
-        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-        assigments: {
-          width: { dotSeparatedPath: "dismissingButton.SVG_Icon.width", required: false },
-          height: {
-            dotSeparatedPath: "dismissingButton.SVG_Icon.height",
-            requiredIf: {
-              predicate: @(variation) {
-                return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(variation, "dismissingButton.SVG_Icon.width"))
-              },
-              conditionDescription: "'dismissingButton.SVG_Icon.width' icon is null"
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            margin-left: {
+              dotSeparatedPath: "dismissingButton.spacing.afterMainContent",
+              required: true
             }
           }
-        }
-      })
+        })
 
-      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dismissingButton.SVG_Icon.customDeclarations)
-
-
-    .AdmonitionBlock--YDF-CenteredButton
-
-      validateAndAssignStoredInObjectCSS_Properties--YDF({
-        targetObject: variation,
-        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-        assigments: {
-          margin-top: { dotSeparatedPath: "centeredButton.spacing.top", required: true }
-        }
-      })
-
-      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.centeredButton.customDeclarations)
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dismissingButton.customDeclarations)
 
 
-    .AdmonitionBlock--YDF-ActionBar
+      .AdmonitionBlock--YDF-DismissingButton-Icon
 
-      validateAndAssignStoredInObjectCSS_Properties--YDF({
-        targetObject: variation,
-        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-        assigments: {
-          margin-top: { dotSeparatedPath: "actionBar.spacing.top", required: true },
-          column-gap: { dotSeparatedPath: "actionBar.spacing.betweenChildrenElements", required: true }
-        }
-      })
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            width: { dotSeparatedPath: "dismissingButton.SVG_Icon.width", required: false },
+            height: {
+              dotSeparatedPath: "dismissingButton.SVG_Icon.height",
+              requiredIf: {
+                predicate: @(variation) {
+                  return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(variation, "dismissingButton.SVG_Icon.width"))
+                },
+                conditionDescription: "'dismissingButton.SVG_Icon.width' icon is null"
+              }
+            }
+          }
+        })
 
-      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.actionBar.customDeclarations)
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dismissingButton.SVG_Icon.customDeclarations)
 
 
-  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+    // ┅┅┅ Action Bar ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    if options.features.actionBar
+
+      .AdmonitionBlock--YDF-CenteredButton
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            margin-top: { dotSeparatedPath: "centeredButton.spacing.top", required: true }
+          }
+        })
+
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.centeredButton.customDeclarations)
+
+
+      .AdmonitionBlock--YDF-ActionBar
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            margin-top: { dotSeparatedPath: "actionBar.spacing.top", required: true },
+            column-gap: { dotSeparatedPath: "actionBar.spacing.betweenChildrenElements", required: true }
+          }
+        })
+
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.actionBar.customDeclarations)
+
+
   applyDecorativeVariation(themeName, variationName, variation)
 
+    //** @type { string } */
     VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
       "AdmonitionBlock.${ themeName }Theme.${ variationName }Decoration",
       { themeName: themeName, variationName: variationName }
     )
 
 
+    // ┅┅┅ Root Element ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     +provideDefaultSelectorWhenRootAndApply--YDF("." + AdmonitionBlock--YDF.CSS_NAMESPACE)
 
       validateAndAssignStoredInObjectCSS_Properties--YDF({
@@ -367,6 +405,7 @@ AdmonitionBlock--YDF-generateStyles(
       applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
 
 
+    // ┅┅┅ SVG Icon ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     .AdmonitionBlock--YDF-SVG_Icon
 
       validateAndAssignStoredInObjectCSS_Properties--YDF({
@@ -380,20 +419,24 @@ AdmonitionBlock--YDF-generateStyles(
       applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
 
 
-    .AdmonitionBlock--YDF-Title
+    // ┅┅┅ Title ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    if options.features.title
 
-      validateAndAssignStoredInObjectCSS_Properties--YDF({
-        targetObject: variation,
-        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-        assigments: {
-          font-weight: { dotSeparatedPath: "title.text.fontWeight", required: false },
-          color: { dotSeparatedPath: "title.text.color", required: false }
-        }
-      })
+      .AdmonitionBlock--YDF-Title
 
-      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.title.customDeclarations)
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            font-weight: { dotSeparatedPath: "title.text.fontWeight", required: false },
+            color: { dotSeparatedPath: "title.text.color", required: false }
+          }
+        })
+
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.title.customDeclarations)
 
 
+    // ┅┅┅ Main Content ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     .AdmonitionBlock--YDF-MainContent
 
       validateAndAssignStoredInObjectCSS_Properties--YDF({
@@ -408,68 +451,71 @@ AdmonitionBlock--YDF-generateStyles(
       applyMixinStoredInObjectIfItIsNotNull--YDF(variation.mainContent.customDeclarations)
 
 
-    DismissingButtonStyles(state)
-
-      statePseudoClass = null
-
-      if (state == "hoverState")
-
-        statePseudoClass = ":hover"
-
-      else if (state == "focusVisibleState")
-
-        statePseudoClass = ":focus-visible"
-
-      else if (state == "activeState")
-
-        statePseudoClass = ":active"
-
-
-      .AdmonitionBlock--YDF-DismissingButton{statePseudoClass}
-
-        validateAndAssignStoredInObjectCSS_Properties--YDF({
-          targetObject: variation,
-          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-          assigments: {
-            box-shadow: {
-              dotSeparatedPath: "dismissingButton." + state + ".shadow",
-              required: false,
-              applier: applyObjectTypeBoxShadowDefinition--YDF
-            }
-          }
-        })
-
-
-      SVG_IconStyles()
-
-        validateAndAssignStoredInObjectCSS_Properties--YDF({
-          targetObject: variation,
-          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
-          assigments: {
-            fill: { dotSeparatedPath: "dismissingButton." + state + ".iconColor", required: true }
-          }
-        })
-
-
-      if (isNull--YDF(statePseudoClass))
-
-        .AdmonitionBlock--YDF-DismissingButton-Icon
-
-          SVG_IconStyles()
-
-      else
-
-        .AdmonitionBlock--YDF-DismissingButton{statePseudoClass} .AdmonitionBlock--YDF-DismissingButton-Icon
-
-          SVG_IconStyles()
-
-
-    for state in variation.dismissingButton
+    // ┅┅┅ Dismissing Button ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    if options.features.dismissingButton
 
       DismissingButtonStyles(state)
 
+        statePseudoClass = null
 
-    // ─── Typography Assimilation (Experimental) ──────────────────────────────────────────────────────────────────────
+        if (state == "hoverState")
+
+          statePseudoClass = ":hover"
+
+        else if (state == "focusVisibleState")
+
+          statePseudoClass = ":focus-visible"
+
+        else if (state == "activeState")
+
+          statePseudoClass = ":active"
+
+
+        .AdmonitionBlock--YDF-DismissingButton{statePseudoClass}
+
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              box-shadow: {
+                dotSeparatedPath: "dismissingButton." + state + ".shadow",
+                required: false,
+                applier: applyObjectTypeBoxShadowDefinition--YDF
+              }
+            }
+          })
+
+
+        SVG_IconStyles()
+
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              fill: { dotSeparatedPath: "dismissingButton." + state + ".iconColor", required: true }
+            }
+          })
+
+
+        if (isNull--YDF(statePseudoClass))
+
+          .AdmonitionBlock--YDF-DismissingButton-Icon
+
+            SVG_IconStyles()
+
+        else
+
+          .AdmonitionBlock--YDF-DismissingButton{statePseudoClass} .AdmonitionBlock--YDF-DismissingButton-Icon
+
+            SVG_IconStyles()
+
+
+      for state in variation.dismissingButton
+
+        DismissingButtonStyles(state)
+
+
+    // ┅┅┅ Typography Assimilation (Experimental) ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
     if isNotNull--YDF(variation.typographyAssimilation)
 
       assimilatedTypography = {

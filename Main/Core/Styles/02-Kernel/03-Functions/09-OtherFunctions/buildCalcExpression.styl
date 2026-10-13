@@ -1,3 +1,16 @@
 buildCalcExpression--YDF(formula, variables)
 
-  return unquote("calc(" + buildString--YDF(formula, variables) + ")")
+  normalizedVariables = {}
+
+  for variableName, variableValue in variables
+
+    if isNull--YDF(variableValue) || variableValue == 0
+
+      normalizedVariables[variableName] = "0px"
+
+    else
+
+      normalizedVariables[variableName] = variableValue
+
+
+  return unquote("calc(" + buildString--YDF(formula, normalizedVariables) + ")")

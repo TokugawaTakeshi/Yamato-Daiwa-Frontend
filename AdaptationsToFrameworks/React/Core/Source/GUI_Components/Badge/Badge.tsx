@@ -4,7 +4,7 @@ import React from "react";
 
 /* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import ComponentsAuxiliaries from "../ComponentsAuxiliaries";
-import checkForNonEmptyStringReactProperties from "../../_ReactPropertiesValidators/checkForNonEmptyStringReactProperties";
+import checkForNonEmptyStringReactProperties from "../../ReactPropertiesValidators/checkForNonEmptyStringReactProperties";
 import { isNotUndefined } from "@yamato-daiwa/es-extensions";
 /* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 

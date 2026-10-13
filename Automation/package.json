@@ -1,0 +1,23 @@
+{
+  "name": "@yamato-daiwa/frontend-automation",
+  "version": "0.0.0",
+  "main": "./Distributable/cjs/index.js",
+  "module": "./Distributable/esm/index.js",
+  "sideEffects": false,
+  "types": "./Distributable/esm/index.d.ts",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "@yamato-daiwa/es-extensions": "1.9.4",
+    "@yamato-daiwa/es-extensions-nodejs": "1.9.4",
+    "js-beautify": "2.0.3",
+    "pug": "3.0.4"
+  },
+  "devDependencies": {
+    "@types/js-beautify": "1.14.3",
+    "@types/node": "26.6.5",
+    "@types/pug": "2.0.10",
+    "typescript": "6.0.3"
+  }
+}

@@ -1,0 +1,24 @@
+{
+
+  "compilerOptions": {
+
+    "target": "ESNext",
+    "module": "nodenext",
+    "moduleResolution": "NodeNext",
+
+    "types": [ "node" ],
+
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+
+    "rootDir": "Source",
+    "removeComments": true,
+    "outDir": "Distributable",
+    "declaration": false
+
+  },
+
+  "include": [ "Source/**/*" ]
+
+}

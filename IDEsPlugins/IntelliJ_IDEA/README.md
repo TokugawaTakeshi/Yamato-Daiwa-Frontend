@@ -17,11 +17,17 @@ Adds the [live templates](https://www.jetbrains.com/help/idea/using-live-templat
 ## Live Templates
 ### Pug Markup
 #### Inline JavaScript
+##### Functions and Classes
 
-+ **buildEmailLinkHREF_AttributeValue** — Autocomplete imitator for [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildEmailLinkHrefAttributeValue/buildEmailLinkHrefAttributeValue.english.html)
-+ **buildPhoneNumberLinkHrefAttributeValue** — Autocomplete imitator for [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/buildPhoneNumberLinkHrefAttributeValue/buildPhoneNumberLinkHrefAttributeValue.english.html)
-+ **processObjectTypeParameterOfPugMixin** —Autocomplete imitator for [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/processObjectTypeParameterOfPugMixin.english.html)
-+ **tost** — Autocomplete imitator for [`textOverflowSafetyTest` constant](https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package/Documentation/Markup/ConstantsAssets/textOverflowSafetyTest/textOverflowSafetyTest.md)
++ **processObjectTypeParameterOfPugMixin** — Autocomplete imitator for the [eponymous function](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/processObjectTypeParameterOfPugMixin/processObjectTypeParameterOfPugMixin.english.html)
++ **HeadingsLevelsCoordinator** — Autocomplete imitator for the [eponymous class](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/HeadingsLevelsCoordinator/HeadingsLevelsCoordinator.english.html),
+    the selecting of specific getter or member accessing will be also suggested.
++ **RoutingEmulator**  Autocomplete imitator for the [eponymous class](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/FunctionsAndClasses/RoutingEmulator/RoutingEmulator.english.html),
+    the selecting of specific getter or member accessing will be also suggested.
+
+
+##### Assets
+
 + **dius** — Autocomplete imitator for [`DummyImagesURIs` enumeration](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/DummyImagesURIs/DummyImagesURIs.english.html) 
 
 
@@ -130,14 +136,14 @@ Adds the [live templates](https://www.jetbrains.com/help/idea/using-live-templat
 #### Kernel
 ##### Configuration
 
-- **YDF_Configuration**, alias: **ydfc** — autocomplete for 
-  [`YDF_Configuration` object](https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/YDF_Configuration/YDF_Configuration.english.html).
-  To access to properties of the second level immideatly after Live template expanding, the following Live templates 
+- **Configuration--YDF**, alias: **ydfc** — autocomplete for 
+  [`Configuration--YDF` object](https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/YDF_Configuration/YDF_Configuration.english.html).
+  To access to properties of the second level immediately after Live template expanding, the following Live templates are 
   available:
   - **ydfc-fs** — accessing to selected value of [`YDF_Configuration.fontsStacks` associative array](https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/YDF_Configuration/YDF_Configuration.english.html#PROPERTIES-FONTS_STACKS--SECTION) 
   - **ydfc-tg** — accessing to selected value of [`YDF_Configuration.textGeometry` object](https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/YDF_Configuration/YDF_Configuration.english.html#PROPERTIES-TEXT_GEOMETRY--SECTION)
   - **ydfc-z** — accessing to selected value of [`YDF_Configuration.zIndexes` associative array](https://frontend.yamato-daiwa.com/CoreLibrary/Styles/Kernel/YDF_Configuration/YDF_Configuration.english.html#PROPERTIES-Z_INDEXES--SECTION)
-- **oydfc** — YDF configuration overriding
+- **overrideConfiguration--YDF**, alias: **oydfc** — the invocation of **overrideConfiguration--YDF** function
 
 
 ##### Specification schemas
