@@ -26,22 +26,22 @@
     @switch (_decorativeVariation)
     {
       case nameof(StandardDecorativeVariations.notice):
-          <Pencil__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
+          <Pencil__Circled__Filled class="AdmonitionBlock--YDF-SVG_Icon"/>
           break;
       case nameof(StandardDecorativeVariations.error):
-          <ExclamationMarkIcon__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon" />
+          <ExclamationMarkIcon__Circled__Filled class="AdmonitionBlock--YDF-SVG_Icon" />
           break;
       case nameof(StandardDecorativeVariations.warning):
-          <ExclamationMarkIcon__Triangled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
+          <ExclamationMarkIcon__Triangled__Filled class="AdmonitionBlock--YDF-SVG_Icon"/>
           break;
       case nameof(StandardDecorativeVariations.success):
-          <CheckmarkIcon__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
+          <CheckmarkIcon__Circled__Filled class="AdmonitionBlock--YDF-SVG_Icon"/>
           break;
       case nameof(StandardDecorativeVariations.guidance):
-          <InfoSignIcon__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon"/>
+          <InfoSignIcon__Circled__Filled class="AdmonitionBlock--YDF-SVG_Icon"/>
           break;
       case nameof(StandardDecorativeVariations.question):
-          <QuestionMark__Circled__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-SVG_Icon" />
+          <QuestionMarkIcon__Circled__Filled class="AdmonitionBlock--YDF-SVG_Icon" />
           break;
     }
   } else if (CustomSVG_Icon is not null)
@@ -84,7 +84,7 @@
       aria-label=@localization.dismissingButton.accessibilityGuidance
       @onclick=@onClickDismissingButton
     >
-      <MultiplicationSignIcon__Boxed__Filled rootElementModifierCSS_Class="AdmonitionBlock--YDF-DismissingButton-Icon" />
+      <MultiplicationSignIcon__Boxed__Filled class="AdmonitionBlock--YDF-DismissingButton-Icon" />
     </button>
   }
 

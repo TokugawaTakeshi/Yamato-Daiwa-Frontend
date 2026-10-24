@@ -3,9 +3,6 @@
 
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "bundler",
-
-    "experimentalDecorators": true,
 
     "noImplicitReturns": true,
     "noUnusedLocals": true,
@@ -13,11 +10,6 @@
 
     "skipLibCheck": true
 
-  },
-
-  "include": [ 
-    "YDF.module.ts",
-    "YDF.global.ts" 
-  ]
+  }
 
 }

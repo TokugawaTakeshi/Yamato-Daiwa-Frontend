@@ -5,9 +5,13 @@ include Markup/InlineECMAScript/GUI_ComponentsRequirements.generated.pug
 
   const {
 
-    AccordionYDF_GUI_ComponentDOM_AccessResources,
-    AdmonitionBlockYDF_GUI_ComponentLocalization__English,
-    BlockingLoadingOverlayYDF_GUI_ComponentLocalization__English,
+    YDF_ComponentsCoordinator,
+
+    Accordion: Accordion__YDF,
+    AdmonitionBlock: AdmonitionBlock__YDF,
+    Badge: Badge__YDF,
+    BlockingLoadingOverlay: BlockingLoadingOverlay__YDF,
+    Breadcrumb: Breadcrumb__YDF,
     SnackbarYDF_GUI_ComponentLocalization__English,
 
     /* ━━━ Controls ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -18,8 +22,19 @@ include Markup/InlineECMAScript/GUI_ComponentsRequirements.generated.pug
     ValidatableControlShellYDF_GUI_ComponentDOM_AccessResources,
 
     /* ┅┅┅ Buttons ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-    ClosingButtonYDF_GUI_ComponentLocalization__English,
-    HamburgerMenuButtonYDF_GUI_ComponentLocalization__English,
+    Button: Button__YDF,
+    ClosingButton: ClosingButton__YDF,
+    HamburgerMenuButton: HamburgerMenuButton__YDF,
+
+    /* ┅┅┅ Chip ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+    Chip: Chip__YDF,
+
+    /* ┅┅┅ Menus ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+    DrawerMenu: DrawerMenu__YDF,
+    MenuList: MenuList__YDF,
+
+    /* ┅┅┅ Modal Dialogs ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+    ModalDialog: ModalDialog__YDF,
 
     /* ┅┅┅ Validatables ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
     /* ╍╍╍ Date Time Picker ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */

@@ -1,7 +1,7 @@
-import type { AdmonitionBlockLocalization } from "./AdmonitionBlockLocalization";
+import type AdmonitionBlock from "./AdmonitionBlock.base";
 
 
-const AdmonitionBlockYDF_GUI_ComponentLocalization__English: AdmonitionBlockLocalization = {
+export const AdmonitionBlockYDF_GUI_ComponentLocalization__English: AdmonitionBlock.Localization = {
   dismissingButton: { accessibilityGuidance: "Hide this message" }
 };
 

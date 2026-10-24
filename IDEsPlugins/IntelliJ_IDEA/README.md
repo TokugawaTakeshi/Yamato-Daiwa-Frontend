@@ -28,6 +28,7 @@ Adds the [live templates](https://www.jetbrains.com/help/idea/using-live-templat
 
 ##### Assets
 
++ **textOverflowSafetyTest**, alias: **tost** — Autocomplete imitator for [`textOverflowSafetyTest` constant](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/textOverflowSafetyTest/textOverflowSafetyTest.english.html)
 + **dius** — Autocomplete imitator for [`DummyImagesURIs` enumeration](https://frontend.yamato-daiwa.com/CoreLibrary/Markup/Functionality/InlineJavaScript/Assets/DummyImagesURIs/DummyImagesURIs.english.html) 
 
 

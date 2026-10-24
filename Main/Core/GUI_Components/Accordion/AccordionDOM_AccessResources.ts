@@ -1,7 +1,23 @@
-import type Accordion from "./Accordion";
+export type AccordionDOM_AccessResources = Readonly<{
 
+  rootElement: Readonly<{
+    CSS_NAMESPACE_CLASS: string;
+    SELECTOR_BY_CSS_NAMESPACE_CLASS: string;
+  }>;
 
-const AccordionYDF_GUI_ComponentDOM_AccessResources: Accordion.DOM_AccessResources = {
+  button: Readonly<{
+    DATA_ATTRIBUTE_KEY: string;
+    INTERNALLY_UNIQUE_SELECTOR: string;
+  }>;
+
+  panel: Readonly<{
+    DATA_ATTRIBUTE_KEY: string;
+    INTERNALLY_UNIQUE_SELECTOR: string;
+  }>;
+
+}>;
+
+export const AccordionDOM_AccessResources: AccordionDOM_AccessResources = {
 
   rootElement: {
     CSS_NAMESPACE_CLASS: "Accordion--YDF",
@@ -20,5 +36,4 @@ const AccordionYDF_GUI_ComponentDOM_AccessResources: Accordion.DOM_AccessResourc
 
 };
 
-
-export default AccordionYDF_GUI_ComponentDOM_AccessResources;
+export default AccordionDOM_AccessResources;

@@ -1,7 +1,7 @@
-import type { HamburgerMenuButtonLocalization } from "./HamburgerMenuButtonLocalization";
+import type HamburgerMenuButton from "./HamburgerMenuButton.base";
 
 
-const HamburgerMenuButtonYDF_GUI_ComponentLocalization__English: HamburgerMenuButtonLocalization = {
+export const HamburgerMenuButtonYDF_GUI_ComponentLocalization__English: HamburgerMenuButton.Localization = {
   defaultLabel: "Menu",
   defaultAccessibilityGuidance: "Menu"
 };

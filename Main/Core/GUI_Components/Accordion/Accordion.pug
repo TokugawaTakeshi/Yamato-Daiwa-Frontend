@@ -1,6 +1,3 @@
-include Accordion.class.pug
-
-
 //- [ References ]
   + https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
   + https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/
@@ -8,19 +5,45 @@ mixin Accordion--YDF(properties, statesSimulations)
 
   -
 
-    const COMPONENT_ID = Accordion__YDF.generateComponentID();
-    const BUTTON_ID = `${ COMPONENT_ID }-BUTTON`;
-    const PANEL_ID = `${ COMPONENT_ID }-PANEL`
-
     const {
 
+      /** @type { string } */
       title,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       initiallyExpanded,
+
+      /**
+       * @type { ReadonlyArray<string> }
+       * @default []
+       * */
       panelAdditionalCSS_Classes,
 
+      /**
+       * @type { string }
+       * @default Accordion__YDF.Themes.regular
+       * */
       theme,
+
+      /**
+       * @type { boolean }
+       * @default Accordion__YDF.areThemesCSS_ClassesCommon
+       */
       areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default Accordion__YDF.GeometricVariations.regular
+       */
       geometricVariation,
+
+      /**
+       * @type { string }
+       * @default Accordion__YDF.DecorativeVariations.regular
+       */
       decorativeVariation
 
     } = YDF.processObjectTypeParameterOfPugMixin({
@@ -28,33 +51,30 @@ mixin Accordion--YDF(properties, statesSimulations)
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: Accordion__YDF.propertiesSpecification,
-      mixinName: Accordion__YDF.CSS_NAMESPACE
+      mixinName: "Accordion--YDF"
     });
 
-    const rootCSS_Classes = [
+    /** @type { string } */
+    const COMPONENT_ID = Accordion__YDF.generateInstanceID();
 
-      Accordion__YDF.DOM_AccessResources.rootElement.CSS_NAMESPACE_CLASS,
+    /** @type { string } */
+    const BUTTON_ID = `${COMPONENT_ID}-BUTTON`;
 
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: Accordion__YDF.Themes,
-        CSS_Namespace: Accordion__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
+    /** @type { string } */
+    const PANEL_ID = `${COMPONENT_ID}-PANEL`
 
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: Accordion__YDF.GeometricVariations,
-        CSS_Namespace: Accordion__YDF.CSS_NAMESPACE
-      }),
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+          Accordion__YDF,
+          {
+            theme,
+            areThemesCSS_ClassesCommon,
+            geometricVariation,
+            decorativeVariation
+          }
+        );
 
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: Accordion__YDF.DecorativeVariations,
-        CSS_Namespace: Accordion__YDF.CSS_NAMESPACE
-      })
-
-    ];
 
   div&attributes(
     Object.assign(

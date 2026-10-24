@@ -1,5 +1,5 @@
 {
-  "private": "true",
+  "private": true,
   "scripts": {
     "Incremental Development Building": "rimraf 02-LocalDevelopmentBuild && yda build --mode LOCAL_DEVELOPMENT",
     "Production Building": "rimraf 03-ProductionBuild && yda build --mode PRODUCTION",

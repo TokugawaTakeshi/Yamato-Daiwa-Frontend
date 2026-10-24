@@ -1,7 +1,7 @@
 /* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import {
-  type BlockingLoadingOverlayLocalization,
+  type BlockingLoadingOverlayBase,
   BlockingLoadingOverlayYDF_GUI_ComponentLocalization__English
 } from "@yamato-daiwa/frontend";
 
@@ -32,7 +32,7 @@ class BlockingLoadingOverlay extends VueComponent {
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static readonly CSS_NAMESPACE: string = "BlockingLoadingOverlay--YDF";
 
-  public static localization: BlockingLoadingOverlayLocalization =
+  public static localization: BlockingLoadingOverlayBase.Localization =
       BlockingLoadingOverlayYDF_GUI_ComponentLocalization__English;
 
 

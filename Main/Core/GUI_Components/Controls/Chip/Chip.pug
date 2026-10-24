@@ -1,55 +1,72 @@
-include Chip.class.pug
-
-
 mixin Chip--YDF(properties)
 
   -
 
     const {
 
-      key,
-      value,
+      /** @type { string | undefined } */
+      keyLabel,
 
-      theme,
+      /** @type { string | undefined } */
+      valueLabel,
+
+      /** @type { string | undefined } */
       dismissingButtonAccessibilityGuidance,
+
+      /**
+       * @type { string }
+       * @default Chip__YDF.Themes.regular
+       */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default Chip__YDF.areThemesCSS_ClassesCommon
+       */
       areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default Chip__YDF.GeometricVariations.regular
+       */
       geometricVariation,
+
+      /**
+       * @type { Array<Badge.GeometricModifiers> }
+       * @default []
+       */
+      geometricModifiers,
+
+      /** @type { string } */
       decorativeVariation,
+
+      /**
+       * @type { Array<Badge.DecorativeModifiers> }
+       * @default []
+       */
       decorativeModifiers
 
     } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
-      parameterPropertiesSpecification: Chip__YDF.propertiesSpecification,
-      mixinName: Chip__YDF.CSS_NAMESPACE
+      parameterPropertiesSpecification: Chip.propertiesSpecification,
+      mixinName: "Chip--YDF"
     });
 
-
-    const rootElementModifierCSS_Classes = [
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: Chip__YDF.Themes,
-        CSS_Namespace: Chip__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: Chip__YDF.GeometricVariations,
-        CSS_Namespace: Chip__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: Chip__YDF.DecorativeVariations,
-        CSS_Namespace: Chip__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.generateDemandedDecorativeModifiersCSS_Classes(Chip__YDF.CSS_NAMESPACE, decorativeModifiers)
-
-    ];
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+            Chip__YDF,
+            {
+              theme,
+              areThemesCSS_ClassesCommon,
+              geometricVariation,
+              geometricModifiers,
+              decorativeVariation,
+              decorativeModifiers
+            }
+        );
 
 
   span.Chip--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
@@ -59,11 +76,11 @@ mixin Chip--YDF(properties)
       block
 
 
-    if key
+    if keyLabel
 
-      span.Chip--YDF-Key= key
+      span.Chip--YDF-Key= keyLabel
 
-    span.Chip--YDF-Value= value
+    span.Chip--YDF-Value= valueLabel
 
     if dismissingButtonAccessibilityGuidance
 

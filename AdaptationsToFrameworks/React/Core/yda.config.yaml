@@ -102,8 +102,6 @@ $projectBuilding:
         $targetRuntime:
           $type: BROWSER
 
-        $typeScriptConfigurationFileRelativePath: "tsconfig.workbenches.json"
-
         $buildingModeDependent:
           $localDevelopment:
             $outputTopDirectoryRelativePath: Workbenches/Build

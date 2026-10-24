@@ -1,18 +1,35 @@
-include BlockingLoadingOverlay.class.pug
-
-
 mixin BlockingLoadingOverlay--YDF(properties, statesSimulations)
 
   -
 
     const {
+
+      /** @type { string } */
       loadingIndicatorType
-    } = properties;
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: BlockingLoadingOverlay__YDF.propertiesSpecification,
+      mixinName: "BlockingLoadingOverlay--YDF"
+    });
 
     const {
-      displaying = false
-    } = statesSimulations ?? {};
 
+      /**
+       * @type { boolean }
+       * @default false
+       */
+      displaying
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: BlockingLoadingOverlay__YDF.statesSimulationsSpecification,
+      mixinName: "BlockingLoadingOverlay--YDF"
+    });
 
   .BlockingLoadingOverlay--YDF(
     hidden=(displaying ? null : "")

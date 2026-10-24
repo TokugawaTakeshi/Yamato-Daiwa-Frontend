@@ -14,10 +14,14 @@
 
   },
 
+  /* [ Theory ]
+   * Webpack which under the hood of @yamato-daiwa/automation don't case about "include", "exclude" and "files"; this
+   *   directive needs only for ESLint and IDEs */
   "include": [
     "Project.d.ts",
     "Source/**/*",
-    "Workbenches/**/*"
+    "Workbenches/**/*",
+    "Automation/**/*"
   ]
 
 }

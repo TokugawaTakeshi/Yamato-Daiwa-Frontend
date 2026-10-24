@@ -8,6 +8,8 @@ $projectBuilding:
 
         $singleEntryPointSourceFileRelativePath: YDF.module.ts
 
+        $typeScriptConfigurationFileRelativePath: "tsconfig.build.json"
+
         $targetRuntime:
           $type: BROWSER
 
@@ -22,9 +24,11 @@ $projectBuilding:
             $revisioning: { $disable: true }
 
       Global:
-      
+
         $singleEntryPointSourceFileRelativePath: YDF.global.ts
-        
+
+        $typeScriptConfigurationFileRelativePath: "tsconfig.build.json"
+
         $targetRuntime:
           $type: BROWSER
 

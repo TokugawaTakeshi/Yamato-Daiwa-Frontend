@@ -3,5 +3,8 @@
   "compilerOptions": {
     "rootDir": "./Source"
   },
-  "exclude": [ "./Workbenches/**/**" ]
+  "exclude": [
+    "./Workbenches/**/**",
+    "./Automation/**/**"
+  ]
 }

@@ -16,7 +16,7 @@ import {
 } from "@yamato-daiwa/es-extensions-browserjs";
 
 
-export default abstract class AdmonitionBlock {
+export abstract class AdmonitionBlock {
 
   protected static readonly ROOT_ELEMENT_CSS_CLASS: string = "AdmonitionBlock--YDF";
   protected static readonly ROOT_ELEMENT_SELECTOR: string = `.${ AdmonitionBlock.ROOT_ELEMENT_CSS_CLASS }`;
@@ -174,3 +174,6 @@ export default abstract class AdmonitionBlock {
   }
 
 }
+
+
+export default AdmonitionBlock;

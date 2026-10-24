@@ -1,0 +1,11 @@
+﻿{
+
+  "extends": "./tsconfig.json",
+
+  "include": [
+    "YDF.module.ts",
+    "YDF.global.ts",
+    "Automation/**/*.ts"
+  ]
+
+}

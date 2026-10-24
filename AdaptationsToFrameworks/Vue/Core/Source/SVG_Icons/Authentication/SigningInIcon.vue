@@ -1,8 +1,8 @@
 <template lang="pug">
 
-include ../../../node_modules/@yamato-daiwa/frontend/Markup/Assets/SVG_Icons/Authentication/SigningInIcon.pug
+  include ../../../node_modules/@yamato-daiwa/frontend/Markup/Assets/SVG_Icons/Authentication/SigningInIcon.pug
 
-+SigningIn--YDF_Icon
+  +SigningIn--YDF_Icon
 
 </template>
 

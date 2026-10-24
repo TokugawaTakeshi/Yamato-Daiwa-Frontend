@@ -7,7 +7,7 @@ import {
 } from "@yamato-daiwa/es-extensions";
 
 
-export default abstract class BlockingLoadingOverlay {
+export abstract class BlockingLoadingOverlay {
 
   protected static rootElement: HTMLElement | null = null;
   protected static accessibilityGuidanceElement: Element;
@@ -94,3 +94,7 @@ export default abstract class BlockingLoadingOverlay {
   }
 
 }
+
+
+export default BlockingLoadingOverlay;
+

@@ -159,8 +159,8 @@ export { default as UnlikeIcon__Outlined } from "./SVG_Icons/Like/UnlikeIcon__Ou
 export { default as ChecklistIcon } from "./SVG_Icons/List/ChecklistIcon.vue";
 
 export { default as MagnifyingGlassIcon } from "./SVG_Icons/MagnifyingGlass/MagnifyingGlassIcon.vue";
-export { default as ZoomInIcon__Filled } from "./SVG_Icons/MagnifyingGlass/ZoomInIcon__Filled.vue";
-export { default as ZoomInIcon__Outlined } from "./SVG_Icons/MagnifyingGlass/ZoomInIcon__Outlined.vue";
+export { default as ZoomInIcon__Filled } from "./SVG_Icons/MagnifyingGlass/ZoomingInIcon__Filled.vue";
+export { default as ZoomInIcon__Outlined } from "./SVG_Icons/MagnifyingGlass/ZoomingOutIcon__Filled.vue";
 export { default as ZoomOutIcon__Filled } from "./SVG_Icons/MagnifyingGlass/ZoomingOutIcon__Filled.vue";
 export { default as ZoomOutIcon__Outlined } from "./SVG_Icons/MagnifyingGlass/ZoomingInIcon__Outlined.vue";
 
@@ -214,7 +214,7 @@ export { default as QuestionMarkIcon__Circled__Filled } from "./SVG_Icons/Questi
 export { default as QuestionMarkIcon__Circled__Outlined } from "./SVG_Icons/QuestionMark/QuestionMarkIcon__Circled__Outlined.vue";
 
 export { default as QuoteMarkIcon__Downward__Filled } from "./SVG_Icons/QuoteMark/QuoteMarkIcon__Downward__Filled.vue";
-export { default as QuoteMarkIcon_Upward__Outlined } from "./SVG_Icons/QuoteMark/QuoteMarkIcon_Upward__Outlined.vue";
+export { default as QuoteMarkIcon_Upward__Outlined } from "./SVG_Icons/QuoteMark/QuoteMarkIcon__Upward__Outlined.vue";
 export { default as QuoteMarkIcon__Upward__Filled } from "./SVG_Icons/QuoteMark/QuoteMarkIcon__Upward__Filled.vue";
 export { default as QuoteMarkIcon__Downward__Outlined } from "./SVG_Icons/QuoteMark/QuoteMarkIcon__Downward__Outlined.vue";
 

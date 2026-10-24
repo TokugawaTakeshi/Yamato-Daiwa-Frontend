@@ -1,13 +1,13 @@
-﻿@using YamatoDaiwa.Frontend.GUI_Components.Abstractions
+@using YamatoDaiwa.CSharpExtensions
 
-
-@implements IFlexibleExternalCSS_ClassesSpecifyingForRootElement
+@implements YamatoDaiwa.Frontend.GUI_Components.Abstractions.IHTML_AttributesFallthrough
 
 
 <svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 20 17.35"
-  class=@(((IFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes)
+  class=@(rootElementHTML_Attributes?.TryGetValue("class", out object? classValue) == true ? classValue : null)
+  @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary
 >
   <path d="M10 0L0 17.32h20zm1.13 15.05H8.87v-2.26h2.26zM8.87 11V6.85h2.26V11z"></path>
   <path fill="none" stroke="#fff" stroke-miterlimit="10" d="M19.77 11.68h.03"></path>
@@ -16,13 +16,7 @@
 
 @code {
 
-  [Microsoft.AspNetCore.Components.Parameter]
-  public string? rootElementModifierCSS_Class { get; set; } = null;
-
-  [Microsoft.AspNetCore.Components.Parameter]
-  public string[]? rootElementModifierCSS_Classes { get; set; } = null;
-
-  [Microsoft.AspNetCore.Components.Parameter]
-  public string? rootElementSpaceSeparatedModifierCSS_Classes { get; set; } = null;
+  [Microsoft.AspNetCore.Components.Parameter(CaptureUnmatchedValues = true)]
+  public Dictionary<string, object>? rootElementHTML_Attributes { get; set; }
 
 }

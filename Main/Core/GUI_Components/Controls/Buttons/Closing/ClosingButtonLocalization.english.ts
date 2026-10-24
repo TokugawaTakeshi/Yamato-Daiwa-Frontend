@@ -1,7 +1,7 @@
-import type { ClosingButtonLocalization } from "./ClosingButtonLocalization";
+import type ClosingButton from "./ClosingButton.base";
 
 
-const ClosingButtonYDF_GUI_ComponentLocalization__English: ClosingButtonLocalization = {
+export const ClosingButtonYDF_GUI_ComponentLocalization__English: ClosingButton.Localization = {
   defaultLabel: "Close",
   defaultAccessibilityGuidance: "Close"
 };

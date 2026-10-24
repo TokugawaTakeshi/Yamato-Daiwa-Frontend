@@ -1,7 +1,7 @@
 /* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import {
-  type HamburgerMenuButtonLocalization,
+  type HamburgerMenuButtonBase,
   HamburgerMenuButtonYDF_GUI_ComponentLocalization__English
 } from "@yamato-daiwa/frontend";
 
@@ -201,7 +201,7 @@ class HamburgerMenuButton extends VueComponent {
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   @AccessibleFromTemplateAsNonReactive
-  public static localization: HamburgerMenuButtonLocalization = HamburgerMenuButtonYDF_GUI_ComponentLocalization__English;
+  public static localization: HamburgerMenuButtonBase.Localization = HamburgerMenuButtonYDF_GUI_ComponentLocalization__English;
 
   /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected get rootElementModifierCSS_Classes(): ReadonlyArray<string> {

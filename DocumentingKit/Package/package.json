@@ -31,7 +31,7 @@
   "devDependencies": {
     "@types/prismjs": "1.26.0",
     "@yamato-daiwa/automation": "0.3.0-alpha.0",
-    "@yamato-daiwa/frontend": "../../CoreLibrary/Package",
+    "@yamato-daiwa/frontend": "../../Main/Core",
     "@yamato-daiwa/style_guides": "0.0.47",
     "typescript": "5.0.3"
   },

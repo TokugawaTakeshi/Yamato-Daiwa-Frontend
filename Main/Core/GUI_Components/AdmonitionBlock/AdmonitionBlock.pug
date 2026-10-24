@@ -1,6 +1,3 @@
-include AdmonitionBlock.class.pug
-
-
 mixin AdmonitionBlock--YDF(properties)
 
   -
@@ -52,32 +49,20 @@ mixin AdmonitionBlock--YDF(properties)
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: AdmonitionBlock__YDF.propertiesSpecification,
-      mixinName: AdmonitionBlock__YDF.CSS_NAMESPACE
+      mixinName: "AdmonitionBlock--YDF"
     });
 
     /** @type { Array<string> } */
-    const rootElementModifierCSS_Classes = [
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: AdmonitionBlock__YDF.Themes,
-        CSS_Namespace: AdmonitionBlock__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: AdmonitionBlock__YDF.GeometricVariations,
-        CSS_Namespace: AdmonitionBlock__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation: decorativeVariation,
-        allDecorativeVariations: AdmonitionBlock__YDF.DecorativeVariations,
-        CSS_Namespace: AdmonitionBlock__YDF.CSS_NAMESPACE
-      })
-
-    ];
+    const rootElementModifierCSS_Classes =
+        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+          AdmonitionBlock__YDF,
+          {
+            theme,
+            areThemesCSS_ClassesCommon,
+            geometricVariation,
+            decorativeVariation
+          }
+        );
 
     /** @type { string | undefined } */
     let INSTANCE_ID;

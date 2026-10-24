@@ -2,7 +2,7 @@
 
   "compilerOptions": {
 
-    "target": "ESNext",
+    "target": "es2023",
     "module": "nodenext",
     "moduleResolution": "NodeNext",
 
@@ -13,9 +13,9 @@
     "noImplicitReturns": true,
 
     "rootDir": "Source",
-    "removeComments": true,
     "outDir": "Distributable",
-    "declaration": false
+    "declaration": true,
+    "removeComments": true
 
   },
 

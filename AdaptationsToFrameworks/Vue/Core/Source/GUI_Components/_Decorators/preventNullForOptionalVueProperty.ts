@@ -39,6 +39,8 @@ function patchLifecycleHook(
   componentOptions: ComponentOptions
 ): void {
 
+  /* eslint-disable-next-line @typescript-eslint/unbound-method --
+  * Experimentally proved that in this case the binding is not required. */
   const originalLifecycleHook: (() => unknown) | undefined = componentOptions[targetHookName];
 
   componentOptions[targetHookName] = function lifecycleHookWrapper(): void {

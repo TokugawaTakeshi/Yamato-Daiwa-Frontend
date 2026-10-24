@@ -1,5 +1,3 @@
-include HamburgerMenuButton.class.pug
-
 //-
   [ References ]
   Accessibility: https://www.accede-web.com/en/guidelines/rich-interface-components/hamburger-menu/
@@ -55,7 +53,7 @@ mixin HamburgerMenuButton--YDF(properties)
       geometricVariation,
 
       /**
-       * @type { Array<HamburgerMenuButton__YDF.GeometricModifiers> }
+       * @type { Array<HamburgerMenuButton.GeometricModifiers> }
        * @default []
        */
       geometricModifiers,
@@ -67,7 +65,7 @@ mixin HamburgerMenuButton--YDF(properties)
       decorativeVariation,
 
       /**
-       * @type { Array<HamburgerMenuButton__YDF.DecorativeModifiers> }
+       * @type { Array<HamburgerMenuButton.DecorativeModifiers> }
        * @default []
        */
       decorativeModifiers
@@ -77,58 +75,32 @@ mixin HamburgerMenuButton--YDF(properties)
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: HamburgerMenuButton__YDF.propertiesSpecification,
-      mixinName: HamburgerMenuButton__YDF.CSS_NAMESPACE
+      mixinName: "HamburgerMenuButton--YDF"
     });
 
 
     /** @type { Array<string> } */
-    const rootElementModifierCSS_Classes = [
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: HamburgerMenuButton__YDF.Themes,
-        CSS_Namespace: HamburgerMenuButton__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: HamburgerMenuButton__YDF.GeometricVariations,
-        CSS_Namespace: HamburgerMenuButton__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(
-        HamburgerMenuButton__YDF.CSS_NAMESPACE, geometricModifiers
-      ),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: HamburgerMenuButton__YDF.DecorativeVariations,
-        CSS_Namespace: HamburgerMenuButton__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.generateDemandedDecorativeModifiersCSS_Classes(
-        HamburgerMenuButton__YDF.CSS_NAMESPACE, decorativeModifiers
-      )
-
-    ];
+    const rootElementModifierCSS_Classes =
+        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+            HamburgerMenuButton__YDF,
+            {
+              theme,
+              areThemesCSS_ClassesCommon,
+              geometricVariation,
+              geometricModifiers,
+              decorativeVariation,
+              decorativeModifiers
+            }
+        );
 
     /** @type { string } */
-    const labelCSS_ModifierClass =
-        {
-          [HamburgerMenuButton__YDF.LabelLetterCases.uppercase]:
-              `${ HamburgerMenuButton__YDF.CSS_NAMESPACE }-Label__Uppercase`,
-          [HamburgerMenuButton__YDF.LabelLetterCases.lowercase]:
-              `${ HamburgerMenuButton__YDF.CSS_NAMESPACE }-Label__Lowercase`,
-          [HamburgerMenuButton__YDF.LabelLetterCases.capitalisation]:
-              `${ HamburgerMenuButton__YDF.CSS_NAMESPACE }-Label__Capitalisation`
-        }[labelLetterCase];
+    const labelCSS_ModifierClass = HamburgerMenuButton__YDF.labelModifiersCSS_Classes[labelLetterCase];
 
 
   button.HamburgerMenuButton--YDF(
     type="button"
     class=rootElementModifierCSS_Classes
-    aria-label= (noLabel ? (accessibilityGuidance || HamburgerMenuButton__YDF.localization.defaultAccessibilityGuidance) : null)
+    aria-label= (noLabel ? (accessibilityGuidance || HamburgerMenuButton.localization.defaultAccessibilityGuidance) : null)
   )&attributes(attributes)
 
     span.HamburgerMenuButton--YDF-Icon(role="presentation")

@@ -1,7 +1,7 @@
-import type { BlockingLoadingOverlayLocalization } from "./BlockingLoadingOverlayLocalization";
+import type BlockingLoadingOverlay from "./BlockingLoadingOverlay.base";
 
 
-const BlockingLoadingOverlayYDF_GUI_ComponentLocalization__English: BlockingLoadingOverlayLocalization = {
+export const BlockingLoadingOverlayYDF_GUI_ComponentLocalization__English: BlockingLoadingOverlay.Localization = {
   defaultAccessibilityGuidance: "Please wait"
 };
 

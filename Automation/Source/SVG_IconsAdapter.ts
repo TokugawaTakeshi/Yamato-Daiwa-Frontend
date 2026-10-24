@@ -1,8 +1,12 @@
+/* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ┅┅┅ Native Modules ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import FileSystem from "node:fs";
 
+/* ┅┅┅ Third-party Technologies ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import Pug from "pug";
-import { html_beautify as formatHTML } from "js-beautify"
+import { html_beautify as formatHTML } from "js-beautify";
 
+/* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import {
   ConsoleApplicationLogger,
   ImprovedFileSystem,
@@ -14,7 +18,7 @@ import {
   getMatchingWithFirstRegularExpressionCapturingGroup,
   Logger
 } from "@yamato-daiwa/es-extensions";
-
+/* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 
 export abstract class SVG_IconsAdapter {
@@ -30,30 +34,26 @@ export abstract class SVG_IconsAdapter {
         { alwaysForwardSlashSeparators: true }
       );
 
-  private static readonly SVG_ICONS_OUTPUT_BASE_DIRECTORY_ABSOLUTE_PATH: string =
-      ImprovedPath.joinPathSegments(
-        [ process.cwd(), "Source", "SVG_Icons" ],
-        { alwaysForwardSlashSeparators: true }
-      );
+
+  /* ━━━ Abstract Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected abstract outputFileNameExtension: string;
+  protected abstract outputBaseDirectoryPathRelativeToProjectRoot: string;
 
 
-  /* ━━━ Public Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ━━━ Public Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static generateSVG_IconsFiles(implementation: SVG_IconsAdapter): void {
     implementation.generateSVG_IconsFiles();
   }
 
 
-  /* ━━━ Abstract Members ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* ┅┅┅ Fields ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  protected abstract outputFileNameExtension: string;
-
-
-  /* ┅┅┅ Methods ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  /* ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ┅┅┅ Protected Abstract ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   protected abstract generateOutputCode(
     codeTemplateVariables: SVG_IconsAdapter.CodeTemplateVariables
   ): string;
 
 
+  /* ┅┅┅ Protected Static ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   protected static getHTML_Output(SVG_IconSourcePugCode: string, SVG_IconPugMixinName: string): string {
     return formatHTML(
       Pug.compile(`${ SVG_IconSourcePugCode }\n+${ SVG_IconPugMixinName }()`)(),
@@ -64,8 +64,23 @@ export abstract class SVG_IconsAdapter {
     );
   }
 
+  protected static getSVG_IconClassNameWithoutVendorPostfixByPugMixinName(pugMixinName: string): string {
 
-  /* ┅┅┅ Private Methods ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+    const indexOfFirstUnderscore: number = pugMixinName.indexOf("_");
+
+    const pugMixinWithoutVendorPostfix: string = pugMixinName.replace(/--YDF_Icon$/gu, "");
+
+    return indexOfFirstUnderscore > -1 ?
+        Array.from(pugMixinWithoutVendorPostfix).
+            toSpliced(indexOfFirstUnderscore, 0, ...Array.from("Icon")).
+            join("") :
+        `${ pugMixinWithoutVendorPostfix }Icon`;
+
+  }
+
+
+  /* ┅┅┅ Private ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  /* eslint-disable @typescript-eslint/member-ordering -- API to the top, internals to the bottom. */
   private generateSVG_IconsFiles(): void {
 
     if (!FileSystem.existsSync(SVG_IconsAdapter.SVG_ICONS_SOURCE_BASE_DIRECTORY_ABSOLUTE_PATH)) {
@@ -75,7 +90,7 @@ export abstract class SVG_IconsAdapter {
             `Directory "${ SVG_IconsAdapter.SVG_ICONS_SOURCE_BASE_DIRECTORY_ABSOLUTE_PATH }" not found. ` +
             "Has core package (\"@yamato-daiwa/frontend\") been installed?",
         title: "Directory not Found",
-        occurrenceLocation: "SVG_IconsAdapter.generateSVG_IconsFiles()",
+        occurrenceLocation: "SVG_IconsAdapter.generateSVG_IconsFiles()"
       });
     }
 
@@ -97,7 +112,7 @@ export abstract class SVG_IconsAdapter {
             { alwaysForwardSlashSeparators: true }
           )
     ) {
-      this.generateSVG_IconsFile(SVG_IconSourceFileAbsolutePath)
+      this.generateSVG_IconsFile(SVG_IconSourceFileAbsolutePath);
     }
 
   }
@@ -129,7 +144,8 @@ export abstract class SVG_IconsAdapter {
     const outputFileParentDirectoryAbsolutePath: string =
         ImprovedPath.joinPathSegments(
           [
-            SVG_IconsAdapter.SVG_ICONS_OUTPUT_BASE_DIRECTORY_ABSOLUTE_PATH,
+            process.cwd(),
+            this.outputBaseDirectoryPathRelativeToProjectRoot,
             ImprovedPath.extractDirectoryFromFilePath({
               targetPath: SVG_IconSourceFileAbsolutePathRelativeToSVG_IconsTopDirectory,
               alwaysForwardSlashSeparators: true,
@@ -173,11 +189,13 @@ export abstract class SVG_IconsAdapter {
       title: "Generated",
       description: outputFilePath,
       compactLayout: true
-    })
+    });
 
   }
+  /* eslint-enable @typescript-eslint/member-ordering */
 
 }
+
 
 export namespace SVG_IconsAdapter {
 

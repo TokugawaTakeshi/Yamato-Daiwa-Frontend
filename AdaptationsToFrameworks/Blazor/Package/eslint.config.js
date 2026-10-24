@@ -10,6 +10,14 @@ module.exports = [
     ]
   },
 
-  ...YamatoDaiwaStyleGuides
+  ...YamatoDaiwaStyleGuides,
+
+  {
+    languageOptions: {
+      parserOptions: {
+        project: "tsconfig.eslint.json"
+      }
+    }
+  }
 
 ];

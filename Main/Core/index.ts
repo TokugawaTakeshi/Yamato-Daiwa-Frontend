@@ -3,9 +3,9 @@
 
 /* ━━━ GUI Components ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* ┅┅┅ AdmonitionBlock ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-export { default as AdmonitionBlock } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock";
-export type { AdmonitionBlockLocalization } from "./GUI_Components/AdmonitionBlock/AdmonitionBlockLocalization";
-export { default as AdmonitionBlockYDF_GUI_ComponentLocalization__English } from
+export { AdmonitionBlock } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock";
+export { default as AdmonitionBlockBase } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock.base";
+export { AdmonitionBlockYDF_GUI_ComponentLocalization__English } from
     "./GUI_Components/AdmonitionBlock/AdmonitionBlockLocalization.english";
 
 
@@ -21,16 +21,17 @@ export { default as ValidatableControlShellYDF_GUI_ComponentLocalization__Englis
 /* ╍╍╍ Buttons ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
 /* ─── Plain ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
 export { default as Button } from "./GUI_Components/Controls/Buttons/Plain/Button";
+export { default as ButtonBase } from "./GUI_Components/Controls/Buttons/Plain/Button.base";
 
 /* ─── Closing ────────────────────────────────────────────────────────────────────────────────────────────────────── */
-export type { ClosingButtonLocalization } from "./GUI_Components/Controls/Buttons/Closing/ClosingButtonLocalization";
-export { default as ClosingButtonYDF_GUI_ComponentLocalization__English } from
+export { default as ClosingButton } from "./GUI_Components/Controls/Buttons/Closing/ClosingButton.base";
+export { default as ClosingButtonBase } from "./GUI_Components/Controls/Buttons/Closing/ClosingButton.base";
+export { ClosingButtonYDF_GUI_ComponentLocalization__English } from
     "./GUI_Components/Controls/Buttons/Closing/ClosingButtonLocalization.english";
 
 /* ─── Hamburger Menu ─────────────────────────────────────────────────────────────────────────────────────────────── */
 export { default as HamburgerMenuButton } from "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton";
-export type { HamburgerMenuButtonLocalization } from
-    "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButtonLocalization";
+export { default as HamburgerMenuButtonBase } from "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton.base";
 export { default as HamburgerMenuButtonYDF_GUI_ComponentLocalization__English } from
     "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButtonLocalization.english";
 
@@ -45,9 +46,8 @@ export { default as TextBoxYDF_GUI_ComponentLocalization__English } from
 
 /* ━━━ Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* ┅┅┅ BlockingLoadingOverlay ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-export { default as BlockingLoadingOverlay } from "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay";
-export type { BlockingLoadingOverlayLocalization } from
-    "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlayLocalization";
+export { BlockingLoadingOverlay } from "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay";
+export { default as BlockingLoadingOverlayBase } from "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay.base";
 export { default as BlockingLoadingOverlayYDF_GUI_ComponentLocalization__English } from
     "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlayLocalization.english";
 

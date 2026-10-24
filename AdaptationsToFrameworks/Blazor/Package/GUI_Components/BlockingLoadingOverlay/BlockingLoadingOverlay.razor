@@ -3,12 +3,12 @@
 
 <div 
   class="BlockingLoadingOverlay--YDF"
-  hidden=@(!this.isDisplaying)
+  hidden=@(!isDisplaying)
 >
 
   <LoadingIndicator
-    type=@this.loadingIndicatorType
-    rootElementModifierCSS_Class="BlockingLoadingOverlay--YDF-LoadingIndicator"
+    type=@loadingIndicatorType
+    class="BlockingLoadingOverlay--YDF-LoadingIndicator"
   />
 
 </div>

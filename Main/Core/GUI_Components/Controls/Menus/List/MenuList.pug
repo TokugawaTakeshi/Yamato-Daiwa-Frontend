@@ -1,18 +1,31 @@
-include MenuList.class.pug
-
-
 mixin MenuList--YDF(properties, statesSimulations)
 
   -
 
     const {
 
+      /**
+       * @type { string }
+       * @default MenuList__YDF.Themes.regular
+       */
       theme,
 
+      /**
+       * @type { boolean }
+       * @default MenuList__YDF.areThemesCSS_ClassesCommon
+       */
       areThemesCSS_ClassesCommon,
 
+      /**
+       * @type { string }
+       * @default MenuList__YDF.GeometricVariations.regular
+       */
       geometricVariation,
 
+      /**
+       * @type { string }
+       * @default MenuList__YDF.DecorativeVariations.regular
+       * */
       decorativeVariation
 
     } = YDF.processObjectTypeParameterOfPugMixin({
@@ -20,31 +33,22 @@ mixin MenuList--YDF(properties, statesSimulations)
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: MenuList__YDF.propertiesSpecification,
-      mixinName: MenuList__YDF.CSS_NAMESPACE
+      mixinName: "MenuList--YDF"
     });
 
-    const rootElementModifierCSS_Classes = [
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: MenuList__YDF.Themes,
-        CSS_Namespace: MenuList__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: MenuList__YDF.GeometricVariations,
-        CSS_Namespace: MenuList__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: MenuList__YDF.DecorativeVariations,
-        CSS_Namespace: MenuList__YDF.CSS_NAMESPACE
-      })
-
-    ];
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+            MenuList__YDF,
+            {
+              theme,
+              areThemesCSS_ClassesCommon,
+              geometricVariation,
+              geometricModifiers,
+              decorativeVariation,
+              decorativeModifiers
+            }
+        );
 
   ul.MenuList--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
 

@@ -1,10 +1,13 @@
 {
   "name": "@yamato-daiwa/frontend-automation",
   "version": "0.0.0",
-  "main": "./Distributable/cjs/index.js",
-  "module": "./Distributable/esm/index.js",
+  "private": true,
+  "main": "./Distributable/index.js",
+  "types": "./Distributable/index.d.ts",
   "sideEffects": false,
-  "types": "./Distributable/esm/index.d.ts",
+  "files": [
+    "Distributable"
+  ],
   "engines": {
     "node": ">=22.0.0"
   },
@@ -18,6 +21,13 @@
     "@types/js-beautify": "1.14.3",
     "@types/node": "26.6.5",
     "@types/pug": "2.0.10",
+    "@yamato-daiwa/style_guides": "0.15.3",
+    "rimraf": "6.1.3",
     "typescript": "6.0.3"
+  },
+  "scripts": {
+    "Lint": "eslint",
+    "Rebuild Distributable Without Preliminary Cleaning": "tsc",
+    "Rebuild Distributable": "rimraf -g Distributable/* && tsc"
   }
 }
