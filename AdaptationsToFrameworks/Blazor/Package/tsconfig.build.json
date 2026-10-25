@@ -1,0 +1,14 @@
+﻿{
+
+  "extends": "./tsconfig.json",
+
+  "compilerOptions": {
+    "moduleResolution": "bundler"
+  },
+
+  "include": [
+    "YDF.module.ts",
+    "YDF.global.ts"
+  ]
+
+}

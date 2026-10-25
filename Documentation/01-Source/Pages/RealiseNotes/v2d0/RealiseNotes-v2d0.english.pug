@@ -1,0 +1,543 @@
+extends ../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../SharedAssets/Markup/SharedAssets.english.pug
+  include ../../../SharedComponents/SharedComponents.english.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("Realise Notes - v2d0"),
+        description: MetaDescriptionTemplates.realiseNotes({ version: "2.0" })
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("realiseNotes.v2d0");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      japanese: routing.japanese.realiseNotes.$children.v2d0.$URI,
+      russian: routing.russian.realiseNotes.$children.v2d0.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = routing.english.realiseNotes.$children.v2d0;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    h1.Article-Heading1 Version 2.0 (Beta)
+
+    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning, SVG_Icon: true }).
+      Major version 2 is under development.
+      New functionality and other changes will be declared here when ready.
+
+    h2.Article-Heading2 Core Package (@yamato-daiwa/frontend)
+
+    h3.Article-Heading3 New Functionality
+
+    h4.Article-Heading4 Markup
+
+    h5.Article-Heading5 Pug's Inline JavaScript
+
+    h6.Article-Heading6 Functions and Classes
+
+    ul.Article-UnorderedList
+
+      li: +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            YDEE_Integration.$URI
+      }) @yamato-daiwa/es-extensions (YDEE) integration
+
+      li: +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            functionsAndClasses.$children.
+            processObjectTypeParameterOfPugMixin.$URI
+      }) processObjectTypeParameterOfPugMixin
+
+      //-
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              markup.$children.
+              functionality.$children.
+              inlineJavaScript.$children.
+              functionsAndClasses.$children.
+              RoutingEmulator.$URI
+        }) RoutingEmulator
+
+
+    h6.Article-Heading6 Assets
+
+    ul.Article-UnorderedList
+
+      //-
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              markup.$children.
+              functionality.$children.
+              inlineJavaScript.$children.
+              assets.$children.
+              textOverflowSafetyTest.$URI
+        }) textOverflowSafetyTest
+
+      li: +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.
+            markup.$children.
+            functionality.$children.
+            inlineJavaScript.$children.
+            assets.$children.
+            DummyImagesURIs.$URI
+      }) DummyImagesURIs
+
+
+    //- h5.Article-Heading5 Pug mixins
+
+    //-
+      ul.Article-UnorderedList
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.
+              $children.markup.
+              $children.functionality.
+              $children.pugMixins.
+              $children.dummies.$URI
+        }) WideDummy and HighDummy
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.
+              $children.markup.
+              $children.functionality.
+              $children.pugMixins.
+              $children.SVG_Icons.$URI
+        }) SVGアイコン
+
+
+    h4.Article-Heading4 Styles
+
+    h5.Article-Heading5 Assets
+
+    ul.Article-UnorderedList
+
+      li: +Link--YDF({
+        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/" +
+            "Package/Documentation/Styles/01-Assets/01-FundamentalConstantsAndEnums/" +
+            "FundamentalConstantsAndEnums.md#smallest_division_of_css_pixel--ydf---the-smallest-division-of-css-pixel"
+      }) SMALLEST_DIVISION_OF_CSS_PIXEL--YDF
+
+      li: +Link--YDF({
+        internalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/%40v2.0/CoreLibrary/Package" +
+          "/Styles/01-Assets/02-Colors/YDF_ColorPalette.styl"
+      }) YDF_ColorPalette
+
+    //-
+      h5.Article-Heading5 Core
+
+      h6.Article-Heading6 Specification schemas
+
+    //-
+      ul.Article-UnorderedList
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              specificationsSchemas.$children.
+              bordersSizing.$URI
+        }) BordersSizingSpecificationSchema--YDF
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              specificationsSchemas.$children.
+              paddings.$URI
+        }) PaddingsSpecificationSchema--YDF
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              specificationsSchemas.$children.
+              textElementHeightSizing.$URI
+        }) TextElementHeightSizingSpecificationSchema--YDF
+
+        li: +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              specificationsSchemas.$children.
+              widthSizing.$URI
+        }) WidthSizingSpecificationSchema--YDF
+
+    h3.Article-Heading3 Breaking Changes
+
+    h4.Article-Heading4 Styles
+
+    h5.Article-Heading5 Assets
+
+    h5.Article-Heading6 Renaming of #[code NARROWEST_SCREEN_WIDTH_UNIT] Constant
+
+    p.Article-Paragraph.
+      #[+Term--YDID Constant] #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT] has been renamed to
+        #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT--YDF].
+
+    dl.Article-DescriptionList
+
+      dt Reason
+      dd.
+        To significantly reduce the probability of name conflict, the #[+ImportantEntity__Code--YDID --YDF]
+          #[+Term--YDID verndor postfix] has been appended.
+
+      dt Changes in your code will required if
+      dd.
+        Your code has explicit usages of #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT]
+          #[+Term--YDID constant].
+
+      dt Migration
+      dd.
+        Using the appropriate functionality of your code editor or IDE, replace all occurrences of
+          #[+ImportantEntity__Code--YDID NARROWEST_SCREEN_WIDTH_UNIT] with
+          #[+ImportantEntity__Code--YDID mustThrowErrorIfElementNotFoundOrMatchesAreMultiple]
+          in all #[+Term--YDID Stylus files] of your project.
+        For example, in #[+ImportantEntity--YDID IntelliJ IDEA] family IDEs, such functionality could be invoked
+          by #[+SecondaryEntity__Code--YDID Ctrl + Shift + R] as default.
+
+
+    h6.Article-Heading6 Renaming of #[code DataTypes] Enumeration and Some of its Elements
+
+    ol.Article-OrderedList
+
+      li.
+        #[+ImportantEntity__Code--YDID DataTypes] #[+Term--YDID enumeration] has been renamed to
+          #[+ImportantEntity__Code--YDID DataTypes--YDF].
+
+      li.
+        #[+ImportantEntity__Code--YDID dimensionalAmount] #[+Term--YDID element] has been renamed to
+          #[+ImportantEntity__Code--YDID dimensionalQuantity] and its value to
+          #[+ImportantEntity__Code--YDID "DIMENSIONAL_QUANTITY"].
+
+      li.
+        #[+ImportantEntity__Code--YDID dimensionlessAmount] #[+Term--YDID element] has been renamed to
+          #[+ImportantEntity__Code--YDID dimensionlessQuantity] and its value to
+          #[+ImportantEntity__Code--YDID "DIMENSIONLESS_QUANTITY"].
+
+    dl.Article-DescriptionList
+
+      dt Reason
+      dd
+        ul.Article-UnorderedList
+
+          li.
+            The #[+ImportantEntity__Code--YDID --YDF] #[+Term--YDID vendor postfix] has been appended to
+              #[+Term--YDID enumeration] name to significantly reduce the probability of name conflict.
+
+          li #[+Term--YDID Elements] has been renamed to unify to the canonical scientific terminology.
+
+      dt Changes in your code will required if
+      dd Your code has explicit usages of #[+ImportantEntity__Code--YDID DataTypes] #[+Term--YDID enumeration].
+
+
+      dt Миграция
+      dd
+
+        p.Article-Paragraph.
+          Using the appropriate functionality of your code editor or IDE, in all #[+Term--YDID Stylus files] of your
+            project, replace all occurrences of:
+
+        ul.Article-UnorderedList
+
+          li.
+            #[+ImportantEntity__Code--YDID DataTypes] #[+Term--YDID enumeration] to
+              #[+ImportantEntity__Code--YDID DataTypes--YDF].
+
+          li.
+            #[+ImportantEntity__Code--YDID dimensionalAmount] #[+Term--YDID enumeration element] to
+              #[+ImportantEntity__Code--YDID dimensionalQuantity].
+
+          li.
+            #[+ImportantEntity__Code--YDID dimensionlessAmount] #[+Term--YDID enumeration element] to
+              #[+ImportantEntity__Code--YDID dimensionlessQuantity].
+
+        p.Article-Paragraph.
+          For example, in #[+ImportantEntity--YDID IntelliJ IDEA] family IDEs, such functionality could be invoked
+            by #[+SecondaryEntity__Code--YDID Ctrl + Shift + R] as default.
+
+
+    h6.Article-Heading6 The renaming of #[code PracticalColorCoordinateSystem] two-level object
+
+    p.Article-Paragraph.
+      To reduce the name conflict probability, #[+Term--YDID vendor postfix] has been added to the #[+Term--YDID objet]
+        #[+ImportantEntity__Code--YDID PracticalColorCoordinateSystem], and not it the
+        #[+ImportantEntity__Code--YDID PracticalColorCoordinateSystem--YDF].
+
+
+    h6.Article-Heading6 Changes two-level object #[code TemporaryHighlighting]
+
+    ul.Article-UnorderedList
+
+      li.
+        Object has been renamed to #[+ImportantEntity__Code--YDID TemporarySemitransparentHighlighting--YDF].
+
+      li.
+        Now the ultrashort properties line #[+SecondaryEntity__Code--YDID o25], which meaning could not&nbsp;be understood
+          without the documentation or checking of the output #[+Term--YDID CSS code] has been replaces with meaningful,
+          such as #[+SecondaryEntity__Code--YDID opacity25Percent].
+
+    dl.Article-DescriptionList
+
+      dt Reasons
+      dd
+
+        ul.Article-UnorderedList
+
+          li The «transparent» word has been added to increase the unambiguity.
+
+          li.
+            To #[+Term--YDID vendor postfix] #[+ImportantEntity__Code--YDID --YDF] has been added to the
+              to significantly reduce the name conflict probability.
+
+          li.
+            The #[+Term--YDID properties] of the second level has been renamed because basically #[+Keyword--YDID all]
+              libraries of #[+ImportantEntity--YDID Yamato Daiwa] vendor does&nbsp;#[+Keyword--YDID not] accept the names
+              which meaning could&nbsp;not&nbsp;be understood wihtout the documentation, so now this rule has been
+              applied to #[+ImportantEntity--YDID TemporarySemitransparentHighlighting--YDF] object even though it
+              is&nbsp;#[+Keyword--YDID not]&nbsp;intended to be used in production code.
+
+      dt Changes of your code will require if
+      dd.
+        You, contrary to the recommendation to not&nbsp;use this object in the clean copy of stylesheet did it,
+          or you has updated the #[+ImportantEntity--YDID YDF] during the writing of the draft #[+Term--YDID CSS code]
+          where used the #[+ImportantEntity--YDID TemporaryHighlighting] #[+Term--YDID object].
+
+      dt Migration
+      dd
+
+        p.Article-Paragraph.
+          Using the appropriate functionality of your code editor or IDE, execute the following replacements in
+            all #[+Term--YDID Stylus files].
+
+        ul.Article-UnorderedList
+          li.
+            #[+ImportantEntity__Code--YDID TemporaryHighlighting] ➝
+              #[+ImportantEntity__Code--YDID TemporarySemitransparentHighlighting--YDF]
+          li #[+ImportantEntity__Code--YDID .o10] ➝ #[+ImportantEntity__Code--YDID .opacity10Percent]
+          li #[+ImportantEntity__Code--YDID .o25] ➝ #[+ImportantEntity__Code--YDID .opacity25Percent]
+          li #[+ImportantEntity__Code--YDID .o50] ➝ #[+ImportantEntity__Code--YDID .opacity50Percent]
+          li #[+ImportantEntity__Code--YDID .o75] ➝ #[+ImportantEntity__Code--YDID .opacity75Percent]
+
+
+    h6.Article-Heading6 The renaming of #[code ShadesOfGray__39ColorsW3C_Palette] array
+
+    p.Article-Paragraph.
+      The #[+ImportantEntity__Code--YDID ShadesOfGray__39ColorsW3C_Palette] #[+Term--YDID array] has been
+        #[+Keyword--YDID renamed] to #[+ImportantEntity__Code--YDID W3C_39_ShadesOfGray--YDF].
+
+
+    h5.Article-Heading5 Core
+    h6.Article-Heading6 Replacing of the Basic Variables with Configuration Object
+
+    p.Article-Paragraph
+      | The following #[+Term--YDID basic variables] (as they has been called in #[+ImportantEntity--YDID 1.X] versions)
+      |   has been replaced with
+      |
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.styles.$children.kernel.$children.YDF_Configuration.$URI
+      }) YDF_Configuration object
+      |   or deleted for the following reasons.
+
+    dl.Article-DescriptionList
+
+      dt MAIN_FONT_STACK
+      dd
+        | Replaced with
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              fontsStacks.$children.
+              main.$URI
+        }) YDF_Configuration.fontsStacks.main
+
+      dt MAIN_SANS_SERIF_FONT_STACK
+      dd
+        | Replaced with
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              fontsStacks.$children.
+              mainSansSerif.$URI
+        }) YDF_Configuration.fontsStacks.mainSansSerif
+
+      dt MAIN_SERIF_FONT_STACK
+      dd
+        | Replaced with
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              fontsStacks.$children.
+              mainSerif.$URI
+        }) YDF_Configuration.fontsStacks.mainSerif
+
+      dt MAIN_MONOSPACED_FONT_STACK
+      dd
+        | Replaced with
+        |
+        +Link--YDF({
+          internalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              fontsStacks.$children.
+              mainMonospaced.$URI
+        }) YDF_Configuration.fontsStacks.mainMonospaced
+
+      dt BASIC_FONT_SIZE
+      dd
+        | Replaced with
+        |
+        +Link--YDF({
+          endorsedExternalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              textGeometry.$children.
+              basicFontSize.$URI
+        }) YDF_Configuration.textGeometry.basicFontSize
+
+      dt BASIC_LINE_HEIGHT
+      dd
+        | Replaced with
+        |
+        +Link--YDF({
+          endorsedExternalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              textGeometry.$children.
+              basicLineHeight.$URI
+        }) YDF_Configuration.textGeometry.basicLineHeight
+
+
+      dt BASIC_LINE_HEIGHT_IN_MULTILINE_TEXT_BLOCKS
+      dd
+        | Replaced with
+        |
+        +Link--YDF({
+          endorsedExternalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              textGeometry.$children.
+              basicLineHeightInMultilineTextBlocks.$URI
+        }) YDF_Configuration.textGeometry.basicLineHeightInMultilineTextBlocks
+
+      dt BASIC_FONT_SIZE_IN_MULTILINE_TEXT_BLOCKS
+      dd.
+        Deleted because there is no&nbsp;need inside #[+ImportantEntity--YDID YDF] in new font size only for the
+          multiline elements in addition to
+          #[+ImportantEntity__Code--YDID YDF_Configuration.textGeometry.basicFontSize]
+
+      dt BEM_ELEMENT_SEPARATOR
+      dd Deleted because not&nbsp; using in #[+ImportantEntity--YDID YDF] anymore
+
+      dt BEM_MODIFIER_SEPARATOR
+      dd Deleted because not&nbsp; using in #[+ImportantEntity--YDID YDF] anymore
+
+      dt ZIndexes
+      dd
+        | Replaced with
+        |
+        +Link--YDF({
+          endorsedExternalURI: localizedRouting.coreLibrary.$children.
+              styles.$children.
+              kernel.$children.
+              YDF_Configuration.$sectioning.
+              properties.$children.
+              zIndexes.$URI
+        }) YDF_Configuration.zIndexes
+
+    dl.Article-DescriptionList
+
+      dt Why has been replaced to configuration object
+      dd
+
+        p.Article-Paragraph.
+          The #[+Term--YDID variables] had too common names and nothing has indicated that they are coming from
+            #[+ImportantEntity--YDID YDF].
+          To solve the last these problems, it was possible to append the #[+Term--YDID vendor postfix] to
+            #[+Term--YDID variables] (for example, #[+SecondaryEntity__Code--YDID MAIN_SANS_SERIF_FONT_STACK] could
+            become to #[+SecondaryEntity__Code--YDID MAIN_SANS_SERIF_FONT_STACK--YDF] this way), but the
+            #[+Term--YDID object-type variable] is better for the storing of configuration.
+
+      dt Changes of your code will require if
+      dd You have #[+Keyword--YDID directly] used one or more of mentioned above #[+Term--YDID variables]
+
+      dt Migration
+      dd
+
+        ul.Article-UnorderedList
+
+          li.
+            If you want to continue to use the #[+Term--YDID basic variables] with same names as previously, define
+              them yourself with desired values.
+
+          li.
+            If you have #[+Keyword--YDID overridden] the #[+Term--YDID basic variables] then it is
+              #[+Keyword--YDID required] to #[+Keyword--YDID override] the
+              #[+ImportantEntity__Code--YDID YDF_Configuration] object #[+Keyword--YDID instead].
+
+          li.
+            If you are fine with usage of the #[+ImportantEntity__Code--YDID YDF_Configuration] object
+              #[+Keyword--YDID instead] of the of the #[+Term--YDID basic variables], then replace the references
+              to these #[+Term--YDID variables] with the accessing to the corresponding #[+Term--YDID properties] of the
+              #[+ImportantEntity__Code--YDID YDF_Configuration] object.
+            But please note that this #[+Term--YDID object] as it is clear from its name is intended for the
+              configuration of the #[+ImportantEntity--YDID YDF] functionality and this library is just the utility
+              in your project.
+            So, if you have the unique design, then the settings related with this design recommended to define
+              #[+Keyword--YDID independently] on #[+ImportantEntity--YDID YDF], and let
+              #[+ImportantEntity__Code--YDID YDF_Configuration] #[+Term--YDID object properties] refers to the settings
+              of your design.

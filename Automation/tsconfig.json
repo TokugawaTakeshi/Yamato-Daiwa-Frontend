@@ -1,0 +1,24 @@
+{
+
+  "compilerOptions": {
+
+    "target": "es2023",
+    "module": "nodenext",
+    "moduleResolution": "NodeNext",
+
+    "types": [ "node" ],
+
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+
+    "rootDir": "Source",
+    "outDir": "Distributable",
+    "declaration": true,
+    "removeComments": true
+
+  },
+
+  "include": [ "Source/**/*" ]
+
+}

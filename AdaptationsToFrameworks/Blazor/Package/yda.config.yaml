@@ -1,0 +1,44 @@
+$projectBuilding:
+
+  $ECMA_ScriptLogicProcessing:
+
+    $entryPointsGroups:
+
+      Module:
+
+        $singleEntryPointSourceFileRelativePath: YDF.module.ts
+
+        $typeScriptConfigurationFileRelativePath: "tsconfig.build.json"
+
+        $targetRuntime:
+          $type: BROWSER
+
+        $distributing:
+          $exposingOfExportsFromEntryPoints:
+            $mustExpose: true
+
+        $buildingModeDependent:
+
+          $production:
+            $outputTopDirectoryRelativePath: "wwwroot"
+            $revisioning: { $disable: true }
+
+      Global:
+
+        $singleEntryPointSourceFileRelativePath: YDF.global.ts
+
+        $typeScriptConfigurationFileRelativePath: "tsconfig.build.json"
+
+        $targetRuntime:
+          $type: BROWSER
+
+        $distributing:
+          $exposingOfExportsFromEntryPoints:
+            $mustExpose: true
+            $mustAssignToWindowObject: true
+
+        $buildingModeDependent:
+
+          $production:
+            $outputTopDirectoryRelativePath: "wwwroot"
+            $revisioning: { $disable: true }

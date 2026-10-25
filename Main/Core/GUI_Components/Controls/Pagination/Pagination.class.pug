@@ -1,0 +1,206 @@
+-
+
+  class Pagination__YDF {
+
+    static CSS_NAMESPACE = "Pagination--YDF";
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static Themes = { regular: "REGULAR" };
+
+    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
+    /** @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null } */
+    static _selfAndChildrenComponentsThemesCorrespondence = null;
+
+    /** @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } } */
+    static get selfAndChildrenComponentsThemesCorrespondence() {
+      return Pagination__YDF._selfAndChildrenComponentsThemesCorrespondence ?? (
+        Pagination__YDF._selfAndChildrenComponentsThemesCorrespondence = {
+          button: { [Pagination__YDF.Themes.regular]: Button__YDF.Themes.regular }
+        }
+      );
+    }
+
+    /**
+     * @param {
+     *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellThemesDefinition
+     * @example
+     * Pagination__YDF.defineThemes({
+     *   redmond: {
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.redmond,
+     *     button: Button__YDF.Themes.redmond
+     *   },
+     *   cupertino: {
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.cupertino,
+     *     button: Button__YDF.Themes.cupertino
+     *   }
+     * });
+     */
+    static defineThemes(ownAndCorrespondingValidatableControlShellThemesDefinition) {
+      return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellThemesDefinition, Pagination__YDF
+      );
+    }
+
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    static considerThemesAsCommon() {
+      Pagination__YDF.areThemesCSS_ClassesCommon = true;
+      return Pagination__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL"
+    };
+
+    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
+    /** @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null } */
+    static _selfAndChildrenComponentsGeometricVariationsCorrespondence = null;
+
+    /** @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } } */
+    static get selfAndChildrenComponentsGeometricVariationsCorrespondence() {
+      return Pagination__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence ?? (
+        Pagination__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence = {
+          button: {
+            [Pagination__YDF.GeometricVariations.regular]: Button__YDF.GeometricVariations.regular,
+            [Pagination__YDF.GeometricVariations.small]: Button__YDF.GeometricVariations.small
+          }
+        }
+      );
+    }
+
+    static defineGeometricVariations(ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition) {
+      return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition, Pagination__YDF
+      );
+    }
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    static DecorativeVariations = { regular: "REGULAR" };
+
+    /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
+    /** @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null } */
+    static _selfAndChildrenComponentsDecorativeVariationsCorrespondence = null;
+
+    /** @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } } */
+    static get selfAndChildrenComponentsDecorativeVariationsCorrespondence() {
+      return Pagination__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
+        Pagination__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
+          button: {
+            [Pagination__YDF.DecorativeVariations.regular]: ValidatableControlShell__YDF.DecorativeVariations.regular
+          }
+        }
+      );
+    }
+
+    static defineDecorativeVariations(ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition) {
+      return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition, Pagination__YDF
+      );
+    }
+
+
+
+    /* ━━━ Properties specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static propertiesSpecification = {
+
+      maximalPageNumberButtonsCount: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.naturalNumber,
+        isNaN_Forbidden: true,
+        undefinedValueSubstitution: 5,
+        isNullForbidden: true
+      },
+
+      accessibilityGuidance: {
+        type: String,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      noDisplayMovingToUltimatePagesButtons: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      noDisplayMovingToAdjacentPagesButtons: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: Pagination__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Pagination__YDF.Themes).
+            map(([ key, value ]) => ({ key: `Pagination__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: Pagination__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: Pagination__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Pagination__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `Pagination__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      decorativeVariation: {
+        type: String,
+        undefinedValueSubstitution: Pagination__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Pagination__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `Pagination__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    };
+
+
+    /* ━━━ State simulations specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static statesSimulationsSpecification = {
+
+      totalPagesCount: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.naturalNumber,
+        isNaN_Forbidden: true,
+        undefinedValueSubstitution: 10,
+        isNullForbidden: true
+      },
+
+      currentPageNumber: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.naturalNumber,
+        isNaN_Forbidden: true,
+        undefinedValueSubstitution: 1,
+        isNullForbidden: true,
+        customValidators: {
+          validationFunction: ({ value: currentPageNumber, rawData__currentObjectDepth }) =>
+              YDF.isUndefined(rawData__currentObjectDepth.totalPagesCount) ||
+                  currentPageNumber <= rawData__currentObjectDepth.totalPagesCount,
+          descriptionForLogging: "\"currentPageNumber\" could not be more than \"totalPagesCount\"."
+        }
+      }
+
+    };
+
+
+    /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static localization = PaginationYDF_GUI_ComponentLocalization__English;
+
+  }

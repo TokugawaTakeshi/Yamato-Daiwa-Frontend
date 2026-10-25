@@ -1,0 +1,92 @@
+computeTotalHeightByTextElementHeightSizingSpecification--YDF(properties, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "computeTotalHeightByTextElementHeightSizingSpecification--YDF",
+    targetParameterNumber: 1,
+    targetParameter: properties,
+    schema: TextElementHeightSizingSpecificationSchema--YDF,
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  if isNotNull--YDF(properties.fixedHeight)
+
+    return properties.fixedHeight
+
+
+  else
+
+    // ━━━ Font ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    fontSize = properties.fontSize
+    fixedLinesCount = properties.fixedLinesCount
+
+
+    // ━━━ Line Height / line Spacing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    lineHeight = isNull--YDF(properties.lineHeight) ?\
+        getLineHeightByFontSizeAndLineSpacing--YDF({
+          fontSize: fontSize,
+          lineSpacing: properties.lineSpacing,
+          mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0:
+              properties.mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0,
+          mustOutputDimensionalQuantityIfPossible: properties.mustApplyDimensionalLineHeightIfPossible
+        }) :
+        properties.lineHeight
+
+
+    // ━━━ Height of All Lines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    heightOfAllLines = null
+
+    if isNaturalNumber--YDF(properties.fixedLinesCount)
+
+      heightOfAllLines = buildCalcExpression--YDF(
+        "${ fixedLinesCount } * ${ lineHeight }",
+        {
+          fixedLinesCount: properties.fixedLinesCount,
+          lineHeight: isDimensionlessQuantity--YDF(lineHeight) ? "" + (fontSize * lineHeight) : lineHeight
+        }
+      )
+
+    else if isDimensionlessQuantity--YDF(lineHeight)
+
+      heightOfAllLines = fontSize * lineHeight
+
+    else
+
+      heightOfAllLines = lineHeight
+
+
+    // ━━━ Borders / Paddings ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    borders = substituteNull--YDF(properties.borders.thickness, {})
+    paddings = properties.paddings
+
+    extraSpaceCausedByLineHeightAtTopOrBottom__nullIfNotDemanded = null
+
+    if properties.mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight
+
+      extraSpaceCausedByLineHeightAtTopOrBottom__nullIfNotDemanded = computeExtraSpaceCausedByLineHeightAtTopOrBottom--YDF({
+        fontSize: fontSize,
+        lineHeight: properties.lineHeight,
+        lineSpacing: properties.lineSpacing
+      })
+
+
+    // ━━━ Sum ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    summands = YDF_Array-create()
+
+    YDF_Array-appendElementsIf(
+      summands,
+      @(summand) { return isNotNull--YDF(summand) },
+      isNotNull--YDF(borders.all) ? 2 * borders.all : null,
+      isNotNull--YDF(borders.verticalSymmetric) ? 2 * borders.verticalSymmetric : null,
+      borders.top,
+      borders.bottom,
+      isNotNull--YDF(paddings.all) ? 2 * paddings.all : null,
+      isNotNull--YDF(paddings.verticalSymmetric) ? 2 * paddings.verticalSymmetric : null,
+      isNotNull--YDF(extraSpaceCausedByLineHeightAtTopOrBottom__nullIfNotDemanded) ?\
+          -2* extraSpaceCausedByLineHeightAtTopOrBottom__nullIfNotDemanded : null,
+      paddings.top,
+      paddings.bottom,
+      heightOfAllLines
+    )
+
+
+    return unquote("calc(" + join(" + ", values(summands)) + ")")

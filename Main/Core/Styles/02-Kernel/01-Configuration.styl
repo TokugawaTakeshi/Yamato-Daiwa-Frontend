@@ -1,0 +1,83 @@
+Configuration--YDF = {
+
+  fontsStacks: {
+
+    main: unquote(\
+      "system-ui," +\
+      "-apple-system," +\
+      "BlinkMacSystemFont," +\
+      "Segoe UI," +\
+      "Roboto," +\
+      "Helvetica Neue," +\
+      "Arial," +\
+      "Noto Sans," +\
+      "Liberation Sans," +\
+      "sans-serif," +\
+      "Apple Color Emoji," +\
+      "Segoe UI Emoji," +\
+      "Segoe UI Symbol," +\
+      "Noto Color Emoji"
+    ),
+
+    mainSansSerif: unquote(\
+      "system-ui," +\
+      "-apple-system," +\
+      "BlinkMacSystemFont," +\
+      "Segoe UI," +\
+      "Roboto," +\
+      "Helvetica Neue," +\
+      "Arial," +\
+      "Noto Sans," +\
+      "Liberation Sans," +\
+      "sans-serif," +\
+      "Apple Color Emoji," +\
+      "Segoe UI Emoji," +\
+      "Segoe UI Symbol," +\
+      "Noto Color Emoji"
+    ),
+
+    mainSerif: unquote(
+      "TimesNewRoman," +\
+      "Times New Roman," +\
+      "Times," +\
+      "Baskerville," +\
+      "Georgia," +\
+      "serif"
+    ),
+
+    mainMonospaced: unquote(
+      "Lucida Console," +\
+      "Lucida Sans Typewriter," +\
+      "monaco," +\
+      "Bitstream Vera Sans Mono," +\
+      "monospace"
+    )
+
+  },
+
+  textGeometry: {
+    basicFontSize: 14px,
+    basicLineHeight: 1,
+    basicLineHeightInMultilineTextBlocks: 1.4
+  },
+
+  zIndexes: {
+    lowermostLayer: 0,
+    drawers: 10,
+    floatingBelowModalsComponents: 20,
+    modalsUnderlay: 30,
+    floatingAboveModalsComponents: 40,
+    blockingOverlay: 50,
+    floatingNotifications: 60
+  }
+
+}
+
+
+overrideConfiguration--YDF(basicCustomConfiguration, addComputedProperties = null)
+
+  overrideObject--YDF(Configuration--YDF, basicCustomConfiguration)
+
+  if isFunction--YDF(addComputedProperties)
+
+    addComputedProperties(Configuration--YDF)

@@ -1,0 +1,16 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+{{ GUI_ComponentName__pascalCase }}Class:
+
+  $heading: `{{ GUI_ComponentName__pascalCase }}Class.$heading`
+  $anchor: {{ GUI_ComponentName__screamingSnakeCase }}_CLASS--SECTION
+
+  $children:
+
+    razorComponentParameters:
+
+      $heading: `{{ GUI_ComponentName__pascalCase }}Class.razorComponentParameters.$heading`
+      $anchor: {{ GUI_ComponentName__screamingSnakeCase }}_CLASS-RAZOR_COMPONENT_PROPERTIES--SECTION

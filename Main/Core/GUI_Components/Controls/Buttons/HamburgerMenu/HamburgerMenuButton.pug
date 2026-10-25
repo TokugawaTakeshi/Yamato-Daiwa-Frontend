@@ -1,0 +1,116 @@
+//-
+  [ References ]
+  Accessibility: https://www.accede-web.com/en/guidelines/rich-interface-components/hamburger-menu/
+  Animation: https://www.w3schools.com/howto/howto_css_menu_icon.asp
+
+mixin HamburgerMenuButton--YDF(properties)
+
+
+  -
+
+    const {
+
+      /** @type { string | undefined } */
+      customLabel,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      noLabel,
+
+      /**
+       * @type { string }
+       * @default HamburgerMenuButton__YDF.LabelLetterCases.lowercase
+       * */
+      labelLetterCase,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      alwaysEnglishLabel,
+
+      /** @type { string | undefined } */
+      accessibilityGuidance,
+
+      /**
+       * @type { string }
+       * @default HamburgerMenuButton__YDF.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default HamburgerMenuButton__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default HamburgerMenuButton__YDF.GeometricVariations.regular
+       */
+      geometricVariation,
+
+      /**
+       * @type { Array<HamburgerMenuButton.GeometricModifiers> }
+       * @default []
+       */
+      geometricModifiers,
+
+      /**
+       * @type { string }
+       * @default HamburgerMenuButton__YDF.DecorativeVariations.regular
+       * */
+      decorativeVariation,
+
+      /**
+       * @type { Array<HamburgerMenuButton.DecorativeModifiers> }
+       * @default []
+       */
+      decorativeModifiers
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: HamburgerMenuButton__YDF.propertiesSpecification,
+      mixinName: "HamburgerMenuButton--YDF"
+    });
+
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+            HamburgerMenuButton__YDF,
+            {
+              theme,
+              areThemesCSS_ClassesCommon,
+              geometricVariation,
+              geometricModifiers,
+              decorativeVariation,
+              decorativeModifiers
+            }
+        );
+
+    /** @type { string } */
+    const labelCSS_ModifierClass = HamburgerMenuButton__YDF.labelModifiersCSS_Classes[labelLetterCase];
+
+
+  button.HamburgerMenuButton--YDF(
+    type="button"
+    class=rootElementModifierCSS_Classes
+    aria-label= (noLabel ? (accessibilityGuidance || HamburgerMenuButton.localization.defaultAccessibilityGuidance) : null)
+  )&attributes(attributes)
+
+    span.HamburgerMenuButton--YDF-Icon(role="presentation")
+
+    if !noLabel
+
+      span.HamburgerMenuButton--YDF-Label(
+        class= labelCSS_ModifierClass
+      )
+        if alwaysEnglishLabel
+          | MENU
+        else
+          | #{ customLabel || HamburgerMenuButton__YDF.localization.defaultLabel }

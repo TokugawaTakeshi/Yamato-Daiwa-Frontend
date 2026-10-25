@@ -1,0 +1,264 @@
+fileNameLocalizationExtensions: "japanese"
+
+top:
+
+  $heading: "トップ"
+  $URI: "@All/Top/TopPage.japanese"
+
+coreLibrary:
+
+  $heading: "主要ライブラリ"
+
+  markup:
+
+    $heading: "Pugマークアック"
+
+    functionality:
+
+      $heading: "機能"
+
+      inlineJavaScript:
+
+        $heading: "内部JavaScript"
+
+        YDEE_Integration:
+
+          $heading: "@yamato-daiwa/es-extensions(YDEE)との結合"
+
+        functionsAndClasses:
+
+          $heading: "関数・クラス"
+
+        assets:
+
+          $heading: "アセット"
+
+      pugMixins:
+
+        $heading: "Pug混入"
+
+        dummies:
+
+          $heading: "<code>WideDummy</code>と<code>HighDummy</code>"
+
+        SVG_Icons:
+
+          $heading: "SVGアイコン"
+
+        yamatoDaiwaInformationDesign:
+
+          $heading: "やまとダイワ情報デザイン"
+
+      pagesTemplates:
+
+        $heading: "ページの原型"
+
+      usageOnServerSide:
+
+        $heading: "サーバ側での利用"
+
+  styles:
+
+    $heading: "スタイル"
+
+    assets:
+
+      $heading: "アセット"
+
+      fundamentalConstantsAndEnums:
+
+        $heading: "基礎定数・列挙"
+
+      colors:
+
+        $heading: "色"
+
+        PracticalColorCoordinateSystem:
+
+          $heading: "PCCSパレット（<code>PracticalColorCoordinateSystem--YDF</code>）"
+
+        TemporarySemitransparentHighlighting:
+
+          $heading: "一時的半透明照明（<code>TemporarySemitransparentHighlighting--YDF</code>）"
+
+        W3C_39_ShadesOfGray:
+
+          $heading: "W3Cグレースケール39色パレット（<code>W3C_39_ShadesOfGray--YDF</code>）"
+
+        YDF_ColorPalette:
+
+          $heading: "YDFカラーパレット（<code>YDF_ColorPalette</code>）"
+
+    kernel:
+
+      $heading: "基礎機能"
+
+      YDF_Configuration:
+
+        $heading: "<code>YDF_Configuration</code> YDFスタイルの設定"
+
+        fontsStacks:
+
+          $heading: "フォントスタック"
+
+        textGeometry:
+
+          $heading: "大小変数"
+
+        zIndexes:
+
+          $heading: "Zインデックス"
+
+      specificationsSchemas:
+
+        $heading: "仕様のスキマ"
+
+      functions:
+
+        $heading: "関数"
+
+        typeCheckers:
+
+          $heading: "値の型を確認"
+
+          strings:
+
+            $heading: "文字列"
+
+          quantities:
+
+            $heading: "量"
+
+          booleans:
+
+            $heading: "真偽値"
+
+          nullables:
+
+            $heading: "空値"
+
+          others:
+
+            $heading: "其の他"
+
+        valueTransformers:
+
+          $heading: "値の変換"
+
+        strings:
+
+          $heading: "文字列弄り"
+
+        quantities:
+
+          $heading: "量の弄り"
+
+        objects:
+
+          $heading: "オブジェクト弄り"
+
+        arrays:
+
+          $heading: "配列の弄り"
+
+        YDF_Arrays:
+
+          $heading: "YDF配列の弄り"
+
+        parametersValidation:
+
+          $heading: "引数の妥当性確認"
+
+        other:
+
+          $heading: "其の他の関数"
+
+      mixins:
+
+        $heading: "補助混入"
+
+        general:
+
+          $heading: "一般"
+
+        sizing:
+
+          $heading: "大小指定"
+
+          width:
+
+            $heading: "幅"
+
+        positioning:
+
+          $heading: "配置"
+
+        positionalRelationship:
+
+          $heading: "相対配置"
+
+        layout:
+
+          $heading: "構成"
+
+        typography:
+
+          $heading: "タイポグラフィ"
+
+        other:
+
+          $heading: "其の他"
+
+      stylesInitialization:
+
+        $heading: "スタイルの初期化"
+
+    buildInPlugins:
+
+      $heading: "付きプラグイン"
+
+      additionalColorPalettes:
+
+        $heading: "追加カラーパレット"
+
+  GUI_Components:
+
+    $heading: "GUIコンポーネント"
+
+    controls:
+
+      $heading: "操作用"
+
+      buttons:
+
+        $heading: "ボタン系"
+
+      validatables:
+
+        $heading: "妥当性確認機能付き"
+
+adaptationsToFrameworks:
+
+  $heading: "JavaScriptフレームワークの対応"
+
+  vue:
+
+    GUI_Components:
+
+      $heading: "GUIコンポーネント"
+
+  react:
+
+    GUI_Components:
+
+      $heading: "GUIコンポーネント"
+
+  blazor:
+
+    GUI_Components:
+
+      $heading: "GUIコンポーネント"
+
+realiseNotes:
+
+  $heading: "リリースノート"

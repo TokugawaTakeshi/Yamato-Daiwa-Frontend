@@ -1,0 +1,115 @@
+//- ━━━ 要約 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+mixin ButtonComponent-Abstract
+
+  p.Article-Paragraph.
+    ボタンは簡易な#[+Term--YDID GUIコンポーネント]の評判が有り、新しい#[+Term--YDID UI/UXフレームワーク]の勉強の際ボタンから始められる事が多い。
+    然し、表記入りの四角と言う地味な外見を持っても、当コンポーネントの簡易性は#[+Keyword--YDID 非常に]#[+Keyword__Contrast--YDID 虚妄]だ。
+
+  p.Article-Paragraph.
+    ボタンの外見を持っているの#[+Term--YDID HTML要素]は#[+ImportantEntity--YDID ３つ]も存在し、即ち
+      #[+ImportantEntity__Code--YDID button]、#[+ImportantEntity__Code--YDID input]と#[+ImportantEntity__Code--YDID a]、
+      但し何方の#[+Term--YDID 要素]にせよ取り扱いの際考慮しなければいけない特質が有るのだ。
+    例えば、#[+Term--YDID 子要素]が持てるのは#[+ImportantEntity__Code--YDID button]と#[+ImportantEntity__Code--YDID a]
+      #[+Keyword--YDID だけ]だが、#[+ImportantEntity__Code--YDID disabled]#[+Term--YDID 属性]が持てるのは
+      #[+ImportantEntity__Code--YDID button]と#[+ImportantEntity__Code--YDID input]#[+Keyword--YDID のみ]。
+
+  p.Article-Paragraph.
+    #[+Term--YDID スタイル]ならどうだろうか。
+    枠の色や拝礼を変える事は簡単ではあるが、実際の市場の需要に近づけば近づく程、方程式の変数が#[+Keyword--YDID 急増]しているのだ。
+    先ずは、操作専用の要素として、ボタンは#[+ImportantEntity__Code--YDID hover]、#[+ImportantEntity__Code--YDID focus]、
+      #[+ImportantEntity__Code--YDID active]、#[+ImportantEntity__Code--YDID disabled]の様な状態が有る。
+    全ての状態が視覚的に異ならなければいけなく、しかも#[+Term--YDID テーマ]が有れば全テーマに対応しないといけない
+      （#[+ImportantEntity--YDID YDF]の意味での#[+Term--YDID テーマ]にせよ、#[+ImportantEntity--YDID YDF]でない意味での
+      #[+Term--YDID テーマ]にせよ）。
+    同時に発生しない状態も有り、同時に発生出来る状態も有るので、対立が発生しない様に#[+Term--YDID スタイル]を定義しなければいけない。
+
+  p.Article-Paragraph.
+    表記がボタンに入れ切れなければ、どう成るだろうか？
+    表記に加えてSVGアイコンを追加しない時、どうだろうか？
+    アイコンに依って大小が違い、#[+Term--YDID SVGキャンバス]内の余白の異なるのだ！
+    ボタンの状態に応じて、アイコンの色を変えないといけに時も有るが、色変更方法はアイコンの#[+Term--YDID SVGコード]に依って異なるのだ！
+    表記が無い時、アイコンを正方形にしたければどうだろうか？
+    アイコンのみのボタンはリテラシーが低い利用者経ちにとって不親切はないので、非推薦だが、残念ながら依頼側に表記を追加する事を説得させる事が上手く行くとは限らない。
+    上記の「どうだろうか」を考慮すればする程、出力の#[+Term--YDID CSSコード]膨らんでいき、複雑に成りつつある。
+
+  p.Article-Paragraph.
+    #[+ImportantEntity--YDID YDF]の開発側の方から、上記の複雑さをなるべく分かりやすい#[+ImportantEntity--YDID API]にカプセル化しようとしていた。
+    とは言え、#[+Term--YDID アクセサビリチ]や必用に応じて#[+Term--YDID 検索最適化]を考慮した妥当な#[+Term--YDID HTMLコード]の作成の際、
+      どういった#[+Term--YDID HTMLコード]が生成されるか、理解する必用がある。
+
+
+//- ━━━ 概要 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  ButtonGUI_ComponentOverviewLocalization.setLocalizer(
+    () => ({
+      themes: {
+        [Button__YDF.Themes.regular]: "標準（規定）"
+      },
+      geometricVariations: {
+        [Button__YDF.GeometricVariations.regular]: "標準（規定）",
+        [Button__YDF.GeometricVariations.small]: "小型",
+        [Button__YDF.GeometricVariations.linkLike]: "リンクらしい"
+      },
+      geometricModifiers: {
+        [Button__YDF.GeometricModifiers.pillShape]: "最大の面取り",
+        [Button__YDF.GeometricModifiers.squareShape]: "正方形型",
+        [Button__YDF.GeometricModifiers.squareShapeUnlessOverflowed]: "オーバフローが発生しない限り正方形型",
+        [Button__YDF.GeometricModifiers.singleLine]: "強制一行、オーバーフローの時切り詰め",
+        [Button__YDF.GeometricModifiers.noLeftBorderAndRoundings]: "左側枠・面取り無し",
+        [Button__YDF.GeometricModifiers.noRightBorderAndRoundings]: "右側枠・面取り無し",
+        [Button__YDF.GeometricModifiers.noTopBorderAndRoundings]: "上部枠・面取り無し",
+        [Button__YDF.GeometricModifiers.noBottomBorderAndRoundings]: "下部枠・面取り無し",
+        [Button__YDF.GeometricModifiers.noRoundings]: "面取り無し",
+        [Button__YDF.GeometricModifiers.horizontallyShrinkable]: "水平で圧縮可"
+      },
+      decorativeVariations: {
+        [Button__YDF.DecorativeVariations.regular]: "標準（規定）",
+        [Button__YDF.DecorativeVariations.accented]: "強調",
+        [Button__YDF.DecorativeVariations.danger]: "危険行動",
+        [Button__YDF.DecorativeVariations.linkLike]: "リンクらしい"
+      },
+      decorativeModifiers: {
+        [Button__YDF.DecorativeModifiers.bordersDisguising]: "大小変化無しで枠が無い効果",
+        [Button__YDF.DecorativeModifiers.noBackground]: "塗りつぶし無し",
+        [Button__YDF.DecorativeModifiers.noBackgroundInDefaultState]: "初期状態には塗りつぶし無し"
+      }
+    })
+  );
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  ButtonComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources = {
+    pugMixinParametersLocalization: [ { localizedName: "プロパティ揃い" } ],
+    propertiesLocalizedInterpretations: {
+      HTML_Type: "HTML種類",
+      label: "ラベル",
+      accessibilityGuidance: "アクセサビリチツール専用の案内",
+      mustOpenLinkInNewTab: "URIを新しいタブみ開くべきか",
+      mustRequestNotFollowLinkForCrawlingToSearchEngine:　"検索エンジンにランキングに指示されたURIの資源にランキングを共有しない事を頼むべきか",
+      vue: {
+        route: "ルート",
+        externalURI: "外部URI"
+      },
+      react: {
+        route: "ルート",
+        externalURI: "外部URI",
+        prependedSVG_Icon: "前付けアイコン",
+        appendedSVG_Icon: "後付けアイコン",
+        loneSVG_Icon: "無本文アイコン",
+        onClickEventHandler: "クリックイベントハンドラー",
+        linkRenderer: "リンクコンポーネント・要素の描画関数"
+      },
+      blazor: {
+        internalURI: "内部URI（ルート）",
+        externalURI: "外部URI"
+      }
+    },
+    propertiesConditionalRequirementDescriptions: {
+      label:
+        "`HTML_Type`プロパティーに`Button__YDF.HTML_Types.inputButton`か`Button__YDF.HTML_Types.inputSubmit`か" +
+            "`Button__YDF.HTML_Types.inputReset`が指定"
+    }
+  };

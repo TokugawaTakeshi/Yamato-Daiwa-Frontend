@@ -1,0 +1,94 @@
+extends {{ projectRootDirectoryPathRelativeToDirectoryForAdaptationsToFrameworks }}/node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include {{ sourceDirectoryPathRelativeToDirectoryForAdaptationsToFrameworks }}/SharedAssets/Markup/SharedAssets.russian.pug
+  include {{ sourceDirectoryPathRelativeToDirectoryForAdaptationsToFrameworks }}/SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.{{ targetRouteForReactFrameworkWithChildrenPointers }};
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle(topHeading),
+        //- TODO ↓ ①　Edit the fully qualified name if it is incorrect
+        description: MetaDescriptionTemplates.GUI_Components.{{ GUI_ComponentName__pascalCase }}
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("{{ targetRouteForReactFrameworkWithoutChildrenPointers }}");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.{{ targetRouteForReactFrameworkWithChildrenPointers }}.$URI,
+      japanese: routing.japanese.{{ targetRouteForReactFrameworkWithChildrenPointers }}.$URI
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- TODO ↓ ②　Edit the line length
+    //- ━━━ `{{ GUI_ComponentName__pascalCase }}` (React) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
+
+    //- TODO ↓ ③　Correct the URI
+    +WebPageViewer--YDF({
+      URI: "$Demos:React/GUI_Components/{{ GUI_ComponentName__pascalCase }}/{{ GUI_ComponentName__pascalCase }}GalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "{{ GUI_ComponentName__pascalCase }}" })
+    })
+
+    +{{ GUI_ComponentName__pascalCase }}Component-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ┅┅┅ Overview ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
+    }).Article-Heading2
+
+    +{{ GUI_ComponentName__pascalCase }}Component-Overview({ framework: SupportedFrameworks.react })
+
+
+    //- TODO ↓ ④　Edit the line length
+    //- ┅┅┅ `{{ GUI_ComponentName__pascalCase }}` Class ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      innerHTML: localizedSectioning.{{ GUI_ComponentName__pascalCase }}Class.$heading,
+      HTML_ID: localizedSectioning.{{ GUI_ComponentName__pascalCase }}Class.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ React Properties ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.{{ GUI_ComponentName__pascalCase }}Class.$children.reactProperties.$heading,
+      HTML_ID: localizedSectioning.{{ GUI_ComponentName__pascalCase }}Class.$children.reactProperties.$anchor
+    }).Article-Heading3
+
+    +{{ GUI_ComponentName__pascalCase }}Component-PugMixinOrClassSynopsis({ framework: SupportedFrameworks.react })

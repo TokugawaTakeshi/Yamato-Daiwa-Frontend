@@ -1,0 +1,15 @@
+mixin DateTimePickerGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("DateTimePicker__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("DateTimePicker__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("DateTimePicker__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) DateTimePicker Component Demos

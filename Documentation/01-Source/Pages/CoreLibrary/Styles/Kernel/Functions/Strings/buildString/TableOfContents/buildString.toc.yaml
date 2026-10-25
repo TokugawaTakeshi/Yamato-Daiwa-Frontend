@@ -1,0 +1,18 @@
+interpolationMethodsComparison:
+
+  $heading: interpolationMethodsComparison.$heading
+  $anchor: INTERPOLATION_METHODS_COMPARISON--SECTION
+
+  $children:
+
+    concatenation:
+      $heading: interpolationMethodsComparison.concatenation.$heading
+      $anchor: INTERPOLATION_METHODS_COMPARISON-CONCATENATION--SECTION
+
+    sprintf:
+      $heading: interpolationMethodsComparison.sprintf.$heading
+      $anchor: INTERPOLATION_METHODS_COMPARISON-SPRINTF--SECTION
+
+    buildString:
+      $heading: interpolationMethodsComparison.buildString.$heading
+      $anchor: INTERPOLATION_METHODS_COMPARISON-BUILD_STRING--SECTION

@@ -1,0 +1,40 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-TypographyUtils/SingleLineTextElementOverflowSafety.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-TypographyUtils/SingleLineTextElementOverflowSafety.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.SingleLineTextElementOverflowSafety
+
+  &-Example1
+
+    SingleLineTextElementOverflowSafety--YDF()
+
+
+  &-Example2
+
+    SingleLineTextElementOverflowSafety--YDF({
+      displayEllipsis: true
+    })
+
+
+  &-Example3
+
+    SingleLineTextElementOverflowSafety--YDF({
+      displayEllipsis: true,
+      lineHeight: 1.2
+    })
+
+
+  &-Example4
+
+    SingleLineTextElementOverflowSafety--YDF({
+      displayEllipsis: true,
+      verticalSymmetricPaddings: 4px
+    })
+

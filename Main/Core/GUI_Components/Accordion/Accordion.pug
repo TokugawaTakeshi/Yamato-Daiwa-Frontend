@@ -1,0 +1,103 @@
+//- [ References ]
+  + https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
+  + https://www.w3.org/WAI/ARIA/apg/patterns/accordion/examples/accordion/
+mixin Accordion--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      /** @type { string } */
+      title,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      initiallyExpanded,
+
+      /**
+       * @type { ReadonlyArray<string> }
+       * @default []
+       * */
+      panelAdditionalCSS_Classes,
+
+      /**
+       * @type { string }
+       * @default Accordion__YDF.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default Accordion__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default Accordion__YDF.GeometricVariations.regular
+       */
+      geometricVariation,
+
+      /**
+       * @type { string }
+       * @default Accordion__YDF.DecorativeVariations.regular
+       */
+      decorativeVariation
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: Accordion__YDF.propertiesSpecification,
+      mixinName: "Accordion--YDF"
+    });
+
+    /** @type { string } */
+    const COMPONENT_ID = Accordion__YDF.generateInstanceID();
+
+    /** @type { string } */
+    const BUTTON_ID = `${COMPONENT_ID}-BUTTON`;
+
+    /** @type { string } */
+    const PANEL_ID = `${COMPONENT_ID}-PANEL`
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+          Accordion__YDF,
+          {
+            theme,
+            areThemesCSS_ClassesCommon,
+            geometricVariation,
+            decorativeVariation
+          }
+        );
+
+
+  div&attributes(
+    Object.assign(
+      attributes,
+      { class: rootCSS_Classes }
+    )
+  )
+
+    .Accordion--YDF-Header
+      +Button--YDF.Accordion--YDF-Button(
+        aria-expanded=initiallyExpanded
+        aria-controls=PANEL_ID
+        id=BUTTON_ID
+      )&attributes({ [Accordion__YDF.DOM_AccessResources.button.DATA_ATTRIBUTE_KEY]: "" })
+        +Triangle__Rightward__Filled--YDF_Icon.Button--YDF-SVG_Icon
+        span.Button--YDF-Label= title
+
+    .Accordion--YDF-Panel(
+      id=PANEL_ID
+      role="region"
+      hidden=!initiallyExpanded
+      aria-labelledby=BUTTON_ID
+      class=panelAdditionalCSS_Classes
+    )&attributes({ [Accordion__YDF.DOM_AccessResources.panel.DATA_ATTRIBUTE_KEY]: "" })
+
+      block

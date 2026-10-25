@@ -1,0 +1,19 @@
+overview:
+
+  $heading: "概要"
+
+BadgeClass:
+
+  $heading: "<code>Badge</code>クラス"
+
+  reactProperties:
+
+    $heading: "Reactプロパティ"
+
+  examples:
+
+    $heading: "例"
+
+    minimal:
+
+      $heading: 最少例（必須プロパティのみ）

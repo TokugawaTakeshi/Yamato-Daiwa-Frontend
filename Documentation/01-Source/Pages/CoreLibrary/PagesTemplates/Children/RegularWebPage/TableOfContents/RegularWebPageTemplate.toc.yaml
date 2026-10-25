@@ -1,0 +1,59 @@
+configurationClass:
+
+  $heading: `configurationClass.$heading`
+  $anchor: CONFIGURATION_CLASS--SECTION
+
+pugBlocks:
+
+  $heading: `pugBlocks.$heading`
+  $anchor: PUG_BLOCKS--SECTION
+
+  $children:
+
+    Functionality:
+      $heading: "<code>Functionality</code>"
+      $anchor: PUG_BLOCKS-FUNCTIONALITY--SECTION
+
+    Data:
+      $heading: "<code>Data</code>"
+      $anchor: PUG_BLOCKS-DATA--SECTION
+
+    Requirements:
+      $heading: "<code>Requirements</code>"
+      $anchor: PUG_BLOCKS-REQUIREMENTS--SECTION
+
+    Metadata:
+      $heading: "<code>Metadata</code>"
+      $anchor: PUG_BLOCKS-METADATA--SECTION
+
+    StatesSimulations:
+      $heading: "<code>StatesSimulations</code>"
+      $anchor: PUG_BLOCKS-STATES_SIMULATIONS--SECTION
+
+    HeadBegin:
+      $heading: "<code>HeadBegin</code>"
+      $anchor: PUG_BLOCKS-HEAD_BEGIN--SECTION
+
+    Styles:
+      $heading: "<code>Styles</code>"
+      $anchor: PUG_BLOCKS-STYLES--SECTION
+
+    HeadScripts:
+      $heading: "<code>HeadScripts</code>"
+      $anchor: PUG_BLOCKS-HEAD_SCRIPTS--SECTION
+
+    PageContent:
+      $heading: "<code>PageContent</code>"
+      $anchor: PUG_BLOCKS-PAGE_CONTENT--SECTION
+
+    EndBodyContent:
+      $heading: "<code>EndBodyContent</code>"
+      $anchor: PUG_BLOCKS-END_BODY_CONTENT--SECTION
+
+    EndBodyScripts:
+      $heading: "<code>EndBodyScripts</code>"
+      $anchor: PUG_BLOCKS-END_BODY_SCRIPTS--SECTION
+
+multiLevelInheritance:
+  $heading: `multiLevelInheritance.$heading`
+  $anchor: MULTI_LEVEL_INHERITANCE--SECTION

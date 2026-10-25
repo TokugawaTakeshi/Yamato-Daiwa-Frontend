@@ -1,0 +1,136 @@
+﻿@page "/"
+
+@using Microsoft.JSInterop
+@using YamatoDaiwa.CSharpExtensions
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.ValidatableControlShell
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.Validation
+@using YamatoDaiwa.Frontend.Helpers
+
+@inject IJSRuntime JS
+
+
+<ValidatableControlShell
+  label="Label"
+  guidance="Guidance"
+  validationErrorsMessages=@validationErrorsMessages
+  asynchronousChecksStatus=@asynchronousChecksStatus
+  mustDisplayErrorsMessagesIfAny=@true
+>
+  <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+</ValidatableControlShell>
+
+<button
+  type="button"
+  onclick=@switchValidationErrorsMessages
+>
+   Switch VEM
+</button>
+
+<button
+  type="button"
+  onclick=@TryJavaScriptFunctionality
+  @ref=@buttonElement
+>
+  Call YDF.test
+</button>
+
+
+@code {
+
+  protected string[] validationErrorsMessages = [];
+  
+  protected InputtedValueValidation.AsynchronousChecks.Status asynchronousChecksStatus =
+      new(new Dictionary<string, InputtedValueValidation.AsynchronousCheck.Status>());
+  
+  protected static bool ONLY_ERRORED_ASYNCHRONOUS_CHECKS_STATUS = false;
+    
+
+  protected Microsoft.AspNetCore.Components.ElementReference buttonElement;
+
+  private readonly JavaScriptFunctionality javaScriptFunctionality = JavaScriptFunctionality.GetNotInitializedYetInstance();
+
+  protected override async Task OnAfterRenderAsync(bool firstRender)
+  {
+
+    Console.WriteLine("Workbench has been re-rendered");
+    
+    if (firstRender)
+    {
+      await javaScriptFunctionality.Load(JS);
+    }
+    
+  }
+
+  private void switchValidationErrorsMessages()
+  {
+    
+    this.validationErrorsMessages =
+        this.validationErrorsMessages.Length == 0 ?
+            [
+              "This field is required",
+              "Invalid email format",
+              "Value must be at least 3 characters long"
+            ] :
+            [];
+
+    this.asynchronousChecksStatus =
+        new InputtedValueValidation.AsynchronousChecks.Status(
+          new Dictionary<string, InputtedValueValidation.AsynchronousCheck.Status>().
+              SetPairIf(
+                "check1", 
+                new InputtedValueValidation.AsynchronousCheck.Status
+                {
+                  Message = "Pending check",
+                  IsPending = true,
+                  HasValidValueBeenConfirmed = false,
+                  HasErrorOccurred = false,
+                  HasInvalidValueBeenConfirmed = false
+                },
+                this.asynchronousChecksStatus.Checks.Count == 0 && !ONLY_ERRORED_ASYNCHRONOUS_CHECKS_STATUS 
+              ).
+              SetPairIf(
+                "check2", 
+                new InputtedValueValidation.AsynchronousCheck.Status
+                {
+                  Message = "Confirmed Valid value",
+                  IsPending = false,
+                  HasValidValueBeenConfirmed = true,
+                  HasErrorOccurred = false,
+                  HasInvalidValueBeenConfirmed = false
+                },
+                this.asynchronousChecksStatus.Checks.Count == 0 && !ONLY_ERRORED_ASYNCHRONOUS_CHECKS_STATUS 
+              ).
+              SetPairIf(
+                "check3", 
+                new InputtedValueValidation.AsynchronousCheck.Status
+                {
+                  Message = "Error occurred",
+                  IsPending = false,
+                  HasValidValueBeenConfirmed = false,
+                  HasErrorOccurred = true,
+                  HasInvalidValueBeenConfirmed = false
+                },
+                this.asynchronousChecksStatus.Checks.Count == 0 && !ONLY_ERRORED_ASYNCHRONOUS_CHECKS_STATUS 
+              ).
+              SetPairIf(
+                "check4",
+                new InputtedValueValidation.AsynchronousCheck.Status
+                {
+                  Message = "Invalid",
+                  IsPending = false,
+                  HasValidValueBeenConfirmed = false,
+                  HasErrorOccurred = false,
+                  HasInvalidValueBeenConfirmed = true
+                },
+                this.asynchronousChecksStatus.Checks.Count == 0
+              )
+        );
+
+  }
+
+  private async Task TryJavaScriptFunctionality()
+  {
+    Console.WriteLine(await this.javaScriptFunctionality.GetDOM_ElementOffsetCoordinates(this.buttonElement));
+  }
+  
+}

@@ -1,0 +1,55 @@
+-
+
+  const MetaDescriptionTemplates = {
+
+    pugFunction: ({ functionName, whatFunctionDoes }) =>
+        `「Yamato Daiwa Frontend（YDF）」ライブラリの、「Pug」プリプロセッサ専用の「${ functionName }」関数は、${ whatFunctionDoes }`,
+
+    stylusFunction: ({ functionName, whatFunctionDoes }) =>
+        `「Yamato Daiwa Frontend（YDF）」ライブラリの「Stylus」プリプロセッサ専用「${ functionName }」関数は、${ whatFunctionDoes }`,
+
+    realiseNotes: ({ version }) =>
+        `フロント・ウェブ開発専用「Yamato Daiwa Frontend（YDF）」と言うライブラリのバージョン「${ version }」の変更(新規機能、既存機能の更新や以前の` +
+          "機能の削除)の一覧。",
+
+    GUI_Components: {
+
+      AdmonitionBlock:
+          "「AdmonitionBlock」と言う「Yamato Daiwa Frontend（YDF）」ライブラリ枠に囲まれた本文そして場合に依って他の追加中身様なコンポーネントである。" +
+          "グラフィック・ユーザー・インターフェースに於いてユーザーを通知する手段の中一つであり、ボタンでユーザーに反応する提供も可能。" +
+          "タイポグラフィに於いて、様々な重要度の本文部分を強調する為の手段に成っている。",
+
+      Badge:
+          "「Yamato Daiwa Frontend（YDF）」ライブラリには「Badge」は大事なメタデータ（例えば、商品のカテゴリーや行事の日時等）を表示させる為の非対話" +
+            "コンポネントである。",
+
+      controls: {
+
+        ValidatableControlShell:
+            "「Yamato Daiwa Frontend（YDF）」ライブラリ及びその各フレームワークへの適応版における「ValidatableControlShell」コンポーネントは、" +
+              "ユーザー入力コンポーネントの一部として、特にデータを検証しているコンポーネント向けに設計された。" +
+            "このコンポーネントは、ヘッダーラベル、「必須」バッジ、検証メッセージの一覧などの補助要素を提供する。",
+
+        buttons: {
+
+          Button:
+            "「Yamato Daiwa Frontend（YDF）」ライブラリにおいて「Button」コンポーネントは人気なコントロール（制御可能な要素）の中一つ。" +
+            "マウスクリック又はタッチスクリーンのタップに応じて何れかの反応を起こす。" +
+            "簡易なコンポーネントという偏見があるが、実戦から見ると、マーカップもスタイルも大量で複雑けれど、YDFは可能な限りこの複雑さをカプセル化する。",
+
+        },
+
+        validatables: {
+
+          TextBox:
+            "「Yamato Daiwa Frontend（YDF）」ライブラリにおいて「TextBox」コンポーネントは人気なコントロール（制御可能な要素）の中一つ。" +
+            "書式設定無しの本文か、メールアドレスやパスワードやURLや電話の様な文字列型データをキーボード入力から受ける。" +
+            "多行の入力モードや、値コピーボタンや、其の他の需要が有る機能も提供。"
+
+        }
+
+      }
+
+    }
+
+  };

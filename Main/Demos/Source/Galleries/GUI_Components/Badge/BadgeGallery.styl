@@ -1,0 +1,66 @@
+.BadgeGallery
+
+  WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 400px
+
+  WideScreensConfiguration()
+    @media (min-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH)
+      {block}
+
+  NarrowScreensConfiguration()
+    @media (max-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)
+      {block}
+
+
+  &-TwoColumnsTable
+
+    +WideScreensConfiguration()
+
+      display grid
+      grid-template-columns minmax(0, 1fr) auto
+      align-items baseline
+
+      column-gap 12px
+      row-gap 6px
+
+
+    dt
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: 14px,
+        lineSpacing: 6px,
+        mustAllowWordsBreakingAnywhere: true
+      })
+
+
+    dd
+
+      +NarrowScreensConfiguration()
+
+        PositionalRelationship--YDF({
+          definitions: ("dt" { retireFromIt: { y: 6px }, pushItFromSelf: { y: 16px } }),
+          contextSelector: ".BadgeGallery-TwoColumnsTable",
+          referenceElementSelector: "dd"
+        })
+
+
+  &-LinearFlow
+
+    display flex
+    flex-wrap wrap
+    gap 6px 6px
+    align-items center
+
+    PositionalRelationship--YDF({
+      definitions:\
+          (".Heading2" { retireFromIt: { y: 0.8rem }, pushItFromSelf: { y: 16px } })\
+          (".Heading3" { retireFromIt: { y: 0.8rem }, pushItFromSelf: { y: 16px } })
+    })
+
+    retireFromElementWithSameSelector--YDF({ y: 8px })
+
+
+    &__LimitedChildrenMaximalWidth
+
+      >*
+
+        max-width 200px

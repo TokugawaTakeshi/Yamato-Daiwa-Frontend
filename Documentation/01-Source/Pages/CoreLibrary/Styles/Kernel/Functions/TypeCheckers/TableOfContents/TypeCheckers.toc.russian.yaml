@@ -1,0 +1,43 @@
+strings:
+
+  $heading: "Строки"
+
+quantities:
+
+  $heading: "Величины"
+
+booleans:
+
+  $heading: "Булевские значения"
+
+nullables:
+
+  $heading: "Пустые значения"
+
+  theoreticalMinimum:
+
+    $heading: "Теоретический минимум: пустые значения в Stylus"
+
+    nullKeyword:
+
+      $heading: "Ключевое слово `null`"
+
+    nonExistingObjectProperty:
+
+      $heading: "Несуществующее свойство объекта"
+
+    functionOrMixinWithRestParametersOnly:
+
+      $heading: "Функция или примесь только с остаточными параметрами"
+
+    functionOrMixinWithRestParametersInSubsequentPosition:
+
+      $heading: "Функция или примесь с остаточными параметрами на неначальной позиции"
+
+others:
+
+  $heading: "Другие"
+
+externalLinks:
+
+  $heading: "Внешние ссылки"

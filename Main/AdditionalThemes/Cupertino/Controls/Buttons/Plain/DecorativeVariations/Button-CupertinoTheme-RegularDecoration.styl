@@ -1,0 +1,112 @@
+Button-CupertinoTheme-RegularDecoration--YDF = {
+
+  rootElement: {
+    text: {
+      color: CupertinoTheme--JQueryUI.clickableElements.defaultState.fontColor,
+      underline: null
+    },
+    background: {
+      image: CupertinoTheme--JQueryUI.clickableElements.defaultState.background
+    },
+    borders: {
+      style: solid,
+      color: CupertinoTheme--JQueryUI.clickableElements.defaultState.borderColor
+    },
+    outline: null,
+    shadow: null
+  },
+
+  SVG_Icon: {
+    color: CupertinoTheme--JQueryUI.clickableElements.defaultState.fontColor
+  },
+
+
+  stateDependent: {
+
+    hover: {
+
+      rootElement: {
+        text: {
+          color: CupertinoTheme--JQueryUI.clickableElements.hoverState.fontColor,
+          underline: null
+        },
+        background: {
+          image: CupertinoTheme--JQueryUI.clickableElements.hoverState.background
+        },
+        borders: {
+          style: null,
+          color: CupertinoTheme--JQueryUI.clickableElements.hoverState.borderColor
+        },
+        outline: null,
+        shadow: null
+      },
+
+      SVG_Icon: {
+        color: CupertinoTheme--JQueryUI.clickableElements.hoverState.fontColor
+      }
+    },
+
+    focus: {
+      rootElement: {
+        text: {
+          color: null,
+          underline: null
+        },
+        background: {
+          image: null
+        },
+        borders: {
+          style: null,
+          color: null
+        },
+        outline: null,
+        shadow: {
+          blurRadius: 3px,
+          spreadRadius: 1px,
+          color: #62bcea
+        }
+      }
+    },
+
+    active: {
+
+      rootElement: {
+        text: {
+          color: CupertinoTheme--JQueryUI.clickableElements.activeState.fontColor
+        },
+        background: {
+          image: CupertinoTheme--JQueryUI.clickableElements.activeState.background
+        },
+        borders: {
+          style: null,
+          color: CupertinoTheme--JQueryUI.clickableElements.activeState.borderColor
+        },
+        outline: null
+      },
+
+      SVG_Icon: {
+        color: CupertinoTheme--JQueryUI.clickableElements.activeState.fontColor
+      }
+    },
+
+    disabled: {
+
+      rootElement: {
+        text: {
+          color: W3C_39_ShadesOfGray--YDF[24]
+        },
+        background: {
+          color: W3C_39_ShadesOfGray--YDF[36]
+        },
+        borders: {
+          style: null,
+          color: W3C_39_ShadesOfGray--YDF[32]
+        }
+      },
+
+      SVG_Icon: {
+        color: W3C_39_ShadesOfGray--YDF[24]
+      }
+    }
+  }
+}

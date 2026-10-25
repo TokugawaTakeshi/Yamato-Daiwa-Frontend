@@ -1,0 +1,20 @@
+import React from "react";
+import type SVG_IconComponent from "../SVG_IconComponent";
+
+
+const PencilIcon__Circled__Outlined: SVG_IconComponent = ({ className }: SVG_IconComponent.Properties): React.ReactElement =>
+
+    (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        className={ className }
+      >
+        <path d="M14.85 5.45l-1.93-1.52H12.77a.32.32 0 00-.37.07l-1 1.29 2.5 2.03 1-1.34a.39.39 0 00-.05-.53zm-1 1.15l-1.8-1.42.63-.82 1.81 1.42zM5.55 12.85L5 15.9a.22.22 0 00.24.25h.06l2.77-1.29 5.62-7.33-2.49-2zM5.64 15L6 13.05V13l.25-.05a.3.3 0 01.24.07.3.3 0 01.12.22.67.67 0 00.25.49.68.68 0 00.53.14.28.28 0 01.25.06.3.3 0 01.12.22V14.5L6 15.27z" />
+        <path d="M10 1.5A8.5 8.5 0 111.5 10 8.51 8.51 0 0110 1.5M10 0a10 10 0 1010 10A10 10 0 0010 0z" />
+      </svg>
+      
+    );
+
+
+export default PencilIcon__Circled__Outlined;

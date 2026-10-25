@@ -1,0 +1,61 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+  
+    <PackageId>YamatoDaiwa.Frontend</PackageId>
+    <Title>Yamato Daiwa Frontend</Title>
+    <Description>The adaptation of the "Yamato Daiwa Frontend" toolkit for the Blazor framework</Description>
+    <Version>0.7.0-alpha.2</Version>
+    <RootNamespace>YamatoDaiwa.Frontend</RootNamespace>
+    <TargetFrameworks>net9.0; net10.0</TargetFrameworks>
+  
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://frontend.yamato-daiwa.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend.git</RepositoryUrl>
+    <PackageIcon>NuGetProjectIcon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.15" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.6" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="GUI_Components\Controls\ValidatableControlShell\LoadingPlaceholder\" />
+    <Folder Include="GUI_Components\Controls\Validatables\TextBox\LoadingPlaceholder\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="eslint.config.js" Pack="false" CopyToOutputDirectory="Never" />
+    <Content Update="package.json" Pack="false" CopyToOutputDirectory="Never" />
+    <Content Update="package-lock.json" Pack="false" CopyToOutputDirectory="Never" />
+    <Content Update="tsconfig.json" Pack="false" CopyToOutputDirectory="Never" />
+  </ItemGroup>
+  
+   <ItemGroup>
+    <None Include="LICENSE.md" Pack="true" PackagePath="\" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="NuGetProjectIcon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  
+   <ItemGroup>
+     <PackageReference Include="Fundamentals" Version="0.1.0" />
+     <PackageReference Include="YamatoDaiwa.CSharpExtensions" Version="0.9.0" />
+   </ItemGroup>
+
+</Project>

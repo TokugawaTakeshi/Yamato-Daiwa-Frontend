@@ -1,0 +1,205 @@
+extends ../../../PagesTemplates/StaticPreviewAnywherePageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    StaticPreviewAnywherePage__YDF.configure({
+
+      metadata: {
+        title: "NNN Company Home Page — Static Preview"
+      },
+
+      topHeading: "NNN Company Home Page — Static Preview",
+
+      tableOfContents: [
+
+        {
+
+          heading: "Open Pages",
+
+          pages: [
+
+            {
+              title: "Top page",
+              URI: "Open/TopPage.html",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.waitingForImplementation
+            }
+
+          ],
+
+          sections: [
+
+            {
+
+              heading: "About",
+
+              pages: [
+
+                {
+                  title: "Profile",
+                  URI: "Open/About/ProfilePage.html",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                },
+
+                {
+                  title: "OverflowTest:ÀÇĤfhjgpjklbĜiEstosTreMalfacileEnvolverLaVicoAbcdefghijklmnopqrstuvwxyza",
+                  URI: "Open/About/HistoryPage.html",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.improvementWaiting
+                },
+
+                {
+                  title: "President's greeting",
+                  URI: "Open/About/President_sGreetingPage.html",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.improvementInProgress
+                }
+
+              ],
+
+              sections: [
+                {
+
+                  heading: "About - 1 ",
+
+                  pages: [
+
+                    {
+                      title: "About 1 - 1",
+                      URI: "Open/About/ProfilePage.html",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    },
+
+                    {
+                      title: "About 1 - 2",
+                      URI: "Open/About/HistoryPage.html",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.improvementWaiting
+                    },
+
+                    {
+                      title: "About 1 - 3",
+                      URI: "Open/About/President_sGreetingPage.html",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.improvementInProgress
+                    }
+
+                  ]
+
+                }
+
+              ]
+
+            },
+
+            {
+
+              heading: "Blog",
+
+              pages: [
+
+                {
+
+                  title: "Posts List",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.fixingInProgress,
+
+                  linksTable: [
+
+                    {
+                      rowLabel: "Normal Displaying",
+                      columns: [
+                        { label: "English", URI: "Open/Blog/PostsListPage.english.html" },
+                        { label: "Japanese", URI: "Open/Blog/PostsListPage.japanese.html" }
+                      ]
+                    },
+
+                    {
+                      rowLabel: "No Posts Yet",
+                      columns: [
+                        { label: "English", URI: "Open/Blog/PostsListPage-NoPosts.english.html" },
+                        { label: "Japanese", URI: "Open/Blog/PostsListPage-NoPosts.japanese.html" }
+                      ]
+                    },
+
+                    {
+                      rowLabel: "No Search Results Yet",
+                      columns: [
+                        { label: "English", URI: "Open/Blog/PostsListPage-NoSearchResults.english.html" },
+                        { label: "Japanese", URI: "Open/Blog/PostsListPage-NoSearchResults.japanese.html" }
+                      ]
+                    },
+
+                  ]
+
+                },
+
+                {
+                  title: "Post sample",
+                  URI: "Open/Blog/PostSamplePage.html",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.improvementInProgress
+                }
+
+              ]
+
+            },
+
+            {
+
+              heading: "Inquiry",
+
+              pages: [
+
+                {
+                  title: "Inquiry form",
+                  URI: "Open/InquiryPage.html",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.waitingForImplementation
+                },
+
+                {
+                  title: "Tanks for the Contact Request",
+                  URI: "Open/ThanksForTheContactRequest.html",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.waitingForImplementation
+                }
+
+              ]
+
+            }
+
+          ]
+
+        },
+
+        {
+
+          heading: "Admin Panel",
+
+          pages: [
+
+            {
+              title: "Post Editing",
+              URI: "Admin/Blog/PostEditingPage.html",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.specificationClarification
+            },
+
+            {
+              title: "Analytics",
+              linksList: [
+                { label: "Normal displaying", URI: "Admin/Analytics/AnalyticsPage.html" },
+                { label: "No posts yet", URI: "AdminPanel/Analytics/AnalyticsPage-NoData.html" }
+              ],
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.fixingInProgress
+            },
+
+            {
+              title: "Inquiries List",
+              linksList: [
+                { label: "Normal displaying", URI: "Admin/Inquiries/InquiriesListPage.html" },
+                { label: "No posts yet", URI: "Admin/Inquiries/InquiriesListPage-NoData.html" }
+              ],
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.fixingInProgress
+            }
+
+          ]
+
+        }
+
+      ]
+    });

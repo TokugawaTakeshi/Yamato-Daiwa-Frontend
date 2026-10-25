@@ -1,0 +1,77 @@
+//- ━━━ 要約 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+mixin BadgeComponent-Abstract
+
+  p.Article-Paragraph.
+    #[+ImportantEntity--YDID YDF]に於いては#[+DefinableTerm--YDID ベッジ（badge）]は、丸い角有りか無しの、四角の中に
+      単語や日付・時間の様な文字列を表示させる為の#[+Keyword--YDID 無動作の]コンポーネント。
+    アイコンも追加可能ではあるが、文言の代わりには#[+Keyword--YDID 成っていなく]、文言の#[+Keyword--YDID 補足]である。
+
+  p.Article-Paragraph.
+    様々なUI/UXフレームワークに於いては似た様なコンポーネントは#[+Term--YDID Chip]や#[+Term--YDID Pill]や[+Term--YDID Tag]等の様に
+      名付けられ、定義や明確な差別化が有る訳では#[+Keyword--YDID ない]。
+    フレームワークに依ってコンポーネントの名前が異なり、フレームワーク内の定義がされる事も有る。
+    #[+ImportantEntity--YDID YDF]も、フレームワークとして紹介されていなくても、ベッジの場合を含めて、コンポーネントの名前に対して定義を導入する事が有る。
+
+  p.Article-Paragraph.
+    #[+Keyphrase--YDID #[+ImportantEntity--YDID YDF]の場合]#[+Term--YDID ベッジ]は#[+Keyword--YDID 非対話型]と成り、
+      情報を表示している#[+Keyword--YDID だけ]。
+    外見が似ているが、対話可能なコンポーネントと判別する必要が有る、例えばボタン・リンクの振る舞いが有る奴か、中に✖ボタンが有る奴等。
+    尚、#[+ImportantEntity--YDID YDF]に於いては文言が#[+ImportantEntity--YDID ２件迄]対応、即ちキー及び値。
+    例えば、日付けを表す必要が有るが、日読みのアイコンと日付けの文言だけでは具体的に何の日付けか日自明的な場合にとって役立つ機能である。
+
+
+//- ━━━ 概要 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  BadgeGUI_ComponentOverviewLocalization.setLocalizer(
+    () => ({
+      themes: {
+        [Badge__YDF.Themes.regular]: "標準（規定）"
+      },
+      geometricVariations: {
+        [Badge__YDF.GeometricVariations.regular]: "標準（規定）",
+        [Badge__YDF.GeometricVariations.small]: "小型"
+      },
+      geometricModifiers: {
+        [Badge__YDF.GeometricModifiers.pillShape]: "最大の面取り",
+        [Badge__YDF.GeometricModifiers.singleLine]: "強制一行、オーバーフローの時切り詰め"
+      },
+      decorativeVariations: {
+        [Badge__YDF.DecorativeVariations.veryCatchyBright]: "鮮明で超派手（規定は赤）",
+        [Badge__YDF.DecorativeVariations.catchyBright]: "鮮明で派手（規定はオレンジ）",
+        [Badge__YDF.DecorativeVariations.modestlyCatchyBright]: "鮮明でやや派手（規定で黄色）",
+        [Badge__YDF.DecorativeVariations.neutralBright]: "鮮明で中立的（規定で水色）",
+        [Badge__YDF.DecorativeVariations.modestlyCalmingBright]: "鮮明でやや穏やか（規定で青色）",
+        [Badge__YDF.DecorativeVariations.calmingBright]: "鮮明で穏やか（規定で緑色）",
+        [Badge__YDF.DecorativeVariations.achromaticBright]: "鮮明で不染色（規定で暗い灰色）",
+        [Badge__YDF.DecorativeVariations.veryCatchyPastel]: "パステルで超派手（規定は赤）",
+        [Badge__YDF.DecorativeVariations.catchyPastel]: "パステルで派手（規定はオレンジ）",
+        [Badge__YDF.DecorativeVariations.modestlyCatchyPastel]: "パステルでやや派手（規定で黄色）",
+        [Badge__YDF.DecorativeVariations.neutralPastel]: "パステルで中立的（規定で水色）",
+        [Badge__YDF.DecorativeVariations.modestlyCalmingPastel]: "パステルでやや穏やか（規定で青色）",
+        [Badge__YDF.DecorativeVariations.calmingPastel]: "パステルで穏やか（規定で緑色）",
+        [Badge__YDF.DecorativeVariations.achromaticPastel]: "パステルで不染色（規定で明るい灰色）"
+      },
+      decorativeModifiers: {
+        [Badge__YDF.DecorativeModifiers.bordersDisguising]: "大小変化無しで枠が無い効果",
+        [Badge__YDF.DecorativeModifiers.noBackground]: "塗りつぶし無し"
+      }
+    })
+  );
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  BadgeComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources = {
+    pugMixinParametersLocalization: [ {localizedName: "プロパティ揃い"} ],
+    propertiesLocalizedInterpretations: {
+      keyLabel: "キーラベル",
+      valueLabel: "値ラベル",
+      rootElementTag: "ルート要素のタグ",
+      react: {
+        SVG_Icon: "SVGアイコン",
+        rootElementAttributes: "根要素のHTML属性"
+      }
+    }
+  };

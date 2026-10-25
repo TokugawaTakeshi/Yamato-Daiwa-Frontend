@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "概要"
+
+BadgeClass:
+
+  $heading: "<code>Badge</code>クラス"
+
+  vueProperties:
+
+    $heading: "Vueプロパティ"

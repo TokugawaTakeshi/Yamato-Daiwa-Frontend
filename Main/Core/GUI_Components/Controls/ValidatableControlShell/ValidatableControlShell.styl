@@ -1,0 +1,1306 @@
+@require "Themes/Regular/GeometricVariations/ValidatableControlShell-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/ValidatableControlShell-RegularTheme-SmallGeometricVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/ValidatableControlShell-RegularTheme-RegularDecorativeVariation.styl"
+
+
+ValidatableControlShell--YDF = {
+
+  CSS_NAMESPACE: "ValidatableControlShell--YDF",
+
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF",
+
+        geometricVariations: {
+          regular: ValidatableControlShell-RegularTheme-RegularGeometricVariation--YDF,
+          small: ValidatableControlShell-RegularTheme-SmallGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          regular: ValidatableControlShell-RegularTheme-RegularDecorativeVariation--YDF
+        }
+
+      }
+    }
+
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true
+  }
+
+}
+
+
+ValidatableControlShell--YDF-generateStyles(
+  preset = ValidatableControlShell--YDF.defaultProperties,
+  overridings = {},
+  options = ValidatableControlShell--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "ValidatableControlShell--YDF-generateStyles",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: ValidatableControlShell--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: ValidatableControlShell--YDF.defaultOptions.externalThemes
+      },
+      loadingPlaceholder: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: ValidatableControlShell--YDF.defaultOptions.loadingPlaceholder
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: ValidatableControlShell--YDF.defaultOptions.themeIndependentGeometricVariations
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  errorsMessagesListsWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation = {}
+  asynchronousValidationsStatusesListWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation = {}
+
+  for themeName in properties.themes
+
+    errorsMessagesListsWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName] = {};
+    asynchronousValidationsStatusesListWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName] = {};
+
+
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .ValidatableControlShell--YDF
+
+      position relative
+      container-type inline-size
+
+
+      if options.loadingPlaceholder
+
+        &__LoadingPlaceholder
+
+          container-type normal
+
+
+      &-Header
+
+        display flex
+        align-items center
+
+
+      &-Badge
+
+        flex-shrink 0
+
+
+        &__Invisible
+
+          visibility hidden
+
+
+      &-Guidance
+
+        margin-top 0
+        margin-bottom 0
+
+
+      &-ValidationErrorsMessagesList
+
+        padding-inline-start 0
+        list-style none
+
+
+      &-AsynchronousValidationsStatusesList
+
+        padding-inline-start 0
+        list-style none
+
+
+        &-Item
+
+          display flex
+          align-items center
+
+
+          &-LoadingIndicator,
+          &-Icon
+
+            flex-shrink 0
+
+
+          &-Text
+
+            margin-top 0
+            margin-bottom 0
+
+
+  // ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "ValidatableControlShell.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + ValidatableControlShell--YDF.CSS_NAMESPACE)
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
+
+
+    // ╍╍╍ Label ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    .ValidatableControlShell--YDF-Label
+
+      fontSize = extractAndValidateObjectProperties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        extracts: {
+          fontSize: { dotSeparatedPath: "label.text.size", required: true }
+        }
+      }).fontSize
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
+        merge(
+          extractAndValidateObjectProperties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            extracts: {
+              lineSpacing: { dotSeparatedPath: "label.text.lineSpacing", required: false },
+              lineHeight: { dotSeparatedPath: "label.text.lineHeight", mustBeInsteadOf: "label.text.lineSpacing" }
+            }
+          }),
+          {
+            fontSize: fontSize,
+            mustAllowWordsBreakingAnywhere: true
+          }
+        )
+      )
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.label.customDeclarations)
+
+
+      if options.loadingPlaceholder
+
+        &__LoadingPlaceholder
+
+          LoadingPlaceholder({
+            width: 30%,
+            height: fontSize,
+            border-radius: 4px
+          })
+
+          flex-shrink 0
+
+
+    // ╍╍╍ Badge ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    .ValidatableControlShell--YDF-Badge
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          font-size: {
+            dotSeparatedPath: "badge.basicSize",
+            required: true
+          }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.badge.customDeclarations)
+
+
+      &:first-child
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            margin-left: {
+              dotSeparatedPath: "badge.spacing.leftWhenGoingFirst",
+              required: false
+            }
+          }
+        })
+
+
+      /
+
+        retireFrom--YDF({
+          definitions:\
+              (".ValidatableControlShell--YDF-Label" {
+                x: extractAndValidateObjectProperties--YDF({
+                  targetObject: variation,
+                  targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                  extracts: {
+                    afterLabel: { dotSeparatedPath: "badge.spacing.afterLabel", required: true }
+                  }
+                }).afterLabel
+              })
+          referenceElementSelector: ".ValidatableControlShell--YDF-Badge",
+          contextSelector: CONTEXT_SELECTOR
+        })
+
+
+    // ╍╍╍ Guidance ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    .ValidatableControlShell--YDF-Guidance
+
+      fontSize = extractAndValidateObjectProperties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        extracts: {
+          fontSize: { dotSeparatedPath: "guidance.text.size", required: true }
+        }
+      }).fontSize
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
+        merge(
+          extractAndValidateObjectProperties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            extracts: {
+              lineSpacing: { dotSeparatedPath: "guidance.text.lineSpacing", required: false },
+              lineHeight: { dotSeparatedPath: "guidance.text.lineHeight", mustBeInsteadOf: "guidance.text.lineSpacing" }
+            }
+          }),
+          {
+            fontSize: fontSize,
+            mustAllowWordsBreakingAnywhere: true
+          }
+        )
+      )
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.guidance.customDeclarations)
+
+
+      if options.loadingPlaceholder
+
+        &__LoadingPlaceholder
+
+          LoadingPlaceholder({
+            width: 80%,
+            height: fontSize,
+            border-radius: 4px
+          })
+
+          flex-shrink 0
+
+      /
+
+        retireFrom--YDF({
+          targetElementSelector: ".ValidatableControlShell--YDF-Header",
+          contextSelector: CONTEXT_SELECTOR,
+          referenceElementSelector: ".ValidatableControlShell--YDF-Guidance",
+          y: extractAndValidateObjectProperties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            extracts: {
+              spacingAfterHeading: { dotSeparatedPath: "guidance.spacing.afterHeader", required: true },
+            }
+          }).spacingAfterHeading
+        })
+
+
+    // ╍╍╍ Main Slot Customizable Wrapper ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    .ValidatableControlShell--YDF-MainSlotCustomizableWrapper
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.mainSlot.customDeclarations)
+
+
+      /
+
+        retireFrom--YDF({
+          definitions:\
+              (".ValidatableControlShell--YDF-Header:not(:has(.ValidatableControlShell--YDF-Badge))" {
+                y: extractAndValidateObjectProperties--YDF({
+                  targetObject: variation,
+                  targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                  extracts: {
+                    spacingAfterHeading: { dotSeparatedPath: "mainSlot.spacing.afterHeaderWithoutBadge", required: true }
+                  }
+                }).spacingAfterHeading
+              })\
+              (".ValidatableControlShell--YDF-Header:has(.ValidatableControlShell--YDF-Badge)" {
+                y: extractAndValidateObjectProperties--YDF({
+                  targetObject: variation,
+                  targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                  extracts: {
+                    spacingAfterHeading: { dotSeparatedPath: "mainSlot.spacing.afterHeaderWithBadge", required: true }
+                  }
+                }).spacingAfterHeading
+              })\
+              (".ValidatableControlShell--YDF-Guidance" {
+                y: extractAndValidateObjectProperties--YDF({
+                  targetObject: variation,
+                  targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                  extracts: {
+                    spacingAfterHeading: { dotSeparatedPath: "mainSlot.spacing.afterGuidance", required: true }
+                  }
+                }).spacingAfterHeading
+              }),
+          referenceElementSelector: ".ValidatableControlShell--YDF-MainSlotCustomizableWrapper",
+          contextSelector: CONTEXT_SELECTOR
+        })
+
+
+    // ╍╍╍ Validation Errors Messages List ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    errorsMessagesWideContainersConfigurationMinimalWidth = extractAndValidateObjectProperties--YDF({
+      targetObject: variation,
+      targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+      extracts: {
+        wideContainersConfigurationMinimalWidth: {
+          dotSeparatedPath: "validationErrorsMessagesList.wideContainersConfigurationMinimalWidth", required: true
+        }
+      }
+    }).wideContainersConfigurationMinimalWidth
+
+    errorsMessagesListsWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName][variationName] =\
+        errorsMessagesWideContainersConfigurationMinimalWidth
+
+
+    ValidationErrorsMessagesListAndChildrenGeometry(targetPhase)
+
+      .ValidatableControlShell--YDF-ValidationErrorsMessagesList
+
+        if targetPhase == "forWideContainers"
+
+          //* [ Theory ] For narrow containers, the arrow presence must be respected. */
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              margin-top: {
+                dotSeparatedPath: "validationErrorsMessagesList.forWideContainers.spacing.afterMainSlot",
+                required: true
+              }
+            }
+          })
+
+
+        if targetPhase == "forNarrowContainers"
+
+          cachedValidReusables = extractAndValidateObjectProperties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            extracts: {
+              arrowTriangleHeight: {
+                dotSeparatedPath: "validationErrorsMessagesList.forNarrowContainers.arrow.triangleHeight"
+                required: false
+              }
+            }
+          })
+
+
+          position relative
+
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              width: {
+                dotSeparatedPath: "validationErrorsMessagesList.forNarrowContainers.width",
+                required: false
+              },
+              borders: {
+                dotSeparatedPath: "validationErrorsMessagesList.forNarrowContainers.borders",
+                required: false,
+                applier: BordersSizing--YDF
+              },
+              paddings: {
+                dotSeparatedPath: "validationErrorsMessagesList.forNarrowContainers.paddings",
+                required: false,
+                applier: Paddings--YDF
+              },
+              z-index: {
+                dotSeparatedPath: "validationErrorsMessagesList.forNarrowContainers.zIndex",
+                required: true
+              }
+            }
+          })
+
+          verticalSpacingBetweenMainSlotAndArrow = extractAndValidateObjectProperties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            extracts: {
+              verticalSpacingBetweenMainSlotAndArrow: {
+                dotSeparatedPath: "validationErrorsMessagesList.forNarrowContainers.spacing.betweenMainSlotAndArrow",
+                required: true
+              }
+            }
+          }).verticalSpacingBetweenMainSlotAndArrow
+
+          verticalSpacingBetweenMainSlotAndList = buildCalcExpression--YDF(
+            "${ arrowTriangleHeight } + ${ verticalSpacingBetweenMainSlotAndArrow }",
+            {
+              arrowTriangleHeight: cachedValidReusables.arrowTriangleHeight,
+              verticalSpacingBetweenMainSlotAndArrow: verticalSpacingBetweenMainSlotAndArrow
+            }
+          )
+
+          margin-top verticalSpacingBetweenMainSlotAndList
+
+
+          // ─── Arrow ─────────────────────────────────────────────────────────────────────────────────────────────────
+          &:before
+
+            triangleBaseWidth = extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: {
+                triangleBaseWidth: {
+                  dotSeparatedPath: "validationErrorsMessagesList.forNarrowContainers.arrow.triangleBaseWidth",
+                  required: true
+                }
+              }
+            }).triangleBaseWidth
+
+            display block
+            content ""
+
+            width 0
+            height 0
+
+            border-left-width 0.5*triangleBaseWidth
+            border-right-width 0.5*triangleBaseWidth
+            border-bottom-width: cachedValidReusables.arrowTriangleHeight
+
+            position absolute
+            top 0
+            left 0
+
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              assigments: {
+                z-index: {
+                  dotSeparatedPath: "validationErrorsMessagesList.forNarrowContainers.arrow.zIndex",
+                  required: true
+                }
+              }
+            })
+
+            spacingFromLeft = extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: {
+                spacingFromLeft: {
+                  dotSeparatedPath: "validationErrorsMessagesList.forNarrowContainers.arrow.spacing.fromLeft",
+                  required: true
+                }
+              }
+            }).spacingFromLeft
+
+            transform translate(spacingFromLeft, -100%)
+
+            applyMixinStoredInObjectIfItIsNotNull--YDF(
+              variation.validationErrorsMessagesList.forNarrowContainers.arrow.customDeclarations
+            )
+
+
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.validationErrorsMessagesList[targetPhase].customDeclarations)
+
+
+        // ─── Item ────────────────────────────────────────────────────────────────────────────────────────────────────
+        &-Item
+
+          applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
+            merge(
+              extractAndValidateObjectProperties--YDF({
+                targetObject: variation,
+                targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                extracts: {
+                  fontSize: {
+                    dotSeparatedPath: "validationErrorsMessagesList." + targetPhase + ".item.text.size",
+                    required: true
+                  },
+                  lineSpacing: {
+                    dotSeparatedPath: "validationErrorsMessagesList." + targetPhase + ".item.text.lineSpacing",
+                    required: false
+                  },
+                  lineHeight: {
+                    dotSeparatedPath: "validationErrorsMessagesList." + targetPhase + ".item.text.lineHeight",
+                    mustBeInsteadOf: "validationErrorsMessagesList." + targetPhase + ".item.text.lineSpacing"
+                  }
+                }
+              }),
+              { mustAllowWordsBreakingAnywhere: true }
+            )
+          )
+
+          retireFromElementWithSameSelector--YDF({
+            contextSelector: CONTEXT_SELECTOR,
+            referenceElementSelector: ".ValidatableControlShell--YDF-ValidationErrorsMessagesList-Item"
+            y: extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: {
+                spacingBetweenSelfInstances: {
+                  dotSeparatedPath: "validationErrorsMessagesList." + targetPhase + ".item.spacing.betweenSelfInstances",
+                  required: true
+                }
+              }
+            }).spacingBetweenSelfInstances
+          })
+
+          applyMixinStoredInObjectIfItIsNotNull--YDF(variation.validationErrorsMessagesList[targetPhase].item.customDeclarations)
+
+
+    @media container and (min-width: errorsMessagesWideContainersConfigurationMinimalWidth)
+
+      ValidationErrorsMessagesListAndChildrenGeometry("forWideContainers")
+
+
+    @media container and (max-width: errorsMessagesWideContainersConfigurationMinimalWidth - SMALLEST_DIVISION_OF_CSS_PIXEL--YDF)
+
+      ValidationErrorsMessagesListAndChildrenGeometry("forNarrowContainers")
+
+
+    // ┅┅┅ Asynchronous Validations Statuses List ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    asynchronousValidationsStatusesListWideContainersConfigurationMinimalWidth = extractAndValidateObjectProperties--YDF({
+      targetObject: variation,
+      targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+      extracts: {
+        wideContainersConfigurationMinimalWidth: {
+          dotSeparatedPath: "asynchronousValidationsStatusesList.wideContainersConfigurationMinimalWidth", required: true
+        }
+      }
+    }).wideContainersConfigurationMinimalWidth
+
+    asynchronousValidationsStatusesListWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName][variationName] =\
+        asynchronousValidationsStatusesListWideContainersConfigurationMinimalWidth
+
+
+    AsynchronousValidationsStatusesListAndChildrenGeometry(targetPhase)
+
+      .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList
+
+        if targetPhase == "forWideContainers"
+
+          // .ValidatableControlShell--YDF-MainSlotCustomizableWrapper
+          //* [ Theory ] For narrow containers, the arrow presence must be respected. */
+          //* [ Theory ] Element with `[data-validation_errors_messages_mounting_point]` selector is actual only
+          //    for VanillaJS implementation. In adaptations to frameworks, asynchronous validations statuses list
+          //    may be directly after element with `ValidatableControlShell--YDF-MainSlotCustomizableWrapper` class. */
+          retireFrom--YDF({
+            contextSelector: CONTEXT_SELECTOR,
+            referenceElementSelector: ".ValidatableControlShell--YDF-AsynchronousValidationsStatusesList",
+            definitions:\
+                ("[data-validation_errors_messages_mounting_point]" {
+                  y: extractAndValidateObjectProperties--YDF({
+                    targetObject: variation,
+                    targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                    extracts: {
+                      afterLabel: {
+                        dotSeparatedPath: "asynchronousValidationsStatusesList.forWideContainers.spacing.afterMainSlot",
+                        required: true
+                      }
+                    }
+                  }).afterLabel
+                })\
+                (".ValidatableControlShell--YDF-MainSlotCustomizableWrapper" {
+                  y: extractAndValidateObjectProperties--YDF({
+                    targetObject: variation,
+                    targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                    extracts: {
+                      afterLabel: {
+                        dotSeparatedPath: "asynchronousValidationsStatusesList.forWideContainers.spacing.afterMainSlot",
+                        required: true
+                      }
+                    }
+                  }).afterLabel
+                })\
+                (".ValidatableControlShell--YDF-ValidationErrorsMessagesList" {
+                  y: extractAndValidateObjectProperties--YDF({
+                    targetObject: variation,
+                    targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                    extracts: {
+                      afterLabel: {
+                        dotSeparatedPath: "asynchronousValidationsStatusesList.forWideContainers.spacing.afterValidationErrorsList",
+                        required: true
+                      }
+                    }
+                  }).afterLabel
+                })
+          })
+
+
+        if targetPhase == "forNarrowContainers"
+
+          cachedValidReusables = extractAndValidateObjectProperties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            extracts: {
+              arrowTriangleHeight: {
+                dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.arrow.triangleHeight"
+                required: false
+              },
+              verticalSpacingBetweenMainSlotAndArrow: {
+                dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.spacing.betweenMainSlotAndArrow",
+                required: true
+              },
+              verticalSpacingBetweenLists: {
+                dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.spacing.afterValidationErrorsList",
+                required: true
+              }
+            }
+          })
+
+
+          position relative
+
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              width: {
+                dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.width",
+                required: false
+              },
+              borders: {
+                dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.borders",
+                required: false,
+                applier: BordersSizing--YDF
+              },
+              paddings: {
+                dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.paddings",
+                required: false,
+                applier: Paddings--YDF
+              },
+              z-index: {
+                dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.zIndex",
+                required: true
+              }
+            }
+          })
+
+          verticalSpacingBetweenMainSlotAndArrow = cachedValidReusables.verticalSpacingBetweenMainSlotAndArrow
+          verticalSpacingBetweenListsAndArrow = cachedValidReusables.verticalSpacingBetweenLists
+
+          verticalSpacingBetweenMainSlotAndList = buildCalcExpression--YDF(
+            "${ arrowTriangleHeight } + ${ verticalSpacingBetweenMainSlotAndArrow }",
+            {
+              arrowTriangleHeight: cachedValidReusables.arrowTriangleHeight,
+              verticalSpacingBetweenMainSlotAndArrow: verticalSpacingBetweenMainSlotAndArrow
+            }
+          )
+
+          verticalSpacingBetweenLists = buildCalcExpression--YDF(
+            "${ arrowTriangleHeight } + ${ verticalSpacingBetweenListsAndArrow }",
+            {
+              arrowTriangleHeight: cachedValidReusables.arrowTriangleHeight,
+              verticalSpacingBetweenListsAndArrow: verticalSpacingBetweenListsAndArrow
+            }
+          )
+
+          //* [ Theory ] Element with `[data-validation_errors_messages_mounting_point]` selector is actual only
+          //    for VanillaJS implementation. In adaptations to frameworks, asynchronous validations statuses list
+          //    may be directly after element with `ValidatableControlShell--YDF-MainSlotCustomizableWrapper` class. */
+          retireFrom--YDF({
+            contextSelector: CONTEXT_SELECTOR,
+            referenceElementSelector: ".ValidatableControlShell--YDF-AsynchronousValidationsStatusesList",
+            definitions:\
+                ("[data-validation_errors_messages_mounting_point]" { y: verticalSpacingBetweenMainSlotAndList })\
+                (".ValidatableControlShell--YDF-MainSlotCustomizableWrapper" { y: verticalSpacingBetweenMainSlotAndList })\
+                (".ValidatableControlShell--YDF-ValidationErrorsMessagesList" { y: verticalSpacingBetweenLists })
+          })
+
+
+          // ─── Arrow ─────────────────────────────────────────────────────────────────────────────────────────────────
+          &:before
+
+            triangleBaseWidth = extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: {
+                triangleBaseWidth: {
+                  dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.arrow.triangleBaseWidth",
+                  required: true
+                }
+              }
+            }).triangleBaseWidth
+
+            display block
+            content ""
+
+            width 0
+            height 0
+
+            border-left-width 0.5*triangleBaseWidth
+            border-right-width 0.5*triangleBaseWidth
+            border-bottom-width: cachedValidReusables.arrowTriangleHeight
+
+            position absolute
+            top 0
+            left 0
+
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              assigments: {
+                z-index: {
+                  dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.arrow.zIndex",
+                  required: true
+                }
+              }
+            })
+
+            spacingFromLeft = extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: {
+                spacingFromLeft: {
+                  dotSeparatedPath: "asynchronousValidationsStatusesList.forNarrowContainers.arrow.spacing.fromLeft",
+                  required: true
+                }
+              }
+            }).spacingFromLeft
+
+            transform translate(spacingFromLeft, -100%)
+
+            applyMixinStoredInObjectIfItIsNotNull--YDF(
+              variation.asynchronousValidationsStatusesList.forNarrowContainers.arrow.customDeclarations
+            )
+
+
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.asynchronousValidationsStatusesList[targetPhase].customDeclarations)
+
+
+        // ─── Item ────────────────────────────────────────────────────────────────────────────────────────────────────
+        &-Item
+
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              column-gap: {
+                dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase +\
+                    ".item.spacing.betweenIconAndText",
+                required: true
+              }
+            }
+          })
+
+          retireFromElementWithSameSelector--YDF({
+            contextSelector: CONTEXT_SELECTOR,
+            referenceElementSelector: ".ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item"
+            y: extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: {
+                spacingBetweenSelfInstances: {
+                  dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase +\
+                      ".item.spacing.betweenSelfInstances",
+                  required: true
+                }
+              }
+            }).spacingBetweenSelfInstances
+          })
+
+          applyMixinStoredInObjectIfItIsNotNull--YDF(
+            variation.asynchronousValidationsStatusesList[targetPhase].item.customDeclarations
+          )
+
+
+          // ┄┄┄ Icon ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+          &-Icon
+
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              assigments: {
+                width: {
+                  dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase + ".item.SVG_Icon.width",
+                  required: false
+                },
+                height: {
+                  dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase + ".item.SVG_Icon.height",
+                  requiredIf: {
+                    predicate: @(variation) {
+                      return isNull--YDF(
+                        getObjectValueByDotSeparatedPathSafely--YDF(
+                          variation, "asynchronousValidationsStatusesList." + targetPhase + ".item.SVG_Icon.width"
+                        )
+                      )
+                    },
+                    conditionDescription: "'asynchronousValidationsStatusesList." + targetPhase +\
+                        ".item.SVG_Icon.width' icon is null"
+                  }
+                }
+              }
+            })
+
+            applyMixinStoredInObjectIfItIsNotNull--YDF(
+              variation.asynchronousValidationsStatusesList[targetPhase].item.SVG_Icon.customDeclarations
+            )
+
+
+          // ┄┄┄ Loading Indicator ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+          &-LoadingIndicator
+
+            LoadingIndicator--YDF-customizeGeometryOfSpecificType(
+              LoadingIndicator--YDF.Types.variableWidthArcSpinner,
+              extractAndValidateObjectProperties--YDF({
+                targetObject: variation,
+                targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                extracts: {
+                  diameter: {
+                    dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase +\
+                        ".item.loadingIndicator.diameter",
+                    required: true
+                  },
+                  thickness: {
+                    dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase +\
+                        ".item.loadingIndicator.thickness",
+                    required: false
+                  }
+                }
+              })
+            )
+
+
+          // ┄┄┄ Text ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+          &-Text
+
+            applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
+              merge(
+                extractAndValidateObjectProperties--YDF({
+                  targetObject: variation,
+                  targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                  extracts: {
+                    fontSize: {
+                      dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase + ".item.text.size",
+                      required: true
+                    },
+                    lineSpacing: {
+                      dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase + ".item.text.lineSpacing",
+                      required: false
+                    },
+                    lineHeight: {
+                      dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase + ".item.text.lineHeight",
+                      mustBeInsteadOf: "asynchronousValidationsStatusesList." + targetPhase + ".item.text.lineSpacing"
+                    }
+                  }
+                }),
+                { mustAllowWordsBreakingAnywhere: true }
+              )
+            )
+
+
+    @media container and (min-width: asynchronousValidationsStatusesListWideContainersConfigurationMinimalWidth)
+
+      AsynchronousValidationsStatusesListAndChildrenGeometry("forWideContainers")
+
+    @media container and (max-width: errorsMessagesWideContainersConfigurationMinimalWidth - SMALLEST_DIVISION_OF_CSS_PIXEL--YDF)
+
+      AsynchronousValidationsStatusesListAndChildrenGeometry("forNarrowContainers")
+
+
+  // ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "ValidatableControlShell.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + ValidatableControlShell--YDF.CSS_NAMESPACE)
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
+
+
+    // ╍╍╍ Label ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    .ValidatableControlShell--YDF-Label
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          font-weight: { dotSeparatedPath: "label.text.weight", required: false },
+          color: { dotSeparatedPath: "label.text.color", required: false }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.label.customDeclarations)
+
+
+    // ╍╍╍ Badge ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    .ValidatableControlShell--YDF-Badge
+
+      &__Required
+
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.badge.required.customDeclarations)
+
+
+      &__Optional
+
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.badge.optional.customDeclarations)
+
+
+    // ╍╍╍ Guidance ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    .ValidatableControlShell--YDF-Guidance
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          font-weight: { dotSeparatedPath: "guidance.text.weight", required: false },
+          color: { dotSeparatedPath: "guidance.text.color", required: false }
+        }
+      })
+
+
+      &-AccentedFragment
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            font-weight: { dotSeparatedPath: "guidance.text.accenctedFragment.weight", required: false },
+            color: { dotSeparatedPath: "guidance.text.accenctedFragment.color", required: false }
+          }
+        })
+
+
+    // ╍╍╍ Validation Errors Messages List ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    ValidationErrorsMessagesListAndChildrenDecoration(targetPhase)
+
+      .ValidatableControlShell--YDF-ValidationErrorsMessagesList
+
+        cachedValidReusables = extractAndValidateObjectProperties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          extracts: {
+            backgroundColor: {
+              dotSeparatedPath: "validationErrorsMessagesList." + targetPhase + ".background.color",
+              required: false
+            },
+            backgroundImage: {
+              dotSeparatedPath: "validationErrorsMessagesList." + targetPhase + ".background.image",
+              required: false
+            }
+          }
+        })
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            border-style: { dotSeparatedPath: "validationErrorsMessagesList." + targetPhase + ".borders.style", required: false },
+            border-color: { dotSeparatedPath: "validationErrorsMessagesList." + targetPhase + ".borders.color", required: false },
+            box-shadow: {
+              dotSeparatedPath: "validationErrorsMessagesList." + targetPhase + ".shadow",
+              required: false,
+              applier: applyObjectTypeBoxShadowDefinition--YDF
+            }
+          }
+        })
+
+        applyIfNotNull--YDF({
+          background-color: cachedValidReusables.backgroundColor,
+          background-image: cachedValidReusables.backgroundImage
+        })
+
+
+        if targetPhase == "forNarrowContainers"
+
+          // ─── Arrow ─────────────────────────────────────────────────────────────────────────────────────────────────
+          &:before
+
+            border-left-style solid
+            border-right-style solid
+            border-bottom-style solid
+
+            border-left-color transparent
+            border-right-color transparent
+
+            applyIfNotNull--YDF({
+              border-bottom-color: cachedValidReusables.backgroundColor,
+              border-bottom-image: cachedValidReusables.backgroundImage
+            })
+
+
+        // ─── Item ────────────────────────────────────────────────────────────────────────────────────────────────────
+        &-Item
+
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
+            targetObject: variation,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              font-weight: {
+                dotSeparatedPath: "validationErrorsMessagesList." + targetPhase + ".item.text.weight", required: false
+              },
+              color: {
+                dotSeparatedPath: "validationErrorsMessagesList." + targetPhase + ".item.text.color", required: false
+              }
+            }
+          })
+
+
+    if getObjectNonNullValuesCount--YDF(errorsMessagesListsWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName]) > 1
+
+      for geometricVariationName, errorsMessagesWideContainersConfigurationMinimalWidth in errorsMessagesListsWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName]
+
+        geometricVariationCSS_Class = buildBEM_ClassName--YDF({
+          block: ValidatableControlShell--YDF.CSS_NAMESPACE,
+          modifier: capitalizeFirstLatinCharacter--YDF(geometricVariationName) + "GeometricVariation"
+          elementSeparator: "-",
+          modifierSeparator: "__"
+        })
+
+        /{ CONTEXT_SELECTOR }.{ geometricVariationCSS_Class }
+
+          @media container and (min-width: errorsMessagesWideContainersConfigurationMinimalWidth)
+
+            ValidationErrorsMessagesListAndChildrenDecoration("forWideContainers")
+
+
+          @media container and (max-width: errorsMessagesWideContainersConfigurationMinimalWidth - SMALLEST_DIVISION_OF_CSS_PIXEL--YDF)
+
+            ValidationErrorsMessagesListAndChildrenDecoration("forNarrowContainers")
+
+    else
+
+      +provideDefaultSelectorWhenRootAndApply--YDF("." + ValidatableControlShell--YDF.CSS_NAMESPACE)
+
+        @media container and (min-width: errorsMessagesWideContainersConfigurationMinimalWidth)
+
+          ValidationErrorsMessagesListAndChildrenDecoration("forWideContainers")
+
+
+        @media container and (max-width: errorsMessagesWideContainersConfigurationMinimalWidth - SMALLEST_DIVISION_OF_CSS_PIXEL--YDF)
+
+          ValidationErrorsMessagesListAndChildrenDecoration("forNarrowContainers")
+
+
+    // ╍╍╍ Asynchronous Validations Statuses List ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    AsynchronousValidationsStatusesListAndChildren(targetPhase)
+
+      .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList
+
+        cachedValidReusables = extractAndValidateObjectProperties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          extracts: {
+            backgroundColor: {
+              dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase + ".background.color",
+              required: false
+            },
+            backgroundImage: {
+              dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase + ".image.color",
+              required: false
+            }
+          }
+        })
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            border-style: {
+              dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase + ".borders.style",
+              required: false
+            },
+            border-color: {
+              dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase + ".borders.color",
+              required: false
+            },
+            box-shadow: {
+              dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase + ".shadow",
+              required: false,
+              applier: applyObjectTypeBoxShadowDefinition--YDF
+            }
+          }
+        })
+
+        applyIfNotNull--YDF({
+          background-color: cachedValidReusables.backgroundColor,
+          background-image: cachedValidReusables.backgroundImage
+        })
+
+
+        if targetPhase == "forNarrowContainers"
+
+          // ─── Arrow ─────────────────────────────────────────────────────────────────────────────────────────────────
+          &:before
+
+            border-left-style solid
+            border-right-style solid
+            border-bottom-style solid
+
+            border-left-color transparent
+            border-right-color transparent
+
+            applyIfNotNull--YDF({
+              border-bottom-color: cachedValidReusables.backgroundColor,
+              border-bottom-image: cachedValidReusables.backgroundImage
+            })
+
+        // ─── Item ────────────────────────────────────────────────────────────────────────────────────────────────────
+        &-Item
+
+          // ┄┄┄ Loading Indicator ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+          &-LoadingIndicator
+
+            LoadingIndicator--YDF-customizeDecorationOfSpecificType(
+              LoadingIndicator--YDF.Types.variableWidthArcSpinner,
+              extractAndValidateObjectProperties--YDF({
+                targetObject: variation,
+                targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                extracts: {
+                  color: {
+                    dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase +\
+                        ".item.loadingIndicator.color",
+                    required: true
+                  }
+                }
+              })
+            )
+
+
+          // ┄┄┄ Icon ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+          &-Icon
+
+            ../__SucceededAndValidState .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon
+
+              validateAndAssignStoredInObjectCSS_Properties--YDF({
+                targetObject: variation,
+                targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                assigments: {
+                  fill: {
+                    dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase +\
+                        ".item.SVG_Icons.succeededAndValidState.color",
+                    required: false
+                  }
+                }
+              })
+
+
+            ../__MalfunctionState .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Icon
+
+              validateAndAssignStoredInObjectCSS_Properties--YDF({
+                targetObject: variation,
+                targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                assigments: {
+                  fill: {
+                    dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase +\
+                        ".item.SVG_Icons.malfunctionState.color",
+                    required: false
+                  }
+                }
+              })
+
+
+          // ┄┄┄ Text ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+          &-Text
+
+            ../__InProgressState .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text
+
+              validateAndAssignStoredInObjectCSS_Properties--YDF({
+                targetObject: variation,
+                targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                assigments: {
+                  color: {
+                    dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase +\
+                        ".item.text.inProgressState.color",
+                    required: false
+                  }
+                }
+              })
+
+            ../__SucceededAndValidState .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text
+
+              validateAndAssignStoredInObjectCSS_Properties--YDF({
+                targetObject: variation,
+                targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                assigments: {
+                  color: {
+                    dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase +\
+                        ".item.text.succeededAndValidState.color",
+                    required: false
+                  }
+                }
+              })
+
+
+            ../__MalfunctionState .ValidatableControlShell--YDF-AsynchronousValidationsStatusesList-Item-Text
+
+              validateAndAssignStoredInObjectCSS_Properties--YDF({
+                targetObject: variation,
+                targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+                assigments: {
+                  color: {
+                    dotSeparatedPath: "asynchronousValidationsStatusesList." + targetPhase +\
+                        ".item.text.malfunctionState.color",
+                    required: false
+                  }
+                }
+              })
+
+
+    if getObjectNonNullValuesCount--YDF(asynchronousValidationsStatusesListWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName]) > 1
+
+      for geometricVariationName, asynchronousValidationsStatusesListWideContainersConfigurationMinimalWidth in errorsMessagesListsWideContainersConfigurationsMinimalWidthsForEachThemeAndGeometricVariation[themeName]
+
+        geometricVariationCSS_Class = buildBEM_ClassName--YDF({
+          block: ValidatableControlShell--YDF.CSS_NAMESPACE,
+          modifier: capitalizeFirstLatinCharacter--YDF(geometricVariationName) + "GeometricVariation"
+          elementSeparator: "-",
+          modifierSeparator: "__"
+        })
+
+        /{ CONTEXT_SELECTOR }.{ geometricVariationCSS_Class }
+
+          @media container and (min-width: asynchronousValidationsStatusesListWideContainersConfigurationMinimalWidth)
+
+            AsynchronousValidationsStatusesListAndChildren("forWideContainers")
+
+
+          @media container and (max-width: asynchronousValidationsStatusesListWideContainersConfigurationMinimalWidth - SMALLEST_DIVISION_OF_CSS_PIXEL--YDF)
+
+            AsynchronousValidationsStatusesListAndChildren("forNarrowContainers")
+
+     else
+
+      +provideDefaultSelectorWhenRootAndApply--YDF("." + ValidatableControlShell--YDF.CSS_NAMESPACE)
+
+        @media container and (min-width: asynchronousValidationsStatusesListWideContainersConfigurationMinimalWidth)
+
+          AsynchronousValidationsStatusesListAndChildren("forWideContainers")
+
+
+        @media container and (max-width: asynchronousValidationsStatusesListWideContainersConfigurationMinimalWidth - SMALLEST_DIVISION_OF_CSS_PIXEL--YDF)
+
+          AsynchronousValidationsStatusesListAndChildren("forNarrowContainers")
+
+
+  // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  if !options.themeIndependentStylesOnly
+
+    applyComponentThemes--YDF({
+      CSS_Namespace: ValidatableControlShell--YDF.CSS_NAMESPACE,
+      themes: properties.themes,
+      applyGeometricVariation: applyGeometricVariation,
+      applyDecorativeVariation: applyDecorativeVariation
+    })

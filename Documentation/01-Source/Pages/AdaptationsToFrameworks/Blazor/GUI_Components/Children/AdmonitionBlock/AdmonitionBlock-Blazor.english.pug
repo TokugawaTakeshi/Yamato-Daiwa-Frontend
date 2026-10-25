@@ -1,0 +1,90 @@
+extends ../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../SharedAssets/Markup/SharedAssets.english.pug
+  include ../../../../../../SharedComponents/SharedComponents.english.pug
+
+
+block append Metadata
+
+  -
+
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.adaptationsToFrameworks.$children.blazor.$children.GUI_Components.$children.AdmonitionBlock;
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle(topHeading),
+        description: MetaDescriptionTemplates.GUI_Components.AdmonitionBlock
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("adaptationsToFrameworks.blazor.GUI_Components.AdmonitionBlock");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      japanese: routing.japanese.adaptationsToFrameworks.$children.blazor.$children.GUI_Components.$children.AdmonitionBlock.$URI,
+      russian: routing.russian.adaptationsToFrameworks.$children.blazor.$children.GUI_Components.$children.AdmonitionBlock.$URI
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ `AdmonitionBlock` (Blazor) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
+
+    +WebPageViewer--YDF({
+      URI: "$Demos:Vue/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "AdmonitionBlock" })
+    })
+
+    +AdmonitionBlockComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ┅┅┅ Overview ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
+    }).Article-Heading2
+
+    +AdmonitionBlockComponent-Overview({ framework: SupportedFrameworks.blazor })
+
+
+    //- ┅┅┅ `AdmonitionBlock` Class ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      innerHTML: localizedSectioning.AdmonitionBlockClass.$heading,
+      HTML_ID: localizedSectioning.AdmonitionBlockClass.$anchor
+    }).Article-Heading2
+
+    //- ─── Razor Component Parameters ─────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.AdmonitionBlockClass.$children.razorComponentParameters.$heading,
+      HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.razorComponentParameters.$anchor
+    }).Article-Heading3
+
+    +AdmonitionBlockComponent-PugMixinOrClassSynopsis({ framework: SupportedFrameworks.blazor })

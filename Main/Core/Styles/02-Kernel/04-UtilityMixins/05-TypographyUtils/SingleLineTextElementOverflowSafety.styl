@@ -1,0 +1,53 @@
+SingleLineTextElementOverflowSafety--YDF(compoundParameter = {}, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "SingleLineTextElementOverflowSafety--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      displayEllipsis: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+      supportCrossAxisCenteredFlexChild: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      },
+      lineHeight: {
+        type: DataTypes--YDF.dimensionalQuantity DataTypes--YDF.dimensionlessQuantity,
+        required: false
+      },
+      verticalSymmetricPaddings: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      }
+    },
+    restParameters: restParameters__MUST_NOT_BE
+  })
+
+
+  overflow hidden
+  white-space nowrap
+
+
+  if isTrue--YDF(compoundParameter.displayEllipsis)
+
+    text-overflow ellipsis
+
+  else
+
+    text-overflow clip
+
+
+  if isTrue--YDF(compoundParameter.supportCrossAxisCenteredFlexChild)
+
+    max-width 100%
+
+
+  applyIfNotNull--YDF({ line-height: compoundParameter.lineHeight })
+
+
+  if isNotNull--YDF(compoundParameter.verticalSymmetricPaddings)
+
+    padding-top: compoundParameter.verticalSymmetricPaddings
+    padding-bottom: compoundParameter.verticalSymmetricPaddings

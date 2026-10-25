@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "Сводка"
+
+TextBoxClass:
+
+  $heading: "Класс <code>TextBox</code>"
+
+  razorComponentParameters:
+
+    $heading: "Параметры Razor-компонента"

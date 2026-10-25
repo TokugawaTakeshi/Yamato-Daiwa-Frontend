@@ -1,0 +1,113 @@
+mixin Breadcrumb--YDF(properties)
+
+  -
+
+    const {
+
+      /** @type { Array<Breadcrumb.Item> } */
+      items,
+
+      /**
+       * @type { boolean }
+       * @default { false }
+       * */
+      noLineBreakingInsideItems,
+
+      /**
+       * @type { string }
+       * @default Breadcrumb.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default Breadcrumb.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default Breadcrumb.GeometricVariations.regular
+       */
+      geometricVariation,
+
+      /**
+       * @type { string }
+       * @default Breadcrumb.DecorativeVariations.regular
+       */
+      decorativeVariation
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: Breadcrumb__YDF.propertiesSpecification,
+      mixinName: "Breadcrumb--YDF"
+    });
+
+    /** @type { ReadonlyArray<string> } */
+    const rootElementModifierCSS_Classes = [
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: Breadcrumb__YDF.Themes,
+        CSS_Namespace: Breadcrumb__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: Breadcrumb__YDF.GeometricVariations,
+        CSS_Namespace: Breadcrumb__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: Breadcrumb__YDF.DecorativeVariations,
+        CSS_Namespace: Breadcrumb__YDF.CSS_NAMESPACE
+      })
+
+    ];
+
+
+  nav.Breadcrumb--YDF(
+    class=rootElementModifierCSS_Classes
+  )&attributes(attributes)
+
+    ul.Breadcrumb--YDF-List
+
+      each item, index in items
+
+        li.Breadcrumb--YDF-List-Item
+
+          if item.URI
+
+            +Button--YDF({
+              label: item.label,
+              URI: item.URI,
+              geometricVariation: Button__YDF.GeometricVariations.linkLike,
+              geometricModifiers: [],
+              decorativeVariation: Button__YDF.DecorativeVariations.linkLike
+            })
+
+          else if item.interactive
+
+            //- Button__YDF.GeometricModifiers.singleLine
+            +Button--YDF({
+              label: item.label,
+              geometricVariation: Button__YDF.GeometricVariations.linkLike,
+              geometricModifiers: [],
+              decorativeVariation: Button__YDF.DecorativeVariations.linkLike
+            })
+
+          else
+
+            span.Breadcrumb--YDF-List-Item-Label&attributes({
+              class: noLineBreakingInsideItems ?
+                  "Breadcrumb--YDF-List-Item-Label__SingleLine" : "Breadcrumb--YDF-List-Item-Label__MultiLine"
+            })= item.label
+
+
+          if index < items.length - 1
+
+            +Chevron__Rightward--YDF_Icon.Breadcrumb--YDF-LinksSeparator

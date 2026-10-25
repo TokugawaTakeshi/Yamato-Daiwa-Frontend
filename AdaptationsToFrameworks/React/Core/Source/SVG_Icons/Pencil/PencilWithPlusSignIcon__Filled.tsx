@@ -1,0 +1,19 @@
+import React from "react";
+import type SVG_IconComponent from "../SVG_IconComponent";
+
+
+const PencilWithPlusSignIcon__Filled: SVG_IconComponent = ({ className }: SVG_IconComponent.Properties): React.ReactElement =>
+
+    (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 18 20"
+        className={ className }
+      >
+        <path d="M17.75 2.46L14.61 0H14.46a.42.42 0 00-.16 0h-.15a.54.54 0 00-.38.22l-1.56 2.01 4.06 3.25 1.62-2.17a.62.62 0 00-.14-.85zM16.2 4.33l-2.93-2.25 1-1.35L17.2 3zM2.91 14.58l-.81 4.94a.34.34 0 00.38.39.16.16 0 00.09 0L7 17.76l8.92-11.94-4.06-3.25zM3.1 18l.51-3.09.08-.11.4-.08a.53.53 0 01.39.09.52.52 0 01.19.37 1.1 1.1 0 00.43.78 1.06 1.06 0 00.86.21.45.45 0 01.39.09.49.49 0 01.2.36v.45l-.09.11-2.71 1.3zM6 4.4H3.6V2H2.4v2.4H0v1.2h2.4V8h1.2V5.6H6V4.4z" />
+      </svg>
+      
+    );
+
+
+export default PencilWithPlusSignIcon__Filled;

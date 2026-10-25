@@ -1,0 +1,100 @@
+mixin ClosingButton--YDF(properties)
+
+  -
+
+    const {
+
+      /** @type { string | undefined } */
+      customLabel,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      noLabel,
+
+      /**
+       * @type { string }
+       * @default ClosingButton__YDF.LabelLetterCases.lowercase
+       * */
+      labelLetterCase,
+
+      /** @type { string | undefined } */
+      accessibilityGuidance,
+
+      /**
+       * @type { string }
+       * @default ClosingButton__YDF.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default ClosingButton__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default ClosingButton__YDF.GeometricVariations.regular
+       */
+      geometricVariation,
+
+      /**
+       * @type { Array<ClosingButton.GeometricModifiers> }
+       * @default []
+       */
+      geometricModifiers,
+
+      /**
+       * @type { string }
+       * @default ClosingButton__YDF.DecorativeVariations.regular
+       * */
+      decorativeVariation,
+
+      /**
+       * @type { Array<ClosingButton.DecorativeModifiers> }
+       * @default []
+       */
+      decorativeModifiers
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: ClosingButton__YDF.propertiesSpecification,
+      mixinName: "ClosingButton--YDF"
+    });
+
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+            ClosingButton__YDF,
+            {
+              theme,
+              areThemesCSS_ClassesCommon,
+              geometricVariation,
+              geometricModifiers,
+              decorativeVariation,
+              decorativeModifiers
+            }
+        );
+
+    /** @type { string } */
+    const labelCSS_ModifierClass = ClosingButton__YDF.labelModifiersCSS_Classes[labelLetterCase];
+
+
+  button.ClosingButton--YDF(
+    type="button"
+    class= rootElementModifierCSS_Classes
+    aria-label= (noLabel ? (accessibilityGuidance || ClosingButton__YDF.localization.defaultAccessibilityGuidance) : null)
+  )&attributes(attributes)
+
+    span.ClosingButton--YDF-Icon(role="presentation")
+
+    if !noLabel
+
+      span.ClosingButton--YDF-Label(
+        class= labelCSS_ModifierClass
+      )= customLabel || ClosingButton__YDF.localization.defaultLabel

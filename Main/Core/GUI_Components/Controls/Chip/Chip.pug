@@ -1,0 +1,91 @@
+mixin Chip--YDF(properties)
+
+  -
+
+    const {
+
+      /** @type { string | undefined } */
+      keyLabel,
+
+      /** @type { string | undefined } */
+      valueLabel,
+
+      /** @type { string | undefined } */
+      dismissingButtonAccessibilityGuidance,
+
+      /**
+       * @type { string }
+       * @default Chip__YDF.Themes.regular
+       */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default Chip__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default Chip__YDF.GeometricVariations.regular
+       */
+      geometricVariation,
+
+      /**
+       * @type { Array<Badge.GeometricModifiers> }
+       * @default []
+       */
+      geometricModifiers,
+
+      /** @type { string } */
+      decorativeVariation,
+
+      /**
+       * @type { Array<Badge.DecorativeModifiers> }
+       * @default []
+       */
+      decorativeModifiers
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: Chip.propertiesSpecification,
+      mixinName: "Chip--YDF"
+    });
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+            Chip__YDF,
+            {
+              theme,
+              areThemesCSS_ClassesCommon,
+              geometricVariation,
+              geometricModifiers,
+              decorativeVariation,
+              decorativeModifiers
+            }
+        );
+
+
+  span.Chip--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
+
+    if block
+
+      block
+
+
+    if keyLabel
+
+      span.Chip--YDF-Key= keyLabel
+
+    span.Chip--YDF-Value= valueLabel
+
+    if dismissingButtonAccessibilityGuidance
+
+      button.Chip--YDF-Button(
+        type="button"
+        aria-label= dismissingButtonAccessibilityGuidance
+      )
+        +MultiplicationSign--YDF_Icon.Chip--YDF-Button-Icon

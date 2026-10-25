@@ -1,0 +1,28 @@
+FixedTranslucentDimLayer--YDF(compoundParameter = {}, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "FixedTranslucentDimLayer--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      ZIndex: {
+        type: DataTypes--YDF.dimensionlessQuantity,
+        defaultValue: Configuration--YDF.zIndexes.modalsUnderlay
+      },
+      backgroundColor: {
+        type: DataTypes--YDF.colorDefinition,
+        defaultValue: rgba(black, 0.25)
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  position fixed
+  top 0
+  bottom 0
+  left 0
+  right 0
+  z-index: compoundParameter.ZIndex
+
+  background-color: compoundParameter.backgroundColor

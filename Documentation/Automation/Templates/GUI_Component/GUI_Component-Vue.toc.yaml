@@ -1,0 +1,16 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+{{ GUI_ComponentName__pascalCase }}Class:
+
+  $heading: `{{ GUI_ComponentName__pascalCase }}Class.$heading`
+  $anchor: {{ GUI_ComponentName__screamingSnakeCase }}_CLASS--SECTION
+
+  $children:
+
+    vueProperties:
+
+      $heading: `{{ GUI_ComponentName__pascalCase }}Class.vueProperties.$heading`
+      $anchor: {{ GUI_ComponentName__screamingSnakeCase }}_CLASS-VUE_PROPERTIES--SECTION

@@ -1,0 +1,20 @@
+import React from "react";
+import type SVG_IconComponent from "../SVG_IconComponent";
+
+
+const FittingByWidthIcon: SVG_IconComponent = ({ className }: SVG_IconComponent.Properties): React.ReactElement =>
+
+    (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        className={ className }
+      >
+        <path d="M20 0H0v20h20V0Zm-1 1v17.99H1V1h17.99Z" />
+        <path d="M2.77 10.46h14.46l-2.66 2.66.66.65L19 10l-3.77-3.77-.66.65 2.66 2.66H2.77l2.66-2.66-.66-.65L1 10l3.77 3.77.66-.65-2.66-2.66z" />
+      </svg>
+      
+    );
+
+
+export default FittingByWidthIcon;

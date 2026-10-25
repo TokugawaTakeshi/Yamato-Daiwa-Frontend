@@ -1,0 +1,14 @@
+{
+  "private": "true",
+  "name": "@yamato-daiwa/frontend-additional_themes",
+  "version": "0.0.0",
+  "peerDependencies": {
+    "@yamato-daiwa/frontend": "2.0.0-beta.12"
+  },
+  "devDependencies": {
+    "@yamato-daiwa/frontend": "../Core"
+  },
+  "scripts": {
+    "Project Structure Visualizing": "wsl tree -I \".git|.idea|node_modules|LogicDistributable\" || tree -I \".git|.idea|node_modules|LogicDistributable\""
+  }
+}

@@ -1,0 +1,825 @@
+@require "Themes/Regular/GeometricVariations/Button-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/Button-RegularTheme-SmallGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/Button-RegularTheme-LinkLikeGeometricVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-RegularDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-DangerDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-AccentedDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Button-RegularTheme-LinkLikeDecorativeVariation.styl"
+
+
+Button--YDF = {
+
+  CSS_NAMESPACE: "Button--YDF",
+
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF",
+
+        geometricVariations: {
+          regular: Button-RegularTheme-RegularGeometricVariation--YDF,
+          small: Button-RegularTheme-SmallGeometricVariation--YDF,
+          linkLike: Button-RegularTheme-LinkLikeGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          regular: Button-RegularTheme-RegularDecorativeVariation--YDF,
+          accented: Button-RegularTheme-AccentedDecorativeVariation--YDF,
+          danger: Button-RegularTheme-DangerDecorativeVariation--YDF,
+          linkLike: Button-RegularTheme-LinkLikeDecorativeVariation--YDF
+        }
+
+      }
+    }
+
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true,
+    geometricModifiers: {
+      pillShape: true,
+      squareShape: true,
+      squareShapeUnlessOverflowed: true,
+      singleLine: true,
+      noLeftBorderAndRoundings: true,
+      noRightBorderAndRoundings: true,
+      noTopBorderAndRoundings: true,
+      noBottomBorderAndRoundings: true,
+      noRoundings: true,
+      horizontallyShrinkable: true
+    },
+    decorativeModifiers: {
+      bordersDisguising: true,
+      noBackground: true,
+      noBackgroundInDefaultState: true
+    }
+  }
+
+}
+
+
+Button--YDF-generateStyles(
+  preset = Button--YDF.defaultProperties,
+  overridings = {},
+  options = Button--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "Button--YDF-generateStyles",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Button--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Button--YDF.defaultOptions.externalThemes
+      },
+      loadingPlaceholder: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Button--YDF.defaultOptions.loadingPlaceholder
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Button--YDF.defaultOptions.themeIndependentGeometricVariations
+      },
+      geometricModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          pillShape: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.geometricModifiers.pillShape
+          },
+          squareShape: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.geometricModifiers.squareShape
+          },
+          squareShapeUnlessOverflowed: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.geometricModifiers.squareShape
+          },
+          singleLine: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.geometricModifiers.singleLine
+          },
+          noLeftBorderAndRoundings: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.geometricModifiers.noLeftBorderAndRoundings
+          },
+          noRightBorderAndRoundings: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.geometricModifiers.noRightBorderAndRoundings
+          },
+          noTopBorderAndRoundings: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.geometricModifiers.noTopBorderAndRoundings
+          },
+          noBottomBorderAndRoundings: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.geometricModifiers.noBottomBorderAndRoundings
+          },
+          noRoundings: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.geometricModifiers.noRoundings
+          },
+          horizontallyShrinkable: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.geometricModifiers.horizontallyShrinkable
+          }
+        },
+        defaultValue: Button--YDF.defaultOptions.geometricModifiers
+      },
+      decorativeModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          bordersDisguising: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.decorativeModifiers.bordersDisguising
+          },
+          noBackground: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.decorativeModifiers.noBackground
+          },
+          noBackgroundInDefaultState: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Button--YDF.defaultOptions.decorativeModifiers.noBackgroundInDefaultState
+          }
+        },
+        defaultValue: Button--YDF.defaultOptions.decorativeModifiers
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .Button--YDF
+
+      ButtonLikeElementsPrimer--YDF()
+
+      cursor pointer
+
+
+      &:focus-visible
+
+        outline none
+
+
+      &:disabled
+
+        cursor not-allowed
+
+
+    button.Button--YDF,
+    a.Button--YDF
+
+      display inline-flex
+      justify-content center
+      align-items center
+
+
+    if !options.geometricModifiers.singleLine
+
+      input
+
+        word-break break-all
+
+
+    a
+
+      &.Button--YDF__DisabledState
+
+        pointer-events none
+
+
+    .Button--YDF-Label
+
+      /a &
+
+        text-align center
+
+
+      if !options.geometricModifiers.singleLine
+
+        word-break break-all
+
+
+    input
+
+      white-space normal
+
+
+    .Button--YDF-SVG_Icon
+
+      flex-shrink 0
+
+
+    if options.loadingPlaceholder
+
+      .Button--YDF__LoadingPlaceholder
+
+        display inline-block
+
+
+  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "Button.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+    cachedValidReusables = extractAndValidateObjectProperties--YDF({
+      targetObject: variation,
+      targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+      extracts: {
+        textSize: {
+          dotSeparatedPath: "label.text.size",
+          required: true
+        },
+        lineSpacing: {
+          dotSeparatedPath: "label.text.lineSpacing",
+          mustBeInsteadOf: "label.text.lineHeight"
+        },
+        lineHeight: {
+          dotSeparatedPath: "label.text.lineHeight",
+          required: false
+        },
+        topSpacing: {
+          dotSeparatedPath: "label.spacing.top",
+          required: false,
+          incompatibleWith: "label.spacing.verticalSymmetric"
+        },
+        bottomSpacing: {
+          dotSeparatedPath: "label.spacing.bottom",
+          required: false,
+          incompatibleWith: "label.spacing.verticalSymmetric"
+        },
+        verticalSymmetricSpacingAsTopSpacing: {
+          newName: "topSpacing",
+          dotSeparatedPath: "label.spacing.verticalSymmetric",
+          required: false
+        },
+        verticalSymmetricSpacingAsBottomSpacing: {
+          newName: "bottomSpacing",
+          dotSeparatedPath: "label.spacing.verticalSymmetric",
+          required: false
+        },
+        labelUpwardShifting: {
+          dotSeparatedPath: "label.spacing.upwardShifting",
+          required: false
+        },
+        horizontalSymmetricLabelSpacingWhenItIsLone: {
+          dotSeparatedPath: "label.spacing.horizontalSymmetricWhenLone",
+          required: true
+        },
+        leftSpacingWhenLabelGoingFirst: {
+          dotSeparatedPath: "label.spacing.leftWhenGoingFirst",
+          required: true
+        },
+        rightSpacingWhenLabelGoingLast: {
+          dotSeparatedPath: "label.spacing.rightWhenGoingLast",
+          required: false
+        },
+        bordersSizing: {
+          dotSeparatedPath: "rootElement.borders",
+          required: false
+        }
+      }
+    })
+
+    HEIGHT = computeTotalHeightByTextElementHeightSizingSpecification--YDF({
+      type: TextElementHeightSizingTypes--YDF.natural,
+      borders: cachedValidReusables.bordersSizing,
+      paddings: {
+        top: cachedValidReusables.topSpacing,
+        bottom: cachedValidReusables.bottomSpacing,
+        upwardShifting: cachedValidReusables.upwardShifting
+      },
+      fontSize: cachedValidReusables.textSize,
+      lineHeight: 1
+    })
+
+
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + Button--YDF.CSS_NAMESPACE)
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          min-width: { dotSeparatedPath: "rootElement.minimalWidth", required: false }
+        }
+      })
+
+      BordersSizing--YDF(cachedValidReusables.bordersSizing)
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
+
+
+    /input{getCurrentSelectorSubstitutingRoot--YDF("." + Button--YDF.CSS_NAMESPACE)}
+
+      //* [ Approach ] The vertical padding will be defined by `TextElementHeightSizing--YDF` herewith it will be
+      //*   the corrected value respecting the extra space caused the line height
+      Paddings--YDF({ horizontalSymmetric: cachedValidReusables.horizontalSymmetricLabelSpacingWhenItIsLone })
+
+      //* [ Approach ] For both single line and multi line modes the settings will be same because the text overflow
+      //*   already has been set in the common declarations.
+      TextElementHeightSizing--YDF({
+        type: TextElementHeightSizingTypes--YDF.natural,
+        fontSize: cachedValidReusables.textSize,
+        lineHeight: cachedValidReusables.lineHeight,
+        lineSpacing: cachedValidReusables.lineSpacing,
+        borders: cachedValidReusables.bordersSizing,
+        mustSkipBordersApplying: true,
+        paddings: {
+          top: cachedValidReusables.topSpacing,
+          bottom: cachedValidReusables.bottomSpacing,
+          upwardShifting: cachedValidReusables.labelUpwardShifting
+        },
+        mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight: true
+      })
+
+
+    if options.geometricModifiers.pillShape
+
+      &.Button--YDF__PillShapeGeometricModifier
+
+        TEXT_SIZE_TO_BORDER_RADIUS_RATIO = extractAndValidateObjectProperties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          extracts: {
+            textSizeToBorderRadiusRatio: {
+              dotSeparatedPath: "rootElement.modifiers.pillShape.textSizeToBorderRadiusRatio", required: true
+            }
+          }
+        }).textSizeToBorderRadiusRatio
+
+        border-radius cachedValidReusables.textSize * TEXT_SIZE_TO_BORDER_RADIUS_RATIO
+
+
+    if options.geometricModifiers.squareShape
+
+      &.Button--YDF__SquareShapeGeometricModifier,
+      &.Button--YDF__SquareShapeUnlessOverflowedGeometricModifier
+
+        min-width HEIGHT
+
+
+      &.Button--YDF__SquareShapeGeometricModifier
+
+        max-width HEIGHT
+
+
+      //* [ Theory ] For the `input` tag, the fixating of height is required */
+      /input{getCurrentSelectorSubstitutingRoot--YDF("." + Button--YDF.CSS_NAMESPACE)}.Button--YDF__SquareShapeUnlessOverflowedGeometricModifier,
+      /input{getCurrentSelectorSubstitutingRoot--YDF("." + Button--YDF.CSS_NAMESPACE)}.Button--YDF__SquareShapeGeometricModifier
+
+        min-height HEIGHT
+
+
+      /input{getCurrentSelectorSubstitutingRoot--YDF("." + Button--YDF.CSS_NAMESPACE)}.Button--YDF__SquareShapeGeometricModifier
+
+        max-height HEIGHT
+
+
+    .Button--YDF-Label
+
+      MultilineValueLabelStyles()
+
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+          fontSize: cachedValidReusables.textSize,
+          lineSpacing: cachedValidReusables.lineSpacing,
+          lineHeight: cachedValidReusables.lineHeight,
+          paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins: {
+            top: cachedValidReusables.topSpacing,
+            bottom: cachedValidReusables.topSpacing,
+            upwardShifting: cachedValidReusables.labelUpwardShifting
+          },
+          mustAllowWordsBreakingAnywhere: !options.geometricModifiers.singleLine
+        })
+
+      if !options.geometricModifiers.singleLine
+
+        MultilineValueLabelStyles()
+
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.label.customDeclarations)
+
+
+      &:first-child:last-child
+
+        margin-left: cachedValidReusables.horizontalSymmetricLabelSpacingWhenItIsLone
+        margin-right: cachedValidReusables.horizontalSymmetricLabelSpacingWhenItIsLone
+
+
+      &:first-child:not(:last-child)
+
+        margin-left: cachedValidReusables.leftSpacingWhenLabelGoingFirst
+
+
+      &:not(:first-child):last-child
+
+        margin-right: cachedValidReusables.rightSpacingWhenLabelGoingLast
+
+
+      if options.geometricModifiers.singleLine
+
+        /{CONTEXT_SELECTOR}.Button--YDF__SingleLineGeometricModifier .Button--YDF-Label
+
+          font-size: cachedValidReusables.textSize
+
+          Paddings--YDF({
+            top: cachedValidReusables.topSpacing,
+            bottom: cachedValidReusables.topSpacing
+          })
+
+
+        /{CONTEXT_SELECTOR}:not(.Button--YDF__SingleLineGeometricModifier) .Button--YDF-Label
+
+          MultilineValueLabelStyles()
+
+
+    .Button--YDF-SVG_Icon
+
+      iconHeight = extractAndValidateObjectProperties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        extracts: {
+          iconHeight: {
+            dotSeparatedPath: "SVG_Icon.default.height",
+            required: true
+          }
+        }
+      }).iconHeight
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          width: {
+            dotSeparatedPath: "SVG_Icon.default.width",
+            required: false
+          }
+        }
+      })
+
+      height: iconHeight
+
+
+      if isNotNull--YDF(variation.SVG_Icon.default.spacing.leftWhenGoingFirst)
+
+        &:first-child:not(:last-child)
+
+          margin-left: variation.SVG_Icon.default.spacing.leftWhenGoingFirst
+
+
+      if isNotNull--YDF(variation.SVG_Icon.default.spacing.rightWhenGoingLast)
+
+        &:last-child:not(:first-child)
+
+          margin-right: variation.SVG_Icon.default.spacing.rightWhenGoingLast
+
+
+      &:first-child:last-child
+
+        //* [ Initial equation ] labelFontSize + labelTopSpacing = iconHeight + iconTopSpacing
+        //* [ Formula ] iconPopMargin = labelFontSize + labelTopSpacing - iconHeight
+        //* The `labelUpwardShifting` could be eliminated because it presents in bots sides of initial equation. */
+        topMargin = buildCalcExpressionFromFragments--YDF({
+          textSize: cachedValidReusables.textSize,
+          basicTopSpacing: @() {
+            if (isNotNull--YDF(cachedValidReusables.topSpacing)) {
+              return " + " + cachedValidReusables.topSpacing
+            }
+          },
+          iconHeight: @() { return " - " + iconHeight }
+        })
+
+        bottomMargin = buildCalcExpressionFromFragments--YDF({
+          textSize: cachedValidReusables.textSize,
+          basicBottomSpacing: @() {
+            if (isNotNull--YDF(cachedValidReusables.bottomSpacing)) {
+              return " + " + cachedValidReusables.bottomSpacing
+            }
+          },
+          iconHeight: @() { return " - " + iconHeight }
+        })
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            margin-left: {
+              dotSeparatedPath: "SVG_Icon.default.spacing.horizontalSymmetricWhenLone",
+              required: false
+            },
+            margin-right: {
+              dotSeparatedPath: "SVG_Icon.default.spacing.horizontalSymmetricWhenLone",
+              required: false
+            }
+          }
+        })
+
+        margin-top: topMargin
+        margin-bottom: bottomMargin
+
+
+        if isNotNull--YDF(variation.SVG_Icon.default.spacing.horizontalSymmetricWhenLone)
+
+          margin-left: variation.SVG_Icon.default.spacing.horizontalSymmetricWhenLone
+          margin-right: variation.SVG_Icon.default.spacing.horizontalSymmetricWhenLone
+
+
+      /
+
+        PositionalRelationship--YDF({
+          definitions: (
+            ".Button--YDF-Label" {
+              retireFromIt: { x: variation.SVG_Icon.default.spacing.afterLabel },
+              pushItFromSelf: { x: variation.SVG_Icon.default.spacing.beforeLabel }
+            }
+          ),
+          contextSelector: CONTEXT_SELECTOR,
+          referenceElementSelector: ".Button--YDF-SVG_Icon"
+        })
+
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
+
+
+      specialIcons = substituteNull--YDF(variation.SVG_Icon.specials, {})
+
+      for iconSpecificCSS_Class, dimensions in specialIcons
+
+        &.{iconSpecificCSS_Class}
+
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
+            targetObject: dimensions,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING + ".variation.SVG_Icon.specials." + iconSpecificCSS_Class ,
+            assigments: {
+              width: {
+                dotSeparatedPath: "width",
+                required: false
+              },
+              height: {
+                dotSeparatedPath: "height",
+                requiredIf: {
+                  predicate: @(variation) { return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(dimensions, "width")) },
+                  conditionDescription: "'width' is null"
+                }
+              }
+            }
+          })
+
+
+    if options.loadingPlaceholder
+
+      &.Button--YDF__LoadingPlaceholder
+
+        LoadingPlaceholder()
+
+        height: HEIGHT
+
+
+  //* [ Approach ] Being the modifiers, must be applied after theme-dependent styles. */
+  applyThemeIndependentGeometricModifiers()
+
+    if options.geometricModifiers.noLeftBorderAndRoundings
+
+      .Button--YDF__NoLeftBorderAndRoundingsGeometricModifier
+
+        border-left none
+        BorderLeftFilletsRadius--YDF(0)
+
+
+    if options.geometricModifiers.noRightBorderAndRoundings
+
+      .Button--YDF__NoRightBorderAndRoundingsGeometricModifier
+
+        border-right none
+        BorderRightFilletsRadius--YDF(0)
+
+
+    if options.geometricModifiers.noTopBorderAndRoundings
+
+      .Button--YDF__NoTopBorderAndRoundingsGeometricModifier
+
+        border-top none
+        BorderTopFilletsRadius--YDF(0)
+
+
+    if options.geometricModifiers.noBottomBorderAndRoundings
+
+      .Button--YDF__NoBottomBorderAndRoundingsGeometricModifier
+
+        border-bottom none
+        BorderBottomFilletsRadius--YDF(0)
+
+
+    if options.geometricModifiers.squareShape
+
+      input.Button--YDF__SquareShapeGeometricModifier,
+      input.Button--YDF__SquareShapeUnlessOverflowedGeometricModifier
+
+        SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: false })
+        padding 0
+
+
+      .Button--YDF__SquareShapeGeometricModifier .Button--YDF-Label,
+      .Button--YDF__SquareShapeUnlessOverflowedGeometricModifier .Button--YDF-Label
+
+        SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: false })
+        margin-right 0 !important
+        margin-left 0 !important
+
+
+    if options.geometricModifiers.singleLine
+
+      input
+
+        &.Button--YDF__SingleLineGeometricModifier
+
+          SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
+
+
+        &:not(.Button--YDF__SingleLineGeometricModifier)
+
+          word-break break-all
+
+
+      .Button--YDF-Label
+
+        /.Button--YDF__SingleLineGeometricModifier &
+
+          SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
+
+
+        /:not(.Button--YDF__SingleLineGeometricModifier) &
+
+          word-break break-all
+
+
+    if options.geometricModifiers.noRoundings
+
+      .Button--YDF__NoRoundingsGeometricModifier
+
+        border-radius 0
+
+
+    if options.geometricModifiers.horizontallyShrinkable
+
+      .Button--YDF__HorizontallyShrinkableGeometricModifier
+
+        min-width 0
+
+
+        .Button--YDF-Label,
+        .Button--YDF-SVG_Icon
+
+          margin-left 0 !important
+          margin-right 0 !important
+
+      input.Button--YDF__HorizontallyShrinkableGeometricModifier
+
+        padding-left 0 !important
+        padding-right 0 !important
+
+
+  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "Button.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    StateDependentStyles(state)
+
+      Declarations()
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation[state].rootElement,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            color: { dotSeparatedPath: "text.color", required: false },
+            underline: { dotSeparatedPath: "text.underline", required: false, applier: applyObjectTypeUnderlineDefinition--YDF },
+            background-color: { dotSeparatedPath: "background.color", required: false },
+            background-image: { dotSeparatedPath: "background.image", required: false },
+            border-style: { dotSeparatedPath: "borders.style", required: false },
+            border-color: { dotSeparatedPath: "borders.color", required: false },
+            outline: { dotSeparatedPath: "outline", required: false, applier: applyOutlineObjectTypeDefinition--YDF },
+            box-shadow: { dotSeparatedPath: "shadow", required: false, applier: applyObjectTypeBoxShadowDefinition--YDF }
+          }
+        })
+
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation[state].rootElement.customDeclarations)
+
+
+        ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED = selector() == "." + Button--YDF.CSS_NAMESPACE ? "/" : null
+
+        { ROOT_ELEMENT_REFERENCE__NULL_IF_NOT_REQUIRED }.Button--YDF-SVG_Icon
+
+          validateAndAssignStoredInObjectCSS_Properties--YDF({
+            targetObject: variation[state].SVG_Icon,
+            targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+            assigments: {
+              fill: { dotSeparatedPath: "color", required: false }
+            }
+          })
+
+          applyMixinStoredInObjectIfItIsNotNull--YDF(variation[state].SVG_Icon.customDeclarations)
+
+
+      +provideDefaultSelectorWhenRootAndApply--YDF("." + Button--YDF.CSS_NAMESPACE)
+
+        if (state == "defaultState")
+
+          Declarations()
+
+        else if (state == "hoverState")
+
+          &:hover
+
+            Declarations()
+
+        else if (state == "focusVisibleState")
+
+          &:focus-visible
+
+            Declarations()
+
+        else if (state == "activeState")
+
+          &:active,
+          &[aria-pressed="true"]
+
+            Declarations()
+
+        else if (state == "disabledState")
+
+          &:disabled,
+          &.Button--YDF__DisabledState
+
+            Declarations()
+
+
+    for state in variation
+
+      StateDependentStyles(state)
+
+
+  //* [ Approach ] Being the modifiers, must be applied after theme-dependent styles. */
+  applyThemeIndependentDecorativeModifiers()
+
+    if options.decorativeModifiers.bordersDisguising
+
+      .Button--YDF__BordersDisguisingDecorativeModifier
+
+        border-color transparent !important
+
+
+    if options.decorativeModifiers.noBackground
+
+      .Button--YDF__NoBackgroundDecorativeModifier
+
+        background none !important
+
+
+    if options.decorativeModifiers.noBackgroundInDefaultState
+
+      .Button--YDF__NoBackgroundInDefaultStateDecorativeModifier
+
+        background transparent
+
+
+  // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  if !options.themeIndependentStylesOnly
+
+    applyComponentThemes--YDF({
+      CSS_Namespace: Button--YDF.CSS_NAMESPACE,
+      themes: properties.themes,
+      areThemesCSS_ClassesCommon: options.externalThemes,
+      themeIndependentGeometricVariations: options.themeIndependentGeometricVariations,
+      applyGeometricVariation: applyGeometricVariation,
+      applyDecorativeVariation: applyDecorativeVariation
+    })
+
+  applyThemeIndependentGeometricModifiers()
+  applyThemeIndependentDecorativeModifiers()

@@ -1,0 +1,134 @@
+mixin Badge--YDF(properties)
+
+  -
+
+    const {
+
+      /** @type { string | undefined } */
+      keyLabel,
+
+      /** @type { string } */
+      valueLabel,
+
+      /**
+       * @type { string }
+       * @default Badge__YDF.Themes.regular
+       */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default Badge__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default Badge__YDF.GeometricVariations.regular
+       */
+      geometricVariation,
+
+      /**
+       * @type { Array<Badge.GeometricModifiers> }
+       * @default []
+       */
+      geometricModifiers,
+
+      /** @type { string } */
+      decorativeVariation,
+
+      /**
+       * @type { Array<Badge.DecorativeModifiers> }
+       * @default []
+       */
+      decorativeModifiers,
+
+      /**
+       * @type { string }
+       * @default "span"
+       */
+      rootElementTag
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: Badge__YDF.propertiesSpecification,
+      mixinName: "Badge--YDF"
+    });
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+            Badge__YDF,
+            {
+              theme,
+              areThemesCSS_ClassesCommon,
+              geometricVariation,
+              geometricModifiers,
+              decorativeVariation,
+              decorativeModifiers
+            }
+        );
+
+
+  #{ rootElementTag }.Badge--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
+
+    if block
+
+      block
+
+
+    if keyLabel
+
+      span.Badge--YDF-KeyLabel= keyLabel
+
+    span.Badge--YDF-ValueLabel= valueLabel
+
+
+mixin Badge--YDF-LoadingPlaceholder(properties)
+
+  -
+
+    const {
+
+      /** @type { string } [ theme = Badge__YDF.Themes.regular ] */
+      theme,
+
+      /** @type { boolean } [ areThemesCSS_ClassesCommon = Badge__YDF.areThemesCSS_ClassesCommon ] */
+      areThemesCSS_ClassesCommon,
+
+      /** @type { string } [ geometricVariation = Badge__YDF.GeometricVariations.regular ] */
+      geometricVariation,
+
+      /** @type { Array<Badge.GeometricModifiers> } [ geometricModifiers = [] ] */
+      geometricModifiers
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: {
+        theme: Badge__YDF.propertiesSpecification.theme,
+        areThemesCSS_ClassesCommon: Badge__YDF.propertiesSpecification.areThemesCSS_ClassesCommon,
+        geometricVariation: Badge__YDF.propertiesSpecification.geometricVariation,
+        geometricModifiers: Badge__YDF.propertiesSpecification.geometricModifiers
+      },
+      mixinName: `${ Badge__YDF.CSS_NAMESPACE }-LoadingPlaceholder`
+    });
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+      YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+        Badge__YDF,
+        {
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          geometricModifiers
+        }
+      );
+
+  span.Badge--YDF.Badge--YDF__LoadingPlaceholder(
+    class=rootElementModifierCSS_Classes
+  )&attributes(attributes)

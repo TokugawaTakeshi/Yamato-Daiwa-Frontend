@@ -1,0 +1,19 @@
+import React from "react";
+import type SVG_IconComponent from "../SVG_IconComponent";
+
+
+const FacebookIcon: SVG_IconComponent = ({ className }: SVG_IconComponent.Properties): React.ReactElement =>
+
+    (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 10.39 20"
+        className={ className }
+      >
+        <path d="M10.39 3.32H8.51c-1.48 0-1.76.7-1.76 1.73v2.27h3.52l-.46 3.56H6.75V20H3.07v-9.12H0V7.32h3.07V4.7C3.07 1.66 4.93 0 7.64 0c1.3 0 2.42.1 2.74.14v3.18Z" />
+      </svg>
+      
+    );
+
+
+export default FacebookIcon;

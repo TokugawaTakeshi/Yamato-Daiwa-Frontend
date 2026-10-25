@@ -1,0 +1,27 @@
+markup:
+
+  $heading: "マークアップ"
+
+  providing:
+
+    $heading: "APIにアクセスを確保"
+
+  performanceInMVC_Applications:
+
+    $heading: "MVCアプリケーションに於けるパフォーマンスの問題"
+
+styles:
+
+  $heading: "スタイルを確保"
+
+  providing:
+
+    $heading: "APIにアクセスを確保"
+
+themes:
+
+  $heading: "テーマ"
+
+customization:
+
+  $heading: "カストマイズ"

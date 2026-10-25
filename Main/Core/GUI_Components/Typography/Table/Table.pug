@@ -1,0 +1,73 @@
+include Table.class.pug
+
+
+mixin Table--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      /** @var { boolean } [ horizontalScrollingOnOverflow = false ] */
+      horizontalScrollingOnOverflow,
+
+      /** @var { string } [ theme = Table__YDF.Themes.regular ] */
+      theme,
+
+      /** @var { boolean } [ areThemesCSS_ClassesCommon = Table__YDF.areThemesCSS_ClassesCommon ] */
+      areThemesCSS_ClassesCommon,
+
+      /** @var { string } [ geometricVariation = Table__YDF.GeometricVariations.regular ] */
+      geometricVariation,
+
+      /** @var { Array<string> } [ geometricModifiers = [] ] */
+      geometricModifiers,
+
+      /** @var { string } */
+      decorativeVariation,
+
+      /** @var { Array<string> } [ decorativeModifiers = [] ] */
+      decorativeModifiers
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: Table__YDF.propertiesSpecification,
+      mixinName: Table__YDF.CSS_NAMESPACE
+    });
+
+    /** @var { Array<string> } */
+    const rootElementModifierCSS_Classes = [
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: Table__YDF.Themes,
+        CSS_Namespace: Table__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: Table__YDF.GeometricVariations,
+        CSS_Namespace: Table__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(Table__YDF.CSS_NAMESPACE, geometricModifiers),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: Table__YDF.DecorativeVariations,
+        CSS_Namespace: Table__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedDecorativeModifiersCSS_Classes(Table__YDF.CSS_NAMESPACE, decorativeModifiers)
+
+    ];
+
+  .Table--YDF
+
+    table.Table--YDF-TableElement&attributes(attributes)(
+      class=rootElementModifierCSS_Classes
+    )
+
+      block
