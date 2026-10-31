@@ -4,6 +4,9 @@ import YDF_ComponentsCoordinator from "../_Auxiliaries/YDF_ComponentsCoordinator
 
 export abstract class Accordion {
 
+  public static readonly CSS_NAMESPACE: string = "Accordion--YDF";
+
+
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static Themes: YDF_Component.Themes = { regular: "REGULAR" };
 
@@ -62,6 +65,47 @@ export abstract class Accordion {
     definitions: YDF_Component.CustomGeometricVariationDefinition
   ): typeof Accordion {
     return YDF_ComponentsCoordinator.defineDecorativeVariations(Accordion, definitions);
+  }
+
+
+  /* ━━━ IDs Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static counterForInstanceID_Generating: number = 0;
+
+  public static generateInstanceID(uniqueDynamicPart?: string): string {
+    return `ACCORDION--YDF-${ uniqueDynamicPart ?? ++Accordion.counterForInstanceID_Generating }`;
+  }
+
+
+  /* ━━━ Static Members Sharing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public static shareStaticMembers(TargetClass: object): void {
+    Object.defineProperties(
+      TargetClass,
+      {
+
+        CSS_NAMESPACE: { value: Accordion.CSS_NAMESPACE },
+
+        Themes: { value: Accordion.Themes },
+        themesCSS_Classes: { value: Accordion.themesCSS_Classes },
+        defineThemes: { value: Accordion.defineThemes },
+        areThemesCSS_ClassesCommon: {
+          value: Accordion.areThemesCSS_ClassesCommon,
+          writable: true
+        },
+        considerThemesAsCommon: { value: Accordion.considerThemesAsCommon },
+
+        GeometricVariations: { value: Accordion.GeometricVariations },
+        geometricVariationsCSS_Classes: { value: Accordion.geometricVariationsCSS_Classes },
+        defineGeometricVariations: { value: Accordion.defineGeometricVariations },
+
+        DecorativeVariations: { value: Accordion.DecorativeVariations },
+        decorativeVariationsCSS_Classes: { value: Accordion.decorativeVariationsCSS_Classes },
+        defineDecorativeVariations: { value: Accordion.defineDecorativeVariations },
+
+        counterForInstanceID_Generating: { value: Accordion.counterForInstanceID_Generating },
+        generateInstanceID: { value: Accordion.generateInstanceID }
+
+      }
+    );
   }
 
 }

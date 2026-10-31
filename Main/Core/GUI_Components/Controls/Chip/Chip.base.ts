@@ -4,6 +4,9 @@ import YDF_ComponentsCoordinator from "../../_Auxiliaries/YDF_ComponentsCoordina
 
 export abstract class Chip {
 
+  public static readonly CSS_NAMESPACE: string = "Chip--YDF";
+
+
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static Themes: YDF_Component.Themes = { regular: "REGULAR" };
 
@@ -93,7 +96,7 @@ export abstract class Chip {
       };
 
   public static defineDecorativeVariations(
-    definitions: YDF_Component.CustomGeometricVariationDefinition
+    definitions: YDF_Component.CustomDecorativeVariationDefinition
   ): typeof Chip {
     return YDF_ComponentsCoordinator.defineDecorativeVariations(Chip, definitions);
   }

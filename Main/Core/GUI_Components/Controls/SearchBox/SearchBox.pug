@@ -3,14 +3,45 @@
   -
 
     const {
+
+      /**
+       * @type { string }
+       * @default SearchBox.localization.inputElement.defaultAccessibilityGuidance,
+       * */
       accessibilityGuidance = "Please input search request here",
+
+      /** @type { string | undefined } */
       placeholder,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       disabled
-    } = properties ?? {};
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: RadioButton__YDF.propertiesSpecification,
+      mixinName: "SearchBox--YDF"
+    });
 
     const {
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       tooltip
-    } = statesSimulations ?? {};
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: RadioButton__YDF.propertiesSpecification,
+      mixinName: "SearchBox--YDF"
+    });
 
   //- [ Reference ] https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/searchbox_role
   //- [ Reference ] https://www.a11ymatters.com/pattern/accessible-search/

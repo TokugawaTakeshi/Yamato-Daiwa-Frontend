@@ -1,7 +1,7 @@
-import type { PaginationLocalization } from "./PaginationLocalization";
+import type Pagination from "./Pagination.base";
 
 
-export const PaginationYDF_GUI_ComponentLocalization__English: PaginationLocalization = {
+export const PaginationLocalization__English: Pagination.Localization = {
   buttons: {
     toFirstPage: { accessibilityGuidance: "To first page" },
     toPreviousPage: { accessibilityGuidance: "To previous page" },
@@ -9,3 +9,6 @@ export const PaginationYDF_GUI_ComponentLocalization__English: PaginationLocaliz
     toLastPage: { accessibilityGuidance: "To last page" }
   }
 };
+
+
+export default PaginationLocalization__English;

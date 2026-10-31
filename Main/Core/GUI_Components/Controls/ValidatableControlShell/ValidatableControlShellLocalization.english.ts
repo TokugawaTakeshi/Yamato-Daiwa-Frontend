@@ -1,7 +1,7 @@
-import type { ValidatableControlShellLocalization } from "./ValidatableControlShellLocalization";
+import type ValidatableControlShell from "./ValidatableControlShell.base";
 
 
-const ValidatableControlShellYDF_GUI_ComponentLocalization__English: ValidatableControlShellLocalization = {
+const ValidatableControlShellLocalization__English: ValidatableControlShell.Localization = {
 
   requirementBadges: {
     required: "Required",
@@ -11,4 +11,4 @@ const ValidatableControlShellYDF_GUI_ComponentLocalization__English: Validatable
 };
 
 
-export default ValidatableControlShellYDF_GUI_ComponentLocalization__English;
+export default ValidatableControlShellLocalization__English;

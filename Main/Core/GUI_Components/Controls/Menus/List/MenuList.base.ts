@@ -4,6 +4,9 @@ import YDF_ComponentsCoordinator from "../../../_Auxiliaries/YDF_ComponentsCoord
 
 class MenuList {
 
+  public static readonly CSS_NAMESPACE: string = "MenuList--YDF";
+
+
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static Themes: YDF_Component.Themes = { regular: "REGULAR" };
 
@@ -52,7 +55,7 @@ class MenuList {
       { [MenuList.DecorativeVariations.regular]: "MenuList--YDF__RegularDecorativeVariation" };
 
   public static defineDecorativeVariations(
-    definitions: YDF_Component.CustomGeometricVariationDefinition
+    definitions: YDF_Component.CustomDecorativeVariationDefinition
   ): typeof MenuList {
     return YDF_ComponentsCoordinator.defineDecorativeVariations(MenuList, definitions);
   }

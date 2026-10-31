@@ -531,3 +531,44 @@ applyOutlineObjectTypeDefinition--YDF(compoundParameter = {}, restParameters__MU
       outline-style: compoundParameter.type,
       outline-color: compoundParameter.color
     })
+
+
+processGUI_ComponentOptionsAndRestParameters--YDF(
+  mixinName,
+  specifiedOptions,
+  defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  generateDepthLevelOfSchema(speicficDepthLevelOfOptions)
+
+    optionsSchemaOfCurrentLevel = {}
+
+    for key, value in speicficDepthLevelOfOptions
+
+      if isBoolean--YDF(value)
+
+        optionsSchemaOfCurrentLevel[key] = {
+          type: DataTypes--YDF.boolean,
+          defaultValue: value
+        }
+
+      else if isObject--YDF(value)
+
+        optionsSchemaOfCurrentLevel[key] = {
+          type: DataTypes--YDF.object,
+          properties: generateDepthLevelOfSchema(value)
+        }
+
+    return optionsSchemaOfCurrentLevel
+
+
+  optionsSchema = generateDepthLevelOfSchema(defaultOptions)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: mixinName,
+    targetParameterNumber: 3,
+    targetParameter: specifiedOptions,
+    schema: optionsSchema,
+    restParameters__MUST_NOT_BE: restParameters__MUST_NOT_BE
+  })

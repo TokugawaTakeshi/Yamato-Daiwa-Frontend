@@ -10,7 +10,7 @@ import CollapsingAnimation from "../../Animations/CollapsingAnimation";
 import AccordionYDF_GUI_ComponentDOM_AccessResources from "./AccordionDOM_AccessResources";
 
 
-abstract class Accordion {
+export abstract class Accordion {
 
   private static readonly DOM_AccessResources: Accordion.DOM_AccessResources =
         AccordionYDF_GUI_ComponentDOM_AccessResources;
@@ -91,7 +91,7 @@ abstract class Accordion {
 }
 
 
-namespace Accordion {
+export namespace Accordion {
 
   export type DOM_AccessResources = Readonly<{
 

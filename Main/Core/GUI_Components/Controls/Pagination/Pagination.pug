@@ -1,20 +1,49 @@
-include Pagination.class.pug
-
-
 mixin Pagination--YDF(properties, statesSimulations)
 
   -
 
     const {
 
+      /** @type { number } */
       maximalPageNumberButtonsCount,
+
+      /** @type { string } */
       accessibilityGuidance,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       noDisplayMovingToUltimatePagesButtons,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       noDisplayMovingToAdjacentPagesButtons,
 
+      /**
+       * @type { string }
+       * @default Pagination__YDF.Themes.regular
+       * */
       theme,
+
+      /**
+       * @type { boolean }
+       * @default Pagination__YDF.areThemesCSS_ClassesCommon
+       */
       areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default Pagination__YDF.GeometricVariations.regular
+       */
       geometricVariation,
+
+      /**
+       * @type { string }
+       * @default Pagination__YDF.DecorativeVariations.regular
+       */
       decorativeVariation
 
     } = YDF.processObjectTypeParameterOfPugMixin({
@@ -22,42 +51,42 @@ mixin Pagination--YDF(properties, statesSimulations)
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: Pagination__YDF.propertiesSpecification,
-      mixinName: Pagination__YDF.CSS_NAMESPACE
+      mixinName: "Pagination--YDF"
     });
 
     const {
+
+      /**
+       * @type { boolean }
+       * @default 10
+       * */
       totalPagesCount,
+
+      /**
+       * @type { boolean }
+       * @default 1
+       * */
       currentPageNumber
+
     } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: statesSimulations,
       parameterNumber: 2,
       parameterName: "statesSimulations",
-      parameterPropertiesSpecification: Pagination__YDF.statesSimulationsSpecification,
-      mixinName: Pagination__YDF.CSS_NAMESPACE
+      parameterPropertiesSpecification: Pagination.statesSimulationsSpecification,
+      mixinName: "Pagination--YDF"
     });
 
-    const rootElementModifierCSS_Classes = [
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: Pagination__YDF.Themes,
-        CSS_Namespace: Pagination__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: Pagination__YDF.GeometricVariations,
-        CSS_Namespace: Pagination__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: Pagination__YDF.DecorativeVariations,
-        CSS_Namespace: Pagination__YDF.CSS_NAMESPACE
-      })
-
-    ];
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+          Pagination__YDF,
+          {
+            theme,
+            areThemesCSS_ClassesCommon,
+            geometricVariation,
+            decorativeVariation
+          }
+        );
 
 
   nav.Pagination--YDF&attributes(attributes)(aria-label=accessibilityGuidance)

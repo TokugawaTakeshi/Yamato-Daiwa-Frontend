@@ -11,7 +11,7 @@ import ValidatableControl from "../../_Validation/ValidatableControl";
 import type InputtedValueValidation from "../../_Validation/InputtedValueValidation";
 
 /* ─── Children Components ────────────────────────────────────────────────────────────────────────────────────────── */
-import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell";
+import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell.logic";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import type { RootElementDefinition } from "../../../../Logic/Types/RootElementDefinition";

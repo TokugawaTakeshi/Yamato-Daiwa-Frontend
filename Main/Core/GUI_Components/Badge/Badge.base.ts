@@ -4,6 +4,9 @@ import YDF_ComponentsCoordinator from "../_Auxiliaries/YDF_ComponentsCoordinator
 
 export abstract class Badge {
 
+  public static readonly CSS_NAMESPACE: string = "Badge--YDF";
+
+
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static readonly Themes: YDF_Component.Themes = { regular: "REGULAR" };
 
@@ -107,6 +110,40 @@ export abstract class Badge {
       [Badge.DecorativeModifiers.bordersDisguising]: "Badge--YDF__BordersDisguisingDecorativeModifier",
       [Badge.DecorativeModifiers.noBackground]: "Badge--YDF__NoBackgroundDecorativeModifier"
     };
+  }
+
+
+  /* ━━━ Static Members Sharing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public static shareStaticMembers(TargetClass: object): void {
+    Object.defineProperties(
+      TargetClass,
+      {
+
+        CSS_NAMESPACE: { value: Badge.CSS_NAMESPACE },
+
+        Themes: { value: Badge.Themes },
+        themesCSS_Classes: { value: Badge.themesCSS_Classes },
+        defineThemes: { value: Badge.defineThemes },
+        areThemesCSS_ClassesCommon: {
+          value: Badge.areThemesCSS_ClassesCommon,
+          writable: true
+        },
+        considerThemesAsCommon: { value: Badge.considerThemesAsCommon },
+
+        GeometricVariations: { value: Badge.GeometricVariations },
+        geometricVariationsCSS_Classes: { value: Badge.geometricVariationsCSS_Classes },
+        defineGeometricVariations: { value: Badge.defineGeometricVariations },
+        GeometricModifiers: { value: Badge.GeometricModifiers },
+        geometricModifiersCSS_Classes: { value: Badge.geometricModifiersCSS_Classes },
+
+        DecorativeVariations: { value: Badge.DecorativeVariations },
+        decorativeVariationsCSS_Classes: { value: Badge.decorativeVariationsCSS_Classes },
+        defineDecorativeVariations: { value: Badge.defineDecorativeVariations },
+        DecorativeModifiers: { value: Badge.DecorativeModifiers },
+        decorativeModifiersCSS_Classes: { value: Badge.decorativeModifiersCSS_Classes }
+
+      }
+    );
   }
 
 }

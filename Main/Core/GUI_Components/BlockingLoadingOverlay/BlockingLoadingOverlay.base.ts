@@ -1,10 +1,10 @@
-import BlockingLoadingOverlayYDF_GUI_ComponentLocalization__English from "./BlockingLoadingOverlayLocalization.english";
+import BlockingLoadingOverlayLocalization__English from "./BlockingLoadingOverlayLocalization.english";
 
 
 export abstract class BlockingLoadingOverlay {
 
   public static localization: BlockingLoadingOverlay.Localization =
-      BlockingLoadingOverlayYDF_GUI_ComponentLocalization__English;
+      BlockingLoadingOverlayLocalization__English;
 
 }
 

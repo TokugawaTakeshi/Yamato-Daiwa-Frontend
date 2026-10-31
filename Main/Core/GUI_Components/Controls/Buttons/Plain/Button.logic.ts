@@ -16,7 +16,7 @@ import {
 } from "@yamato-daiwa/es-extensions";
 
 
-class Button {
+export class Button {
 
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -258,7 +258,7 @@ class Button {
 }
 
 
-namespace Button {
+export namespace Button {
 
   export type RootElementDefinition = Readonly<(
     {

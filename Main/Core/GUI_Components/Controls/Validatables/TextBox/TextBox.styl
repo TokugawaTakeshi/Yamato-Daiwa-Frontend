@@ -321,28 +321,22 @@ TextBox--YDF-generateStyles(
 
         &:has(.TextBox--YDF-PrependedSVG_Icon) .TextBox--YDF-InputOrTextAreaElement
 
-          padding-left: buildCalcExpression--YDF(
-            "${ horizontalSpacingBetweenLeftEdgeAndSVG_Icon } + " +\
-              "${ SVG_IconWidth } + ${ horizontalSpacingBetweenSVG_IconAndText }",
-            {
-              horizontalSpacingBetweenLeftEdgeAndSVG_Icon: cachedSVG_IconProperties.leftSpacingWhenGoingFirst,
-              SVG_IconWidth: cachedSVG_IconProperties.width,
-              horizontalSpacingBetweenSVG_IconAndText: cachedSVG_IconProperties.horizontalSpacingBetweenSVG_IconAndText
-            }
-          )
+          padding-left: \
+              buildCalcExpressionTermwise--YDF(\
+                cachedSVG_IconProperties.leftSpacingWhenGoingFirst\
+                ("+" cachedSVG_IconProperties.width)\
+                ("+" cachedSVG_IconProperties.horizontalSpacingBetweenSVG_IconAndText)
+              )
 
 
         &:has(.TextBox--YDF-AppendedSVG_Icon) .TextBox--YDF-InputOrTextAreaElement
 
-          padding-right: buildCalcExpression--YDF(
-            "${ horizontalSpacingBetweenSVG_IconAndText } +" +\
-              "${ SVG_IconWidth } + ${ horizontalSpacingBetweenSVG_IconAndRightEdge }",
-            {
-              horizontalSpacingBetweenSVG_IconAndText: cachedSVG_IconProperties.horizontalSpacingBetweenSVG_IconAndText,
-              SVG_IconWidth: cachedSVG_IconProperties.width,
-              horizontalSpacingBetweenSVG_IconAndRightEdge: cachedSVG_IconProperties.rightSpacingWhenGoingLast
-            }
-          )
+          padding-right: \
+              buildCalcExpressionTermwise--YDF(\
+                cachedSVG_IconProperties.horizontalSpacingBetweenSVG_IconAndText\
+                ("+" cachedSVG_IconProperties.width)\
+                ("+" cachedSVG_IconProperties.rightSpacingWhenGoingLast)
+              )
 
 
     // ╍╍╍ Password Displaying Toggle ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍

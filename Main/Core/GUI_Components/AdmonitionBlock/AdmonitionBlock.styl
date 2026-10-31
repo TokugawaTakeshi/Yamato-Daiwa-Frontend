@@ -67,30 +67,12 @@ AdmonitionBlock--YDF-generateStyles(
 
   properties = deeplyCloneAndOverrideObject--YDF(preset, overrides)
 
-  validateObjectTypeParameter--YDF({
-    mixinOrFunctionName: "AdmonitionBlock--YDF-generateStyles",
-    targetParameterNumber: 3,
-    targetParameter: options,
-    schema: {
-      themeIndependentStylesOnly: {
-        type: DataTypes--YDF.boolean,
-        defaultValue: AdmonitionBlock--YDF.defaultOptions.themeIndependentStylesOnly
-      },
-      areThemesCSS_ClassesCommon: {
-        type: DataTypes--YDF.boolean,
-        defaultValue: AdmonitionBlock--YDF.defaultOptions.areThemesCSS_ClassesCommon
-      },
-      themeIndependentGeometricVariations: {
-        type: DataTypes--YDF.boolean,
-        defaultValue: AdmonitionBlock--YDF.defaultOptions.themeIndependentGeometricVariations
-      },
-      typographyAssimilation: {
-        type: DataTypes--YDF.boolean,
-        defaultValue: AdmonitionBlock--YDF.defaultOptions.typographyAssimilation
-      }
-    },
-    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
-  })
+  processGUI_ComponentOptionsAndRestParameters--YDF(
+    mixinName: "AdmonitionBlock--YDF-generateStyles",
+    specifiedOptions: options,
+    defaultOptions: AdmonitionBlock--YDF.defaultOptions,
+    restParameters__MUST_NOT_BE: restParameters__MUST_NOT_BE
+  )
 
 
   // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

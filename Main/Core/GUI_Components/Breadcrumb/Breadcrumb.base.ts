@@ -4,6 +4,9 @@ import YDF_ComponentsCoordinator from "../_Auxiliaries/YDF_ComponentsCoordinator
 
 export abstract class Breadcrumb {
 
+  public static readonly CSS_NAMESPACE: string = "Breadcrumb--YDF";
+
+
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static Themes: YDF_Component.Themes = { regular: "REGULAR" };
 
@@ -59,7 +62,7 @@ export abstract class Breadcrumb {
       };
 
   public static defineDecorativeVariations(
-    definitions: YDF_Component.CustomGeometricVariationDefinition
+    definitions: YDF_Component.CustomDecorativeVariationDefinition
   ): typeof Breadcrumb {
     return YDF_ComponentsCoordinator.defineDecorativeVariations(Breadcrumb, definitions);
   }

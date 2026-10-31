@@ -1,7 +1,4 @@
-﻿include RadioButton.class.pug
-
-
-mixin RadioButton--YDF(properties)
+﻿mixin RadioButton--YDF(properties)
 
   -
 
@@ -68,7 +65,7 @@ mixin RadioButton--YDF(properties)
       geometricVariation,
 
       /**
-       * @type { Array<RadioButton__YDF.GeometricModifiers> }
+       * @type { Array<RadioButton.GeometricModifiers> }
        * @default []
        */
       geometricModifiers,
@@ -84,42 +81,27 @@ mixin RadioButton--YDF(properties)
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: RadioButton__YDF.propertiesSpecification,
-      mixinName: RadioButton__YDF.CSS_NAMESPACE
+      mixinName: "RadioButton--YDF"
     });
 
     /** @type { Array<string> } */
-    const rootElementModifierCSS_Classes = [
-
-      ...checked ?
-        [ `${ RadioButton__YDF.CSS_NAMESPACE }__CheckedState` ] :
-        [ `${ RadioButton__YDF.CSS_NAMESPACE }__UncheckedState` ],
-
-      ...disabled ? [ `${ RadioButton__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
-      ...readonly ? [ `${ RadioButton__YDF.CSS_NAMESPACE }__ReadOnlyState` ] : [],
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: RadioButton__YDF.Themes,
-        CSS_Namespace: RadioButton__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: RadioButton__YDF.GeometricVariations,
-        CSS_Namespace: RadioButton__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.
-          generateDemandedGeometricModifiersCSS_Classes(RadioButton__YDF.CSS_NAMESPACE, geometricModifiers),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: RadioButton__YDF.DecorativeVariations,
-        CSS_Namespace: RadioButton__YDF.CSS_NAMESPACE
-      })
-
-    ];
+    const rootElementModifierCSS_Classes =
+        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+          RadioButton__YDF,
+          {
+            theme,
+            areThemesCSS_ClassesCommon,
+            geometricVariation,
+            geometricModifiers,
+            decorativeVariation,
+            decorativeModifiers,
+            otherCSS_Classes: [
+              ...checked ? [ "RadioButton--YDF__CheckedState" ] : [ "RadioButton__UncheckedState" ],
+              ...disabled ? [`RadioButton--YDF__DisabledState`] : [],
+              ...readonly ? [`RadioButton--YDF__ReadOnlyState`] : [],
+            ]
+          }
+        );
 
 
   .RadioButton--YDF&attributes(attributes)(
@@ -146,3 +128,4 @@ mixin RadioButton--YDF(properties)
       id=inputElementHTML_ID
       aria-labelledby=externalLabelHTML_ID
     )
+

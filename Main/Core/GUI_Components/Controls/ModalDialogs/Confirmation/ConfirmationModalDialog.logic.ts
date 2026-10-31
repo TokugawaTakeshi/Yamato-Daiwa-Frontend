@@ -1,6 +1,6 @@
 /* ─── GUI Components ─────────────────────────────────────────────────────────────────────────────────────────────── */
-import ModalDialog from "../Common/ModalDialog";
-import Button from "../../Buttons/Plain/Button";
+import ModalDialog from "../Common/ModalDialog.logic";
+import Button from "../../Buttons/Plain/Button.logic";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import {

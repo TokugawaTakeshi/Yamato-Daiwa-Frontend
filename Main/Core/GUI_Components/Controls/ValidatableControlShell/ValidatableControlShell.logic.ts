@@ -1,17 +1,19 @@
 /* eslint-disable no-underscore-dangle -- [ CONVENTION ]
 * The instance fields begins from the underscore MUST be changed only via setters. */
 
-/* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import componentDynamicPartsHTML from "./ValidatableControlShell.parts.pug";
 import ValidatableControlShellYDF_GUI_ComponentDOM_AccessResources from "./ValidatableControlShellDOM_AccessResources";
 import ExpandingAnimation from "../../../Animations/ExpandingAnimation";
 import CollapsingAnimation from "../../../Animations/CollapsingAnimation";
+import type ValidatableControlShellDOM_AccessResources from "./ValidatableControlShellDOM_AccessResources";
 
-/* ─── Validation ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ Validations ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import type InputtedValueValidation from "../_Validation/InputtedValueValidation";
 import type ValidatableControl from "../_Validation/ValidatableControl";
 
-/* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import type { RootElementDefinition } from "../../../Logic/Types/RootElementDefinition";
 import onDifferentValueAssigned from "../../_Auxiliaries/Decorators/onDifferentValueAssigned";
 import {
@@ -26,13 +28,14 @@ import {
   isUndefined,
   isNull
 } from "@yamato-daiwa/es-extensions";
+/* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 
-class ValidatableControlShell {
+export class ValidatableControlShell {
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ┅┅┅ Accessing to DOM ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  protected static DOM_AccessResources: ValidatableControlShell.DOM_AccessResources =
+  protected static DOM_AccessResources: ValidatableControlShellDOM_AccessResources =
       ValidatableControlShellYDF_GUI_ComponentDOM_AccessResources;
 
   protected static readonly ROOT_ELEMENT_CSS_CLASS: string = "ValidatableControlShell--YDF";
@@ -486,7 +489,7 @@ class ValidatableControlShell {
 }
 
 
-namespace ValidatableControlShell {
+export namespace ValidatableControlShell {
 
   export type DOM_AccessResources = Readonly<{
 

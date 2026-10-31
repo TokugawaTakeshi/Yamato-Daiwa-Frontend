@@ -2,38 +2,74 @@
  * https://github.com/Microsoft/TypeScript/issues/15479 */
 
 /* ━━━ GUI Components ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* ┅┅┅ AdmonitionBlock ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-export { AdmonitionBlock } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock";
-export { default as AdmonitionBlockBase } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock.base";
-export { AdmonitionBlockYDF_GUI_ComponentLocalization__English } from
-    "./GUI_Components/AdmonitionBlock/AdmonitionBlockLocalization.english";
+/* ┅┅┅ Accordion ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { Accordion as AccordionBase } from "./GUI_Components/Accordion/Accordion.base";
+export { Accordion } from "./GUI_Components/Accordion/Accordion.logic";
 
+/* ┅┅┅ AdmonitionBlock ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { default as AdmonitionBlockBase } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock.base";
+export { AdmonitionBlock } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock.logic";
+export { AdmonitionBlockLocalization__English } from "./GUI_Components/AdmonitionBlock/AdmonitionBlockLocalization.english";
+
+/* ┅┅┅ Badge ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { Badge as BadgeBase } from "./GUI_Components/Badge/Badge.base";
+
+/* ┅┅┅ BlockingLoadingOverlay ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { default as BlockingLoadingOverlayBase } from "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay.base";
+export { BlockingLoadingOverlay } from "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay.logic";
+export { BlockingLoadingOverlayLocalization__English } from
+    "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlayLocalization.english";
+
+/* ┅┅┅ Breadcrumb ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { Breadcrumb as BreadcrumbBase } from "./GUI_Components/Breadcrumb/Breadcrumb.base";
 
 /* ┅┅┅ Controls ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-/* ╍╍╍ ValidatableControlShell ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
-export { default as ValidatableControlShell } from "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell";
-export type { ValidatableControlShellLocalization } from
-    "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellLocalization";
-export { default as ValidatableControlShellYDF_GUI_ComponentLocalization__English } from
-    "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellLocalization.english";
-
-
 /* ╍╍╍ Buttons ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
 /* ─── Plain ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
-export { default as Button } from "./GUI_Components/Controls/Buttons/Plain/Button";
 export { default as ButtonBase } from "./GUI_Components/Controls/Buttons/Plain/Button.base";
+export { Button } from "./GUI_Components/Controls/Buttons/Plain/Button.logic";
 
 /* ─── Closing ────────────────────────────────────────────────────────────────────────────────────────────────────── */
-export { default as ClosingButton } from "./GUI_Components/Controls/Buttons/Closing/ClosingButton.base";
 export { default as ClosingButtonBase } from "./GUI_Components/Controls/Buttons/Closing/ClosingButton.base";
-export { ClosingButtonYDF_GUI_ComponentLocalization__English } from
-    "./GUI_Components/Controls/Buttons/Closing/ClosingButtonLocalization.english";
+export { ClosingButtonLocalization__English } from "./GUI_Components/Controls/Buttons/Closing/ClosingButtonLocalization.english";
 
 /* ─── Hamburger Menu ─────────────────────────────────────────────────────────────────────────────────────────────── */
-export { default as HamburgerMenuButton } from "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton";
 export { default as HamburgerMenuButtonBase } from "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton.base";
-export { default as HamburgerMenuButtonYDF_GUI_ComponentLocalization__English } from
+export { HamburgerMenuButton } from "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton.logic";
+export { HamburgerMenuButtonLocalization__English } from
     "./GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButtonLocalization.english";
+
+/* ┅┅┅ Chip ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { default as ChipBase } from "./GUI_Components/Controls/Chip/Chip.base";
+
+/* ┅┅┅ Menus ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { default as DrawerMenuBase } from "./GUI_Components/Controls/Menus/Drawer/DrawerMenu.base";
+export { default as MenuListBase } from "./GUI_Components/Controls/Menus/List/MenuList.base";
+
+/* ┅┅┅ Modal Dialogs ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { default as ModalDialogBase } from "./GUI_Components/Controls/ModalDialogs/Common/ModalDialog.base";
+export { default as ModalDialog } from "./GUI_Components/Controls/ModalDialogs/Common/ModalDialog.logic";
+
+/* ╍╍╍ Confirmation ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+export { default as ConfirmationModalDialog } from
+    "./GUI_Components/Controls/ModalDialogs/Confirmation/ConfirmationModalDialog.logic";
+
+/* ┅┅┅ Pagination ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { default as PaginationBase } from "./GUI_Components/Controls/Pagination/Pagination.base";
+
+/* ┅┅┅ RadioButton ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { default as RadioButtonBase } from "./GUI_Components/Controls/RadioButton/RadioButton.base";
+export { RadioButton } from "./GUI_Components/Controls/RadioButton/RadioButton.logic";
+
+/* ┅┅┅ SearchBox ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { default as SearchBoxBase } from "./GUI_Components/Controls/SearchBox/SearchBox.base";
+
+/* ╍╍╍ ValidatableControlShell ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+export { default as ValidatableControlShellBase } from
+    "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell.base";
+export { ValidatableControlShell } from
+    "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell.logic";
+// ━━━ TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 
 /* ╍╍╍ Validatables ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
@@ -45,11 +81,7 @@ export { default as TextBoxYDF_GUI_ComponentLocalization__English } from
 
 
 /* ━━━ Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* ┅┅┅ BlockingLoadingOverlay ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-export { BlockingLoadingOverlay } from "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay";
-export { default as BlockingLoadingOverlayBase } from "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay.base";
-export { default as BlockingLoadingOverlayYDF_GUI_ComponentLocalization__English } from
-    "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlayLocalization.english";
+export { default as RadioButtonsGroup } from "./GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup";
 
 export type { DropDownListLocalization } from
     "./GUI_Components/Controls/Validatables/DropDownLists/Plain/DropDownListLocalization";
@@ -63,13 +95,8 @@ export type { FilesUploaderLocalization } from "./GUI_Components/Controls/Valida
 export { FilesUploaderYDF_GUI_ComponentLocalization__English } from
     "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploaderLocalization.english";
 
-export { default as ModalDialog } from "./GUI_Components/Controls/ModalDialogs/Common/ModalDialog";
-export { default as ConfirmationModalDialog } from "./GUI_Components/Controls/ModalDialogs/Confirmation/ConfirmationModalDialog";
 
 export { default as NumberBox } from "./GUI_Components/Controls/Validatables/NumberBox/NumberBox";
-
-export { default as RadioButton } from "./GUI_Components/Controls/RadioButton/RadioButton";
-export { default as RadioButtonsGroup } from "./GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup";
 
 
 export { default as CodeViewer } from "./GUI_Components/Viewers/Code/CodeViewer";
@@ -158,11 +185,10 @@ export { default as passwordInputtedValueValidationLocalization__english } from
 export { default as CollapsingAnimation } from "./Animations/CollapsingAnimation";
 export { default as ExpandingAnimation } from "./Animations/ExpandingAnimation";
 
-export type { PaginationLocalization } from "./GUI_Components/Controls/Pagination/PaginationLocalization";
-
 export { default as onDifferentValueAssigned } from "./GUI_Components/_Auxiliaries/Decorators/onDifferentValueAssigned";
 
 export { replaceMarkdownBold } from "./Logic/Utils/Markdown/replaceMarkdownBold";
 export { replaceMarkdownLink } from "./Logic/Utils/Markdown/replaceMarkdownLink";
 
 export type { RootElementDefinition } from "./Logic/Types/RootElementDefinition";
+export type { YDF_Component } from "./GUI_Components/_Auxiliaries/YDF_Component";

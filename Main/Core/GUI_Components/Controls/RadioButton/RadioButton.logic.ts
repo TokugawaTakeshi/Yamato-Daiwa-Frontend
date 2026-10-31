@@ -4,10 +4,10 @@ import {
 } from "@yamato-daiwa/es-extensions-browserjs";
 
 
-export default class RadioButton {
+export class RadioButton {
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* ─── Accessing to DOM ─────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Accessing to DOM ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   protected static readonly NATIVE_INPUT_ELEMENT_SELECTOR: string = ".RadioButton--YDF-HiddenInputElement";
 
   protected static readonly ROOT_ELEMENT_SELECTED_STATE_MODIFIER_CSS_CLASS: string =
@@ -21,17 +21,17 @@ export default class RadioButton {
 
 
   /* ━━━ Instance fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  /* ─── Data ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Data ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public readonly HTML_ValueAsOptionKey: string;
 
-  /* ─── Accessing to DOM ─────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Accessing to DOM ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   protected readonly rootElement: Element;
   protected readonly nativeInputElement: HTMLInputElement;
 
-  /* ─── Event Handlers ───────────────────────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Event Handlers ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   protected readonly onClickEventHandler: (selfInstance: RadioButton, event: MouseEvent) => void;
 
-  /* ─── Must be Changed Only Via Setters ─────────────────────────────────────────────────────────────────────────── */
+  /* ┅┅┅ Must be Changed Only Via Setters ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   /* eslint-disable no-underscore-dangle -- [ CONVENTION ]
    * The instance fields begins from the underscore MUST be changed only via setters or constructor. */
   protected _isSelected: boolean = false;
@@ -123,3 +123,6 @@ export default class RadioButton {
   /* eslint-enable no-underscore-dangle */
 
 }
+
+
+export default RadioButton;

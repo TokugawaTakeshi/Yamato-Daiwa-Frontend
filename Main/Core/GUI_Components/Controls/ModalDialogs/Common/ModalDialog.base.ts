@@ -4,6 +4,9 @@ import YDF_ComponentsCoordinator from "../../../_Auxiliaries/YDF_ComponentsCoord
 
 export class ModalDialog {
 
+  public static readonly CSS_NAMESPACE: string = "ModalDialog--YDF";
+
+
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static Themes: YDF_Component.Themes = { regular: "REGULAR" };
 
@@ -58,7 +61,7 @@ export class ModalDialog {
       { [ModalDialog.DecorativeVariations.regular]: "ModalDialog--YDF__RegularDecorativeVariation" };
 
   public static defineDecorativeVariations(
-    definitions: YDF_Component.CustomGeometricVariationDefinition
+    definitions: YDF_Component.CustomDecorativeVariationDefinition
   ): typeof ModalDialog {
     return YDF_ComponentsCoordinator.defineDecorativeVariations(ModalDialog, definitions);
   }

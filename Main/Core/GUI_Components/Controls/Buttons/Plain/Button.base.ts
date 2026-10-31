@@ -4,6 +4,9 @@ import YDF_ComponentsCoordinator from "../../../_Auxiliaries/YDF_ComponentsCoord
 
 export abstract class Button {
 
+  public static readonly CSS_NAMESPACE: string = "Button--YDF";
+
+
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static readonly Themes: YDF_Component.Themes = { regular: "REGULAR" };
 
@@ -79,7 +82,7 @@ export abstract class Button {
       { [Button.DecorativeVariations.regular]: "Button--YDF__RegularDecorativeVariation" };
 
   public static defineDecorativeVariations(
-    definitions: YDF_Component.CustomGeometricVariationDefinition
+    definitions: YDF_Component.CustomDecorativeVariationDefinition
   ): typeof Button {
     return YDF_ComponentsCoordinator.defineDecorativeVariations(Button, definitions);
   }

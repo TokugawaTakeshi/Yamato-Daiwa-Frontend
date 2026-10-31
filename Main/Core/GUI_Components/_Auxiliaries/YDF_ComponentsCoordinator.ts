@@ -2,8 +2,10 @@ import type { YDF_Component } from "./YDF_Component";
 import {
   isNotUndefined,
   isString,
+  setObjectProperties,
   toLowerCamelCase,
-  toScreamingSnakeCase
+  toScreamingSnakeCase,
+  toUpperCamelCase
 } from "@yamato-daiwa/es-extensions";
 
 
@@ -13,17 +15,35 @@ export abstract class YDF_ComponentsCoordinator {
 
 
   /* ━━━ Customization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static defineThemes<TargetComponentClassType extends { Themes: YDF_Component.Themes; }>(
+  /* ┅┅┅ For GUI Components without Children GUI Components ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  public static defineThemes<TargetComponentClassType extends {
+    CSS_NAMESPACE: string;
+    Themes: YDF_Component.Themes;
+    themesCSS_Classes: { [themeValue: string]: string; };
+  }>(
     TargetComponentClass: TargetComponentClassType,
     definitions: YDF_Component.CustomThemesDefinition
   ): TargetComponentClassType {
 
     for (const definition of definitions) {
+
       if (isString(definition)) {
-        TargetComponentClass.Themes[toLowerCamelCase(definition)] = toScreamingSnakeCase(definition);
+
+        const themeValue: string = toScreamingSnakeCase(definition);
+
+        TargetComponentClass.Themes[toLowerCamelCase(definition)] = themeValue;
+        TargetComponentClass.themesCSS_Classes[themeValue] =
+            `${ TargetComponentClass.CSS_NAMESPACE }__${ toUpperCamelCase(themeValue) }Theme`;
+
       } else {
-        TargetComponentClass.Themes[definition.name] = definition.modifierCSS_Class;
+
+        const themeValue: string = toScreamingSnakeCase(definition.name);
+
+        TargetComponentClass.Themes[definition.name] = themeValue;
+        TargetComponentClass.themesCSS_Classes[themeValue] = definition.modifierCSS_Class;
+
       }
+
     }
 
     return TargetComponentClass;
@@ -31,18 +51,35 @@ export abstract class YDF_ComponentsCoordinator {
   }
 
   public static defineGeometricVariations<
-    TargetComponentClassType extends { GeometricVariations: { [geometricVariationName: string]: string; }; }
+    TargetComponentClassType extends {
+      CSS_NAMESPACE: string;
+      GeometricVariations: { [geometricVariationKey: string]: string; };
+      geometricVariationsCSS_Classes: { [geometricVariationValue: string]: string; };
+    }
   >(
     TargetComponentClass: TargetComponentClassType,
     definitions: YDF_Component.CustomGeometricVariationDefinition
   ): TargetComponentClassType {
 
     for (const definition of definitions) {
+
       if (isString(definition)) {
-        TargetComponentClass.GeometricVariations[toLowerCamelCase(definition)] = toScreamingSnakeCase(definition);
+
+        const geometricVariationValue: string = toScreamingSnakeCase(definition);
+
+        TargetComponentClass.GeometricVariations[toLowerCamelCase(definition)] = geometricVariationValue;
+        TargetComponentClass.geometricVariationsCSS_Classes[geometricVariationValue] =
+            `${ TargetComponentClass.CSS_NAMESPACE }__${ toUpperCamelCase(geometricVariationValue) }GeometricVariation`;
+
       } else {
-        TargetComponentClass.GeometricVariations[definition.name] = definition.modifierCSS_Class;
+
+        const geometricVariationValue: string = toScreamingSnakeCase(definition.name);
+
+        TargetComponentClass.GeometricVariations[definition.name] = geometricVariationValue;
+        TargetComponentClass.geometricVariationsCSS_Classes[geometricVariationValue] = definition.modifierCSS_Class;
+
       }
+
     }
 
     return TargetComponentClass;
@@ -50,18 +87,189 @@ export abstract class YDF_ComponentsCoordinator {
   }
 
   public static defineDecorativeVariations<
-    TargetComponentClassType extends { DecorativeVariations: { [decorativeVariationName: string]: string; }; }
+    TargetComponentClassType extends {
+      CSS_NAMESPACE: string;
+      DecorativeVariations: { [decorativeVariationKey: string]: string; };
+      decorativeVariationsCSS_Classes: { [geometricVariationValue: string]: string; };
+    }
   >(
     TargetComponentClass: TargetComponentClassType,
     definitions: YDF_Component.CustomGeometricVariationDefinition
   ): TargetComponentClassType {
 
     for (const definition of definitions) {
+
       if (isString(definition)) {
-        TargetComponentClass.DecorativeVariations[toLowerCamelCase(definition)] = toScreamingSnakeCase(definition);
+
+        const decorativeVariationValue: string = toScreamingSnakeCase(definition);
+
+        TargetComponentClass.DecorativeVariations[toLowerCamelCase(definition)] = decorativeVariationValue;
+        TargetComponentClass.decorativeVariationsCSS_Classes[decorativeVariationValue] =
+            `${ TargetComponentClass.CSS_NAMESPACE }__${ toUpperCamelCase(decorativeVariationValue) }DecorativeVariation`;
+
       } else {
-        TargetComponentClass.DecorativeVariations[definition.name] = definition.modifierCSS_Class;
+
+        const decorativeVariationValue: string = toScreamingSnakeCase(definition.name);
+
+        TargetComponentClass.DecorativeVariations[definition.name] = decorativeVariationValue;
+        TargetComponentClass.decorativeVariationsCSS_Classes[decorativeVariationValue] = definition.modifierCSS_Class;
+
       }
+
+    }
+
+    return TargetComponentClass;
+
+  }
+
+
+  /* ┅┅┅ For GUI Components with Children GUI Components ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  public static defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents<
+    TargetComponentClassType extends {
+      Themes: YDF_Component.Themes;
+      themesCSS_Classes: { [themeValue: string]: string; };
+      selfAndChildrenComponentsThemesCorrespondence:
+          { [ childrenComponentKey: string ]: { [ownThemeValue: string]: string; }; };
+    }
+  >(
+    TargetComponentClass: TargetComponentClassType,
+    ownAndCorrespondingChildrenThemesDefinition: YDF_Component.OwnAndCorrespondingChildrenThemesDefinition
+  ): TargetComponentClassType {
+
+    /* eslint-disable-next-line @typescript-eslint/no-unused-expressions -- [ Approach ]
+    * Triggering the initialization of `_selfAndChildrenComponentsThemesCorrespondence`. */
+    TargetComponentClass.selfAndChildrenComponentsThemesCorrespondence;
+
+    for (
+      const {
+        ownThemeKey,
+        themeModifierCSS_Class = `__${ toUpperCamelCase(ownThemeKey) }`,
+        correspondenceByChildren
+      } of ownAndCorrespondingChildrenThemesDefinition
+    ) {
+
+      const ownThemeValue: string = toScreamingSnakeCase(ownThemeKey);
+
+      TargetComponentClass.themesCSS_Classes[ownThemeValue] = themeModifierCSS_Class;
+
+      for (
+        const [ childComponentName, ownThemesValuesAndChildThemesValues ] of Object.entries(correspondenceByChildren)
+      ) {
+
+        setObjectProperties(
+          TargetComponentClass,
+          {
+            [`_selfAndChildrenComponentsThemesCorrespondence.${ childComponentName }`]:
+                { value: ownThemesValuesAndChildThemesValues[ownThemeValue] }
+          }
+        );
+
+      }
+
+    }
+
+    return TargetComponentClass;
+
+  }
+
+  public static defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents<
+    TargetComponentClassType extends {
+      GeometricVariations: { [geometricVariationKey: string]: string; };
+      geometricVariationsCSS_Classes: { [geometricVariationValue: string]: string; };
+      selfAndChildrenComponentsGeometricVariationsCorrespondence:
+          { [ childrenComponentKey: string ]: { [ownGeometricVariationValue: string]: string; }; };
+    }
+  >(
+    TargetComponentClass: TargetComponentClassType,
+    ownAndCorrespondingChildrenGeometricVariationsDefinition:
+        YDF_Component.OwnAndCorrespondingChildrenGeometricVariationsDefinition
+  ): TargetComponentClassType {
+
+    /* eslint-disable-next-line @typescript-eslint/no-unused-expressions -- [ Approach ]
+    * Triggering the initialization of `_selfAndChildrenComponentsGeometricVariationsCorrespondence`. */
+    TargetComponentClass.selfAndChildrenComponentsGeometricVariationsCorrespondence;
+
+    for (
+      const {
+        ownGeometricVariationKey,
+        geometricVariationModifierCSS_Class = `__${ toUpperCamelCase(ownGeometricVariationKey) }`,
+        correspondenceByChildren
+      } of ownAndCorrespondingChildrenGeometricVariationsDefinition
+    ) {
+
+      const ownGeometricVariationValue: string = toScreamingSnakeCase(ownGeometricVariationKey);
+
+      TargetComponentClass.geometricVariationsCSS_Classes[ownGeometricVariationValue] = geometricVariationModifierCSS_Class;
+
+      for (
+        const [
+          childComponentName,
+          ownGeometricVariationsValuesAndChildGeometricVariationsValues
+        ] of Object.entries(correspondenceByChildren)
+      ) {
+
+        setObjectProperties(
+          TargetComponentClass,
+          {
+            [`_selfAndChildrenComponentsGeometricVariationsCorrespondence.${ childComponentName }`]:
+                { value: ownGeometricVariationsValuesAndChildGeometricVariationsValues[ownGeometricVariationValue] }
+          }
+        );
+
+      }
+
+    }
+
+    return TargetComponentClass;
+
+  }
+
+  public static defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents<
+    TargetComponentClassType extends {
+      DecorativeVariations: { [decorativeVariationKey: string]: string; };
+      decorativeVariationsCSS_Classes: { [decorativeVariationValue: string]: string; };
+      selfAndChildrenComponentsDecorativeVariationsCorrespondence:
+          { [ childrenComponentKey: string ]: { [ownDecorativeVariationValue: string]: string; }; };
+    }
+  >(
+    TargetComponentClass: TargetComponentClassType,
+    ownAndCorrespondingChildrenDecorativeVariationsDefinition:
+        YDF_Component.OwnAndCorrespondingChildrenDecorativeVariationsDefinition
+  ): TargetComponentClassType {
+
+    /* eslint-disable-next-line @typescript-eslint/no-unused-expressions -- [ Approach ]
+    * Triggering the initialization of `_selfAndChildrenComponentsDecorativeVariationsCorrespondence`. */
+    TargetComponentClass.selfAndChildrenComponentsDecorativeVariationsCorrespondence;
+
+    for (
+      const {
+        ownDecorativeVariationKey,
+        decorativeVariationModifierCSS_Class = `__${ toUpperCamelCase(ownDecorativeVariationKey) }`,
+        correspondenceByChildren
+      } of ownAndCorrespondingChildrenDecorativeVariationsDefinition
+    ) {
+
+      const ownDecorativeVariationValue: string = toScreamingSnakeCase(ownDecorativeVariationKey);
+
+      TargetComponentClass.decorativeVariationsCSS_Classes[ownDecorativeVariationValue] = decorativeVariationModifierCSS_Class;
+
+      for (
+        const [
+          childComponentName,
+          ownDecorativeVariationsValuesAndChildDecorativeVariationsValues
+        ] of Object.entries(correspondenceByChildren)
+      ) {
+
+        setObjectProperties(
+          TargetComponentClass,
+          {
+            [`_selfAndChildrenComponentsDecorativeVariationsCorrespondence.${ childComponentName }`]:
+                { value: ownDecorativeVariationsValuesAndChildDecorativeVariationsValues[ownDecorativeVariationValue] }
+          }
+        );
+
+      }
+
     }
 
     return TargetComponentClass;

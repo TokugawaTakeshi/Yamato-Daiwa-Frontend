@@ -4,6 +4,9 @@ import YDF_ComponentsCoordinator from "../../../_Auxiliaries/YDF_ComponentsCoord
 
 export abstract class DrawerMenu {
 
+  public static readonly CSS_NAMESPACE: string = "DrawerMenu--YDF";
+
+
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static Themes: YDF_Component.Themes = { regular: "REGULAR" };
 
@@ -45,7 +48,7 @@ export abstract class DrawerMenu {
       { [DrawerMenu.DecorativeVariations.regular]: "DrawerMenu--YDF__RegularDecorativeVariation" };
 
   public static defineDecorativeVariations(
-    definitions: YDF_Component.CustomGeometricVariationDefinition
+    definitions: YDF_Component.CustomDecorativeVariationDefinition
   ): typeof DrawerMenu {
     return YDF_ComponentsCoordinator.defineDecorativeVariations(DrawerMenu, definitions);
   }

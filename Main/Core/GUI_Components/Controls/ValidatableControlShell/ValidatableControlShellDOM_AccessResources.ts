@@ -1,7 +1,64 @@
-import type ValidatableControlShell from "./ValidatableControlShell";
+type ValidatableControlShellDOM_AccessResources = Readonly<{
+
+  validationErrorsMessagesList: Readonly<{
+
+    DATA_ATTRIBUTE_KEY: string;
+    INTERNALLY_UNIQUE_SELECTOR: string;
+
+    item: Readonly<{
+      DATA_ATTRIBUTE_KEY: string;
+      SELECTOR: string;
+    }>;
+
+    mountingPoint: Readonly<{
+      DATA_ATTRIBUTE_KEY: string;
+      INTERNALLY_UNIQUE_SELECTOR_WITHOUT_SCOPE_PSEUDO_CLASS: string;
+      INTERNALLY_UNIQUE_SELECTOR: string;
+    }>;
+
+  }>;
+
+  asynchronousValidationsStatusesList: Readonly<{
+
+    DATA_ATTRIBUTE_KEY: string;
+    INTERNALLY_UNIQUE_SELECTOR: string;
+
+    item: Readonly<{
+
+      DATA_ATTRIBUTE_KEY: string;
+      SELECTOR: string;
+
+      byStates: Readonly<{
+        [
+          keys in
+              "inProgress" |
+              "succeededAndValid" |
+              "malfunction"
+        ]: Readonly<{
+          DATA_ATTRIBUTE_KEY: string;
+          SELECTOR: string;
+        }>;
+      }>;
+
+      text: Readonly<{
+        DATA_ATTRIBUTE_KEY: string;
+        SELECTOR: string;
+      }>;
+
+    }>;
+
+    mountingPoint: Readonly<{
+      DATA_ATTRIBUTE_KEY: string;
+      INTERNALLY_UNIQUE_SELECTOR_WITHOUT_SCOPE_PSEUDO_CLASS: string;
+      INTERNALLY_UNIQUE_SELECTOR: string;
+    }>;
+
+  }>;
+
+}>;
 
 
-const ValidatableControlShellYDF_GUI_ComponentDOM_AccessResources: ValidatableControlShell.DOM_AccessResources = {
+const ValidatableControlShellDOM_AccessResources: ValidatableControlShellDOM_AccessResources = {
 
   validationErrorsMessagesList: {
 
@@ -72,4 +129,4 @@ const ValidatableControlShellYDF_GUI_ComponentDOM_AccessResources: ValidatableCo
 };
 
 
-export default ValidatableControlShellYDF_GUI_ComponentDOM_AccessResources;
+export default ValidatableControlShellDOM_AccessResources;

@@ -107,27 +107,4 @@ export abstract class AdmonitionBlock extends AdmonitionBlockBase {
 
   };
 
-
-  /* ━━━ IDs Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  private static counterForID_Generating: number = 0;
-
-  public static generateInstanceID(uniqueDynamicPart?: string): string {
-    return `ADMONITION_BLOCK--YDF-${ uniqueDynamicPart ?? ++AdmonitionBlock.counterForID_Generating }`;
-  }
-
-
-  /* ┅┅┅ SVG Icons ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  private static counterForCustomSVG_IconsIDs_Generating: number = 0;
-  private static customSVG_IconCurrentID: string | null = null;
-
-  public static generateCustomIconNewID(): string {
-
-    AdmonitionBlock.counterForCustomSVG_IconsIDs_Generating++;
-    AdmonitionBlock.customSVG_IconCurrentID =
-        `ADMONITION_BLOCK--YDF-SVG_ICON-${ this.counterForCustomSVG_IconsIDs_Generating }`;
-
-    return AdmonitionBlock.customSVG_IconCurrentID;
-
-  }
-
 }

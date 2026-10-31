@@ -52,7 +52,7 @@ export abstract class Accordion extends AccordionBase {
           entries(Accordion.Themes).
           map(
             ([ key, value ]: Readonly<[ string, string ]>): Readonly<{ key: string; value: string; }> =>
-                ({ key: `Accordion.Themes.${ key }`, value })
+                ({ key: `Accordion__YDF.Themes.${ key }`, value })
           )
     },
 
@@ -70,7 +70,7 @@ export abstract class Accordion extends AccordionBase {
           entries(Accordion.GeometricVariations).
           map(
             ([ key, value ]: Readonly<[ string, string ]>): Readonly<{ key: string; value: string; }> =>
-                ({ key: `Accordion.GeometricVariations.${ key }`, value })
+                ({ key: `Accordion__YDF.GeometricVariations.${ key }`, value })
           )
     },
 
@@ -82,18 +82,10 @@ export abstract class Accordion extends AccordionBase {
           entries(Accordion.DecorativeVariations).
           map(
             ([ key, value ]: Readonly<[ string, string ]>): Readonly<{ key: string; value: string; }> =>
-                ({ key: `Accordion.DecorativeVariations.${ key }`, value })
+                ({ key: `Accordion__YDF.DecorativeVariations.${ key }`, value })
           )
     }
 
   };
-
-
-  /* ━━━ IDs Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  private static counterForID_Generating: number = 0;
-
-  public static generateInstanceID(uniqueDynamicPart?: string): string {
-    return `Accordion--YDF-${ uniqueDynamicPart ?? ++Accordion.counterForID_Generating }`;
-  }
 
 }

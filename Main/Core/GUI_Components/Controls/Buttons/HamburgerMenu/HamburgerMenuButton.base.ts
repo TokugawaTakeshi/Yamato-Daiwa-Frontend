@@ -2,10 +2,13 @@
 
 import type { YDF_Component } from "../../../_Auxiliaries/YDF_Component";
 import YDF_ComponentsCoordinator from "../../../_Auxiliaries/YDF_ComponentsCoordinator";
-import HamburgerMenuButtonYDF_GUI_ComponentLocalization__English from "./HamburgerMenuButtonLocalization.english";
+import HamburgerMenuButtonLocalization__English from "./HamburgerMenuButtonLocalization.english";
 
 
 export abstract class HamburgerMenuButton {
+
+  public static readonly CSS_NAMESPACE: string = "HamburgerMenuButton--YDF";
+
 
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static readonly Themes: YDF_Component.Themes = { regular: "REGULAR" };
@@ -59,7 +62,7 @@ export abstract class HamburgerMenuButton {
       { [HamburgerMenuButton.DecorativeVariations.regular]: "HamburgerMenuButton--YDF__RegularDecorativeVariation" };
 
   public static defineDecorativeVariations(
-    definitions: YDF_Component.CustomGeometricVariationDefinition
+    definitions: YDF_Component.CustomDecorativeVariationDefinition
   ): typeof HamburgerMenuButton {
     return YDF_ComponentsCoordinator.defineDecorativeVariations(HamburgerMenuButton, definitions);
   }
@@ -90,8 +93,7 @@ export abstract class HamburgerMenuButton {
 
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static localization: HamburgerMenuButton.Localization =
-      HamburgerMenuButtonYDF_GUI_ComponentLocalization__English;
+  public static localization: HamburgerMenuButton.Localization = HamburgerMenuButtonLocalization__English;
 
 }
 

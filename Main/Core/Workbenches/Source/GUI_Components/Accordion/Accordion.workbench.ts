@@ -1,4 +1,4 @@
-import Accordion from "../../../../GUI_Components/Accordion/Accordion";
+import { Accordion } from "../../../../index";
 
 
 Accordion.initializeOne({ rootElement: { selector: "#SAMPLE_ACCORDION" } });

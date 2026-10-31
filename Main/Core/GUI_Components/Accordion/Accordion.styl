@@ -50,58 +50,12 @@ Accordion--YDF-generateStyles(
 
   properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
 
-  validateObjectTypeParameter--YDF({
-    mixinOrFunctionName: "Accordion--YDF-generateStyles",
-    targetParameterNumber: 3,
-    targetParameter: options,
-    schema: {
-      themeIndependentStylesOnly: {
-        type: DataTypes--YDF.boolean,
-        defaultValue: Accordion--YDF.defaultOptions.themeIndependentStylesOnly
-      },
-      areThemesCSS_ClassesCommon: {
-        type: DataTypes--YDF.boolean,
-        defaultValue: Accordion--YDF.defaultOptions.externalThemes
-      },
-      loadingPlaceholder: {
-        type: DataTypes--YDF.boolean,
-        defaultValue: Accordion--YDF.defaultOptions.loadingPlaceholder
-      },
-      themeIndependentGeometricVariations: {
-        type: DataTypes--YDF.boolean,
-        defaultValue: Accordion--YDF.defaultOptions.themeIndependentGeometricVariations
-      },
-      geometricModifiers: {
-        type: DataTypes--YDF.object,
-        properties: {
-          pillShape: {
-            type: DataTypes--YDF.boolean,
-            defaultValue: Accordion--YDF.defaultOptions.geometricModifiers.pillShape
-          },
-          squareShape: {
-            type: DataTypes--YDF.boolean,
-            defaultValue: Accordion--YDF.defaultOptions.geometricModifiers.squareShape
-          },
-          singleLine: {
-            type: DataTypes--YDF.boolean,
-            defaultValue: Accordion--YDF.defaultOptions.geometricModifiers.singleLine
-          }
-        },
-        defaultValue: Accordion--YDF.defaultOptions.geometricModifiers
-      },
-      decorativeModifiers: {
-        type: DataTypes--YDF.object,
-        properties: {
-          bordersDisguising: {
-            type: DataTypes--YDF.boolean,
-            defaultValue: Accordion--YDF.defaultOptions.decorativeModifiers.bordersDisguising
-          }
-        },
-        defaultValue: Accordion--YDF.defaultOptions.decorativeModifiers.bordersDisguising
-      }
-    },
-    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
-  })
+  processGUI_ComponentOptionsAndRestParameters--YDF(
+    mixinName: "Accordion--YDF-generateStyles",
+    specifiedOptions: options,
+    defaultOptions: Accordion--YDF.defaultOptions,
+    restParameters__MUST_NOT_BE: restParameters__MUST_NOT_BE
+  )
 
 
   // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

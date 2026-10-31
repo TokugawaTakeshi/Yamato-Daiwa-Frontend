@@ -1,6 +1,6 @@
 import componentHTML_Workpiece from "./Snackbar.template.pug";
 
-import { SnackbarMetadata } from "./SnackbarMetadata";
+import SnackbarBase from "./SnackbarMetadata.base";
 
 import {
   PromisesQueue,
@@ -17,7 +17,7 @@ import {
 } from "@yamato-daiwa/es-extensions-browserjs";
 
 
-abstract class Snackbar extends SnackbarMetadata {
+abstract class Snackbar extends SnackbarBase {
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected static readonly sessionsQueue: PromisesQueue = new PromisesQueue();
@@ -104,7 +104,7 @@ abstract class Snackbar extends SnackbarMetadata {
     {
       messageTextOrHTML,
       decorativeVariation,
-      position = Snackbar.Positions.topMiddle,
+      position = SnackbarBase.Positions.topMiddle,
       parentElementSelector = "body",
       mountingPointElementSelector,
       displayingDuration__seconds = Snackbar.DEFAULT_DISPLAYING_DURATION__SECONDS,
@@ -219,7 +219,7 @@ namespace Snackbar {
   export type CompoundParameter = Readonly<{
     messageTextOrHTML: string;
     decorativeVariation: string;
-    position?: SnackbarMetadata.Positions;
+    position?: SnackbarBase.Positions;
     parentElementSelector?: string;
     mountingPointElementSelector?: string;
     displayingDuration__seconds?: number;

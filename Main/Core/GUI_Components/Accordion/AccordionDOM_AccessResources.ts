@@ -1,4 +1,4 @@
-export type AccordionDOM_AccessResources = Readonly<{
+type AccordionDOM_AccessResources = Readonly<{
 
   rootElement: Readonly<{
     CSS_NAMESPACE_CLASS: string;
@@ -17,7 +17,8 @@ export type AccordionDOM_AccessResources = Readonly<{
 
 }>;
 
-export const AccordionDOM_AccessResources: AccordionDOM_AccessResources = {
+
+const AccordionDOM_AccessResources: AccordionDOM_AccessResources = {
 
   rootElement: {
     CSS_NAMESPACE_CLASS: "Accordion--YDF",
@@ -35,5 +36,6 @@ export const AccordionDOM_AccessResources: AccordionDOM_AccessResources = {
   }
 
 };
+
 
 export default AccordionDOM_AccessResources;

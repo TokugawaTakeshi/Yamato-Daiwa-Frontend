@@ -11,8 +11,8 @@ import ValidatableControl from "../../_Validation/ValidatableControl";
 import type InputtedValueValidation from "../../_Validation/InputtedValueValidation";
 
 /* ─── Children Components ────────────────────────────────────────────────────────────────────────────────────────── */
-import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell";
-import Button from "../../Buttons/Plain/Button";
+import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell.logic";
+import Button from "../../Buttons/Plain/Button.logic";
 
 /* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
 import {

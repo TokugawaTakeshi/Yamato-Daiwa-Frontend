@@ -6,8 +6,8 @@ import ValidatableControl from "../../_Validation/ValidatableControl";
 import type InputtedValueValidation from "../../_Validation/InputtedValueValidation";
 
 /* ─── Children components ────────────────────────────────────────────────────────────────────────────────────────── */
-import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell";
-import RadioButton from "../../RadioButton/RadioButton";
+import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell.logic";
+import RadioButton from "../../RadioButton/RadioButton.logic";
 import { isNotNull, isNull, Logger } from "@yamato-daiwa/es-extensions";
 
 

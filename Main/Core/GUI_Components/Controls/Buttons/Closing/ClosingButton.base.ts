@@ -1,9 +1,12 @@
 import type { YDF_Component } from "../../../_Auxiliaries/YDF_Component";
 import YDF_ComponentsCoordinator from "../../../_Auxiliaries/YDF_ComponentsCoordinator";
-import ClosingButtonYDF_GUI_ComponentLocalization__English from "./ClosingButtonLocalization.english";
+import ClosingButtonLocalization__English from "./ClosingButtonLocalization.english";
 
 
 export abstract class ClosingButton {
+
+  public static readonly CSS_NAMESPACE: string = "ClosingButton--YDF";
+
 
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static readonly Themes: YDF_Component.Themes = { regular: "REGULAR" };
@@ -57,7 +60,7 @@ export abstract class ClosingButton {
       { [ClosingButton.DecorativeVariations.regular]: "ClosingButton--YDF__RegularDecorativeVariation" };
 
   public static defineDecorativeVariations(
-    definitions: YDF_Component.CustomGeometricVariationDefinition
+    definitions: YDF_Component.CustomDecorativeVariationDefinition
   ): typeof ClosingButton {
     return YDF_ComponentsCoordinator.defineDecorativeVariations(ClosingButton, definitions);
   }
@@ -87,8 +90,7 @@ export abstract class ClosingButton {
 
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static localization: ClosingButton.Localization =
-      ClosingButtonYDF_GUI_ComponentLocalization__English;
+  public static localization: ClosingButton.Localization = ClosingButtonLocalization__English;
 
 }
 

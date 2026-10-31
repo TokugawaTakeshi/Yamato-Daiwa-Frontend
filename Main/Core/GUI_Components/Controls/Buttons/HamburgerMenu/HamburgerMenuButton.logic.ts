@@ -1,7 +1,7 @@
 import { LeftClickEventListener } from "@yamato-daiwa/es-extensions-browserjs";
 
 
-class HamburgerMenuButton {
+export class HamburgerMenuButton {
 
   /* ━━━ Static fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ─── Accessing to DOM ─────────────────────────────────────────────────────────────────────────────────────────── */
@@ -34,7 +34,7 @@ class HamburgerMenuButton {
 }
 
 
-namespace HamburgerMenuButton {
+export namespace HamburgerMenuButton {
 
   export type InitialingParameter = Readonly<{
     onClickEventHandler: () => void;

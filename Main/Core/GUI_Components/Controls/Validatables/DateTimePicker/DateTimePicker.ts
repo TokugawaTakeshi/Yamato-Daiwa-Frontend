@@ -10,8 +10,8 @@ import { DateTimePickerYDF_GUI_ComponentDOM_AccessResources } from
 import { DAYS_COUNT_IN_WEEK, MAXIMAL_DAYS_IN_MONTH, MONTHS_COUNT_IN_YEAR } from "fundamental-constants";
 
 /* ─── GUI Components ─────────────────────────────────────────────────────────────────────────────────────────────── */
-import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell";
-import Button from "../../Buttons/Plain/Button";
+import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell.logic";
+import Button from "../../Buttons/Plain/Button.logic";
 
 /* ─── Validations ────────────────────────────────────────────────────────────────────────────────────────────────── */
 import ValidatableControl from "../../_Validation/ValidatableControl";

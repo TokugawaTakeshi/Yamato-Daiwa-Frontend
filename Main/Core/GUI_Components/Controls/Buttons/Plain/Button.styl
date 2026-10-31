@@ -497,29 +497,6 @@ Button--YDF-generateStyles(
 
       &:first-child:last-child
 
-        //* [ Initial equation ] labelFontSize + labelTopSpacing = iconHeight + iconTopSpacing
-        //* [ Formula ] iconPopMargin = labelFontSize + labelTopSpacing - iconHeight
-        //* The `labelUpwardShifting` could be eliminated because it presents in bots sides of initial equation. */
-        topMargin = buildCalcExpressionFromFragments--YDF({
-          textSize: cachedValidReusables.textSize,
-          basicTopSpacing: @() {
-            if (isNotNull--YDF(cachedValidReusables.topSpacing)) {
-              return " + " + cachedValidReusables.topSpacing
-            }
-          },
-          iconHeight: @() { return " - " + iconHeight }
-        })
-
-        bottomMargin = buildCalcExpressionFromFragments--YDF({
-          textSize: cachedValidReusables.textSize,
-          basicBottomSpacing: @() {
-            if (isNotNull--YDF(cachedValidReusables.bottomSpacing)) {
-              return " + " + cachedValidReusables.bottomSpacing
-            }
-          },
-          iconHeight: @() { return " - " + iconHeight }
-        })
-
         validateAndAssignStoredInObjectCSS_Properties--YDF({
           targetObject: variation,
           targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
@@ -535,8 +512,22 @@ Button--YDF-generateStyles(
           }
         })
 
-        margin-top: topMargin
-        margin-bottom: bottomMargin
+        //* [ Initial equation ] labelFontSize + labelTopSpacing = iconHeight + iconTopSpacing
+        //* [ Formula ] iconTopMargin = labelFontSize + labelTopSpacing - iconHeight
+        //* The `labelUpwardShifting` could be eliminated because it presents in bots sides of initial equation. */
+        margin-top: \
+            buildCalcExpressionTermwise--YDF(\
+              cachedValidReusables.textSize\
+              ("+" cachedValidReusables.topSpacing)\
+              ("-" iconHeight)
+            )
+
+        margin-bottom: \
+            buildCalcExpressionTermwise--YDF(\
+              cachedValidReusables.textSize\
+              ("+" cachedValidReusables.bottomSpacing)\
+              ("-" iconHeight)
+            )
 
 
         if isNotNull--YDF(variation.SVG_Icon.default.spacing.horizontalSymmetricWhenLone)
