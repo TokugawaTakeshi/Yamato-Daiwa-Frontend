@@ -53,6 +53,17 @@ module.exports = [
       "n/no-unsupported-features/node-builtins": "off"
     }
 
+  },
+
+  {
+    files: [ "Source/GUI_Components/**/vue.d.ts" ],
+    rules: {
+
+      /* Semantic organization of members for the classes of this group/ */
+      "@typescript-eslint/member-ordering": "off"
+
+    }
   }
 
 ];
+

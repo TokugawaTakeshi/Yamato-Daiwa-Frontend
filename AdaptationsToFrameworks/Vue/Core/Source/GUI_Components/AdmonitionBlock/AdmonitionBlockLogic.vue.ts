@@ -1,7 +1,6 @@
 /* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-import type { AdmonitionBlockBase } from "@yamato-daiwa/frontend";
-import { AdmonitionBlockYDF_GUI_ComponentLocalization__English } from "@yamato-daiwa/frontend";
+import { AdmonitionBlockBase, type YDF_Component } from "@yamato-daiwa/frontend";
 
 /* ┅┅┅ Validations ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import type VuePropertyValidator from "../_VuePropertiesValidators/VuePropertyValidator";
@@ -28,8 +27,11 @@ import AccessibleFromTemplateAsNonReactive from "../_Decorators/AccessibleFromTe
 @VueComponentConfiguration({ name: AdmonitionBlock.CSS_NAMESPACE })
 class AdmonitionBlock extends VueComponent {
 
-  public static readonly CSS_NAMESPACE: string = "AdmonitionBlock--YDF";
+  declare public static readonly CSS_NAMESPACE: string;
 
+  static {
+    AdmonitionBlockBase.shareStaticMembers(AdmonitionBlock, { mustSkipPropertiesWithKeys: { localization: true } });
+  }
 
   @VueProperty({
     required: false,
@@ -67,7 +69,7 @@ class AdmonitionBlock extends VueComponent {
 
 
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static readonly Themes: AdmonitionBlock.Themes = { regular: "REGULAR" };
+  declare public static readonly Themes: YDF_Component.Themes;
 
   @VueProperty({
     default: AdmonitionBlock.Themes.regular,
@@ -76,15 +78,11 @@ class AdmonitionBlock extends VueComponent {
   @preventNullForOptionalVueProperty
   protected readonly theme!: string;
 
-  public static defineThemes(themesNames: ReadonlyArray<string>): typeof AdmonitionBlock {
-    return YDF_ComponentsCoordinator.defineThemes(themesNames, AdmonitionBlock);
-  }
+  declare public static readonly defineThemes: YDF_Component.ThemesDefiners.NoChildrenComponentsCase<typeof AdmonitionBlock>;
 
-  protected static areThemesCSS_ClassesCommon: boolean = YDF_ComponentsCoordinator.areThemesCSS_ClassesCommon;
+  declare public static areThemesCSS_ClassesCommon: boolean;
 
-  public static considerThemesAsCommon(): void {
-    AdmonitionBlock.areThemesCSS_ClassesCommon = true;
-  }
+  declare public static readonly considerThemesAsCommon: () => typeof AdmonitionBlock;
 
   @VueProperty({
     default: AdmonitionBlock.areThemesCSS_ClassesCommon,
@@ -101,10 +99,7 @@ class AdmonitionBlock extends VueComponent {
 
 
   /* ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  public static readonly GeometricVariations: AdmonitionBlock.GeometricVariations = {
-    regular: "REGULAR",
-    stickyNoteLike: "STICKY_NOTE_LIKE"
-  };
+  declare public static readonly GeometricVariations: AdmonitionBlock.GeometricVariations;
 
   @VueProperty({
     default: AdmonitionBlock.GeometricVariations.regular,
@@ -113,20 +108,12 @@ class AdmonitionBlock extends VueComponent {
   @preventNullForOptionalVueProperty
   protected readonly geometricVariation!: string;
 
-  public static defineGeometricVariations(geometricVariationsNames: ReadonlyArray<string>): typeof AdmonitionBlock {
-    return YDF_ComponentsCoordinator.defineGeometricVariations(geometricVariationsNames, AdmonitionBlock);
-  }
+  declare public static readonly defineGeometricVariations:
+      YDF_Component.GeometricVariationDefiners.NoChildrenComponentsCase<AdmonitionBlock>;
 
 
   /* ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  public static readonly DecorativeVariations: AdmonitionBlock.DecorativeVariations = {
-    notice: "NOTICE",
-    error: "ERROR",
-    warning: "WARNING",
-    success: "SUCCESS",
-    guidance: "GUIDANCE",
-    question: "QUESTION"
-  };
+  declare public static readonly DecorativeVariations: AdmonitionBlock.DecorativeVariations;
 
   @VueProperty({
     required: true,
@@ -134,9 +121,8 @@ class AdmonitionBlock extends VueComponent {
   })
   protected readonly decorativeVariation!: string;
 
-  public static defineDecorativeVariations(decorativeVariationsNames: ReadonlyArray<string>): typeof AdmonitionBlock {
-    return YDF_ComponentsCoordinator.defineDecorativeVariations(decorativeVariationsNames, AdmonitionBlock);
-  }
+  declare public static readonly defineDecorativeVariations:
+      YDF_Component.DecorativeVariationDefiners.NoChildrenComponentsCase<AdmonitionBlock>;
 
 
   /* ━━━ SVG Icon ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -183,18 +169,15 @@ class AdmonitionBlock extends VueComponent {
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   @AccessibleFromTemplateAsNonReactive
-  public static localization: AdmonitionBlockBase.Localization = AdmonitionBlockYDF_GUI_ComponentLocalization__English;
+  public static localization: AdmonitionBlockBase.Localization = AdmonitionBlockBase.localization;
 
 
   /* ━━━ ID Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ┅┅┅ Instance ID ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   protected readonly INSTANCE_ID: string = AdmonitionBlock.generateInstanceID();
-  protected static counterForInstanceID_Generating: number = 0;
+  declare protected static counterForInstanceID_Generating: number;
 
-  public static generateInstanceID(): string {
-    AdmonitionBlock.counterForInstanceID_Generating++;
-    return `ADMONITION_BLOCK--YDF-${ AdmonitionBlock.counterForInstanceID_Generating }`;
-  }
+  declare public static generateInstanceID: YDF_Component.InstanceID_Generator;
 
 
   /* ┅┅┅ Title HTML ID ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
@@ -211,11 +194,21 @@ class AdmonitionBlock extends VueComponent {
         CSS_NAMESPACE: { value: AdmonitionBlock.CSS_NAMESPACE },
         Themes: { value: AdmonitionBlock.Themes },
         defineThemes: { value: AdmonitionBlock.defineThemes },
+        areThemesCSS_ClassesCommon: {
+          value: AdmonitionBlock.areThemesCSS_ClassesCommon,
+          writable: true
+        },
+        considerThemesAsCommon: { value: AdmonitionBlock.considerThemesAsCommon },
         GeometricVariations: { value: AdmonitionBlock.GeometricVariations },
         defineGeometricVariations: { value: AdmonitionBlock.defineGeometricVariations },
         DecorativeVariations: { value: AdmonitionBlock.DecorativeVariations },
         defineDecorativeVariations: { value: AdmonitionBlock.defineDecorativeVariations },
-        localization: { value: AdmonitionBlock.localization }
+        counterForInstanceID_Generating: { value: AdmonitionBlock.counterForInstanceID_Generating },
+        generateInstanceID: { value: AdmonitionBlock.generateInstanceID },
+        localization: {
+          value: AdmonitionBlock.localization,
+          writable: true
+        }
       }
     );
   }
@@ -225,26 +218,8 @@ class AdmonitionBlock extends VueComponent {
 
 namespace AdmonitionBlock {
 
-  export type Themes = {
-    readonly regular: "REGULAR";
-    [themeName: string]: string;
-  };
-
-  export type GeometricVariations = {
-    readonly regular: "REGULAR";
-    readonly stickyNoteLike: "STICKY_NOTE_LIKE";
-    [variationName: string]: string;
-  };
-
-  export type DecorativeVariations = {
-    readonly notice: "NOTICE";
-    readonly error: "ERROR";
-    readonly warning: "WARNING";
-    readonly success: "SUCCESS";
-    readonly guidance: "GUIDANCE";
-    readonly question: "QUESTION";
-    [variationName: string]: string;
-  };
+  export type GeometricVariations = AdmonitionBlockBase.GeometricVariations;
+  export type DecorativeVariations = AdmonitionBlockBase.DecorativeVariations;
 
 }
 

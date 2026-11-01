@@ -1,4 +1,4 @@
-import type { AdmonitionBlockLocalization } from "@yamato-daiwa/frontend";
+import type { AdmonitionBlockBase, YDF_Component } from "@yamato-daiwa/frontend";
 import type { Vue as VueComponent } from "vue-facing-decorator";
 
 
@@ -6,45 +6,46 @@ declare class AdmonitionBlock extends VueComponent {
 
   public static readonly CSS_NAMESPACE: string;
 
-  public static readonly Themes: AdmonitionBlock.Themes;
+  /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public static readonly Themes: YDF_Component.Themes;
 
-  public static defineThemes(themesNames: ReadonlyArray<string>): typeof AdmonitionBlock;
+  public static readonly defineThemes: YDF_Component.ThemesDefiners.NoChildrenComponentsCase<typeof AdmonitionBlock>;
 
+  public static areThemesCSS_ClassesCommon: boolean;
+
+  public static readonly considerThemesAsCommon: () => typeof AdmonitionBlock;
+
+
+  /* ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public static readonly GeometricVariations: AdmonitionBlock.GeometricVariations;
 
-  public static defineGeometricVariations(geometricVariationsNames: ReadonlyArray<string>): typeof AdmonitionBlock;
+  public static readonly defineGeometricVariations:
+      YDF_Component.GeometricVariationDefiners.NoChildrenComponentsCase<AdmonitionBlock>;
 
+
+  /* ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public static readonly DecorativeVariations: AdmonitionBlock.DecorativeVariations;
 
-  public static defineDecorativeVariations(decorativeVariationsNames: ReadonlyArray<string>): typeof AdmonitionBlock;
+  public static localization: AdmonitionBlockBase.Localization;
 
-  public static localization: AdmonitionBlockLocalization;
+
+  /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public static defineDecorativeVariations:
+      YDF_Component.DecorativeVariationDefiners.NoChildrenComponentsCase<AdmonitionBlock>;
+
+
+  /* ━━━ ID Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static counterForInstanceID_Generating: number;
+
+  public static readonly generateInstanceID: YDF_Component.InstanceID_Generator;
 
 }
 
 
 declare namespace AdmonitionBlock {
 
-  export type Themes = {
-    readonly regular: "REGULAR";
-    [themeName: string]: string;
-  };
-
-  export type GeometricVariations = {
-    readonly regular: "REGULAR";
-    readonly stickyNoteLike: "STICKY_NOTE_LIKE";
-    [variationName: string]: string;
-  };
-
-  export type DecorativeVariations = {
-    readonly notice: "NOTICE";
-    readonly error: "ERROR";
-    readonly warning: "WARNING";
-    readonly success: "SUCCESS";
-    readonly guidance: "GUIDANCE";
-    readonly question: "QUESTION";
-    [variationName: string]: string;
-  };
+  export type GeometricVariations = AdmonitionBlockBase.GeometricVariations;
+  export type DecorativeVariations = AdmonitionBlockBase.DecorativeVariations;
 
 }
 
