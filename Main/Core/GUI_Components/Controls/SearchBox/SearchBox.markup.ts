@@ -58,7 +58,7 @@ export class SearchBox extends SearchBoxBase {
 
     decorativeVariation: {
       type: String,
-      isUndefinedForbidden: true,
+      undefinedValueSubstitution: SearchBox.DecorativeVariations.regular,
       isNullForbidden: true,
       allowedAlternatives: Object.
           entries(SearchBox.DecorativeVariations).

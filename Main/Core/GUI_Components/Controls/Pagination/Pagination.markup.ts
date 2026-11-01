@@ -65,7 +65,7 @@ export abstract class Pagination extends PaginationBase {
 
     decorativeVariation: {
       type: String,
-      isUndefinedForbidden: true,
+      undefinedValueSubstitution: Pagination.DecorativeVariations.regular,
       isNullForbidden: true,
       allowedAlternatives: Object.
           entries(Pagination.DecorativeVariations).
