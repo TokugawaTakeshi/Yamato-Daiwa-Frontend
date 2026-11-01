@@ -1,4 +1,7 @@
 /* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+import { BadgeBase, type YDF_Component } from "@yamato-daiwa/frontend";
+
 /* ┅┅┅ Validations ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import VuePropertyValidator from "../_VuePropertiesValidators/VuePropertyValidator";
 import ThemeVuePropertyValidator from "../_VuePropertiesValidators/ThemeVuePropertyValidator";
@@ -19,15 +22,18 @@ import {
 
 /* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import YDF_ComponentsCoordinator from "../YDF_ComponentsCoordinator";
-import { isNonEmptyString, type ElementOfPseudoEnumeration } from "@yamato-daiwa/es-extensions";
+import { isNonEmptyString } from "@yamato-daiwa/es-extensions";
 /* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 
 @VueComponentConfiguration({ name: Badge.CSS_NAMESPACE })
 class Badge extends VueComponent {
 
-  public static CSS_NAMESPACE: string = "Badge--YDF";
+  declare public static readonly CSS_NAMESPACE: string;
 
+  static {
+    BadgeBase.shareStaticMembers(Badge);
+  }
 
   @VueProperty({
     required: false,
@@ -68,7 +74,7 @@ class Badge extends VueComponent {
 
 
   /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static readonly Themes: Badge.Themes = { regular: "REGULAR" };
+  declare public static readonly Themes: YDF_Component.Themes;
 
   @VueProperty({
     default: Badge.Themes.regular,
@@ -77,15 +83,11 @@ class Badge extends VueComponent {
   @preventNullForOptionalVueProperty
   protected readonly theme!: string;
 
-  public static defineThemes(themesNames: ReadonlyArray<string>): typeof Badge {
-    return YDF_ComponentsCoordinator.defineThemes(themesNames, Badge);
-  }
+  declare public static readonly defineThemes: YDF_Component.ThemesDefiners.NoChildrenComponentsCase<typeof Badge>;
 
-  public static areThemesCSS_ClassesCommon: boolean = YDF_ComponentsCoordinator.areThemesCSS_ClassesCommon;
+  declare public static areThemesCSS_ClassesCommon: boolean;
 
-  public static considerThemesAsCommon(): void {
-    Badge.areThemesCSS_ClassesCommon = true;
-  }
+  declare public static readonly considerThemesAsCommon: () => typeof Badge;
 
   @VueProperty({
     default: Badge.areThemesCSS_ClassesCommon,
@@ -102,10 +104,7 @@ class Badge extends VueComponent {
 
 
   /* ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  public static readonly GeometricVariations: Badge.GeometricVariations = {
-    regular: "REGULAR",
-    small: "SMALL"
-  };
+  declare public static readonly GeometricVariations: Badge.GeometricVariations;
 
   @VueProperty({
     default: Badge.GeometricVariations.regular,
@@ -114,40 +113,21 @@ class Badge extends VueComponent {
   @preventNullForOptionalVueProperty
   protected readonly geometricVariation!: string;
 
-  public static defineGeometricVariations(geometricVariationsNames: ReadonlyArray<string>): typeof Badge {
-    return YDF_ComponentsCoordinator.defineGeometricVariations(geometricVariationsNames, Badge);
-  }
+  declare public static readonly defineGeometricVariations:
+      YDF_Component.GeometricVariationDefiners.NoChildrenComponentsCase<Badge>;
 
-  public static readonly GeometricModifiers: Badge.GeometricModifiers = {
-    pillShape: "PILL_SHAPE",
-    singleLine: "SINGLE_LINE"
-  };
+  declare public static readonly GeometricModifiers: Badge.GeometricModifiers;
 
   @VueProperty({
-    default: (): ReadonlyArray<ElementOfPseudoEnumeration<Badge.GeometricModifiers>> => [],
+    default: (): ReadonlyArray<Badge.GeometricModifiers> => [],
     validator: GeometricModifiersVuePropertyValidator(Badge)
   })
   @preventNullForOptionalVueProperty
-  protected readonly geometricModifiers!: ReadonlyArray<ElementOfPseudoEnumeration<Badge.GeometricModifiers>>;
+  protected readonly geometricModifiers!: ReadonlyArray<Badge.GeometricModifiers>;
 
 
   /* ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  public static readonly DecorativeVariations: Badge.DecorativeVariations = {
-    veryCatchyBright: "VERY_CATCHY_BRIGHT",
-    catchyBright: "CATCHY_BRIGHT",
-    modestlyCatchyBright: "MODESTLY_CATCHY_BRIGHT",
-    neutralBright: "NEUTRAL_BRIGHT",
-    modestlyCalmingBright: "MODESTLY_CALMING_BRIGHT",
-    calmingBright: "CALMING_BRIGHT",
-    achromaticBright: "ACHROMATIC_BRIGHT",
-    veryCatchyPastel: "VERY_CATCHY_PASTEL",
-    catchyPastel: "CATCHY_PASTEL",
-    modestlyCatchyPastel: "MODESTLY_CATCHY_PASTEL",
-    neutralPastel: "NEUTRAL_PASTEL",
-    modestlyCalmingPastel: "MODESTLY_CALMING_PASTEL",
-    calmingPastel: "CALMING_PASTEL",
-    achromaticPastel: "ACHROMATIC_PASTEL"
-  };
+  declare public static readonly DecorativeVariations: Badge.DecorativeVariations;
 
   @VueProperty({
     required: true,
@@ -155,20 +135,16 @@ class Badge extends VueComponent {
   })
   protected readonly decorativeVariation!: string;
 
-  public static defineDecorativeVariations(decorativeVariationsNames: ReadonlyArray<string>): typeof Badge {
-    return YDF_ComponentsCoordinator.defineDecorativeVariations(decorativeVariationsNames, Badge);
-  }
+  declare public static readonly defineDecorativeVariations:
+      YDF_Component.DecorativeVariationDefiners.NoChildrenComponentsCase<Badge>;
 
-  public static readonly DecorativeModifiers: Badge.DecorativeModifiers = {
-    bordersDisguising: "BORDERS_DISGUISING",
-    noBackground: "NO_BACKGROUND"
-  };
+  declare public static readonly DecorativeModifiers: Badge.DecorativeModifiers;
 
   @VueProperty({
-    default: (): ReadonlyArray<ElementOfPseudoEnumeration<Badge.DecorativeModifiers>> => [],
+    default: (): ReadonlyArray<Badge.DecorativeModifiers> => [],
     validator: DecorativeModifiersVuePropertyValidator(Badge)
   })
-  protected readonly decorativeModifiers!: ReadonlyArray<ElementOfPseudoEnumeration<Badge.DecorativeModifiers>>;
+  protected readonly decorativeModifiers!: ReadonlyArray<Badge.DecorativeModifiers>;
 
 
   /* ┅┅┅ CSS Classes ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
@@ -196,12 +172,17 @@ class Badge extends VueComponent {
         CSS_NAMESPACE: { value: Badge.CSS_NAMESPACE },
         Themes: { value: Badge.Themes },
         defineThemes: { value: Badge.defineThemes },
+        areThemesCSS_ClassesCommon: {
+          value: Badge.areThemesCSS_ClassesCommon,
+          writable: true
+        },
+        considerThemesAsCommon: { value: Badge.considerThemesAsCommon },
         GeometricVariations: { value: Badge.GeometricVariations },
-        GeometricModifiers: { value: Badge.GeometricModifiers },
         defineGeometricVariations: { value: Badge.defineGeometricVariations },
+        GeometricModifiers: { value: Badge.GeometricModifiers },
         DecorativeVariations: { value: Badge.DecorativeVariations },
-        DecorativeModifiers: { value: Badge.DecorativeModifiers },
-        defineDecorativeVariations: { value: Badge.defineDecorativeVariations }
+        defineDecorativeVariations: { value: Badge.defineDecorativeVariations },
+        DecorativeModifiers: { value: Badge.DecorativeModifiers }
       }
     );
   }
@@ -211,43 +192,11 @@ class Badge extends VueComponent {
 
 namespace Badge {
 
-  export type Themes = {
-    readonly regular: "REGULAR";
-    [themeName: string]: string;
-  };
+  export type GeometricVariations = BadgeBase.GeometricVariations;
+  export type GeometricModifiers = BadgeBase.GeometricModifiers;
 
-  export type GeometricVariations = {
-    readonly regular: "REGULAR";
-    [variationName: string]: string;
-  };
-
-  export type GeometricModifiers = Readonly<{
-    pillShape: "PILL_SHAPE";
-    singleLine: "SINGLE_LINE";
-  }>;
-
-  export type DecorativeVariations = {
-    readonly veryCatchyBright: "VERY_CATCHY_BRIGHT";
-    readonly catchyBright: "CATCHY_BRIGHT";
-    readonly modestlyCatchyBright: "MODESTLY_CATCHY_BRIGHT";
-    readonly neutralBright: "NEUTRAL_BRIGHT";
-    readonly modestlyCalmingBright: "MODESTLY_CALMING_BRIGHT";
-    readonly calmingBright: "CALMING_BRIGHT";
-    readonly achromaticBright: "ACHROMATIC_BRIGHT";
-    readonly veryCatchyPastel: "VERY_CATCHY_PASTEL";
-    readonly catchyPastel: "CATCHY_PASTEL";
-    readonly modestlyCatchyPastel: "MODESTLY_CATCHY_PASTEL";
-    readonly neutralPastel: "NEUTRAL_PASTEL";
-    readonly modestlyCalmingPastel: "MODESTLY_CALMING_PASTEL";
-    readonly calmingPastel: "CALMING_PASTEL";
-    readonly achromaticPastel: "ACHROMATIC_PASTEL";
-    [variationName: string]: string;
-  };
-
-  export type DecorativeModifiers = Readonly<{
-    bordersDisguising: "BORDERS_DISGUISING";
-    noBackground: "NO_BACKGROUND";
-  }>;
+  export type DecorativeVariations = BadgeBase.DecorativeVariations;
+  export type DecorativeModifiers = BadgeBase.DecorativeModifiers;
 
 }
 

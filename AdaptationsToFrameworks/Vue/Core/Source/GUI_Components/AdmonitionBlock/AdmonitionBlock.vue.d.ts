@@ -26,12 +26,12 @@ declare class AdmonitionBlock extends VueComponent {
   /* ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   public static readonly DecorativeVariations: AdmonitionBlock.DecorativeVariations;
 
-  public static localization: AdmonitionBlockBase.Localization;
+  public static defineDecorativeVariations:
+      YDF_Component.DecorativeVariationDefiners.NoChildrenComponentsCase<AdmonitionBlock>;
 
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static defineDecorativeVariations:
-      YDF_Component.DecorativeVariationDefiners.NoChildrenComponentsCase<AdmonitionBlock>;
+  public static localization: AdmonitionBlockBase.Localization;
 
 
   /* ━━━ ID Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
