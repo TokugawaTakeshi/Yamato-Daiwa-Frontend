@@ -1,0 +1,57 @@
+properties:
+
+  $heading: `properties.$heading`
+  $anchor: PROPERTIES--SECTION
+
+  $children:
+
+    fontsStacks:
+
+      $heading: "<code>fontsStacks</code>"
+      $anchor: PROPERTIES-FONTS_STACKS--SECTION
+
+      $children:
+
+        main:
+          $heading: "<code>main</code>"
+          $anchor: PROPERTIES-FONT_STACKS-MAIN--SECTION
+
+        mainSansSerif:
+          $heading: "<code>mainSansSerif</code>"
+          $anchor: PROPERTIES-FONT_STACKS-MAIN_SANS_SERIF--SECTION
+
+        mainSerif:
+          $heading: "<code>mainSerif</code>"
+          $anchor: PROPERTIES-FONT_STACKS-MAIN_SERIF--SECTION
+
+        mainMonospaced:
+          $heading: "<code>mainMonospaced</code>"
+          $anchor: PROPERTIES-FONT_STACKS-MAIN_MONOSPACED--SECTION
+
+    textGeometry:
+
+      $heading: "<code>textGeometry</code>"
+      $anchor: PROPERTIES-TEXT_GEOMETRY--SECTION
+
+      $children:
+
+        basicFontSize:
+          $heading: "<code>basicFontSize</code>"
+          $anchor: PROPERTIES-TEXT_GEOMETRY-BASIC_FONT_SIZE--SECTION
+
+        basicLineHeight:
+          $heading: "<code>basicLineHeight</code>"
+          $anchor: PROPERTIES-TEXT_GEOMETRY-BASIC_LINE_HEIGHT--SECTION
+
+        basicLineHeightInMultilineTextBlocks:
+          $heading: "<code>basicLineHeightInMultilineTextBlocks</code>"
+          $anchor: PROPERTIES-TEXT_GEOMETRY-BASIC_LINE_HEIGHT_IN_MULTILINE_TEXT_BLOCKS--SECTION
+
+    zIndexes:
+      $heading: "zIndexes"
+      $anchor: PROPERTIES-Z_INDEXES--SECTION
+
+customizing:
+
+  $heading: `customizing.$heading`
+  $anchor: CUSTOMIZING

@@ -1,0 +1,54 @@
+@using YamatoDaiwa.Frontend.GUI_Components.Badge
+@using YamatoDaiwa.Frontend.GUI_Components.Badge.LoadingPlaceholder
+@using YamatoDaiwa.CSharpExtensions
+
+
+<div
+  class=@classAttributeValueForRootElement
+  @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary
+>
+
+  @* ━━━ Header ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  @if (label || badge)
+  {
+    <div class="ValidatableControlShell--YDF-Header">
+
+      @if (label)
+      {
+        <div class="ValidatableControlShell--YDF-Label ValidatableControlShell--YDF-Label__LoadingPlaceholder"></div>
+      }
+
+      @if (badge)
+      {
+        <BadgeLoadingPlaceholder
+          class="ValidatableControlShell--YDF-Badge"
+          theme=@badgeTheme
+          geometricVariation=@badgeGeometricVariation
+          geometricModifiers=@([ Badge.GeometricModifiers.pillShape ])
+        />
+      }
+
+    </div>
+  }
+
+
+  @* ━━━ Guidance ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  @if (guidance)
+  {
+    <div class="ValidatableControlShell--YDF-Guidance ValidatableControlShell--YDF-Guidance__LoadingPlaceholder"></div>
+  }
+
+
+  @* ━━━ Main Slot ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
+  <div
+    class=@(
+      String.Join(
+        ' ',
+        this.mainSlotWrapperAdditionalCSS_Classes.Prepend("ValidatableControlShell--YDF-MainSlotCustomizableWrapper")
+      )
+    )
+  >
+    @(ChildContent)
+  </div>
+
+</div>

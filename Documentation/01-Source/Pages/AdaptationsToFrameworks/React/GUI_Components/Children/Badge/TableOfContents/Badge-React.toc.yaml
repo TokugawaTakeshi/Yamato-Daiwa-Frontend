@@ -1,0 +1,17 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+BadgeClass:
+
+  $heading: `BadgeClass.$heading`
+  $anchor: BADGE_CLASS--SECTION
+
+  $children:
+
+    reactProperties:
+
+      $heading: `BadgeClass.reactProperties.$heading`
+      $anchor: BADGE_CLASS-REACT_PROPERTIES--SECTION
+#

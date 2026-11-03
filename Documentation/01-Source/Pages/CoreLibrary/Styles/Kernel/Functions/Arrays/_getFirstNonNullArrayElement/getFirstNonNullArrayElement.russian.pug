@@ -1,0 +1,77 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../../../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    HTML_PAGE_LANGUAGE = "ru";
+    HTML_PAGE_TITLE = buildHTML_PageTitle("getFirstNonNullArrayElement");
+    HTML_PageMetaData = {
+      description: "",
+      author: HTML_PAGE_AUTHOR
+    };
+
+    FAVICON_URI = "@MustBeInPublicRoot/favicon";
+
+    styleSheetsURIs = [
+      "$CommonStyles",
+      "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+      "$PreMadesStyles",
+      "@CustomizedExternalComponents"
+    ];
+
+    scriptsURIs.endOfBody = [ "$CommonLogic" ];
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.styles.kernel.functions.arrays.getFirstNonNullArrayElement");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: "./getFirstNonNullArrayElement.english.html",
+      japanese: "./getFirstNonNullArrayElement.japanese.html"
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: "getFirstNonNullArrayElement",
+      headingTag: "h1",
+      localizedDescriptiveHeading: "Взять первый элемент массива, не являющийся null",
+      parametersSpecification: [
+        {
+          localizedName: "Целевой массив",
+          type: "Array<Element>",
+          required: true,
+          genericTechnicalName: "targetArray"
+        }
+      ],
+      returnedValue: "Element | null"
+    })
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript })
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          sample1 = null null "ALPHA" null "BRAVO"
+          p(getFirstNonNullArrayElement(sample1)); // => "ALPHA"
+
+          sample2 = null null null
+          p(getFirstNonNullArrayElement(sample2)); // => null
+
+        +CodeViewer-Explanation--YDF.
+          Выводит "OK" в консоль (спасибо, кэп).

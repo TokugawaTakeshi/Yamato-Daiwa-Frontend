@@ -1,0 +1,18 @@
+CenteredContentWithComputedHorizontalPaddings--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "CenteredContentWithComputedHorizontalPaddings--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      contentWidth: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: true
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  padding-left "calc(0.5*(100% - %s))" % compoundParameter.contentWidth
+  padding-right "calc(0.5*(100% - %s))" % compoundParameter.contentWidth

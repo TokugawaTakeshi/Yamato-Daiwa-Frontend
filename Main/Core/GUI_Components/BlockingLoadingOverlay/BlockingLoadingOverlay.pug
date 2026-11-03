@@ -1,0 +1,45 @@
+mixin BlockingLoadingOverlay--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      /** @type { string } */
+      loadingIndicatorType
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: BlockingLoadingOverlay__YDF.propertiesSpecification,
+      mixinName: "BlockingLoadingOverlay--YDF"
+    });
+
+    const {
+
+      /**
+       * @type { boolean }
+       * @default false
+       */
+      displaying
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: BlockingLoadingOverlay__YDF.statesSimulationsSpecification,
+      mixinName: "BlockingLoadingOverlay--YDF"
+    });
+
+  .BlockingLoadingOverlay--YDF(
+    hidden=(displaying ? null : "")
+    role="dialog"
+  )&attributes(attributes)
+
+    p.BlockingLoadingOverlay--YDF-VisuallyHiddenMessage= BlockingLoadingOverlay__YDF.localization.defaultAccessibilityGuidance
+
+    +LoadingIndicator--YDF({
+      type: loadingIndicatorType
+    }).BlockingLoadingOverlay--YDF-LoadingIndicator(
+      role="none"
+    )

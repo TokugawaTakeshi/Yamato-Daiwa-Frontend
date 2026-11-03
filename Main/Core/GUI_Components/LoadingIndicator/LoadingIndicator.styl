@@ -1,0 +1,226 @@
+@require "Themes/Regular/GeometricVariations/LoadingIndicator-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/LoadingIndicator-RegularTheme-SmallGeometricVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/LoadingIndicator-RegularTheme-DarkDecorativeVariation.styl"
+
+
+LoadingIndicator--YDF = {
+
+  CSS_NAMESPACE: "LoadingIndicator--YDF",
+
+  componentIndependentCSS_Class: "RegularTheme--YDF",
+
+  Types: {
+    variableWidthArcSpinner: "VARIABLE_WIDTH_ARC_SPINNER",
+    twoConstantWidthArcsSpinner: "TWO_CONSTANT_WIDTH_ARCS_SPINNER"
+  }
+
+}
+
+
+LoadingIndicator--YDF-generateStyles()
+
+  .LoadingIndicator--YDF__VariableWidthArcSpinnerType
+
+    @keyframes LoadingIndicator--YDF__VariableWidthArcSpinnerType
+
+      0%
+
+        transform: rotate(0deg);
+
+
+      100%
+
+        transform: rotate(360deg)
+
+
+    position relative
+
+    height 4rem
+    aspect-ratio 1/1
+
+
+    div
+
+      box-sizing border-box
+      border-radius 50%
+
+      border-style solid
+
+      position absolute
+
+      aspect-ratio 1/1
+
+      width 100%
+      height 100%
+      border-width 0.5em
+
+      animation: LoadingIndicator--YDF__VariableWidthArcSpinnerType 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite
+      border-color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor transparent transparent transparent
+
+
+      &:nth-child(1)
+
+        animation-delay -0.45s;
+
+
+      &:nth-child(2)
+
+        animation-delay -0.3s;
+
+
+      &:nth-child(3)
+
+        animation-delay -0.15s;
+
+
+  .LoadingIndicator--YDF__TwoConstantWidthArcsSpinnerType
+
+    @keyframes LoadingIndicator--YDF__TwoConstantWidthArcsSpinnerType
+
+      0%
+
+        transform: rotate(0deg);
+
+
+      100%
+
+        transform: rotate(360deg)
+
+
+    height 4rem
+    aspect-ratio 1/1
+
+    color: JQueryUI_BaseTheme.clickableElements.activeState.borderColor
+
+
+    &::after
+
+      content " "
+      display block
+      box-sizing border-box
+
+      width 100%
+      height 100%
+      border-width 0.5em
+      border-radius 50%
+
+      border-style solid
+      border-color currentColor transparent currentColor transparent
+
+      animation LoadingIndicator--YDF__TwoConstantWidthArcsSpinnerType 1.2s linear infinite
+
+
+LoadingIndicator--YDF-customizeGeometry(settingsByTypes)
+
+  if isObject--YDF(settingsByTypes)
+
+    for type, geometry in settingsByTypes
+
+      LoadingIndicator--YDF-customizeGeometryOfSpecificType(type, geometry)
+
+  else
+
+    iterateAssociativeArray--YDF(
+      settingsByTypes,
+      @(type, geometry) {
+        LoadingIndicator--YDF-customizeGeometryOfSpecificType(type, geometry)
+      }
+    )
+
+
+LoadingIndicator--YDF-customizeGeometryOfSpecificType(type, settings)
+
+  if (type == LoadingIndicator--YDF.Types.variableWidthArcSpinner) {
+
+    &.LoadingIndicator--YDF__VariableWidthArcSpinnerType {
+
+      applyIfNotNull--YDF({ height: getObjectValueByDotSeparatedPathSafely--YDF(settings, "diameter") })
+
+      div {
+
+        applyIfNotNull--YDF({ border-width: getObjectValueByDotSeparatedPathSafely--YDF(settings, "thickness") })
+
+      }
+
+    }
+
+  }
+
+  if (type == LoadingIndicator--YDF.Types.twoConstantWidthArcsSpinner) {
+
+    &.LoadingIndicator--YDF__TwoConstantWidthArcsSpinnerType {
+
+      applyIfNotNull--YDF({ height: getObjectValueByDotSeparatedPathSafely--YDF(settings, "diameter") })
+
+      &::after {
+
+        applyIfNotNull--YDF({ border-width: getObjectValueByDotSeparatedPathSafely--YDF(settings, "thickness") })
+
+      }
+
+    }
+
+  }
+
+
+LoadingIndicator--YDF-customizeDecoration(settingsByTypes)
+
+  if isObject--YDF(settingsByTypes)
+
+    for type, decoration in settingsByTypes
+
+      LoadingIndicator--YDF-customizeDecorationOfSpecificType(type, decoration)
+
+  else
+
+    iterateAssociativeArray--YDF(
+      settingsByTypes,
+      @(type, decoration) {
+        LoadingIndicator--YDF-customizeDecorationOfSpecificType(type, decoration)
+      }
+    )
+
+
+LoadingIndicator--YDF-customizeDecorationOfSpecificType(type, settings)
+
+  if (type == LoadingIndicator--YDF.Types.variableWidthArcSpinner) {
+
+    &.LoadingIndicator--YDF__VariableWidthArcSpinnerType {
+
+      div {
+
+        border-color: settings.color transparent transparent transparent
+
+      }
+
+    }
+
+  }
+
+  if (type == LoadingIndicator--YDF.Types.twoConstantWidthArcsSpinner) {
+
+    &.LoadingIndicator--YDF__TwoConstantWidthArcsSpinnerType {
+
+      color: settings.color
+
+    }
+
+  }
+
+
+LoadingIndicator--YDF-customize(settingsByTypes)
+
+  normalizedGeometrySettingsByTypes = {}
+  normalizedDecorationSettingsByTypes = {}
+
+  iterateAssociativeArray--YDF(
+    settingsByTypes,
+    @(type, settings) {
+      normalizedGeometrySettingsByTypes[type] = settings.geometry;
+      normalizedDecorationSettingsByTypes[type] = settings.decoration;
+    }
+  )
+
+  LoadingIndicator--YDF-customizeGeometry(normalizedGeometrySettingsByTypes)
+  LoadingIndicator--YDF-customizeDecoration(normalizedDecorationSettingsByTypes)

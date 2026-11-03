@@ -1,0 +1,43 @@
+-
+
+  class ConsoleOutput__YDF {
+
+    static CSS_NAMESPACE = "ConsoleOutput--YDF";
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static Themes = { regular: "REGULAR" };
+
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineThemes(themesNames, ConsoleOutput__YDF);
+    }
+
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    static considerThemesAsCommon() {
+      ConsoleOutput__YDF.areThemesCSS_ClassesCommon = true;
+      return ConsoleOutput__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+    static GeometricVariations = { regular: "REGULAR" }
+
+    static defineGeometricVariations(geometricVariationsNames) {
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, ConsoleOutput__YDF);
+    }
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    static DecorativeVariations = { regular: "REGULAR" };
+
+    static defineDecorativeVariations(decorativeVariationsNames) {
+      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, ConsoleOutput__YDF);
+    }
+
+
+
+    /* ━━━ Properties specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static propertiesSpecification = {};
+
+  }

@@ -1,0 +1,114 @@
+-
+
+  const CodeViewer__YDF = {
+
+    CSS_NAMESPACE: "CodeViewer--YDF",
+
+    SupportedCodesLanguages: {
+      Bash: "bash",
+      CSS: "css",
+      CPP: "cpp",
+      CSharp: "cs",
+      Handlebars: "handlebars",
+      HTML: "html",
+      HTTP: "http",
+      Java: "java",
+      JavaScript: "js",
+      JSON: "json",
+      JSON5: "json5",
+      Markdown: "md",
+      PHP: "php",
+      Pug: "pug",
+      SASS: "sass",
+      SCSS: "scss",
+      Stylus: "stylus",
+      TypeScript: "ts",
+      TSX: "tsx",
+      YAML: "yaml",
+      XML: "xml"
+    },
+
+    get languagesAndTitlesMap() {
+      return {
+        [this.SupportedCodesLanguages.Bash]: "Bash",
+        [this.SupportedCodesLanguages.CSS]: "CSS",
+        [this.SupportedCodesLanguages.CPP]: "C++",
+        [this.SupportedCodesLanguages.CSharp]: "C#",
+        [this.SupportedCodesLanguages.HTML]: "HTML",
+        [this.SupportedCodesLanguages.HTTP]: "HTTP",
+        [this.SupportedCodesLanguages.Handlebars]: "Handlebars",
+        [this.SupportedCodesLanguages.Java]: "Java",
+        [this.SupportedCodesLanguages.JavaScript]: "JavaScript",
+        [this.SupportedCodesLanguages.JSON]: "JSON",
+        [this.SupportedCodesLanguages.JSON5]: "JSON5",
+        [this.SupportedCodesLanguages.Markdown]: "Markdown",
+        [this.SupportedCodesLanguages.PHP]: "PHP",
+        [this.SupportedCodesLanguages.Pug]: "Pug",
+        [this.SupportedCodesLanguages.SASS]: "SASS",
+        [this.SupportedCodesLanguages.SCSS]: "SCSS",
+        [this.SupportedCodesLanguages.Stylus]: "Stylus",
+        [this.SupportedCodesLanguages.TypeScript]: "TypeScript",
+        [this.SupportedCodesLanguages.TSX]: "TSX",
+        [this.SupportedCodesLanguages.YAML]: "YAML",
+        [this.SupportedCodesLanguages.XML]: "XML"
+      }
+    },
+
+
+    /* === Properties specification ================================================================================= */
+    propertiesSpecification: {
+
+      title: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      resultWebViewURI: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      defaultPaddingsInViewport: {
+        type: Boolean,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      }
+
+    },
+
+    get tabPanelPropertiesSpecification() {
+
+      return {
+
+        fileLabel: {
+          type: String,
+          isUndefinedForbidden: false,
+          isNullForbidden: true,
+          minimalCharactersCount: 1
+        },
+
+        isActive: {
+          type: Boolean,
+          isUndefinedForbidden: false,
+          isNullForbidden: true
+        },
+
+        codeLanguage: {
+          type: String,
+          isUndefinedForbidden: true,
+          isNullForbidden: true,
+          allowedAlternatives: Object.values(CodeViewer__YDF.SupportedCodesLanguages)
+        }
+
+      };
+
+    },
+
+    /* === Localization ============================================================================================= */
+    localization: CodeViewerYDF_GUI_ComponentLocalization__English
+
+  };

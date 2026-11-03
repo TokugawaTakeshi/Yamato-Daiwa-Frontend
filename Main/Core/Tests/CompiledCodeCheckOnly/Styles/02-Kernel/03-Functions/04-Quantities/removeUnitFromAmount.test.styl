@@ -1,0 +1,22 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/04-Quantities/removeUnitFromAmount.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/04-Quantities/removeUnitFromAmount.test.css `
+    --include Styles
+*/
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+testForEquality--YDF(
+  "'px' unit has been removed from '10px'.",
+  removeUnitFromAmount--YDF(10px),
+  10
+)
+
+
+testForEquality--YDF(
+  "Nothing to remove from '1.5', it has been kept as is.",
+  removeUnitFromAmount--YDF(1.5),
+  1.5
+)

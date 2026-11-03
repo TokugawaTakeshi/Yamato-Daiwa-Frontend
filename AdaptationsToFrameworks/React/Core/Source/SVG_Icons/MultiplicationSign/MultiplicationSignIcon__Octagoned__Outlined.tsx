@@ -1,0 +1,20 @@
+import React from "react";
+import type SVG_IconComponent from "../SVG_IconComponent";
+
+
+const MultiplicationSignIcon__Octagoned__Outlined: SVG_IconComponent = ({ className }: SVG_IconComponent.Properties): React.ReactElement =>
+
+    (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        className={ className }
+      >
+        <path d="M13.31 2L18 6.69v6.62L13.31 18H6.69L2 13.31V6.69L6.69 2h6.62m.83-2H5.86L0 5.86v8.28L5.86 20h8.28L20 14.14V5.86L14.14 0z" />
+        <path d="M16 14l-4-4 4-4-2-2-4 4-4-4-2 2 4 4-4 4 2 2 4-4 4 4 2-2z" />
+      </svg>
+      
+    );
+
+
+export default MultiplicationSignIcon__Octagoned__Outlined;

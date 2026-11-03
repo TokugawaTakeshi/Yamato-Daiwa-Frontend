@@ -1,0 +1,19 @@
+isDimensionalQuantity--YDF(value, ambiguityResolutionStrategy)
+
+  if (
+    ambiguityResolutionStrategy != "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY" &&\
+    ambiguityResolutionStrategy != "MUST_NOT_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY"
+  )
+
+    error(
+      "The function 'isDimensionalQuantity--YDF' must have the second parameter with one of " +\
+      "'MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY' or " +\
+      "'MUST_NOT_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY' value."
+    )
+
+  if value == 0
+
+    return ambiguityResolutionStrategy == "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY"
+
+
+  return typeof(value) == "unit" && isNonEmptyString--YDF(unit(value))

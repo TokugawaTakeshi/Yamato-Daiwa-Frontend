@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+
+    "target": "ESNext",
+    "module": "ESNext",
+
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    "skipLibCheck": true
+
+  }
+
+}

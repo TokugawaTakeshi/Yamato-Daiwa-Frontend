@@ -1,0 +1,30 @@
+h1.Heading1(
+  :class="mustVisuallyHideTopHeading ? 'YDF_Gallery-InvisibleHeading' : null"
+) ${COMPONENT_NAME} Component Demos
+
+
+//- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.minimal"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Minimal
+
+  ThemesShowcase(
+    :themes="${COMPONENT_NAME}.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="${COMPONENT_NAME}.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="${COMPONENT_NAME}.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      ${COMPONENT_NAME}(
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+      )

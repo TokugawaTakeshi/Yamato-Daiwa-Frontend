@@ -1,0 +1,75 @@
+//- ━━━ 要約 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+mixin ValidatableControlShellComponent-Abstract
+
+  p.Article-Paragraph.
+    単一行テキストフィールド（#[+SecondaryEntity__Code--YDID ValidatableControlShell(type="text")]）、
+      複数行テキスト入力（#[+SecondaryEntity__Code--YDID textarea]）、ドロップダウンリスト
+      （#[+SecondaryEntity__Code--YDID select]）などの入力要素は、通常は単独で使用されず、
+      次のような補助的な要素に囲まれます。
+
+  ul.Article-UnorderedList
+    li キャプション（通常は #[+ImportantEntity__Code--YDID label] 要素）
+    li 注釈（例：電話番号入力フィールドの「ハイフンと括弧は任意です」など）
+    li 「必須」または「任意」のラベル
+    li バリデーションメッセージ
+
+  p.Article-Paragraph.
+    質の高いデザインの原則の一つによれば、これら#[+Keyword--YDID すべて]の周囲の要素は#[+Keyword--YDID 統一された]スタイルで
+      作成されるべきであるため、入力要素を囲む内容を持つ#[+Keyword--YDID テンプレート] #[+Term--YDID コンポーネント]の
+      必要性が生じます。
+    #[+ImportantEntity--YDID YDF] では、そのようなコンポーネントは #[+ImportantEntity__Code--YDID ValidatableControlShell]
+      （直訳すると「バリデーション可能なコンポーネントのシェル」）です。
+    その名前が示すように、このコンポーネントは独立したものでは#[+Keyword--YDID なく]、
+      #[+Keyphrase--YDID 他のコンポーネントの一部である必要があり]、より正確にはそれらのための#[+Keyword--YDID シェル]となります。
+
+  ul.Article-UnorderedList
+
+    li
+      | #[+ImportantEntity__Code--YDID ValidatableControlShell] 自体は
+      |
+      +Link--YDF({
+        internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$children.controls.$children.validatables.$URI,
+      }) バリデーション可能なコンポーネント
+      | #[+Keyword--YDID ではありません]。なぜなら、渡されたバリデーションメッセージを表示するだけであり、
+      |   それ自体は何らバリデーションを#[+Keyword__Contrast--YDID 行わない]からです。バリデーションは、
+      |   #[+ImportantEntity__Code--YDID ValidatableControlShell] が囲んでいるメインコンポーネントの役割です。
+
+    li.
+      名前の選択において、「wrapper」という言葉は「shell」よりもはるかに多義的であるため避けられました。
+      そのため、ユーザーインターフェースコンポーネントに関して、「wrapper」は単にメインコンポーネントの両側を
+        その要素で文字通り包むことだけでなく、メインコンポーネントの機能を拡張することも意味する場合があります。
+
+
+//- ━━━ 概要 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  ValidatableControlShellGUI_ComponentOverviewLocalization.setLocalizer(
+    () => ({
+      themes: {
+        [ValidatableControlShell__YDF.Themes.regular]: "標準（規定）"
+      },
+      geometricVariations: {
+        [ValidatableControlShell__YDF.GeometricVariations.regular]: "標準（規定）",
+        [ValidatableControlShell__YDF.GeometricVariations.small]: "小型"
+      },
+      decorativeVariations: {
+        [ValidatableControlShell__YDF.DecorativeVariations.regular]: "標準（規定）"
+      }
+    })
+  );
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  ValidatableControlShellComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources = {
+    pugMixinParametersLocalization: [
+      { localizedName: "プロパティ揃い" },
+      { localizedName: "状態シミュレーション揃い" }
+    ],
+    propertiesLocalizedInterpretations: {
+      coreElementHTML_ID: "入力を受ける要素のHTML識別子",
+      labelElementHTML_ID: "キャプションのHTML識別子",
+      mainSlotWrapperAdditionalCSS_Classes: "主要スロット専用追加CSSクラス一覧"
+    }
+  };

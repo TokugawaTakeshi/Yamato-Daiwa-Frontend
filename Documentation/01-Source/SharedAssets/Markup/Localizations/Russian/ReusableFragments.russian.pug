@@ -1,0 +1,206 @@
+mixin ComponentMarkupProvidingGuidanceFragment(properties)
+
+  -
+    const {
+      componentName,
+      pugMixinName = `${ componentName }--YDF`
+    } = properties
+
+  p.Article-Paragraph
+    | #[+Term--YDID Разметка] данного #[+Term--YDID GUI-компонента] поставляется в виде
+    |   #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.mixins }) Pug-примеси]
+    |   #[+ImportantEntity__Code--YDID #{ pugMixinName }].
+    | Способ подключения —
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$sectioning.markup.$children.providing.$URI
+    }) стандартный
+    |: путём
+    |
+    +Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.includes }) включения Pug-файла
+    |   #[+ImportantEntity__Code--YDID Components.pug] в Ваш #[+Term--YDID pug-файл], при этом туда же
+    |   #[+Keyword--YDID предварительно] #[+Keyword__Contrast--YDID должен] быть включён #[+Term--YDID файл]
+    |   #[+ImportantEntity__Code--YDID Functionality.pug] (#[+Keyword--YDID последний] #[+Keyword__Contrast--YDID уже]
+    |   входит в
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+    }) шаблоны страниц
+    |   , #[+Keyword--YDID повторное] включение #[+Keyphrase--YDID приведёт к ошибке]).
+
+  +CodeViewer--YDF
+    +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+      +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+        include ../../node_modules/@yamato-daiwa/frontend/Functionality.pug
+        include ../../node_modules/@yamato-daiwa/frontend/Components.pug
+      +CodeViewer-Explanation--YDF
+        p.Article-Paragraph.
+          В Вашем случае #[+Term--YDID относительный путь] к #[+Term__Contrast--YDID директории]
+            #[+ImportantEntity--YDID node_modules] может быть другим в в зависимости от того, насколько глубже
+            #[+Term--YDID корневой директории проекта] находится Ваш #[+Term--YDID Pug-файл] с этим кодом.
+        p.Article-Paragraph.
+          Напомним, что #[+Keyword--YDID одно] #[+Keyword__Contrast--YDID только] включение этих файлов
+            #[+Keyword--YDID никакого] выходного #[+Term--YDID HTML-кода]
+            #[+Keyword--YDID не]&nbsp;даст: чтобы сгенерировать #[+Term--YDID HTML-код] компонента
+            #[+ImportantEntity--YDID #{ componentName }], нужно вызывать #[+Term--YDID Pug-примесь]
+            #[+ImportantEntity__Code--YDID #{ pugMixinName }].
+          Кроме того, если #[+Keyphrase--YDID на данном этапе] пока ещё #[+Keyword--YDID не]&nbsp;подключены
+            #[+Term--YDID стили], то при вызове этой #[+Term--YDID примеси] #[+Term__Contrast--YDID HTML-код]
+            хотя и будет сгенерирован, но корректного отображения
+            #[+Keyword--YDID пока]&nbsp;#[+Keyword__Contrast--YDID не]&nbsp;будет.
+          Но если Вы ещё не&nbsp;знаете, как подключать #[+Term--YDID стили], то не&nbsp;волнуйтесь, так ниже это будет
+            обязательно описано.
+
+
+mixin ComponentStylesProvidingGuidanceFragment(properties)
+
+  -
+    const {
+      componentName,
+      stylusMixinName = `provide${ componentName }YDF_Component`
+    } = properties
+
+  p.Article-Paragraph
+    | Данный #[+Term--YDID компонент] поставляется в виде
+    |   #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.stylus.homePage.mixins }) Stylus-примеси]
+    |   #[+ImportantEntity__Code--YDID #{ stylusMixinName }].
+    | Способ подключения —
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$sectioning.providingOfStyles.$URI
+    }) стандартный:
+    |   путём #[+Link--YDF({ internalURI: sharedExternalLinks.stylus.homePage.includes }) включения Stylus-файла]
+    |   #[+ImportantEntity__Code--YDID Components.styl] в Ваш #[+Term--YDID Stylus-файл], при этом туда же
+    |   #[+Keyword--YDID предварительно] должен быть включён файл #[+ImportantEntity__Code--YDID Functionality.styl].
+
+  +CodeViewer--YDF
+    +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus })
+      +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+        @require "../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+        @require "../../node_modules/@yamato-daiwa/frontend/Components.styl"
+      +CodeViewer-Explanation--YDF.
+        В Вашем случае #[+Term--YDID относительный путь] к директории #[+ImportantEntity--YDID node_modules] может быть
+          другим в в зависимости от того, насколько глубже корневой директории проекта находится Ваш Stylus-файл с этим кодом.
+        Напомним, что одно только включение этих файлов #[+Keyword--YDID никакого] выходного #[+Term--YDID CSS-кода]
+          #[+Keyword--YDID не] даст: чтобы сгенерировать #[+Term--YDID CSS-код] компонента
+          #[+ImportantEntity--YDID #{ componentName }], нужно вызывать #[+Term--YDID Stylus-примесь]
+          #[+ImportantEntity__Code--YDID #{ stylusMixinName }].
+        Настоятельно рекомендуется предварительно вызывать #[+Term--YDID Stylus-примеси]
+          #[+ImportantEntity__Code--YDID CrossBrowserStylesReset] и #[+ImportantEntity__Code--YDID InitialGlobalCSS_Rules],
+          чтобы исключить влияние #[+Term--YDID стандартных стилей браузера] и унифицировать основные наследуемые стили,
+          такие как размер шрифта и высота строки.
+
+
+mixin IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance(properties)
+
+  -
+
+    const {
+      imageURI,
+      target,
+      relatedTableOfContentsMetadata
+    } = properties;
+
+    let target__pluralForm__accusativeCase;
+
+    switch (target) {
+      case "function": {
+        target__pluralForm__accusativeCase = "выражения вызова функции"
+      }
+    }
+
+
+  //- ━━━ Быстрый ввод в интегрированных средах разработки семейства IntelliJ IDEA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  +Heading--YDF({
+    level: 2,
+    text: relatedTableOfContentsMetadata.$heading,
+    HTML_ID: relatedTableOfContentsMetadata.$anchor
+  }).Article-Heading2
+
+  +SingleImageViewer--YDF({
+    imageURI: imageURI,
+    imageAlternateText:
+        "Быстрый ввод в интегрированных средах разработки семейства IntelliJ IDEA с использованием функциональности " +
+        "«Live Template»."
+  })
+
+  p.Article-Paragraph.
+    Использование
+      #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.jetBrains.liveTemplates }) Live template-ов]
+      в семействе #[+Term--YDID интегрированных сред разработки]
+      #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.jetBrains.intelliJ_IDEA_FamilyIDEs }) IntelliJ IDEA]
+      позволяет вводить код такой так #[+Term--YDID #{ target__pluralForm__accusativeCase }] быстрее.
+    Для получения доступа к #[+Term--YDID Live Template-ам] библиотеки #[+ImportantEntity--YDID YDF] потребуется установить
+      #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.jetBrains.YDF_Plugin }) официальный плагин]
+      этой библиотеки.
+
+
+  //- ─── Пошаговое описание процесса использования шаблона ────────────────────────────────────────────────────────────
+  +Heading--YDF({
+    level: 3,
+    text: relatedTableOfContentsMetadata.$children.steps.$heading,
+    HTML_ID: relatedTableOfContentsMetadata.$children.steps.$anchor
+  }).Article-Heading3
+
+  p.Article-Paragraph.
+    Если Вы ранее не пользовались #[+Term--YDID Live template-ами], то пусть Вас не пугает приведённая ниже объёмная
+      инструкция: при сформированной привычке использования #[+Term--YDID Live template-ов] (эта привычка сходна с
+      повседневным применением сочетаний клавиш) скорость выполнения описанных ниже операций займёт считанные секунды.
+
+  block
+
+
+-
+
+  GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables = {
+    componentProperties: "Входные параметры",
+    propertiesLocalizedInterpretations: {
+
+      required: "Является ли ввод обязательным",
+      disabled: "Находится ли в неактивном состоянии",
+      readonly: "Доступен ли только для чтения",
+      toggled: "Находится ли в постоянно нажатом состоянии",
+
+      label: "Заголовочная надпись",
+      guidance: "Комментарий",
+      accessibilityGuidance: "Текст для ассистивных технологий",
+      placeholder: "Текст отображающийся при пустом значении",
+      mustDisplayAppropriateBadgeIfInputIsRequired: "Нужно ли отображать надпись «обязательное» когда ввод обязателен",
+      mustDisplayAppropriateBadgeIfInputIsOptional: "Нужно ли отображать надпись «необязательное» когда ввод необязателен",
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: "Нужно ли добавлять невидимый значок для выравнивание высоты",
+
+      instanceID_UniqueDynamicPart: "Уникальная динамическая часть идентификатор экземпляра",
+      HTML_IDs: "HTML-идентификаторы",
+
+      theme: "Тема",
+      areThemesCSS_ClassesCommon: "Являются ли CSS-классы тем общими для всех компонентов",
+      geometricVariation: "Геометрическая вариация",
+      geometricModifiers: "Геометрические модификаторы",
+      decorativeVariation: "Декоративная вариация",
+      decorativeModifiers: "Декоративные модификаторы",
+      rootElementTag: "Тэг корневого элемента",
+
+      className: "Разделённые пробелом CSS-классы",
+
+      rootElementModifierCSS_Class: "CSS-класс-модификатор коревого элемента",
+      rootElementModifierCSS_Classes: "Массив CSS-классов-модификаторов коревого элемента",
+      rootElementSpaceSeparatedModifierCSS_Classes: "Разделённые пробелом CSS-классы-модификаторы коревого элемента"
+
+    },
+    statesSimulationsLocalizedInterpretations: {
+      invalidInputHighlightingIfAnyValidationErrorsMessages:
+          "Нужна ли подсветка невалидного ввода если есть хотя бы одно сообщение об ошибке валидации",
+      validValueHighlightingIfNoValidationErrorsMessages:
+          "Нужна ли подсветка валидного ввода нет ни одного сообщения об ошибке валидации",
+      validationErrorsMessages: "Сообщения об ошибках валидации",
+      asynchronousValidationsStatuses: "Статусы асинхронной валидации"
+    },
+    customThemingGuidanceGenerator: constantExpression => `Любые, определённые через \`${ constantExpression }\``
+  }
+
+
+include ReusableFragments/GUI_Components/AdmonitionBlock-ReusableFragments.russian.pug
+include ReusableFragments/GUI_Components/Badge-ReusableFragments.russian.pug
+include ReusableFragments/GUI_Components/Controls/Button-ReusableFragments.russian.pug
+include ReusableFragments/GUI_Components/Controls/ValidatableControlShell-ReusableFragments.russian.pug
+include ReusableFragments/GUI_Components/Controls/Validatables/TextBox-ReusableFragments.russian.pug

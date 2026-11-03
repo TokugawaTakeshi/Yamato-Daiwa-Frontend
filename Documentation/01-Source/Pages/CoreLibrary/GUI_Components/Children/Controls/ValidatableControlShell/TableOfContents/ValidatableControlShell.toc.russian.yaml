@@ -1,0 +1,19 @@
+overview:
+
+  $heading: "Обзор"
+
+usage:
+
+  $heading: "Использование"
+
+  markup:
+
+    $heading: "Разметка"
+
+    includingToProject:
+
+      $heading: "Подключение в проект"
+
+    pugMixin:
+
+      $heading: "Pug-примесь <code>ValidatableControlShell--YDF</code>"

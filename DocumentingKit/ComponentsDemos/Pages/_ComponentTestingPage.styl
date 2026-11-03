@@ -1,0 +1,29 @@
+@require "../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+@require "../node_modules/@yamato-daiwa/frontend/Components.styl"
+@require "../node_modules/@yamato-daiwa/frontend-documenting_kit/Components.styl"
+
+
+CrossBrowserStylesReset--YDF()
+InitialGlobalCSS_Rules--YDF()
+
+
+provideYDF_Typography()
+ThemesShowcase--YDF-generateStyles()
+
+
+.ComponentTestingPageContent
+
+  padding 12px 16px
+
+  Centerer({ maximalWidth: 2*NARROWEST_SCREEN_WIDTH_UNIT--YDF })
+
+
+  .ThemesShowcase--YDF
+
+    PositionalRelationship({
+      definitions:
+          (".Heading2" { retireFromIt: { y: 8px }, pushItFromSelf: { y: 16px } })\
+          (".Heading3" { retireFromIt: { y: 6px }, pushItFromSelf: { y: 12px } }),
+      contextSelector: ".ComponentTestingPageContent",
+      referenceElementSelector: ".ThemesShowcase--YDF"
+    })

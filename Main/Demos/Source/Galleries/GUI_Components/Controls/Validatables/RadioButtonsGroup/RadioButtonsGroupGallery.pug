@@ -1,0 +1,15 @@
+mixin RadioButtonsGroupGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("RadioButtonsGroup__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("RadioButtonsGroup__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("RadioButtonsGroup__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) RadioButtonsGroup Component Demos

@@ -1,0 +1,144 @@
+Blockquote--YDF = {
+
+  CSS_NAMESPACE: "Blockquote--YDF",
+
+  defaultProperties: {}
+
+}
+
+
+Blockquote--YDF-generateStyles(preset = Blockquote--YDF.defaultProperties, overridings = {})
+
+  properties = deeplyCloneAndOverrideObject--YDF(BlockquoteComponentDefaultProperties, customProperties)
+
+
+  .Blockquote--YDF
+
+    WIDE_CONTAINERS_CONFIGURATION_MINIMAL_WIDTH = 580px
+
+    WideContainersConfiguration()
+      @media container and (min-width: WIDE_CONTAINERS_CONFIGURATION_MINIMAL_WIDTH)
+        {block}
+
+    NarrowContainersConfiguration()
+      @media container and (max-width: WIDE_CONTAINERS_CONFIGURATION_MINIMAL_WIDTH - 1)
+        {block}
+
+
+    container-type inline-size
+
+    border-top: 1px solid JQueryUI_BaseTheme.clickableElements.defaultState.borderColor
+    border-bottom: 1px solid JQueryUI_BaseTheme.clickableElements.defaultState.borderColor
+    padding 12px 4px
+
+
+    &:before,
+    &:after
+
+      display none
+
+
+    &-GridFlow
+
+      +WideContainersConfiguration()
+
+        display grid
+
+
+        &:not(:has(.Blockquote--YDF-Image__Author)):not(:has(.Blockquote--YDF-Image__Publication))
+
+          grid-template-columns auto minmax(0, 1fr)
+          column-gap 6px
+
+
+        &:has(.Blockquote--YDF-Image__Author):not(:has(.Blockquote--YDF-Image__Publication))
+
+          grid-template-columns auto 120px minmax(0, 6fr)
+
+
+        &:not(:has(.Blockquote--YDF-Image__Author)):has(.Blockquote--YDF-Image__Publication)
+
+          grid-template-columns auto 120px minmax(0, 1fr)
+
+
+        &:has(.Blockquote--YDF-Image__Author):has(.Blockquote--YDF-Image__Publication)
+
+          grid-template-columns auto 120px 120px minmax(0, 6fr)
+
+
+      +NarrowContainersConfiguration()
+
+        &:has(.Blockquote--YDF-Image__Author):not(:has(.Blockquote--YDF-Image__Publication)),
+        &:not(:has(.Blockquote--YDF-Image__Author)):has(.Blockquote--YDF-Image__Publication)
+
+          display grid
+          column-gap 12px
+          row-gap 10px
+          grid-template-columns auto minmax(0, 1fr)
+
+
+        &:has(.Blockquote--YDF-Image__Author):has(.Blockquote--YDF-Image__Publication)
+
+          display grid
+          column-gap 8px
+          row-gap 10px
+          grid-template-columns auto minmax(0, 1fr) minmax(0, 1fr)
+
+
+    &-SVG_Icon
+
+      width 32px
+      fill: JQueryUI_BaseTheme.content.iconsColor
+
+
+      +NarrowContainersConfiguration()
+
+        /.Blockquote--YDF-GridFlow:not(:has(.Blockquote--YDF-Image__Author)):not(:has(.Blockquote--YDF-Image__Publication)) .Blockquote--YDF-SVG_Icon
+
+          float left
+          margin-right 10px
+          margin-bottom 4px
+
+
+    &-Image
+
+      aspect-ratio 3 / 4
+
+      background-position center
+      background-repeat no-repeat
+      background-size cover
+
+      align-self center
+
+
+      +WideContainersConfiguration()
+
+        retireFrom--YDF({
+          definitions:\
+              (".Blockquote--YDF-SVG_Icon" { x: 8px })\
+              (".Blockquote--YDF-Image" { x: 8px })
+        })
+
+
+    &-Text
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: Configuration--YDF.textGeometry.basicFontSize,
+        lineHeight: Configuration--YDF.textGeometry.basicLineHeightInMultilineTextBlocks
+      })
+
+      color W3C_39_ShadesOfGray--YDF[16]
+
+      +WideContainersConfiguration()
+
+        retireFrom--YDF({ targetElementSelector: ".Blockquote--YDF-Image", x: 12px })
+
+
+      +NarrowContainersConfiguration()
+
+        grid-column 1 / -1
+
+
+    &-ReferenceToSource
+
+      margin-top 12px

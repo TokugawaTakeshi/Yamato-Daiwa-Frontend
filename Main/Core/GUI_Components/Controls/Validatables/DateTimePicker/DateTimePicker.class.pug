@@ -1,0 +1,540 @@
+-
+
+  class DateTimePicker__YDF {
+
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
+    static CSS_NAMESPACE = "DateTimePicker--YDF";
+
+    /**
+     * @public
+     * @readonly
+     * @type {
+     *   Readonly<{
+     *     days: string;
+     *     months: string;
+     *     years: string;
+     *     hours: string;
+     *     minutes: string;
+     *   }>
+     * }
+     */
+    static Matrices = {
+      days: "DAYS",
+      months: "MONTHS",
+      years: "YEARS",
+      hours: "HOURS",
+      minutes: "MINUTES"
+    };
+
+    /**
+     * @public
+     * @readonly
+     * @type {
+     *   Readonly<{
+     *     dateWithTime: string;
+     *     dateOnly: string;
+     *     datesRange: string;
+     *     datesWithTimeRange: string;
+     *   }>
+     * }
+     */
+    static Modes = {
+      dateWithTime: "DATE_WITH_TIME",
+      dateOnly: "DATE_ONLY",
+      datesRange: "DATES_RANGE",
+      datesWithTimeRange: "DATES_WITH_TIME_RANGE"
+    };
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @type { { [themeName: string]: string } }
+     * @public
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
+    static Themes = { regular: "REGULAR" };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsThemesCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownThemeValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsThemesCorrespondence() {
+      return DateTimePicker__YDF._selfAndChildrenComponentsThemesCorrespondence ?? (
+        DateTimePicker__YDF._selfAndChildrenComponentsThemesCorrespondence = {
+          validatableControlShell: { [DateTimePicker__YDF.Themes.regular]: ValidatableControlShell__YDF.Themes.regular },
+          button: { [DateTimePicker__YDF.Themes.regular]: Button__YDF.Themes.regular }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownThemeKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellThemesDefinition
+     *
+     * @returns { typeof DateTimePicker__YDF }
+     *
+     * @example
+     * DateTimePicker__YDF.defineThemes({
+     *   redmond: {
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.redmond,
+     *     button: Button__YDF.Themes.redmond
+     *   },
+     *   cupertino: {
+     *     validatableControlShell: ValidatableControlShell__YDF.Themes.cupertino,
+     *     button: Button__YDF.Themes.cupertino
+     *   }
+     * });
+     */
+    static defineThemes(ownAndCorrespondingValidatableControlShellThemesDefinition) {
+      return ComponentsAuxiliaries.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellThemesDefinition, DateTimePicker__YDF
+      );
+    }
+
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @public
+     * @returns { typeof DateTimePicker__YDF }
+     * */
+    static considerThemesAsCommon() {
+      DateTimePicker__YDF.areThemesCSS_ClassesCommon = true;
+      return DateTimePicker__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL"
+    };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsGeometricVariationsCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownGeometricVariationValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsGeometricVariationsCorrespondence() {
+      return DateTimePicker__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence ?? (
+        DateTimePicker__YDF._selfAndChildrenComponentsGeometricVariationsCorrespondence = {
+          validatableControlShell: {
+            [DateTimePicker__YDF.GeometricVariations.regular]: ValidatableControlShell__YDF.GeometricVariations.regular,
+            [DateTimePicker__YDF.GeometricVariations.small]: ValidatableControlShell__YDF.GeometricVariations.small
+          },
+          button: {
+            [DateTimePicker__YDF.GeometricVariations.regular]: Button__YDF.GeometricVariations.regular,
+            [DateTimePicker__YDF.GeometricVariations.small]: Button__YDF.GeometricVariations.small
+          }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownGeometricVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition
+     *
+     * @returns { typeof DateTimePicker__YDF }
+     *
+     * @example
+     * DateTimePicker__YDF.defineGeometricVariations({
+     *   large: {
+     *     validatableControlShell: ValidatableControlShell__YDF.GeometricVariation.large,
+     *     button: Button__YDF.GeometricVariations.large
+     *   },
+     *   extraLarge: {
+     *     validatableControlShell: ValidatableControlShell__YDF.GeometricVariation.extraLarge,
+     *     button: Button__YDF.GeometricVariations.extraLarge
+     *   }
+     * });
+     */
+    static defineGeometricVariations(ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition) {
+      return ComponentsAuxiliaries.defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellGeometricVariationsDefinition, DateTimePicker__YDF
+      );
+    }
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = { regular: "REGULAR" };
+
+    /**
+     * @private
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } | null }
+     * @description [ PITFALL ] The classes of other components may not be initialized yet thus initialization on
+     *   demand is required.
+     * */
+    static _selfAndChildrenComponentsDecorativeVariationsCorrespondence = null;
+
+    /**
+     * @public
+     * @type { { [ childComponentName: string ]: { [ownDecorativeVariationValue: string]: string } } }
+     * */
+    static get selfAndChildrenComponentsDecorativeVariationsCorrespondence() {
+      return DateTimePicker__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
+        DateTimePicker__YDF._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
+          validatableControlShell: {
+            [DateTimePicker__YDF.DecorativeVariations.regular]: ValidatableControlShell__YDF.DecorativeVariations.regular
+          },
+          button: {
+            [DateTimePicker__YDF.DecorativeVariations.regular]: ValidatableControlShell__YDF.DecorativeVariations.regular
+          }
+        }
+      );
+    }
+
+    /**
+     * @public
+     *
+     * @param {
+     *   { [ ownDecorativeVariationKey: string ]: { [ childrenComponentKey: string ]: string; } }
+     * } ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition
+     *
+     * @returns { typeof DateTimePicker__YDF }
+     *
+     * @example
+     * DateTimePicker__YDF.defineDecorativeVariations({
+     *   modest: {
+     *     validatableControlShell: ValidatableControlShell__YDF.DecorativeVariation.modest
+     *     button: Button__YDF.GeometricVariations.modest
+     *   },
+     *   catchy: {
+     *     validatableControlShell: ValidatableControlShell__YDF.DecorativeVariation.catchy,
+     *     button: Button__YDF.GeometricVariations.catchy
+     *   }
+     * });
+     */
+    static defineDecorativeVariations(ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition) {
+      return ComponentsAuxiliaries.defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(
+        ownAndCorrespondingValidatableControlShellDecorativeVariationsDefinition, DateTimePicker__YDF
+      );
+    }
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static propertiesSpecification = {
+
+      label: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      accessibilityGuidance: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      externalLabelHTML_ID: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      guidance: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      mode: {
+        type: String,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
+        allowedAlternatives: Object.values(DateTimePicker__YDF.Modes)
+      },
+
+      value: {
+        type: YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        alternatives: [
+          {
+            type: String,
+            minimalCharactersCount: 1
+          },
+          {
+            type: Number,
+            numbersSet: YDF.RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+            isNaN_Forbidden: true
+          }
+        ]
+      },
+
+      disabled: {
+        type: Boolean,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      readonly: {
+        type: Boolean,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      required: {
+        type: Boolean,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      mustDisplayAppropriateBadgeIfInputIsRequired: {
+        type: Boolean,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      mustDisplayAppropriateBadgeIfInputIsOptional: {
+        type: Boolean,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: {
+        type: Boolean,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      minimalCharactersCount: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      maximalCharactersCount: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        customValidators: {
+          validationFunction: ({ value: maximalCharactersCount, rawData__currentObjectDepth }) =>
+              YDF.isUndefined(rawData__currentObjectDepth.minimalCharactersCount) ||
+              (
+                YDF.isIntegerOfAnySign(rawData__currentObjectDepth.minimalCharactersCount) &&
+                maximalCharactersCount >= rawData__currentObjectDepth.minimalCharactersCount
+              ),
+          descriptionForLogging: "\"maximalCharactersCount\" could not be less than \"minimalCharactersCount\"."
+        }
+      },
+
+      minimalNumericValue: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      maximalNumericValue: {
+        type: Number,
+        numbersSet: YDF.RawObjectDataProcessor.NumbersSets.naturalNumberOrZero,
+        isNaN_Forbidden: true,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        customValidators: {
+          validationFunction: ({ value: maximalNumericValue, rawData__currentObjectDepth }) =>
+              YDF.isUndefined(rawData__currentObjectDepth.minimalNumericValue) ||
+              (
+                YDF.isIntegerOfAnySign(rawData__currentObjectDepth.minimalNumericValue) &&
+                maximalNumericValue >= rawData__currentObjectDepth.minimalNumericValue
+              ),
+          descriptionForLogging: "\"maximalNumericValue\" could not be less than \"minimalNumericValue\"."
+        }
+      },
+
+      /** @description
+       * 1 minimal character is definitely not enough for unique string, but in MVC mode it could be the variable. */
+      instanceID_UniqueDynamicPart: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      HTML_IDs: {
+
+        type: Object,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+
+        properties: {
+
+          input: {
+            type: String,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          },
+
+          label: {
+            type: String,
+            isUndefinedForbidden: false,
+            isNullForbidden: true,
+            minimalCharactersCount: 1
+          }
+
+        }
+
+      },
+
+      nativeInputElementHTML_ID: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      labelElementHTML_ID: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: DateTimePicker__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(DateTimePicker__YDF.Themes).
+            map(([ key, value ]) => ({ key: `DateTimePicker__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: DateTimePicker__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: DateTimePicker__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(DateTimePicker__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `DateTimePicker__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      decorativeVariation: {
+        type: String,
+        undefinedValueSubstitution: DateTimePicker__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(DateTimePicker__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `DateTimePicker__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    };
+
+
+    /* ━━━ State simulations specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static statesSimulationsSpecification = {
+
+      expanded: {
+        type: Boolean,
+        isUndefinedForbidden: false,
+        isNullForbidden: true
+      },
+
+      activeMatrix: {
+        type: String,
+        undefinedValueSubstitution: DateTimePicker__YDF.Matrices.days,
+        isNullForbidden: true,
+        allowedAlternatives: Object.values(DateTimePicker__YDF.Matrices)
+      },
+
+      ...ComponentsAuxiliaries.generateValidatableControlGeneralStatesSimulationsSpecification({
+        invalidInputHighlightingIfAnyValidationErrorsMessages: true,
+        validValueHighlightingIfNoValidationErrorsMessages: true,
+        validationErrorsMessages: true,
+        asynchronousValidationsStatuses: true
+      })
+
+    };
+
+
+    /* ━━━ Routines ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── ID generating ──────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @private
+     * @type { number }
+     */
+    static counterForID_Generating = 0;
+
+    /**
+     * @public
+     * @param { string } [uniqueDynamicPart] Required mainly for MVC where the iterative rendering is not under Pug control.
+     * @return { string } Generated ID
+     */
+    static generateInstanceID(uniqueDynamicPart) {
+      return `DATE_TIME_PICKER--YDF-${ uniqueDynamicPart ?? ++DateTimePicker__YDF.counterForID_Generating }`;
+    }
+
+
+    /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @type { import("./DateTimePickerLocalization").DateTimePickerLocalization }
+     * @public
+     */
+    static localization = DateTimePickerYDF_GUI_ComponentLocalization__English;
+
+
+    /* ━━━ DOM Access ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+     * @type { import("./DateTimePickerDOM_Access").DateTimePickerYDF_GUI_ComponentDOM_AccessResources }
+     * @readonly
+     * @public
+     */
+    static DOM_AccessResources = DateTimePickerYDF_GUI_ComponentDOM_AccessResources;
+
+  }

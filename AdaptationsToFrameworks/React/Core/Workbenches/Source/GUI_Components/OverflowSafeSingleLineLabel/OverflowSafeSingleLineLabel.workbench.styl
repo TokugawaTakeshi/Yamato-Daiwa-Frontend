@@ -1,0 +1,52 @@
+@require "../../../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+@require "../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
+
+
+CrossBrowserStylesReset--YDF()
+InitialGlobalCSS_Rules--YDF()
+
+
+OverflowSafeSingleLineLabel--YDF-generateStyles()
+
+
+.TestSite
+
+  width 320px
+  padding-top 24px
+
+  margin-left auto
+  margin-right auto
+
+  background tan
+
+
+.PlainLabelTest
+
+  OverflowSafeSingleLineLabel({
+    fontSize: 14px,
+    displayEllipsis: true
+  })
+
+
+.DefinitionsListTest
+
+  display grid
+  grid-template-columns auto minmax(0, 1fr)
+  gap 6px 12px
+
+  retireFrom({ targetElementSelector: ".PlainLabelTest", y: 24px })
+
+
+  &-Key
+
+    font-weight bold
+
+    justify-self end
+
+
+  &-Value
+
+    OverflowSafeSingleLineLabel({
+      fontSize: 14px,
+      displayEllipsis: true
+    })

@@ -1,0 +1,79 @@
+extends ../../node_modules/@yamato-daiwa/frontend/PagesTemplates/StaticPreviewAnywherePageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    StaticPreviewAnywherePage__YDF.configure({
+
+      metadata: {
+        title: "YDF React — Workbenches"
+      },
+
+      topHeading: "YDF React — Workbenches",
+
+      tableOfContents: [
+
+        {
+
+          heading: "GUI Components",
+
+          pages: [
+
+            {
+              title: "AdmonitionBlock",
+              URI: "@Workbenches/GUI_Components/AdmonitionBlock/AdmonitionBlock.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            },
+
+            {
+              title: "Badge",
+              URI: "@Workbenches/GUI_Components/Badge/Badge.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            },
+
+            {
+              title: "OverflowSafeSingleLineLabel",
+              URI: "@Workbenches/GUI_Components/OverflowSafeSingleLineLabel/OverflowSafeSingleLineLabel.workbench",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            }
+
+          ],
+
+          sections: [
+
+            {
+
+              heading: "Controls",
+
+              pages: [],
+
+              sections: [
+
+                {
+
+                  heading: "Buttons",
+
+                  pages: [
+
+                    {
+                      title: "Plain Button",
+                      URI: "@Workbenches/GUI_Components/Controls/Buttons/Plain/Button.workbench",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    }
+
+                  ]
+
+                }
+
+              ]
+
+            }
+
+          ]
+
+        }
+
+      ]
+    });

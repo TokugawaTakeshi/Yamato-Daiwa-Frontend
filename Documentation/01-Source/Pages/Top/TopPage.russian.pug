@@ -1,0 +1,95 @@
+extends ../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/Minimal/MinimalLayout.pug
+
+
+block append Requirements
+
+  include ../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("buildString"),
+        description:
+            "Библиотека \"Yamato Daiwa Frontend\" (сокращённо: \"YDF\") включает в себя набор вспомогательной функциональности " +
+              "для высококачественной фронтенд разработки с использованием препроцессоров \"Pug\" и \"Stylus\"." +
+            "Начиная с версии 2, активно добавляются GUI-компоненты, что делает библиотеку полноценным UI/UX фреймворком " +
+              "с гибкой кастомизацией и оптимизацией включая возможность выборочного использования, влияющую на количество " +
+              "выходного CSS-кода." +
+            "Имеется также функциональность, написанная на TypeScript, в частности логика GUI-компонентов. "
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/Minimal/MinimalLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents",
+        "@Pages/Top/TopPage"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("top");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: "./../index.html",
+      japanese: "./TopPage.japanese.html"
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  main.TopPage
+
+    .TopPage-ImageAndTopHeadingGroup
+
+      img.TopPage-ImageAndTopHeadingGroup-Image(
+        src="@Shared/Icons/YDF_Icon.svg"
+        alt="Общий логотип библиотек «Yamato Daiwa Frontend»"
+      )
+
+      h1.TopPage-ImageAndTopHeadingGroup-Heading
+        span.TopPage-ImageAndTopHeadingGroup-Heading-FirstLine Yamato Daiwa
+        span.TopPage-ImageAndTopHeadingGroup-Heading-SecondLine Frontend 2 Beta
+
+    p.TopPage-ShortDescription-Heading.
+      Богатые функциональностью библиотеки для высококачественной фроентенд-разработки на языках Pug, Stylus и TypeScript
+
+    +AdmonitionBlock--YDF({
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning,
+      SVG_Icon: true
+    }).TopPage-Disclaimer.
+      Сайт документации находится на стадии разработки разработки.
+      До тех пор, пока некоторые страницы не готовы, Вы будете перенаправлены на временную англоязычную
+        Markdown-документацию на официальном GitHub-репозитории этого проекта.
+      Просим Вас понять, что качественное документирование требует больше времени, чем разработка, а библиотека
+        нуждается в новой функциональности, а потому разработка новой функциональности будет осуществляться с большим
+        приоритетом.
+
+    +AdmonitionBlock--YDF({
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning,
+      SVG_Icon: true
+    }).TopPage-Disclaimer
+      | Все внутренние страницы относятся к новейшей альфа-версии старшей версии #[+ImportantEntity--YDID 2].
+      | Документация для старшей версии #[+ImportantEntity--YDID 1] представлена в формате #[+Term--YDID markdown]
+      |   на
+      +Link--YDF({
+        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/README.md"
+      }) официальном GitHub-репозитории проекта
+      | .
+
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Bash }).
+        npm i @yamato-daiwa/frontend@2.0.0-beta.0
+
+    +CompactTableOfContents--YDF_DK(localizedRouting).TopPage-TableOfContents

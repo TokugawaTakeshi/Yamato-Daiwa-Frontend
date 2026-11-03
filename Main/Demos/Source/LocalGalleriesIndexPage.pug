@@ -1,0 +1,167 @@
+extends ../node_modules/@yamato-daiwa/frontend/PagesTemplates/StaticPreviewAnywherePageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    StaticPreviewAnywherePage__YDF.configure({
+
+      metadata: {
+        title: "Demos"
+      },
+
+      topHeading: "Demos",
+
+      tableOfContents: [
+
+        {
+
+          heading: "GUI Components",
+
+          pages: [
+
+            {
+              title: "AdmonitionBlock",
+              URI: "@CompletePages/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            },
+
+            {
+              title: "Badge",
+              URI: "@CompletePages/GUI_Components/Badge/BadgeGalleryPage",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            }
+
+          ],
+
+          sections: [
+
+            {
+
+              heading: "Controls",
+
+              pages: [
+
+                {
+                  title: "DateTimePicker",
+                  URI: "@CompletePages/GUI_Components/Controls/DateTimePicker/DateTimePickerGalleryPage",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                },
+
+                {
+                  title: "DropDownList",
+                  URI: "@CompletePages/GUI_Components/Controls/DropDownList/DropDownListGalleryPage",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                },
+
+                {
+                  title: "NumberBox",
+                  URI: "@CompletePages/GUI_Components/Controls/NumberBox/NumberBoxGalleryPage",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                },
+
+                {
+                  title: "RadioButton",
+                  URI: "@CompletePages/GUI_Components/Controls/RadioButton/RadioButtonGalleryPage",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                },
+
+                {
+                  title: "ValidatableControlShell",
+                  URI: "@CompletePages/GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellGalleryPage",
+                  progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+                }
+
+              ],
+
+              sections: [
+
+                {
+
+                  heading: "Validatables",
+
+                  pages: [
+
+                    {
+                      title: "Checkbox",
+                      URI: "@CompletePages/GUI_Components/Controls/Validatables/Checkbox/CheckboxGalleryPage",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    },
+
+                    {
+                      title: "FilesUploader",
+                      URI: "@CompletePages/GUI_Components/Controls/Validatables/FilesUploader/FilesUploaderGalleryPage",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    },
+
+                    {
+                      title: "RadioButtonsGroup",
+                      URI: "@CompletePages/GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroupGalleryPage",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    },
+
+                    {
+                      title: "TextBox",
+                      URI: "@CompletePages/GUI_Components/Controls/Validatables/TextBox/TextBoxGalleryPage",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    }
+
+                  ]
+
+                },
+
+                {
+
+                  heading: "Buttons",
+
+                  pages: [
+
+                    {
+                      title: "(Plain) Button",
+                      URI: "@CompletePages/GUI_Components/Controls/Buttons/Plain/ButtonGalleryPage",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+                    },
+
+                    {
+                      title: "ClosingButton",
+                      URI: "@CompletePages/GUI_Components/Controls/Buttons/Closing/ClosingButtonGalleryPage",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    },
+
+                    {
+                      title: "HamburgerMenu",
+                      URI: "@CompletePages/GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButtonGalleryPage",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    }
+
+                  ]
+
+                }
+
+              ]
+
+            }
+
+          ]
+
+        },
+
+        {
+
+          heading: "Typography",
+
+          pages: [
+
+            {
+              title: "Table",
+              URI: "@CompletePages/GUI_Components/Typography/Table/TableGalleryPage",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+            }
+
+          ]
+
+        }
+
+      ]
+    });

@@ -1,0 +1,49 @@
+buildBEM_ClassName--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "buildBEM_Class",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      block: {
+        type: DataTypes--YDF.string,
+        required: true,
+        minimalCharactersCount: 1
+      },
+      element: {
+        type: DataTypes--YDF.string,
+        required: false,
+        minimalCharactersCount: 1
+      },
+      modifier: {
+        type: DataTypes--YDF.string,
+        required: false,
+        minimalCharactersCount: 1
+      },
+      elementSeparator: {
+        type: DataTypes--YDF.string,
+        defaultValue: "__"
+      },
+      modifierSeparator: {
+        type: DataTypes--YDF.string,
+        defaultValue: "_"
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  outputBEM_Class = compoundParameter.block
+
+
+  if isNotNull--YDF(compoundParameter.element)
+
+    outputBEM_Class = outputBEM_Class + compoundParameter.elementSeparator + compoundParameter.element
+
+
+  if isNotNull--YDF(compoundParameter.modifier)
+
+    outputBEM_Class = outputBEM_Class + compoundParameter.modifierSeparator + compoundParameter.modifier
+
+
+  return outputBEM_Class

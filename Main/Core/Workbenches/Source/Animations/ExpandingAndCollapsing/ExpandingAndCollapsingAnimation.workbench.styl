@@ -1,0 +1,72 @@
+@require "../../../../Functionality.styl"
+@require "../../../../GUI_Components.styl"
+
+
+CrossBrowserStylesReset--YDF()
+InitialGlobalCSS_Rules--YDF()
+
+
+provideYDF_Typography()
+
+
+.TestCase
+
+  &-SamplesFlow
+
+    display flex
+    column-gap 10px
+
+    padding 10px
+
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.18) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 150, 255, 0.2) 1px, transparent 1px), linear-gradient(to right, rgba(200, 200, 200, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(200, 200, 200, 0.1) 1px, transparent 1px)
+
+    background-size\
+      10px 10px,  //* Major grid */
+      10px 10px,
+      5px 5px,    //* Minor grid */
+      5px 5px
+
+    background-position\
+      0 0,
+      0 0,
+      0 0,
+      0 0
+
+
+  &-ButtonsFlow
+
+    display flex
+    column-gap 10px
+
+
+#Sample1-1-1,
+#Sample1-1-2,
+#Sample1-2-1,
+#Sample1-2-2
+
+  width 50px
+  padding-block 50px
+
+  background-image linear-gradient(lightblue, lightblue), linear-gradient(pink, pink)
+  background-origin border-box
+  background-clip content-box, padding-box
+
+
+#Sample1-1-1,
+#Sample1-2-1
+
+  box-sizing border-box
+  height 300px
+
+
+#Sample1-1-2,
+#Sample1-2-2
+
+  box-sizing content-box
+  height 200px
+
+
+#Sample1-2-1,
+#Sample1-2-2
+
+  margin-block 20px

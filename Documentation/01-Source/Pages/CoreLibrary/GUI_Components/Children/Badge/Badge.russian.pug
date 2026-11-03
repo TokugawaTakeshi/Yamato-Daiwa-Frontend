@@ -1,0 +1,340 @@
+extends ../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.coreLibrary.$children.GUI_Components.$children.Badge;
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle(topHeading),
+        description: MetaDescriptionTemplates.GUI_Components.Badge
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.GUI_Components.Badge");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.GUI_Components.$children.Badge.$URI,
+      japanese: routing.japanese.coreLibrary.$children.GUI_Components.$children.Badge.$URI
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ `Badge` ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
+
+    +WebPageViewer--YDF({
+      URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "Badge" })
+    })
+
+    +BadgeComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ┅┅┅ Краткий обзор ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
+    }).Article-Heading2
+
+    +BadgeComponent-Overview
+
+
+    //- ┅┅┅ Использование ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.usage.$heading,
+      HTML_ID: localizedSectioning.usage.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ Разметка ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.usage.$children.markup.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$anchor
+    }).Article-Heading3
+
+    //- ─── Подключение в проект ───────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.usage.$children.markup.$children.includingToProject.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.includingToProject.$anchor
+    }).Article-Heading4
+
+    +ComponentMarkupProvidingGuidanceFragment({ componentName: "Badge" })
+
+
+    //- ─── Pug-примесь `Badge--YDF` ───────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      innerHTML: localizedSectioning.usage.$children.markup.$children.pugMixin.$heading,
+      HTML_ID: localizedSectioning.usage.$children.markup.$children.pugMixin.$anchor
+    }).Article-Heading4
+
+    +BadgeComponent-PugMixinOrClassSynopsis()
+
+    //-
+
+      h6.Article-Heading6 Минимальный пример
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-Minimal.html",
+        title: "Минимальный пример компонента «Badge»"
+      })
+
+      p.Article-Paragraph.
+        #[+Keyword--YDID Базовым] сценарием использования этого компонента является указание двух надписей:
+          #[+DefinableTerm--YDID ключа] (#[+DefinableTerm--YDID key]) - задающей контекст надписи, отображающаяся в
+          #[+Keyword--YDID правой] части,
+          и #[+DefinableTerm--YDID значения] (#[+DefinableTerm--YDID value]) - содержащей в себе основную информацию,
+          но зависящей от контекста надписи в #[+Keyword--YDID левой] части.
+
+      .BadgePage-Example
+        +Badge--YDF({
+          key: "Скачиваний",
+          value: "≈ 100 тыс.",
+          decorativeVariation: Badge__YDF.DecorativeVariations.neutralBright
+        })
+
+      +CodeViewer--YDF
+        +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+          :html_special_characters_to_html_entities
+            +Badge--YDF({
+              key: "Количество скачиваний",
+              value: "≈ 100 тыс",
+              decorativeVariation: Badge__YDF.DecorativeVariations.neutralBright
+            })
+
+
+    //-
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-BordersDisguisingDecorativeModifier.html",
+        title: "Примеры использования компонента «AdmonitionBlockGalleryPage»"
+      })
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-IconsAndKeysAndValues.html",
+        title: "Примеры использования компонента «AdmonitionBlockGalleryPage»"
+      })
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-IconsAndValues.html",
+        title: "Примеры использования компонента «AdmonitionBlockGalleryPage»"
+      })
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-KeysAndValues.html",
+        title: "Примеры использования компонента «AdmonitionBlockGalleryPage»"
+      })
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-LoadingPlaceholder.html",
+        title: "Примеры использования компонента «AdmonitionBlockGalleryPage»"
+      })
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-LongLabels.html",
+        title: "Примеры использования компонента «AdmonitionBlockGalleryPage»"
+      })
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-Minimal.html",
+        title: "Примеры использования компонента «AdmonitionBlockGalleryPage»"
+      })
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-NoBackgroundDecorativeModifier.html",
+        title: "Примеры использования компонента «AdmonitionBlockGalleryPage»"
+      })
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-PillShapeGeometricModifier.html",
+        title: "Примеры использования компонента «AdmonitionBlockGalleryPage»"
+      })
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-SingleLineGeometricModifier.html",
+        title: "Примеры использования компонента «AdmonitionBlockGalleryPage»"
+      })
+
+    //-
+      h6.Article-Heading6 key
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-KeysAndValues.html",
+        title: "Минимальный пример компонента «Badge»"
+      })
+
+      +PropertyMetadata--YDF_DK(componentPropertiesSpecification.propertiesSpecification.key)
+
+      p.Article-Paragraph.
+        #[+Keyword--YDID Базовым] сценарием использования этого компонента является указание двух надписей:
+          #[+DefinableTerm--YDID ключа] (#[+DefinableTerm--YDID key]) - задающей контекст надписи, отображающаяся в
+          #[+Keyword--YDID правой] части,
+          и #[+DefinableTerm--YDID значения] (#[+DefinableTerm--YDID value]) - содержащей в себе основную информацию,
+          но зависящей от контекста надписи в #[+Keyword--YDID левой] части.
+
+      .BadgePage-Example
+        +Badge--YDF({
+          key: "Скачиваний",
+          value: "≈ 100 тыс.",
+          decorativeVariation: Badge__YDF.DecorativeVariations.neutralBright
+        })
+
+      +CodeViewer--YDF
+        +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+          :html_special_characters_to_html_entities
+            +Badge--YDF({
+              key: "Количество скачиваний",
+              value: "≈ 100 тыс",
+              decorativeVariation: Badge__YDF.DecorativeVariations.neutralBright
+            })
+
+
+      +CodeViewer--YDF
+        +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript })
+
+          +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+            +Badge--YDF({
+              key: "Количество скачиваний",
+              value: "≈ 100 тыс",
+              decorativeVariation: Badge__YDF.DecorativeVariations.neutralBright
+          +CodeViewer-Explanation--YDF.
+            Поскольку #[+Term--YDID декоративной вариации] #[+Keyword--YDID по умолчанию] у данного компонента
+              #[+Keyword__Contrast--YDID нет], то её необходимо указать в явном виде.
+
+          +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+            })
+
+
+      h6.Article-Heading6 value
+
+      p.Article-Paragraph.
+        Если контекст ясен и без #[+Term--YDID ключа], то #[+Term--YDID ключ] можно опустить.
+        Например, в списке сообщений от других пользователей уместны значки с надписью "Новое" или "Непрочитанное":
+          поскольку значок находится внутри карточки с сообщением, то эта карточка и является контекстом:
+
+      +Badge--YDF({
+        value: "Новое",
+        decorativeVariation: Badge__YDF.DecorativeVariations.modestlyCalmingBright
+      })
+
+      p.Article-Paragraph.
+        В то же время, #[+Keyphrase--YDID очевидность контекста часто является субъективной], потому опускать ключ нужно
+          с осторожностью.
+
+
+      h6.Article-Heading6 theme
+
+      p.Article-Paragraph
+        | #[+Keyword--YDID Основной] #[+Term--YDID npm-пакет] предлагает только #[+ImportantEntity--YDID 1]
+        |
+        +Link--YDF({
+          internalURI: "localizedRouting.coreLibrary.$children.components.$sectioning.themes.$URI"
+        }) тему
+        | , поэтому данное свойство имеет значение по умолчанию.
+        | Если Вы хотите переопределить тему по умолчанию или добавить новые, то смотрите
+        +Link--YDF({
+          internalURI: "localizedRouting.coreLibrary.$children.components.$sectioning.customization.$URI"
+        }) соответствующее руководство
+        | .
+
+
+      h6.Article-Heading6 geometricModifiers
+
+      p.Article-Paragraph.
+        #[+DefinableTerm--YDID Геометрические модификаторы] предназначены для того, чтобы не создавать новую
+          #[+Term--YDID геометрическую вариацию] ради #[+Keyword--YDID небольшого] изменения геометрии по необходимости,
+          например, добавление максимального скругления углов.
+
+
+      h6.Article-Heading6 decoration
+
+      p.Article-Paragraph.
+        Декоративных вариаций для данного компонента предлагается много, но их можно разделить на 2 группы:
+          яркие тона (оканчиваются на bright) и пастельные тона (оканчиваются на pastel).
+
+      p.Article-Paragraph.
+        #[+DefinableTerm--YDID Декоративные модификаторы] предназначены для того, чтобы не создавать новую
+          #[+Term--YDID декоративную вариацию] ради #[+Keyword--YDID небольшого] изменения декорации по необходимости,
+          например.
+
+      //-
+        +WebPageViewer--YDF({
+          URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-IconsAndKeysAndValues.html",
+          title: "Минимальный пример компонента «Badge»"
+        })
+
+        +WebPageViewer--YDF({
+          URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-IconsAndValues.html",
+          title: "Минимальный пример компонента «Badge»"
+        })
+
+        +WebPageViewer--YDF({
+          URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-KeysAndValues.html",
+          title: "Минимальный пример компонента «Badge»"
+        })
+
+        +WebPageViewer--YDF({
+          URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-LoadingPlaceholder.html",
+          title: "Минимальный пример компонента «Badge»"
+        })
+
+        +WebPageViewer--YDF({
+          URI: "$Demos:CorePackage/GUI_Components/Badge/BadgeGalleryPage-LongLabels.html",
+          title: "Минимальный пример компонента «Badge»"
+        })
+
+      h4.Article-Heading4 Класс Badge__YDF
+
+      p.Article-Paragraph.
+        Предназначен для хранения информации, связанным с компонентом Badge - тем, вариаций, данные валидации свойств
+          и так далее.
+
+
+      h4.Article-Heading4 Класс Badge__YDF
+
+      p.Article-Paragraph.
+        Предназначен для хранения информации, связанным с компонентом Badge - тем, вариаций, данные валидации свойств
+          и так далее.
+
+
+
+      h2.Article-Heading2 Адаптации для фреймворков
+
+      +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning, SVG_Icon: true }).
+        Адаптации для фреймворков дают только новую разметку и логику, а всё, что касается стилей, поставляется
+          основным пакетом согласно описанному выше.

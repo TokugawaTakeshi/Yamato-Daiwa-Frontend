@@ -1,0 +1,132 @@
+//- TODO Correct the relative path to "node_modules"
+extends RELATIVE/PATH/TO/node_modules/@yamato-daiwa/frontend/PagesTemplates/RegularWebPageTemplate.pug
+
+//- Or:
+//- TODO Correct the relative path to your layout (extended from "RegularWebPageTemplate.pug")
+extends RELATIVE/PATH/TO/Layouts/Main/MainLayout.pug
+
+
+block append Data
+
+  -
+
+    // TODO add some data (actual or mock) or include it from external file to this block, or remove this block it you don't need the data
+    const mockData = {};
+
+
+block append Requirements
+
+  //- TODO Include files with mixins here
+  include RELATIVE/PATH/TO/00-Components/Components.pug
+
+  include _Partials/Partial1/Partial1.pug
+  include _Partials/Partial2/Partial2.pug
+
+
+block append Metadata
+
+  -
+
+    /* [ Reference ] https://frontend.yamato-daiwa.com/CoreLibrary/PagesTemplates/Children/RegularWebPage/RegularWebPageTemplate.english.html#CONFIGURATION_CLASS--SECTION */
+    RegularWebPageTemplate__YDF.configure({
+
+      metadata: {
+
+        // TODO Specify the code of your language (see https://www.w3schools.com/tags/ref_language_codes.asp).
+        // The Default one is "en", could NOT be the undefined or null.
+        locale: "es",
+
+        // TODO Edit the title of your page and remove this comment. Could NOT be the undefined or null.
+        title: "Top Page - You Great Web Site/Application",
+
+        // TODO Edit the meta description or remove this property.
+        description: "The introduction of sedans of NNN company",
+
+        // TODO Edit the keywords (not being respected by Google anymore) or remove this property.
+        keywords: "NNN, sedan",
+
+        // TODO Edit page author or remove this property.
+        author: "ACME Corporation"
+
+      },
+
+      // TODO Edit the path to your favicon.
+      faviconURI: "PATH/TO/FAVICON/FILE/favicon.ico",
+
+      // TODO Correct the path to AMP version of this page or remove it if no AMP version planned for this page.
+      AMP_VersionURI: "AMP_Version.html",
+
+      // TODO Specify the paths to your stylesheets.
+      stylesSheetsURIs: [
+        "./TopPage.css",
+        "OtherStylesheet.css"
+      ],
+
+      scriptsURIs: [
+
+        // TODO Specify the paths to your scripts which must be added to the end of "head" tag.
+        atEndOfHead: [
+          "Script1.js",
+          "Script2.js"
+        ],
+
+        // TODO Specify the paths to your scripts which must be added to the end of "body" tag (reccomended).
+        atEndOfBody: [
+          "TopPage.js",
+          "Script3.js"
+        ]
+
+      ]
+
+    });
+
+
+block append StatesSimulations
+
+  -
+
+    // TODO Edit the state simulations actual for your page.
+    const TopPageStateSimulations = {
+      loading: false,
+      error: false,
+      noData: false,
+      simulateLoadingState() { this.loading = true; },
+      simulateErrorState() { this.error = true; },
+      simulateNoDataState() { this.noData = true; }
+    };
+
+
+block append HeadBegin
+
+  //- TODO You can add something in the begin of the HTML head, but is it actually must be ONLY in the start of the "head" tag?
+
+
+block append Styles
+
+  //- TODO You can add more styles here if `stylesSheetsURIs` was not enough for some reason
+
+
+block append HeadScripts
+
+  //- TODO You can add more scripts here (for example, Google Analytics™) but if possible add them to the end of HTML body instead
+
+
+block append PageContent
+
+  //-
+    TODO If this page extended from some layout, maybe you need to append the markup to other block instead of "PageContent"
+    declared inside `PageContent` in layout file
+
+  //- TODO Fill your page with specific content
+  +Partial1.TopPage-Partial1
+  +Partial2.TopPage-Partial2
+
+
+block append EndBodyContent
+
+  //- TODO The element with fixed positioning are usually being places to the end of "body" tag
+
+
+block append EndBodyScripts
+
+  //- TODO You can add more scripts here if `scriptsURIs.endOfBody` was not enough for some reason

@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Demos/Demos.csproj" Id="151b539a-6630-470b-b1be-00c19cf16faa" />
+  <Project Path="Localizations/Japanese/YamatoDaiwa.Frontend.Localizations.Japanese.csproj" />
+  <Project Path="Localizations/Russian/YamatoDaiwa.Frontend.Localizations.Russian.csproj" />
+  <Project Path="Package/YamatoDaiwa.Frontend.csproj" Id="759c0a15-84b5-4fc0-9acb-8dd8440cbccb" />
+  <Project Path="Workbenches/Workbenches.csproj" Id="e4b44453-1629-4af3-b66b-527cd411ee7d" />
+</Solution>

@@ -1,0 +1,88 @@
+extends ../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/Minimal/MinimalLayout.pug
+
+
+block append Requirements
+
+  include ../../SharedAssets/Markup/SharedAssets.english.pug
+  include ../../SharedComponents/SharedComponents.english.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("Top Page"),
+        description: ""
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/Minimal/MinimalLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents",
+        "@Pages/Top/TopPage"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("top");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      japanese: "./Top/TopPage.japanese.html",
+      russian: "./Top/TopPage.russian.html"
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  main.TopPage
+
+    .TopPage-ImageAndTopHeadingGroup
+
+      img.TopPage-ImageAndTopHeadingGroup-Image(
+        src="@Shared/Icons/YDF_Icon.svg"
+        alt="The icon of Yamato Daiwa Frontend libraries"
+      )
+
+      h1.TopPage-ImageAndTopHeadingGroup-Heading
+        span.TopPage-ImageAndTopHeadingGroup-Heading-FirstLine Yamato Daiwa
+        span.TopPage-ImageAndTopHeadingGroup-Heading-SecondLine Frontend 2 Beta
+
+    p.TopPage-ShortDescription-Heading.
+      Rich libraries for types in high-quality frontend web development with Pug, Stylus and TypeScript
+
+    +AdmonitionBlock--YDF({
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning,
+      SVG_Icon: true
+    }).TopPage-Disclaimer.
+
+      This documentation site is under development.
+      Until the specific pages are ready, you will be redirected to temporary markdown documentation of the official
+        GitHub repository.
+      Please understand that high-quality documentation requires more time than library development, and the top priority
+        of library development is new functionality.
+
+    +AdmonitionBlock--YDF({
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning,
+      SVG_Icon: true
+    }).TopPage-Disclaimer
+      | All internal pages of this web side are associated with newest alpha version of the major version #[+ImportantEntity--YDID 2].
+      | The #[+Term--YDID markdown] documentation for major version #[+ImportantEntity--YDID 1] is available on the
+      |
+      +Link--YDF({
+        unendorsedExternalURI: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-Frontend/blob/master/CoreLibrary/Package/README.md"
+      }) official GitHub repository of this project
+      | .
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Bash }).
+        npm i @yamato-daiwa/frontend@2.0.0-beta.0
+
+    +CompactTableOfContents--YDF_DK(localizedRouting).TopPage-TableOfContents

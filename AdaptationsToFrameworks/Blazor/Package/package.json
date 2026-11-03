@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "Update SVG Icons": "rimraf --glob SVG_Icons/* && tsx Automation/updateSVG_Icons.ts && git add Source/SVG_Icons",
+    "Lint": "eslint",
+    "Build JavaScript Functionality": "yda --mode PRODUCTION"
+  },
+  "dependencies": {
+    "@yamato-daiwa/frontend": "../../../Main/Core"
+  },
+  "devDependencies": {
+    "@yamato-daiwa/automation": "0.10.0-alpha.13",
+    "@yamato-daiwa/es-extensions": "1.9.4",
+    "@yamato-daiwa/frontend-automation": "../../../Automation",
+    "@yamato-daiwa/style_guides": "0.15.0",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "core-js@2.6.12": true,
+    "es5-ext@0.10.64": true,
+    "gifsicle@5.3.0": true,
+    "husky@4.3.8": true,
+    "mozjpeg@6.0.1": true,
+    "optipng-bin@6.0.0": true,
+    "pngquant-bin@6.0.1": true,
+    "puppeteer@25.14.0": true,
+    "vnu-jar@26.3.10": true
+  }
+}

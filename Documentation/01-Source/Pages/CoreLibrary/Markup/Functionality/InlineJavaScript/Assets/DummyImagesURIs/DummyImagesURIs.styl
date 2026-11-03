@@ -1,0 +1,73 @@
+@require "../../../../../../../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+
+
+.DummyImagesURIsGallery
+
+  display grid
+  grid-template-columns repeat(auto-fit, minmax(7rem, 1fr));
+  gap 0.5rem
+
+
+  margin-top 0.9rem
+  pushTargetFromSelf--YDF({ targetElementSelector: ".Article-Heading2", y: 1.6rem })
+
+
+  li
+
+    display flex
+    flex-direction column
+
+
+    button
+
+      ButtonLikeElementsPrimer--YDF()
+
+      display flex
+      justify-items center
+      align-items center
+      flex-direction column
+      row-gap 0.8rem
+
+      cursor pointer
+
+      background-image linear-gradient(lightgoldenrodyellow, aliceblue)
+
+
+      &:hover
+
+        transform scale(1.05)
+        transition transform 1s ease-in-out
+
+
+    span
+
+      width 100%
+      aspect-ratio 1 / 1
+
+      margin-left auto
+      margin-right auto
+
+      align-self center
+
+      background-size contain
+      background-position center
+      background-repeat no-repeat
+
+
+    code
+
+      font-family Consolas, monaco, monospace
+
+      Paddings-YDF({
+        horizontalSymmetric: 0.5rem,
+        bottom: 0.3rem
+      })
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: 1rem,
+        lineSpacing: 0.4,
+        mustAllowWordsBreakingAnywhere: true
+      })
+
+      font-weight bold
+      color: W3C_39_ShadesOfGray--YDF[12]

@@ -1,0 +1,200 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-TypographyUtils/applyTextGeometryWithoutExtraSpaceCausedByLineHeight.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/05-TypographyUtils/applyTextGeometryWithoutExtraSpaceCausedByLineHeight.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+/* [ ClassesNaming ] [Input]-[Output] */
+
+/* === Specifying via line spacing ================================================================================== */
+/* --- [ Branch A1 ] 0 line spacing --------------------------------------------------------------------------------- */
+/*
+  Font size: 13px, line spacing: 0.
+  This situation is ambiguous because zero line spacing does not imply that the line height is also zero.
+  There is the option `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0` intended to resolve this ambiguity,
+    and ideally it should be made mandatory provided that `lineSpacing` (rather than `lineHeight`) is specified.
+  However, since zero line spacing in multi-line text blocks, for which the
+    `applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF` mixin is intended, is an extraordinary special case
+    whose meaning is unobvious, `mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0` has a default value of `true`.
+  With this value, as follows from the direct translation, the line height is considered equal to the font size when
+    `lineSpacing` is zero.
+  Thus, there will be no "ExtraSpaceCausedByLineHeight".
+ */
+.ZeroLineSpacing-RelativeLineHeight
+
+  /* Expected: line-height: 1 */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 13px,
+    lineSpacing: 0
+  })
+
+
+/* "px" and any other units do not change anything here - the result will be completely equivalent to the above. */
+.ZeroPixelsLineSpacing-RelativeLineHeight
+
+  /* Expected: line-height: 1 */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 13px,
+    lineSpacing: 0px
+  })
+
+
+.ZeroLineSpacing-AbsoluteLineHeight
+
+  /* Expected: line-height: 13px */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 13px,
+    lineSpacing: 0,
+    mustApplyDimensionalLineHeightIfPossible: true
+  })
+
+
+/* "px" and any other units do not change anything here - the result will be completely equivalent to the above. */
+.ZeroPixelsLineSpacing-AbsoluteLineHeight
+
+  /* Expected: line-height: 13px */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 13px,
+    lineSpacing: 0px,
+    mustApplyDimensionalLineHeightIfPossible: true
+  })
+
+
+/* --- [ Branch A2 ] Dimensionless line spacing --------------------------------------------------------------------- */
+/*
+  Font size - 10px (small, but easy to compute even mentally), line spacing - 0.4.
+  With default settings, this function will attempt to calculate a dimensionless line height, and in this case it will be 1.4.
+  It is also easy to calculate for verification that due to the line height, we will have 2px at the top and bottom.
+  It needs to be compensated. Thus, we will have before and after with -2px.
+ */
+.DimensionlessLineSpacing-DimensionlessLineHeight
+
+  /* Expected: line-height: 1.4, margin-top: -2px, margin-bottom: -2px */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 10px,
+    lineSpacing: 0.4
+  })
+
+
+
+/* --- [ Branch A3 ] Font size and line spacing of same unit -------------------------------------------------------- */
+
+/*
+  Font size - 10px (small, but easy to compute even mentally), line spacing - 4px.
+  However, since a dimensionless line height is calculated by default, it will be 1.4.
+  It is also easy to calculate for verification that due to the line height, we will have 2px at the top and bottom.
+  It needs to be compensated. Thus, we will have before and after with -2px.
+ */
+
+.FontSizeAndLineSpacingOfSameUnit-DimensionlessLineHeight
+
+  /* Expected: line-height: 1.4 */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 10px,
+    lineSpacing: 4px
+  })
+
+
+.FontSizeAndLineSpacingOfSameUnit-DimensionalLineHeight
+
+  /* Expected: line-height: 14px */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 10px,
+    lineSpacing: 4px,
+    mustApplyDimensionalLineHeightIfPossible: true
+  })
+
+
+/* --- [ Branch A4 ] Font size and line spacing of different units -------------------------------------------------- */
+.FontSizeAndLineSpacingOfSameUnit-DimensionlessLineHeight
+
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 1rem,
+    lineSpacing: 2px
+  })
+
+
+// === Specifying via line height ======================================================================================
+/* --- [ Branch B1 ] 0 line height ---------------------------------------------------------------------------------- */
+.ZeroLineHeight
+
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 10px,
+    lineHeight: 0
+  })
+
+
+.ZeroPixelsLineHeight
+
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 10px,
+    lineHeight: 0
+  })
+
+
+/* --- [ Branch B2 ] Dimensional line height ------------------------------------------------------------------------ */
+.DimensionlessLineHeight-DimensionalLineHeight
+
+  /* Expected: line-height: 14px */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 10px,
+    lineHeight: 1.4,
+    mustApplyDimensionalLineHeightIfPossible: true
+  })
+
+
+.DimensionlessLineHeight-DimensionlessLineHeight
+
+  /* Expected: line-height: 1.4 */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 10px,
+    lineHeight: 1.4
+  })
+
+
+/* --- [ Branch B3 ] Dimensional line height ------------------------------------------------------------------------ */
+.FontSizeAndLineHeightOfSameUnit-DimensionlessLineHeight
+
+  /* Expected: line-height: 1.4 */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 10px,
+    lineHeight: 14px
+  })
+
+
+.FontSizeAndLineHeightOfSameUnit-DimensionalLineHeight
+
+  /* Expected: line-height: 14px */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 10px,
+    lineHeight: 14px,
+    mustApplyDimensionalLineHeightIfPossible: true
+  })
+
+
+/* --- [ Branch B4 ] Font size and line height of different units --------------------------------------------------- */
+.FontSizeAndLineHeightOfSameUnit-DimensionlessLineHeight
+
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 1rem,
+    lineHeight: 1.2em
+  })
+
+
+// =====================================================================================================================
+.AbsoluteFontSizeAndRelativeLineHeight-RelativeLineHeight-Paddings
+
+  /* Expected: line-height: 1.4 */
+  applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+    fontSize: 10px,
+    lineSpacing: 0.4,
+    paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins: {
+      top: 6px,
+      bottom: 6px
+    }
+  })

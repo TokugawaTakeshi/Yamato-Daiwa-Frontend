@@ -1,0 +1,133 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/09-OtherFunctions/buildCalcExpressionTermwise.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/09-OtherFunctions/buildCalcExpressionTermwise.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.StandardScenario
+
+  width: \
+      buildCalcExpressionTermwise--YDF(\
+        1rem\
+        ("+" 1px)\
+        ("-" 2em)
+      )
+
+
+.NestedCalcExpression
+
+  &-Bare
+
+    width: \
+        buildCalcExpressionTermwise--YDF(\
+          1rem\
+          ("+" calc(1px + 2em))\
+          ("-" 2em)
+        )
+
+
+  &-Stringified
+
+    width: \
+        buildCalcExpressionTermwise--YDF(\
+          1rem\
+          ("+" "calc(1px + 2em)")\
+          ("-" 2em)
+        )
+
+
+.FirstTermIsNull
+
+  &-OperandOfSecondTermIsPlus
+
+    width: \
+        buildCalcExpressionTermwise--YDF(\
+          null\
+          ("+" 1px)\
+          ("-" 2em)
+        )
+
+
+  &-OperandOfSecondTermIsMinus
+
+    width: \
+        buildCalcExpressionTermwise--YDF(\
+          null\
+          ("-" 1px)\
+          ("+" 2em)
+        )
+
+  &-OperandOfSecondTermIsMultiplication
+
+    width: \
+        buildCalcExpressionTermwise--YDF(\
+          null\
+          ("*" 1px)\
+          ("+" 2em)
+        )
+
+
+.SubsequentTermIsNull
+
+  width: \
+      buildCalcExpressionTermwise--YDF(\
+        1rem\
+        ("+" null)\
+        ("-" 2em)
+      )
+
+
+.FirstTermIsZero
+
+  &-OperandOfSecondTermIsPlus
+
+    width: \
+        buildCalcExpressionTermwise--YDF(\
+          0\
+          ("+" 1px)\
+          ("-" 2em)
+        )
+
+
+  &-OperandOfSecondTermIsMinus
+
+    width: \
+        buildCalcExpressionTermwise--YDF(\
+          0\
+          ("-" 1px)\
+          ("+" 2em)
+        )
+
+  &-OperandOfSecondTermIsMultiplication
+
+    width: \
+        buildCalcExpressionTermwise--YDF(\
+          0\
+          ("*" 1px)\
+          ("+" 2em)
+        )
+
+
+.SubsequentTermIsZero
+
+  width: \
+      buildCalcExpressionTermwise--YDF(\
+        1rem\
+        ("+" 0)\
+        ("-" 2em)
+      )
+
+
+.EmptyReturn
+
+  width: \
+      buildCalcExpressionTermwise--YDF(\
+        0\
+        ("+" null)\
+        ("-" 0)
+      )

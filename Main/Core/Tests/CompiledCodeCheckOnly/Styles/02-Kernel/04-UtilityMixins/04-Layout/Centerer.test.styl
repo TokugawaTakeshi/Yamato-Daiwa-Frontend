@@ -1,0 +1,26 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/04-Layout/Centerer.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/04-Layout/Centerer.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.Centerer--YDF
+
+  &-Case1
+
+    Centerer--YDF()
+
+
+  &-Case2
+
+    Centerer--YDF({ minimalWidth: 400px })
+
+
+  &-Case3
+
+    Centerer--YDF({ minimalWidth: 500px, maximalWidth: 700px })

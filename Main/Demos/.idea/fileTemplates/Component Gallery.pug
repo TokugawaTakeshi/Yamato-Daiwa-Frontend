@@ -1,0 +1,35 @@
+mixin ${COMPONENT_NAME}Gallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("${COMPONENT_NAME}__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("${COMPONENT_NAME}__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("${COMPONENT_NAME}__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) ${COMPONENT_NAME} Component Demos
+
+
+  //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Minimal
+
+    +ThemesShowcase--YDF({
+      themes: ${COMPONENT_NAME}__YDF.Themes,
+      geometricVariations: ${COMPONENT_NAME}__YDF.GeometricVariations,
+      decorativeVariations: ${COMPONENT_NAME}__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +${COMPONENT_NAME}--YDF({
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      }).${COMPONENT_NAME}Gallery-${COMPONENT_NAME}

@@ -1,0 +1,27 @@
+markup:
+
+  $heading: "Разметка"
+
+  providing:
+
+    $heading: "Получение доступа к API"
+
+  performanceInMVC_Applications:
+
+    $heading: "Производительность при использовании в MVC-приложениях"
+
+styles:
+
+  $heading: "Стили"
+
+  providing:
+
+    $heading: "Получение доступа к API"
+
+themes:
+
+  $heading: "Темы"
+
+customization:
+
+  $heading: "Кастомизация"

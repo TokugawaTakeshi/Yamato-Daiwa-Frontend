@@ -1,0 +1,15 @@
+applyIfNotZero--YDF(keyAndValuePairs)
+
+  if isObject--YDF(keyAndValuePairs)
+
+    for key, value in keyAndValuePairs
+
+      if value != 0
+
+        if typeof(value) == "string"
+
+          {key}: unquote(value)
+
+        else
+
+          {key}: value

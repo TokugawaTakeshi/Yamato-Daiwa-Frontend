@@ -1,0 +1,41 @@
+extends ../../../../PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "Badge Component Development"
+      },
+      stylesSheetsURIs: [ "@Workbenches/GUI_Components/Badge/Badge.workbench" ]
+    });
+
+
+block append Requirements
+
+  include ../../../../GUI_Components.pug
+
+
+block append PageContent
+
+  //- ━━━ IntelliJ IDEA Live Template ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //-
+    +Badge--YDF({
+      keyLabel: "Key",
+      valueLabel: "Value",
+      rootElementTag: "div",
+      theme: Badge__YDF.Themes.regular,
+      areThemesCSS_ClassesCommon: true,
+      geometricVariation: Badge__YDF.DecorativeVariations.regular,
+      geometricModifiers: [ Badge__YDF.GeometricModifiers.pillShape, Badge__YDF.GeometricModifiers.singleLine ],
+      decorativeVariation: Badge__YDF.DecorativeVariations.veryCatchyBright
+    }): +Calendar__Date--YDF_Icon.Badge--YDF-SVG_Icon
+
+    +Badge--YDF-LoadingPlaceholder({
+      theme: Badge__YDF.Themes.regular,
+      areThemesCSS_ClassesCommon: true,
+      geometricVariation: regular,
+      geometricModifiers: [ Badge__YDF.GeometricModifiers.pillShape ]
+    })

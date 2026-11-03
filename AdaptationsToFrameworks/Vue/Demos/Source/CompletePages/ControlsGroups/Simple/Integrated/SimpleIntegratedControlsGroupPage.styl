@@ -1,0 +1,64 @@
+@require "../../../../../node_modules/@yamato-daiwa/frontend/Functionality.styl"
+@require "../../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.styl"
+
+
+CrossBrowserStylesReset--YDF()
+InitialGlobalCSS_Rules--YDF()
+
+
+TextBox--YDF-generateStyles()
+ValidatableControlShell--YDF-generateStyles()
+Button--YDF-generateStyles()
+
+
+#APPLICATION
+
+  display flex
+  justify-content center
+  align-items center
+
+  fillBodyVertically({ verticalScrolling: true })
+
+
+.SimpleForm
+
+  centerHorizontallyWithoutWrapper({
+    targetElementType: HorizontalCenteringWithoutWrapper.TargetElementTypes.block,
+    maximalWidth: 2*NARROWEST_SCREEN_WIDTH_UNIT--YDF,
+    horizontalSpaceBetweenSelfAndParent: 20px
+  })
+
+
+  &-Heading
+
+    font-size 32px
+    color: W3C_39_ShadesOfGray--YDF[12]
+    text-align center
+
+
+  &-TextBox
+
+    retireFrom({ targetElementSelector: ".SimpleForm-Heading", y: 16px })
+    retireFromElementWithSameSelector({ y: 12px })
+
+
+  &-Message
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight({ fontSize: 14px, lineSpacing: 4px })
+    text-align right
+
+    font-weight bold
+    color: YDF_ColorPalette.red.mediumDark
+
+    margin-top 16px
+
+
+  &-Button
+
+    placeToRight()
+
+    retireFrom({
+      definitions:\
+          (".SimpleForm-TextBox" { y: 12px })\
+          (".SimpleForm-Message" { y: 6px})
+    })

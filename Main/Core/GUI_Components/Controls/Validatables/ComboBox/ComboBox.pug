@@ -1,0 +1,114 @@
+include ComboBox.class.pug
+
+
+//- [ Reference ] https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-autocomplete-both/
+mixin ComboBox--YDF(properties, statesSimulations)
+
+  -
+    const COMPONENT_ID = ComboBox__YDF.generateComponentID();
+
+    const {
+
+      label,
+      accessibilityGuidance,
+      externalLabelHTML_ID,
+      guidance,
+
+      isMultiSelectionAllowed = false,
+      disabled = false,
+      readonly = false,
+
+      required,
+      mustDisplayAppropriateBadgeIfInputIsRequired = false,
+      mustDisplayAppropriateBadgeIfInputIsOptional = false,
+
+      labelElementHTML_ID = `${ COMPONENT_ID }-LABEL`,
+      inputElementHTML_ID = `${ COMPONENT_ID }-INPUT`,
+      listBoxElementHTML_ID = `${ COMPONENT_ID }-LIST_BOX`,
+      listBoxElementAccessibilityGuidance = ComboBox__YDF.localization.listBox.defaultAccessibilityGuidance
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: ComboBox__YDF.propertiesSpecification,
+      mixinName: "ComboBox--YDF"
+    });
+
+    const placeholder = isMultiSelectionAllowed ?
+        ComboBox__YDF.localization.placeholders.selectingOfOneOrMultipleOptions :
+        ComboBox__YDF.localization.placeholders.selectingOfOneOption;
+
+    const {
+      expanded = false,
+      invalidInputHighlightingIfAnyValidationErrorsMessages,
+      validValueHighlightingIfNoValidationErrorsMessages,
+      validationErrorsMessages,
+      asynchronousValidationsStatuses
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: ComboBox__YDF.statesSimulationsSpecification,
+      mixinName: "ComboBox--YDF"
+    });
+
+
+    const rootElementModifierCSS_Classes = [
+
+    ];
+
+
+    let ariaLabelledbyAttributeValue;
+
+    if (label) {
+      ariaLabelledbyAttributeValue = labelElementHTML_ID;
+    } else if (externalLabelHTML_ID) {
+      ariaLabelledbyAttributeValue = externalLabelHTML_ID;
+    }
+
+  +ValidatableControlShell--YDF(
+    {
+
+      label,
+      guidance,
+
+      required,
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+      coreElementHTML_ID: inputElementHTML_ID,
+      labelElementHTML_ID: labelElementHTML_ID
+
+    },
+    {
+      invalidInputHighlightingIfAnyValidationErrorsMessages,
+      validValueHighlightingIfNoValidationErrorsMessages,
+      validationErrorsMessages,
+      asynchronousValidationsStatuses
+    }
+  ).DropDownList--YDF&attributes(attributes)(class= rootElementModifierCSS_Classes)
+
+    input.DropDownList--YDF-InputElement(
+      type="text"
+      role="combobox"
+      id=inputElementHTML_ID
+      aria-autocomplete="both"
+      aria-expanded=expanded
+      aria-controls=listBoxElementHTML_ID
+    )
+
+    button.DropDownList--YDF-Button(
+      type="button"
+      tabindex="-1"
+      aria-label=ComboBox__YDF.localization.buttons.toggleExpanding
+      aria-expanded=expanded
+      aria-controls=listBoxElementHTML_ID
+    )
+
+    .DropDownList--YDF-ListBox(
+      role="listbox"
+      id=listBoxElementHTML_ID
+      aria-label=listBoxElementAccessibilityGuidance
+    )
+
+

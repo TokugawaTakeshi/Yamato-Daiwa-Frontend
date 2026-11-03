@@ -1,0 +1,59 @@
+-
+
+  class RadioButtonGalleryOptions {
+
+    static mustVisuallyHideTopHeading = false;
+
+    static visuallyHideTopHeadingIf(condition) {
+      RadioButtonGalleryOptions.mustVisuallyHideTopHeading = condition;
+      return RadioButtonGalleryOptions;
+    }
+
+
+    static mustVisuallyHideAllHeadings = false;
+
+    static visuallyHideAllHeadings() {
+      RadioButtonGalleryOptions.mustVisuallyHideAllHeadings = true;
+      RadioButtonGalleryOptions.mustVisuallyHideTopHeading = true;
+      return RadioButtonGalleryOptions;
+    }
+
+
+    static Partials = {
+      minimal: "MINIMAL"
+    };
+
+    static partialsRenderingFlags =
+        Object.values(RadioButtonGalleryOptions.Partials).
+        reduce(
+          (objectWorkpiece, partialValue) => {
+            objectWorkpiece[partialValue] = true;
+            return objectWorkpiece;
+          },
+          {}
+        );
+
+    static renderSinglePartial(targetPartialValue) {
+
+      for (const [ partialKey, partialValue ] of Object.entries(RadioButtonGalleryOptions.Partials)) {
+        RadioButtonGalleryOptions.partialsRenderingFlags[partialValue] =
+            RadioButtonGalleryOptions.Partials[partialKey] === targetPartialValue;
+      }
+
+      return RadioButtonGalleryOptions;
+
+    }
+
+    static get mustRenderGeometricModifiersSection() {
+      return !!Object.entries(RadioButtonGalleryOptions.partialsRenderingFlags).
+          filter(([ partialKey ]) => partialKey.includes("GEOMETRIC_MODIFIER")).
+          find(([, mustRender ]) => mustRender)
+    }
+
+    static get mustRenderDecorativeModifiersSection() {
+      return !!Object.entries(RadioButtonGalleryOptions.partialsRenderingFlags).
+          filter(([ partialKey ]) => partialKey.includes("DECORATIVE_MODIFIER")).
+          find(([, mustRender]) => mustRender)
+    }
+
+  }

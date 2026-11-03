@@ -1,0 +1,16 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+ValidatableControlShellClass:
+
+  $heading: `ValidatableControlShellClass.$heading`
+  $anchor: VALIDATABLE_CONTROL_SHELL_CLASS--SECTION
+
+  $children:
+
+    vueProperties:
+
+      $heading: `ValidatableControlShellClass.vueProperties.$heading`
+      $anchor: VALIDATABLE_CONTROL_SHELL_CLASS-VUE_PROPERTIES--SECTION

@@ -1,0 +1,407 @@
+@require "Themes/Regular/GeometricVariations/FilesUploader-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/FilesUploader-RegularTheme-SmallGeometricVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/FilesUploader-RegularTheme-RegularDecorativeVariation.styl"
+
+
+FilesUploader--YDF = {
+
+  CSS_NAMESPACE: "FilesUploader--YDF",
+
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF",
+
+        geometricVariations: {
+          regular: FilesUploader-RegularTheme-RegularGeometricVariation--YDF,
+          small: FilesUploader-RegularTheme-SmallGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          regular: FilesUploader-RegularTheme-RegularDecorativeVariation--YDF
+        }
+      }
+    }
+
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true
+  }
+
+}
+
+
+FilesUploader--YDF-generateStyles(
+  preset = FilesUploader--YDF.defaultProperties,
+  overrides = {},
+  options = FilesUploader--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overrides)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "FilesUploader--YDF-generateStyles",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: FilesUploader--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: FilesUploader--YDF.defaultOptions.areThemesCSS_ClassesCommon
+      },
+      loadingPlaceholder: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: FilesUploader--YDF.defaultOptions.loadingPlaceholder
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: FilesUploader--YDF.defaultOptions.themeIndependentGeometricVariations
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  applyBasicRules()
+
+    .FilesUploader--YDF
+
+      &-DragAndDropArea
+
+        display flex
+        flex-direction column
+        align-items center
+
+
+        &:focus
+
+          outline none
+
+
+        &__DragOverState
+
+          cursor grabbing
+
+
+        &__HiddenOnTouchScreens
+
+          @media (hover: none)
+
+            display none
+
+
+      &-DragAndDropArea
+
+        &-Guidance
+
+          word-break break-all
+
+          margin-bottom 0  //* [ Resetting of defaults ] */
+
+
+      &-SingleImagePreviewer
+
+        &-Image
+
+          display block
+
+          max-width 100%
+          margin-left auto
+          margin-right auto
+
+
+      &-SingleFileDeletingButton
+
+        placeToRight--YDF()
+        margin-top 0.4rem
+
+
+      &-ImagesPreviewFlow
+
+        display grid
+        grid-template-columns repeat(auto-fit, minmax(7rem, 1fr));
+        column-gap 6px
+        row-gap 8px
+
+        retireFrom--YDF({
+          definitions:\
+              (".FilesUploader--YDF-FilePickingButton" { y: 0.2rem })\
+              (".FilesUploader--YDF-DragAndDropArea" { y: 0.4rem })
+        })
+
+
+      &-PreviewCard
+
+        display flex
+        flex-direction column
+        row-gap 0.4rem
+
+
+        &-SizingAndDefaultBackgroundProvidingWrapper
+
+          display flex
+          justify-items center
+          align-items center
+
+          width 100%
+          aspect-ratio 1 / 1
+
+          background-image: linear-gradient(lightgoldenrodyellow, aliceblue);
+
+
+        &-Image
+
+          max-width 100%
+          max-height 100px
+
+          margin-left auto
+          margin-right auto
+
+          align-self center
+
+
+        &-Button
+
+          align-self center
+
+
+      &-HiddenInputElement
+
+        display none
+
+
+  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "FilesUploader.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + FilesUploader--YDF.CSS_NAMESPACE)
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
+
+
+    .FilesUploader--YDF-DragAndDropArea
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          borders: {
+            dotSeparatedPath: "dragAndDropArea.borders",
+            required: false,
+            applier: BordersSizing--YDF
+          },
+          paddings: {
+            dotSeparatedPath: "dragAndDropArea.paddings",
+            required: true,
+            applier: Paddings--YDF
+          }
+        }
+      })
+
+      retireFrom--YDF({
+        targetElementSelector: ".FilesUploader--YDF-FilePickingButton",
+        referenceElementSelector: ".FilesUploader--YDF-DragAndDropArea",
+        contextSelector: CONTEXT_SELECTOR,
+        y: extractAndValidateObjectProperties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          extracts: {
+            afterFilePickingButton: { dotSeparatedPath: "dragAndDropArea.spacing.afterFilePickingButton", required: true }
+          }
+        }).afterFilePickingButton
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dragAndDropArea.customDeclarations)
+
+
+      &-Icon
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            width: { dotSeparatedPath: "dragAndDropArea.children.SVG_Icon.width", required: false },
+            height: {
+              dotSeparatedPath: "dragAndDropArea.children.SVG_Icon.height",
+              requiredIf: {
+                predicate: @(variation) {
+                  return isNull--YDF(
+                    getObjectValueByDotSeparatedPathSafely--YDF(variation, "dragAndDropArea.children.SVG_Icon.width")
+                  )
+                },
+                conditionDescription: "'dragAndDropArea.children.SVG_Icon.width' icon is null"
+              }
+            }
+          }
+        })
+
+
+      &-Guidance
+
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(
+          merge(
+            extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: {
+                fontSize: { dotSeparatedPath: "dragAndDropArea.children.guidance.text.size", required: true },
+                lineSpacing: { dotSeparatedPath: "dragAndDropArea.children.guidance.text.lineSpacing", required: false },
+                lineHeight: {
+                  dotSeparatedPath: "dragAndDropArea.children.guidance.text.lineHeight",
+                  mustBeInsteadOf: "dragAndDropArea.children.guidance.text.lineSpacing"
+                }
+              }
+            }),
+            { mustApplyNegativeMarginsToRootElement: true }
+          )
+        )
+
+        margin-top 0.8rem
+
+
+    .FilesUploader--YDF-SingleImagePreviewer
+
+      retireFrom--YDF({
+        referenceElementSelector: ".FilesUploader--YDF-SingleImagePreviewer",
+        contextSelector: CONTEXT_SELECTOR,
+        definitions:\
+            (".FilesUploader--YDF-FilePickingButton" { y: 0.2rem })\
+            (".FilesUploader--YDF-DragAndDropArea" { y: 0.4rem })
+      })
+
+
+      &-Image
+
+        max-height 300px
+
+
+    .FilesUploader--YDF-FileDeletingButton
+
+      margin-top 0.4rem
+
+
+  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "FilesUploader.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+
+    +provideDefaultSelectorWhenRootAndApply--YDF("." + FilesUploader--YDF.CSS_NAMESPACE)
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
+
+
+    .FilesUploader--YDF-DragAndDropArea
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          border-style: { dotSeparatedPath: "dragAndDropArea.borders.style", required: false },
+          border-color: { dotSeparatedPath: "dragAndDropArea.borders.color", required: false },
+          background-color: { dotSeparatedPath: "dragAndDropArea.background.color", required: false },
+          background-image: { dotSeparatedPath: "dragAndDropArea.background.image", required: false }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dragAndDropArea.customDeclarations)
+
+
+    DragAndDropAreaStyles(state)
+
+      statePseudoClass = null
+
+      if (state == "hoverState")
+
+        statePseudoClass = ":hover"
+
+      else if (state == "focusVisibleState")
+
+        statePseudoClass = ":focus-visible"
+
+      else if (state == "activeState")
+
+        statePseudoClass = ":active"
+
+
+      .FilesUploader--YDF-DragAndDropArea{statePseudoClass}
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            border-style: { dotSeparatedPath: "dragAndDropArea." + state + ".borders.style", required: false },
+            border-color: { dotSeparatedPath: "dragAndDropArea." + state + ".borders.color", required: false },
+            background-color: { dotSeparatedPath: "dragAndDropArea." + state + ".background.color", required: false },
+            background-image: { dotSeparatedPath: "dragAndDropArea." + state + ".background.image", required: false },
+            box-shadow: {
+              dotSeparatedPath: "dragAndDropArea." + state + ".shadow",
+              required: false,
+              applier: applyObjectTypeBoxShadowDefinition--YDF
+            }
+          }
+        })
+
+        applyMixinStoredInObjectIfItIsNotNull--YDF(variation.dragAndDropArea[state].customDeclarations)
+
+
+    for state in variation.dragAndDropArea
+
+      DragAndDropAreaStyles(state)
+
+
+    .FilesUploader--YDF-DragAndDropArea__DragOverState
+
+      border-color: JQueryUI_BaseTheme.warning.borderColor
+
+
+    .FilesUploader--YDF-DragAndDropArea-Icon
+
+      fill: JQueryUI_BaseTheme.clickableElements.defaultState.iconsColor
+
+
+    .FilesUploader--YDF-DragAndDropArea-Guidance
+
+      color: JQueryUI_BaseTheme.clickableElements.defaultState.fontColor
+
+
+      &-AccentedFragment
+
+        color: JQueryUI_BaseTheme.error.fontColor
+        font-weight bold
+
+
+    .FilesUploader--YDF--SingleImagePreviewer
+
+      background-image: linear-gradient(lightgoldenrodyellow, aliceblue);
+
+
+  //- ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  applyComponentThemes--YDF({
+    CSS_Namespace: FilesUploader--YDF.CSS_NAMESPACE,
+    themes: properties.themes,
+    applyGeometricVariation: applyGeometricVariation,
+    applyDecorativeVariation: applyDecorativeVariation
+  })

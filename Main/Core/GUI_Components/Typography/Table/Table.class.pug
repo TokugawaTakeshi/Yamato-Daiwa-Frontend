@@ -1,0 +1,190 @@
+-
+
+  class Table__YDF {
+
+    /**
+     * @type { string }
+     * @public
+     * @readonly
+     */
+    static CSS_NAMESPACE = "Table--YDF";
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @type { { [themeName: string]: string } }
+     * @public
+     * @description If you want to define new themes, do it only via `defineThemes` static method.
+     */
+    static Themes = { regular: "REGULAR" };
+
+    /**
+     * @param { Array<string> } themesNames
+     * @return { typeof Table__YDF }
+     */
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineNewThemes(themesNames, Table__YDF);
+    }
+
+    /**
+     * @type { boolean } [areThemesCSS_ClassesCommon=ComponentsAuxiliaries.areComponentsThemesCommon]
+     * @private
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @returns { typeof Table__YDF }
+     * @public
+     * */
+    static considerThemesAsCommon() {
+      Table__YDF.areThemesCSS_ClassesCommon = true;
+      return Table__YDF;
+    }
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @type { { [geometricVariationName: string]: string } }
+     * @public
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL"
+    };
+
+    /**
+     * @param { Array<string> } geometricVariationsNames
+     * @return { typeof Table__YDF }
+     */
+    static defineGeometricVariations(geometricVariationsNames) {
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, Table__YDF);
+    }
+
+    /**
+     * @type {
+     *   Readonly<{
+     *     borderless: string;
+     *     verticalBordersOnly: string;
+     *     horizontalBordersOnly: string;
+     *   }>
+     * }
+     * @readonly
+     */
+    static GeometricModifiers = {
+      borderless: "BORDERLESS",
+      verticalBordersOnly: "VERTICAL_BORDERS_ONLY",
+      horizontalBordersOnly: "HORIZONTAL_BORDERS_ONLY"
+    };
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+    /**
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @public
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = {
+      neutralPastelSolid: "NEUTRAL_PASTEL_SOLID",
+      modestlyCalmingPastelSolid: "MODESTLY_CALMING_PASTEL_SOLID",
+      calmingPastelSolid: "CALMING_PASTEL_SOLID",
+      achromaticPastelSolid: "ACHROMATIC_PASTEL_SOLID"
+    };
+
+    /**
+     * @param { Array<string> } decorativeVariationsNames
+     * @return { typeof Badge__YDF }
+     */
+    static defineDecorativeVariations(decorativeVariationsNames) {
+      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, Button__YDF);
+    }
+
+    /**
+     * @type {
+     *   Readonly<{
+     *     noBackground: string;
+     *   }>
+     * }
+     * @readonly
+     */
+    static DecorativeModifiers = {
+      noBackground: "NO_BACKGROUND"
+    };
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * @public
+     * @readonly
+     * */
+    static propertiesSpecification = {
+
+      horizontalScrollingOnOverflow: {
+        type: Boolean,
+        undefinedValueSubstitution: false,
+        isNullForbidden: true
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: Table__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Table__YDF.Themes).
+            map(([ key, value ]) => ({ key: `Table__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: Table__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: Table__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Table__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `Table__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      geometricModifiers: {
+        type: Array,
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+        element: {
+          type: String,
+          allowedAlternatives: Object.values(Table__YDF.GeometricModifiers)
+        }
+      },
+
+      decorativeVariation: {
+        type: String,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Table__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `Table__YDF.DecorativeVariations.${ key }`, value }))
+      },
+
+      decorativeModifiers: {
+        type: Array,
+        undefinedValueSubstitution: [],
+        isNullForbidden: true,
+        areUndefinedElementsForbidden: true,
+        areNullElementsForbidden: true,
+        element: {
+          type: String,
+          allowedAlternatives: Object.values(Table__YDF.DecorativeModifiers)
+        }
+      }
+
+    };
+
+  }

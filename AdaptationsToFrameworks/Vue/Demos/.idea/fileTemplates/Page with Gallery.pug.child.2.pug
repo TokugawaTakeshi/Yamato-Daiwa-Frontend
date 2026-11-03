@@ -1,0 +1,41 @@
+extends ../../../../node_modules/@yamato-daiwa/frontend/PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Requirements
+
+  include  ../../../../node_modules/@yamato-daiwa/frontend-demos/Source/Galleries/GalleryConfigurator.pug
+  include  ../../../../node_modules/@yamato-daiwa/frontend-demos/Source/CompletePages/GUI_Components/${COMPONENT_NAME}/_${COMPONENT_NAME}GalleryPage.partials.pug
+  include  ../../../_addDataAttributesGeneratingMethodToGalleryConfiguratorClass.pug
+
+
+block append Metadata
+
+  -
+
+    /**
+     * @param { string | undefined } partialTitle
+     * @returns { string }
+     * */
+    function generateHTML_PageTitle(partialTitle) {
+      return [
+        "${COMPONENT_NAME} GUI Component Demos",
+        ...partialTitle ? [ ` — ${ partialTitle }` ] : [],
+        " — Yamato Daiwa Frontend (YDF - Vue)"
+      ].join("");
+    }
+
+    RegularWebPageTemplate__YDF.configure({
+      stylesSheetsURIs: [
+        "${DS}ExternalStyles}/YDF-Demos-Primer.css",
+        "${DS}ExternalStyles/YDF-Demos-CommonRequirements.css",
+        "${DS}ExternalStyles/GUI_Components/${COMPONENT_NAME}/${COMPONENT_NAME}GalleryPage.css"
+      ],
+      scriptsURIs: {
+        atEndOfBody: [ "@CompletePages/GUI_Components/${COMPONENT_NAME}/${COMPONENT_NAME}GalleryPage" ]
+      }
+    });
+
+
+block append PageContent
+
+  .YDF_Gallery#APPLICATION&attributes(GalleryConfigurator.generateDataAttributes())

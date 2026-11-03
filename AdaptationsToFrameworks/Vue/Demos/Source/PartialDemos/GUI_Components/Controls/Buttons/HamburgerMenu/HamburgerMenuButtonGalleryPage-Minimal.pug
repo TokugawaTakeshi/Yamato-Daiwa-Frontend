@@ -1,0 +1,12 @@
+extends ../../../../../CompletePages/GUI_Components/Controls/Buttons/HamburgerMenu/_HamburgerMenuButtonGalleryPage.template.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.metadata.title = generateHTML_PageTitle("Minimal");
+
+    GalleryConfigurator.
+        setPartialToRender(GalleryConfigurator.Partials.minimal).
+        visuallyHideAllHeadings();

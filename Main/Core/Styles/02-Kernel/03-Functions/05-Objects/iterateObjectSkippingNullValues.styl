@@ -1,0 +1,9 @@
+iterateObjectSkippingNullValues--YDF(targetObject, iterator)
+
+  if isNotNull--YDF(targetObject)
+
+    for key, value in targetObject
+
+      if isNotNull--YDF(value)
+
+        iterator(key, value)

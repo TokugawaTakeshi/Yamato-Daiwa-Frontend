@@ -1,0 +1,14 @@
+YDF_Array-create(elements...)
+
+  if isNull--YDF(elements)
+
+    return {}
+
+
+  array = {}
+
+  for element, index in elements
+
+    array["" + index] = element
+
+  return array

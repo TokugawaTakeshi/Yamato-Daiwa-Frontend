@@ -1,0 +1,104 @@
+include LanguageDropDownListLocalization.english.pug
+
+
+-
+
+  const LanguageDropDownList__YDF_DK = {
+
+
+    /** @type {Object.<string, { localizedName: string, SVG_FlagHTML_ID: string }>} */
+    languagesData: {},
+
+    /** @type {Array.<string>} */
+    supportedLanguagesKeys: [],
+
+    /** @param {Object.<string, { localizedName: string, SVG_FlagHTML_ID: string }>} languagesData */
+    initialize(languagesData) {
+      this.languagesData = languagesData;
+      this.supportedLanguagesKeys = Array.from(Object.keys(languagesData));
+    },
+
+
+    /** @type {Object.<string, string>}
+     * Key is the language key which must be defined in supportedLanguagesKeys`.
+     * Value is the URI. */
+    links: {},
+    setLinks(links) {
+      this.links = links;
+    },
+
+    counterForID_Generating: 0,
+    generateID() {
+      this.counterForID_Generating++;
+      return `LANGUAGE_DROP_DOWN_LIST-${ this.counterForID_Generating }`;
+    },
+
+    localization: languageDropDownListYDF_DK_ComponentEnglishLocalization
+
+  }
+
+
+mixin LanguageDropDownList--YDF_DK
+
+  -
+
+    const COMPONENT_ID = LanguageDropDownList__YDF_DK.generateID();
+    const LIST_BOX_HTML_ID = `${ COMPONENT_ID }-LIST_BOX`
+    const CURRENTLY_SELECTED_OPTION_HTML_ID = `${ COMPONENT_ID }-CURRENTLY_SELECTED_OPTION`;
+
+    const currentlySelectedLanguageKey = LanguageDropDownList__YDF_DK.
+        supportedLanguagesKeys.
+        find(languageKey => !Object.keys(LanguageDropDownList__YDF_DK.links).includes(languageKey));
+
+    const currentlySelectedLanguageData = LanguageDropDownList__YDF_DK.languagesData[currentlySelectedLanguageKey];
+
+
+  //- [ Reference ] https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/
+  .LanguageDropDownList--YDF_DK&attributes(attributes)
+
+    .LanguageDropDownList--YDF_DK-CurrentlySelectedOption(
+      role="combobox"
+      tabindex="0"
+      aria-controls=LIST_BOX_HTML_ID
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-label=LanguageDropDownList__YDF_DK.localization.accessibilityGuidance
+      id=CURRENTLY_SELECTED_OPTION_HTML_ID
+    )
+      span.LanguageDropDownList--YDF_DK-CountryFlagPlaceholder(
+        data-target_image_id= currentlySelectedLanguageData.SVG_FlagHTML_ID
+      )
+      span.LanguageDropDownList--YDF_DK-CurrentlySelectedOption-Label= currentlySelectedLanguageData.localizedName
+
+
+    .LanguageDropDownList--YDF_DK-ListBox(
+      role="listbox"
+      tabindex="-1"
+      aria-label=LanguageDropDownList__YDF_DK.localization.accessibilityGuidance
+      id=LIST_BOX_HTML_ID
+      class="LanguageDropDownList--YDF_DK-ListBox__Hidden"
+    )
+
+      each languageData, languageKey in LanguageDropDownList__YDF_DK.languagesData
+
+        -
+          const isLanguageSelected = languageKey === currentlySelectedLanguageKey;
+          const currentLinkURI/* : string | undefined */ = LanguageDropDownList__YDF_DK.links[languageKey];
+
+        .LanguageDropDownList--YDF_DK-ListBox-Item(
+          role="option"
+          aria-selected=isLanguageSelected ? "true" : "false"
+          class=isLanguageSelected ? "LanguageDropDownList--YDF_DK-ListBox-Item__Selected": []
+        )
+          //- [ Theory ] Currently, the "a" without href the valid and means "current".
+          a(
+            href= currentLinkURI
+          )
+            span.LanguageDropDownList--YDF_DK-CountryFlagPlaceholder(
+              data-target_image_id=languageData.SVG_FlagHTML_ID
+            )
+            span.LanguageDropDownList--YDF_DK-ListBox-Item-Label= languageData.localizedName
+
+      template.LanguageDropDownList--YDF_DK-FlagsImagesHolder
+
+        block
