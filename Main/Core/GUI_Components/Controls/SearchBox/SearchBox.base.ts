@@ -1,6 +1,6 @@
 import type { YDF_Component } from "../../_Auxiliaries/YDF_Component";
 import YDF_ComponentsCoordinator from "../../_Auxiliaries/YDF_ComponentsCoordinator";
-import SearchBoxYDF_GUI_ComponentLocalization__English from "./SearchBoxLocalization.english";
+import SearchBoxLocalization__English from "./SearchBoxLocalization.english";
 
 
 export abstract class SearchBox {
@@ -62,9 +62,23 @@ export abstract class SearchBox {
   }
 
 
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static getActualRootElementModifierCSS_Classes(
+    relatedState:
+        Readonly<{
+          theme: string;
+          areThemesCSS_ClassesCommon: boolean;
+          geometricVariation: string;
+          decorativeVariation: string;
+        }>
+  ): Array<string> {
+    return YDF_ComponentsCoordinator.
+        getActualRootElementModifierCSS_Classes(SearchBox, relatedState);
+  }
+
+
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static localization: SearchBox.Localization =
-      SearchBoxYDF_GUI_ComponentLocalization__English;
+  public static localization: SearchBox.Localization = SearchBoxLocalization__English;
 
 }
 

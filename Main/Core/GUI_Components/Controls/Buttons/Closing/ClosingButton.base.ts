@@ -89,6 +89,22 @@ export abstract class ClosingButton {
   }
 
 
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static getActualRootElementModifierCSS_Classes(
+    relatedState:
+        Readonly<{
+          theme: string;
+          areThemesCSS_ClassesCommon: boolean;
+          geometricVariation: string;
+          geometricModifiers: ReadonlyArray<ClosingButton.GeometricModifiers>;
+          decorativeVariation: string;
+          decorativeModifiers: ReadonlyArray<ClosingButton.DecorativeModifiers>;
+        }>
+  ): Array<string> {
+    return YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(ClosingButton, relatedState);
+  }
+
+
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static localization: ClosingButton.Localization = ClosingButtonLocalization__English;
 

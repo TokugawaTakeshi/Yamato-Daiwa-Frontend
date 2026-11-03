@@ -629,7 +629,7 @@ public partial class ValidatableControlShell:
   public enum StandardDecorativeVariations { regular }
 
   protected internal static Type? CustomDecorativeVariations;
-  
+
   public static void defineDecorativeVariations(Type customDecorativeVariations) {
     YDF_ComponentsHelper.ValidateCustomDecorativeVariation(customDecorativeVariations);
     ValidatableControlShell.CustomDecorativeVariations = CustomDecorativeVariations;

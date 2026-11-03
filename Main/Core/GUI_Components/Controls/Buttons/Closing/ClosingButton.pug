@@ -69,17 +69,14 @@ mixin ClosingButton--YDF(properties)
 
     /** @type { Array<string> } */
     const rootElementModifierCSS_Classes =
-        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
-            ClosingButton__YDF,
-            {
-              theme,
-              areThemesCSS_ClassesCommon,
-              geometricVariation,
-              geometricModifiers,
-              decorativeVariation,
-              decorativeModifiers
-            }
-        );
+        ClosingButton__YDF.getActualRootElementModifierCSS_Classes({
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          geometricModifiers,
+          decorativeVariation,
+          decorativeModifiers
+        });
 
     /** @type { string } */
     const labelCSS_ModifierClass = ClosingButton__YDF.labelModifiersCSS_Classes[labelLetterCase];

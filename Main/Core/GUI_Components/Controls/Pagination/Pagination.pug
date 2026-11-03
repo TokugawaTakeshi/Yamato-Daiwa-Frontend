@@ -78,15 +78,12 @@ mixin Pagination--YDF(properties, statesSimulations)
 
     /** @type { Array<string> } */
     const rootElementModifierCSS_Classes =
-        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
-          Pagination__YDF,
-          {
-            theme,
-            areThemesCSS_ClassesCommon,
-            geometricVariation,
-            decorativeVariation
-          }
-        );
+        Pagination__YDF.getActualRootElementModifierCSS_Classes({
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
 
 
   nav.Pagination--YDF&attributes(attributes)(aria-label=accessibilityGuidance)

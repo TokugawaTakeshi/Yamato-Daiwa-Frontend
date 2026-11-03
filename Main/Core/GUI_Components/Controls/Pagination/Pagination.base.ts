@@ -31,15 +31,8 @@ export abstract class Pagination {
 
   public static defineThemes(
     definitions:
-        Array<
-          {
-            ownThemeKey: string;
-            themeModifierCSS_Class?: string;
-            correspondenceByChildren: {
-              button: { [ ownThemeValue: string ]: string; };
-            };
-          }
-        >
+        YDF_Component.OwnAndCorrespondingChildrenThemesDefinition.
+            ForSpecificChildrenComponents<keyof Pagination.SelfAndChildrenComponentsThemesCorrespondence>
   ): typeof Pagination {
     return YDF_ComponentsCoordinator.defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(Pagination, definitions);
   }
@@ -87,15 +80,8 @@ export abstract class Pagination {
 
   public static defineGeometricVariations(
     definitions:
-        Array<
-          {
-            ownGeometricVariationKey: string;
-            geometricVariationModifierCSS_Class?: string;
-            correspondenceByChildren: {
-              button: { [ ownGeometricVariationValue: string ]: string; };
-            };
-          }
-        >
+        YDF_Component.OwnAndCorrespondingChildrenGeometricVariationsDefinition.
+            ForSpecificChildrenComponents<keyof Pagination.SelfAndChildrenComponentsThemesCorrespondence>
   ): typeof Pagination {
     return YDF_ComponentsCoordinator.
         defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(Pagination, definitions);
@@ -128,9 +114,27 @@ export abstract class Pagination {
       { [Pagination.DecorativeVariations.veryCatchyBright]: "Pagination--YDF__RegularDecorativeVariation" };
 
   public static defineDecorativeVariations(
-    definitions: YDF_Component.CustomGeometricVariationDefinition
+    definitions:
+        YDF_Component.OwnAndCorrespondingChildrenDecorativeVariationsDefinition.
+            ForSpecificChildrenComponents<keyof Pagination.SelfAndChildrenComponentsDecorativeVariationsCorrespondence>
   ): typeof Pagination {
-    return YDF_ComponentsCoordinator.defineDecorativeVariations(Pagination, definitions);
+    return YDF_ComponentsCoordinator.
+        defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(Pagination, definitions);
+  }
+
+
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static getActualRootElementModifierCSS_Classes(
+    relatedState:
+        Readonly<{
+          theme: string;
+          areThemesCSS_ClassesCommon: boolean;
+          geometricVariation: string;
+          decorativeVariation: string;
+        }>
+  ): Array<string> {
+    return YDF_ComponentsCoordinator.
+        getActualRootElementModifierCSS_Classes(Pagination, relatedState);
   }
 
 
@@ -166,11 +170,6 @@ export namespace Pagination {
   export type SelfAndChildrenComponentsDecorativeVariationsCorrespondence = {
     button: { [ownDecorativeVariationValue: string]: string; };
   };
-
-  export enum DecorativeModifiers {
-    bordersDisguising = "BORDERS_DISGUISING",
-    noBackground = "NO_BACKGROUND"
-  }
 
   export type Localization =
       Readonly<{

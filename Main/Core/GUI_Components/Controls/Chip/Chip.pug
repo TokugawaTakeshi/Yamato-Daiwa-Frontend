@@ -56,17 +56,14 @@ mixin Chip--YDF(properties)
 
     /** @type { Array<string> } */
     const rootElementModifierCSS_Classes =
-        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
-            Chip__YDF,
-            {
-              theme,
-              areThemesCSS_ClassesCommon,
-              geometricVariation,
-              geometricModifiers,
-              decorativeVariation,
-              decorativeModifiers
-            }
-        );
+        Chip__YDF.getActualRootElementModifierCSS_Classes({
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          geometricModifiers,
+          decorativeVariation,
+          decorativeModifiers
+        });
 
 
   span.Chip--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)

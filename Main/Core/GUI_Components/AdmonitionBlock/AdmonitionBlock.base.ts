@@ -1,3 +1,4 @@
+/* eslint-disable-next-line max-classes-per-file -- Temporary disabled for the experimental method. */
 import type { YDF_Component } from "../_Auxiliaries/YDF_Component";
 import YDF_ComponentsCoordinator from "../_Auxiliaries/YDF_ComponentsCoordinator";
 import AdmonitionBlockLocalization__English from "./AdmonitionBlockLocalization.english";
@@ -77,11 +78,25 @@ export abstract class AdmonitionBlock {
   }
 
 
-  /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static getActualRootElementModifierCSS_Classes(
+    relatedState:
+        Readonly<{
+          theme: string;
+          areThemesCSS_ClassesCommon: boolean;
+          geometricVariation: string;
+          decorativeVariation: string;
+        }>
+  ): Array<string> {
+    return YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(AdmonitionBlock, relatedState);
+  }
+
+
+  /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static localization: AdmonitionBlock.Localization = AdmonitionBlockLocalization__English;
 
 
-  /* ━━━ IDs Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ━━━ IDs Generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   protected static counterForInstanceID_Generating: number = 0;
 
   public static generateInstanceID(uniqueDynamicPart?: string): string {
@@ -153,6 +168,63 @@ export abstract class AdmonitionBlock {
 
       }
     );
+  }
+
+  /** @experimental */
+  public static mixedInToInheritorOf(
+    TargetClass: object,
+    options?: Readonly<{ mustSkipLocalization: boolean; }>
+  ): typeof TargetClass & Omit<typeof AdmonitionBlock, "shareStaticMembers" | "mixedInToInheritorOf"> {
+
+    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment -- Temporary; waiting for the correction. */
+    // @ts-ignore
+    class Inheritor extends TargetClass {}
+
+    Object.defineProperties(
+      Inheritor,
+      {
+
+        CSS_NAMESPACE: { value: AdmonitionBlock.CSS_NAMESPACE },
+
+        Themes: { value: AdmonitionBlock.Themes },
+        themesCSS_Classes: { value: AdmonitionBlock.themesCSS_Classes },
+        defineThemes: { value: AdmonitionBlock.defineThemes },
+        areThemesCSS_ClassesCommon: {
+          value: AdmonitionBlock.areThemesCSS_ClassesCommon,
+          writable: true
+        },
+        considerThemesAsCommon: { value: AdmonitionBlock.considerThemesAsCommon },
+
+        GeometricVariations: { value: AdmonitionBlock.GeometricVariations },
+        geometricVariationsCSS_Classes: { value: AdmonitionBlock.geometricVariationsCSS_Classes },
+        defineGeometricVariations: { value: AdmonitionBlock.defineGeometricVariations },
+
+        DecorativeVariations: { value: AdmonitionBlock.DecorativeVariations },
+        decorativeVariationsCSS_Classes: { value: AdmonitionBlock.decorativeVariationsCSS_Classes },
+        defineDecorativeVariations: { value: AdmonitionBlock.defineDecorativeVariations },
+
+        ...options?.mustSkipLocalization === true ?
+            null :
+            {
+              localization: {
+                value: AdmonitionBlock.localization,
+                writable: true
+              }
+            },
+
+        counterForInstanceID_Generating: { value: AdmonitionBlock.counterForInstanceID_Generating },
+        generateInstanceID: { value: AdmonitionBlock.generateInstanceID },
+        counterForCustomSVG_IconsIDs_Generating: { value: AdmonitionBlock.counterForCustomSVG_IconsIDs_Generating },
+        customSVG_IconCurrentID: { value: AdmonitionBlock.customSVG_IconCurrentID },
+        generateCustomIconNewID: { value: AdmonitionBlock.generateCustomIconNewID }
+
+      }
+    );
+
+    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment -- Temporary; waiting for the correction. */
+    // @ts-ignore
+    return Inheritor;
+
   }
 
 }

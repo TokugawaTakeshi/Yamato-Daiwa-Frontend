@@ -1,5 +1,3 @@
-// GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton.base.ts
-
 import type { YDF_Component } from "../../../_Auxiliaries/YDF_Component";
 import YDF_ComponentsCoordinator from "../../../_Auxiliaries/YDF_ComponentsCoordinator";
 import HamburgerMenuButtonLocalization__English from "./HamburgerMenuButtonLocalization.english";
@@ -89,6 +87,23 @@ export abstract class HamburgerMenuButton {
       [HamburgerMenuButton.LabelLetterCases.lowercase]: "HamburgerMenuButton--YDF-Label__Lowercase",
       [HamburgerMenuButton.LabelLetterCases.capitalisation]: "HamburgerMenuButton--YDF-Label__Capitalisation"
     };
+  }
+
+
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static getActualRootElementModifierCSS_Classes(
+    relatedState:
+        Readonly<{
+          theme: string;
+          areThemesCSS_ClassesCommon: boolean;
+          geometricVariation: string;
+          geometricModifiers: ReadonlyArray<HamburgerMenuButton.GeometricModifiers>;
+          decorativeVariation: string;
+          decorativeModifiers: ReadonlyArray<HamburgerMenuButton.DecorativeModifiers>;
+        }>
+  ): Array<string> {
+    return YDF_ComponentsCoordinator.
+        getActualRootElementModifierCSS_Classes(HamburgerMenuButton, relatedState);
   }
 
 

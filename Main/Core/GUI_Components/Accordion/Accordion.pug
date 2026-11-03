@@ -65,15 +65,12 @@ mixin Accordion--YDF(properties, statesSimulations)
 
     /** @type { Array<string> } */
     const rootElementModifierCSS_Classes =
-        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
-          Accordion__YDF,
-          {
-            theme,
-            areThemesCSS_ClassesCommon,
-            geometricVariation,
-            decorativeVariation
-          }
-        );
+        Accordion__YDF.getActualRootElementModifierCSS_Classes({
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
 
 
   div&attributes(

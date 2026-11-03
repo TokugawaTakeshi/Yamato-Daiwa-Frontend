@@ -67,6 +67,20 @@ export abstract class Breadcrumb {
     return YDF_ComponentsCoordinator.defineDecorativeVariations(Breadcrumb, definitions);
   }
 
+
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static getActualRootElementModifierCSS_Classes(
+    relatedState:
+        Readonly<{
+          theme: string;
+          areThemesCSS_ClassesCommon: boolean;
+          geometricVariation: string;
+          decorativeVariation: string;
+        }>
+  ): Array<string> {
+    return YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(Breadcrumb, relatedState);
+  }
+
 }
 
 

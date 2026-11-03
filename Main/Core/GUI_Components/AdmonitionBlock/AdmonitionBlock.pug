@@ -54,15 +54,12 @@ mixin AdmonitionBlock--YDF(properties)
 
     /** @type { Array<string> } */
     const rootElementModifierCSS_Classes =
-        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
-          AdmonitionBlock__YDF,
-          {
-            theme,
-            areThemesCSS_ClassesCommon,
-            geometricVariation,
-            decorativeVariation
-          }
-        );
+        AdmonitionBlock__YDF.getActualRootElementModifierCSS_Classes({
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
 
     /** @type { string | undefined } */
     let INSTANCE_ID;

@@ -111,6 +111,23 @@ export abstract class Chip {
     };
   }
 
+
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static getActualRootElementModifierCSS_Classes(
+    relatedState:
+        Readonly<{
+          theme: string;
+          areThemesCSS_ClassesCommon: boolean;
+          geometricVariation: string;
+          geometricModifiers: ReadonlyArray<Chip.GeometricModifiers>;
+          decorativeVariation: string;
+          decorativeModifiers: ReadonlyArray<Chip.DecorativeModifiers>;
+        }>
+  ): Array<string> {
+    return YDF_ComponentsCoordinator.
+        getActualRootElementModifierCSS_Classes(Chip, relatedState);
+  }
+
 }
 
 

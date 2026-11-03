@@ -133,7 +133,7 @@ export abstract class YDF_ComponentsCoordinator {
     }
   >(
     TargetComponentClass: TargetComponentClassType,
-    ownAndCorrespondingChildrenThemesDefinition: YDF_Component.OwnAndCorrespondingChildrenThemesDefinition
+    ownAndCorrespondingChildrenThemesDefinition: YDF_Component.OwnAndCorrespondingChildrenThemesDefinition.Generalized
   ): TargetComponentClassType {
 
     /* eslint-disable-next-line @typescript-eslint/no-unused-expressions -- [ Approach ]
@@ -182,7 +182,7 @@ export abstract class YDF_ComponentsCoordinator {
   >(
     TargetComponentClass: TargetComponentClassType,
     ownAndCorrespondingChildrenGeometricVariationsDefinition:
-        YDF_Component.OwnAndCorrespondingChildrenGeometricVariationsDefinition
+        YDF_Component.OwnAndCorrespondingChildrenGeometricVariationsDefinition.Generalized
   ): TargetComponentClassType {
 
     /* eslint-disable-next-line @typescript-eslint/no-unused-expressions -- [ Approach ]
@@ -234,7 +234,7 @@ export abstract class YDF_ComponentsCoordinator {
   >(
     TargetComponentClass: TargetComponentClassType,
     ownAndCorrespondingChildrenDecorativeVariationsDefinition:
-        YDF_Component.OwnAndCorrespondingChildrenDecorativeVariationsDefinition
+        YDF_Component.OwnAndCorrespondingChildrenDecorativeVariationsDefinition.Generalized
   ): TargetComponentClassType {
 
     /* eslint-disable-next-line @typescript-eslint/no-unused-expressions -- [ Approach ]

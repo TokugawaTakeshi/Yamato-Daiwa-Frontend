@@ -97,6 +97,40 @@ export abstract class RadioButton {
   }
 
 
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static getActualRootElementModifierCSS_Classes(
+    {
+      checked,
+      disabled,
+      readonly,
+      ...relatedState
+    }:
+        Readonly<{
+          theme: string;
+          areThemesCSS_ClassesCommon: boolean;
+          geometricVariation: string;
+          geometricModifiers: ReadonlyArray<RadioButton.GeometricModifiers>;
+          decorativeVariation: string;
+          decorativeModifiers: ReadonlyArray<RadioButton.DecorativeModifiers>;
+          checked: boolean;
+          disabled: boolean;
+          readonly: boolean;
+        }>
+  ): Array<string> {
+    return YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+      RadioButton,
+      {
+        ...relatedState,
+        otherCSS_Classes: [
+          ...checked ? [ "RadioButton--YDF__CheckedState" ] : [ "RadioButton__UncheckedState" ],
+          ...disabled ? [ "RadioButton--YDF__DisabledState" ] : [],
+          ...readonly ? [ "RadioButton--YDF__ReadOnlyState" ] : []
+        ]
+      }
+    );
+  }
+
+
   /* ━━━ ID generating ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   private static counterForID_Generating: number = 0;
 

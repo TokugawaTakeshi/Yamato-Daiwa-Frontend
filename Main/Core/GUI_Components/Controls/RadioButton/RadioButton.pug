@@ -86,22 +86,17 @@
 
     /** @type { Array<string> } */
     const rootElementModifierCSS_Classes =
-        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
-          RadioButton__YDF,
-          {
-            theme,
-            areThemesCSS_ClassesCommon,
-            geometricVariation,
-            geometricModifiers,
-            decorativeVariation,
-            decorativeModifiers,
-            otherCSS_Classes: [
-              ...checked ? [ "RadioButton--YDF__CheckedState" ] : [ "RadioButton__UncheckedState" ],
-              ...disabled ? [`RadioButton--YDF__DisabledState`] : [],
-              ...readonly ? [`RadioButton--YDF__ReadOnlyState`] : [],
-            ]
-          }
-        );
+        RadioButton__YDF.getActualRootElementModifierCSS_Classes({
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          geometricModifiers,
+          decorativeVariation,
+          decorativeModifiers,
+          checked,
+          disabled,
+          readonly
+        });
 
 
   .RadioButton--YDF&attributes(attributes)(

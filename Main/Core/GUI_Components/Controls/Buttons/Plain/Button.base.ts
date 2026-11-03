@@ -98,6 +98,36 @@ export abstract class Button {
     };
   }
 
+
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static getActualRootElementModifierCSS_Classes(
+    {
+      isAnchorTheTagNameOfRootElement = false,
+      disabled = false,
+      ...relatedState
+    }:
+        Readonly<{
+          isAnchorTheTagNameOfRootElement?: boolean;
+          disabled?: boolean;
+          theme: string;
+          areThemesCSS_ClassesCommon: boolean;
+          geometricVariation: string;
+          geometricModifiers: ReadonlyArray<Button.GeometricModifiers>;
+          decorativeVariation?: string;
+          decorativeModifiers?: ReadonlyArray<Button.DecorativeModifiers>;
+        }>
+  ): Array<string> {
+    return YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
+      Button,
+      {
+        ...relatedState,
+        otherCSS_Classes: [
+          ...isAnchorTheTagNameOfRootElement && disabled ? [ "Button--YDF__DisabledState" ] : []
+        ]
+      }
+    );
+  }
+
 }
 
 

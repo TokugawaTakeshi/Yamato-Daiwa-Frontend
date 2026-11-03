@@ -110,15 +110,12 @@ mixin ValidatableControlShell--YDF(properties, statesSimulations)
 
     /** @type { ReadonlyArray<string> } */
     const rootElementModifierCSS_Classes =
-        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
-          ValidatableControlShell__YDF,
-          {
-            theme,
-            areThemesCSS_ClassesCommon,
-            geometricVariation,
-            decorativeVariation
-          }
-        );
+        ValidatableControlShell__YDF.getActualRootElementModifierCSS_Classes({
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
 
     /** @type { boolean } */
     const mustDisplayRequiredInputBadge = required && mustDisplayAppropriateBadgeIfInputIsRequired;
@@ -330,15 +327,12 @@ mixin ValidatableControlShell--YDF-LoadingPlaceholder(properties)
 
     /** @type { ReadonlyArray<string> } */
     const rootElementModifierCSS_Classes =
-        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
-          ValidatableControlShell__YDF,
-          {
-            theme,
-            areThemesCSS_ClassesCommon,
-            geometricVariation,
-            otherCSS_Classes: [ "ValidatableControlShell--YDF__LoadingPlaceholder" ]
-          }
-        );
+        ValidatableControlShell__YDF.getActualRootElementModifierCSS_Classes({
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          otherCSS_Classes: [ "ValidatableControlShell--YDF__LoadingPlaceholder" ]
+        });
 
   .ValidatableControlShell--YDF(
     class=rootElementModifierCSS_Classes

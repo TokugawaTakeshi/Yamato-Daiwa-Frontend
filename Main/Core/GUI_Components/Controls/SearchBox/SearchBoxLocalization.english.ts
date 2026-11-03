@@ -1,7 +1,7 @@
 import type SearchBox from "./SearchBox.base";
 
 
-export const SearchBoxYDF_GUI_ComponentLocalization__English: SearchBox.Localization = {
+export const SearchBoxLocalization__English: SearchBox.Localization = {
   inputElement: { defaultAccessibilityGuidance: "Please input search request here" },
   buttons: {
     searching: { label: "Search", accessibilityGuidance: "Submit search request" },
@@ -15,4 +15,4 @@ export const SearchBoxYDF_GUI_ComponentLocalization__English: SearchBox.Localiza
 };
 
 
-export default SearchBoxYDF_GUI_ComponentLocalization__English;
+export default SearchBoxLocalization__English;

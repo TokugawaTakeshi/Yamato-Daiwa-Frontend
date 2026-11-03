@@ -45,29 +45,14 @@ mixin Breadcrumb--YDF(properties)
       mixinName: "Breadcrumb--YDF"
     });
 
-    /** @type { ReadonlyArray<string> } */
-    const rootElementModifierCSS_Classes = [
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: Breadcrumb__YDF.Themes,
-        CSS_Namespace: Breadcrumb__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: Breadcrumb__YDF.GeometricVariations,
-        CSS_Namespace: Breadcrumb__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: Breadcrumb__YDF.DecorativeVariations,
-        CSS_Namespace: Breadcrumb__YDF.CSS_NAMESPACE
-      })
-
-    ];
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+        Breadcrumb__YDF.getActualRootElementModifierCSS_Classes({
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
 
 
   nav.Breadcrumb--YDF(

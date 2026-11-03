@@ -36,15 +36,8 @@ export abstract class ValidatableControlShell {
 
   public static defineThemes(
     definitions:
-        Array<
-          {
-            ownThemeKey: string;
-            themeModifierCSS_Class?: string;
-            correspondenceByChildren: {
-              button: { [ ownThemeValue: string ]: string; };
-            };
-          }
-        >
+        YDF_Component.OwnAndCorrespondingChildrenThemesDefinition.
+            ForSpecificChildrenComponents<keyof ValidatableControlShell.SelfAndChildrenComponentsThemesCorrespondence>
   ): typeof ValidatableControlShell {
     return YDF_ComponentsCoordinator.
         defineThemesAndSetCorrespondenceWithOnesOfChildrenComponents(ValidatableControlShell, definitions);
@@ -100,15 +93,10 @@ export abstract class ValidatableControlShell {
 
   public static defineGeometricVariations(
     definitions:
-        Array<
-          {
-            ownGeometricVariationKey: string;
-            geometricVariationModifierCSS_Class?: string;
-            correspondenceByChildren: {
-              button: { [ ownGeometricVariationValue: string ]: string; };
-            };
-          }
-        >
+        YDF_Component.OwnAndCorrespondingChildrenGeometricVariationsDefinition.
+            ForSpecificChildrenComponents<
+              keyof ValidatableControlShell.SelfAndChildrenComponentsGeometricVariationsCorrespondence
+            >
   ): typeof ValidatableControlShell {
     return YDF_ComponentsCoordinator.
         defineGeometricVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(ValidatableControlShell, definitions);
@@ -128,8 +116,11 @@ export abstract class ValidatableControlShell {
   {
     return ValidatableControlShell._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
       ValidatableControlShell._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
-        button: {
-          [ValidatableControlShell.DecorativeVariations.regular]: Button.DecorativeVariations.regular
+        requiredInputBadge: {
+          [ValidatableControlShell.DecorativeVariations.regular]: Badge.DecorativeVariations.veryCatchyBright
+        },
+        optionalInputBadge: {
+          [ValidatableControlShell.DecorativeVariations.regular]: Badge.DecorativeVariations.modestlyCalmingBright
         }
       }
     );
@@ -141,9 +132,28 @@ export abstract class ValidatableControlShell {
   };
 
   public static defineDecorativeVariations(
-    definitions: YDF_Component.CustomGeometricVariationDefinition
+    definitions:
+        YDF_Component.OwnAndCorrespondingChildrenDecorativeVariationsDefinition.
+            ForSpecificChildrenComponents<
+              keyof ValidatableControlShell.SelfAndChildrenComponentsDecorativeVariationsCorrespondence
+            >
   ): typeof ValidatableControlShell {
-    return YDF_ComponentsCoordinator.defineDecorativeVariations(ValidatableControlShell, definitions);
+    return YDF_ComponentsCoordinator.
+        defineDecorativeVariationsAndSetCorrespondenceWithOnesOfChildrenComponents(ValidatableControlShell, definitions);
+  }
+
+
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static getActualRootElementModifierCSS_Classes(
+    relatedState:
+        Readonly<{
+          theme: string;
+          areThemesCSS_ClassesCommon: boolean;
+          geometricVariation: string;
+          decorativeVariation?: string;
+        }>
+  ): Array<string> {
+    return YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(ValidatableControlShell, relatedState);
   }
 
 
@@ -264,7 +274,8 @@ export namespace ValidatableControlShell {
       >;
 
   export type SelfAndChildrenComponentsDecorativeVariationsCorrespondence = {
-    button: { [ownDecorativeVariationValue: string]: string; };
+    requiredInputBadge: { [ownDecorativeVariationValue: string]: string; };
+    optionalInputBadge: { [ownDecorativeVariationValue: string]: string; };
   };
 
   export type Localization = Readonly<{

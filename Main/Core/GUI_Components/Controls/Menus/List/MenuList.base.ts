@@ -60,6 +60,21 @@ class MenuList {
     return YDF_ComponentsCoordinator.defineDecorativeVariations(MenuList, definitions);
   }
 
+
+  /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected static getActualRootElementModifierCSS_Classes(
+    relatedState:
+        Readonly<{
+          theme: string;
+          areThemesCSS_ClassesCommon: boolean;
+          geometricVariation: string;
+          decorativeVariation: string;
+        }>
+  ): Array<string> {
+    return YDF_ComponentsCoordinator.
+        getActualRootElementModifierCSS_Classes(MenuList, relatedState);
+  }
+
 }
 
 

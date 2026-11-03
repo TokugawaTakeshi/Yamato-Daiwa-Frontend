@@ -156,21 +156,18 @@ mixin Button--YDF(properties)
     /** @type { Array<string> } */
     const commonCSS_Classes = [
 
-      "Button--YDF",
+      Button__YDF.CSS_NAMESPACE,
 
-      ...isAnchorTheTagNameOfRootElement && disabled ? [ "Button--YDF__DisabledState" ] : [],
-
-      ...YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
-        Button__YDF,
-        {
-          theme,
-          areThemesCSS_ClassesCommon,
-          geometricVariation,
-          geometricModifiers,
-          decorativeVariation,
-          decorativeModifiers
-        }
-      )
+      ...Button__YDF.getActualRootElementModifierCSS_Classes({
+        isAnchorTheTagNameOfRootElement,
+        disabled,
+        theme,
+        areThemesCSS_ClassesCommon,
+        geometricVariation,
+        geometricModifiers,
+        decorativeVariation,
+        decorativeModifiers
+      })
 
     ];
 
@@ -306,15 +303,12 @@ mixin Button--YDF-LoadingPlaceholder(properties)
 
     /** @type { Array<string> } */
     const rootElementModifierCSS_Classes =
-        YDF_ComponentsCoordinator.getActualRootElementModifierCSS_Classes(
-            ClosingButton__YDF,
-            {
-              theme,
-              areThemesCSS_ClassesCommon,
-              geometricVariation,
-              geometricModifiers
-            }
-        );
+        Button__YDF.getActualRootElementModifierCSS_Classes({
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          geometricModifiers
+        });
 
   span.Button--YDF.Button--YDF__LoadingPlaceholder(
     class= rootElementModifierCSS_Classes
