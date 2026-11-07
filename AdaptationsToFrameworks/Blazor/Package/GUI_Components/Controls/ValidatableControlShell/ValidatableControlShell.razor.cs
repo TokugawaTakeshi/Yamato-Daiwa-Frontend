@@ -517,10 +517,10 @@ public partial class ValidatableControlShell:
     foreach (
       (string ownThemeKey, SelfAndChildrenComponentsThemesCorrespondenceDefinition childThemeName) in 
           selfAndChildrenComponentsThemesCorrespondenceDefinition
-      )
+    )
     {
       ValidatableControlShell.SelfAndChildrenComponentsThemesCorrespondence.badge.Add(
-        ownThemeKey, childThemeName
+        ownThemeKey, childThemeName.badge
       );  
     }
     
@@ -581,7 +581,6 @@ public partial class ValidatableControlShell:
   {
     YDF_ComponentsHelper.ValidateCustomGeometricVariation(customGeometricVariations);
     ValidatableControlShell.CustomGeometricVariations = customGeometricVariations;
-
   }
   
   protected string _geometricVariation = nameof(ValidatableControlShell.StandardGeometricVariations.regular);

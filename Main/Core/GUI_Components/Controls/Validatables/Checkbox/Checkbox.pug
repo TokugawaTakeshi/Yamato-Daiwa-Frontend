@@ -1,6 +1,3 @@
-include Checkbox.class.pug
-
-
 mixin Checkbox--YDF(properties)
 
   -
@@ -52,31 +49,31 @@ mixin Checkbox--YDF(properties)
 
       /**
        * @type { string }
-       * @default Checkbox__YDF.Themes.regular
+       * @default Checkbox.Themes.regular
        * */
       theme,
 
       /**
        * @type { boolean }
-       * @default Checkbox__YDF.areThemesCSS_ClassesCommon
+       * @default Checkbox.areThemesCSS_ClassesCommon
        */
       areThemesCSS_ClassesCommon,
 
       /**
        * @type { string }
-       * @default Checkbox__YDF.GeometricVariations.regular
+       * @default Checkbox.GeometricVariations.regular
        */
       geometricVariation,
 
       /**
-       * @type { Array<Checkbox__YDF.GeometricModifiers> }
+       * @type { Array<Checkbox.GeometricModifiers> }
        * @default []
        */
       geometricModifiers,
 
       /**
        * @type { string }
-       * @default Checkbox__YDF.DecorativeVariations.regular
+       * @default Checkbox.DecorativeVariations.regular
        * */
       decorativeVariation
 
@@ -85,7 +82,7 @@ mixin Checkbox--YDF(properties)
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: Checkbox__YDF.propertiesSpecification,
-      mixinName: Checkbox__YDF.CSS_NAMESPACE
+      mixinName: "Checkbox--YDF"
     });
 
     /** @type { string } */
@@ -132,43 +129,21 @@ mixin Checkbox--YDF(properties)
       rawParameter: statesSimulations,
       parameterNumber: 2,
       parameterName: "statesSimulations",
-      parameterPropertiesSpecification: TextBox__YDF.statesSimulationsSpecification,
-      mixinName: TextBox__YDF.CSS_NAMESPACE
+      parameterPropertiesSpecification: Checkbox__YDF.statesSimulationsSpecification,
+      mixinName: "Checkbox--YDF"
     });
 
     /** @type { Array<string> } */
-    const rootElementModifierCSS_Classes = [
-
-      checked ?
-          `${ Checkbox__YDF.CSS_NAMESPACE }__CheckedState` :
-          `${ Checkbox__YDF.CSS_NAMESPACE }__UncheckedState`,
-
-      ...disabled ? [ `${ Checkbox__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
-      ...readonly ? [ `${ Checkbox__YDF.CSS_NAMESPACE }__ReadOnlyState` ] : [],
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: Checkbox__YDF.Themes,
-        CSS_Namespace: Checkbox__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: Checkbox__YDF.GeometricVariations,
-        CSS_Namespace: Checkbox__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.
-          generateDemandedGeometricModifiersCSS_Classes(Checkbox__YDF.CSS_NAMESPACE, geometricModifiers),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: Checkbox__YDF.DecorativeVariations,
-        CSS_Namespace: Checkbox__YDF.CSS_NAMESPACE
-      })
-
-    ];
+    const rootElementModifierCSS_Classes =
+        Checkbox__YDF.getActualRootElementModifierCSS_Classes({
+          checked,
+          disabled,
+          readonly,
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
 
 
   +ValidatableControlShell--YDF(

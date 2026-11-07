@@ -193,10 +193,10 @@ class Badge extends VueComponent {
 namespace Badge {
 
   export type GeometricVariations = BadgeBase.GeometricVariations;
-  export type GeometricModifiers = BadgeBase.GeometricModifiers;
+  export type GeometricModifiers = typeof BadgeBase.GeometricModifiers;
 
   export type DecorativeVariations = BadgeBase.DecorativeVariations;
-  export type DecorativeModifiers = BadgeBase.DecorativeModifiers;
+  export type DecorativeModifiers = typeof BadgeBase.DecorativeModifiers;
 
 }
 

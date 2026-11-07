@@ -7,17 +7,7 @@ export {
 } from "@yamato-daiwa/frontend";
 
 
-export function putFocusOnElement(element: HTMLElement): void {
-  element.focus();
-}
-
-export function triggerLeftClick(element: HTMLElement): void {
-  element.click();
-}
-
-export function getDOM_ElementOffsetCoordinates(targetElement: HTMLElement): { left: number; top: number; } {
-  return {
-    left: targetElement.offsetLeft,
-    top: targetElement.offsetTop
-  };
-}
+export { putFocusOnElement } from "./JavaScriptFunctionality/putFocusOnElement";
+export { triggerLeftClick } from "./JavaScriptFunctionality/triggerLeftClick";
+export { getDOM_ElementOffsetCoordinates } from "./JavaScriptFunctionality/getDOM_ElementOffsetCoordinates";
+export { scrollVerticallyToElementWithSelector } from "./JavaScriptFunctionality/scrollVerticallyToElementWithSelector";

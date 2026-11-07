@@ -1,9 +1,6 @@
 /* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-import {
-  type BlockingLoadingOverlayBase,
-  BlockingLoadingOverlayYDF_GUI_ComponentLocalization__English
-} from "@yamato-daiwa/frontend";
+import { type BlockingLoadingOverlayBase, BlockingLoadingOverlayLocalization__English } from "@yamato-daiwa/frontend";
 
 /* ┅┅┅ GUI Components ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import LoadingIndicator from "../Controls/LoadingIndicator/LoadingIndicatorLogic.vue";
@@ -32,8 +29,7 @@ class BlockingLoadingOverlay extends VueComponent {
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static readonly CSS_NAMESPACE: string = "BlockingLoadingOverlay--YDF";
 
-  public static localization: BlockingLoadingOverlayBase.Localization =
-      BlockingLoadingOverlayYDF_GUI_ComponentLocalization__English;
+  public static localization: BlockingLoadingOverlayBase.Localization = BlockingLoadingOverlayLocalization__English;
 
 
   /* ━━━ Instance Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

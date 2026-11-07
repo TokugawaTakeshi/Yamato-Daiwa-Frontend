@@ -1,7 +1,7 @@
 import type ValidatableControlShell from "./ValidatableControlShell.base";
 
 
-const ValidatableControlShellLocalization__English: ValidatableControlShell.Localization = {
+export const ValidatableControlShellLocalization__English: ValidatableControlShell.Localization = {
 
   requirementBadges: {
     required: "Required",

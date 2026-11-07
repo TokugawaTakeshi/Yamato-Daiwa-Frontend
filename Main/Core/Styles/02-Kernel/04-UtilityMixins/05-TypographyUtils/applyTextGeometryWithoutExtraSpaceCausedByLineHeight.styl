@@ -175,29 +175,63 @@ applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF(compoundParameter, res
         )
       )
 
-      upwardShifting = nullToZero--YDF(paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.upwardShifting)
+      upwardShifting = nullOrZeroToZeroPx--YDF(paddingsWhichMustBeDecreasedInsteadOfAddingOfNegativeMargins.upwardShifting)
 
-      topPadding = buildCalcExpression--YDF(
+      topPadding1 = buildCalcExpression--YDF(
         "${ topPadding } - ${ upwardShifting } - ${ extraSpaceCausedByLineHeightAtTopOrBottom }",
         {
-          topPadding: nullToZero--YDF(topPadding),
+          topPadding: nullOrZeroToZeroPx--YDF(topPadding),
           upwardShifting: upwardShifting,
           extraSpaceCausedByLineHeightAtTopOrBottom: extraSpaceCausedByLineHeightAtTopOrBottom
         }
       )
 
-      bottomPadding = buildCalcExpression--YDF(
-        "${ topPadding } + ${ upwardShifting } - ${ extraSpaceCausedByLineHeightAtTopOrBottom }",
+      bottomPadding1 = buildCalcExpression--YDF(
+        "${ bottomPadding } + ${ upwardShifting } - ${ extraSpaceCausedByLineHeightAtTopOrBottom }",
         {
-          topPadding: nullToZero--YDF(bottomPadding),
+          bottomPadding: nullOrZeroToZeroPx--YDF(bottomPadding),
           upwardShifting: upwardShifting,
           extraSpaceCausedByLineHeightAtTopOrBottom: extraSpaceCausedByLineHeightAtTopOrBottom
         }
       )
 
-      padding-top: topPadding
-      padding-bottom: bottomPadding
 
+      //log--YDF("======================")
+      //log--YDF(topPadding1)
+      //log--YDF(bottomPadding1)
+      //p("-----------------------------")
+      //log--YDF(
+      //  buildCalcExpressionTermwise--YDF(\
+      //    topPadding\
+      //    ("+" upwardShifting)\
+      //    ("-" extraSpaceCausedByLineHeightAtTopOrBottom)
+      //  )
+      //)
+      //log--YDF(
+      //  buildCalcExpressionTermwise--YDF(\
+      //    topPadding\
+      //    ("+" upwardShifting)\
+      //    ("-" extraSpaceCausedByLineHeightAtTopOrBottom)
+      //  )
+      //)
+      //
+      //padding-top: \
+      //    buildCalcExpressionTermwise--YDF(\
+      //      topPadding\
+      //      ("+" upwardShifting)\
+      //      ("-" extraSpaceCausedByLineHeightAtTopOrBottom)
+      //    )
+      //
+      //padding-bottom: \
+      //    buildCalcExpressionTermwise--YDF(\
+      //      bottomPadding\
+      //      ("+" upwardShifting)\
+      //      ("-" extraSpaceCausedByLineHeightAtTopOrBottom)
+      //    )
+
+
+      padding-top: topPadding1
+      padding-bottom: bottomPadding1
 
     else if compoundParameter.mustApplyNegativeMarginsToRootElement
 

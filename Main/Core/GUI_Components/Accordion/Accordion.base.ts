@@ -100,7 +100,7 @@ export abstract class Accordion {
 
         Themes: { value: Accordion.Themes },
         themesCSS_Classes: { value: Accordion.themesCSS_Classes },
-        defineThemes: { value: Accordion.defineThemes },
+        defineThemes: { get: (): unknown => Reflect.get(Accordion, "defineThemes") },
         areThemesCSS_ClassesCommon: {
           value: Accordion.areThemesCSS_ClassesCommon,
           writable: true
@@ -109,14 +109,14 @@ export abstract class Accordion {
 
         GeometricVariations: { value: Accordion.GeometricVariations },
         geometricVariationsCSS_Classes: { value: Accordion.geometricVariationsCSS_Classes },
-        defineGeometricVariations: { value: Accordion.defineGeometricVariations },
+        defineGeometricVariations: { get: (): unknown => Reflect.get(Accordion, "defineGeometricVariations") },
 
         DecorativeVariations: { value: Accordion.DecorativeVariations },
         decorativeVariationsCSS_Classes: { value: Accordion.decorativeVariationsCSS_Classes },
-        defineDecorativeVariations: { value: Accordion.defineDecorativeVariations },
+        defineDecorativeVariations: { get: (): unknown => Reflect.get(Accordion, "defineDecorativeVariations") },
 
         counterForInstanceID_Generating: { value: Accordion.counterForInstanceID_Generating },
-        generateInstanceID: { value: Accordion.generateInstanceID }
+        generateInstanceID: { get: (): unknown => Reflect.get(Accordion, "generateInstanceID") }
 
       }
     );

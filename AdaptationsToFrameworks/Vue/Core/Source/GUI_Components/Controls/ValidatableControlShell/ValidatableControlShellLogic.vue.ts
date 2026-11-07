@@ -1,8 +1,8 @@
 /* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import {
-  type ValidatableControlShellLocalization,
-  ValidatableControlShellYDF_GUI_ComponentLocalization__English,
+  type ValidatableControlShellBase,
+  ValidatableControlShellLocalization__English,
   InputtedValueValidation,
   replaceMarkdownBold,
   replaceMarkdownLink
@@ -557,8 +557,7 @@ class ValidatableControlShell extends VueComponent {
   protected static readonly LoadingIndicator: typeof LoadingIndicator = LoadingIndicator;
 
   @AccessibleFromTemplateAsNonReactive
-  public static localization: ValidatableControlShellLocalization =
-      ValidatableControlShellYDF_GUI_ComponentLocalization__English;
+  public static localization: ValidatableControlShellBase.Localization = ValidatableControlShellLocalization__English;
 
 
   /* ━━━ Transforming to Options API ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

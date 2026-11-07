@@ -74,7 +74,7 @@ computeTotalHeightByTextElementHeightSizingSpecification--YDF(properties, restPa
 
     YDF_Array-appendElementsIf(
       summands,
-      @(summand) { return isNotNull--YDF(summand) },
+      @(summand) { return isNotNull--YDF(summand) && summand != 0 },
       isNotNull--YDF(borders.all) ? 2 * borders.all : null,
       isNotNull--YDF(borders.verticalSymmetric) ? 2 * borders.verticalSymmetric : null,
       borders.top,
@@ -87,6 +87,5 @@ computeTotalHeightByTextElementHeightSizingSpecification--YDF(properties, restPa
       paddings.bottom,
       heightOfAllLines
     )
-
 
     return unquote("calc(" + join(" + ", values(summands)) + ")")

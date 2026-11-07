@@ -12,7 +12,7 @@ import DecorativeVariationVuePropertyValidator from "../../../_VuePropertiesVali
 import preventNullForOptionalVueProperty from "../../../_Decorators/preventNullForOptionalVueProperty";
 
 /* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-import { type TextBoxLocalization, TextBoxYDF_GUI_ComponentLocalization__English } from "@yamato-daiwa/frontend";
+import { type TextBoxBase, TextBoxLocalization__English } from "@yamato-daiwa/frontend";
 
 /* ┅┅┅ GUI Components ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import ValidatableControl from "../ValidatableControl";
@@ -895,7 +895,7 @@ class TextBox<
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   @AccessibleFromTemplateAsNonReactive
-  public static localization: TextBoxLocalization = TextBoxYDF_GUI_ComponentLocalization__English;
+  public static localization: TextBoxBase.Localization = TextBoxLocalization__English;
 
 
   /* ━━━ Raw Input Transformers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

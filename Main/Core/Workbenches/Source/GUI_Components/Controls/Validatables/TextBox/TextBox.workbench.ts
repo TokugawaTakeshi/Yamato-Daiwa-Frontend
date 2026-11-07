@@ -1,4 +1,4 @@
-import TextBox from "../../../../../../GUI_Components/Controls/Validatables/TextBox/TextBox";
+import TextBox from "../../../../../../GUI_Components/Controls/Validatables/TextBox/TextBox.logic";
 import InputtedValueValidation from "../../../../../../GUI_Components/Controls/_Validation/InputtedValueValidation";
 import ValidatableControl from "../../../../../../GUI_Components/Controls/_Validation/ValidatableControl";
 import isStringEmpty from "../../../../../../GUI_Components/Controls/_Validation/OmittedValueCheckers/isStringEmpty";

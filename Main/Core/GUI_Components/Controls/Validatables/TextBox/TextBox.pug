@@ -1,6 +1,3 @@
-include TextBox.class.pug
-
-
 mixin TextBox--YDF(properties, statesSimulations)
 
   -
@@ -8,7 +5,7 @@ mixin TextBox--YDF(properties, statesSimulations)
     const {
 
       /**
-       * @type { TextBox__YDF.HTML_Types }
+       * @type { TextBox.HTML_Types }
        * @default TextBox__YDF.HTML_Types.text
        * */
       HTML_Type,
@@ -126,32 +123,32 @@ mixin TextBox--YDF(properties, statesSimulations)
       HTML_IDs,
 
       /**
-       * @type { TextBox__YDF.Themes }
-       * @default TextBox__YDF.Themes.regular
+       * @type { TextBox.Themes }
+       * @default TextBox.Themes.regular
        * */
       theme,
 
       /**
        * @type { boolean }
-       * @default TextBox__YDF.areThemesCSS_ClassesCommon
+       * @default TextBox.areThemesCSS_ClassesCommon
        * */
       areThemesCSS_ClassesCommon,
 
       /**
-       * @type { TextBox__YDF.GeometricVariations }
-       * @default TextBox__YDF.GeometricVariations.regular
+       * @type { TextBox.GeometricVariations }
+       * @default TextBox.GeometricVariations.regular
        * */
       geometricVariation,
 
       /**
-       * @type { Array<TextBox__YDF.GeometricModifiers> }
+       * @type { Array<TextBox.GeometricModifiers> }
        * @default []
        * */
       geometricModifiers,
 
       /**
-       * @type { TextBox__YDF.GeometricVariations }
-       * @default TextBox__YDF.DecorativeVariations.regular
+       * @type { TextBox.GeometricVariations }
+       * @default TextBox.DecorativeVariations.regular
        * */
       decorativeVariation
 
@@ -160,7 +157,7 @@ mixin TextBox--YDF(properties, statesSimulations)
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: TextBox__YDF.propertiesSpecification,
-      mixinName: TextBox__YDF.CSS_NAMESPACE
+      mixinName: "TextBox--YDF"
     });
 
     /** @type { string } */
@@ -207,51 +204,28 @@ mixin TextBox--YDF(properties, statesSimulations)
       parameterNumber: 2,
       parameterName: "statesSimulations",
       parameterPropertiesSpecification: TextBox__YDF.statesSimulationsSpecification,
-      mixinName: TextBox__YDF.CSS_NAMESPACE
+      mixinName: "TextBox--YDF"
     });
 
 
-    /** @type { Array<string> } */
+    /** @type { ReadonlyArray<string> } */
     const rootCSS_Classes = [
 
       TextBox__YDF.DOM_AccessResources.rootElement.CSS_NAMESPACE_CLASS,
 
-      ...multiline ? [ `${ TextBox__YDF.CSS_NAMESPACE }__Multiline` ] : [],
-
-      ...disabled ? [ `${ TextBox__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
-
-      ...(
-        invalidInputHighlightingIfAnyValidationErrorsMessages &&
-            (validationErrorsMessages === true || validationErrorsMessages.length > 0)
-      ) ?
-          [ `${ TextBox__YDF.CSS_NAMESPACE }__InvalidInputState` ] : [],
-
-      ...(
-        validValueHighlightingIfNoValidationErrorsMessages &&
-            (validationErrorsMessages === false || validationErrorsMessages.length === 0)
-      ) ?
-          [ `${ TextBox__YDF.CSS_NAMESPACE }__ValidInputState` ] : [],
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+      TextBox__YDF.getActualRootElementModifierCSS_Classes({
+        multiline,
+        disabled,
+        invalidInputHighlighting:
+                invalidInputHighlightingIfAnyValidationErrorsMessages &&
+                (validationErrorsMessages === true || validationErrorsMessages.length > 0),
+        validValueHighlighting:
+                validValueHighlightingIfNoValidationErrorsMessages &&
+                (validationErrorsMessages === false || validationErrorsMessages.length === 0),
         theme,
-        allThemes: TextBox__YDF.Themes,
-        CSS_Namespace: TextBox__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        areThemesCSS_ClassesCommon,
         geometricVariation,
-        allGeometricVariations: TextBox__YDF.GeometricVariations,
-        CSS_Namespace: TextBox__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.
-          generateDemandedGeometricModifiersCSS_Classes(TextBox__YDF.CSS_NAMESPACE, geometricModifiers),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: TextBox__YDF.DecorativeVariations,
-        CSS_Namespace: TextBox__YDF.CSS_NAMESPACE
+        decorativeVariation
       }),
 
       ...attributes.class ? [ attributes.class ] : []

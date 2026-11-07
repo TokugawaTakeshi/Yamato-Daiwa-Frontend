@@ -136,7 +136,7 @@ export abstract class AdmonitionBlock {
 
         Themes: { value: AdmonitionBlock.Themes },
         themesCSS_Classes: { value: AdmonitionBlock.themesCSS_Classes },
-        defineThemes: { value: AdmonitionBlock.defineThemes },
+        defineThemes: { get: (): unknown => Reflect.get(AdmonitionBlock, "defineThemes") },
         areThemesCSS_ClassesCommon: {
           value: AdmonitionBlock.areThemesCSS_ClassesCommon,
           writable: true
@@ -145,11 +145,11 @@ export abstract class AdmonitionBlock {
 
         GeometricVariations: { value: AdmonitionBlock.GeometricVariations },
         geometricVariationsCSS_Classes: { value: AdmonitionBlock.geometricVariationsCSS_Classes },
-        defineGeometricVariations: { value: AdmonitionBlock.defineGeometricVariations },
+        defineGeometricVariations: { get: (): unknown => Reflect.get(AdmonitionBlock, "defineGeometricVariations") },
 
         DecorativeVariations: { value: AdmonitionBlock.DecorativeVariations },
         decorativeVariationsCSS_Classes: { value: AdmonitionBlock.decorativeVariationsCSS_Classes },
-        defineDecorativeVariations: { value: AdmonitionBlock.defineDecorativeVariations },
+        defineDecorativeVariations: { get: (): unknown => Reflect.get(AdmonitionBlock, "defineDecorativeVariations") },
 
         ...options?.mustSkipPropertiesWithKeys.localization === true ?
             null :
@@ -161,69 +161,57 @@ export abstract class AdmonitionBlock {
             },
 
         counterForInstanceID_Generating: { value: AdmonitionBlock.counterForInstanceID_Generating },
-        generateInstanceID: { value: AdmonitionBlock.generateInstanceID },
+        generateInstanceID: { get: (): unknown => Reflect.get(AdmonitionBlock, "generateInstanceID") },
         counterForCustomSVG_IconsIDs_Generating: { value: AdmonitionBlock.counterForCustomSVG_IconsIDs_Generating },
         customSVG_IconCurrentID: { value: AdmonitionBlock.customSVG_IconCurrentID },
-        generateCustomIconNewID: { value: AdmonitionBlock.generateCustomIconNewID }
+        generateCustomIconNewID: { get: (): unknown => Reflect.get(AdmonitionBlock, "generateCustomIconNewID") }
 
       }
     );
   }
 
   /** @experimental */
-  public static mixedInToInheritorOf(
-    TargetClass: object,
+  public static mixedInToInheritorOf<TTargetClass extends abstract new (...parameters: never) => object>(
+    TargetClass: TTargetClass,
     options?: Readonly<{ mustSkipLocalization: boolean; }>
-  ): typeof TargetClass & Omit<typeof AdmonitionBlock, "shareStaticMembers" | "mixedInToInheritorOf"> {
+  ): AdmonitionBlock.MixedInClass<TTargetClass> {
 
-    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment -- Temporary; waiting for the correction. */
-    // @ts-ignore
-    class Inheritor extends TargetClass {}
+    const Inheritor:
+        abstract new () => object =
+            /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- Experimental. */
+            class extends (TargetClass as unknown as abstract new () => object) {};
 
-    Object.defineProperties(
-      Inheritor,
-      {
+    const keysExcludedFromInheritance: ReadonlySet<PropertyKey> =
+        new Set<PropertyKey>([
+          "length",
+          "name",
+          "prototype",
+          "shareStaticMembers",
+          "mixedInToInheritorOf",
+          ...options?.mustSkipLocalization === true ? [ "localization" ] : []
+        ]);
 
-        CSS_NAMESPACE: { value: AdmonitionBlock.CSS_NAMESPACE },
+    for (const key of Reflect.ownKeys(AdmonitionBlock)) {
 
-        Themes: { value: AdmonitionBlock.Themes },
-        themesCSS_Classes: { value: AdmonitionBlock.themesCSS_Classes },
-        defineThemes: { value: AdmonitionBlock.defineThemes },
-        areThemesCSS_ClassesCommon: {
-          value: AdmonitionBlock.areThemesCSS_ClassesCommon,
-          writable: true
-        },
-        considerThemesAsCommon: { value: AdmonitionBlock.considerThemesAsCommon },
-
-        GeometricVariations: { value: AdmonitionBlock.GeometricVariations },
-        geometricVariationsCSS_Classes: { value: AdmonitionBlock.geometricVariationsCSS_Classes },
-        defineGeometricVariations: { value: AdmonitionBlock.defineGeometricVariations },
-
-        DecorativeVariations: { value: AdmonitionBlock.DecorativeVariations },
-        decorativeVariationsCSS_Classes: { value: AdmonitionBlock.decorativeVariationsCSS_Classes },
-        defineDecorativeVariations: { value: AdmonitionBlock.defineDecorativeVariations },
-
-        ...options?.mustSkipLocalization === true ?
-            null :
-            {
-              localization: {
-                value: AdmonitionBlock.localization,
-                writable: true
-              }
-            },
-
-        counterForInstanceID_Generating: { value: AdmonitionBlock.counterForInstanceID_Generating },
-        generateInstanceID: { value: AdmonitionBlock.generateInstanceID },
-        counterForCustomSVG_IconsIDs_Generating: { value: AdmonitionBlock.counterForCustomSVG_IconsIDs_Generating },
-        customSVG_IconCurrentID: { value: AdmonitionBlock.customSVG_IconCurrentID },
-        generateCustomIconNewID: { value: AdmonitionBlock.generateCustomIconNewID }
-
+      if (keysExcludedFromInheritance.has(key)) {
+        continue;
       }
-    );
 
-    /* eslint-disable-next-line @typescript-eslint/ban-ts-comment -- Temporary; waiting for the correction. */
-    // @ts-ignore
-    return Inheritor;
+
+      const value: unknown = Reflect.get(AdmonitionBlock, key);
+
+      Object.defineProperty(
+        Inheritor,
+        key,
+        typeof value === "function" ?
+            { value } :
+            { get: (): unknown => Reflect.get(AdmonitionBlock, key) }
+      );
+
+    }
+
+    /* eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- Experimental. */
+    return Inheritor as unknown as AdmonitionBlock.MixedInClass<TTargetClass>;
 
   }
 
@@ -257,6 +245,27 @@ export namespace AdmonitionBlock {
         dismissingButton: Readonly<{
           accessibilityGuidance: string;
         }>;
+      }>;
+
+  export type MixedInClass<TargetClass extends abstract new (...parameters: never) => object> =
+
+      /* Constructor and instance members of the target class, plus derivation from `AdmonitionBlock`. */
+      (
+        TargetClass extends abstract new (...parameters: infer Parameters) => infer Instance ?
+            new (...parameters: Parameters) => Instance & AdmonitionBlock :
+            never
+      ) &
+
+      /* Static members of the target class. */
+      Omit<TargetClass, "prototype"> &
+
+      /* Static members of `AdmonitionBlock`. */
+      typeof AdmonitionBlock &
+
+      /* Must not be available on the inheritor. */
+      Readonly<{
+        shareStaticMembers: never;
+        mixedInToInheritorOf: never;
       }>;
 
 }
