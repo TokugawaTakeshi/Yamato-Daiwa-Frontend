@@ -75,7 +75,7 @@ export abstract class Pagination {
   public static readonly geometricVariationsCSS_Classes: { [geometricVariationValue: string]: string; } =
       {
         [Pagination.GeometricVariations.regular]: "Pagination--YDF__RegularGeometricVariation",
-        [Pagination.GeometricVariations.stickyNoteLike]: "Pagination--YDF__StickyNoteLikeGeometricVariation"
+        [Pagination.GeometricVariations.small]: "Pagination--YDF__SmallGeometricVariation"
       };
 
   public static defineGeometricVariations(

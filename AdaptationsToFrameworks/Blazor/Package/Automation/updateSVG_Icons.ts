@@ -1,4 +1,4 @@
-﻿import { SVG_IconsAdapter } from "@yamato-daiwa/frontend-automation";
+import { SVG_IconsAdapter } from "@yamato-daiwa/frontend-automation";
 import { explodeStringToLines } from "@yamato-daiwa/es-extensions";
 
 

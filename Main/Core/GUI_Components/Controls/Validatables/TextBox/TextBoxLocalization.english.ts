@@ -1,7 +1,7 @@
-import type { TextBoxLocalization } from "./TextBoxLocalization";
+import type TextBox from "./TextBox.base";
 
 
-const TextBoxYDF_GUI_ComponentLocalization__English: TextBoxLocalization = {
+export const TextBoxLocalization__English: TextBox.Localization = {
   valueCopyingButton: { accessibilityGuidance: "Copy inputted value" },
   passwordDisplayingToggle: {
     displayingOfPassword: { accessibilityGuidance: "Display password" },
@@ -10,4 +10,4 @@ const TextBoxYDF_GUI_ComponentLocalization__English: TextBoxLocalization = {
 };
 
 
-export default TextBoxYDF_GUI_ComponentLocalization__English;
+export default TextBoxLocalization__English;

@@ -2,18 +2,19 @@
 * The instance fields begins from the underscore MUST be changed only via setters. */
 /* eslint-disable @typescript-eslint/member-ordering -- The members of this class are grouped semantically. */
 
-/* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
-import TextBoxYDF_GUI_ComponentDOM_AccessResources from "./TextBoxDOM_AccessResources";
+/* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+import TextBoxDOM_AccessResources from "./TextBoxDOM_AccessResources";
 import YDF_BUG_REPORTING_PAGE_URI from "../../../_Auxiliaries/YDF_BUG_REPORTING_PAGE_URI";
 
-/* ─── Validation ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ Validation ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import ValidatableControl from "../../_Validation/ValidatableControl";
 import type InputtedValueValidation from "../../_Validation/InputtedValueValidation";
 
-/* ─── Children Components ────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ GUI Components ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell.logic";
 
-/* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import type { RootElementDefinition } from "../../../../Logic/Types/RootElementDefinition";
 import {
   isString,
@@ -37,9 +38,10 @@ import {
   extractAndValidateDatasetFromDOM_Element
 } from "@yamato-daiwa/es-extensions-browserjs";
 import onDifferentValueAssigned from "../../../_Auxiliaries/Decorators/onDifferentValueAssigned";
+/* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 
-class TextBox<
+export class TextBox<
   IsInputRequired extends boolean,
   NonEmptyValueType extends TextBox.SupportedValidatablePayloadValuesTypes.NonEmpty,
   EmptyValueType extends TextBox.SupportedValidatablePayloadValuesTypes.Empty = NonEmptyValueType,
@@ -52,7 +54,7 @@ class TextBox<
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ┅┅┅ Accessing to DOM ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  protected static DOM_AccessResources: TextBox.DOM_AccessResources = TextBoxYDF_GUI_ComponentDOM_AccessResources;
+  protected static DOM_AccessResources: TextBoxDOM_AccessResources = TextBoxDOM_AccessResources;
 
   public static get ROOT_ELEMENT_SELECTOR(): string {
     return TextBox.DOM_AccessResources.rootElement.SELECTOR_BY_CSS_NAMESPACE_CLASS;
@@ -810,7 +812,7 @@ class TextBox<
 }
 
 
-namespace TextBox {
+export namespace TextBox {
 
   export namespace SupportedValidatablePayloadValuesTypes {
     export type NonEmpty = string | number;
@@ -1017,61 +1019,6 @@ namespace TextBox {
     }
 
   }
-
-  export type DOM_AccessResources = Readonly<{
-
-    rootElement: Readonly<{
-
-      CSS_NAMESPACE_CLASS: string;
-      SELECTOR_BY_CSS_NAMESPACE_CLASS: string;
-
-      stateDependentCSS_Classes: Readonly<{
-        validInputState: string;
-        invalidInputState: string;
-      }>;
-
-      dataset: Readonly<{
-        [
-          key in
-              "instanceID" |
-              "autoResizingForMultilineMode"
-        ]: Readonly<{
-          DATESET_KEY: string;
-          DATA_ATTRIBUTE_KEY: string;
-        }>
-      }>;
-
-    }>;
-
-    inputOrTextArea: Readonly<{
-      DATA_ATTRIBUTE_KEY: string;
-      INTERNALLY_UNIQUE_SELECTOR: string;
-    }>;
-
-    passwordDisplayingToggle: Readonly<{
-
-      DATA_ATTRIBUTE_KEY: string;
-      INTERNALLY_UNIQUE_SELECTOR: string;
-
-      icons: Readonly<{
-        [
-          key in
-              "passwordDisplayingState" |
-              "passwordHiddenState"
-        ]: Readonly<{
-          DATA_ATTRIBUTE_KEY: string;
-          INTERNALLY_UNIQUE_SELECTOR: string;
-        }>
-      }>;
-
-    }>;
-
-    valueCopyingButton: Readonly<{
-      DATA_ATTRIBUTE_KEY: string;
-      INTERNALLY_UNIQUE_SELECTOR: string;
-    }>;
-
-  }>;
 
 }
 

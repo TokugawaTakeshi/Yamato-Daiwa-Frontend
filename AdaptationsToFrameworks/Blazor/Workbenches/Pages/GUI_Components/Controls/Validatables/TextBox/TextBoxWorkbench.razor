@@ -1,0 +1,20 @@
+﻿@page "/gui_components/text_box"
+
+@using Microsoft.AspNetCore.Components.Web
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.Validatables.TextBox
+
+
+<HeadContent>
+  <link 
+    rel="stylesheet" 
+    href="@Assets["css/GUI_Components/Controls/Validatables/TextBox/TextBoxWorkbench.css"]" 
+  />
+</HeadContent>
+
+
+<TextBox
+  label="Sample"
+  payload=@sampleTextBoxPayload
+  validityHighlightingActivationMode=@TextBox.ValidityHighlightingActivationModes.onFocusOut
+  @ref=@sampleTextBox
+/>

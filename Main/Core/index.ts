@@ -56,6 +56,7 @@ export { default as ConfirmationModalDialog } from
 
 /* ┅┅┅ Pagination ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 export { default as PaginationBase } from "./GUI_Components/Controls/Pagination/Pagination.base";
+export { PaginationLocalization__English } from "./GUI_Components/Controls/Pagination/PaginationLocalization.english";
 
 /* ┅┅┅ RadioButton ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 export { default as RadioButtonBase } from "./GUI_Components/Controls/RadioButton/RadioButton.base";
@@ -63,23 +64,29 @@ export { RadioButton } from "./GUI_Components/Controls/RadioButton/RadioButton.l
 
 /* ┅┅┅ SearchBox ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 export { default as SearchBoxBase } from "./GUI_Components/Controls/SearchBox/SearchBox.base";
+export { SearchBoxLocalization__English } from "./GUI_Components/Controls/SearchBox/SearchBoxLocalization.english";
 
-/* ╍╍╍ ValidatableControlShell ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+/* ┅┅┅ ValidatableControlShell ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 export { default as ValidatableControlShellBase } from
     "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell.base";
 export { ValidatableControlShell } from
     "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell.logic";
+export { ValidatableControlShellLocalization__English } from
+    "./GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellLocalization.english";
+
+/* ┅┅┅ Validatables ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+/* ╍╍╍ Checkbox ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+export { default as CheckboxBase } from "./GUI_Components/Controls/Validatables/Checkbox/Checkbox.base";
+
+/* ╍╍╍ ComboBox ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+export { default as ComboBoxBase } from "./GUI_Components/Controls/Validatables/ComboBox/ComboBox.base";
+export { ComboBoxLocalization__English } from "./GUI_Components/Controls/Validatables/ComboBox/ComboBoxLocalization.english";
+
+/* ╍╍╍ TextBox ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+export { default as TextBoxBase } from "./GUI_Components/Controls/Validatables/TextBox/TextBox.base";
+export { default as TextBox } from "./GUI_Components/Controls/Validatables/TextBox/TextBox.logic";
+export { TextBoxLocalization__English } from "./GUI_Components/Controls/Validatables/TextBox/TextBoxLocalization.english";
 // ━━━ TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-
-/* ╍╍╍ Validatables ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
-/* ─── Text Box ───────────────────────────────────────────────────────────────────────────────────────────────────── */
-export { default as TextBox } from "./GUI_Components/Controls/Validatables/TextBox/TextBox";
-export type { TextBoxLocalization } from "./GUI_Components/Controls/Validatables/TextBox/TextBoxLocalization";
-export { default as TextBoxYDF_GUI_ComponentLocalization__English } from
-    "./GUI_Components/Controls/Validatables/TextBox/TextBoxLocalization.english";
-
-
 /* ━━━ Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export { default as RadioButtonsGroup } from "./GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup";
 

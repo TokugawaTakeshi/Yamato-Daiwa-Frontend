@@ -139,7 +139,7 @@ export abstract class Badge {
 
         Themes: { value: Badge.Themes },
         themesCSS_Classes: { value: Badge.themesCSS_Classes },
-        defineThemes: { value: Badge.defineThemes },
+        defineThemes: { get: (): unknown => Reflect.get(Badge, "defineThemes") },
         areThemesCSS_ClassesCommon: {
           value: Badge.areThemesCSS_ClassesCommon,
           writable: true
@@ -148,13 +148,13 @@ export abstract class Badge {
 
         GeometricVariations: { value: Badge.GeometricVariations },
         geometricVariationsCSS_Classes: { value: Badge.geometricVariationsCSS_Classes },
-        defineGeometricVariations: { value: Badge.defineGeometricVariations },
+        defineGeometricVariations: { get: (): unknown => Reflect.get(Badge, "defineGeometricVariations") },
         GeometricModifiers: { value: Badge.GeometricModifiers },
         geometricModifiersCSS_Classes: { value: Badge.geometricModifiersCSS_Classes },
 
         DecorativeVariations: { value: Badge.DecorativeVariations },
         decorativeVariationsCSS_Classes: { value: Badge.decorativeVariationsCSS_Classes },
-        defineDecorativeVariations: { value: Badge.defineDecorativeVariations },
+        defineDecorativeVariations: { get: (): unknown => Reflect.get(Badge, "defineDecorativeVariations") },
         DecorativeModifiers: { value: Badge.DecorativeModifiers },
         decorativeModifiersCSS_Classes: { value: Badge.decorativeModifiersCSS_Classes }
 

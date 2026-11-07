@@ -21,7 +21,7 @@ public partial class BlockingLoadingOverlay : Microsoft.AspNetCore.Components.Co
 
   public static BlockingLoadingOverlay selfSingleInstance
   {
-    get => _selfSingleInstance ?? throw new Exception("BlockingLoadingOverlayが呼び出されたが当コンポーネントがマウントされていないようだ。");
+    get => _selfSingleInstance ?? throw new Exception("BlockingLoadingOverlay has been accessed but has not been mounted。");
     set => _selfSingleInstance = value;
   }
   

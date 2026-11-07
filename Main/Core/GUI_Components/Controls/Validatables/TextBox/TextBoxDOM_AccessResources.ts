@@ -1,7 +1,62 @@
-import type TextBox from "./TextBox";
+export type TextBoxDOM_AccessResources =
+
+    Readonly<{
+
+      rootElement: Readonly<{
+
+        CSS_NAMESPACE_CLASS: string;
+        SELECTOR_BY_CSS_NAMESPACE_CLASS: string;
+
+        stateDependentCSS_Classes: Readonly<{
+          validInputState: string;
+          invalidInputState: string;
+        }>;
+
+        dataset: Readonly<{
+          [
+            key in
+                "instanceID" |
+                "autoResizingForMultilineMode"
+          ]: Readonly<{
+            DATESET_KEY: string;
+            DATA_ATTRIBUTE_KEY: string;
+          }>
+        }>;
+
+      }>;
+
+      inputOrTextArea: Readonly<{
+        DATA_ATTRIBUTE_KEY: string;
+        INTERNALLY_UNIQUE_SELECTOR: string;
+      }>;
+
+      passwordDisplayingToggle: Readonly<{
+
+        DATA_ATTRIBUTE_KEY: string;
+        INTERNALLY_UNIQUE_SELECTOR: string;
+
+        icons: Readonly<{
+          [
+            key in
+                "passwordDisplayingState" |
+                "passwordHiddenState"
+          ]: Readonly<{
+            DATA_ATTRIBUTE_KEY: string;
+            INTERNALLY_UNIQUE_SELECTOR: string;
+          }>
+        }>;
+
+      }>;
+
+      valueCopyingButton: Readonly<{
+        DATA_ATTRIBUTE_KEY: string;
+        INTERNALLY_UNIQUE_SELECTOR: string;
+      }>;
+
+    }>;
 
 
-const TextBoxYDF_GUI_ComponentDOM_AccessResources: TextBox.DOM_AccessResources = {
+export const TextBoxDOM_AccessResources: TextBoxDOM_AccessResources = {
 
   rootElement: {
 
@@ -63,4 +118,4 @@ const TextBoxYDF_GUI_ComponentDOM_AccessResources: TextBox.DOM_AccessResources =
 };
 
 
-export default TextBoxYDF_GUI_ComponentDOM_AccessResources;
+export default TextBoxDOM_AccessResources;
