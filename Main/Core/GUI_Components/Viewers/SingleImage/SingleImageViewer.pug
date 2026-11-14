@@ -1,0 +1,196 @@
+include SingleImageViewer.class.pug
+
+
+mixin SingleImageViewer--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      imageURI,
+      imagesSet,
+      imageAlternateText,
+      fullScreenView,
+      aspectRatio,
+      autoAspectRatioByYDA,
+      maximalWidth__anyValidCSS_Value,
+      maximalHeight__anyValidCSS_Value,
+
+      theme,
+      areThemesExternal,
+      geometricVariation,
+      decorativeVariation
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: SingleImageViewer__YDF.propertiesSpecification,
+      mixinName: SingleImageViewer__YDF.CSS_NAMESPACE
+    });
+
+    const {
+      fullScreenMode = false
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: SingleImageViewer__YDF.statesSimulationsSpecification,
+      mixinName: SingleImageViewer__YDF.CSS_NAMESPACE
+    });
+
+
+    let backgroundUnderlayStyles;
+
+    const individualStyles = {
+      ...YDF.isString(aspectRatio) ? { "aspect-ratio": aspectRatio }  : null,
+      ...YDF.isNonEmptyString(maximalWidth__anyValidCSS_Value) ? { "max-width": maximalWidth__anyValidCSS_Value } : null,
+      ...YDF.isNonEmptyString(maximalHeight__anyValidCSS_Value) ? { "max-height": maximalHeight__anyValidCSS_Value } : null
+    };
+
+    const rootElementModifierCSS_Classes = [
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: SingleImageViewer__YDF.Themes,
+        CSS_Namespace: SingleImageViewer__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: SingleImageViewer__YDF.GeometricVariations,
+        CSS_Namespace: SingleImageViewer__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: SingleImageViewer__YDF.DecorativeVariations,
+        CSS_Namespace: SingleImageViewer__YDF.CSS_NAMESPACE
+      })
+
+    ];
+
+    let mainImageURI /** @type { string } */;
+
+
+  .SingleImageViewer--YDF&attributes(attributes)(
+    data-has_full_screen_view__ydf=fullScreenView
+    class=rootElementModifierCSS_Classes
+  )
+
+    if fullScreenView
+
+      .SingleImageViewer--YDF-ActionBar
+
+        +Button--YDF({
+          HTML_Type: Button__YDF.HTML_Types.regular,
+          geometricVariation: Button__YDF.GeometricVariations.small
+        }).SingleImageViewer--YDF-Button__FullScreenViewActivating
+          +FittingWithin--YDF_Icon.Button--YDF-SVG_Icon
+          span.Button--YDF-Label= SingleImageViewer__YDF.localization.buttons.fullScreenViewActivating.label
+
+
+    figure.SingleImageViewer--YDF-Figure
+
+      if imageURI
+
+        - mainImageURI = imageURI;
+
+        img.SingleImageViewer--YDF-Image(
+          src=imageURI
+          alt=imageAlternateText
+          style=individualStyles
+          data-yda-auto_aspect_ratio=autoAspectRatioByYDA
+        )
+
+      else
+
+        //- [ Theory ] The image could be narrower than below underlay thus underlay could be visible
+        picture.SingleImageViewer--YDF-Underlay
+
+          each image in imagesSet
+
+            -
+
+              if (image.isMain) {
+                mainImageURI = image.URI;
+              }
+
+              /** @type { string } */
+              const mediaAttributeValue =
+                [
+                  ...image.minimalViewportWidth__pixels ? [ `(min-width: ${ image.minimalViewportWidth__pixels }px)` ] : [],
+                  ...image.maximalViewportWidth__pixels ? [ `(max-width: ${ image.maximalViewportWidth__pixels }px)` ] : []
+                ].
+                    join(" and ");
+
+            source(
+              media=mediaAttributeValue
+              srcset=image.URI
+            )
+
+          img.SingleImageViewer--YDF-Image(
+            src=mainImageURI
+            alt=imageAlternateText
+          )
+
+      if block
+        figcaption.SingleImageViewer--YDF-Caption
+          block
+
+
+    if fullScreenView || fullScreenMode
+
+      .SingleImageViewer--YDF-ModalView&attributes({
+        class: [
+          ...fullScreenMode ? [] : [ "SingleImageViewer--YDF-ModalView__HiddenState" ]
+        ]
+      })
+
+        +Button--YDF({
+          HTML_Type: Button__YDF.HTML_Types.regular
+        }).SingleImageViewer--YDF-ModalView-UpperButton.SingleImageViewer--YDF-Button__FullScreenViewDeactivating
+          +MultiplicationSign--YDF_Icon.Button--YDF-SVG_Icon
+          span.Button--YDF-Label= SingleImageViewer__YDF.localization.buttons.fullScreenViewDeactivating.label
+
+        figure.SingleImageViewer--YDF-ModalView-PositioningWrapper
+          img.SingleImageViewer--YDF-ModalView-Image(
+            src=mainImageURI
+            alt=imageAlternateText
+            data-yda-auto_aspect_ratio=autoAspectRatioByYDA
+          )
+
+        .SingleImageViewer--YDF-ModalView-BottomActionBar
+
+          +Button--YDF({
+            HTML_Type: Button__YDF.HTML_Types.regular
+          }).SingleImageViewer--YDF-Button__ZoomingIn
+            +MagnifyingGlass--YDF_Icon.Button--YDF-SVG_Icon
+            span.Button--YDF-Label= SingleImageViewer__YDF.localization.buttons.zoomingIn.label
+
+          +Button--YDF({
+            HTML_Type: Button__YDF.HTML_Types.regular
+          }).SingleImageViewer--YDF-Button__ZoomingOut
+            +Shrinkage--YDF_Icon.Button--YDF-SVG_Icon
+            span.Button--YDF-Label= SingleImageViewer__YDF.localization.buttons.zoomingOut.label
+
+          //- Fitting by width
+          +Button--YDF({
+            HTML_Type: Button__YDF.HTML_Types.regular
+          }).SingleImageViewer--YDF-Button__WidthFitting
+            +FittingByWidth--YDF_Icon.Button--YDF-SVG_Icon
+            span.Button--YDF-Label= SingleImageViewer__YDF.localization.buttons.widthFitting.label
+
+          //- Fitting by height
+          +Button--YDF({
+            HTML_Type: Button__YDF.HTML_Types.regular
+          }).SingleImageViewer--YDF-Button__HeightFitting
+            +FittingByHeight--YDF_Icon.Button--YDF-SVG_Icon
+            span.Button--YDF-Label= SingleImageViewer__YDF.localization.buttons.heightFitting.label
+
+          +Button--YDF({
+            HTML_Type: Button__YDF.HTML_Types.regular
+          }).SingleImageViewer--YDF-Button__FullFitting
+            +FittingWithin--YDF_Icon.Button--YDF-SVG_Icon
+            span.Button--YDF-Label= SingleImageViewer__YDF.localization.buttons.fitting.label

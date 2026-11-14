@@ -1,0 +1,286 @@
+h1.Heading1(
+  :class="mustVisuallyHideTopHeading ? 'YDF_Gallery-InvisibleHeading' : null"
+) Badge Component Demos
+
+
+//- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.minimal"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Minimal
+
+  ThemesShowcase(
+    :themes="Badge.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="Badge.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="Badge.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariationsWrapperAdditionalCSS_Classes="[ 'BadgeGallery-TwoColumnsTable' ]"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      Badge(
+        valueLabel="Value"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+      )
+
+
+//- ━━━ Keys and Values ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || keysAndValuesPartialOnly"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Keys and Values
+
+  ThemesShowcase(
+    :themes="Badge.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="Badge.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="Badge.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariationsWrapperAdditionalCSS_Classes="[ 'BadgeGallery-TwoColumnsTable' ]"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      Badge(
+        keyLabel="Key"
+        valueLabel="Value"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+      )
+
+
+//- ━━━ Long Labels ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.longLabels"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Long Labels
+
+  .BadgeGallery-LinearFlow.BadgeGallery-LinearFlow__LimitedChildrenMaximalWidth
+
+    Badge(
+      :keyLabel="textOverflowSafetyTest"
+      :valueLabel="textOverflowSafetyTest"
+      :decorativeVariation="Badge.DecorativeVariations.achromaticPastel"
+    )
+
+
+//- ━━━ Icons, Keys and Values ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.iconsAndKeysAndValues"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Icons, Keys and Values
+
+  ThemesShowcase(
+    :themes="Badge.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="Badge.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="Badge.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariationsWrapperAdditionalCSS_Classes="[ 'BadgeGallery-TwoColumnsTable' ]"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      Badge(
+        keyLabel="Date"
+        :valueLabel="todayDate__localized__stringified"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+      ): template(v-slot:SVG_Icon): CalendarIcon.Badge--YDF-SVG_Icon
+
+
+//- ━━━ Icons and Values ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.iconsAndValues"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Icons and Values
+
+  ThemesShowcase(
+    :themes="Badge.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="Badge.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="Badge.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariationsWrapperAdditionalCSS_Classes="[ 'BadgeGallery-TwoColumnsTable' ]"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      Badge(
+        :valueLabel="todayDate__localized__stringified"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+      ): template(v-slot:SVG_Icon): CalendarIcon.Badge--YDF-SVG_Icon
+
+
+//- ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+h2.Heading2(
+  v-if="!mustVisuallyHideAllHeadings && mustRenderAtLeastOnePartialRelatedWithGeometricModifier"
+) Geometric Modifiers
+
+
+//- ─── Pill Shape ─────────────────────────────────────────────────────────────────────────────────────────────────────
+template(
+  v-if="mustRenderAllPartials || partialsFlags.pillShapeGeometricModifier"
+)
+
+  h3.Heading3(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Pill Shape
+
+  ThemesShowcase(
+    :themes="Badge.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="Badge.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="Badge.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariationsWrapperAdditionalCSS_Classes="[ 'BadgeGallery-TwoColumnsTable' ]"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      Badge(
+        :valueLabel="todayDate__localized__stringified"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :geometricModifiers="[ Badge.GeometricModifiers.pillShape ]"
+        :decorativeVariation="decorativeVariation.value"
+      ): template(v-slot:SVG_Icon): CalendarIcon.Badge--YDF-SVG_Icon
+
+
+//- ─── Single Line ────────────────────────────────────────────────────────────────────────────────────────────────────
+template(
+  v-if="mustRenderAllPartials || partialsFlags.singleLineGeometricModifier"
+)
+
+  h3.Heading3(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Single Line
+
+  .BadgeGallery-LinearFlow.BadgeGallery-LinearFlow__LimitedChildrenMaximalWidth
+
+    Badge(
+      :key="textOverflowSafetyTest"
+      :valueLabel="textOverflowSafetyTest"
+      :geometricModifiers="[ Badge.GeometricModifiers.singleLine ]"
+      :decorativeVariation="Badge.DecorativeVariations.achromaticPastel"
+    )
+
+
+//- ━━━ Decorative Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+h2.Heading2(
+  v-if="!mustVisuallyHideAllHeadings && mustRenderAtLeastOnePartialRelatedWithDecorativeModifier"
+) Decorative Modifiers
+
+
+//- ─── Borders Disguising ─────────────────────────────────────────────────────────────────────────────────────────────
+template(
+  v-if="!mustVisuallyHideAllHeadings || partialsFlags.bordersDisguisingDecorativeModifier"
+)
+
+  h3.Heading3(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Borders Disguising
+
+  ThemesShowcase(
+    :themes="Badge.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="Badge.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="Badge.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariationsWrapperAdditionalCSS_Classes="[ 'BadgeGallery-TwoColumnsTable' ]"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      Badge(
+        :valueLabel="todayDate__localized__stringified"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :decorativeModifiers="[ Badge.DecorativeModifiers.bordersDisguising ]"
+      ): template(v-slot:SVG_Icon): CalendarIcon.Badge--YDF-SVG_Icon
+
+
+  //- ─── No Background ────────────────────────────────────────────────────────────────────────────────────────────────
+  template(
+    v-if="mustRenderAllPartials || partialsFlags.noBackgroundDecorativeModifier"
+  )
+
+    h3.Heading3(
+      :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+    ) No Background
+
+    ThemesShowcase(
+      :themes="Badge.Themes"
+      :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+      :geometricVariations="Badge.GeometricVariations"
+      :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+      :decorativeVariations="Badge.DecorativeVariations"
+      :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+      :decorativeVariationsWrapperAdditionalCSS_Classes="[ 'BadgeGallery-TwoColumnsTable' ]"
+    )
+      template(
+        v-slot="{ theme, geometricVariation, decorativeVariation }"
+      )
+        Badge(
+          :valueLabel="todayDate__localized__stringified"
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          :decorativeModifiers="[ Badge.DecorativeModifiers.noBackground ]"
+        ): template(v-slot:SVG_Icon): CalendarIcon.Badge--YDF-SVG_Icon
+
+
+//- ━━━ Loading Placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.loadingPlaceholder"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Loading Placeholder
+
+  .BadgeGallery-LinearFlow
+
+    template(
+      v-for="geometricVariation of Object.values(Badge.GeometricVariations)"
+      :key="`BADGE-${ geometricVariation }`"
+    )
+
+      BadgeLoadingPlaceholder(
+        :geometricVariation="geometricVariation"
+      )
+
+      BadgeLoadingPlaceholder(
+        :geometricVariation="geometricVariation"
+        :geometricModifiers="[ Badge.GeometricModifiers.pillShape ]"
+      )

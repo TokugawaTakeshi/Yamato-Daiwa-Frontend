@@ -1,0 +1,25 @@
+import React from "react";
+import type SVG_IconComponent from "../SVG_IconComponent";
+
+
+const QuestionMarkIcon__Circled__Outlined: SVG_IconComponent = ({ className }: SVG_IconComponent.Properties): React.ReactElement =>
+
+    (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        className={ className }
+      >
+        <path d="M10 1.5A8.5 8.5 0 111.5 10 8.51 8.51 0 0110 1.5M10 0a10 10 0 1010 10A10 10 0 0010 0z" />
+        <circle
+          cx="10"
+          cy="15.06"
+          r="1.22"
+        />
+        <path d="M14.29 6.46l-.08-.16a5.15 5.15 0 00-5.88-1.95l-.19.06A3.77 3.77 0 005.41 7.8c0 .1.61.19 1.36.19s1.37-.09 1.37-.19a1.32 1.32 0 01.55-1.06A2.06 2.06 0 0110 6.3a2.15 2.15 0 011.32.43 1.37 1.37 0 01.54 1.07c0 .68-.57 1.3-1.53 1.5a1.55 1.55 0 00-1.69 1.35v1.92h2.71V11.5a.28.28 0 01.22-.25 4.89 4.89 0 001.67-.85 3.22 3.22 0 001.05-3.94z" />
+      </svg>
+      
+    );
+
+
+export default QuestionMarkIcon__Circled__Outlined;

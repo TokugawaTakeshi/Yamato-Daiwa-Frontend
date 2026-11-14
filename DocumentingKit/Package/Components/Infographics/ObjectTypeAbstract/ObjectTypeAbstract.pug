@@ -1,0 +1,159 @@
+include ObjectTypeAbstract.class.pug
+
+
+mixin ObjectTypeAbstract--YDF_DK(propertiesObject)
+
+  -
+
+    const {
+      typeName,
+      localizedDescriptiveHeading,
+      propertiesSpecification
+    } = propertiesObject;
+
+
+  .ObjectTypeAbstract--YDF_DK&attributes(attributes)
+
+    if typeName
+
+      .ObjectTypeAbstract--YDF_DK-TypeNameHeading= typeName
+
+    if localizedDescriptiveHeading
+
+      .ObjectTypeAbstract--YDF_DK-LocalizedDescriptiveHeading= localizedDescriptiveHeading
+
+
+    if Array.isArray(propertiesSpecification.$intersection)
+
+      each intersectionCompound, intersectionCompoundIndex in propertiesSpecification.$intersection
+
+        if Array.isArray(intersectionCompound)
+
+          - const internalUnion = intersectionCompound;
+
+          .ObjectTypeAbstract--YDF_DK-Group
+
+            span.ObjectTypeAbstract--YDF_DK-Group-Bracket (
+            span.ObjectTypeAbstract--YDF_DK-Group-Line
+
+            .ObjectTypeAbstract--YDF_DK-Group-SpecificContent
+
+              each internalUnionCompound, internalUnionCompoundIndex in internalUnion
+
+                .ObjectTypeAbstract--YDF_DK-Group
+                  span.ObjectTypeAbstract--YDF_DK-Group-Bracket {
+                  span.ObjectTypeAbstract--YDF_DK-Group-Line
+
+                  dl.ObjectTypeAbstract--YDF_DK-Group-SpecificContent(
+                    class="ObjectTypeAbstract--YDF_DK-Group-SpecificContent__KeyAndValueType"
+                  )
+                    each propertySpecification, propertyKey in internalUnionCompound
+                      dt.ObjectTypeAbstract--YDF_DK-Group-PropertyKeyLabel=propertyKey
+                      dd.ObjectTypeAbstract--YDF_DK-Group-PropertyMetadataCell
+                        +PropertyMetadata--YDF_DK(propertySpecification)
+
+                  span.ObjectTypeAbstract--YDF_DK-Group-Bracket }
+
+                if internalUnionCompoundIndex <= internalUnion.length - 2
+
+                  .ObjectTypeAbstract--YDF_DK-LogicOperatorLabel= ObjectTypeAbstract__YDF_DK.localization.or
+
+            span.ObjectTypeAbstract--YDF_DK-Group-Bracket )
+
+        else
+
+          .ObjectTypeAbstract--YDF_DK-Group
+            span.ObjectTypeAbstract--YDF_DK-Group-Bracket {
+            span.ObjectTypeAbstract--YDF_DK-Group-Line
+
+            dl.ObjectTypeAbstract--YDF_DK-Group-SpecificContent(
+              class="ObjectTypeAbstract--YDF_DK-Group-SpecificContent__KeyAndValueType"
+            )
+              each propertySpecification, propertyKey in intersectionCompound
+                dt.ObjectTypeAbstract--YDF_DK-Group-PropertyKeyLabel=propertyKey
+                dd.ObjectTypeAbstract--YDF_DK-Group-PropertyMetadataCell
+                  +PropertyMetadata--YDF_DK(propertySpecification)
+
+            span.ObjectTypeAbstract--YDF_DK-Group-Bracket }
+
+        if intersectionCompoundIndex <= propertiesSpecification.$intersection.length - 2
+
+          .ObjectTypeAbstract--YDF_DK-LogicOperatorLabel= ObjectTypeAbstract__YDF_DK.localization.and
+
+
+      //-
+        .ObjectTypeAbstract--YDF_DK-Bracket {
+
+        each intersectionCompound, intersectionCompoundIndex in propertiesSpecification.$intersection
+
+          if Array.isArray(intersectionCompound)
+
+            - const internalUnion = intersectionCompound;
+
+            div.ObjectTypeAbstract--YDF_DK-Bracket (
+
+            .ObjectTypeAbstract--YDF_DK-Bracket.ObjectTypeAbstract--YDF_DK-Bracket__NewLineAndIncreasedIndentation {
+
+            each internalUnionCompound, internalUnionCompoundIndex in internalUnion
+
+              +ObjectTypeAbstract-PropertiesSpecification--YDF_DK(internalUnionCompound)
+
+              if internalUnionCompoundIndex < internalUnion.length - 1
+
+                .ObjectTypeAbstract--YDF_DK-Bracket.ObjectTypeAbstract--YDF_DK-Bracket__NewLineAndIncreasedIndentation
+                  | }
+                  | #{ ObjectTypeAbstract__YDF_DK.localization.or }
+                  | {
+
+              else
+
+                .ObjectTypeAbstract--YDF_DK-Bracket.ObjectTypeAbstract--YDF_DK-Bracket__NewLineAndIncreasedIndentation }
+
+                if intersectionCompoundIndex < propertiesSpecification.$intersection.length - 1
+
+                  .ObjectTypeAbstract--YDF_DK-Bracket
+                    | )
+                    | #{ ObjectTypeAbstract__YDF_DK.localization.and }
+
+                else
+
+                  .ObjectTypeAbstract--YDF_DK-Bracket )
+
+          else
+
+            +ObjectTypeAbstract-PropertiesSpecification--YDF_DK(intersectionCompound)
+
+            if intersectionCompoundIndex < propertiesSpecification.$intersection.length - 1
+
+              .ObjectTypeAbstract--YDF_DK-Bracket
+                | }
+                | #{ ObjectTypeAbstract__YDF_DK.localization.and }
+
+            else
+
+              | }
+
+        //-
+          if index < propertiesSpecification.$intersection.length - 1
+            .ObjectTypeAbstract--YDF_DK-Bracket } 又は {
+
+
+    else if Array.isArray(propertiesSpecification.$union)
+
+      div $union
+
+    else
+
+      .ObjectTypeAbstract--YDF_DK-Group
+        span.ObjectTypeAbstract--YDF_DK-Group-Bracket {
+        span.ObjectTypeAbstract--YDF_DK-Group-Line
+
+        dl.ObjectTypeAbstract--YDF_DK-Group-SpecificContent(
+          class="ObjectTypeAbstract--YDF_DK-Group-SpecificContent__KeyAndValueType"
+        )
+          each propertySpecification, propertyKey in propertiesSpecification
+            dt.ObjectTypeAbstract--YDF_DK-Group-PropertyKeyLabel=propertyKey
+            dd.ObjectTypeAbstract--YDF_DK-Group-PropertyMetadataCell
+              +PropertyMetadata--YDF_DK(propertySpecification)
+
+        span.ObjectTypeAbstract--YDF_DK-Group-Bracket }

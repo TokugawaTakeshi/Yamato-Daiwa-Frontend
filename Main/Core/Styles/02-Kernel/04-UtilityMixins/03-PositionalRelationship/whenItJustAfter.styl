@@ -1,0 +1,32 @@
+whenItJustAfter--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "whenItJustAfter--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      targetElementSelector: {
+        type: DataTypes--YDF.string,
+        required: true
+      },
+      contextSelector: {
+        type: DataTypes--YDF.string,
+        required: false
+      },
+      referenceElementSelector: {
+        type: DataTypes--YDF.string,
+        defaultValue: selector()
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  targetElementSelector = isNull--YDF(compoundParameter.contextSelector) ?\
+      compoundParameter.targetElementSelector :\
+      compoundParameter.contextSelector + " " + compoundParameter.targetElementSelector
+
+
+  /{targetElementSelector} + {compoundParameter.referenceElementSelector}
+
+    {block}

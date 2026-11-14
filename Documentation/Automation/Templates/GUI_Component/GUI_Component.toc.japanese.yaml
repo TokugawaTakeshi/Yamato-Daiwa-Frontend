@@ -1,0 +1,19 @@
+overview:
+
+  $heading: "概要"
+
+usage:
+
+  $heading: "利用"
+
+  markup:
+
+    $heading: "マークアップ"
+
+    includingToProject:
+
+      $heading: "プロジェクトへの取り組み"
+
+    pugMixin:
+
+      $heading: "Pug混入の<code>{{ GUI_ComponentName__pascalCase }}--YDF</code>"

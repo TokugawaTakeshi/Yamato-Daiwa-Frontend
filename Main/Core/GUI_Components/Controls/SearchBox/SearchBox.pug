@@ -1,0 +1,82 @@
+﻿mixin SearchBox--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      /**
+       * @type { string }
+       * @default SearchBox.localization.inputElement.defaultAccessibilityGuidance,
+       * */
+      accessibilityGuidance = "Please input search request here",
+
+      /** @type { string | undefined } */
+      placeholder,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      disabled
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: SearchBox__YDF.propertiesSpecification,
+      mixinName: "SearchBox--YDF"
+    });
+
+    const {
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      tooltip
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: SearchBox__YDF.propertiesSpecification,
+      mixinName: "SearchBox--YDF"
+    });
+
+  //- [ Reference ] https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/searchbox_role
+  //- [ Reference ] https://www.a11ymatters.com/pattern/accessible-search/
+  .SearchBox--YDF&attributes(attributes)(
+    role="search"
+  )
+
+    input.SearchBox--YDF-InputElement(
+      type="search"
+      placeholder=placeholder
+      disabled= disabled
+      aria-label=accessibilityGuidance
+      value=""
+    )
+
+    +Button--YDF({
+      disabled: disabled,
+      geometricModifiers: [
+        Button__YDF.GeometricModifiers.noLeftBorderAndRoundings,
+        Button__YDF.GeometricModifiers.noRoundings
+      ]
+    })
+      +MultiplicationSign__Octagoned__Filled--YDF_Icon.Button--YDF-SVG_Icon
+      span.Button--YDF-Label Reset
+
+    +Button--YDF({
+      disabled: disabled,
+      geometricModifiers: [ Button__YDF.GeometricModifiers.noLeftBorderAndRoundings ]
+    }).SearchBox--YDF-Test
+      +MagnifyingGlass--YDF_Icon.Button--YDF-SVG_Icon
+      span.Button--YDF-Label Search
+
+
+    if tooltip
+
+      .SearchBox--YDF-Tooltip(
+        role="tooltip"
+      ) Please input at least two characters

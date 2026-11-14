@@ -1,0 +1,11 @@
+arrayConstructor__POLYFILL--YDF(elements...)
+
+  accumulatingArray = null
+
+  hash = {}
+
+  for element, index in elements
+
+    hash["" + index] = element
+
+  return values(hash)

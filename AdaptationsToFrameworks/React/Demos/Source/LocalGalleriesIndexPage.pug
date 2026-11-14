@@ -1,0 +1,71 @@
+extends ../node_modules/@yamato-daiwa/frontend/PagesTemplates/StaticPreviewAnywherePageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    StaticPreviewAnywherePage__YDF.configure({
+
+      metadata: {
+        title: "YDF React — Demos"
+      },
+
+      topHeading: "YDF React — Demos",
+
+      tableOfContents: [
+
+        {
+
+          heading: "GUI Components",
+
+          pages: [
+
+            {
+              title: "AdmonitionBlock",
+              URI: "@CompletePages/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            },
+
+            {
+              title: "Badge",
+              URI: "@CompletePages/GUI_Components/Badge/BadgeGalleryPage",
+              progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.accepted
+            }
+
+          ],
+
+          sections: [
+
+            {
+
+              heading: "Controls",
+
+              sections: [
+
+                {
+
+                  heading: "Buttons",
+
+                  pages: [
+
+                    {
+                      title: "Button",
+                      URI: "@CompletePages/GUI_Components/Controls/Buttons/Plain/ButtonGalleryPage",
+                      progressStatus: StaticPreviewAnywherePage__YDF.PageDevelopmentProgressStatuses.implementationInProgress
+                    }
+
+                  ]
+
+                }
+
+              ]
+
+            }
+
+          ]
+
+        }
+
+      ]
+    });

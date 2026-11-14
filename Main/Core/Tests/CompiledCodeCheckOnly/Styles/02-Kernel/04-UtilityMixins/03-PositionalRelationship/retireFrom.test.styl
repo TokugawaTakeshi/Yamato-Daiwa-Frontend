@@ -1,0 +1,48 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-PositionalRelationship/retireFrom.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/03-PositionalRelationship/retireFrom.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.Example1
+
+  &-ElementB
+
+    retireFrom--YDF({ targetElementSelector: ".Example1-ElementA", x: 2px, y: 4px })
+
+
+.Example2
+
+  p
+
+    retireFrom--YDF({
+      targetElementSelector: "h1",
+      y: 14px,
+      referenceElementSelector: "p",
+      contextSelector: ".Example2"
+    })
+
+
+.Example3
+
+  &-ElementC
+
+    retireFrom--YDF({
+      definitions: (".Example3-ElementA" { x: 2px, y: 4px }) (".Example3-ElementB" { x: 6px, y: 8px })
+    })
+
+
+.Example4
+
+  p
+
+    retireFrom--YDF({
+      definitions: ("h1" { y: 12px }) ("h2" { y: 8px }),
+      referenceElementSelector: "p",
+      contextSelector: ".Example4"
+    })

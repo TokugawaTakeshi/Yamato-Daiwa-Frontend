@@ -1,0 +1,80 @@
+ImprovedList--YDF = {
+
+  CSS_NAMESPACE: "ImprovedList--YDF",
+
+  defaultProperties: {
+
+    geometry: {
+      markerIndendation: {
+        level1: 0
+      },
+      horizontalSpaceBetweenMakerAndListItemTargetContent: 8px,
+      verticalSpaceBetweenItems: 8px,
+      verticalSpaceBetweenItemAndNestedList: 6px
+    },
+
+    positionalRelationship: {
+
+      withTypographyElements: {
+        mainPreset:{
+          typographyDefinition: null,
+          spacingDefinitions: {
+            heading1: { whenItJustBefore: 12px },
+            heading2: { whenItJustBefore: 12px, whenItJustAfter: 16px },
+            heading3: { whenItJustBefore: 12px },
+            heading5: { whenItJustBefore: 12px, whenItJustAfter: 16px },
+            heading6: { whenItJustBefore: 8px, whenItJustAfter: 12px },
+            paragraph: { whenItJustBefore: 16px, whenItJustAfter: 16px }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+ImprovedList--YDF-generateStyles(preset = ImprovedList--YDF.defaultProperties, overridings = {})
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+
+  .ImprovedList--YDF
+
+    .ImprovedList--YDF
+
+      margin-top: properties.geometry.verticalSpaceBetweenItemAndNestedList
+
+
+  .ImprovedList-Item--YDF
+
+    display grid
+    grid-template-columns auto minmax(0, 1fr)
+    align-items baseline
+    grid-column-gap: properties.geometry.horizontalSpaceBetweenMakerAndListItemTargetContent
+
+    retireFromElementWithSameSelector--YDF({ y: properties.geometry.verticalSpaceBetweenItems })
+
+
+    &-Marker
+
+      justify-self end
+
+
+      &.ImprovedList-Item--YDF-Marker__SVG
+
+        width 8px
+        height 8px /* [ Theory ] Must be explicitly specified in addition to "width" to prevent of the stretching inside the grid. */
+
+
+      &.ImprovedList-Item--YDF-Marker__Lettering
+
+        font-family Arial Black, Arial Bold, Gadget, sans-serif
+
+
+    &-TargetContent
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: Configuration--YDF.textGeometry.basicFontSize,
+        lineHeight: Configuration--YDF.textGeometry.basicLineHeight,
+        mustAllowWordsBreakingAnywhere: true
+      })

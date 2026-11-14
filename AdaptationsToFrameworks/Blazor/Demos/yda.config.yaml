@@ -1,0 +1,17 @@
+$projectBuilding:
+
+  $plainCopying:
+
+    $filesGroups:
+            
+      Primer:
+        $sourceFileRelativePath: node_modules/@yamato-daiwa/frontend-demos/Distributions/YDF-Demos-Primer.css
+        $buildingModeDependent:
+          $production: { $outputDirectoryRelativePath: wwwroot/css }
+          
+          
+      CommonRequirements:
+        $sourceFileRelativePath: node_modules/@yamato-daiwa/frontend-demos/Distributions/YDF-Demos-CommonRequirements.css
+        $buildingModeDependent:
+          $production: { $outputDirectoryRelativePath: wwwroot/css }
+ 

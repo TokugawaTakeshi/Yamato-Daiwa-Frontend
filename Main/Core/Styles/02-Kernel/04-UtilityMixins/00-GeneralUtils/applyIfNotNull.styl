@@ -1,0 +1,9 @@
+applyIfNotNull--YDF(keyAndValuePairs)
+
+  if isObject--YDF(keyAndValuePairs)
+
+    for key, value in keyAndValuePairs
+
+      if isNotNull--YDF(value)
+
+        {key}: value

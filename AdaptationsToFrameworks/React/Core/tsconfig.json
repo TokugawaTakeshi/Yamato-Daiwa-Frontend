@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+
+    "target": "ES2023",
+    "moduleResolution": "bundler",
+
+    "jsx": "react",
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "experimentalDecorators": true
+
+  },
+
+  /* [ Theory ]
+   * Webpack which under the hood of @yamato-daiwa/automation don't case about "include", "exclude" and "files"; this
+   *   directive needs only for ESLint and IDEs */
+  "include": [
+    "Source/**/*",
+    "Workbenches/**/*",
+    "Automation/**/*"
+  ]
+
+}

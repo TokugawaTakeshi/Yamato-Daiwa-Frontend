@@ -1,0 +1,88 @@
+extends ../../../../PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "AdmonitionBlock Component Development"
+      },
+      stylesSheetsURIs: [ "@Workbenches/GUI_Components/AdmonitionBlock/AdmonitionBlock.workbench" ]
+    });
+
+
+block append Requirements
+
+  include ../../../../GUI_Components.pug
+
+
+block append PageContent
+
+  svg(
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    style="display: none;"
+  )
+    g(
+      id="CUSTOM_ICON_GROUP"
+    )
+      circle(cx="12" cy="12" r="10")
+      line(x1="8" y1="14" x2="16" y2="14")
+      line(x1="8" y1="10" x2="16" y2="10")
+
+  +AdmonitionBlock--YDF({
+    decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.notice,
+    SVG_Icon: {
+      innerElementID: "CUSTOM_ICON_GROUP",
+      SVG_ElementAttributes: {
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-width": "2",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round"
+      }
+    },
+    dismissible: true
+  }) Sample
+
+
+  //- ━━━ IntelliJ IDEA Live Template ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //-
+    //- ─── Single-line Examples ───────────────────────────────────────────────────────────────────────────────────────────
+    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.$DECORATIVE_VARIATION$ })
+
+      $END$
+
+    +AdmonitionBlock--YDF({ decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.$DECORATIVE_VARIATION$, SVG_Icon: true })
+
+
+    //- ─── Full Example ───────────────────────────────────────────────────────────────────────────────────────────────────
+    +AdmonitionBlock--YDF({
+      title: "Title", // TODO Edit if the title is required otherwise remove
+      SVG_Icon: true, // TODO Remove if default icon is not required
+      SVG_Icon: { innerElementID: "INNER_ELEMENT", SVG_ElementAttributes: { viewBox: "0 0 24 24" } }, // TODO Edit if the custom icon is required otherwise remove
+      dismissible: true, // TODO Remove if the dismissing is not required
+      theme: AdmonitionBlock__YDF.Themes.regular, // TODO Remove if theme is only one, default or common
+      areThemesCSS_ClassesCommon: true, // TODO Remove if false or has been set to `true` globally
+      geometricVariation: AdmonitionBlock__YDF.GeometricVariations.$GEOMETRIC_VARIATION$, // TODO Remove if the geometric variation is `regular` (default)
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.$DECORATIVE_VARIATION$
+    })
+
+      //- TODO Add the specific content
+
+      //- TODO Edit if the centered button is required otherwise remove
+      +Button--YDF({ label: "Action 1" }).AdmonitionBlock--YDF-CenteredButton
+
+      //- TODO Edit if the action bar is required otherwise remove
+      .AdmonitionBlock--YDF-ActionBar
+        +Button--YDF({ label: "Action 1" })
+        +Button--YDF({ label: "Action 2" })
+    //- === END OF GENERATED CODE ==========================================================================================

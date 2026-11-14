@@ -1,0 +1,56 @@
+mixin TableGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("Table__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("Table__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("Table__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData()
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) Table Component Demos
+
+
+  //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Minimal
+
+    +ThemesShowcase--YDF({
+      themes: Table__YDF.Themes,
+      geometricVariations: Table__YDF.GeometricVariations,
+      decorativeVariations: Table__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+      +Table--YDF({
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      })
+        thead
+          tr
+            th(scope="col") #
+            th(scope="col") First
+            th(scope="col") Last
+            th(scope="col") Handle
+        tbody
+          tr
+            th(scope="row") 1
+            td Mark
+            td Otto
+            td @mdo
+          tr
+            th(scope="row") 2
+            td Jacob
+            td Thornton
+            td @fat
+          tr
+            th(scope="row") 3
+            td(colspan="2") Larry the Bird
+            td @twitter

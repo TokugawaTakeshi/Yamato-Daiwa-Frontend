@@ -1,0 +1,145 @@
+mixin Pagination--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      /** @type { number } */
+      maximalPageNumberButtonsCount,
+
+      /** @type { string } */
+      accessibilityGuidance,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      noDisplayMovingToUltimatePagesButtons,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      noDisplayMovingToAdjacentPagesButtons,
+
+      /**
+       * @type { string }
+       * @default Pagination__YDF.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default Pagination__YDF.areThemesCSS_ClassesCommon
+       */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default Pagination__YDF.GeometricVariations.regular
+       */
+      geometricVariation,
+
+      /**
+       * @type { string }
+       * @default Pagination__YDF.DecorativeVariations.regular
+       */
+      decorativeVariation
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: Pagination__YDF.propertiesSpecification,
+      mixinName: "Pagination--YDF"
+    });
+
+    const {
+
+      /**
+       * @type { boolean }
+       * @default 10
+       * */
+      totalPagesCount,
+
+      /**
+       * @type { boolean }
+       * @default 1
+       * */
+      currentPageNumber
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: Pagination__YDF.statesSimulationsSpecification,
+      mixinName: "Pagination--YDF"
+    });
+
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+        Pagination__YDF.getActualRootElementModifierCSS_Classes({
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
+
+
+  nav.Pagination--YDF&attributes(attributes)(aria-label=accessibilityGuidance)
+
+    ul
+
+      if !noDisplayMovingToUltimatePagesButtons
+
+        li
+
+          +Button--YDF({
+            accessibilityGuidance: Pagination__YDF.localization.buttons.toFirstPage.accessibilityGuidance,
+            disabled: currentPageNumber === 1,
+            geometricModifiers: [ Button__YDF.GeometricModifiers.squareShape ]
+          }).Pagination-Button: +DoubleChevronIcon__Leftward--YDF_Icon.Button--YDF-SVG_Icon
+
+      if !noDisplayMovingToAdjacentPagesButtons
+
+        li
+
+          +Button--YDF({
+            accessibilityGuidance: Pagination__YDF.localization.buttons.toPreviousPage.accessibilityGuidance,
+            disabled: currentPageNumber === 1,
+            geometricModifiers: [ Button__YDF.GeometricModifiers.squareShape ]
+          }).Pagination-Button: +Chevron__Leftward--YDF_Icon.Button--YDF-SVG_Icon
+
+      -
+
+        const lastPageNumber = YDF.limitMaximalValue({
+          targetNumber: currentPageNumber + maximalPageNumberButtonsCount - 1,
+          maximalValue: totalPagesCount
+        })
+
+      - for (let pageNumber = currentPageNumber; pageNumber <= lastPageNumber; pageNumber++)
+
+        li
+
+          +Button--YDF({
+            label: pageNumber,
+            geometricModifiers: [ Button__YDF.GeometricModifiers.squareShapeUnlessOverflowed ]
+          }).Pagination-Button
+
+      if !noDisplayMovingToAdjacentPagesButtons
+
+        li
+
+          +Button--YDF({
+            accessibilityGuidance: Pagination__YDF.localization.buttons.toNextPage.accessibilityGuidance,
+            geometricModifiers: [ Button__YDF.GeometricModifiers.squareShape ]
+          }).Pagination-Button: +Chevron__Rightward--YDF_Icon.Button--YDF-SVG_Icon
+
+      if !noDisplayMovingToUltimatePagesButtons
+
+        li
+
+          +Button--YDF({
+            accessibilityGuidance: Pagination__YDF.localization.buttons.toLastPage.accessibilityGuidance,
+            geometricModifiers: [ Button__YDF.GeometricModifiers.squareShape ]
+          }).Pagination-Button: +DoubleChevronIcon__Rightward--YDF_Icon.Button--YDF-SVG_Icon

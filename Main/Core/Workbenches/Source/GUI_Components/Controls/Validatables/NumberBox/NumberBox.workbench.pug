@@ -1,0 +1,40 @@
+extends ../../../../../../PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Requirements
+
+  include ../../../../../../GUI_Components.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "NumberBox Component Testing"
+      },
+      stylesSheetsURIs: [
+        "@Workbenches/GUI_Components/Controls/Validatables/NumberBox/NumberBox.workbench"
+      ],
+      scriptsURIs: {
+        atEndOfBody: [
+          "@Workbenches/GUI_Components/Controls/Validatables/NumberBox/NumberBox.workbench"
+        ]
+      }
+    });
+
+
+block append PageContent
+
+  +NumberBox--YDF({
+    label: "Sample",
+    minimalValue: 0,
+    maximalValue: 100,
+    step: 1,
+    orientation: NumberBox__YDF.Orientations.horizontal
+  })#SAMPLE
+
+  +NumberBox--YDF({
+    orientation: NumberBox__YDF.Orientations.vertical
+  })

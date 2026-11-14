@@ -1,0 +1,223 @@
+@require "Themes/Regular/GeometricVariations/Table-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/Table-RegularTheme-SmallGeometricVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/Pastel/Solid/Table-RegularTheme-AchromaticPastelSolidDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Solid/Table-RegularTheme-CalmingPastelSolidDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Solid/Table-RegularTheme-ModestlyCalmingPastelSolidDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Solid/Table-RegularTheme-NeutralPastelSolidDecorativeVariation.styl"
+
+
+Table--YDF = {
+
+  CSS_NAMESPACE: "Table--YDF",
+
+  defaultProperties: {
+
+    themes: {
+
+      regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF",
+
+        geometricVariations: {
+          regular: Table-RegularTheme-RegularGeometricVariation--YDF,
+          small: Table-RegularTheme-SmallGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          achromaticPastelSolid: Table-RegularTheme-AchromaticPastelSolidDecorativeVariation--YDF,
+          calmingPastelSolid: Table-RegularTheme-CalmingPastelSolidDecorativeVariation--YDF,
+          modestlyCalmingPastelSolid: Table-RegularTheme-ModestlyCalmingPastelSolidDecorativeVariation--YDF
+          neutralPastelSolid: Table-RegularTheme-NeutralPastelSolidDecorativeVariation--YDF
+        }
+
+      }
+
+    }
+
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    geometricModifiers: {
+      borderless: true,
+      verticalBordersOnly: true,
+      horizontalBordersOnly: true
+    },
+    decorativeModifiers: {
+      noBackground: true
+    }
+  }
+
+}
+
+
+Table--YDF-generateStyles(
+  preset = Table--YDF.defaultProperties,
+  overridings = {},
+  options = Table--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "Table--YDF-generateStyles",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Table--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Table--YDF.defaultOptions.externalThemes
+      },
+      loadingPlaceholder: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Table--YDF.defaultOptions.loadingPlaceholder
+      },
+      geometricModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          borderless: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Table--YDF.defaultOptions.geometricModifiers.borderless
+          },
+          verticalBordersOnly: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Table--YDF.defaultOptions.geometricModifiers.verticalBordersOnly
+          },
+          horizontalBordersOnly: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Table--YDF.defaultOptions.geometricModifiers.horizontalBordersOnly
+          }
+        },
+        defaultValue: Table--YDF.defaultOptions.geometricModifiers
+      },
+      decorativeModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          noBackground: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Table--YDF.defaultOptions.decorativeModifiers.noBackground
+          }
+        },
+        defaultValue: Table--YDF.defaultOptions.decorativeModifiers
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .Table--YDF
+
+       display flex
+
+
+    .Table--YDF-TableElement
+
+      border-collapse collapse
+
+      min-width 100%
+
+
+  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "Table.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+    +provideDefaultSelectorWhenRootAndApply--YDF(ROOT_ELEMENT_SELECTOR)
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
+
+
+      th,
+      td
+
+        Paddings--YDF(variation.cells.all.paddings)
+
+
+  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "Table.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+    +provideDefaultSelectorWhenRootAndApply--YDF(".Table--YDF")
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          background-color: { dotSeparatedPath: "rootElement.background.color", required: false }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
+
+
+      thead
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            background-color: { dotSeparatedPath: "head.background.color", required: false },
+            background-image: { dotSeparatedPath: "head.background.image", required: false }
+          }
+        })
+
+
+      tbody
+
+        tr
+
+          &:nth-child(odd)
+
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              assigments: {
+                background-color: { dotSeparatedPath: "bodyRow.odd.background.color", required: false },
+                background-image: { dotSeparatedPath: "bodyRow.odd.background.image", required: false }
+              }
+            })
+
+
+          &:nth-child(even)
+
+            validateAndAssignStoredInObjectCSS_Properties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              assigments: {
+                background-color: { dotSeparatedPath: "bodyRow.even.background.color", required: false },
+                background-image: { dotSeparatedPath: "bodyRow.even.background.image", required: false }
+              }
+            })
+
+
+  // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  applyComponentThemes--YDF({
+    CSS_Namespace: "Table--YDF",
+    themes: properties.themes,
+    applyGeometricVariation: applyGeometricVariation,
+    applyDecorativeVariation: applyDecorativeVariation
+  })

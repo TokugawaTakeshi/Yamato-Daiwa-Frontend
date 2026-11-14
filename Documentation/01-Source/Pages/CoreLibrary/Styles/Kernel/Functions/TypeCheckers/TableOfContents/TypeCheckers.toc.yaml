@@ -1,0 +1,125 @@
+strings:
+
+  $heading: `strings.$heading`
+  $anchor: STRINGS--SECTION
+
+  $children:
+
+    isEmptyString:
+      $heading: "<code>isEmptyString</code>"
+      $anchor: isEmptyString--SECTION
+
+    isNonEmptyString:
+      $heading: "<code>isNonEmptyString</code>"
+      $anchor: isNonEmptyString--SECTION
+
+    isString:
+      $heading: "<code>isString</code>"
+      $anchor: isString--SECTION
+
+quantities:
+
+  $heading: `quantities.$heading`
+  $anchor: QUANTITIES--SECTION
+
+  $children:
+
+    isDimensionalOrDimensionlessQuantity:
+      $heading: "<code>isDimensionalOrDimensionlessQuantity</code>"
+      $anchor: isDimensionalOrDimensionlessQuantity--SECTION
+
+    isDimensionalQuantity:
+      $heading: "<code>isDimensionalQuantity</code>"
+      $anchor: isDimensionalQuantity--SECTION
+
+    isDimensionlessQuantity:
+      $heading: "<code>isDimensionlessQuantity</code>"
+      $anchor: isDimensionlessQuantity--SECTION
+
+    isNaturalNumber:
+      $heading: "<code>isNaturalNumber</code>"
+      $anchor: isNaturalNumber--SECTION
+
+booleans:
+
+  $heading: `booleans.$heading`
+  $anchor: BOOLEANS--SECTION
+
+  $children:
+
+    isBoolean:
+      $heading: "<code>isBoolean</code>"
+      $anchor: isBoolean--SECTION
+
+    isFalse:
+      $heading: "<code>isFalse</code>"
+      $anchor: isFalse--SECTION
+
+    isTrue:
+      $heading: "<code>isTrue</code>"
+      $anchor: isTrue--SECTION
+
+nullables:
+
+  $heading: `nullables.$heading`
+  $anchor: NULLABLES--SECTION
+
+  $children:
+
+    theoreticalMinimum:
+      $heading: `nullables.theoreticalMinimum.$heading`
+      $anchor: NULLABLES-THEORETICAL_MINIMUM--SECTION
+
+      $children:
+
+        nullKeyword:
+          $heading: `nullables.theoreticalMinimum.nullKeyword.$heading`
+          $anchor: NULLABLES-THEORETICAL_MINIMUM-NULL_KEYWORD--SECTION
+
+        nonExistingObjectProperty:
+          $heading: `nullables.theoreticalMinimum.nonExistingObjectProperty.$heading`
+          $anchor: NULLABLES-THEORETICAL_MINIMUM-NON_EXISTING_OBJECT_PROPERTY--SECTION
+
+        functionOrMixinWithRestParametersOnly:
+          $heading: `nullables.theoreticalMinimum.functionOrMixinWithRestParametersOnly.$heading`
+          $anchor: NULLABLES-THEORETICAL_MINIMUM-FUNCTION_OR_MIXIN_WITH_REST_PARAMETERS_ONLY--SECTION
+
+        functionOrMixinWithRestParametersInSubsequentPosition:
+          $heading: `nullables.theoreticalMinimum.functionOrMixinWithRestParametersInSubsequentPosition.$heading`
+          $anchor: NULLABLES-THEORETICAL_MINIMUM-FUNCTION_OR_MIXIN_WITH_REST_PARAMETERS_IN_SUBSEQUENT_POSITION--SECTION
+
+    isNotNull:
+      $heading: "<code>isNotNull</code>"
+      $anchor: isNotNull--SECTION
+
+    isNull:
+      $heading: "<code>isNull</code>"
+      $anchor: isNull--SECTION
+
+others:
+
+  $heading: `others.$heading`
+  $anchor: OTHERS--SECTION
+
+  $children:
+
+    isCalcExpression:
+      $heading: "<code>isCalcExpression</code>"
+      $anchor: isCalcExpression--SECTION
+
+    isFunction:
+      $heading: "<code>isFunction</code>"
+      $anchor: isFunction--SECTION
+
+    isIdentifier:
+      $heading: "<code>isIdentifier</code>"
+      $anchor: isIdentifier--SECTION
+
+    isObject:
+      $heading: "<code>isObject</code>"
+      $anchor: isObject--SECTION
+
+externalLinks:
+
+  $heading: `externalLinks.$heading`
+  $anchor: EXTERNAL_LINKS--SECTION

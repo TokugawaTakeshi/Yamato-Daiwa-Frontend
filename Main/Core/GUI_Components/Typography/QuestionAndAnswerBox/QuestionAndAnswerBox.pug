@@ -1,0 +1,78 @@
+include QuestionAndAnswerBox.class.pug
+
+
+mixin QuestionAndAnswerBox--YDF(properties)
+
+  -
+
+    const {
+      type,
+      question
+    } = properties;
+
+    const BASIC_ID = QuestionAndAnswerBox__YDF.generateComponentID();
+    const QUESTION_TITLE_HTML_ID = `${ BASIC_ID }-QUESTION_TITLE`;
+    const ANSWER_TITLE_HTML_ID = `${ BASIC_ID }-ANSWER_TITLE`;
+
+    let questionTitle;
+    let modifierCSS_Class;
+
+    switch (type) {
+
+      case QuestionAndAnswerBox__YDF.Types.question: {
+        questionTitle = QuestionAndAnswerBox__YDF.localization.question;
+        modifierCSS_Class = `QuestionAndAnswerBox--YDF__QuestionDecorativeVariation`;
+        break;
+      }
+
+      case QuestionAndAnswerBox__YDF.Types.objection: {
+        questionTitle = QuestionAndAnswerBox__YDF.localization.objection;
+        modifierCSS_Class = `QuestionAndAnswerBox--YDF__ObjectionDecorativeVariation`;
+        break;
+      }
+
+      case QuestionAndAnswerBox__YDF.Types.criticism: {
+        questionTitle = QuestionAndAnswerBox__YDF.localization.criticism;
+        modifierCSS_Class = `QuestionAndAnswerBox--YDF__CriticismDecorativeVariation`;
+      }
+
+    }
+
+
+  .QuestionAndAnswerBox--YDF&attributes(attributes)(
+    class= modifierCSS_Class
+  )
+
+    case type
+
+      when QuestionAndAnswerBox__YDF.Types.question
+
+        +Comment__Question--YDF_Icon.QuestionAndAnswerBox--YDF-Icon
+
+      when QuestionAndAnswerBox__YDF.Types.objection
+
+        +Comment__Objection--YDF_Icon.QuestionAndAnswerBox--YDF-Icon
+
+      when QuestionAndAnswerBox__YDF.Types.criticism
+
+        +Comment__Criticism--YDF_Icon.QuestionAndAnswerBox--YDF-Icon
+
+    .QuestionAndAnswerBox--YDF-Title(
+      id=QUESTION_TITLE_HTML_ID
+    )= questionTitle
+
+    p.QuestionAndAnswerBox--YDF-Text(
+      role="group"
+      aria-labelledby=QUESTION_TITLE_HTML_ID
+    )= question
+
+    .QuestionAndAnswerBox--YDF-Title(
+      id=ANSWER_TITLE_HTML_ID
+    )= QuestionAndAnswerBox__YDF.localization.answer
+
+    .QuestionAndAnswerBox--YDF-Text(
+      role="group"
+      aria-labelledby=ANSWER_TITLE_HTML_ID
+    )
+
+      block

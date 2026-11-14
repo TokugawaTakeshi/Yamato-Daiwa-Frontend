@@ -1,0 +1,47 @@
+overview:
+
+  $heading: "Обзор"
+
+usage:
+
+  $heading: "Использование"
+
+  markup:
+
+    $heading: "Разметка"
+
+    includingToProject:
+
+      $heading: "Подключение в проект"
+
+    pugMixin:
+
+      $heading: "Pug-примесь <code>AdmonitionBlock--YDF</code>"
+
+      minimalExample:
+
+        $heading: "Минимальный пример (только обязательные свойства)"
+
+      title:
+
+        $heading: "Заголовок (свойство <code>title</code>)"
+
+      SVG_Icon:
+
+        $heading: "SVG-иконка (свойство <code>SVG_Icon</code>)"
+
+        custom:
+
+          $heading: "Пользовательские иконки"
+
+      buttons:
+
+        $heading: "Кнопки"
+
+      dismissing:
+
+        $heading: "Убирание"
+
+  logic:
+
+    $heading: "Логика"

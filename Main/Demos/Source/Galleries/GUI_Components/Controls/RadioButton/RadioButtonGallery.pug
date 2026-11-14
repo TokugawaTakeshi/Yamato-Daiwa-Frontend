@@ -1,0 +1,63 @@
+include RadioButtonGalleryOptions.pug
+
+
+mixin RadioButtonGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("RadioButton__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("RadioButton__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("RadioButton__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
+
+
+  h1.Heading1(
+    class=(RadioButtonGalleryOptions.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) Radio Button Component Demos
+
+  //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if RadioButtonGalleryOptions.partialsRenderingFlags[RadioButtonGalleryOptions.Partials.minimal]
+
+    h2.Heading2(
+      class=(RadioButtonGalleryOptions.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Minimal
+
+    +ThemesShowcase--YDF({
+      themes: RadioButton__YDF.Themes,
+      geometricVariations: RadioButton__YDF.GeometricVariations,
+      decorativeVariations: RadioButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: [ "CheckboxGallery-PairFlow" ]
+    })
+
+      -
+
+        /** @type { string } */
+        const HTML_Name = [
+          "minimal-",
+          themeShowcaseCurrentIterationData.theme.value,
+          themeShowcaseCurrentIterationData.geometricVariation.value,
+          themeShowcaseCurrentIterationData.decorativeVariation.value
+        ].join("-");
+
+      +RadioButton--YDF({
+        label: "Selection 1",
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+        HTML_Name,
+        HTML_Value: `${ HTML_Name }-1`,
+        checked: false
+      })
+
+      +RadioButton--YDF({
+        label: "Selection 2",
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+        HTML_Name,
+        HTML_Value: `${ HTML_Name }-2`,
+        checked: true
+      })

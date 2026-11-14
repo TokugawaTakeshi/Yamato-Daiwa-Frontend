@@ -1,0 +1,314 @@
+// ━━━ Scenario 1: Using of Default Styles ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+// With default options:
+provideAdmonitionBlockYDF_Component()
+
+// With custom options (currently all values are even with default, you can omit the ones you don't want to change):
+provideAdmonitionBlockYDF_Component(
+  options: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    themeIndependentGeometricVariations: true,
+    typographyAssimilation: false
+  }
+)
+
+
+// ━━━ Scenario 2: Override Default Preset a Little ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// [ Hint ] Currently all values are even with default, you can omit the ones you don't want to change
+provideAdmonitionBlockYDF_Component(
+  overrides: {
+    themes: {
+      regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF",
+
+        geometricVariations: {
+
+          regular: {
+
+            rootElement: {
+
+              borders: specifyBordersSizing({
+                thickness: { all: 1px },
+                radius: { all: 3px }
+              }),
+
+              paddings: specifyPaddings({
+                horizontalSymmetric: 12px,
+                verticalSymmetric: 10px
+              }),
+
+              customDeclarations: {}
+
+            },
+
+            // [ Conditional requirement ] At least one of `width` or `height` must be non-null
+            SVG_Icon: {
+              width: null,
+              height: 18px,
+              customDeclarations: {}
+            },
+
+            title: {
+
+              text: {
+
+                size: 1.6rem, // [ Non nullable ! ]
+
+                // [ Conditional requirement ] Either `lineSpacing` or `lineHeight` must bu non-null but not both
+                lineSpacing: 0.4rem,
+                lineHeight: null
+
+              },
+
+              spacing: {
+                afterSVG_Icon: 1rem // [ Non nullable ! ]
+              },
+
+              customDeclarations: {}
+
+            },
+
+            mainContent: {
+
+              text: {
+                size: 1rem, // [ Non nullable ! ]
+
+                // [ Conditional requirement ] Either `lineSpacing` or `lineHeight` must bu non-null but not both
+                lineSpacing: 0.4rem,
+                lineHeight: null
+
+              },
+
+              spacing: {
+                afterSVG_Icon: 1rem, // [ Non nullable ! ]
+                afterTitle: 0.4rem // [ Non nullable ! ]
+              },
+
+              customDeclarations: {}
+
+            },
+
+            dismissingButton: {
+
+              // [ Conditional requirement ] At least one of `width` or `height` must be non-null
+              SVG_Icon: {
+                width: null,
+                height: 1.5rem
+              },
+
+              spacing: {
+                afterMainContent: 0.2rem // [ Non nullable ! ]
+              },
+
+              customDeclarations: {}
+
+            },
+
+            centeredButton: {
+              spacing: {
+                top: 0.2rem // [ Non nullable ! ]
+              },
+              customDeclarations: {}
+            },
+
+            actionBar: {
+              spacing: {
+                top: 0.4rem, // [ Non nullable ! ]
+                betweenChildrenElements: 0.4rem // [ Non nullable ! ]
+              },
+              customDeclarations: {}
+            }
+
+          },
+
+          stickyNoteLike: {
+
+            // TODO Ditto
+
+          }
+
+        },
+
+        decorativeVariations: {
+
+          error: {
+
+            rootElement: {
+
+              borders: {
+                style: solid,
+                color: JQueryUI_BaseTheme.content.borderColor
+              },
+
+              background: {
+                color: JQueryUI_BaseTheme.content.background,
+                image: null
+              },
+
+              customDeclarations: {}
+
+            },
+
+            mainContent: {
+
+              font: {
+                weight: null,
+                color: #666666
+              },
+
+              customDeclarations: {}
+
+            },
+
+            SVG_Icon: {
+              color: JQueryUI_BaseTheme.content.iconsColor,
+              customDeclarations: {}
+            },
+
+            title: {
+              text: {
+                fontWeight: null,
+                color: JQueryUI_BaseTheme.content.fontColor
+              },
+              customDeclarations: {}
+            },
+
+            dismissingButton: {
+
+              defaultState: {
+
+                iconColor: YDF_ColorPalette.red.slightlyDark,
+                shadow: null,
+
+                customDeclarations: {}
+
+              },
+
+              hoverState: {
+
+                iconColor: YDF_ColorPalette.red.mediumLight,
+                shadow: null,
+
+                customDeclarations: {}
+
+              },
+
+
+              focusState: {
+
+                iconColor: YDF_ColorPalette.red.mediumLight,
+                shadow: {
+                  blurRadius: 3px,
+                  spreadRadius: 1px,
+                  color: YDF_ColorPalette.red.mediumLight
+                },
+
+                customDeclarations: {}
+
+              },
+
+              activeState: {
+
+                iconColor: YDF_ColorPalette.red.light,
+                shadow: null,
+
+                customDeclarations: {}
+
+              }
+
+            }
+
+          },
+
+          guidance: {
+            // TODO Ditto
+          },
+
+          notice: {
+            // TODO Ditto
+          },
+
+          question: {
+            // TODO Ditto
+          },
+
+          success: {
+            // TODO Ditto
+          },
+
+          // You can prevent the generating of styles for the unused variations:
+          warning: null
+
+        }
+
+      }
+    }
+  }
+)
+
+
+// ━━━ Scenario 3: Define Own Preset ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// TODO Define the geometric variations (like `AdmonitionBlock-RegularTheme-RegularGeometry`) and the decorative
+//  variations (like `AdmonitionBlock-RegularTheme-NoticeDecoration`) in the separate files then include them here.
+@require "Themes/Regular/GeometricVariations/AdmonitionBlock-RegularTheme-RegularGeometricVariation.styl"
+@require "Themes/Regular/GeometricVariations/AdmonitionBlock-RegularTheme-StickyNoteLikeGeometricVariation.styl"
+
+@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-NoticeDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-ErrorDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-WarningDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-SuccessDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-GuidanceDecorativeVariation.styl"
+@require "Themes/Regular/DecorativeVariations/AdmonitionBlock-RegularTheme-QuestionDecorativeVariation.styl"
+
+provideAdmonitionBlockYDF_Component({
+
+  preset: {
+
+    themes: {
+      regular: {
+
+        componentIndependentCSS_Class: "RegularTheme--YDF",
+
+        geometricVariations: {
+          regular: AdmonitionBlock-RegularTheme-RegularGeometricVariation--YDF,
+          stickyNoteLike: AdmonitionBlock-RegularTheme-StickyNoteLikeGeometricVariation--YDF
+        },
+
+        decorativeVariations: {
+          notice: AdmonitionBlock-RegularTheme-NoticeDecorativeVariation--YDF,
+          error: AdmonitionBlock-RegularTheme-ErrorDecorativeVariation--YDF,
+          warning: AdmonitionBlock-RegularTheme-WarningDecorativeVariation--YDF,
+          success: AdmonitionBlock-RegularTheme-SuccessDecorativeVariation--YDF,
+          guidance: AdmonitionBlock-RegularTheme-GuidanceDecorativeVariation--YDF,
+          question: AdmonitionBlock-RegularTheme-QuestionDecorativeVariation--YDF
+        }
+
+      }
+    }
+
+  },
+
+  // TODO Remove below parameter if you are not going to change the specified below default values
+  options: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    themeIndependentGeometricVariations: true,
+    typographyAssimilation: false
+  }
+
+})
+
+
+// ━━━ Scenario 4: Writhe the CSS Theme Dependent Styles Yourself ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+provideAdmonitionBlockYDF_Component({
+  options: {
+    themeIndependentStylesOnly: true, // You need this option to be `true`, but cam omit remain ones if you are fine with below default values
+    areThemesCSS_ClassesCommon: false,
+    themeIndependentGeometricVariations: true,
+    typographyAssimilation: false
+  }
+})
+
+// TODO Now define the styles for themes, geometric and decorative variations

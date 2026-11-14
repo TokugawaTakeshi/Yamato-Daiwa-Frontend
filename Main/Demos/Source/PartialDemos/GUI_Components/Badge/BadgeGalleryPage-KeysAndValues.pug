@@ -1,0 +1,12 @@
+extends ../../../CompletePages/GUI_Components/Badge/_BadgeGalleryPage.template.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.metadata.title = generateHTML_PageTitle("Keys And Values");
+
+    GalleryConfigurator.
+        setPartialToRender(GalleryConfigurator.Partials.keysAndValues).
+        visuallyHideAllHeadings();

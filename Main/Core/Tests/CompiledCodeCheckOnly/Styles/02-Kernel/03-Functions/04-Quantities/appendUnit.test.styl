@@ -1,0 +1,25 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/04-Quantities/appendUnit.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/04-Quantities/appendUnit.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+// Simulate the error which was the motivation for the development of the `appendUnit--YDF` function
+// p(1 + "px")
+
+testForEquality--YDF(
+  "The unit has been appended",
+  appendUnit--YDF(1, "px"),
+  1px
+)
+
+testForEquality--YDF(
+  "The type of returned value is 'unit'",
+  typeof(appendUnit--YDF(1, "px")),
+  "unit"
+)

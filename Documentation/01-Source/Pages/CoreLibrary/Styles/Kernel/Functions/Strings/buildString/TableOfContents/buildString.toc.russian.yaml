@@ -1,0 +1,15 @@
+interpolationMethodsComparison:
+
+  $heading: "Сравнение способов интерполяции строк"
+
+  concatenation:
+
+    $heading: "Конкатенация строк (нативный способ)"
+
+  sprintf:
+
+    $heading: "Sprintf (нативный способ)"
+
+  buildString:
+
+    $heading: "<code>buildString</code> (YDF)"

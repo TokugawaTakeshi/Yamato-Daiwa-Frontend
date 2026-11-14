@@ -1,0 +1,154 @@
+UnorderedListDefaultProperties--YDF = {
+  geometry: {
+    text: {
+      size: Configuration--YDF.textGeometry.basicFontSize,
+      lineSpacing: null,
+      lineHeight: Configuration--YDF.textGeometry.basicLineHeightInMultilineTextBlocks
+    },
+    paddings: { left: 28px },
+    verticalSpaceBetweenItems: 8px,
+    customDeclarations: null
+  },
+  decoration: {
+    text: {
+      fontWeight: null,
+      color: null
+    },
+    customDeclarations: null
+  }
+}
+
+UnorderedList--YDF(
+  preset = UnorderedListDefaultProperties--YDF,
+  overridings = {},
+  options = {
+    geometryOnly: false,
+    decorationOnly: false
+  }
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  mustGenerateGeometry = isTrue--YDF(options.geometryOnly) || isFalse--YDF(options.decorationOnly)
+  mustGenerateDecoration = isTrue--YDF(options.decorationOnly) || isFalse--YDF(options.geometryOnly)
+
+  list-style-type disc
+  list-style-position inside
+
+
+  li
+
+    // [ Theory ] We can not use ::before and ::auto pseudo elements with "list-style-position inside"
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: properties.geometry.text.size,
+      lineHeight: properties.geometry.text.lineHeight,
+      mustApplyNegativeMarginsToRootElement: true,
+      mustTryToProvideHyphenations: true
+    })
+
+
+    +li
+
+      // [ Theory ] The margins are already has been used by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF`.
+      //   As exclusion, using paddings instead
+      padding-top: properties.geometry.verticalSpaceBetweenItems
+
+
+  ul
+
+    padding-left 10px
+    list-style-type circle
+    Paddings--YDF(properties.geometry.paddings)
+
+
+    ul
+
+      list-style-type square
+
+
+OrderedListDefaultProperties--YDF = {
+  geometry: {
+    fontSize: Configuration--YDF.textGeometry.basicFontSize,
+    lineHeight: Configuration--YDF.textGeometry.basicLineHeightInMultilineTextBlocks,
+    paddings: { left: 28px },
+    verticalSpaceBetweenItems: 8px
+  }
+}
+
+OrderedList--YDF(preset = OrderedListDefaultProperties--YDF, overridings = {})
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+  geometry = properties.geometry
+
+
+  list-style-type decimal
+  list-style-position outside
+
+  Paddings--YDF(geometry.paddings)
+
+  applyIfNotNull--YDF(geometry.customDeclarations)
+
+
+  li
+
+    // [ Theory ] We can not use ::before and ::auto pseudo elements with "list-style-position inside"
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: geometry.fontSize,
+      lineHeight: geometry.lineHeight,
+      mustApplyNegativeMarginsToRootElement: true,
+      mustTryToProvideHyphenations: true
+    })
+
+
+    +li
+
+      margin-top: geometry.verticalSpaceBetweenItems
+
+
+  ol
+
+    padding-left 10px
+    list-style-type lower-alpha
+
+
+    ol
+
+      list-style-type lower-roman
+
+
+DescriptionListDefaultProperties--YDF = {
+
+}
+
+DescriptionList--YDF(preset = DescriptionListDefaultProperties--YDF, overridings = {})
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  CONTEXT_SELECTOR = selector()
+
+  dt
+
+    font-weight bold
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: 1rem,
+      lineSpacing: 0.2rem,
+      mustTryToProvideHyphenations: true
+    })
+
+
+  dd
+
+    applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+      fontSize: 1rem,
+      lineSpacing: 0.2rem,
+      mustTryToProvideHyphenations: true
+    })
+
+    padding-left 10px
+
+    PositionalRelationship--YDF({
+      definitions: ("dt" { retireFromIt: { y: 6px }, pushItFromSelf: { y: 12px } }),
+      referenceElementSelector: "dd",
+      contextSelector: CONTEXT_SELECTOR
+    })

@@ -1,0 +1,20 @@
+whenItGoingLast--YDF(compoundParameter = {}, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "whenItGoingLast--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+      schema: {
+        verticalSpaceBelow: {
+        type: DataTypes--YDF.dimensionalQuantity
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  &:last-child
+
+    {block}
+
+    applyIfNotNull--YDF({ margin-bottom: compoundParameter.verticalSpaceBelow })

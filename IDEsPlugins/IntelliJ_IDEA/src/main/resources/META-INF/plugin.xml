@@ -1,21 +1,37 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
 
-    <name>Yamato-Daiwa Frontend</name>
-    <vendor url="https://github.com/TokugawaTakeshi" email="tokugawa.takesi@gmail.com">Takeshi Tokugawa</vendor>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>Yamato-Daiwa Frontend</id>
 
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
+    <name>Yamato-Daiwa Frontend</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+  <vendor url="https://github.com/TokugawaTakeshi" email="tokugawa.takesi@gmail.com">Takeshi Tokugawa</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+       Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+       Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+  <description>Adds the live templates and files templates for the Yamato Daiwa Frontend (YDF) libraries.</description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
 
-        <defaultLiveTemplates file="liveTemplates/Yamato Daiwa Frontend - Pug.xml"/>
-        <defaultLiveTemplates file="liveTemplates/Yamato Daiwa Frontend - Stylus.xml"/>
-        <defaultLiveTemplates file="liveTemplates/Yamato Daiwa Frontend - Vue_TypeScript.xml"/>
+    <defaultLiveTemplates file="liveTemplates/Yamato Daiwa Frontend - Pug.xml"/>
+    <defaultLiveTemplates file="liveTemplates/Yamato Daiwa Frontend - React.xml"/>
+    <defaultLiveTemplates file="liveTemplates/Yamato Daiwa Frontend - Stylus.xml"/>
+    <defaultLiveTemplates file="liveTemplates/Yamato Daiwa Frontend - Vue_TypeScript.xml"/>
 
-    </extensions>
+    <fileTemplateGroup implementation="com.yamato_daiwa.frontend.intellij_idea_plugin.YDF_GUI_ComponentsTemplatesGroupFactory"/>
+    <fileTemplateGroup implementation="com.yamato_daiwa.frontend.intellij_idea_plugin.PagesTemplatesTemplatesGroupFactory"/>
 
-    <applicationListeners>
-        <listener class="com.github.tokugawatakeshi.temp.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+  </extensions>
+
 </idea-plugin>

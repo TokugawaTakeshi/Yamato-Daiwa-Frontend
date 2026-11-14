@@ -1,0 +1,207 @@
+mixin HamburgerMenuButtonGallery
+
+  -
+
+    ThemesShowcase__YDF.
+        setDefaultThemeKeyLabelPrefix("HamburgerMenuButton__YDF.Themes.").
+        setDefaultGeometricVariationLabelPrefix("HamburgerMenuButton__YDF.GeometricVariations.").
+        setDefaultDecorativeVariationLabelPrefix("HamburgerMenuButton__YDF.DecorativeVariations.");
+
+    const themeShowcaseCurrentIterationData = ThemesShowcase__YDF.initializeCurrentIterationData();
+
+
+  h1.Heading1(
+    class=(GalleryConfigurator.mustVisuallyHideTopHeading ? "YDF_Gallery-InvisibleHeading" : [])
+  ) HamburgerMenu Component Demos
+
+
+  //- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Minimal
+
+    +ThemesShowcase--YDF({
+      themes: HamburgerMenuButton__YDF.Themes,
+      geometricVariations: HamburgerMenuButton__YDF.GeometricVariations,
+      decorativeVariations: HamburgerMenuButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "HamburgerMenuButtonGallery-ButtonsFlow"
+    })
+
+      each labelLetterCase in HamburgerMenuButton__YDF.LabelLetterCases
+
+        +HamburgerMenuButton--YDF({
+          labelLetterCase,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+  //- ━━━ Custom Label ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Custom Label
+
+    +ThemesShowcase--YDF({
+      themes: HamburgerMenuButton__YDF.Themes,
+      geometricVariations: HamburgerMenuButton__YDF.GeometricVariations,
+      decorativeVariations: HamburgerMenuButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "HamburgerMenuButtonGallery-ButtonsFlow"
+    })
+
+      each labelLetterCase in HamburgerMenuButton__YDF.LabelLetterCases
+
+        +HamburgerMenuButton--YDF({
+          customLabel: "Nav",
+          labelLetterCase,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+  //- ━━━ No Label ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.minimal]
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) No Label
+
+    +ThemesShowcase--YDF({
+      themes: HamburgerMenuButton__YDF.Themes,
+      geometricVariations: HamburgerMenuButton__YDF.GeometricVariations,
+      decorativeVariations: HamburgerMenuButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData
+    })
+
+      +HamburgerMenuButton--YDF({
+        noLabel: true,
+        theme: themeShowcaseCurrentIterationData.theme.value,
+        geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+        decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+      })
+
+
+  //- ━━━ Geometric Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.mustRenderGeometricModifiersSection
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Geometric Modifiers
+
+
+  //- ─── No Roundings ─────────────────────────────────────────────────────────────────────────────────────────────────
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noRoundingsGeometricModifier]
+
+    h3.Heading3(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) No Roundings
+
+    +ThemesShowcase--YDF({
+      themes: HamburgerMenuButton__YDF.Themes,
+      geometricVariations: HamburgerMenuButton__YDF.GeometricVariations,
+      decorativeVariations: HamburgerMenuButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "HamburgerMenuButtonGallery-ButtonsFlow"
+    })
+
+      each labelLetterCase in HamburgerMenuButton__YDF.LabelLetterCases
+
+        +HamburgerMenuButton--YDF({
+          labelLetterCase,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          geometricModifiers: [ HamburgerMenuButton__YDF.GeometricModifiers.noRoundings ],
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value
+        })
+
+
+  //- ━━━ Decorative Modifiers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  if GalleryConfigurator.mustRenderDecorativeModifiersSection
+
+    h2.Heading2(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) Decorative Modifiers
+
+    //- ─── Borders Disguising ─────────────────────────────────────────────────────────────────────────────────────────
+    if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.bordersDisguisingDecorativeModifier]
+
+      h3.Heading3(
+        class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+      ) Borders Disguising
+
+      +ThemesShowcase--YDF({
+        themes: HamburgerMenuButton__YDF.Themes,
+        geometricVariations: HamburgerMenuButton__YDF.GeometricVariations,
+        decorativeVariations: HamburgerMenuButton__YDF.DecorativeVariations,
+        iterationData: themeShowcaseCurrentIterationData,
+        decorativeVariationsListItemAdditionalCSS_Classes: "HamburgerMenuButtonGallery-ButtonsFlow"
+      })
+
+        each labelLetterCase in HamburgerMenuButton__YDF.LabelLetterCases
+
+          +HamburgerMenuButton--YDF({
+            labelLetterCase,
+            theme: themeShowcaseCurrentIterationData.theme.value,
+            geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+            decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+            decorativeModifiers: [ HamburgerMenuButton__YDF.DecorativeModifiers.bordersDisguising ]
+          })
+
+
+  //- ─── No Background ────────────────────────────────────────────────────────────────────────────────────────────────
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noBackgroundDecorativeModifier]
+
+    h3.Heading3(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) No Background
+
+    +ThemesShowcase--YDF({
+      themes: HamburgerMenuButton__YDF.Themes,
+      geometricVariations: HamburgerMenuButton__YDF.GeometricVariations,
+      decorativeVariations: HamburgerMenuButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "HamburgerMenuButtonGallery-ButtonsFlow"
+    })
+
+      each labelLetterCase in HamburgerMenuButton__YDF.LabelLetterCases
+
+        +HamburgerMenuButton--YDF({
+          labelLetterCase,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          decorativeModifiers: [ HamburgerMenuButton__YDF.DecorativeModifiers.noBackground ]
+        })
+
+
+  //- ─── No Background in Default State Decorative Modifier ───────────────────────────────────────────────────────────
+  if GalleryConfigurator.partialsRenderingFlags[GalleryConfigurator.Partials.noBackgroundInDefaultStateDecorativeModifier]
+
+    h3.Heading3(
+      class=(GalleryConfigurator.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : [])
+    ) No Background in Default State Decorative Modifier
+
+    +ThemesShowcase--YDF({
+      themes: HamburgerMenuButton__YDF.Themes,
+      geometricVariations: HamburgerMenuButton__YDF.GeometricVariations,
+      decorativeVariations: HamburgerMenuButton__YDF.DecorativeVariations,
+      iterationData: themeShowcaseCurrentIterationData,
+      decorativeVariationsListItemAdditionalCSS_Classes: "HamburgerMenuButtonGallery-ButtonsFlow"
+    })
+
+      each labelLetterCase in HamburgerMenuButton__YDF.LabelLetterCases
+
+        +HamburgerMenuButton--YDF({
+          labelLetterCase,
+          theme: themeShowcaseCurrentIterationData.theme.value,
+          geometricVariation: themeShowcaseCurrentIterationData.geometricVariation.value,
+          decorativeVariation: themeShowcaseCurrentIterationData.decorativeVariation.value,
+          decorativeModifiers: [ HamburgerMenuButton__YDF.DecorativeModifiers.noBackgroundInDefaultState ]
+        })

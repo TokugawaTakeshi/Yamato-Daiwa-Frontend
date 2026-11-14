@@ -1,0 +1,41 @@
+extends ../../../../../../node_modules/@yamato-daiwa/frontend/PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Requirements
+
+  include ../../../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.pug
+  include ../../../../../Galleries/GalleryConfigurator.pug
+  include _CheckboxGalleryPage.partials.pug
+  include ../../../../../Galleries/GUI_Components/Controls/Validatables/Checkbox/CheckboxGallery.pug
+
+
+block append Metadata
+
+  -
+
+    /**
+     * @param { string | undefined } partialTitle
+     * @returns { string }
+     * */
+    function generateHTML_PageTitle(partialTitle) {
+      return [
+        "Checkbox Component Demos",
+        ...partialTitle ? [ ` — ${ partialTitle }` ] : [],
+        " — Yamato Daiwa Frontend (YDF)"
+      ].join("");
+    }
+
+    RegularWebPageTemplate__YDF.configure({
+      stylesSheetsURIs: [
+        "@Partials/YDF-Demos-Primer",
+        "@Partials/YDF-Demos-CommonRequirements",
+        "@Pages/GUI_Components/Controls/Validatables/Checkbox/CheckboxGalleryPage"
+      ]
+    });
+
+
+block append PageContent
+
+  .YDF_Gallery
+
+    +CheckboxGallery

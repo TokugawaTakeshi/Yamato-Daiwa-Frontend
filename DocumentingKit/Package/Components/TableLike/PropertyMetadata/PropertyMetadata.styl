@@ -1,0 +1,99 @@
+PropertyMetadata--YDF_DK = {
+  CSS_NAMESPACE: "PropertyMetadata--YDF_DK"
+}
+
+
+providePropertyMetadataYDF_DK_Component()
+
+  .PropertyMetadata--YDF_DK
+
+    WIDE_CONTAINERS_CONFIGURATION_MINIMAL_WIDTH = 400px
+
+    WideContainersConfiguration()
+      @media container and (min-width: WIDE_CONTAINERS_CONFIGURATION_MINIMAL_WIDTH)
+        {block}
+
+    NarrowContainersConfiguration()
+      @media container and (max-width: WIDE_CONTAINERS_CONFIGURATION_MINIMAL_WIDTH - 1)
+        {block}
+
+
+    container-type inline-size
+
+
+    dl
+
+      +WideContainersConfiguration()
+
+        display grid
+        grid-template-columns minmax(min-content, auto) minmax(0, 3fr)
+        column-gap 0.8rem
+        row-gap 0.6rem
+        align-items baseline
+
+
+    &-Key
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: 1rem,
+        lineSpacing: 0.2rem,
+        mustAllowWordsBreakingAnywhere: true
+      })
+
+      font-weight bold
+      color: W3C_39_ShadesOfGray--YDF[12]
+
+
+      +WideContainersConfiguration()
+
+        text-align right
+        max-width 100px
+
+
+    &-Value
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: 1rem,
+        lineSpacing: 0.2rem,
+        mustAllowWordsBreakingAnywhere: true
+      })
+
+      color: W3C_39_ShadesOfGray--YDF[12]
+
+
+      +NarrowContainersConfiguration()
+
+        margin-left 1rem
+        PositionalRelationship--YDF({
+          definitions: (".PropertyMetadata--YDF_DK-Key" { retireFromIt: { y: 0.4rem }, pushItFromSelf: { y: 0.6rem } })
+        })
+
+
+      &__Accented
+
+        font-weight bold
+        color: YDF_ColorPalette.red.mediumDark
+
+
+    &-AllowedAlternativesList
+
+      list-style-position inside
+      list-style-type disc
+
+
+      li+li
+
+        margin-top 4px
+
+
+    &-PolymorphicPropertyVariantsList
+
+      >li + li
+
+        border-top-width 1px
+        padding-top 8px
+
+        border-top-style solid
+        border-top-color lightgray
+
+        margin-top 8px

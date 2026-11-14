@@ -1,0 +1,19 @@
+import React from "react";
+import type SVG_IconComponent from "../SVG_IconComponent";
+
+
+const MenuIcon__ThreeDots__Horizontal__Circled__Filled: SVG_IconComponent = ({ className }: SVG_IconComponent.Properties): React.ReactElement =>
+
+    (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        className={ className }
+      >
+        <path d="M20 10A10 10 0 1110 0a10 10 0 0110 10zM10 8.5a1.5 1.5 0 101.5 1.5A1.5 1.5 0 0010 8.5zm5.81 0a1.5 1.5 0 101.5 1.5 1.5 1.5 0 00-1.5-1.5zm-11.62 0a1.5 1.5 0 101.5 1.5 1.5 1.5 0 00-1.5-1.5z" />
+      </svg>
+      
+    );
+
+
+export default MenuIcon__ThreeDots__Horizontal__Circled__Filled;

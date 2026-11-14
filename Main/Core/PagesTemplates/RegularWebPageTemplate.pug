@@ -1,0 +1,224 @@
+doctype html
+
+
+block Functionality
+
+  include ../Functionality.pug
+
+  -
+
+    class RegularWebPageTemplate__YDF {
+
+      /**
+       * @type {
+       *   {
+       *     locale: string;
+       *     title: string;
+       *     description: string | null;
+       *     keywords: string | null;
+       *     author: string | null;
+       *   }
+       * }
+       * @private
+       */
+      static metadata = {
+
+        /* [ Is it the official term ? ]
+         * No, the official one is "language tag" (see [1]) which could easily be confused with "HTML tag".
+         * See [2] for the usage of this term in relation to `lang` attribute.
+         * [1] https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang#language_tag_syntax
+         * [2] https://stackoverflow.com/q/43196563 */
+        locale: "en",
+        title: "Untitled",
+        description: null,
+        keywords: null,
+        author: null
+
+      };
+
+      /**
+       * @type { string | undefined }
+       * @private
+       */
+      static faviconURI;
+
+      /**
+       * @type { string | undefined }
+       * @private
+       */
+      static AMP_VersionURI;
+
+      /**
+       * @type Array<string>
+       * @private
+       */
+      static stylesSheetsURIs = [];
+
+      /**
+       * @type {
+       *   {
+       *     atEndOfHead: Array<string>;
+       *     atEndOfBody: Array<string>;
+       *   }
+       * }
+       * @private
+       */
+      static scriptsURIs = {
+        atEndOfHead: [],
+        atEndOfBody: []
+      };
+
+      /**
+       * @type Array<string>
+       * @private
+       */
+      static bodyCSS_Classes = [];
+
+      /**
+       * @param {
+       *   Readonly<{
+       *     metadata: {
+       *       locale?: string;
+       *       title?: string;
+       *       description?: string | null;
+       *       keywords?: string | null;
+       *       author?: string | null;
+       *     };
+       *     faviconURI?: string;
+       *     AMP_VersionURI?: string;
+       *     stylesSheetsURIs?: Array<string>;
+       *     scriptsURIs: {
+       *       atEndOfHead?: Array<string>;
+       *       atEndOfBody: Array<string>;
+       *     };
+       *     bodyCSS_Classes: Array<string>;
+       *   }>
+       * } options
+       * @returns { typeof RegularWebPageTemplate__YDF }
+       * @public
+       */
+      static configure(
+        {
+          metadata: {
+            locale,
+            title,
+            description,
+            keywords,
+            author
+          } =
+              {},
+          faviconURI,
+          AMP_VersionURI,
+          stylesSheetsURIs,
+          scriptsURIs:
+              {
+                atEndOfHead,
+                atEndOfBody
+              } =
+                  {},
+          bodyCSS_Classes
+        }
+      ) {
+
+        RegularWebPageTemplate__YDF.metadata.locale = locale ?? RegularWebPageTemplate__YDF.metadata.locale;
+        RegularWebPageTemplate__YDF.metadata.title = title ?? RegularWebPageTemplate__YDF.metadata.title;
+        RegularWebPageTemplate__YDF.metadata.description = description ?? RegularWebPageTemplate__YDF.metadata.description;
+        RegularWebPageTemplate__YDF.metadata.keywords = keywords ?? RegularWebPageTemplate__YDF.metadata.keywords;
+        RegularWebPageTemplate__YDF.metadata.author = author ?? RegularWebPageTemplate__YDF.metadata.author;
+
+        RegularWebPageTemplate__YDF.faviconURI = faviconURI ?? RegularWebPageTemplate__YDF.faviconURI;
+        RegularWebPageTemplate__YDF.AMP_VersionURI = AMP_VersionURI ?? RegularWebPageTemplate__YDF.AMP_VersionURI;
+
+        RegularWebPageTemplate__YDF.stylesSheetsURIs = stylesSheetsURIs ?? RegularWebPageTemplate__YDF.stylesSheetsURIs;
+
+        RegularWebPageTemplate__YDF.scriptsURIs.atEndOfHead =
+            atEndOfHead ?? RegularWebPageTemplate__YDF.scriptsURIs.atEndOfHead;
+        RegularWebPageTemplate__YDF.scriptsURIs.atEndOfBody =
+            atEndOfBody ?? RegularWebPageTemplate__YDF.scriptsURIs.atEndOfBody;
+
+        RegularWebPageTemplate__YDF.bodyCSS_Classes = bodyCSS_Classes ?? RegularWebPageTemplate__YDF.bodyCSS_Classes;
+
+        return RegularWebPageTemplate__YDF;
+
+      }
+
+      /**
+       * @param { ...Array<string> } scriptsURIs
+       * @returns { typeof RegularWebPageTemplate__YDF }
+       * @public
+       */
+      static addScriptsToEndOfBody(...scriptsURIs) {
+        RegularWebPageTemplate__YDF.scriptsURIs.atEndOfBody.push(...scriptsURIs);
+        return RegularWebPageTemplate__YDF;
+      }
+
+    }
+
+
+block Data
+
+
+block Requirements
+
+
+block Metadata
+
+
+block StatesSimulations
+
+
+html(lang= RegularWebPageTemplate__YDF.metadata.locale)
+
+  head
+
+    block HeadBegin
+
+    title= RegularWebPageTemplate__YDF.metadata.title
+
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+
+    if RegularWebPageTemplate__YDF.metadata.description
+      meta(name="description" content= RegularWebPageTemplate__YDF.metadata.description)
+
+    if RegularWebPageTemplate__YDF.metadata.keywords
+      meta(name="keywords" content= RegularWebPageTemplate__YDF.metadata.keywords)
+
+    if RegularWebPageTemplate__YDF.metadata.author
+      meta(name="author" content= RegularWebPageTemplate__YDF.metadata.author)
+
+    if RegularWebPageTemplate__YDF.faviconURI
+      link(rel="icon" type="image/x-icon" href= RegularWebPageTemplate__YDF.faviconURI)
+      link(rel="shortcut icon" type="image/x-icon" href= RegularWebPageTemplate__YDF.faviconURI)
+
+    if PAGE_AMP_VERSION_URI
+      link(rel="amphtml" href= RegularWebPageTemplate__YDF.AMP_VersionURI)
+
+
+    block Styles
+
+      each styleSheetURI in RegularWebPageTemplate__YDF.stylesSheetsURIs
+
+        link(href=styleSheetURI rel="stylesheet")
+
+
+    block HeadScripts
+
+      each scriptURI in RegularWebPageTemplate__YDF.scriptsURIs.atEndOfHead
+
+        script(src=scriptURI)
+
+
+  body(
+    class=RegularWebPageTemplate__YDF.bodyCSS_Classes
+  )
+
+    block PageContent
+
+    block EndBodyContent
+
+    block EndBodyScripts
+
+      each scriptURI in RegularWebPageTemplate__YDF.scriptsURIs.atEndOfBody
+
+        script(src= scriptURI)

@@ -1,0 +1,35 @@
+﻿@switch (type)
+{
+
+  case Types.variableWidthArcSpinner:
+  {
+
+    <div 
+      class=@composeClassAttributeValueForRootElement(
+        typeDependentCSS_Class: "LoadingIndicator--YDF__VariableWidthArcSpinnerType"
+      )
+    >
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    break;
+
+  }
+
+  case Types.twoConstantWidthArcsSpinner:
+  {
+  
+    <div
+      class=@composeClassAttributeValueForRootElement(
+        typeDependentCSS_Class: "LoadingIndicator--YDF__TwoConstantWidthArcsSpinnerType"
+      )
+    ></div>
+    
+    break;
+    
+  }
+    
+}  

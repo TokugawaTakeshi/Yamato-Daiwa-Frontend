@@ -1,0 +1,53 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+
+usage:
+
+  $heading: `usage.$heading`
+  $anchor: USAGE--SECTION
+
+  $children:
+
+    markup:
+
+      $heading: `usage.markup.$heading`
+      $anchor: MARKUP--SECTION
+
+      $children:
+
+        includingToProject:
+          $heading: `usage.markup.includingToProject.$heading`
+          $anchor: INCLUDING_OF_MARKUP_TO_PROJECT--SECTION
+
+        pugMixin:
+
+          $heading: `usage.markup.pugMixin.$heading`
+          $anchor: PUG_MIXIN--SECTION
+
+          $children:
+
+            minimalExample:
+              $heading: `usage.markup.pugMixin.minimalExample.$heading`
+              $anchor: USAGE-MINIMAL--SECTION
+
+            overflowControl:
+              $heading: `usage.markup.pugMixin.overflowControl.$heading`
+              $anchor: USAGE-OVERFLOW_CONTROL--SECTION
+
+            SVG_Icons:
+
+              $heading: `usage.markup.pugMixin.SVG_Icons.$heading`
+              $anchor: USAGE-SVG_ICONS--SECTION
+
+              $children:
+
+                customIcons:
+                  $heading: `usage.markup.pugMixin.SVG_Icons.customIcons.$heading`
+                  $anchor: USAGE-SVG_ICONS-CUSTOM--SECTION
+
+    logic:
+      $heading: `usage.logic.$heading`
+      $anchor: LOGIC--SECTION

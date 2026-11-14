@@ -1,0 +1,481 @@
+@require "Themes/Regular/GeometricVariations/Chip-RegularTheme-RegularGeometry.styl"
+
+@require "Themes/Regular/DecorativeVariations/Bright/Chip-RegularTheme-VeryCatchyBrightDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Chip-RegularTheme-CatchyBrightDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Chip-RegularTheme-ModestlyCatchyBrightDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Chip-RegularTheme-NeutralBrightDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Chip-RegularTheme-CalmingBrightDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Chip-RegularTheme-ModestlyCalmingBrightDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Bright/Chip-RegularTheme-AchromaticBrightDecoration.styl"
+
+@require "Themes/Regular/DecorativeVariations/Pastel/Chip-RegularTheme-VeryCatchyPastelDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Chip-RegularTheme-CatchyPastelDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Chip-RegularTheme-ModestlyCatchyPastelDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Chip-RegularTheme-NeutralPastelDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Chip-RegularTheme-CalmingPastelDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Chip-RegularTheme-ModestlyCalmingPastelDecoration.styl"
+@require "Themes/Regular/DecorativeVariations/Pastel/Chip-RegularTheme-AchromaticPastelDecoration.styl"
+
+
+Chip--YDF = {
+
+  componentIndependentCSS_Class: "RegularTheme--YDF",
+
+  defaultProperties: {
+
+    themes: {
+      regular: {
+
+        geometricVariations: {
+          regular: Chip-RegularTheme-RegularGeometry--YDF
+        },
+
+        decorativeVariations: {
+
+          veryCatchyBright: Chip-RegularTheme-VeryCatchyBrightDecoration--YDF,
+          catchyBright: Chip-RegularTheme-CatchyBrightDecoration--YDF,
+          modestlyCatchyBright: Chip-RegularTheme-ModestlyCatchyBrightDecoration--YDF,
+          neutralBright: Chip-RegularTheme-NeutralBrightDecoration--YDF,
+          modestlyCalmingBright: Chip-RegularTheme-ModestlyCalmingBrightDecoration--YDF,
+          calmingBright: Chip-RegularTheme-CalmingBrightDecoration--YDF,
+          achromaticBright: Chip-RegularTheme-AchromaticBrightDecoration--YDF,
+
+          veryCatchyPastel: Chip-RegularTheme-VeryCatchyPastelDecoration--YDF,
+          catchyPastel: Chip-RegularTheme-CatchyPastelDecoration--YDF,
+          modestlyCatchyPastel: Chip-RegularTheme-ModestlyCatchyPastelDecoration--YDF,
+          neutralPastel: Chip-RegularTheme-NeutralPastelDecoration--YDF,
+          modestlyCalmingPastel: Chip-RegularTheme-ModestlyCalmingPastelDecoration--YDF,
+          calmingPastel: Chip-RegularTheme-CalmingPastelDecoration--YDF,
+          achromaticPastel: Chip-RegularTheme-AchromaticPastelDecoration--YDF
+
+        }
+
+      }
+    }
+  },
+
+  defaultOptions: {
+    themeIndependentStylesOnly: false,
+    areThemesCSS_ClassesCommon: false,
+    loadingPlaceholder: true,
+    themeIndependentGeometricVariations: true,
+    decorativeModifiers: {
+      bordersDisguising: true,
+      noBackground: true
+    }
+  }
+
+}
+
+
+Chip--YDF-generateStyles(
+  preset = Chip--YDF.defaultProperties,
+  overridings = {},
+  options = Chip--YDF.defaultOptions,
+  restParameters__MUST_NOT_BE...
+)
+
+  properties = deeplyCloneAndOverrideObject--YDF(preset, overridings)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "Chip--YDF-generateStyles",
+    targetParameterNumber: 3,
+    targetParameter: options,
+    schema: {
+      themeIndependentStylesOnly: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Chip--YDF.defaultOptions.themeIndependentStylesOnly
+      },
+      areThemesCSS_ClassesCommon: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Chip--YDF.defaultOptions.externalThemes
+      },
+      loadingPlaceholder: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Chip--YDF.defaultOptions.loadingPlaceholder
+      },
+      themeIndependentGeometricVariations: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: Chip--YDF.defaultOptions.themeIndependentGeometricVariations
+      },
+      decorativeModifiers: {
+        type: DataTypes--YDF.object,
+        properties: {
+          bordersDisguising: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Chip--YDF.defaultOptions.decorativeModifiers.bordersDisguising
+          },
+          noBackground: {
+            type: DataTypes--YDF.boolean,
+            defaultValue: Chip--YDF.defaultOptions.decorativeModifiers.noBackground
+          }
+        },
+        defaultValue: Chip--YDF.defaultOptions.decorativeModifiers.bordersDisguising
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  // ━━━ Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+    .Chip--YDF
+
+      display inline-flex
+      align-items center
+
+
+    .Chip--YDF-SVG_Icon
+
+      flex-shrink 0
+
+
+    .Chip--YDF-Button
+
+      ButtonLikeElementsPrimer--YDF()
+
+
+    if options.loadingPlaceholder
+
+      .Chip--YDF__LoadingPlaceholder
+
+        display inline-block
+
+
+  // ─── Geometry ──────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyGeometricVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "Chip.${ themeName }Theme.${ variationName }Geometry",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+    cachedValidReusables = extractAndValidateObjectProperties--YDF({
+      targetObject: variation,
+      targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+      extracts: {
+        valueLabelTextSize: { dotSeparatedPath: "valueLabel.text.size", required: true },
+        valueLabelLineSpacing: { dotSeparatedPath: "valueLabel.text.lineSpacing", required: false },
+        valueLabelLineHeight: { dotSeparatedPath: "valueLabel.text.lineHeight", mustBeInsteadOf: "valueLabel.text.lineSpacing" },
+        valueLabelVerticalSymmetricSpacingAsTopSpacing: {
+          newName: "valueLabelTopSpacing",
+          dotSeparatedPath: "valueLabel.spacing.verticalSymmetric",
+          required: false
+        },
+        valueLabelVerticalSymmetricSpacingAsBottomSpacing: {
+          newName: "valueLabelBottomSpacing",
+          dotSeparatedPath: "valueLabel.spacing.verticalSymmetric",
+          required: false
+        },
+        valueLabelTopSpacing: {
+          dotSeparatedPath: "valueLabel.spacing.top",
+          required: false,
+          incompatibleWith: "SVG_Icon.spacing.verticalSymmetric"
+        },
+        valueLabelBottomSpacing: {
+          dotSeparatedPath: "valueLabel.spacing.bottom",
+          required: false,
+          incompatibleWith: "SVG_Icon.spacing.verticalSymmetric"
+        }
+      }
+    })
+
+    +provideDefaultSelectorWhenRootAndApply--YDF(".Chip--YDF")
+
+      BORDER_RADIUS_TO_VALUE_TEXT_SIZE_RATIO = extractAndValidateObjectProperties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        extracts: {
+          borderRadiusToValueTextSizeRatio: {
+            dotSeparatedPath: "rootElement.borderRadiusToValueTextSizeRatio", required: true
+          }
+        }
+      }).borderRadiusToValueTextSizeRatio
+
+      BordersSizing--YDF({ thickness: variation.rootElement.bordersThickness })
+      border-radius: cachedValidReusables.valueLabelTextSize * BORDER_RADIUS_TO_VALUE_TEXT_SIZE_RATIO
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
+
+
+    .Chip--YDF-SVG_Icon
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          width: { dotSeparatedPath: "SVG_Icon.width", required: false },
+          height: {
+            dotSeparatedPath: "SVG_Icon.height",
+            requiredIf: {
+              predicate: @(variation) { return isNull--YDF(getObjectValueByDotSeparatedPathSafely--YDF(variation, "SVG_Icon.width")) },
+              conditionDescription: "'SVG_Icon.width' icon is null"
+            }
+          },
+          verticalSymmetricMarginsAsTopMargin: {
+            newName: "margin-top",
+            dotSeparatedPath: "SVG_Icon.spacing.verticalSymmetric",
+            required: false
+          },
+          verticalSymmetricMarginsAsBottomMargin: {
+            newName: "margin-bottom",
+            dotSeparatedPath: "SVG_Icon.spacing.verticalSymmetric",
+            required: false
+          },
+          topMargin: {
+            newName: "margin-top",
+            dotSeparatedPath: "SVG_Icon.spacing.top",
+            required: false,
+            incompatibleWith: "SVG_Icon.spacing.verticalSymmetric"
+          },
+          bottomMargin: {
+            newName: "margin-bottom",
+            dotSeparatedPath: "SVG_Icon.spacing.bottom",
+            required: false,
+            incompatibleWith: "SVG_Icon.spacing.verticalSymmetric"
+          },
+          margin-left: { dotSeparatedPath: "SVG_Icon.spacing.left", required: true }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
+
+
+    .Chip--YDF-Key
+
+      // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF`.
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          verticalSymmetricPaddingsAsTopPadding: {
+            newName: "padding-top",
+            dotSeparatedPath: "keyLabel.spacing.verticalSymmetric",
+            required: false
+          },
+          verticalSymmetricPaddingsAsBottomPadding: {
+            newName: "padding-bottom",
+            dotSeparatedPath: "keyLabel.spacing.verticalSymmetric",
+            required: false
+          },
+          topPadding: {
+            newName: "padding-top",
+            dotSeparatedPath: "keyLabel.spacing.top",
+            required: false,
+            incompatibleWith: "keyLabel.spacing.verticalSymmetric"
+          },
+          bottomPadding: {
+            newName: "padding-bottom",
+            dotSeparatedPath: "keyLabel.spacing.bottom",
+            required: false,
+            incompatibleWith: "keyLabel.spacing.verticalSymmetric"
+          }
+          font-size: {
+            dotSeparatedPath: "keyLabel.text.size", required: true
+          }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.keyLabel.customDeclarations)
+
+
+      &:first-child
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            margin-left: { dotSeparatedPath: "keyLabel.spacing.leftWhenGoingFirst", required: true }
+          }
+        })
+
+
+      retireFrom--YDF({
+        targetElementSelector: ".Chip--YDF-SVG_Icon",
+        contextSelector: CONTEXT_SELECTOR,
+        referenceElementSelector: ".Chip--YDF-Key",
+        x: extractAndValidateObjectProperties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          extracts: {
+            spacingAfterSVG_Icon: { dotSeparatedPath: "keyLabel.spacing.afterSVG_Icon", required: true },
+          }
+        }).spacingAfterSVG_Icon
+      })
+
+
+    .Chip--YDF-Value
+
+      font-size: cachedValidReusables.valueLabelTextSize
+
+      // [ Approach ] The margins are reserved by `applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF`.
+      applyIfNotNull--YDF({
+        padding-top: cachedValidReusables.valueLabelTopSpacing,
+        padding-bottom: cachedValidReusables.valueLabelBottomSpacing
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.valueLabel.customDeclarations)
+
+
+      &:first-child
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            margin-left: { dotSeparatedPath: "valueLabel.spacing.leftWhenGoingFirst", required: true }
+          }
+        })
+
+
+      &:last-child
+
+        validateAndAssignStoredInObjectCSS_Properties--YDF({
+          targetObject: variation,
+          targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+          assigments: {
+            margin-right: { dotSeparatedPath: "valueLabel.spacing.right", required: true }
+          }
+        })
+
+
+    retireFrom--YDF({
+      definitions:\
+          (".Chip--YDF-SVG_Icon" {
+            x: extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: { spacingAfterSVG_Icon: { dotSeparatedPath: "valueLabel.spacing.afterSVG_Icon", required: true } }
+            }).spacingAfterSVG_Icon
+          })\
+          (".Chip--YDF-Key" {
+            x: extractAndValidateObjectProperties--YDF({
+              targetObject: variation,
+              targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+              extracts: { spacingAfterKeyLabel: { dotSeparatedPath: "valueLabel.spacing.afterKeyLabel", required: true } }
+            }).spacingAfterKeyLabel
+          }),
+      referenceElementSelector: ".Chip--YDF-Value",
+      contextSelector: selector()
+    })
+
+
+    if options.loadingPlaceholder
+
+      &.Chip--YDF__LoadingPlaceholder
+
+        LoadingPlaceholder()
+
+        HEIGHT = computeTotalHeightByTextElementHeightSizingSpecification--YDF({
+          type: TextElementHeightSizingTypes--YDF.natural,
+          borders: cachedValidReusables.bordersSizing,
+          paddings: {
+            top: cachedValidReusables.valueLabelTopSpacing,
+            bottom: cachedValidReusables.valueLabelBottomSpacing
+          },
+          fontSize: cachedValidReusables.valueLabelTextSize,
+          lineHeight: 1
+        })
+
+        min-width: variation.rootElement.loadingPlaceholder.minimalWidth
+        height HEIGHT
+
+
+  // ─── Decoration ────────────────────────────────────────────────────────────────────────────────────────────────────
+  applyDecorativeVariation(themeName, variationName, variation)
+
+    VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING = buildString--YDF(
+      "Chip.${ themeName }Theme.${ variationName }Decoration",
+      { themeName: themeName, variationName: variationName }
+    )
+
+    CONTEXT_SELECTOR = selector() == "&" ? null : selector()
+
+
+    +provideDefaultSelectorWhenRootAndApply--YDF(".Chip--YDF")
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          border-style: { dotSeparatedPath: "rootElement.borders.style", required: false },
+          border-color: { dotSeparatedPath: "rootElement.borders.color", required: false },
+          background-color: { dotSeparatedPath: "rootElement.background.color", required: false },
+          background-image: { dotSeparatedPath: "rootElement.background.image", required: false }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.rootElement.customDeclarations)
+
+
+    .Chip--YDF-SVG_Icon
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          fill: { dotSeparatedPath: "SVG_Icon.color", required: false }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.SVG_Icon.customDeclarations)
+
+
+    .Chip--YDF-Key
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          font-weight: { dotSeparatedPath: "keyLabel.text.fontWeight", required: false },
+          color: { dotSeparatedPath: "keyLabel.text.color", required: false }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.keyLabel.customDeclarations)
+
+
+    .Chip--YDF-Value
+
+      validateAndAssignStoredInObjectCSS_Properties--YDF({
+        targetObject: variation,
+        targetObjectName: VARIATION_FULLY_QUALIFIED_NAME_FOR_LOGGING,
+        assigments: {
+          font-weight: { dotSeparatedPath: "valueLabel.text.fontWeight", required: false },
+          color: { dotSeparatedPath: "valueLabel.text.color", required: false }
+        }
+      })
+
+      applyMixinStoredInObjectIfItIsNotNull--YDF(variation.valueLabel.customDeclarations)
+
+
+  applyThemeIndependentDecorativeModifiers()
+
+    if options.decorativeModifiers.bordersDisguising
+
+      .Chip--YDF__BordersDisguisingDecorativeModifier
+
+        border-color transparent
+
+
+    if options.decorativeModifiers.noBackground
+
+      .Chip--YDF__NoBackgroundDecorativeModifier
+
+        background none
+
+
+  // ━━━ Applying ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  applyBasicRules()
+
+  applyComponentThemes--YDF({
+    CSS_Namespace: "Chip--YDF",
+    themes: properties.themes,
+    applyGeometricVariation: applyGeometricVariation,
+    applyDecorativeVariation: applyDecorativeVariation
+  })
+
+  applyThemeIndependentDecorativeModifiers()

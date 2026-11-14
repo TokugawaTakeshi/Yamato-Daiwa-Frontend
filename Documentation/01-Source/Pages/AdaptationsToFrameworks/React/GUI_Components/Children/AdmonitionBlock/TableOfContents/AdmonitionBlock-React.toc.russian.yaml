@@ -1,0 +1,27 @@
+overview:
+
+  $heading: "Краткий обзор"
+
+AdmonitionBlockClass:
+
+  $heading: "Класс <code>AdmonitionBlockClass</code>"
+
+  reactProperties:
+
+    $heading: "React-свойства"
+
+  examples:
+
+    $heading: "Примеры"
+
+    minimal:
+
+      $heading: Минимальный пример (только обязательные свойства)
+
+    title:
+
+      $heading: "Заголовок (свойство <code>title</code>)"
+
+    SVG_Icons:
+
+      $heading: "SVG-иконки"
