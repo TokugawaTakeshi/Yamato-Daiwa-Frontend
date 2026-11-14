@@ -50,8 +50,7 @@ export abstract class ComboBox {
   public static readonly GeometricVariations: ComboBox.GeometricVariations =
       {
         regular: "REGULAR",
-        small: "SMALL",
-        minimalistic: "MINIMALISTIC"
+        small: "SMALL"
       };
 
   /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
@@ -102,10 +101,7 @@ export abstract class ComboBox {
   /* ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   /* ╍╍╍ Variations ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
   public static readonly DecorativeVariations: ComboBox.DecorativeVariations =
-      {
-        regular: "REGULAR",
-        minimalistic: "MINIMALISTIC"
-      };
+      { regular: "REGULAR" };
 
   /* [ Pitfall ] The classes of other components may not be declared yet, initialization on demand required. */
   protected static _selfAndChildrenComponentsDecorativeVariationsCorrespondence:
@@ -118,8 +114,7 @@ export abstract class ComboBox {
     return ComboBox._selfAndChildrenComponentsDecorativeVariationsCorrespondence ?? (
       ComboBox._selfAndChildrenComponentsDecorativeVariationsCorrespondence = {
         validatableControlShell: {
-          [ComboBox.DecorativeVariations.regular]: ValidatableControlShell.DecorativeVariations.regular,
-          [ComboBox.DecorativeVariations.minimalistic]: ValidatableControlShell.DecorativeVariations.regular
+          [ComboBox.DecorativeVariations.regular]: ValidatableControlShell.DecorativeVariations.regular
         }
       }
     );
@@ -158,7 +153,7 @@ export abstract class ComboBox {
       {
         ...relatedState,
         otherCSS_Classes: [
-          expanded ? "ValidatableControlShell--YDF__ExpandedState" : "ValidatableControlShell--YDF__CollapsedState"
+          expanded ? "ComboBox--YDF__ExpandedState" : "ComboBox--YDF__CollapsedState"
         ]
       }
     );
@@ -204,10 +199,7 @@ export namespace ComboBox {
 
   export type DecorativeVariations =
       YDF_Component.DecorativeVariations<
-        Readonly<{
-          regular: "REGULAR";
-          minimalistic: "MINIMALISTIC";
-        }>
+        Readonly<{ regular: "REGULAR"; }>
       >;
 
   export type SelfAndChildrenComponentsDecorativeVariationsCorrespondence = {

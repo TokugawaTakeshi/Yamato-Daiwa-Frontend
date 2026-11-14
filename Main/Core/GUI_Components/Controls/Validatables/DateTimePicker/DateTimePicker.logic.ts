@@ -1,23 +1,24 @@
 /* eslint-disable @typescript-eslint/member-ordering --
  * The members of this class has been organized semantically. */
 
-/* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
-import type { DateTimePickerLocalization } from "./DateTimePickerLocalization";
+/* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+import DateTimePickerBase from "./DateTimePicker.base";
+
+/* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import componentDynamicPartsHTML from "./DateTimePicker.parts.pug";
-import { DateTimePickerYDF_GUI_ComponentLocalization__English } from "./DateTimePickerLocalization.english";
-import { DateTimePickerYDF_GUI_ComponentDOM_AccessResources } from
-    "./DateTimePickerDOM_Access";
+import DateTimePickerDOM_AccessResources from "./DateTimePickerDOM_AccessResources";
+import { DateTimePickerLocalization__English } from "./DateTimePickerLocalization.english";
 import { DAYS_COUNT_IN_WEEK, MAXIMAL_DAYS_IN_MONTH, MONTHS_COUNT_IN_YEAR } from "fundamental-constants";
 
-/* ─── GUI Components ─────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ GUI Components ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell.logic";
 import Button from "../../Buttons/Plain/Button.logic";
 
-/* ─── Validations ────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ Validations ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import ValidatableControl from "../../_Validation/ValidatableControl";
 import type InputtedValueValidation from "../../_Validation/InputtedValueValidation";
 
-/* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import {
   CalendarBuilder,
   RawObjectDataProcessor,
@@ -49,10 +50,11 @@ import {
 } from "@yamato-daiwa/es-extensions-browserjs";
 import setHTML_Attributes from "../../../../Logic/UtilsIncubator/DOM/setHTML_Attributes";
 import onDifferentValueAssigned from "../../../_Auxiliaries/Decorators/onDifferentValueAssigned";
+/* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 
 /** @beta */
-class DateTimePicker<
+export class DateTimePicker<
   IsInputRequired extends boolean,
   NonEmptyValueType extends DateTimePicker.SupportedValidatablePayloadValuesTypes.NonEmpty,
   EmptyValueType extends DateTimePicker.SupportedValidatablePayloadValuesTypes.Empty,
@@ -64,10 +66,9 @@ class DateTimePicker<
 > implements ValidatableControl {
 
   /* ━━━ Static Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public static defaultLocalization: DateTimePickerLocalization = DateTimePickerYDF_GUI_ComponentLocalization__English;
+  public static defaultLocalization: DateTimePickerBase.Localization = DateTimePickerLocalization__English;
 
-  protected static readonly DOM_AccessResources: DateTimePicker.DOM_AccessResources =
-      DateTimePickerYDF_GUI_ComponentDOM_AccessResources;
+  protected static readonly DOM_AccessResources: DateTimePickerDOM_AccessResources = DateTimePickerDOM_AccessResources;
 
   protected static readonly YEARS_COUNT_AT_LEFT_OR_RIGHT_OF_CENTER_ONE_IN_MATRIX: number = 12;
 
@@ -119,7 +120,7 @@ class DateTimePicker<
   public readonly payload: ValidatableControl.
       Payload<IsInputRequired, NonEmptyValueType, EmptyValueType, ValidValue, InvalidValue>;
 
-  protected localization: DateTimePickerLocalization;
+  protected localization: DateTimePickerBase.Localization;
 
   protected dateSetter: DateTimePicker.DateSetter<ValidValue, InvalidValue>;
   protected displayingValueFormatter: DateTimePicker.DisplayingValueFormatter<ValidValue, InvalidValue>;
@@ -348,25 +349,25 @@ class DateTimePicker<
     }
 
 
-    this.$activeMatrix = DateTimePicker.Matrices.days;
+    this.$activeMatrix = DateTimePickerBase.Matrices.days;
     this.dialog.replaceWith(this.dialogMountingPoint);
 
   }
 
 
   /* --- Active Matrix ---------------------------------------------------------------------------------------------- */
-  protected _activeMatrix!: DateTimePicker.Matrices;
+  protected _activeMatrix!: DateTimePickerBase.Matrices;
 
-  protected get $activeMatrix(): DateTimePicker.Matrices {
+  protected get $activeMatrix(): DateTimePickerBase.Matrices {
     return this._activeMatrix;
   }
 
   @onDifferentValueAssigned()
-  protected set $activeMatrix(_value: DateTimePicker.Matrices) {
+  protected set $activeMatrix(_value: DateTimePickerBase.Matrices) {
 
-    const isDaysMatrixActive: boolean = this.$activeMatrix === DateTimePicker.Matrices.days;
-    const isMonthsMatrixActive: boolean = this.$activeMatrix === DateTimePicker.Matrices.months;
-    const isYearsMatrixActive: boolean = this.$activeMatrix === DateTimePicker.Matrices.years;
+    const isDaysMatrixActive: boolean = this.$activeMatrix === DateTimePickerBase.Matrices.days;
+    const isMonthsMatrixActive: boolean = this.$activeMatrix === DateTimePickerBase.Matrices.months;
+    const isYearsMatrixActive: boolean = this.$activeMatrix === DateTimePickerBase.Matrices.years;
 
     this.daysMatrix.hidden = !isDaysMatrixActive;
     this.daysActionsTable.hidden = !isDaysMatrixActive;
@@ -380,17 +381,17 @@ class DateTimePicker<
     /* eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- Disabled during development. */
     switch (this.$activeMatrix) {
 
-      case DateTimePicker.Matrices.days: {
+      case DateTimePickerBase.Matrices.days: {
         this.modeDependentGuidanceElement.textContent = this.localization.dialog.header.guidances.dateSelecting;
         break;
       }
 
-      case DateTimePicker.Matrices.months: {
+      case DateTimePickerBase.Matrices.months: {
         this.modeDependentGuidanceElement.textContent = this.localization.dialog.header.guidances.monthSelecting;
         break;
       }
 
-      case DateTimePicker.Matrices.years: {
+      case DateTimePickerBase.Matrices.years: {
         this.modeDependentGuidanceElement.textContent = this.localization.dialog.header.guidances.yearSelecting;
       }
 
@@ -472,7 +473,7 @@ class DateTimePicker<
     const {
       initialValue__ISO8601
     }: Readonly<{
-      mode: DateTimePicker.Modes;
+      mode: DateTimePickerBase.Modes;
       initialValue__ISO8601?: string;
     }> = extractAndValidateDatasetFromDOM_Element({
       targetDOM_Element: this.shellComponent.rootElement,
@@ -483,7 +484,7 @@ class DateTimePicker<
           type: String,
           isUndefinedForbidden: true,
           isNullForbidden: true,
-          allowedAlternatives: Object.values(DateTimePicker.Modes)
+          allowedAlternatives: Object.values(DateTimePickerBase.Modes)
         },
         initial_value: {
           preValidationModifications: [ emptyStringToUndefined ],
@@ -728,7 +729,7 @@ class DateTimePicker<
 
     this.mustSuspendReactivity = false;
 
-    this.$activeMatrix = DateTimePicker.Matrices.days;
+    this.$activeMatrix = DateTimePickerBase.Matrices.days;
 
 
     /* --- Other ---------------------------------------------------------------------------------------------------- */
@@ -760,7 +761,7 @@ class DateTimePicker<
 
   /* ─── Day ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
   protected onClickDaysMatrixDisplayingButton(): void {
-    this.$activeMatrix = DateTimePicker.Matrices.days;
+    this.$activeMatrix = DateTimePickerBase.Matrices.days;
   }
 
   protected onClickDateSelectingButton(clickedButton: Element): void {
@@ -863,7 +864,7 @@ class DateTimePicker<
 
   /* ─── Month ────────────────────────────────────────────────────────────────────────────────────────────────────── */
   protected onClickMonthsMatrixDisplayingButton(): void {
-    this.$activeMatrix = DateTimePicker.Matrices.months;
+    this.$activeMatrix = DateTimePickerBase.Matrices.months;
   }
 
   protected onClickDisplayingDaysOfPreviousMonthButton(): void {
@@ -924,14 +925,14 @@ class DateTimePicker<
 
     this.$currentlyDisplayingMonth__numerationFrom1 = monthNumber__numerationFrom1;
 
-    this.$activeMatrix = DateTimePicker.Matrices.days;
+    this.$activeMatrix = DateTimePickerBase.Matrices.days;
 
   }
 
 
   /* ─── Year ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
   protected onClickYearsMatrixDisplayingButton(): void {
-    this.$activeMatrix = DateTimePicker.Matrices.years;
+    this.$activeMatrix = DateTimePickerBase.Matrices.years;
   }
 
   protected onClickDisplayingDaysOfPreviousYearButton(): void {
@@ -973,7 +974,7 @@ class DateTimePicker<
 
     this.$currentlyDisplayingYear = targetYear;
 
-    this.$activeMatrix = DateTimePicker.Matrices.days;
+    this.$activeMatrix = DateTimePickerBase.Matrices.days;
 
   }
 
@@ -1121,7 +1122,7 @@ class DateTimePicker<
 
 
   /* ─── Initialization ───────────────────────────────────────────────────────────────────────────────────────────── */
-  protected static initializeDaysActionsTable(dialog: Element, localization: DateTimePickerLocalization): HTMLElement {
+  protected static initializeDaysActionsTable(dialog: Element, localization: DateTimePickerBase.Localization): HTMLElement {
 
     const daysActionsTable: HTMLElement = getExpectedToBeSingleDOM_Element({
       selector: DateTimePicker.DOM_AccessResources.dialog.topActionBar.daysActions.INTERNALLY_UNIQUE_SELECTOR,
@@ -1191,7 +1192,7 @@ class DateTimePicker<
 
   }
 
-  protected static initializeMonthActionsTable(dialog: Element, localization: DateTimePickerLocalization): HTMLElement {
+  protected static initializeMonthActionsTable(dialog: Element, localization: DateTimePickerBase.Localization): HTMLElement {
 
     const monthsActionsTable: HTMLElement = getExpectedToBeSingleDOM_Element({
       selector: DateTimePicker.DOM_AccessResources.dialog.topActionBar.monthsActions.INTERNALLY_UNIQUE_SELECTOR,
@@ -1261,7 +1262,7 @@ class DateTimePicker<
 
   }
 
-  protected static initializeYearsActionsTable(dialog: Element, localization: DateTimePickerLocalization): HTMLElement {
+  protected static initializeYearsActionsTable(dialog: Element, localization: DateTimePickerBase.Localization): HTMLElement {
 
     const yearsActionsTable: HTMLElement = getExpectedToBeSingleDOM_Element({
       selector: DateTimePicker.DOM_AccessResources.dialog.topActionBar.yearsActions.INTERNALLY_UNIQUE_SELECTOR,
@@ -1338,7 +1339,7 @@ class DateTimePicker<
     /* eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check -- Disabled during development. */
     switch (this.$activeMatrix) {
 
-      case DateTimePicker.Matrices.days: {
+      case DateTimePickerBase.Matrices.days: {
 
         this.currentScopeLabel.textContent = this.localization.dialog.header.currentScopeLabel.dateSelectingMode.generate({
           currentlyDisplayingYear: this.$currentlyDisplayingYear,
@@ -1349,7 +1350,7 @@ class DateTimePicker<
 
       }
 
-      case DateTimePicker.Matrices.months: {
+      case DateTimePickerBase.Matrices.months: {
 
         this.currentScopeLabel.textContent = this.localization.dialog.header.currentScopeLabel.monthSelectingMode.generate({
           currentlyDisplayingYear: this.$currentlyDisplayingYear
@@ -1359,7 +1360,7 @@ class DateTimePicker<
 
       }
 
-      case DateTimePicker.Matrices.years: {
+      case DateTimePickerBase.Matrices.years: {
 
         this.currentScopeLabel.textContent = this.localization.dialog.header.currentScopeLabel.yearSelectingMode.generate({
           currentlyDisplayingYear: this.$currentlyDisplayingYear
@@ -1375,7 +1376,7 @@ class DateTimePicker<
 }
 
 
-namespace DateTimePicker {
+export namespace DateTimePicker {
 
   export type SupportedValidatablePayloadValuesTypes =
       SupportedValidatablePayloadValuesTypes.NonEmpty |
@@ -1413,7 +1414,7 @@ namespace DateTimePicker {
       nativeInputElementValueToValidatableValuePayloadTransformer: (value?: string) => ValidValue | InvalidValue;
       displayingValueFormatter: DisplayingValueFormatter<ValidValue, InvalidValue>;
       dateSetter: DateSetter<ValidValue, InvalidValue>;
-      localization?: DateTimePickerLocalization;
+      localization?: DateTimePickerBase.Localization;
     }>;
 
   export type DateSetter<
@@ -1428,21 +1429,6 @@ namespace DateTimePicker {
     >;
   }
 
-  export enum Modes {
-    dateWithTime = "DATE_WITH_TIME",
-    dateOnly = "DATE_ONLY",
-    datesRange = "DATES_RANGE",
-    datesWithTimeRange = "DATES_WITH_TIME_RANGE"
-  }
-
-  export enum Matrices {
-    days = "DAYS",
-    months = "MONTHS",
-    years = "YEARS",
-    hours = "HOURS",
-    minutes = "MINUTES"
-  }
-
   export enum CalendarCellButtonDataAttributes {
     year = "data-year",
     monthNumber__numerationFrom0 = "data-month_number__numeration_from0",
@@ -1452,193 +1438,6 @@ namespace DateTimePicker {
     dayOfWeekNumber__numerationFrom0ForSunday = "data-day_of_week_number__numeration_from_0_from_sunday",
     dayOfWeekName = "data-day_of_week_name"
   }
-
-  export type DOM_AccessResources = Readonly<{
-
-    rootElement: Readonly<{
-      states: Readonly<{
-        invalid: Readonly<{
-          CSS_CLASS: string;
-        }>;
-      }>;
-    }>;
-
-    dialog: Readonly<{
-
-      topActionBar: Readonly<{
-
-        reusableButtons: Readonly<{
-
-          [
-            keys in
-                "switchingToDateSelectingPanel" |
-                "switchingToMonthSelectingPanel" |
-                "switchingToYearSelectingPanel"
-            ]: Readonly<{
-              DATA_ATTRIBUTE_KEY: string;
-              COMMON_SELECTOR: string;
-            }>
-
-        }>;
-
-        daysActions: Readonly<{
-
-          DATA_ATTRIBUTE_KEY: string;
-          INTERNALLY_UNIQUE_SELECTOR: string;
-
-          columnsTitles: {
-
-            [
-              keys in
-                  "closestMonths" |
-                  "selectingPanels"
-            ]: Readonly<{
-              DATA_ATTRIBUTE_KEY: string;
-              INTERNALLY_UNIQUE_SELECTOR: string;
-            }>;
-
-          };
-
-          buttons: Readonly<{
-
-            [
-              keys in
-                  "switchingToPreviousMonth" |
-                  "switchingToNextMonth"
-              ]: Readonly<{
-                DATA_ATTRIBUTE_KEY: string;
-                INTERNALLY_UNIQUE_SELECTOR: string;
-              }>
-
-          }>;
-
-        }>;
-
-        monthsActions: Readonly<{
-
-          DATA_ATTRIBUTE_KEY: string;
-          INTERNALLY_UNIQUE_SELECTOR: string;
-
-          columnsTitles: {
-
-            [
-              keys in
-                  "closestYears" |
-                  "selectingPanels"
-            ]: Readonly<{
-              DATA_ATTRIBUTE_KEY: string;
-              INTERNALLY_UNIQUE_SELECTOR: string;
-            }>;
-
-          };
-
-          buttons: Readonly<{
-
-            [
-              keys in
-                  "switchingToPreviousYear" |
-                  "switchingToNextYear"
-              ]: Readonly<{
-                DATA_ATTRIBUTE_KEY: string;
-                INTERNALLY_UNIQUE_SELECTOR: string;
-              }>
-
-          }>;
-
-        }>;
-
-        yearsActions: Readonly<{
-
-          DATA_ATTRIBUTE_KEY: string;
-          INTERNALLY_UNIQUE_SELECTOR: string;
-
-          columnsTitles: {
-
-            [
-              keys in
-                  "adjacentYearsSets" |
-                  "selectingPanels"
-            ]: Readonly<{
-              DATA_ATTRIBUTE_KEY: string;
-              INTERNALLY_UNIQUE_SELECTOR: string;
-            }>;
-
-          };
-
-          buttons: Readonly<{
-
-            [
-              keys in
-                  "switchingToPreviousYearsSet" |
-                  "switchingToNextYearsSet"
-              ]: Readonly<{
-                DATA_ATTRIBUTE_KEY: string;
-                INTERNALLY_UNIQUE_SELECTOR: string;
-              }>
-
-          }>;
-
-        }>;
-
-      }>;
-
-      header: Readonly<{
-        [
-          key in
-              "currentScopeLabel" |
-              "guidance"
-        ]: Readonly<{
-          DATA_ATTRIBUTE_KEY: string;
-          INTERNALLY_UNIQUE_SELECTOR: string;
-        }>
-      }>;
-
-      matrices: Readonly<{
-
-        days: Readonly<{
-          columnTitleCell: Readonly<{
-            DATA_ATTRIBUTE_KEY: string;
-            COMMON_SELECTOR: string;
-          }>;
-        }>;
-        years: Readonly<{
-          yearSelectingButton: Readonly<{
-            DATASET_KEY: string;
-            DATA_ATTRIBUTE_KEY: string;
-          }>;
-        }>;
-      }>;
-
-      bottomActionBar: Readonly<{
-
-        buttons: Readonly<{
-
-          [
-            key in
-                "unselecting"
-          ]: Readonly<{
-            DATA_ATTRIBUTE_KEY: string;
-            INTERNALLY_UNIQUE_SELECTOR: string;
-          }>;
-
-        }>;
-
-      }>;
-
-    }>;
-
-    nativeInput: Readonly<{
-      UNIQUE_SELECTOR: string;
-    }>;
-
-    indicatorButton: Readonly<{
-      UNIQUE_SELECTOR: string;
-      label: Readonly<{
-        UNIQUE_SELECTOR: string;
-      }>;
-    }>;
-
-  }>;
 
 }
 

@@ -1,40 +1,118 @@
-include FilesUploader.class.pug
-
-
 mixin FilesUploader--YDF(properties, statesSimulations)
 
   -
 
     const {
 
+      /** @type { string | undefined } */
       label,
+
+      /** @type { string | undefined } */
       accessibilityGuidance,
+
+      /** @type { string | undefined } */
       externalLabelHTML_ID,
+
+      /** @type { string | undefined } */
       guidance,
 
+      /** @type { string | Array<string> } */
       value,
 
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       disabled,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       readonly,
 
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       required,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       mustDisplayAppropriateBadgeIfInputIsRequired,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       mustDisplayAppropriateBadgeIfInputIsOptional,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+
+      /**
+       * @type { number }
+       * @default 1
+       * */
       minimalFilesCount,
+
+      /** @type { number } */
       maximalFilesCount,
+
+      /** @type { Array<string> } */
       supportedFilesNamesExtensions__leadingDotsAreOptional,
 
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       noFilePickingButton,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       noDragAndDropArea,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       noDragAndDropAreaOnTouchScreens,
+
+      /** @type { string | undefined } */
       initialImageAspectRatio,
 
+      /** @type { string | undefined } */
       instanceID_UniqueDynamicPart,
 
+      /**
+       * @type { FileUploader__YDF.Themes }
+       * @default FileUploader__YDF.Themes.regular
+       * */
       theme,
+
+      /**
+       * @type { boolean }
+       * @default FileUploader__YDF.areThemesCSS_ClassesCommon
+       * */
       areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { FileUploader__YDF.GeometricVariations }
+       * @default FileUploader__YDF.GeometricVariations.regular
+       * */
       geometricVariation,
+
+      /**
+       * @type { FileUploader__YDF.DecorativeVariations }
+       * @default FileUploader__YDF.DecorativeVariations.regular
+       * */
       decorativeVariation,
 
       ...instanceID_DependentProperties
@@ -44,62 +122,95 @@ mixin FilesUploader--YDF(properties, statesSimulations)
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: FilesUploader__YDF.propertiesSpecification,
-      mixinName: FilesUploader__YDF.CSS_NAMESPACE
+      mixinName: "FilesUploader--YDF"
     });
 
-    const INSTANCE_ID = FilesUploader__YDF.generateInstanceID(instanceID_UniqueDynamicPart);
+    /** @type { string } */
+    const INSTANCE_ID = FilesUploader.generateInstanceID(instanceID_UniqueDynamicPart);
 
     const {
+
+      /** @type { string } */
       inputElementHTML_ID = `${ INSTANCE_ID }-INPUT`,
+
+      /** @type { string } */
       labelElementHTML_ID = `${ INSTANCE_ID }-LABEL`
+
     } = instanceID_DependentProperties;
 
     const {
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       filesProcessingStatuses,
+
+      /**
+       * @type { boolean | string }
+       * @default false
+       * */
       singleImagePreview,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       multipleImagesPreview,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       invalidInputHighlightingIfAnyValidationErrorsMessages,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       validValueHighlightingIfNoValidationErrorsMessages,
+
+      /**
+       * @type { boolean | ReadonlyArray<string> }
+       * @default false
+       * */
       validationErrorsMessages,
+
+      /**
+       * @type { boolean | ReadonlyArray<"IN_PROGRESS" | "FINISHED_BUT_INVALID" | "FINISHED_AND_VALID" | "MALFUNCTION"> }
+       * @default false
+       * */
       asynchronousValidationsStatuses
+
     } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: statesSimulations,
       parameterNumber: 2,
       parameterName: "statesSimulations",
       parameterPropertiesSpecification: FilesUploader__YDF.statesSimulationsSpecification,
-      mixinName: FilesUploader__YDF.CSS_NAMESPACE
+      mixinName: "FilesUploader--YDF"
     });
 
-    const rootElementModifierCSS_Classes = [
+    /** @type { ReadonlyArray<string> } */
+    const rootElementModifierCSS_Classes =
 
-      ...disabled ? [ `${ FilesUploader__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
+        FilesUploader.getActualRootElementModifierCSS_Classes({
+          expanded,
+          invalidInputHighlighting:
+              invalidInputHighlightingIfAnyValidationErrorsMessages &&
+              (validationErrorsMessages === true || validationErrorsMessages.length > 0),
+          validValueHighlighting:
+              validValueHighlightingIfNoValidationErrorsMessages &&
+              (validationErrorsMessages === false || validationErrorsMessages.length === 0),
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
 
-      ...invalidInputHighlightingIfAnyValidationErrorsMessages && validationErrorsMessages.length > 0 ?
-          [ `${ FilesUploader__YDF.CSS_NAMESPACE }__InvalidValueState` ] : [],
-      ...validValueHighlightingIfNoValidationErrorsMessages && validationErrorsMessages.length === 0 ?
-          [ `${ FilesUploader__YDF.CSS_NAMESPACE }__ValueState` ] : [],
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: FilesUploader__YDF.Themes,
-        CSS_Namespace: FilesUploader__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: FilesUploader__YDF.GeometricVariations,
-        CSS_Namespace: FilesUploader__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: FilesUploader__YDF.DecorativeVariations,
-        CSS_Namespace: FilesUploader__YDF.CSS_NAMESPACE
-      })
-
-    ];
-
+    /**
+     * @param { string } value
+     * @return { boolean }
+     * */
     function isMVC_LikeValue(value) {
       return [
 
@@ -122,19 +233,23 @@ mixin FilesUploader--YDF(properties, statesSimulations)
       singleImagePreviewURI = value;
     }
 
-    const supportedFilesNamesExtensionsWithoutLeadingDots = supportedFilesNamesExtensions__leadingDotsAreOptional.map(
-      fileNameExtension =>
-          YDF.removeSpecificCharacterFromCertainPosition({
-            targetString: fileNameExtension,
-            targetCharacter: ".",
-            fromFirstPosition: true
-          })
-    );
+    /** @type { ReadonlyArray<string> } */
+    const supportedFilesNamesExtensionsWithoutLeadingDots =
+        supportedFilesNamesExtensions__leadingDotsAreOptional.map(
+          fileNameExtension =>
+              YDF.removeSpecificCharacterFromCertainPosition({
+                targetString: fileNameExtension,
+                targetCharacter: ".",
+                fromFirstPosition: true
+              })
+        );
 
     /* FIXME Not found to specify "accept all files" such as satisfy the HTML validator.
      *  Both "*" and *.*" has been treated as invalid. */
-    const acceptAttributeValueForInputTag = supportedFilesNamesExtensionsWithoutLeadingDots.length > 0 ?
-        `.${ supportedFilesNamesExtensionsWithoutLeadingDots.join(", .") }` : "*.*";
+    /** @type { string } */
+    const acceptAttributeValueForInputTag =
+        supportedFilesNamesExtensionsWithoutLeadingDots.length > 0 ?
+            `.${ supportedFilesNamesExtensionsWithoutLeadingDots.join(", .") }` : "*.*";
 
 
   +ValidatableControlShell--YDF(

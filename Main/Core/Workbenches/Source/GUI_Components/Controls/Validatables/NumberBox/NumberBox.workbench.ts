@@ -1,12 +1,13 @@
-import NumberBox from "../../../../../../GUI_Components/Controls/Validatables/NumberBox/NumberBox";
+import { NumberBox } from "../../../../../../index";
 import InputtedValueValidation from "../../../../../../GUI_Components/Controls/_Validation/InputtedValueValidation";
 import { isNumber } from "@yamato-daiwa/es-extensions";
+import ValidatableControl from "../../../../../../GUI_Components/Controls/_Validation/ValidatableControl";
 
 
 NumberBox.initializeOne({
   rootElement: { selector: "#SAMPLE" },
   scenario: NumberBox.Scenarios.alwaysNonEmptyValue,
-  validityHighlightingActivationMode: NumberBox.ValidityHighlightingActivationModes.onFocusOut,
+  validityHighlightingActivationMode: ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes.onFocusOut,
   validation: new
     class extends InputtedValueValidation<number> {
       public constructor() {

@@ -1,4 +1,4 @@
-/* eslint-disable-next-line max-classes-per-file -- Temporary disabled for the experimental method. */
+/* eslint-disable max-classes-per-file -- Temporary disabled for the experimental method. */
 import type { YDF_Component } from "../_Auxiliaries/YDF_Component";
 import YDF_ComponentsCoordinator from "../_Auxiliaries/YDF_ComponentsCoordinator";
 import AdmonitionBlockLocalization__English from "./AdmonitionBlockLocalization.english";

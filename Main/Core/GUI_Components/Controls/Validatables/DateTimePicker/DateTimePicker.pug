@@ -1,59 +1,152 @@
-include DateTimePicker.class.pug
-
-
 mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
 
   -
 
     const {
 
+      /** @type { string | undefined } */
       label,
+
+      /** @type { string | undefined } */
       accessibilityGuidance,
+
+      /** @type { string | undefined } */
       externalLabelHTML_ID,
+
+      /** @type { string | undefined } */
       guidance,
 
+      /** @type { DateTimePicker.Modes } */
       mode,
+
+      /** @type { string | number } */
       value,
 
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       disabled,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       readonly,
 
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       required,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       mustDisplayAppropriateBadgeIfInputIsRequired,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       mustDisplayAppropriateBadgeIfInputIsOptional,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
 
+      /** @type { string | undefined } */
       instanceID_UniqueDynamicPart,
+
+      /**
+       * @type {
+       *   {
+       *     input?: string;
+       *     label?: string;
+       *   }
+       *  }
+       * */
       HTML_IDs,
 
+      /**
+       * @type { DateTimePicker.Themes }
+       * @default DateTimePicker.Themes.regular
+       * */
       theme,
+
+      /**
+       * @type { boolean }
+       * @default DateTimePicker.areThemesCSS_ClassesCommon
+       * */
       areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { DateTimePicker.GeometricVariations }
+       * @default DateTimePicker.GeometricVariations.regular
+       * */
       geometricVariation,
-      geometricModifiers,
-      decorativeVariation,
-      decorativeModifiers
+
+      /**
+       * @type { DateTimePicker.GeometricVariations }
+       * @default DateTimePicker.DecorativeVariations.regular
+       * */
+      decorativeVariation
 
     } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: properties,
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: DateTimePicker__YDF.propertiesSpecification,
-      mixinName: DateTimePicker__YDF.CSS_NAMESPACE
+      mixinName: "DateTimePicker--YDF"
     });
 
     const {
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       expanded,
+
+      /**
+       * @type { DateTimePicker.Matrices }
+       * @default false
+       * */
       activeMatrix,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       invalidInputHighlightingIfAnyValidationErrorsMessages,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
       validValueHighlightingIfNoValidationErrorsMessages,
+
+      /**
+       * @type { boolean | ReadonlyArray<string> }
+       * @default false
+       * */
       validationErrorsMessages,
+
+      /**
+       * @type { boolean | ReadonlyArray<"IN_PROGRESS" | "FINISHED_BUT_INVALID" | "FINISHED_AND_VALID" | "MALFUNCTION"> }
+       * @default false
+       * */
       asynchronousValidationsStatuses
+
     } = YDF.processObjectTypeParameterOfPugMixin({
       rawParameter: statesSimulations,
       parameterNumber: 2,
       parameterName: "statesSimulations",
       parameterPropertiesSpecification: DateTimePicker__YDF.statesSimulationsSpecification,
-      mixinName: DateTimePicker__YDF.CSS_NAMESPACE
+      mixinName: "DateTimePicker--YDF"
     });
 
 
@@ -70,48 +163,44 @@ mixin DateTimePicker--YDF(properties, statesSimulations, initialValueFormatter)
 
     } = HTML_IDs ?? {};
 
-    const rootElementModifierCSS_Classes = [
+    /** @type { ReadonlyArray<string> } */
+    const rootElementModifierCSS_Classes =
 
-      ...disabled ? [ `${ DateTimePicker__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
-      ...invalidInputHighlightingIfAnyValidationErrorsMessages && validationErrorsMessages.length > 0 ?
-          [ `${ DateTimePicker.CSS_NAMESPACE }__InvalidValueState` ] : [],
-      ...validValueHighlightingIfNoValidationErrorsMessages && validationErrorsMessages.length === 0 ?
-          [ `${ DateTimePicker.CSS_NAMESPACE }__ValueState` ] : [],
+        DateTimePicker__YDF.getActualRootElementModifierCSS_Classes({
+          disabled,
+          invalidInputHighlighting:
+                  invalidInputHighlightingIfAnyValidationErrorsMessages &&
+                  (validationErrorsMessages === true || validationErrorsMessages.length > 0),
+          validValueHighlighting:
+                  validValueHighlightingIfNoValidationErrorsMessages &&
+                  (validationErrorsMessages === false || validationErrorsMessages.length === 0),
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
 
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: DateTimePicker__YDF.Themes,
-        CSS_Namespace: DateTimePicker__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: DateTimePicker__YDF.GeometricVariations,
-        CSS_Namespace: DateTimePicker__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: DateTimePicker__YDF.DecorativeVariations,
-        CSS_Namespace: DateTimePicker__YDF.CSS_NAMESPACE
-      })
-
-    ];
-
+    /** @type { Date } */
     const initiallyDisplayingYear = new Date().getFullYear();
+
+    /** @type { number } */
     const initiallyDisplayingMonthNumber__numerationFrom0 = new Date().getMonth();
 
-    const initial6x7DaysMatrix = YDF.CalendarBuilder.generateDataFor6x7DaysMatrix({
-      targetYear: initiallyDisplayingYear,
-      targetMonthNumber__numerationFrom0: initiallyDisplayingMonthNumber__numerationFrom0,
-      firstDayOfWeek__numerationFrom0ForSunday: 0
-    });
+    /** @type { ReadonlyArray<ReadonlyArray<CalendarBuilder.CalendarCellData>> } */
+    const initial6x7DaysMatrix =
+        YDF.CalendarBuilder.generateDataFor6x7DaysMatrix({
+          targetYear: initiallyDisplayingYear,
+          targetMonthNumber__numerationFrom0: initiallyDisplayingMonthNumber__numerationFrom0,
+          firstDayOfWeek__numerationFrom0ForSunday: 0
+        });
 
-    const toggleAccessibilityGuidance = expanded ?
-        DateTimePicker__YDF.localization.expandingToggle.collapsedState.accessibilityGuidance :
-        DateTimePicker__YDF.localization.expandingToggle.expandedState.accessibilityGuidance;
+    /** @type { string } */
+    const toggleAccessibilityGuidance =
+        expanded ?
+            DateTimePicker__YDF.localization.expandingToggle.collapsedState.accessibilityGuidance :
+            DateTimePicker__YDF.localization.expandingToggle.expandedState.accessibilityGuidance;
 
+    /** @type { boolean } */
     const isInitialValueRepresentsValidDateAndPossiblyTime =
         YDF.isNotUndefined(value) && new Date(value).toString() !== "Invalid Date";
 

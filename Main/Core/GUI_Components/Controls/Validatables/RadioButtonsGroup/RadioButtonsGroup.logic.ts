@@ -12,7 +12,7 @@ import { isNotNull, isNull, Logger } from "@yamato-daiwa/es-extensions";
 
 
 /** @beta */
-class RadioButtonsGroup<
+export class RadioButtonsGroup<
   IsInputRequired extends boolean,
   NonEmptyValueType extends RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.NonEmpty,
   EmptyValueType extends RadioButtonsGroup.SupportedValidatablePayloadValuesTypes.Empty = NonEmptyValueType,
@@ -363,7 +363,7 @@ class RadioButtonsGroup<
 }
 
 
-namespace RadioButtonsGroup {
+export namespace RadioButtonsGroup {
 
   export type SupportedValidatablePayloadValuesTypes =
       SupportedValidatablePayloadValuesTypes.NonEmpty |

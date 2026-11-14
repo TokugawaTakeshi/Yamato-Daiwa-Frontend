@@ -116,7 +116,7 @@ export abstract class ComboBox extends ComboBoxBase {
       isUndefinedForbidden: false,
       isNullForbidden: true,
       allowedAlternatives: Object.
-          entries(ComboBoxBase.Themes).
+          entries(ComboBox.Themes).
           map(
             ([ key, value ]: Readonly<[ string, string ]>): Readonly<{ key: string; value: string; }> =>
                 ({ key: `ComboBox.Themes.${ key }`, value })

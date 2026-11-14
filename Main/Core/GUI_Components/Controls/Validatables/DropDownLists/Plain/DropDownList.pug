@@ -1,5 +1,4 @@
-include DropDownList.class.pug
-
+// Main/Core/GUI_Components/Controls/Validatables/DropDownLists/Plain/DropDownList.pug
 
 //- [ Reference ] https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-autocomplete-both/
 mixin DropDownList--YDF(properties, statesSimulations)
@@ -97,7 +96,7 @@ mixin DropDownList--YDF(properties, statesSimulations)
       geometricVariation,
 
       /**
-       * @type { DropDownList__YDF.GeometricVariations }
+       * @type { DropDownList__YDF.DecorativeVariations }
        * @default DropDownList__YDF.DecorativeVariations.regular
        * */
       decorativeVariation
@@ -107,7 +106,7 @@ mixin DropDownList--YDF(properties, statesSimulations)
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: DropDownList__YDF.propertiesSpecification,
-      mixinName: DropDownList__YDF.CSS_NAMESPACE
+      mixinName: "DropDownList--YDF"
     });
 
     /** @type { string } */
@@ -166,44 +165,30 @@ mixin DropDownList--YDF(properties, statesSimulations)
       parameterNumber: 2,
       parameterName: "statesSimulations",
       parameterPropertiesSpecification: DropDownList__YDF.statesSimulationsSpecification,
-      mixinName: DropDownList__YDF.CSS_NAMESPACE
+      mixinName: "DropDownList--YDF"
     });
 
 
-    const rootElementModifierCSS_Classes = [
+    /** @type { ReadonlyArray<string> } */
+    const rootElementModifierCSS_Classes =
 
-      expanded ?
-          `${ DropDownList__YDF.CSS_NAMESPACE }__ExpandedState` :
-          `${ DropDownList__YDF.CSS_NAMESPACE }__FoldedState`,
+        DropDownList.getActualRootElementModifierCSS_Classes({
+          expanded,
+          disabled,
+          invalidInputHighlighting:
+              invalidInputHighlightingIfAnyValidationErrorsMessages &&
+              (validationErrorsMessages === true || validationErrorsMessages.length > 0),
+          validValueHighlighting:
+              validValueHighlightingIfNoValidationErrorsMessages &&
+              (validationErrorsMessages === false || validationErrorsMessages.length === 0),
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
 
-      ...disabled ? [ `${ DropDownList__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
 
-      ...invalidInputHighlightingIfAnyValidationErrorsMessages && validationErrorsMessages.length > 0 ?
-          [ `${ DropDownList.CSS_NAMESPACE }__InvalidValueState` ] : [],
-      ...validValueHighlightingIfNoValidationErrorsMessages && validationErrorsMessages.length === 0 ?
-          [ `${ DropDownList.CSS_NAMESPACE }__ValidValueState` ] : [],
-
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: DropDownList__YDF.Themes,
-        CSS_Namespace: DropDownList__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: DropDownList__YDF.GeometricVariations,
-        CSS_Namespace: DropDownList__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: DropDownList__YDF.DecorativeVariations,
-        CSS_Namespace: DropDownList__YDF.CSS_NAMESPACE
-      })
-
-    ];
-
+    /** @type { string } */
     let inputElementInitialValue = "";
 
     if (YDF.isNotUndefined(initiallySelectedOptionKey) && selectingOptions.length > 0) {

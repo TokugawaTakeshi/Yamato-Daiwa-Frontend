@@ -1,33 +1,38 @@
-import type { FilesUploaderLocalization } from "./FilesUploaderLocalization";
+import type FilesUploader from "./FilesUploader.base";
 
 
-export const FilesUploaderYDF_GUI_ComponentLocalization__English: FilesUploaderLocalization = {
+export const FilesUploaderLocalization__English: FilesUploader.Localization =
 
-  processingsStatusesTable: {
-    headers: {
-      fileName: "File Name",
-      status: "Status"
-    }
-  },
+    {
 
-  uploadSingleFileByDragAndDropGuidance: "Upload",
+      processingsStatusesTable: {
+        headers: {
+          fileName: "File Name",
+          status: "Status"
+        }
+      },
 
-  buttons: {
+      uploadSingleFileByDragAndDropGuidance: "Upload",
 
-    filePicking: {
-      buildLabel: ({ areMultipleFileAllowed }: Readonly<{ areMultipleFileAllowed: boolean; }>): string =>
-          `Select file${ areMultipleFileAllowed ? "s" : "" }`
-    },
+      buttons: {
 
-    singleImageDeleting: {
-      label: "Delete",
-      accessibilityGuidance: "Delete the image"
-    }
+        filePicking: {
+          buildLabel: ({ areMultipleFileAllowed }: Readonly<{ areMultipleFileAllowed: boolean; }>): string =>
+              `Select file${ areMultipleFileAllowed ? "s" : "" }`
+        },
 
-  },
+        singleImageDeleting: {
+          label: "Delete",
+          accessibilityGuidance: "Delete the image"
+        }
 
-  singleImagePreviewer: {
-    image: { alternatingText: "Uploaded image preview" }
-  }
+      },
 
-};
+      singleImagePreviewer: {
+        image: { alternatingText: "Uploaded image preview" }
+      }
+
+    };
+
+
+export default FilesUploaderLocalization__English;

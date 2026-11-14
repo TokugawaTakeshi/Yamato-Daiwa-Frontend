@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/member-ordering --
  * The members of this class has been organized semantically. */
 
-/* ─── Validation ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ┅┅┅ Validation ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import ValidatableControl from "../../_Validation/ValidatableControl";
 import type InputtedValueValidation from "../../_Validation/InputtedValueValidation";
 
-/* ─── Children Components ────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ GUIコンポネント ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell.logic";
 
-/* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import type { RootElementDefinition } from "../../../../Logic/Types/RootElementDefinition";
 import {
   InvalidParameterValueError,
@@ -24,10 +25,11 @@ import {
   cloneDOM_Element
 } from "@yamato-daiwa/es-extensions-browserjs";
 import onDifferentValueAssigned from "../../../_Auxiliaries/Decorators/onDifferentValueAssigned";
+/* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 
 /** @beta */
-class NumberBox<
+export class NumberBox<
   IsInputRequired extends boolean,
   NonEmptyValueType extends NumberBox.SupportedValidatablePayloadValuesTypes.NonEmpty,
   EmptyValueType extends NumberBox.SupportedValidatablePayloadValuesTypes.Empty = NonEmptyValueType,
@@ -59,7 +61,8 @@ class NumberBox<
   protected readonly ID: string = NumberBox.generateSelfID();
 
   protected readonly scenario: NumberBox.Scenarios;
-  protected readonly validityHighlightingActivationMode: NumberBox.ValidityHighlightingActivationModes;
+  protected readonly validityHighlightingActivationMode:
+      ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes;
   protected readonly step: number;
 
 
@@ -200,7 +203,8 @@ class NumberBox<
 
   public resetValidityHighlightingStateToInitial(): void {
     this.$mustHighlightInvalidInputIfAnyValidationErrorsMessages =
-        this.validityHighlightingActivationMode === NumberBox.ValidityHighlightingActivationModes.immediate;
+        this.validityHighlightingActivationMode ===
+            ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes.immediate;
   }
 
 
@@ -233,7 +237,8 @@ class NumberBox<
 
     /* ─── DOM ────────────────────────────────────────────────────────────────────────────────────────────────────── */
     const mustHighlightInvalidInputIfAnyValidationErrorsMessages: boolean =
-        validityHighlightingActivationMode === NumberBox.ValidityHighlightingActivationModes.immediate;
+        validityHighlightingActivationMode ===
+            ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes.immediate;
 
     this.shellComponent = ValidatableControlShell.initializeOne({
       rootElement,
@@ -449,7 +454,8 @@ class NumberBox<
 
     if (
       !this.$mustHighlightInvalidInputIfAnyValidationErrorsMessages &&
-      this.validityHighlightingActivationMode === NumberBox.ValidityHighlightingActivationModes.onFirstInputtedCharacter
+      this.validityHighlightingActivationMode ===
+          ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes.onFirstInputtedCharacter
     ) {
       this.$mustHighlightInvalidInputIfAnyValidationErrorsMessages = true;
     }
@@ -554,7 +560,7 @@ class NumberBox<
 }
 
 
-namespace NumberBox {
+export namespace NumberBox {
 
   export type SupportedValidatablePayloadValuesTypes =
       SupportedValidatablePayloadValuesTypes.NonEmpty |
@@ -596,7 +602,7 @@ namespace NumberBox {
         maximalValue?: number;
         step?: number;
         validation: InputtedValueValidation<NonEmptyValueType, EmptyValueType>;
-        validityHighlightingActivationMode: ValidityHighlightingActivationModes;
+        validityHighlightingActivationMode: ValidatableControl.CharactersInputtingType.ValidityHighlightingActivationModes;
       }>;
 
     }
@@ -649,12 +655,6 @@ namespace NumberBox {
       }>;
     }>;
   }>;
-
-  export enum ValidityHighlightingActivationModes {
-    immediate = "IMMEDIATE",
-    onFirstInputtedCharacter = "ON_FIRST_INPUTTED_CHARACTER",
-    onFocusOut = "ON_FOCUS_OUT"
-  }
 
 }
 

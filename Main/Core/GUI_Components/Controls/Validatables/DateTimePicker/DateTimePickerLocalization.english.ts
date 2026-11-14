@@ -1,7 +1,7 @@
-import type { DateTimePickerLocalization } from "./DateTimePickerLocalization";
+import type DateTimePicker from "./DateTimePicker.base";
 
 
-export const DateTimePickerYDF_GUI_ComponentLocalization__English: DateTimePickerLocalization = {
+export const DateTimePickerLocalization__English: DateTimePicker.Localization = {
 
   dialog: {
 

@@ -73,11 +73,9 @@ mixin Accordion--YDF(properties, statesSimulations)
         });
 
 
-  div&attributes(
-    Object.assign(
-      attributes,
-      { class: rootCSS_Classes }
-    )
+  .Accordion--YDF&attributes(attributes)(
+    role="alert"
+    class=rootElementModifierCSS_Classes
   )
 
     .Accordion--YDF-Header

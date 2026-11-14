@@ -1,20 +1,22 @@
 /* eslint-disable @typescript-eslint/member-ordering --
  * The members of this class has been organized semantically. */
 
-/* ─── Assets ─────────────────────────────────────────────────────────────────────────────────────────────────────── */
-import componentDynamicPartsHTML from "./FilesUploader.parts.pug";
-import type { FilesUploaderLocalization } from "./FilesUploaderLocalization";
-import { FilesUploaderYDF_GUI_ComponentLocalization__English } from "./FilesUploaderLocalization.english";
+/* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+import type FilesUploaderBase from "./FilesUploader.base";
 
-/* ─── Validation ─────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ Validations ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import ValidatableControl from "../../_Validation/ValidatableControl";
 import type InputtedValueValidation from "../../_Validation/InputtedValueValidation";
 
-/* ─── Children Components ────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+import componentDynamicPartsHTML from "./FilesUploader.parts.pug";
+import FilesUploaderLocalization__English from "./FilesUploaderLocalization.english";
+
+/* ┅┅┅ GUI Components ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import ValidatableControlShell from "../../ValidatableControlShell/ValidatableControlShell.logic";
 import Button from "../../Buttons/Plain/Button.logic";
 
-/* ─── Utils ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
+/* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import {
   encodeFileToBase64,
   Logger,
@@ -41,10 +43,11 @@ import {
   DelegatedLeftClickEventListener
 } from "@yamato-daiwa/es-extensions-browserjs";
 import setHTML_Attributes from "../../../../Logic/UtilsIncubator/DOM/setHTML_Attributes";
+/* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 
 /** @beta */
-class FilesUploader<
+export class FilesUploader<
   IsInputRequired extends boolean,
   NonEmptyValueType extends FilesUploader.SupportedValidatablePayloadValuesTypes.NonEmpty,
   EmptyValueType extends FilesUploader.SupportedValidatablePayloadValuesTypes.Empty,
@@ -90,7 +93,7 @@ class FilesUploader<
 
 
   /* ─── Settings ─────────────────────────────────────────────────────────────────────────────────────────────────── */
-  public static localization: FilesUploaderLocalization = FilesUploaderYDF_GUI_ComponentLocalization__English;
+  public static localization: FilesUploaderBase.Localization = FilesUploaderLocalization__English;
 
 
   /* ━━━ Instance Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -101,7 +104,7 @@ class FilesUploader<
 
   protected mustDisplayErrorsMessagesImmediatelyIfAny: boolean = false;
 
-  protected localization: FilesUploaderLocalization;
+  protected localization: FilesUploaderBase.Localization;
 
 
   /* ─── DOM ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
@@ -790,7 +793,7 @@ class FilesUploader<
 }
 
 
-namespace FilesUploader {
+export namespace FilesUploader {
 
   export type SupportedValidatablePayloadValuesTypes =
       SupportedValidatablePayloadValuesTypes.NonEmpty |
@@ -836,7 +839,7 @@ namespace FilesUploader {
         validation: InputtedValueValidation<NonEmptyValueType, EmptyValueType>;
         mustHighlightInvalidInputIfAnyValidationErrorsMessagesImmediately: boolean;
         onBase64EncodingOfAllFilesDoneEventHandler?: OnBase64EncodingOfAllFilesDoneEventHandler;
-        localization?: FilesUploaderLocalization;
+        localization?: FilesUploaderBase.Localization;
       }>;
 
     export type SingleRequiredFileScenario =
