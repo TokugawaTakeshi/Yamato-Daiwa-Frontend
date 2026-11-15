@@ -11,12 +11,17 @@ The [core package](https://www.npmjs.com/package/@yamato-daiwa/frontend) is stil
 ## Installation
 
 ```bash
-npm i @yamato-daiwa/frontend-vue @yamato-daiwa/frontend@2.0.0-beta.10
+npm i @yamato-daiwa/frontend-vue @yamato-daiwa/frontend@2.0.0-beta.12
 ```
 
 ### Peer Dependencies
 
-+ **@yamato-daiwa/frontend**: 2.0.0-beta.10
+In modern versions npm the peer dependencies are being installed automatically, but it is still required to ensure the 
+  compatibility of dependencies.
+
++ **@yamato-daiwa/es-extensions**: ~1.9.0
++ **@yamato-daiwa/es-extensions-browserjs**: ~1.9.0
++ **@yamato-daiwa/frontend**: 2.0.0-beta.12
 + **vue**: ~3.5.0
 + **vue-facing-decorator**: ~3.0.0
 + **vue-router**: ~4.5.0

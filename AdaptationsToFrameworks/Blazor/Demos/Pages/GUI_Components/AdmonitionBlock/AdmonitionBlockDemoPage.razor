@@ -1,68 +1,88 @@
 @page "/AdmonitionBlock"
 
-
 @using YamatoDaiwa.Frontend.GUI_Components.AdmonitionBlock;
 @using YamatoDaiwa.Frontend.GUI_Components.Controls.Buttons.Plain;
 @using Demos.GUI_Components.ThemesShowcase;
 
 
+<HeadContent>
+  <link 
+    rel="stylesheet" 
+    href="@Assets["css/AdmonitionBlockGalleryPage.css"]" 
+  />
+</HeadContent>
+
+
 <div class="YDF_Gallery">
   
-  <h1 class="Heading1">AdmonitionBlock Component Demos</h1>
+  <h1 class=@CSS_Class.Join("Heading1", this.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : null)>
+    AdmonitionBlock Component Demos
+  </h1>
 
+  
   @* ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
-  <h2 class="Heading2">Minimal</h2>
+  @if (partials.minimal) {
+    
+    <h2 class=@CSS_Class.Join("Heading2", this.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : null)>
+      Minimal
+    </h2>
    
-  <ThemesShowcase
-    themes=@typeof(AdmonitionBlock.StandardThemes)
-    themeKeyLabelPrefix=@AdmonitionBlockDemoPage.THEME_KEY_LABEL_PREFIX
-    geometricVariations=@typeof(AdmonitionBlock.StandardGeometricVariations)
-    geometricVariationLabelPrefix=@AdmonitionBlockDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
-    decorativeVariations=@typeof(AdmonitionBlock.StandardDecorativeVariations)
-    decorativeVariationLabelPrefix=@AdmonitionBlockDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
-    decorativeVariationsWrapperAdditionalCSS_Classes=@([ "BadgeGallery-TwoColumnsTable" ])
-  >
-    <ComponentSlot>
-      <AdmonitionBlock
-        theme=@context.themeValue
-        geometricVariation=@context.geometricVariationValue
-        decorativeVariation=@context.decorativeVariationValue
-        lang="la"
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
-        magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </AdmonitionBlock>  
-    </ComponentSlot>
-  </ThemesShowcase>
-
+    <ThemesShowcase
+      themes=@typeof(AdmonitionBlock.StandardThemes)
+      themeKeyLabelPrefix=@AdmonitionBlockDemoPage.THEME_KEY_LABEL_PREFIX
+      geometricVariations=@typeof(AdmonitionBlock.StandardGeometricVariations)
+      geometricVariationLabelPrefix=@AdmonitionBlockDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+      decorativeVariations=@typeof(AdmonitionBlock.StandardDecorativeVariations)
+      decorativeVariationLabelPrefix=@AdmonitionBlockDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+      decorativeVariationsWrapperAdditionalCSS_Classes=@([ "BadgeGallery-TwoColumnsTable" ])
+    >
+      <ComponentSlot>
+        <AdmonitionBlock
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          lang="la"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+          magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </AdmonitionBlock>  
+      </ComponentSlot>
+    </ThemesShowcase>
+    
+  }
 
   @* ━━━ Titles ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
-  <h2 class="Heading2">Titles</h2>
-   
-  <ThemesShowcase
-    themes=@typeof(AdmonitionBlock.StandardThemes)
-    themeKeyLabelPrefix=@AdmonitionBlockDemoPage.THEME_KEY_LABEL_PREFIX
-    geometricVariations=@typeof(AdmonitionBlock.StandardGeometricVariations)
-    geometricVariationLabelPrefix=@AdmonitionBlockDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
-    decorativeVariations=@typeof(AdmonitionBlock.StandardDecorativeVariations)
-    decorativeVariationLabelPrefix=@AdmonitionBlockDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
-  >
-    <ComponentSlot>
-      <AdmonitionBlock
-        title="Titulo"
-        theme=@context.themeValue
-        geometricVariation=@context.geometricVariationValue
-        decorativeVariation=@context.decorativeVariationValue
-        lang="la"
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
-        magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </AdmonitionBlock>  
-    </ComponentSlot>
-  </ThemesShowcase>
-
+  @if (partials.titles) {
+    
+    <h2 class=@CSS_Class.Join("Heading2", this.mustVisuallyHideAllHeadings ? "YDF_Gallery-InvisibleHeading" : null)>
+      Titles
+    </h2>
+     
+    <ThemesShowcase
+      themes=@typeof(AdmonitionBlock.StandardThemes)
+      themeKeyLabelPrefix=@AdmonitionBlockDemoPage.THEME_KEY_LABEL_PREFIX
+      geometricVariations=@typeof(AdmonitionBlock.StandardGeometricVariations)
+      geometricVariationLabelPrefix=@AdmonitionBlockDemoPage.GEOMETRIC_VARIATION_KEY_LABEL_PREFIX
+      decorativeVariations=@typeof(AdmonitionBlock.StandardDecorativeVariations)
+      decorativeVariationLabelPrefix=@AdmonitionBlockDemoPage.DECORATIVE_VARIATION_KEY_LABEL_PREFIX
+    >
+      <ComponentSlot>
+        <AdmonitionBlock
+          title="Titulo"
+          theme=@context.themeValue
+          geometricVariation=@context.geometricVariationValue
+          decorativeVariation=@context.decorativeVariationValue
+          lang="la"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+          magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </AdmonitionBlock>  
+      </ComponentSlot>
+    </ThemesShowcase>
+    
+  }
 
   @* ━━━ Default SVG Icons ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ *@
   <h2 class="Heading2">Default SVG Icons</h2>

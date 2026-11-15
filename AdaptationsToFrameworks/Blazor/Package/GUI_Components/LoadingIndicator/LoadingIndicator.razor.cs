@@ -1,6 +1,4 @@
-﻿using YamatoDaiwa.CSharpExtensions;
-using YamatoDaiwa.Frontend.GUI_Components.Abstractions;
-using YamatoDaiwa.Frontend.Helpers;
+﻿using YamatoDaiwa.Frontend.Helpers;
 
 
 namespace YamatoDaiwa.Frontend.GUI_Components.LoadingIndicator;
@@ -42,6 +40,15 @@ public partial class LoadingIndicator :
   protected string _theme = LoadingIndicator.StandardThemes.regular.ToString();
   
   [Microsoft.AspNetCore.Components.Parameter]
+  [
+    System.Diagnostics.CodeAnalysis.SuppressMessage(
+      category: "Microsoft.Performance", 
+      checkId: "BL0007", 
+      Justification = 
+          "Validation via setter is not recommended, but no better alternative has been suggested. " +
+          "https://stackoverflow.com/q/79935713/4818123"
+    )
+  ]
   public object theme
   {
     get => this._theme;
@@ -80,6 +87,15 @@ public partial class LoadingIndicator :
   protected string _geometricVariation = LoadingIndicator.StandardGeometricVariations.regular.ToString();
 
   [Microsoft.AspNetCore.Components.Parameter]
+  [
+    System.Diagnostics.CodeAnalysis.SuppressMessage(
+      category: "Microsoft.Performance", 
+      checkId: "BL0007", 
+      Justification = 
+          "Validation via setter is not recommended, but no better alternative has been suggested. " +
+          "https://stackoverflow.com/q/79935713/4818123"
+    )
+  ]
   public object geometricVariation
   {
     get => this._geometricVariation;
@@ -102,6 +118,15 @@ public partial class LoadingIndicator :
   protected string _decorativeVariation = LoadingIndicator.StandardDecorativeVariations.regular.ToString();
 
   [Microsoft.AspNetCore.Components.Parameter]
+  [
+    System.Diagnostics.CodeAnalysis.SuppressMessage(
+      category: "Microsoft.Performance", 
+      checkId: "BL0007", 
+      Justification = 
+          "Validation via setter is not recommended, but no better alternative has been suggested. " +
+          "https://stackoverflow.com/q/79935713/4818123"
+    )
+  ]
   public required object decorativeVariation
   {
     get => _decorativeVariation;

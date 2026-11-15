@@ -3,12 +3,6 @@
 namespace YamatoDaiwa.Frontend.Localizations.Japanese.GUI_Components;
 
 
-public record AdmonitionBlockJapaneseLocalization : AdmonitionBlock.Localization
-{
-  
-  public override AdmonitionBlock.Localization.DismissingButton dismissingButton { get; } = new()
-  {
-    accessibilityGuidance = "このメッセージを非表示"
-  }; 
-  
-}
+public record AdmonitionBlockJapaneseLocalization() : AdmonitionBlock.Localization(
+  dismissingButton: new AdmonitionBlock.Localization.DismissingButton(accessibilityGuidance: "このメッセージを非表示")
+); 

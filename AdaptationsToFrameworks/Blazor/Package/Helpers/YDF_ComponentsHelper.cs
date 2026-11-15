@@ -219,7 +219,7 @@ public abstract class YDF_ComponentsHelper
       CSS_Classes.AddRange(
         from object selectedGeometricModifier
             in definedSelectedGeometricModifiers
-            select $"{ settings.CSS_Namespace }__{ selectedGeometricModifier.ToString().ToUpperCamelCase() }GeometricModifier"
+            select $"{ settings.CSS_Namespace }__{ (selectedGeometricModifier.ToString() ?? "").ToUpperCamelCase() }GeometricModifier"
       );
     }
     
@@ -240,7 +240,7 @@ public abstract class YDF_ComponentsHelper
       CSS_Classes.AddRange(
         from object selectedGeometricModifier
             in definedSelectedDecorativeModifiers
-            select $"{ settings.CSS_Namespace }__{ selectedGeometricModifier.ToString().ToUpperCamelCase() }DecorativeModifier"
+            select $"{ settings.CSS_Namespace }__{ (selectedGeometricModifier.ToString() ?? "").ToUpperCamelCase() }DecorativeModifier"
       );
     }
 

@@ -48,6 +48,15 @@ public partial class TextBox :
 
   [Microsoft.AspNetCore.Components.Parameter]
   [Microsoft.AspNetCore.Components.EditorRequired]
+  [
+    System.Diagnostics.CodeAnalysis.SuppressMessage(
+      category: "Microsoft.Performance", 
+      checkId: "BL0007", 
+      Justification = 
+          "Validation via setter is not recommended, but no better alternative has been suggested. " +
+          "https://stackoverflow.com/q/79935713/4818123"
+    )
+  ]
   public required ValidatableControl.Payload payload
   {
     get => _payload;
@@ -334,7 +343,7 @@ public partial class TextBox :
   public static void defineCustomGeometricVariations(Type customGeometricVariations)
   {
     YDF_ComponentsHelper.ValidateCustomGeometricVariation(customGeometricVariations);
-    TextBox.CustomGeometricVariations = CustomGeometricVariations;
+    TextBox.CustomGeometricVariations = customGeometricVariations;
   }
 
   protected string _geometricVariation = nameof(TextBox.StandardGeometricVariations.regular);

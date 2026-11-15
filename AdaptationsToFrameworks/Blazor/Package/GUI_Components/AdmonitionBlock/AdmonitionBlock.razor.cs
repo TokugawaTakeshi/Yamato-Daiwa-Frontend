@@ -1,6 +1,4 @@
-﻿using YamatoDaiwa.Frontend.Animations;
-using YamatoDaiwa.Frontend.GUI_Components.Abstractions;
-using YamatoDaiwa.Frontend.Helpers;
+﻿using YamatoDaiwa.Frontend.Helpers;
 
 
 namespace YamatoDaiwa.Frontend.GUI_Components.AdmonitionBlock;
@@ -9,14 +7,11 @@ namespace YamatoDaiwa.Frontend.GUI_Components.AdmonitionBlock;
 [System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 public partial class AdmonitionBlock :
     Microsoft.AspNetCore.Components.ComponentBase,
-    YamatoDaiwa.Frontend.GUI_Components.Abstractions.IHTML_AttributesFallthrough,
-    YamatoDaiwa.Frontend.GUI_Components.Abstractions.IFlexibleExternalCSS_ClassesSpecifyingForRootElement,
-    IAsyncDisposable
+    YamatoDaiwa.Frontend.GUI_Components.Abstractions.IHTML_AttributesFallthrough
 {
 
   public const string CSS_NAMESPACE = "AdmonitionBlock--YDF";
-
-
+  
   [Microsoft.AspNetCore.Components.Parameter(CaptureUnmatchedValues = true)]
   public Dictionary<string, object>? rootElementHTML_Attributes { get; set; }
 
@@ -39,8 +34,21 @@ public partial class AdmonitionBlock :
   [Microsoft.AspNetCore.Components.Parameter]
   public bool dismissible { get; set; } = false;
 
+  private readonly JavaScriptFunctionality javaScriptFunctionality = JavaScriptFunctionality.GetNotInitializedYetInstance();
+  
+  [Microsoft.AspNetCore.Components.Inject]
+  public required Microsoft.JSInterop.IJSRuntime JSRuntime
+  {
+    get;
+    set
+    {
+      field = value;
+      _ = javaScriptFunctionality.Load(JSRuntime);
+    }
+  }
+
+  
   protected Microsoft.AspNetCore.Components.ElementReference rootElement;
-  protected CollapsingAnimation? collapsingAnimation;
 
   protected bool isDisplaying = true;
 
@@ -50,20 +58,14 @@ public partial class AdmonitionBlock :
   private async Task onClickDismissingButton()
   {
 
-    if (this.collapsingAnimation is null)
-    {
-      return;
-    }
-
-
-    await this.collapsingAnimation.Animate(
-      new CollapsingAnimation.CompoundParameter
+    await this.javaScriptFunctionality.CollapsingAnimation.Animate(
+      new JavaScriptFunctionality._CollapsingAnimation.CompoundParameter
       {
-        animatedElement = this.rootElement,
+        targetElement = this.rootElement,
         duration__seconds = 1
       }
     );
-
+    
     this.isDisplaying = false;
 
   }
@@ -87,7 +89,9 @@ public partial class AdmonitionBlock :
     System.Diagnostics.CodeAnalysis.SuppressMessage(
       category: "Microsoft.Performance",
       checkId: "BL0007",
-      Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
+      Justification =
+          "Validation via setter is not recommended, but no better alternative has been suggested. " +
+          "\"OnParametersSet\" does not give the API for watching of specific property."
     )
   ]
   public object theme
@@ -131,7 +135,9 @@ public partial class AdmonitionBlock :
     System.Diagnostics.CodeAnalysis.SuppressMessage(
       category: "Microsoft.Performance",
       checkId: "BL0007",
-      Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
+      Justification = 
+          "Validation via setter is not recommended, but no better alternative has been suggested. " +
+          "\"OnParametersSet\" does not give the API for watching of specific property."
     )
   ]
   public object geometricVariation
@@ -169,7 +175,9 @@ public partial class AdmonitionBlock :
     System.Diagnostics.CodeAnalysis.SuppressMessage(
       category: "Microsoft.Performance",
       checkId: "BL0007",
-      Justification = "Optimized equivalent is too complex: https://stackoverflow.com/a/79302962/4818123"
+      Justification = 
+          "Validation via setter is not recommended, but no better alternative has been suggested. " +
+          "\"OnParametersSet\" does not give the API for watching of specific property."
     )
   ]
   public required object decorativeVariation
@@ -187,56 +195,41 @@ public partial class AdmonitionBlock :
 
 
   /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  [Microsoft.AspNetCore.Components.Parameter]
-  public string? rootElementModifierCSS_Class { get; set; } = null;
-
-  [Microsoft.AspNetCore.Components.Parameter]
-  public string[]? rootElementModifierCSS_Classes { get; set; } = null;
-
-  [Microsoft.AspNetCore.Components.Parameter]
-  public string? rootElementSpaceSeparatedModifierCSS_Classes { get; set; } = null;
-
-  private string classAttributeValueForRootElement => YDF_ComponentsHelper.GenerateClassAttributeValueForRootElement(
-    new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement
-    {
-      CSS_Namespace = AdmonitionBlock.CSS_NAMESPACE,
-      theme = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.Theme
-      {
-        activeOne = this._theme,
-        standardOnes = typeof(AdmonitionBlock.StandardThemes),
-        customOnes = AdmonitionBlock.CustomThemes,
-        areThemesCSS_ClassesCommon = this.areThemesCSS_ClassesCommon 
-      },
-      geometricVariation = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.GeometricVariation
-      {
-        activeOne = this._geometricVariation,
-        standardOnes = typeof(AdmonitionBlock.StandardGeometricVariations),
-        customOnes = AdmonitionBlock.CustomGeometricVariations
-      },
-      decorativeVariation = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.DecorativeVariation
-      {
-        activeOne = this._decorativeVariation,
-        standardOnes = typeof(AdmonitionBlock.StandardDecorativeVariations),
-        customOnes = AdmonitionBlock.CustomDecorativeVariations
-      },
-      rootElementHTML_Attributes = this.rootElementHTML_Attributes,
-      externalSpaceSeparatedCSS_Classes =
-          ((IFlexibleExternalCSS_ClassesSpecifyingForRootElement)this).rootElementSpaceSeparatedExternalCSS_Classes
-    }
-  );
+  private string classAttributeValueForRootElement => 
+      YDF_ComponentsHelper.GenerateClassAttributeValueForRootElement(
+        new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement
+        {
+          CSS_Namespace = AdmonitionBlock.CSS_NAMESPACE,
+          theme = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.Theme
+          {
+            activeOne = this._theme,
+            standardOnes = typeof(AdmonitionBlock.StandardThemes),
+            customOnes = AdmonitionBlock.CustomThemes,
+            areThemesCSS_ClassesCommon = this.areThemesCSS_ClassesCommon 
+          },
+          geometricVariation = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.GeometricVariation
+          {
+            activeOne = this._geometricVariation,
+            standardOnes = typeof(AdmonitionBlock.StandardGeometricVariations),
+            customOnes = AdmonitionBlock.CustomGeometricVariations
+          },
+          decorativeVariation = new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement.DecorativeVariation
+          {
+            activeOne = this._decorativeVariation,
+            standardOnes = typeof(AdmonitionBlock.StandardDecorativeVariations),
+            customOnes = AdmonitionBlock.CustomDecorativeVariations
+          },
+          rootElementHTML_Attributes = this.rootElementHTML_Attributes
+        }
+      );
   
 
   /* ━━━ Localization ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  public abstract record Localization
+  public abstract record Localization(
+    AdmonitionBlock.Localization.DismissingButton dismissingButton
+  )
   {
-
-    public abstract DismissingButton dismissingButton { get; }
-
-    public record DismissingButton
-    {
-      public required string accessibilityGuidance { get; init; }
-    }
-
+    public record DismissingButton(string accessibilityGuidance);
   }
 
   public static Localization localization = new AdmonitionBlockEnglishLocalization();
@@ -261,21 +254,5 @@ public partial class AdmonitionBlock :
 
   /* ─── Title HTML ID ────────────────────────────────────────────────────────────────────────────────────────────── */
   protected string TITLE_HTML_ID => $"{ this.INSTANCE_ID }-TITLE";
-
-
-  /* ━━━ Lifecycle Hooks ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected override void OnInitialized()
-  {
-    base.OnInitialized();
-    this.collapsingAnimation = new CollapsingAnimation(this.javaScriptRuntime);
-  }
-
-  public async ValueTask DisposeAsync()
-  {
-    if (this.collapsingAnimation is not null)
-    {
-      await this.collapsingAnimation.DisposeAsync();
-    }
-  }
 
 }

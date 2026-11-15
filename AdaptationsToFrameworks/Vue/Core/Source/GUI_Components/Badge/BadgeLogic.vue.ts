@@ -21,7 +21,6 @@ import {
 } from "vue-facing-decorator";
 
 /* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-import YDF_ComponentsCoordinator from "../YDF_ComponentsCoordinator";
 import { isNonEmptyString } from "@yamato-daiwa/es-extensions";
 /* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
@@ -149,17 +148,13 @@ class Badge extends VueComponent {
 
   /* ┅┅┅ CSS Classes ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
   protected get rootElementModifierCSS_Classes(): ReadonlyArray<string> {
-    return YDF_ComponentsCoordinator.generateRootElementModifierCSS_Classes({
-      CSS_Namespace: Badge.CSS_NAMESPACE,
-      activeTheme: this.theme,
-      allThemes: Badge.Themes,
+    return BadgeBase.getActualRootElementModifierCSS_Classes({
+      theme: this.theme,
       areThemesCSS_ClassesCommon: this.areThemesCSS_ClassesCommon,
-      activeGeometricVariation: this.geometricVariation,
-      allGeometricVariations: Badge.GeometricVariations,
-      activeGeometricModifiers: this.geometricModifiers,
-      activeDecorativeVariation: this.decorativeVariation,
-      allDecorativeVariations: Badge.DecorativeVariations,
-      activeDecorativeModifiers: this.decorativeModifiers
+      geometricVariation: this.geometricVariation,
+      geometricModifiers: this.geometricModifiers,
+      decorativeVariation: this.decorativeVariation,
+      decorativeModifiers: this.decorativeModifiers
     });
   }
 

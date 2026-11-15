@@ -7,7 +7,7 @@
     <Description>The adaptation of the "Yamato Daiwa Frontend" toolkit for the Blazor framework</Description>
     <Version>0.7.0-alpha.2</Version>
     <RootNamespace>YamatoDaiwa.Frontend</RootNamespace>
-    <TargetFrameworks>net9.0; net10.0</TargetFrameworks>
+    <TargetFrameworks>net10.0;net11.0</TargetFrameworks>
   
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -25,14 +25,16 @@
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.15" />
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.15" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework)' == 'net11.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="11.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="11.0.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.6" />
-  </ItemGroup>
   
   <ItemGroup>
     <Folder Include="GUI_Components\Controls\ValidatableControlShell\LoadingPlaceholder\" />
@@ -44,7 +46,13 @@
     <Content Update="eslint.config.js" Pack="false" CopyToOutputDirectory="Never" />
     <Content Update="package.json" Pack="false" CopyToOutputDirectory="Never" />
     <Content Update="package-lock.json" Pack="false" CopyToOutputDirectory="Never" />
+    <Content Update="PrintFilesTree.ps1" Pack="false" CopyToOutputDirectory="Never" />
     <Content Update="tsconfig.json" Pack="false" CopyToOutputDirectory="Never" />
+    <Content Update="tsconfig.build.json" Pack="false" CopyToOutputDirectory="Never" />
+    <Content Update="tsconfig.eslint.json" Pack="false" CopyToOutputDirectory="Never" />
+    <Content Update="yda.config.yaml" Pack="false" CopyToOutputDirectory="Never" />
+    <Content Update="YDF.global.ts" Pack="false" CopyToOutputDirectory="Never" />
+    <Content Update="YDF.module.ts" Pack="false" CopyToOutputDirectory="Never" />
   </ItemGroup>
   
    <ItemGroup>
@@ -54,8 +62,8 @@
   </ItemGroup>
   
    <ItemGroup>
-     <PackageReference Include="Fundamentals" Version="0.1.0" />
-     <PackageReference Include="YamatoDaiwa.CSharpExtensions" Version="0.9.0" />
+     <PackageReference Include="Fundamentals" Version="11.0.0-alpha.0" />
+     <PackageReference Include="YamatoDaiwa.CSharpExtensions" Version="0.11.0-alpha.0" />
    </ItemGroup>
 
 </Project>

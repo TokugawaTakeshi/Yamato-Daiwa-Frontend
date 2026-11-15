@@ -352,7 +352,16 @@ public partial class ValidatableControlShell:
   public YamatoDaiwa.Frontend.GUI_Components.Controls.Validation.InputtedValueValidation.AsynchronousCheck.Status[]
       asynchronousCheckStatusesForAnimating = [];
   
-  [Microsoft.AspNetCore.Components.Parameter] 
+  [Microsoft.AspNetCore.Components.Parameter]
+  [
+    System.Diagnostics.CodeAnalysis.SuppressMessage(
+      category: "Microsoft.Performance", 
+      checkId: "BL0007", 
+      Justification = 
+          "Validation via setter is not recommended, but no better alternative has been suggested. " +
+          "https://stackoverflow.com/q/79935713/4818123"
+    )
+  ]
   public YamatoDaiwa.Frontend.GUI_Components.Controls.Validation.InputtedValueValidation.AsynchronousChecks.Status? 
       asynchronousChecksStatus
   {
@@ -631,7 +640,7 @@ public partial class ValidatableControlShell:
 
   public static void defineDecorativeVariations(Type customDecorativeVariations) {
     YDF_ComponentsHelper.ValidateCustomDecorativeVariation(customDecorativeVariations);
-    ValidatableControlShell.CustomDecorativeVariations = CustomDecorativeVariations;
+    ValidatableControlShell.CustomDecorativeVariations = customDecorativeVariations;
   }  
 
   protected string _decorativeVariation = nameof(ValidatableControlShell.StandardDecorativeVariations.regular);

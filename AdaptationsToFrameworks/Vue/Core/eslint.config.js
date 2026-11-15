@@ -56,7 +56,7 @@ module.exports = [
   },
 
   {
-    files: [ "Source/GUI_Components/**/vue.d.ts" ],
+    files: [ "Source/GUI_Components/**/*.vue.d.ts" ],
     rules: {
 
       /* Semantic organization of members for the classes of this group/ */
@@ -66,4 +66,3 @@ module.exports = [
   }
 
 ];
-

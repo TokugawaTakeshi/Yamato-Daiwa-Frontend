@@ -3,8 +3,7 @@
 namespace YamatoDaiwa.Frontend.Localizations.Russian.GUI_Components.Controls.Buttons;
 
 
-public record ClosingButtonRussianLocalization : ClosingButton.Localization
-{
-  public override required string defaultLabel { get; init; } = "Закрыть";
-  public override required string defaultAccessibilityGuidance { get; init; } = "Закрыть";
-}
+public record ClosingButtonJapaneseLocalization() : ClosingButton.Localization(
+  defaultLabel: "Закрыть",
+  defaultAccessibilityGuidance: "Закрыть"
+);

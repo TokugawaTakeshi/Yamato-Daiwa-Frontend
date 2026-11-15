@@ -114,7 +114,7 @@ export abstract class Badge {
 
 
   /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  protected static getActualRootElementModifierCSS_Classes(
+  public static getActualRootElementModifierCSS_Classes(
     relatedState:
         Readonly<{
           theme: string;

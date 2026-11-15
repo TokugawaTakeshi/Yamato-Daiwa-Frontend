@@ -10,7 +10,6 @@ public class PasswordInputtedValueValidation(
   Func<bool>? isInputRequired = null,
   PasswordInputtedValueValidation.ILocalization? localization = null,
   IEnumerable<char>? allowedNonWordCharacters = null,
-  System.Text.RegularExpressions.Regex? regularExpression = null,
   InputtedValueValidation.IRule[]? contextDependentRules = null,
   InputtedValueValidation.IAsynchronousRule[]? asynchronousRules = null,
   Action<string>? asynchronousValidationFailureLogger = null

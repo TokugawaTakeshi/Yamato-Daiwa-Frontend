@@ -1,12 +1,6 @@
 ﻿namespace YamatoDaiwa.Frontend.GUI_Components.AdmonitionBlock;
 
 
-public record AdmonitionBlockEnglishLocalization : AdmonitionBlock.Localization
-{
-  
-  public override DismissingButton dismissingButton { get; } = new()
-  {
-    accessibilityGuidance = "Hide this message"
-  }; 
-  
-}
+public record AdmonitionBlockEnglishLocalization() : AdmonitionBlock.Localization(
+  dismissingButton: new AdmonitionBlock.Localization.DismissingButton(accessibilityGuidance: "Hide this message")
+);
