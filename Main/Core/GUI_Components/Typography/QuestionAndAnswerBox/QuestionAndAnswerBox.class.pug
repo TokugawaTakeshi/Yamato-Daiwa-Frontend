@@ -1,0 +1,20 @@
+-
+
+  class QuestionAndAnswerBox__YDF {
+
+    static Types = {
+      question: "QUESTION",
+      objection: "OBJECTION",
+      criticism: "CRITICISM"
+    }
+
+    static localization = QuestionAndAnswerBoxYDF_GUI_ComponentLocalization__English;
+
+    static counterForID_Generating = 0;
+
+    static generateComponentID() {
+      QuestionAndAnswerBox__YDF.counterForID_Generating++;
+      return `QUESTION_AND_ANSWER_BOX--YDF-${ QuestionAndAnswerBox__YDF.counterForID_Generating }`;
+    }
+
+  }

@@ -1,0 +1,74 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../../../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    HTML_PAGE_LANGUAGE = "ru";
+    HTML_PAGE_TITLE = buildHTML_PageTitle("YDF_Array.appendElementsIf");
+    HTML_PageMetaData = {
+      description: "",
+      author: HTML_PAGE_AUTHOR
+    };
+
+    FAVICON_URI = "@MustBeInPublicRoot/favicon";
+
+    styleSheetsURIs = [
+      "$CommonStyles",
+      "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+      "$PreMadesStyles",
+      "@CustomizedExternalComponents"
+    ];
+
+    scriptsURIs.endOfBody = [ "$CommonLogic" ];
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.styles.kernel.functions.YDF_Arrays.appendElementsIf");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: "./YDF_Array-appendElementsIf.english.html",
+      japanese: "./YDF_Array-appendElementsIf.japanese.html"
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    // TODO Редактировать
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: "YDF_Array-appendElementsIf",
+      headingTag: "h1",
+      localizedDescriptiveHeading: "Делает особую, уличную магию",
+      parametersSpecification: [
+        {
+          localizedName: "Target string",
+          type: "string",
+          required: true,
+          genericTechnicalName: "targetString"
+        }
+      ],
+      returnedValue: "boolean"
+    })
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript })
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          console.log("OK");
+
+        +CodeViewer-Explanation--YDF.
+          Выводит "OK" в консоль (спасибо, кэп).

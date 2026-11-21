@@ -1,0 +1,14 @@
+mixin OverflowSafeSingleLineLabel(properties)
+
+  -
+
+    const {
+
+      /** @type { string } */
+      rootElementTag = "div"
+
+    } = properties ?? {};
+
+  #{ rootElementTag }.OverflowSafeSingleLineLabel&attributes(attributes)
+    span.OverflowSafeSingleLineLabel-TextWithIncreasedLineHeight
+      block

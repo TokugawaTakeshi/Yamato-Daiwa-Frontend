@@ -1,0 +1,20 @@
+extends ../../../../node_modules/@yamato-daiwa/frontend/PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "AdmonitionBlock Component Testing"
+      },
+      scriptsURIs: {
+        atEndOfBody: [ "@Workbenches/GUI_Components/AdmonitionBlock/AdmonitionBlock.workbench" ]
+      }
+    });
+
+
+block append PageContent
+
+  #APPLICATION

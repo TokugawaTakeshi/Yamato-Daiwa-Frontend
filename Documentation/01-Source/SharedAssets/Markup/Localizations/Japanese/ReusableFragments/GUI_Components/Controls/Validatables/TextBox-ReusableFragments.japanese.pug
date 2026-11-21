@@ -1,0 +1,132 @@
+mixin TextBoxComponent-Abstract
+
+  p.Article-Paragraph.
+    テキストボックスは、ボタンコンポーネント（#[+ImportantEntity--YDID Button]）と並び、グラフィカルユーザーインターフェースにおいて最も基本的かつ頻繁に利用されるコンポーネントの一つだ。
+    ここで扱うのは#[+Keyphrase--YDID 書式設定なし]（太字や斜体などがない）のテキスト入力であり、書式設定に対応したテキストエディタは、これとは別のより複雑なトピックとなる。
+    書式設定はないものの、名前、住所、各種タイトルなど、このコンポーネントを通じてユーザーから受け取るデータは多岐にわたる。
+    さらに「テキスト」とは、単に完結した文章の集まりだけを指すのではなく、文字の連なりとして表現できるあらゆる情報を意味する：
+
+  ul.Article-UnorderedList
+    li メールアドレス
+    li パスワード
+    li リンク
+
+  p.Article-Paragraph.
+    また、このコンポーネントは数値データの入力に使われることもあるが、多くの場合、それらは「数値」そのものではなく、補助記号が混ざった数字の羅列だ：
+
+  ul.Article-UnorderedList
+    li 電話番号
+    li 郵便番号
+    li クレジットカード番号
+
+  p.Article-Paragraph.
+    多くの場合、このコンポーネントは改行を想定しておらず、入力された文字数が多いときはその一部のみが表示される（矢印キーによるスクロールは可能）。
+    しかし、ユーザーに完結した文章（あるいは段落）の入力を求める場合には改行が必要となり、これは一種の単純なテキスト書式設定とみなせることもある。
+    #[+ImportantEntity--YDID HTML]の観点では、複数行テキストには別の要素が使われ（当初は高さの自動調整機能も備わっていない）、一方で#[+ImportantEntity--YDID YDF]では、対応するオプションを指定するだけで複数行モードをサポートでき、高さの自動調整も利用可能だ。
+
+  p.Article-Paragraph
+    | ボタンと同様、テキストフィールドの単純さは#[+Keyword--YDID 見かけによらない]。
+    | 第一に、テキスト入力フィールドは
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$children.controls.$children.validatables.$URI,
+    }) バリデーション対応コンポーネント
+    | であり、そのため入力データの#[+Term--YDID バリデーション]（検証）という課題の複雑さが、このコンポーネントに#[+Keyword--YDID 直接]関係してくる。
+    | #[+ImportantEntity--YDID YDF]におけるテキスト入力フィールドは、
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$children.controls.$children.
+          ValidatableControlShell.$URI,
+    }) ValidatableControlShell
+    | コンポーネントにラップされた他のコンポーネントと同様、ラベル、注釈、バリデーションエラー一覧などのオプションの補助要素を含んでいるが、#[+ImportantEntity--YDID HTML]の観点ではこれらはすべて個別の要素となる。
+
+  p.Article-Paragraph.
+    テキスト入力フィールドには多くの状態がある。
+    #[+Keyphrase--YDID 視覚的に区別]されるべき状態は、#[+Keyphrase--YDID 少なくとも]以下の通りだ：
+
+  dl.Article-DescriptionList
+
+    dt: +ImportantEntity__Code--YDID :hover
+    dd.
+      マウスカーソルが重なったときに有効になる。システムがユーザーの操作に反応していること、およびクリックすれば入力を開始できることをユーザーに伝える。
+
+    dt: +ImportantEntity__Code--YDID :focus
+    dd.
+      テキストフィールドがフォーカスを得たときに有効になる。つまり、キーボード入力がこのテキストフィールド内で受け付けられる状態であることを示す。
+
+    dt: +ImportantEntity__Code--YDID :readonly/:disabled
+    dd.
+      入力フィールドが読み取り専用のときに有効になる。
+      多くのアプリケーションには閲覧モードと編集モードがあるため、この機能は決して珍しいものではない。
+
+    dt バリデーションエラー（Invalid）状態
+    dd.
+      入力された値が有効でないとき、および有効性の表示モードが有効な場合にアクティブになる。
+      入力フィールドが初期状態で空かつ必須入力である場合、その空の値は#[+Keyword--YDID 最初から]#[+Keyword--YDID 無効]だが、まだ何もしていないユーザーに対してフィールドを赤く強調したりエラーを通知したりする前に、まずは入力を許可すべきだ。そして、ユーザーが入力フィールドからフォーカスを外したときに初めて、有効性の表示モードを有効にできる。
+      なお、このような概念は#[+Keyphrase--YDID HTML/CSSの観点では存在しない]。そのため、#[+ImportantEntity__Code--YDID required] や #[+ImportantEntity__Code--YDID minlength] といった#[+Term--YDID HTML属性]、および #[+Term--YDID 疑似クラス] #[+ImportantEntity__Code--YDID :invalid] を使ってバリデーションを定義すると、ユーザーが空のフィールドに入力を開始したかどうかにかかわらず、これらのスタイルが適用されてしまう。
+
+  p.Article-Paragraph.
+    さらに、これらの状態の#[+Keyword--YDID 一部]は#[+Keyword--YDID 同時に]発生し得る。
+    例えば、#[+ImportantEntity__Code--YDID hover] 状態は #[+ImportantEntity__Code--YDID focus] と#[+Keyword--YDID 同時に]発生することがあり、これら#[+Keyword--YDID 両方]の状態が #[+ImportantEntity__Code--YDID invalid] の上に重なって発生することもある。
+    ここでスタイルの優先順位という問題が生じる。
+
+  p.Article-Paragraph.
+    また、実務において入力フィールドには以下のような追加機能が求められる：
+
+  ul.Article-UnorderedList
+
+    li デザインに応じて左側または右側に配置できるアイコン
+    li パスワードの表示/非表示の切り替えボタン
+    li 入力された値をコピーするためのボタン
+
+  p.Article-Paragraph.
+    これらすべての機能は、#[+ImportantEntity--YDID TextBox] コンポーネントで利用可能だ。
+
+
+//- ━━━ 概要 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  TextBoxGUI_ComponentOverviewLocalization.setLocalizer(
+    () => ({
+      themes: {
+        [TextBox__YDF.Themes.regular]: "標準（規定）"
+      },
+      geometricVariations: {
+        [TextBox__YDF.GeometricVariations.regular]: "標準（規定）",
+        [TextBox__YDF.GeometricVariations.small]: "小型",
+        [TextBox__YDF.GeometricVariations.labelLike]: "一般ラベル外見"
+      },
+      geometricModifiers: {
+        [TextBox__YDF.GeometricModifiers.noRoundings]: "面取り無し"
+      },
+      decorativeVariations: {
+        [TextBox__YDF.DecorativeVariations.regular]: "標準（規定）",
+        [TextBox__YDF.DecorativeVariations.labelLike]: "一般ラベル外見"
+      }
+    })
+  );
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  TextBoxComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources = {
+    pugMixinParametersLocalization: [
+      { localizedName: "プロパティ" },
+      { localizedName: "状態のシミュレーション" }
+    ],
+    propertiesLocalizedInterpretations: {
+      HTML_Type: "HTMLタイプ",
+      externalLabelHTML_ID: "外部ヘッダーラベルのHTML ID",
+      autocomplete: "「autocomplete」属性の値",
+      value: "初期値",
+      multiline: "複数行サポートの要否",
+      autoResizingForMultilineMode: "複数行モードでの高さ自動調整の要否",
+      minimalCharactersCount: "最小文字数",
+      maximalCharactersCount: "最大文字数",
+      minimalNumericValue: "最小数値",
+      maximalNumericValue: "最大数値",
+      hasValueCopyingButton: "値コピーボタンの要否",
+      hasPasswordDisplayingToggle: "パスワード表示切り替えボタンの要否"
+    }
+  };

@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "概要"
+
+ValidatableControlShellClass:
+
+  $heading: "<code>ValidatableControlShellClass</code>クラス"
+
+  razorComponentParameters:
+
+    $heading: "Razorコンポーネントの引数"

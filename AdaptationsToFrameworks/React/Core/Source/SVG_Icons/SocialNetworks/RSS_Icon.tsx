@@ -1,0 +1,20 @@
+import React from "react";
+import type SVG_IconComponent from "../SVG_IconComponent";
+
+
+const RSSIcon: SVG_IconComponent = ({ className }: SVG_IconComponent.Properties): React.ReactElement =>
+
+    (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        className={ className }
+      >
+        <path d="M0 0v4a16 16 0 0 1 16 16h4C20 9 11 0 0 0Z" />
+        <path d="M0 8v4a8 8 0 0 1 8 8h4A12 12 0 0 0 0 8ZM0 16v4h4a4 4 0 0 0-4-4Z" />
+      </svg>
+      
+    );
+
+
+export default RSSIcon;

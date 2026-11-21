@@ -1,0 +1,91 @@
+BordersSizing--YDF(bordersSpecification = {}, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "BordersSizing--YDF",
+    targetParameterNumber: 1,
+    targetParameter: bordersSpecification,
+    schema: BordersSizingSpecificationSchema--YDF,
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  applyIfNotNull--YDF({
+
+    border-width: getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "thickness.all"),
+    border-left-width: getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "thickness.horizontalSymmetric"),
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "thickness.left")
+    )),
+    border-right-width: getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "thickness.horizontalSymmetric"),
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "thickness.right")
+    )),
+    border-top-width: getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "thickness.verticalSymmetric"),
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "thickness.top")
+    )),
+    border-bottom-width: getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "thickness.verticalSymmetric"),
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "thickness.bottom")
+    )),
+
+    border-radius: getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.all"),
+    border-top-left-radius: getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.topLeft"),
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.topFillets"),
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.leftFillets")
+    )),
+    border-top-right-radius: getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.topRight"),
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.topFillets"),
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.rightFillets")
+    )),
+    border-bottom-left-radius: getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.bottomLeft"),
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.bottomFillets"),
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.leftFillets")
+    )),
+    border-bottom-right-radius: getFirstNonNullArrayElement--YDF(arrayConstructor__POLYFILL--YDF(
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.bottomRight"),
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.bottomFillets"),
+      getObjectValueByDotSeparatedPathSafely--YDF(bordersSpecification, "radius.rightFillets")
+    ))
+  })
+
+
+specifyBordersSizing--YDF(bordersSizingSpecification, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "specifyBordersSizing--YDF",
+    targetParameterNumber: 1,
+    targetParameter: bordersSizingSpecification,
+    schema: BordersSizingSpecificationSchema--YDF,
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  bordersThicknessSpecification = substituteNull--YDF(bordersSizingSpecification.thickness, {})
+  bordersRadiusSpecification = substituteNull--YDF(bordersSizingSpecification.radius, {})
+
+
+  return {
+    thickness: {
+      all: bordersThicknessSpecification.all,
+      horizontalSymmetric: bordersThicknessSpecification.horizontalSymmetric,
+      left: bordersThicknessSpecification.left,
+      right: bordersThicknessSpecification.right,
+      verticalSymmetric: bordersThicknessSpecification.verticalSymmetric,
+      top: bordersThicknessSpecification.top,
+      bottom: bordersThicknessSpecification.bottom,
+    },
+    radius: {
+      all: bordersRadiusSpecification.all,
+      topLeft: bordersRadiusSpecification.topLeft,
+      topRight: bordersRadiusSpecification.topRight,
+      bottomLeft: bordersRadiusSpecification.bottomLeft,
+      bottomRight: bordersRadiusSpecification.bottomRight,
+      leftFillets: bordersRadiusSpecification.leftFillets,
+      rightFillets: bordersRadiusSpecification.rightFillets,
+      topFillets: bordersRadiusSpecification.topFillets,
+      bottomFillets: bordersRadiusSpecification.bottomFillets
+    }
+  }

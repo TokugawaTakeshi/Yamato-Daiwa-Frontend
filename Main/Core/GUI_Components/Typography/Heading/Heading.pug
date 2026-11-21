@@ -1,0 +1,48 @@
+mixin Heading--YDF(properties)
+
+  -
+
+    const {
+      level,
+      text,
+      innerHTML,
+      HTML_ID,
+      innerLink = false
+    } = properties;
+
+
+    const tag = `h${ level }`
+
+  #{ tag }&attributes(attributes)(
+    id=HTML_ID
+  )
+
+    if innerLink
+
+      a(href=`#${ HTML_ID }`)
+
+        if block
+
+          block
+
+        else if text
+
+          | #{ text }
+
+        else if innerHTML
+
+          | !{ innerHTML }
+
+    else
+
+      if block
+
+        block
+
+      else if text
+
+        | #{ text }
+
+      else if innerHTML
+
+        | !{ innerHTML }

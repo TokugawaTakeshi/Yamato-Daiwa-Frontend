@@ -1,0 +1,43 @@
+retireFromElementWithSameSelector--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "retireFromElementWithSameSelector--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      x: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+      y: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+      usePaddingsInsteadOfMargins: {
+        type: DataTypes--YDF.boolean
+        defaultValue: false
+      },
+      contextSelector: {
+        type: DataTypes--YDF.string,
+        required: false
+      },
+      referenceElementSelector: {
+        type: DataTypes--YDF.string,
+        defaultValue: selector()
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  PositionalRelationship--YDF({
+    definitions: (compoundParameter.referenceElementSelector {
+      retireFromIt: {
+        x: compoundParameter.x,
+        y: compoundParameter.y,
+        usePaddingsInsteadOfMargins: compoundParameter.usePaddingsInsteadOfMargins
+      }
+    }),
+    contextSelector: compoundParameter.contextSelector,
+    referenceElementSelector: compoundParameter.referenceElementSelector
+  })

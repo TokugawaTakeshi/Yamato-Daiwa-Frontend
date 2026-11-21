@@ -1,0 +1,48 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/05-Objects/getObjectValueByDotSeparatedPathSafely.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/05-Objects/getObjectValueByDotSeparatedPathSafely.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+sample = {
+  alpha: "FOO",
+  bravo: {
+    charlie: "BAR"
+  }
+}
+
+
+testForEquality--YDF(
+  "Correct value for key of 1st level",
+  getObjectValueByDotSeparatedPathSafely--YDF(sample, "alpha"),
+  "FOO"
+)
+
+testForEquality--YDF(
+  "Correct value for key of 2nd level",
+  getObjectValueByDotSeparatedPathSafely--YDF(sample, "bravo.charlie"),
+  "BAR"
+)
+
+testForEquality--YDF(
+  "Null has been returned for non-exiting value of 1st level",
+  getObjectValueByDotSeparatedPathSafely--YDF(sample, "delta"),
+  null
+)
+
+testForEquality--YDF(
+  "Null has been returned for non-exiting value of 2nd level herewith 1st level value is existing",
+  getObjectValueByDotSeparatedPathSafely--YDF(sample, "bravo.golf"),
+  null
+)
+
+testForEquality--YDF(
+  "Null has been returned for non-exiting value of 2nd level herewith 1st level value is not existing too",
+  getObjectValueByDotSeparatedPathSafely--YDF(sample, "hotel.echo"),
+  null
+)

@@ -1,0 +1,268 @@
+//- [ Reference ] https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/spinbutton_role
+//- [ Reference ] https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/
+//- [ Reference ] https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/
+//- [ Reference ] https://mui.com/base-ui/react-number-input/?srsltid=AfmBOooWipxvbIVUgd6ZjoNc7yPpFZBdzuvoRgfkvKXqGXmiM5ofLGww
+mixin NumberBox--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      /** @type { string | undefined } */
+      label,
+
+      /** @type { string | undefined } */
+      accessibilityGuidance,
+
+      /** @type { string | undefined } */
+      externalLabelHTML_ID,
+
+      /** @type { string | undefined } */
+      guidance,
+
+      /** @type { string | undefined } */
+      placeholder,
+
+      /**
+       * @type { number | string }
+       * @default 0
+       * @description May be something like "{{ foo }}" in the MVC case.
+       * */
+      initialValue,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      disabled,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      readonly,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      required,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+
+      /**
+       * @type { number }
+       * @default 1
+       * */
+      step,
+
+      /**
+       * @type { number }
+       * @default -Number.MIN_SAFE_INTEGER
+       * */
+      minimalValue,
+
+      /**
+       * @type { number }
+       * @default Number.MAX_SAFE_INTEGER
+       */
+      maximalValue,
+
+      /** @type { string | undefined } */
+      instanceID_UniqueDynamicPart,
+
+      /**
+       * @type { NumberBox.Themes }
+       * @default NumberBox.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default NumberBox.areThemesCSS_ClassesCommon
+       * */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { NumberBox.GeometricVariations }
+       * @default NumberBox.GeometricVariations.regular
+       * */
+      geometricVariation,
+
+      /**
+       * @type { NumberBox.Orientations }
+       * @default NumberBox__YDF.Orientations.horizontal
+       * */
+      orientation,
+
+      /**
+       * @type { NumberBox.GeometricVariations }
+       * @default NumberBox.DecorativeVariations.regular
+       * */
+      decorativeVariation,
+
+      ...instanceID_DependentProperties
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: NumberBox__YDF.propertiesSpecification,
+      mixinName: "NumberBox--YDF"
+    });
+
+    /** @type { string } */
+    const INSTANCE_ID = NumberBox__YDF.generateInstanceID(instanceID_UniqueDynamicPart);
+
+    const {
+
+      /** @type { string } */
+      nativeInputElementHTML_ID = `${ INSTANCE_ID }-INPUT_ELEMENT`,
+
+      /** @type { string } */
+      labelElementHTML_ID = `${ INSTANCE_ID }-LABEL`
+
+    } = instanceID_DependentProperties;
+
+    const {
+
+      /** @var { boolean } [ invalidInputHighlightingIfAnyValidationErrorsMessages = false ] */
+      invalidInputHighlightingIfAnyValidationErrorsMessages,
+
+      /** @var { boolean } [ validValueHighlightingIfNoValidationErrorsMessages = false ] */
+      validValueHighlightingIfNoValidationErrorsMessages,
+
+      /** @var { Array<string> | boolean } [ validationErrorsMessages = false ] */
+      validationErrorsMessages,
+
+      /** @var { Array<{ ID: string; message: string; }> | boolean } [ asynchronousValidationsStatuses = false ] */
+      asynchronousValidationsStatuses
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: NumberBox__YDF.statesSimulationsSpecification,
+      mixinName: "NumberBox--YDF"
+    });
+
+    /* [ Theory ] In negative value case, the minus sign must be respected. */
+    /* @type { number } */
+    const maximalCharactersCount = Math.max(
+      (String(minimalValue)).length + (minimalValue < 0 ? 1 : 0), String(maximalValue).length
+    );
+
+    /* @type { ReadonlyArray<string> } */
+    const rootElementModifierCSS_Classes =
+
+        NumberBox__YDF.getActualRootElementModifierCSS_Classes({
+          disabled,
+          invalidInputHighlighting:
+              invalidInputHighlightingIfAnyValidationErrorsMessages &&
+              (validationErrorsMessages === true || validationErrorsMessages.length > 0),
+          validValueHighlighting:
+              validValueHighlightingIfNoValidationErrorsMessages &&
+              (validationErrorsMessages === false || validationErrorsMessages.length === 0),
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
+
+  +ValidatableControlShell--YDF(
+    {
+
+      label,
+      guidance,
+
+      required,
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+      coreElementHTML_ID: nativeInputElementHTML_ID,
+      labelElementHTML_ID,
+
+      mainSlotWrapperAdditionalCSS_Classes: [ "NumberBox--YDF-LinearFlow" ],
+
+      theme: NumberBox__YDF.selfAndChildrenComponentsThemesCorrespondence.validatableControlShell[theme],
+      areThemesCSS_ClassesCommon,
+      geometricVariation: NumberBox__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.
+          validatableControlShell[geometricVariation],
+      decorativeVariation: NumberBox__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.
+          validatableControlShell[decorativeVariation]
+
+    },
+    {
+      validationErrorsMessages,
+      asynchronousValidationsStatuses
+    }
+  ).NumberBox--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
+
+    +Button--YDF({
+      HTML_Type: Button__YDF.HTML_Types.regular,
+      label: "▲",
+      accessibilityGuidance: NumberBox__YDF.localization.buttons.incrementing.generateAccessibilityGuidance({ step }),
+      disabled: disabled || readonly,
+      theme: NumberBox__YDF.selfAndChildrenComponentsThemesCorrespondence.button[theme],
+      geometricVariation: NumberBox__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.button[geometricVariation],
+      geometricModifiers: [
+        Button__YDF.GeometricModifiers.horizontallyShrinkable,
+        Button__YDF.GeometricModifiers.noBottomBorderAndRoundings
+      ],
+      decorativeVariation: NumberBox__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.button[decorativeVariation]
+    }).NumberBox--YDF-Button(
+      aria-controls=nativeInputElementHTML_ID
+      tabindex="-1"
+      data-button-incrementing
+    )
+
+    input.NumberBox--YDF-NativeInput(
+      type="number"
+      autocomplete="off"
+      spellcheck="false"
+      value=initialValue
+      min=minimalValue
+      max=maximalValue
+      data-step="1"
+      placeholder=placeholder
+      disabled=disabled
+      readonly=readonly
+      id=nativeInputElementHTML_ID
+      aria-label=accessibilityGuidance
+      aria-labelledby=externalLabelHTML_ID
+      style={ width: `${ maximalCharactersCount }ch` }
+    )
+
+    +Button--YDF({
+      HTML_Type: Button__YDF.HTML_Types.regular,
+      label: "▼",
+      accessibilityGuidance: NumberBox__YDF.localization.buttons.decrementing.generateAccessibilityGuidance({ step }),
+      disabled: disabled || readonly,
+      theme: NumberBox__YDF.selfAndChildrenComponentsThemesCorrespondence.button[theme],
+      geometricVariation: NumberBox__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.button[geometricVariation],
+      geometricModifiers: [
+        Button__YDF.GeometricModifiers.horizontallyShrinkable,
+        Button__YDF.GeometricModifiers.noTopBorderAndRoundings
+      ],
+      decorativeVariation: NumberBox__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.button[decorativeVariation]
+    }).NumberBox--YDF-Button(
+      aria-controls=nativeInputElementHTML_ID
+      tabindex="-1"
+      data-button-decrementing
+    )

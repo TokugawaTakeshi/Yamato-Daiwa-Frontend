@@ -1,0 +1,84 @@
+﻿SearchBox--YDF-generateStyles()
+
+  .SearchBox--YDF
+
+    BORDER_RADIUS = 3px
+
+    display flex
+    align-items center //* [ Why?! ] With `align-items: stretch` as default, the height of children content could be changed. */
+
+    border-radius BORDER_RADIUS
+
+    position relative
+
+
+    &-InputElement
+
+      TextBoxLikeElementsPrimer--YDF()
+
+      TextElementHeightSizing--YDF({
+        type: TextElementHeightSizingTypes--YDF.natural,
+        borders: { thickness: { all: 1px } },
+        paddings: { verticalSymmetric: 0.6rem },
+        fontSize: 1rem,
+        fixedLinesCount: 1,
+        lineSpacing: 0,
+        mustFixateHeight: true,
+        mustSkipBordersApplying: true
+      })
+
+      width 0 //* [ Why?! ] To provide the shrinkage in narrow containers (`min-width: 0` will not work.) */
+
+      border-width 1px
+      Paddings--YDF({ horizontalSymmetric: 1rem })
+
+      border-style solid
+      border-color #c5c5c5
+      color #454545
+
+      flex-grow 1
+
+
+      &::placeholder
+
+        color: W3C_39_ShadesOfGray--YDF[24]
+
+
+    &-Tooltip
+
+      PREPENDED_ARROW_WIDTH = 24px
+      PREPENDED_ARROW_HEIGHT = 12px
+
+      width 200px
+      border-radius 5px
+      padding 10px 8px
+      font-size 13px
+      line-height 17px
+
+      color: W3C_39_ShadesOfGray--YDF[26]
+      background-color white
+      box-shadow 0 3px 10px rgba(black, 0.3)
+
+      position absolute
+      right 0
+      top "calc(100% + %s)" % PREPENDED_ARROW_HEIGHT
+
+
+      &:before
+
+        content ""
+        display block
+
+        border-left 0.5*PREPENDED_ARROW_WIDTH solid transparent
+        border-right 0.5*PREPENDED_ARROW_WIDTH solid transparent
+        border-bottom PREPENDED_ARROW_HEIGHT solid white
+
+        position absolute
+        top -(PREPENDED_ARROW_HEIGHT)
+        right 40px
+
+
+      &-AccentedFragment
+
+        font-weight bold
+        color: YDF_ColorPalette.red.slightlyDark

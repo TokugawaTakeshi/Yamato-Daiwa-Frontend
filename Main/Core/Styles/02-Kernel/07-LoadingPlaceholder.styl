@@ -1,0 +1,107 @@
+LoadingPlaceholder(compoundParameter = {}, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "LoadingPlaceholder",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      width: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+      height: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+      borderRadius: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+      underlayColor: {
+        type: DataTypes--YDF.colorDefinition,
+        defaultValue: #E1E7EB
+      },
+      wavePrimaryColor: {
+        type: DataTypes--YDF.colorDefinition,
+        defaultValue: lighten(#E1E7EB, 30%)
+      },
+      waveSecondaryColor: {
+        type: DataTypes--YDF.colorDefinition,
+        defaultValue: lighten(#E1E7EB, 20%)
+      },
+      useAbsolutePositioning: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  width = compoundParameter.width
+  height = compoundParameter.height
+  borderRadius = compoundParameter.borderRadius
+  underlayColor = compoundParameter.underlayColor
+  wavePrimaryColor = compoundParameter.wavePrimaryColor
+  waveSecondaryColor = compoundParameter.waveSecondaryColor
+  useAbsolutePositioning = compoundParameter.useAbsolutePositioning
+
+
+  @keyframes LoadingPlaceholderAnimation
+
+    0%
+
+      transform translateX(-100%)
+
+    100%
+
+      transform translateX(100%)
+
+
+  applyIfNotNull--YDF({
+    width: width,
+    height: height,
+    border-radius: borderRadius
+  })
+
+  background underlayColor
+  overflow hidden
+
+
+  if useAbsolutePositioning
+
+    position relative
+
+
+  &:before
+
+    display block
+    content ""
+
+    height 100%
+
+    background linear-gradient(to right, transparent 0%, waveSecondaryColor 30%, wavePrimaryColor 50%, waveSecondaryColor 70%, transparent 100%)
+
+    transform translateX(-100%)
+
+    animation-duration 1.5s
+    animation-fill-mode forwards
+    animation-iteration-count infinite
+    animation-name LoadingPlaceholderAnimation
+    animation-timing-function ease
+
+
+    if useAbsolutePositioning
+
+      position absolute
+      top 0
+      width 100%
+
+
+addLoadingPlaceholderModifierClass(compoundParameter = {})
+
+  &__LoadingPlaceholder
+
+    LoadingPlaceholder(compoundParameter)
+
+    {block}

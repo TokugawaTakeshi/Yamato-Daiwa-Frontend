@@ -1,0 +1,55 @@
+HorizontalCenteringWithoutWrapper--YDF = {
+  TargetElementTypes: {
+    block: "BLOCK",
+    inlineBlock: "INLINE_BLOCK"
+  }
+}
+
+
+centerHorizontallyWithoutWrapper--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "centerHorizontallyWithoutWrapper--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      targetElementType: {
+        type: DataTypes--YDF.string,
+        required: true,
+        allowedValues: values(HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes)
+      },
+      maximalWidth: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      },
+      horizontalSpaceBetweenSelfAndParent: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: false
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  compoundParameter = compoundParameter || {}
+
+
+  if compoundParameter.targetElementType == HorizontalCenteringWithoutWrapper--YDF.TargetElementTypes.block
+
+    margin-left auto
+    margin-right auto
+
+
+  else
+
+    position relative
+    left 50%
+    transform translateX(-50%)
+
+
+  applyIfNotNull--YDF({ max-width: compoundParameter.maximalWidth })
+
+
+  if isNotNull--YDF(compoundParameter.horizontalSpaceBetweenSelfAndParent)
+
+    width "calc(100% - 2*%s)" % compoundParameter.horizontalSpaceBetweenSelfAndParent

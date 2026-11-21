@@ -1,0 +1,19 @@
+overview:
+
+  $heading: "Overview"
+
+BadgeClass:
+
+  $heading: "<code>Badge</code> Class"
+
+  razorComponentParameters:
+
+    $heading: "Razor Component Parameters"
+
+  examples:
+
+    $heading: "Examples"
+
+    minimal:
+
+      $heading: Minimal Example (Required Properties Only)

@@ -1,0 +1,16 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+ButtonClass:
+
+  $heading: `ButtonClass.$heading`
+  $anchor: BUTTON_CLASS--SECTION
+
+  $children:
+
+    razorComponentParameters:
+
+      $heading: `ButtonClass.razorComponentParameters.$heading`
+      $anchor: BUTTON_CLASS-RAZOR_COMPONENT_PARAMETERS--SECTION

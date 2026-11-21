@@ -1,0 +1,150 @@
+WidthSizing--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "WidthSizing--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: WidthSizingSpecificationSchema--YDF,
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  fixedWidth = compoundParameter.fixedWidth
+  minimalWidth = compoundParameter.minimalWidth
+  maximalWidth = compoundParameter.maximalWidth
+  takeMaximumSpaceAsPossible = compoundParameter.takeMaximumSpaceAsPossible
+
+  truncateOnOverflow = compoundParameter.truncateOnOverflow
+  displayEllipsisOnOverflow = compoundParameter.displayEllipsisOnOverflow
+
+  leftOrRightSymmetricBordersWidths = compoundParameter.leftOrRightSymmetricBordersWidths
+  leftBorderWidth = compoundParameter.leftBorderWidth
+  rightBorderWidth = compoundParameter.rightBorderWidth
+  isExplicitBorderNoneDeclarationRequired = compoundParameter.isExplicitBorderNoneDeclarationRequired
+
+  leftOrRightSymmetricPaddings = compoundParameter.leftOrRightSymmetricPaddings
+  leftPadding = compoundParameter.leftPadding
+  rightPadding = compoundParameter.rightPadding
+  isExplicitPaddingZeroDeclarationRequired = compoundParameter.isExplicitPaddingZeroDeclarationRequired
+
+
+  applyIfNotNull--YDF({
+    width: fixedWidth,
+    min-width: minimalWidth,
+    max-width: maximalWidth
+  })
+
+
+  if isTrue--YDF(takeMaximumSpaceAsPossible)
+
+    width 100%
+
+
+  // --- Borders -------------------------------------------------------------------------------------------------------
+  if isNull--YDF(leftOrRightSymmetricBordersWidths) && isNull--YDF(leftBorderWidth) &&\
+      isNull--YDF(rightBorderWidth) && isTrue--YDF(isExplicitBorderNoneDeclarationRequired)
+
+    border-left none
+    border-right none
+
+  else if isNotNull--YDF(leftOrRightSymmetricBordersWidths)
+
+    border-left-width leftOrRightSymmetricBordersWidths
+    border-right-width leftOrRightSymmetricBordersWidths
+
+  else
+
+    if isNotNull--YDF(leftBorderWidth)
+
+      border-left-width leftBorderWidth
+
+    else if isTrue--YDF(isExplicitBorderNoneDeclarationRequired)
+
+      border-left none
+
+
+    if isNotNull--YDF(rightBorderWidth)
+
+      border-right-width rightBorderWidth
+
+    else if isTrue--YDF(isExplicitBorderNoneDeclarationRequired)
+
+      border-right none
+
+
+  // --- Paddings ------------------------------------------------------------------------------------------------------
+  if isNull--YDF(leftOrRightSymmetricPaddings) && isNull--YDF(leftPadding) &&\
+      isNull--YDF(rightPadding) && isTrue--YDF(isExplicitPaddingZeroDeclarationRequired)
+
+    padding-left 0
+    padding-right 0
+
+  else if isNotNull--YDF(leftOrRightSymmetricPaddings)
+
+    padding-left leftOrRightSymmetricPaddings
+    padding-right leftOrRightSymmetricPaddings
+
+  else
+
+    if isNotNull--YDF(leftPadding)
+
+      padding-left leftPadding
+
+    else if isTrue--YDF(isExplicitPaddingZeroDeclarationRequired)
+
+      padding-left 0
+
+
+    if isNotNull--YDF(rightPadding)
+
+      padding-right rightPadding
+
+    else if isTrue--YDF(isExplicitPaddingZeroDeclarationRequired)
+
+      padding-right 0
+
+
+  if isTrue--YDF(truncateOnOverflow)
+
+    overflow hidden
+    white-space nowrap
+
+
+    if isTrue--YDF(displayEllipsisOnOverflow)
+
+      text-overflow ellipsis
+
+    else
+
+      text-overflow clip
+
+
+specifyWidthSizing--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "specifyWidthSizing--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: WidthSizingSpecificationSchema--YDF,
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  return {
+
+    fixedWidth: compoundParameter.fixedWidth,
+    minimalWidth: compoundParameter.minimalWidth,
+    maximalWidth: compoundParameter.maximalWidth,
+    takeMaximumSpaceAsPossible: compoundParameter.takeMaximumSpaceAsPossible,
+
+    truncateOnOverflow: compoundParameter.truncateOnOverflow,
+    displayEllipsisOnOverflow: compoundParameter.displayEllipsisOnOverflow,
+
+    leftOrRightSymmetricBordersWidths: compoundParameter.leftOrRightSymmetricBordersWidths,
+    leftBorderWidth: compoundParameter.leftBorderWidth,
+    rightBorderWidth: compoundParameter.rightBorderWidth,
+    isExplicitBorderNoneDeclarationRequired: compoundParameter.omitBorderNoneValue,
+
+    leftOrRightSymmetricPaddings: compoundParameter.leftOrRightSymmetricPaddings,
+    leftPadding: compoundParameter.leftPadding,
+    rightPadding: compoundParameter.rightPadding,
+    isExplicitPaddingZeroDeclarationRequired: compoundParameter.omitPaddingZeroDeclaration
+  }

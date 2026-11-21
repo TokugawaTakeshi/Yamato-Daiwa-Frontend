@@ -1,0 +1,531 @@
+h1.Heading1(
+  :class="mustVisuallyHideTopHeading ? 'YDF_Gallery-InvisibleHeading' : null"
+) ValidatableControlShell Component Demos
+
+
+//- ━━━ Minimal ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.minimal"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Minimal
+
+  ThemesShowcase(
+    :themes="ValidatableControlShell.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="ValidatableControlShell.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="ValidatableControlShell.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      ValidatableControlShell(
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+//- ━━━ Labels ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.labels"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Labels
+
+  ThemesShowcase(
+    :themes="ValidatableControlShell.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="ValidatableControlShell.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="ValidatableControlShell.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      ValidatableControlShell(
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        label="Full Name"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+//- ━━━ Guidances ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.guidances"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Guidances
+
+  ThemesShowcase(
+    :themes="ValidatableControlShell.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="ValidatableControlShell.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="ValidatableControlShell.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      ValidatableControlShell(
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        guidance="Please input the full name within **100** characters. See [here](#) for details."
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+//- ━━━ Labels and Guidances ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.labelsAndGuidances"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Labels and Guidances
+
+  ThemesShowcase(
+    :themes="ValidatableControlShell.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="ValidatableControlShell.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="ValidatableControlShell.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      ValidatableControlShell(
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        label="Full Name"
+        guidance="Please input the full name within **100** characters. See [here](#) for details."
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+//- ━━━ Requirement Badges ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.requirementBadges"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Requirement Badges
+
+  ThemesShowcase(
+    :themes="ValidatableControlShell.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="ValidatableControlShell.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="ValidatableControlShell.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+    decorativeVariationsListItemAdditionalCSS_Classes="ValidatableControlShellGallery-RequirementBadgesSection"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+
+      //- ─── Badges Only ──────────────────────────────────────────────────────────────────────────────────────────────
+      .ValidatableControlShellGallery-RequirementBadgesSection-HorizontalFlow
+
+        ValidatableControlShell(
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          :required="true"
+          :mustDisplayAppropriateBadgeIfInputIsRequired="true"
+        )
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        ValidatableControlShell(
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          :required="false"
+          :mustDisplayAppropriateBadgeIfInputIsOptional="true"
+        )
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        ValidatableControlShell(
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          :required="false"
+          :mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge="true"
+        )
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+      //- ─── Labels and Badges ────────────────────────────────────────────────────────────────────────────────────────
+      .ValidatableControlShellGallery-RequirementBadgesSection-HorizontalFlow
+
+        ValidatableControlShell(
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          label="Full Name"
+          :required="true"
+          :mustDisplayAppropriateBadgeIfInputIsRequired="true"
+        )
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        ValidatableControlShell(
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          label="Full Name"
+          :required="false"
+          :mustDisplayAppropriateBadgeIfInputIsOptional="true"
+        )
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        ValidatableControlShell(
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          label="Full Name"
+          :required="false"
+          :mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge="true"
+        )
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+      //- ─── Guidances and Badges ─────────────────────────────────────────────────────────────────────────────────────
+      .ValidatableControlShellGallery-RequirementBadgesSection-HorizontalFlow
+
+        ValidatableControlShell(
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          guidance="Please input the full name within **100** characters. See [here](#) for details."
+          :required="true"
+          :mustDisplayAppropriateBadgeIfInputIsRequired="true"
+        )
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        ValidatableControlShell(
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          guidance="Please input the full name within **100** characters. See [here](#) for details."
+          :required="false"
+          :mustDisplayAppropriateBadgeIfInputIsOptional="true"
+        )
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        ValidatableControlShell(
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          guidance="Please input the full name within **100** characters. See [here](#) for details."
+          :required="false"
+          :mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge="true"
+        )
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+      //- ─── Labels, Guidances and Badges ─────────────────────────────────────────────────────────────────────────────
+      .ValidatableControlShellGallery-RequirementBadgesSection-HorizontalFlow
+
+        ValidatableControlShell(
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          label="Full Name"
+          guidance="Please input the full name within **100** characters. See [here](#) for details."
+          :required="true"
+          :mustDisplayAppropriateBadgeIfInputIsRequired="true"
+        )
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        ValidatableControlShell(
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          label="Full Name"
+          guidance="Please input the full name within **100** characters. See [here](#) for details."
+          :required="false"
+          :mustDisplayAppropriateBadgeIfInputIsOptional="true"
+        )
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+        ValidatableControlShell(
+          :theme="theme.value"
+          :geometricVariation="geometricVariation.value"
+          :decorativeVariation="decorativeVariation.value"
+          label="Full Name"
+          guidance="Please input the full name within **100** characters. See [here](#) for details."
+          :required="false"
+          :mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge="true"
+        )
+          .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+//- ━━━ Validation Errors Messages ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.validationErrorsMessages"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Validation Errors Messages
+
+  h3.Heading3 One Message
+
+  ThemesShowcase(
+    :themes="ValidatableControlShell.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="ValidatableControlShell.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="ValidatableControlShell.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      ValidatableControlShell(
+        label="User Name"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :validationErrorsMessages="sampleValidationErrorsMessages.slice(0, 1)"
+        :mustDisplayErrorsMessagesIfAny="true"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+  h3.Heading3 Two Messages
+
+  ThemesShowcase(
+    :themes="ValidatableControlShell.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="ValidatableControlShell.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="ValidatableControlShell.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      ValidatableControlShell(
+        label="User Name"
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :validationErrorsMessages="sampleValidationErrorsMessages"
+        :mustDisplayErrorsMessagesIfAny="true"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+  h3.Heading3 Narrow Containers
+
+  ThemesShowcase(
+    :themes="ValidatableControlShell.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="ValidatableControlShell.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="ValidatableControlShell.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariationsListItemAdditionalCSS_Classes="[ 'ValidatableControlShellGallery-ValidationErrorsMessagesSection-NarrowContainer' ]"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      ValidatableControlShell(
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :validationErrorsMessages="sampleValidationErrorsMessages"
+        :mustDisplayErrorsMessagesIfAny="true"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core
+
+
+//- ━━━ Asynchronous Validations Statuses ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.asynchronousValidationsStatuses"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Asynchronous Validations Statuses
+
+  h3.Heading3 Wide Containers
+
+  ThemesShowcase(
+    :themes="ValidatableControlShell.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="ValidatableControlShell.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="ValidatableControlShell.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      ValidatableControlShell(
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :asynchronousChecksStatus="asynchronousChecksStatus"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+  ThemesShowcase(
+    :themes="ValidatableControlShell.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="ValidatableControlShell.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="ValidatableControlShell.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      ValidatableControlShell(
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :validationErrorsMessages="sampleValidationErrorsMessages"
+        :mustDisplayErrorsMessagesIfAny="true"
+        :asynchronousChecksStatus="asynchronousChecksStatus"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+  h3.Heading3 Narrow Containers
+
+  ThemesShowcase(
+    :themes="ValidatableControlShell.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="ValidatableControlShell.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="ValidatableControlShell.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariationsListItemAdditionalCSS_Classes="[ 'ValidatableControlShellGallery-ValidationErrorsMessagesSection-NarrowContainer' ]"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      ValidatableControlShell(
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :asynchronousChecksStatus="asynchronousChecksStatus"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core
+
+  ThemesShowcase(
+    :themes="ValidatableControlShell.Themes"
+    :themeKeyLabelPrefix="THEME_KEY_LABEL_PREFIX"
+    :geometricVariations="ValidatableControlShell.GeometricVariations"
+    :geometricVariationLabelPrefix="GEOMETRIC_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariations="ValidatableControlShell.DecorativeVariations"
+    :decorativeVariationLabelPrefix="DECORATIVE_VARIATION_KEY_LABEL_PREFIX"
+    :decorativeVariationsListItemAdditionalCSS_Classes="[ 'ValidatableControlShellGallery-ValidationErrorsMessagesSection-NarrowContainer' ]"
+  )
+    template(
+      v-slot="{ theme, geometricVariation, decorativeVariation }"
+    )
+      ValidatableControlShell(
+        :theme="theme.value"
+        :geometricVariation="geometricVariation.value"
+        :decorativeVariation="decorativeVariation.value"
+        :validationErrorsMessages="sampleValidationErrorsMessages"
+        :mustDisplayErrorsMessagesIfAny="true"
+        :asynchronousChecksStatus="asynchronousChecksStatus"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core
+
+
+//- ━━━ Loading Placeholder ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+template(
+  v-if="mustRenderAllPartials || partialsFlags.loadingPlaceholder"
+)
+
+  h2.Heading2(
+    :class="mustVisuallyHideAllHeadings ? 'YDF_Gallery-InvisibleHeading' : null"
+  ) Loading Placeholder
+
+  //- ─── Labels Only ──────────────────────────────────────────────────────────────────────────────────────────────────
+  .ValidatableControlShellGallery-LoadingPlaceholderSection-LinearFlow
+
+    template(
+      v-for="geometricVariation in ValidatableControlShell.GeometricVariations"
+    )
+      ValidatableControlShellLoadingPlaceholder(
+        :label="true"
+        :geometricVariation="geometricVariation"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+  //- ─── Labels & Badges ──────────────────────────────────────────────────────────────────────────────────────────────
+  .ValidatableControlShellGallery-LoadingPlaceholderSection-LinearFlow
+
+    template(
+      v-for="geometricVariation in ValidatableControlShell.GeometricVariations"
+    )
+      ValidatableControlShellLoadingPlaceholder(
+        :label="true"
+        :badge="true"
+        :geometricVariation="geometricVariation"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+  //- ─── Guidances ────────────────────────────────────────────────────────────────────────────────────────────────────
+  .ValidatableControlShellGallery-LoadingPlaceholderSection-LinearFlow
+
+    template(
+      v-for="geometricVariation in ValidatableControlShell.GeometricVariations"
+    )
+      ValidatableControlShellLoadingPlaceholder(
+        :guidance="true"
+        :geometricVariation="geometricVariation"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+  //- ─── Labels and Guidances ─────────────────────────────────────────────────────────────────────────────────────────
+  .ValidatableControlShellGallery-LoadingPlaceholderSection-LinearFlow
+
+    template(
+      v-for="geometricVariation in ValidatableControlShell.GeometricVariations"
+    )
+      ValidatableControlShellLoadingPlaceholder(
+        :label="true"
+        :guidance="true"
+        :geometricVariation="geometricVariation"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here
+
+
+  //- ─── Labels, Badges and Guidances ─────────────────────────────────────────────────────────────────────────────────
+  .ValidatableControlShellGallery-LoadingPlaceholderSection-LinearFlow
+
+    template(
+      v-for="geometricVariation in ValidatableControlShell.GeometricVariations"
+    )
+      ValidatableControlShellLoadingPlaceholder(
+        :label="true"
+        :badge="true"
+        :guidance="true"
+        :geometricVariation="geometricVariation"
+      )
+        .ValidatableControlShellGallery-CoreElementPlaceholder Core Element Here

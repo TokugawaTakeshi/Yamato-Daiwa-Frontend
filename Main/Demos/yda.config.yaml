@@ -1,0 +1,133 @@
+$projectBuilding:
+
+  $commonSettings:
+
+    $selectiveExecutions:
+
+      LocalGalleries:
+
+        $tasksAndSourceFilesSelection:
+          $markupProcessing: [ LocalGalleriesIndexPage, CompletePages ]
+          $stylesProcessing: [ Pages, Partials ]
+          $ECMA_ScriptLogicProcessing: [ CompletePages ]
+
+        $browserLiveReloadingSetupID: LocalGalleries
+
+      Distributions:
+
+        $tasksAndSourceFilesSelection:
+          $markupProcessing: [ CompletePages, PartialDemos ]
+          $stylesProcessing: [ Pages, Partials ]
+          $ECMA_ScriptLogicProcessing: [ CompletePages ]
+
+
+  # ━━━ Markup Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $markupProcessing:
+
+    $common:
+      $buildingModeDependent:
+        $localDevelopment: { $mustResolveResourcesPointersToRelativePaths: true }
+        $production: { $mustResolveResourcesPointersToRelativePaths: true }
+
+    $entryPointsGroups:
+
+      LocalGalleriesIndexPage:
+
+        $singleEntryPointSourceFileRelativePath: Source/LocalGalleriesIndexPage.pug
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
+
+      CompletePages:
+
+        $sourceFilesTopDirectoryRelativePath: Source/CompletePages
+
+        $sourceFilesSelection:
+          $prefixesOfExcludeFiles: "_"
+          $prefixesOfExcludedSubdirectories: "_"
+
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
+          $production: { $outputTopDirectoryRelativePath: Distributions }
+
+      PartialDemos:
+
+        $sourceFilesTopDirectoryRelativePath: Source/PartialDemos
+
+        $sourceFilesSelection:
+          $prefixesOfExcludeFiles: "_"
+          $prefixesOfExcludedSubdirectories: "_"
+
+        $buildingModeDependent: { $production: { $outputTopDirectoryRelativePath: Distributions } }
+
+
+  # ━━━ Styles Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $stylesProcessing:
+
+    $entryPointsGroups:
+
+      Pages:
+
+        $sourceFilesTopDirectoryRelativePath: Source/CompletePages
+
+        $sourceFilesSelection:
+          $prefixesOfExcludeFiles: "_"
+          $prefixesOfExcludedSubdirectories: "_"
+
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
+          $production:
+            $outputTopDirectoryRelativePath: Distributions
+            $revisioning: { $disable: true }
+
+      Partials:
+
+        $sourceFilesTopDirectoryRelativePath: Source/PartialStylesheets
+
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
+          $production:
+            $outputTopDirectoryRelativePath: Distributions
+            $revisioning: { $disable: true }
+
+
+  # ━━━ ECMAScript Logic Processing ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $ECMA_ScriptLogicProcessing:
+
+    $entryPointsGroups:
+
+      CompletePages:
+
+        $sourceFilesTopDirectoryRelativePath: Source/CompletePages
+
+        $sourceFilesSelection:
+          $prefixesOfExcludeFiles: "_"
+          $prefixesOfExcludedSubdirectories: "_"
+
+        $targetRuntime:
+          $type: BROWSER
+
+        $buildingModeDependent:
+          $localDevelopment: { $outputTopDirectoryRelativePath: LocalGalleriesBuild }
+          $production: { $outputTopDirectoryRelativePath: Distributions }
+
+
+  # ━━━ Browser Live Reloading ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $browserLiveReloading:
+
+    $setups:
+
+      LocalGalleries:
+
+        $localServer:
+
+          $rootDirectoryRelativePath: LocalGalleriesBuild
+          $customStartingFileNameWithExtension: LocalGalleriesIndexPage.html
+
+        $openInBrowsers: chrome
+
+
+  # ━━━ Files Watching ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  $filesWatching:
+
+    $relativePathsOfExcludeDirectories:
+      - Distributions

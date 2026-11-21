@@ -1,0 +1,101 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../../../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    HTML_PAGE_LANGUAGE = "ru";
+    HTML_PAGE_TITLE = buildHTML_PageTitle("getLineSpacingByFontSizeAndLineHeight");
+    HTML_PageMetaData = {
+      description: "",
+      author: HTML_PAGE_AUTHOR
+    };
+
+    FAVICON_URI = "@MustBeInPublicRoot/favicon";
+
+    styleSheetsURIs = [
+      "$CommonStyles",
+      "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+      "$PreMadesStyles",
+      "@CustomizedExternalComponents"
+    ];
+
+    scriptsURIs.endOfBody = [ "$CommonLogic" ];
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.styles.kernel.functions.quantities.getLineSpacingByFontSizeAndLineHeight");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: "./getLineSpacingByFontSizeAndLineHeight.english.html",
+      japanese: "./getLineSpacingByFontSizeAndLineHeight.japanese.html"
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    h1 getLineSpacingByFontSizeAndLineHeight
+
+    h2 Примеры
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript })
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          getLineSpacingByFontSizeAndLineHeight({
+            fontSize: 10px,
+            lineHeight: 0,
+            mustOutputDimensionalQuantityIfPossible: false
+          })
+        +CodeViewer-Explanation--YDF
+
+          p.Article-Paragraph.
+            Здесь функция вернёт #[+SecondaryEntity__Code--YDID 0].
+
+          p.Article-Paragraph.
+            В отличие от вычисления высоты строки по межстрочному интервалу, где при нулевым значении последнего
+              возникает неоднозначность, здесь всё однозначно: нулевая высота строки означает нулевой межстрочный
+              интервал.
+            Поскольку мы через #[+SecondaryEntity__Code--YDID mustOutputDimensionalQuantityIfPossible: false] мы
+              запросили безразмерную величину, то будет возвращён #[+SecondaryEntity__Code--YDID 0].
+            Если указать #[+SecondaryEntity__Code--YDID mustOutputDimensionalQuantityIfPossible: true], то будет
+              возвращена величина с размерностью высоты шрифта, то есть в данном случае #[+SecondaryEntity__Code--YDID 0],
+              однако безразмерный 0 в CSS эквивалентен нулю любой размерности.
+
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          getLineSpacingByFontSizeAndLineHeight({
+            fontSize: 10px,
+            lineHeight: 14px,
+            mustOutputDimensionalQuantityIfPossible: true
+          })
+        +CodeViewer-Explanation--YDF
+
+          p.Article-Paragraph.
+            Здесь функция вернёт #[+SecondaryEntity__Code--YDID 4px].
+
+          p.Article-Paragraph.
+            В данном случае размер шрифта и высота строки имеют одинаковую размерность, потому межстрочный интервал
+              может быть вычислен однозначно как разность высоты строки и размера шрифта, то есть в данном случае
+              #[+SecondaryEntity__Code--YDID 4px] ввиду того, что запросили размерную величину на выходе через
+              #[+SecondaryEntity__Code--YDID mustOutputDimensionalQuantityIfPossible: true].
+
+          p.Article-Paragraph.
+            Можно также через #[+SecondaryEntity__Code--YDID mustOutputDimensionalQuantityIfPossible: false]
+              запросить безразмерную величину на выходе и получить #[+SecondaryEntity__Code--YDID 0.4] в данном случае.
+            Вычисляется она так же, как и безразмерная высота строки — частное при делении размерной величины на
+              размер шрифта (при условии одинаковой размерности).

@@ -1,0 +1,15 @@
+emptyStringToNull:
+  $heading: "<code>emptyStringToNull</code>"
+  $anchor: emptyStringToNull--SECTION
+
+nullToEmptyObject:
+  $heading: "<code>nullToEmptyObject</code>"
+  $anchor: nullToEmptyObject--SECTION
+
+nullToEmptyString:
+  $heading: "<code>nullToEmptyString</code>"
+  $anchor: nullToEmptyString--SECTION
+
+nullToZero:
+  $heading: "<code>nullToZero</code>"
+  $anchor: nullToZero--SECTION

@@ -1,0 +1,76 @@
+OverflowSafeSingleLineLabel--YDF-generateStyles()
+
+  .OverflowSafeSingleLineLabel
+
+    display inline-block
+    max-width 100% // Required when parent has `{ display: flex; align-items: center }` or current element has `{ align-self: center }`
+
+
+    &-TextWithIncreasedLineHeight
+
+      display inline-block
+      max-width 100%
+
+      overflow hidden
+      white-space nowrap
+
+
+OverflowSafeSingleLineLabel(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "OverflowSafeSingleLineLabel",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      fontSize: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: true
+      },
+      lineHeight: {
+        type: DataTypes--YDF.dimensionalQuantity DataTypes--YDF.dimensionlessQuantity,
+        defaultValue: 1.4
+      },
+      displayEllipsis: {
+        type: DataTypes--YDF.boolean,
+        defaultValue: false
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  fontSize = compoundParameter.fontSize
+  lineHeight = compoundParameter.lineHeight
+  lineHeight__dimensionalValue = isUnitlessNumber(lineHeight) ? lineHeight * fontSize : lineHeight
+
+
+  extraSpaceCausedByLineHeightAtTopOrBottom = buildCalcExpression--YDF(
+    "(${lineHeight__dimensionalValue} - ${fontSize}) / 2",
+    { lineHeight__dimensionalValue: lineHeight__dimensionalValue, fontSize: fontSize }
+  )
+
+  topOrBottomMarginValue = buildCalcExpression--YDF(
+    "-1 * ${extraSpaceCausedByLineHeightAtTopOrBottom}",
+    { extraSpaceCausedByLineHeightAtTopOrBottom: extraSpaceCausedByLineHeightAtTopOrBottom }
+  )
+
+
+  height fontSize  // There could be 0.4-0.5px error if don't fixate the height
+
+
+  .OverflowSafeSingleLineLabel-TextWithIncreasedLineHeight
+
+    font-size fontSize
+    line-height lineHeight
+
+    margin-top topOrBottomMarginValue
+    margin-bottom topOrBottomMarginValue
+
+
+    if isTrue--YDF(compoundParameter.displayEllipsis)
+
+      text-overflow ellipsis
+
+    else
+
+      text-overflow clip

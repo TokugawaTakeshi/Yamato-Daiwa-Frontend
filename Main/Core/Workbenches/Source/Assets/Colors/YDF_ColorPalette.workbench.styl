@@ -1,0 +1,126 @@
+@require "../../../../Functionality.styl"
+
+
+CrossBrowserStylesReset--YDF()
+InitialGlobalCSS_Rules--YDF()
+
+
+provideYDF_Typography()
+
+
+.YDF_ColorPaletteWorkbench
+
+  padding 6px
+
+
+  &-MultilineFlow
+
+    display flex
+    flex-wrap wrap
+
+    margin-top 12px
+
+
+    >*
+
+      padding 10px 16px
+      text-align center
+
+      font-weight bold
+
+      flex 0 1 100px
+
+
+  &-VerticalFlow
+
+    margin-top 24px
+
+
+    >*
+
+      padding 4px 6px
+
+      font-weight bold
+
+
+  &-TableScroller
+
+    overflow-x auto
+
+
+  &-HSL_Table
+
+    width 100%
+
+
+    thead
+
+      th
+
+        padding 10px
+
+
+    tbody
+
+      th,
+      td
+
+        padding 10px
+        border 4px solid gray
+
+      td
+
+        text-align center
+
+
+  &-YDFColorPaletteTable
+
+    width 100%
+
+
+    thead
+
+      th
+
+        padding 10px
+
+
+    tbody
+
+      th,
+      td
+
+        padding 10px
+        border 4px solid gray
+
+
+      th
+
+        text-align right
+
+
+      td
+
+        text-align center
+
+
+    for hueKey in YDF_ColorPalette
+
+      &-PastelGradientCell__{ capitalizeFirstLatinCharacter--YDF(hueKey) }
+
+        background-image: appendDirectionToLinearGradientColorStopsExpression--YDF("to bottom", YDF_ColorPalette[hueKey].pastelGradient)
+
+
+      &-LightGradientCell__{ capitalizeFirstLatinCharacter--YDF(hueKey) }
+
+        background-image: appendDirectionToLinearGradientColorStopsExpression--YDF("to bottom", YDF_ColorPalette[hueKey].lightGradient)
+
+
+      &-DarkGradientCell__{ capitalizeFirstLatinCharacter--YDF(hueKey) }
+
+        background-image: appendDirectionToLinearGradientColorStopsExpression--YDF("to bottom", YDF_ColorPalette[hueKey].darkGradient)
+
+
+      &-GlossyGradientCell__{ capitalizeFirstLatinCharacter--YDF(hueKey) }
+
+        background-image: appendDirectionToLinearGradientColorStopsExpression--YDF("to bottom", YDF_ColorPalette[hueKey].glossyGradient)

@@ -1,0 +1,99 @@
+﻿@using YamatoDaiwa.Frontend.Helpers;
+
+
+<dl class="ThemesShowcase--YDF">
+  
+  @foreach (string themeKey in Enum.GetNames(themes))
+  {
+    
+    <dt class="ThemesShowcase--YDF-KeyLabel">@($"{ themeKeyLabelPrefix }{ themeKey }")</dt>
+    <dd class="ThemesShowcase--YDF-ValueSection">
+      <dl class="ThemesShowcase--YDF-ChildList">
+
+        @foreach (string geometricVariationKey in Enum.GetNames(geometricVariations))
+        {
+          
+          <dt class="ThemesShowcase--YDF-KeyLabel">@($"{ geometricVariationLabelPrefix }{ geometricVariationKey }")</dt> 
+          <dd class="ThemesShowcase--YDF-ValueSection">
+            
+            <DynamicTag
+              name=@this.decorativeVariationsWrapperTag
+              attributes=@(
+                new Dictionary<string, object> {
+                  { "class", this.innermostChildListClassAttributeValue }
+                }
+              )
+            >
+
+              @foreach (string decorativeVariationKey in Enum.GetNames(decorativeVariations))
+              {
+                
+                @if (
+                  !this.decorativeVariationSkippingCondition(
+                    new ThemesShowcase.ComponentSlotData
+                    {
+                      themeKey = themeKey,
+                      themeValue = Enum.Parse(themes, themeKey),
+                      geometricVariationKey = geometricVariationKey,
+                      geometricVariationValue = Enum.Parse(geometricVariations, geometricVariationKey),
+                      decorativeVariationKey = decorativeVariationKey,
+                      decorativeVariationValue = Enum.Parse(decorativeVariations, decorativeVariationKey)
+                    }
+                  )
+                ) 
+                {
+
+                  @if (this.decorativeVariationsWrapperTag == "dl")
+                  {
+
+                    <dt class="ThemesShowcase--YDF-KeyLabel">@($"{ decorativeVariationLabelPrefix }{ decorativeVariationKey }")</dt>
+                    <dd class=@($"ThemesShowcase--YDF-ValueSection { String.Join(" ", this.decorativeVariationsListItemAdditionalCSS_Classes) }")>
+
+                      @ComponentSlot(
+                        new ComponentSlotData
+                          {
+                          themeKey = themeKey,
+                          themeValue = Enum.Parse(themes, themeKey),
+                          geometricVariationKey = geometricVariationKey,
+                          geometricVariationValue = Enum.Parse(geometricVariations, geometricVariationKey),
+                          decorativeVariationKey = decorativeVariationKey,
+                          decorativeVariationValue = Enum.Parse(decorativeVariations, decorativeVariationKey)
+                        }
+                      )
+                              
+                    </dd>
+
+                  }
+                  else
+                  {
+                
+                    @ComponentSlot(
+                      new ComponentSlotData
+                        {
+                        themeKey = themeKey,
+                        themeValue = Enum.Parse(themes, themeKey),
+                        geometricVariationKey = geometricVariationKey,
+                        geometricVariationValue = Enum.Parse(geometricVariations, geometricVariationKey),
+                        decorativeVariationKey = decorativeVariationKey,
+                        decorativeVariationValue = Enum.Parse(decorativeVariations, decorativeVariationKey)
+                      }
+                    )
+                    
+                  }
+
+                }
+              
+              }
+                
+            </DynamicTag>
+            
+          </dd> 
+          
+        }
+
+      </dl>
+    </dd>
+
+  }
+  
+</dl>

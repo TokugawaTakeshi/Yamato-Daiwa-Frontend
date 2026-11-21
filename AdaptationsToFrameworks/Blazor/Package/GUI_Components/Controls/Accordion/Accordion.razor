@@ -1,0 +1,55 @@
+﻿@using System.Text.RegularExpressions
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.Buttons.Plain;
+@using YamatoDaiwa.CSharpExtensions
+@using YamatoDaiwa.Frontend.Helpers
+@using YamatoDaiwa.Frontend.SVG_Icons.Triangle
+
+
+<div 
+  class=@classAttributeValueForRootElement
+  @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary
+  @ref=@rootElement
+>
+
+  <DynamicTag 
+    class="Accordion--YDF-Header"
+    name=headerTag
+  >
+
+    <Button
+      class="Accordion--YDF-Button"
+      label=@title
+      aria-expanded=@isExpanded
+      aria-controls=@PANEL_HTML_ID
+      id=@BUTTON_HTML_ID
+      onClick=@onClickButton
+    >
+      <PrependedSVG_Icon>
+        @if (isExpanded)
+        {
+          <TriangleIcon__Rightward__Filled class="Button--YDF-SVG_Icon" />
+        }
+        else
+        {
+          <TriangleIcon__Downward__Filled class="Button--YDF-SVG_Icon"/>   
+        }
+      </PrependedSVG_Icon>
+    </Button>
+
+  </DynamicTag>
+  
+  <div
+    class=@CSS_Class.Join(new List<string>([ "Accordion--YDF-Panel" ]).Concat(panelAdditionalCSS_Classes))
+    id=@PANEL_HTML_ID
+    hidden=@(!isExpanded)
+    aria-labelledby=@BUTTON_HTML_ID
+    style="display: @(initiallyExpanded ? "initial" : "none");">
+    role=@(new Regex("^h[1-6]$").IsMatch(headerTag ?? "div") ? null : "region")
+  >
+    @if (isExpanded)
+    {
+      @ChildContent 
+    }
+  </div>
+  
+</div>

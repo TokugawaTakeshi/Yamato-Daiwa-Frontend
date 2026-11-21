@@ -1,0 +1,16 @@
+mixin PopoverWithAnchor--YDF
+
+  .Popover--YDF&attributes(attributes)
+
+    block
+
+
+mixin Popover--YDF(statesSimulations)
+
+  - const { displaying = false } = statesSimulations ?? {};
+
+  .Popover--YDF-Body&attributes(attributes)(
+    hidden=(displaying ? null : "")
+  )
+
+    block

@@ -1,0 +1,76 @@
+getLineHeightByFontSizeAndLineSpacing--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "getLineHeightByFontSizeAndLineSpacing--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      fontSize: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        required: true
+      },
+      lineSpacing: {
+        type: DataTypes--YDF.dimensionalQuantity DataTypes--YDF.dimensionlessQuantity,
+        required: true
+      },
+      mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: {
+        type: DataTypes--YDF.boolean,
+        required: true
+      },
+      mustOutputDimensionalQuantityIfPossible: {
+        type: DataTypes--YDF.boolean,
+        required: true
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+  fontSize = compoundParameter.fontSize
+  lineSpacing = compoundParameter.lineSpacing
+  mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0 = compoundParameter.mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0
+  mustOutputDimensionalQuantityIfPossible = compoundParameter.mustOutputDimensionalQuantityIfPossible
+
+  isSpecifiedLineSpacingTheDimensionalAmount = isDimensionalQuantity--YDF(
+    lineSpacing, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY"
+  )
+
+
+  if isSpecifiedLineSpacingTheDimensionalAmount
+
+    // [ Approach ] According the above condition, `0` is being considered as dimensional amount for this case
+    // [ Stylus theory ] This condition will be truthy even if the `lineSpacing` has units after `0`, e. g. `0rem`.
+    if lineSpacing == 0
+
+      if mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0
+
+        return mustOutputDimensionalQuantityIfPossible ? fontSize : 1
+
+      else
+
+        return mustOutputDimensionalQuantityIfPossible ? appendUnit--YDF(0, unit(fontSize)) :  0
+
+
+    else if unit(lineSpacing) == unit(fontSize)
+
+      if mustOutputDimensionalQuantityIfPossible
+
+        return fontSize + lineSpacing
+
+      else
+
+        return removeUnitFromAmount--YDF((fontSize + lineSpacing) / fontSize)
+
+    else
+
+      return buildCalcExpression--YDF(
+        "${ fontSize } + ${ lineSpacing }",
+        { fontSize: fontSize, lineSpacing: lineSpacing }
+      )
+
+  else if mustOutputDimensionalQuantityIfPossible
+
+    return fontSize * (1 + lineSpacing)
+
+  else
+
+    return 1 + lineSpacing

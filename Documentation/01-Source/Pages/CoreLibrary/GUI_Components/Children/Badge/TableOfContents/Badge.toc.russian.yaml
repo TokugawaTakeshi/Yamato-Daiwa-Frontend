@@ -1,0 +1,19 @@
+overview:
+
+  $heading: "Краткий обзор"
+
+usage:
+
+  $heading: "Использование"
+
+  markup:
+
+    $heading: "Разметка"
+
+    includingToProject:
+
+      $heading: "Подключение в проект"
+
+    pugMixin:
+
+      $heading: "Pug-примесь <code>Badge--YDF</code>"

@@ -1,5 +1,5 @@
 <templateSet group="Yamato Daiwa Frontend - Stylus">
-  <template name="nswu" value="NARROWEST_SCREEN_WIDTH_UNIT" description="`NARROWEST_SCREEN_WIDTH_UNIT` constant (320px)" toReformat="false" toShortenFQNames="true">
+  <template name="nswu" value="NARROWEST_SCREEN_WIDTH_UNIT--YDF" description="`NARROWEST_SCREEN_WIDTH_UNIT--YDF` constant (320px)" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="CSS" value="true" />
       <option name="CSS_DECLARATION_BLOCK" value="false" />
@@ -100,7 +100,7 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="fbv" value="fillBodyVertically({ verticalScrolling: $END$true })" description="`fillBodyVertically` mixin" toReformat="false" toShortenFQNames="true">
+  <template name="fbv" value="fillBodyVertically({ verticalScrolling: $END$true })&#10;&#10;// Maybe you need this because if target container has same height as viewport the scrollable content could not be fully printed&#10;@media not print&#10;&#10;  fillBodyVertically({ verticalScrolling: $END$true })" description="`fillBodyVertically` mixin" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="CSS_DECLARATION_BLOCK" value="true" />
     </context>
@@ -158,43 +158,12 @@
       <option name="CSS_DECLARATION_BLOCK" value="true" />
     </context>
   </template>
-  <template name="med3c" value="MAXIMAL_CONTENT_WIDTH = $MAXIMAL_CONTENT_WIDTH$px&#10;MINIMAL_SIDE_SYMMETRIC_PADDINGS__WIDE_SCREENS = 20px&#10;&#10;wideScreensConfigurationMinimalWidth = MAXIMAL_CONTENT_WIDTH + 2*MINIMAL_SIDE_SYMMETRIC_PADDINGS__WIDE_SCREENS&#10;MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 420px&#10;&#10;&#10;WideScreensConfiguration()&#10;  @media screen and (min-width: wideScreensConfigurationMinimalWidth)&#10;    {block}&#10;&#10;MediumScreensConfiguration()&#10;  @media screen and (min-width: MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH) and (max-width: wideScreensConfigurationMinimalWidth - 1)&#10;    {block}&#10;&#10;NarrowScreensConfiguration()&#10;  @media screen and (max-width: MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;&#10;WideAndMediumScreensConfiguration()&#10;  @media screen and (min-width: MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH)&#10;    {block}&#10;&#10;MediumAndNarrowScreensConfiguration()&#10;  @media screen and (max-width: wideScreensConfigurationMinimalWidth - 1)&#10;    {block}&#10;&#10;&#10;+WideScreensConfiguration()&#10;&#10;  CenteredContentWithComputedHorizontalPaddings({ contentWidth: MAXIMAL_CONTENT_WIDTH })&#10;&#10;&#10;+MediumScreensConfiguration()&#10;&#10;  Paddings({ horizontalSymmetric: 20px })&#10;&#10;&#10;+NarrowScreensConfiguration()&#10;&#10;  Paddings({ horizontalSymmetric: 12px })&#10;// --- END OF AUTOMATICALLY GENERATED CODE -----------------------------------------------------------------------------" description="Media queries definitions for 3-patterns layout" toReformat="false" toShortenFQNames="true">
-    <variable name="MAXIMAL_CONTENT_WIDTH" expression="" defaultValue="&quot;920&quot;" alwaysStopAt="true" />
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
-  <template name="wsc" value="+WideScreensConfiguration()&#10;&#10;  $END$" description="`WideScreensConfiguration` media query" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
-  <template name="msc" value="+MediumScreensConfiguration()&#10;&#10;  $END$" description="`MediumScreensConfiguration` media query" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
-  <template name="wmsc" value="+WideAndMediumScreensConfiguration()&#10;&#10;  $END$" description="`WideAndMediumScreensConfiguration` media query" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
-  <template name="nsc" value="+NarrowScreensConfiguration()&#10;&#10;  $END$" description="`NarrowScreensConfiguration` media query" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
-  <template name="mnsc" value="+MediumAndNarrowScreensConfiguration()&#10;&#10;  $END$&#10;  " description="`MediumAndNarrowScreensConfiguration` media query" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS_DECLARATION_BLOCK" value="true" />
-    </context>
-  </template>
   <template name="ptr" value="placeToRight()&#10;$END$" description="`placeToRight` mixin" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="CSS_DECLARATION_BLOCK" value="true" />
     </context>
   </template>
-  <template name="sogw3c" value="ShadesOfGray__39ColorsW3C_Palette[$NUMBER$]&#10;// Please note that valid number of element must be from 0 fto 38 (not 39)" description="`ShadesOfGray__39ColorsW3C_Palette` array" toReformat="false" toShortenFQNames="true">
+  <template name="sogw3c" value="W3C_39_ShadesOfGray--YDF[$NUMBER$]&#10;// Please note that valid number of element must be from 0 to 38 (not 39)" description="`W3C_39_ShadesOfGray--YDF` array" toReformat="false" toShortenFQNames="true">
     <variable name="NUMBER" expression="enum(&quot;0&quot;,&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;,&quot;7&quot;,&quot;8&quot;,&quot;9&quot;,&quot;10&quot;,&quot;11&quot;,&quot;12&quot;,&quot;13&quot;,&quot;14&quot;,&quot;15&quot;,&quot;16&quot;,&quot;17&quot;,&quot;18&quot;,&quot;19&quot;,&quot;20&quot;,&quot;21&quot;,&quot;22&quot;,&quot;23&quot;,&quot;24&quot;,&quot;25&quot;,&quot;26&quot;,&quot;27&quot;,&quot;28&quot;,&quot;29&quot;,&quot;30&quot;,&quot;31&quot;,&quot;32&quot;,&quot;33&quot;,&quot;34&quot;,&quot;35&quot;,&quot;36&quot;,&quot;37&quot;,&quot;38&quot;)" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="CSS" value="true" />
@@ -211,8 +180,8 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="dt" value="DataTypes.$TYPE$" description="`DataTypes` enumeration" toReformat="false" toShortenFQNames="true">
-    <variable name="TYPE" expression="enum(&quot;dimensionalAmount&quot;, &quot;dimensionlessAmount&quot;, &quot;string&quot;, &quot;boolean&quot;, &quot;object&quot;, &quot;colorDefinition&quot;)" defaultValue="" alwaysStopAt="true" />
+  <template name="dt" value="DataTypes--YDF.$TYPE$" description="`DataTypes--YDF` enumeration" toReformat="false" toShortenFQNames="true">
+    <variable name="TYPE" expression="enum(&quot;dimensionalQuantity&quot;, &quot;dimensionlessQuantity&quot;, &quot;string&quot;, &quot;boolean&quot;, &quot;object&quot;, &quot;colorDefinition&quot;)" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="CSS" value="true" />
       <option name="CSS_DECLARATION_BLOCK" value="false" />
@@ -220,15 +189,15 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="th" value="TemporaryHighlighting.$TONE$.$OPACITY$&#10;// * Available tones: red, orange, yellow, green, cyan, blue, magenta, purple&#10;// * Available opacity values: o10, o25, o50, o75" description="`TemporaryHighlighting` object" toReformat="false" toShortenFQNames="true">
+  <template name="TemporarySemitransparentHighlighting--YDF" value="TemporarySemitransparentHighlighting--YDF.$TONE$.$OPACITY$&#10;// * Available tones: red, orange, yellow, green, cyan, blue, magenta, purple&#10;// * Available opacity values: opacity10Percent, opacity25Percent, opacity50Percent, opacity75Percent" description="`TemporarySemitransparentHighlighting--YDF` object" toReformat="false" toShortenFQNames="true">
     <variable name="TONE" expression="enum(&quot;red&quot;, &quot;orange&quot;, &quot;yellow&quot;, &quot;green&quot;, &quot;cyan&quot;, &quot;blue&quot;, &quot;magenta&quot;, &quot;purple&quot;)" defaultValue="" alwaysStopAt="true" />
-    <variable name="OPACITY" expression="enum(&quot;o10&quot;, &quot;o25&quot;, &quot;o50&quot;, &quot;o75&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="OPACITY" expression="enum(&quot;opacity10Percent&quot;, &quot;opacity25Percent&quot;, &quot;opacity50Percent&quot;, &quot;opacity75Percent&quot;)" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="CSS" value="true" />
       <option name="CSS_DECLARATION_BLOCK" value="false" />
     </context>
   </template>
-  <template name="pccs" value="PracticalColorCoordinateSystem.$TONE$.$COLOR$&#10;&#10;// * Available tones: &quot;vivid&quot;, &quot;bright&quot;, &quot;strong&quot;, &quot;deep&quot;, &quot;light&quot;, &quot;soft&quot;, &quot;dull&quot;, &quot;dark&quot;, &quot;pale&quot;, &quot;lightGrayish&quot;, &#10;//       &quot;grayish&quot;, &quot;darkGrayish&quot;, &quot;white&quot;, &quot;lightGray8_5&quot;, &quot;lightGray7_5&quot;, &quot;mediumGray6_5&quot;, &quot;mediumGray5_5&quot;, &quot;mediumGray4_5&quot;, &#10;//       &quot;darkGray3_5&quot;, &quot;darkGray2_5&quot;, &quot;black&quot;&#10;// * Available colors: &quot;purplishRed1&quot;, &quot;red2&quot;, &quot;yellowishRed3&quot;, &quot;reddishOrange4&quot;, &quot;orange5&quot;, &quot;yellowishOrange6&quot;, &#10;//       &quot;reddishYellow7&quot;, &quot;yellow8&quot;, &quot;greenishYellow9&quot;, &quot;yellowGreen10&quot;, &quot;yellowishGreen11&quot;, &quot;green12&quot;, &quot;bluishGreen13&quot;, &#10;//       &quot;blueGreen14&quot;, &quot;blueGreen15&quot;, &quot;geenishBlue16&quot;, &quot;blue17&quot;, &quot;blue18&quot;, &quot;purplishBlue19&quot;, &quot;violet20&quot;, &quot;bluishPurple21&quot;,&#10;//       &quot;purple22&quot;, &quot;reddishPurple23&quot;, &quot;redPurple24&quot; (except white, lightGray8_5, etc. until black!) &#10;" description="`PracticalColorCoordinateSystem` object" toReformat="false" toShortenFQNames="true">
+  <template name="pccs" value="PracticalColorCoordinateSystem--YDF.$TONE$.$COLOR$&#10;&#10;// * Available tones: &quot;vivid&quot;, &quot;bright&quot;, &quot;strong&quot;, &quot;deep&quot;, &quot;light&quot;, &quot;soft&quot;, &quot;dull&quot;, &quot;dark&quot;, &quot;pale&quot;, &quot;lightGrayish&quot;, &#10;//       &quot;grayish&quot;, &quot;darkGrayish&quot;, &quot;white&quot;, &quot;lightGray8_5&quot;, &quot;lightGray7_5&quot;, &quot;mediumGray6_5&quot;, &quot;mediumGray5_5&quot;, &quot;mediumGray4_5&quot;, &#10;//       &quot;darkGray3_5&quot;, &quot;darkGray2_5&quot;, &quot;black&quot;&#10;// * Available colors: &quot;purplishRed1&quot;, &quot;red2&quot;, &quot;yellowishRed3&quot;, &quot;reddishOrange4&quot;, &quot;orange5&quot;, &quot;yellowishOrange6&quot;, &#10;//       &quot;reddishYellow7&quot;, &quot;yellow8&quot;, &quot;greenishYellow9&quot;, &quot;yellowGreen10&quot;, &quot;yellowishGreen11&quot;, &quot;green12&quot;, &quot;bluishGreen13&quot;, &#10;//       &quot;blueGreen14&quot;, &quot;blueGreen15&quot;, &quot;geenishBlue16&quot;, &quot;blue17&quot;, &quot;blue18&quot;, &quot;purplishBlue19&quot;, &quot;violet20&quot;, &quot;bluishPurple21&quot;,&#10;//       &quot;purple22&quot;, &quot;reddishPurple23&quot;, &quot;redPurple24&quot; (except white, lightGray8_5, etc. until black!) &#10;" description="`PracticalColorCoordinateSystem--YDF` object" toReformat="false" toShortenFQNames="true">
     <variable name="TONE" expression="enum(&quot;vivid&quot;, &quot;bright&quot;, &quot;strong&quot;, &quot;deep&quot;, &quot;light&quot;, &quot;soft&quot;, &quot;dull&quot;, &quot;dark&quot;, &quot;pale&quot;, &quot;lightGrayish&quot;, &quot;grayish&quot;, &quot;darkGrayish&quot;, &quot;white&quot;, &quot;lightGray8_5&quot;, &quot;lightGray7_5&quot;, &quot;mediumGray6_5&quot;, &quot;mediumGray5_5&quot;, &quot;mediumGray4_5&quot;, &quot;darkGray3_5&quot;, &quot;darkGray2_5&quot;, &quot;black&quot;)" defaultValue="" alwaysStopAt="true" />
     <variable name="COLOR" expression="enum(&quot;purplishRed1&quot;, &quot;red2&quot;, &quot;yellowishRed3&quot;, &quot;reddishOrange4&quot;, &quot;orange5&quot;, &quot;yellowishOrange6&quot;, &quot;reddishYellow7&quot;, &quot;yellow8&quot;, &quot;greenishYellow9&quot;, &quot;yellowGreen10&quot;, &quot;yellowishGreen11&quot;, &quot;green12&quot;, &quot;bluishGreen13&quot;, &quot;blueGreen14&quot;, &quot;blueGreen15&quot;, &quot;geenishBlue16&quot;, &quot;blue17&quot;, &quot;blue18&quot;, &quot;purplishBlue19&quot;, &quot;violet20&quot;, &quot;bluishPurple21&quot;, &quot;purple22&quot;, &quot;reddishPurple23&quot;, &quot;redPurple24&quot;)" defaultValue="" alwaysStopAt="true" />
     <context>
@@ -294,22 +263,22 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="isDimensionalOrDimensionlessAmount" value="isDimensionalOrDimensionlessAmount($END$)" description="`isDimensionalOrDimensionlessAmount` function" toReformat="false" toShortenFQNames="true">
+  <template name="isDimensionalOrDimensionlessQuantity" value="isDimensionalOrDimensionlessAmount($END$)" description="`isDimensionalOrDimensionlessQuantity` function" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="CSS" value="true" />
       <option name="CSS_PROPERTY_VALUE" value="false" />
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="isDimensionalAmount" value="isDimensionalAmount($END$, { considerDimensionlessZeroAsDimensionalAmount: $CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_AMOUNT$ })" description="`isDimensionalAmount` function" toReformat="false" toShortenFQNames="true">
-    <variable name="CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_AMOUNT" expression="enum(&quot;true&quot;, &quot;false&quot;)" defaultValue="" alwaysStopAt="true" />
+  <template name="isDimensionalQuantity" value="isDimensionalQuantity($END$, $AMBIGUITY_RESOLUTION_STRATEGY$)" description="`isDimensionalQuantity` function" toReformat="false" toShortenFQNames="true">
+    <variable name="AMBIGUITY_RESOLUTION_STRATEGY" expression="enum(&quot;MUST_CONSIDER_DIMEMSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY&quot;, &quot;MUST_NOT_CONSIDER_DIMEMSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY&quot;)" defaultValue="&quot;MUST_CONSIDER_DIMEMSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY&quot;" alwaysStopAt="true" />
     <context>
       <option name="CSS" value="true" />
       <option name="CSS_PROPERTY_VALUE" value="false" />
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="isDimensionlessAmount" value="isDimensionlessAmount($END$)" description="`isDimensionlessAmount` function" toReformat="false" toShortenFQNames="true">
+  <template name="isDimensionlessQuantity" value="isDimensionlessAmount($END$)" description="`isDimensionlessQuantity` function" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="CSS" value="true" />
       <option name="CSS_PROPERTY_VALUE" value="false" />
@@ -337,83 +306,11 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="MAIN_SANS_SERIF_FONT_STACK" value="MAIN_SANS_SERIF_FONT_STACK" description="`MAIN_SANS_SERIF_FONT_STACK` variable" toReformat="false" toShortenFQNames="true">
+  <template name="ydfc-z" value="YDF_Configuration.zIndexes.$LAYER$" description="`ZIndexes` object" toReformat="false" toShortenFQNames="true">
+    <variable name="LAYER" expression="enum(&quot;lowermostLayer&quot;, &quot;drawers&quot;, &quot;floatingBelowModalsComponents&quot;, &quot;modalsUnderlay&quot;, &quot;floatingAboveModalsComponents&quot;, &quot;blockingOverlay&quot;, &quot;floatingNotifications&quot;)" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="CSS" value="true" />
       <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-    </context>
-  </template>
-  <template name="MAIN_SERIF_FONT_STACK" value="MAIN_SERIF_FONT_STACK" description="`MAIN_SERIF_FONT_STACK` variable" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS" value="true" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-    </context>
-  </template>
-  <template name="MAIN_MONOSPACED_FONT_STACK" value="MAIN_MONOSPACED_FONT_STACK" description="`MAIN_MONOSPACED_FONT_STACK` variable" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS" value="true" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-    </context>
-  </template>
-  <template name="MAIN_FONT_STACK" value="MAIN_FONT_STACK" description="`MAIN_FONT_STACK` variable" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS" value="true" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-    </context>
-  </template>
-  <template name="BASIC_FONT_SIZE" value="BASIC_FONT_SIZE" description="`BASIC_FONT_SIZE`  variable" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS" value="true" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-    </context>
-  </template>
-  <template name="BASIC_LINE_HEIGHT" value="BASIC_LINE_HEIGHT" description="`BASIC_LINE_HEIGHT`  variable" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS" value="true" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-    </context>
-  </template>
-  <template name="BASIC_FONT_SIZE_IN_MULTILINE_TEXT_BLOCKS" value="BASIC_FONT_SIZE_IN_MULTILINE_TEXT_BLOCKS" description="`BASIC_FONT_SIZE_IN_MULTILINE_TEXT_BLOCKS`  variable" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS" value="true" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-    </context>
-  </template>
-  <template name="BASIC_LINE_HEIGHT_IN_MULTILINE_TEXT_BLOCKS" value="BASIC_LINE_HEIGHT_IN_MULTILINE_TEXT_BLOCKS" description="`BASIC_LINE_HEIGHT_IN_MULTILINE_TEXT_BLOCKS`  variable" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS" value="true" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-    </context>
-  </template>
-  <template name="zi" value="ZIndexes.$ELEMENT$" description="`ZIndexes` object" toReformat="false" toShortenFQNames="true">
-    <variable name="ELEMENT" expression="enum(&quot;floatingNotifications&quot;, &quot;blockingOverlay&quot;, &quot;floatingAboveModalsComponents&quot;, &quot;modalsUnderlay&quot;, &quot;floatingBelowModalsComponents&quot;, &quot;drawers&quot;, &quot;lowermostLayer&quot;)" defaultValue="" alwaysStopAt="true" />
-    <context>
-      <option name="CSS" value="true" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-    </context>
-  </template>
-  <template name="BEM_ELEMENT_SEPARATOR" value="BEM_ELEMENT_SEPARATOR" description="`BEM_ELEMENT_SEPARATOR` constant" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS" value="true" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_PROPERTY_VALUE" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
-    </context>
-  </template>
-  <template name="BEM_MODIFIER_SEPARATOR" value="BEM_MODIFIER_SEPARATOR" description="`BEM_MODIFIER_SEPARATOR` constant" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="CSS" value="true" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_PROPERTY_VALUE" value="false" />
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
@@ -441,7 +338,7 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="bs" value="buildString(&quot;$END$Good morning, ${name}&quot;, { name: &quot;Takeshi&quot; })&#10;&#10;buildString(&#10;  &quot;Good morning, ${givenName} ${familyName}&quot;, &#10;  {&#10;    givenName: &quot;Takeshi&quot;,&#10;    familyName: &quot;Tokugawa&quot;&#10;  }&#10;)&#10;// --- END OF AUTOMATICALLY GENERATED CODE -----------------------------------------------------------------------------" description="`buildString` function" toReformat="false" toShortenFQNames="true">
+  <template name="buildString" value="buildString(&quot;$END$Good morning, ${ name }&quot;, { name: &quot;Takeshi&quot; })&#10;&#10;buildString(&#10;  &quot;Good morning, ${ givenName } ${ familyName }&quot;, &#10;  {&#10;    givenName: &quot;Takeshi&quot;,&#10;    familyName: &quot;Tokugawa&quot;&#10;  }&#10;)&#10;// ━━━ END OF AUTOMATICALLY GENERATED CODE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" description="`buildString` function" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="CSS" value="true" />
       <option name="CSS_DECLARATION_BLOCK" value="false" />
@@ -449,7 +346,7 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="cflc" value="capitalizeFirstLatinCharacter($END$)" description="`capitalizeFirstLatinCharacter` function" toReformat="false" toShortenFQNames="true">
+  <template name="capitalizeFirstLatinCharacter" value="capitalizeFirstLatinCharacter($END$)" description="`capitalizeFirstLatinCharacter` function" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="CSS" value="true" />
       <option name="CSS_DECLARATION_BLOCK" value="false" />
@@ -457,7 +354,7 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="dcaoo" value="// One-line example&#10;deeplyCloneAndOverrideObject($TARGET_OBJECT$, { $OVERRIDINGS$: &quot;newValue&quot; })&#10;&#10;// Multi-line example&#10;deeplyCloneAndOverrideObject($TARGET_OBJECT$, { &#10;  $OVERRIDINGS$: &quot;newValue&quot;,&#10;  otherProperty: &quot;newValue&quot;&#10;})&#10;// --- END OF AUTOMATICALLY GENERATED CODE -----------------------------------------------------------------------------" description="`deeplyCloneAndOverrideObject` function" toReformat="false" toShortenFQNames="true">
+  <template name="deeplyCloneAndOverrideObject" value="// One-line example&#10;deeplyCloneAndOverrideObject($TARGET_OBJECT$, { $OVERRIDINGS$: &quot;newValue&quot; })&#10;&#10;// Multi-line example&#10;deeplyCloneAndOverrideObject($TARGET_OBJECT$, { &#10;  $OVERRIDINGS$: &quot;newValue&quot;,&#10;  otherProperty: &quot;newValue&quot;&#10;})&#10;// --- END OF AUTOMATICALLY GENERATED CODE -----------------------------------------------------------------------------" description="Eponymous YDF function calling expression" toReformat="false" toShortenFQNames="true">
     <variable name="TARGET_OBJECT" expression="clipboard()" defaultValue="&quot;targetObject&quot;" alwaysStopAt="true" />
     <variable name="OVERRIDINGS" expression="" defaultValue="&quot;oneProperty&quot;" alwaysStopAt="true" />
     <context>
@@ -467,7 +364,7 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="dco" value="deeplyCloneObject($TARGET_OBJECT$)" description="`deeplyCloneObject` function" toReformat="false" toShortenFQNames="true">
+  <template name="deeplyCloneObject" value="deeplyCloneObject($TARGET_OBJECT$)" description="Eponymous YDF function calling expression" toReformat="false" toShortenFQNames="true">
     <variable name="TARGET_OBJECT" expression="clipboard()" defaultValue="&quot;targetObject&quot;" alwaysStopAt="true" />
     <context>
       <option name="CSS" value="true" />
@@ -476,7 +373,7 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="gnnovc" value="getNonNullObjectValuesCount($TARGET_OBJECT$)" description="`getNonNullObjectValuesCount` function" toReformat="false" toShortenFQNames="true">
+  <template name="getNonNullObjectValuesCount" value="getNonNullObjectValuesCount($TARGET_OBJECT$)" description="Eponymous function calling expression (YDF)" toReformat="false" toShortenFQNames="true">
     <variable name="TARGET_OBJECT" expression="clipboard()" defaultValue="&quot;targetObject&quot;" alwaysStopAt="true" />
     <context>
       <option name="CSS" value="true" />
@@ -485,9 +382,9 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="govbdsps" value="getObjectValueByDotSeparatedPathSafely($TARGET_OBJECT$, $DOT_SEPARATED_PATH$)" description="`getObjectValueByDotSeparatedPathSafely` function" toReformat="false" toShortenFQNames="true">
+  <template name="getObjectValueByDotSeparatedPathSafely" value="getObjectValueByDotSeparatedPathSafely($TARGET_OBJECT$, $DOT_SEPARATED_PATH$)" description="Eponymous function calling expression (YDF)" toReformat="false" toShortenFQNames="true">
     <variable name="TARGET_OBJECT" expression="clipboard()" defaultValue="&quot;targetObject&quot;" alwaysStopAt="true" />
-    <variable name="DOT_SEPARATED_PATH" expression="" defaultValue="&quot;foo.bar.baz&quot;" alwaysStopAt="true" />
+    <variable name="DOT_SEPARATED_PATH" expression="" defaultValue="&quot;\&quot;foo.bar.baz\&quot;&quot;" alwaysStopAt="true" />
     <context>
       <option name="CSS" value="true" />
       <option name="CSS_DECLARATION_BLOCK" value="false" />
@@ -495,7 +392,7 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="iosnv" value="iterateObjectSkippingNullValues($TARGET_OBJECT$, @(key, value) {&#10;&#10;})" description="`iterateObjectSkippingNullValues` function" toReformat="false" toShortenFQNames="true">
+  <template name="iterateObjectSkippingNullValues" value="iterateObjectSkippingNullValues($TARGET_OBJECT$, @(key, value) {&#10;&#10;})" description="Eponymous function calling expression (YDF)" toReformat="false" toShortenFQNames="true">
     <variable name="TARGET_OBJECT" expression="clipboard()" defaultValue="&quot;targetObject&quot;" alwaysStopAt="true" />
     <context>
       <option name="CSS" value="true" />
@@ -503,7 +400,7 @@
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
   </template>
-  <template name="fo" value="formatObject($END$)" description="`formatObject` function" toReformat="false" toShortenFQNames="true">
+  <template name="formatObject" value="formatObject($END$)" description="Eponymous YDF function calling expression" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="CSS" value="true" />
       <option name="CSS_DECLARATION_BLOCK" value="false" />
@@ -554,10 +451,7 @@
     <variable name="TARGET_ARRAY" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="NESTED_ARRAY" expression="" defaultValue="&quot;nestedArray&quot;" alwaysStopAt="true" />
     <context>
-      <option name="CSS" value="true" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
-      <option name="CSS_PROPERTY_VALUE" value="false" />
-      <option name="CSS_RULESET_LIST" value="false" />
+      <option name="CSS_DECLARATION_BLOCK" value="true" />
     </context>
   </template>
   <template name="iterateAssociativeArray" value="iterateAssociativeArray($TARGET_ARRAY$, @($KEY$, $VALUE$) {&#10;  p(&quot;Key: &quot; + $KEY$);&#10;  p(&quot;Value: &quot; + $VALUE$)&#10;})" description="`iterateAssociativeArray` function" toReformat="false" toShortenFQNames="true">
@@ -566,7 +460,6 @@
     <variable name="VALUE" expression="" defaultValue="&quot;value&quot;" alwaysStopAt="true" />
     <context>
       <option name="CSS" value="true" />
-      <option name="CSS_DECLARATION_BLOCK" value="false" />
       <option name="CSS_PROPERTY_VALUE" value="false" />
       <option name="CSS_RULESET_LIST" value="false" />
     </context>
@@ -689,7 +582,7 @@
       <option name="CSS_DECLARATION_BLOCK" value="true" />
     </context>
   </template>
-  <template name="oo" value="overrideObject($TARGET_OBJECT$, $OVERRIDINGS$)" description="`overrideObject` function" toReformat="false" toShortenFQNames="true">
+  <template name="overrideObject" value="overrideObject($TARGET_OBJECT$, $OVERRIDINGS$)" description="Eponymous function calling expression (YDF)" toReformat="false" toShortenFQNames="true">
     <variable name="TARGET_OBJECT" expression="clipboard()" defaultValue="&quot;targetObject&quot;" alwaysStopAt="true" />
     <variable name="OVERRIDINGS" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
@@ -712,17 +605,230 @@
       <option name="CSS_RULESET_LIST" value="true" />
     </context>
   </template>
-  <template name="med2p" value="WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 500px    &#10;    &#10;WideScreensConfiguration()&#10;  @media screen and (min-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH)&#10;    {block}&#10;&#10;NarrowScreensConfiguration()&#10;  @media screen and (max-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}" description="Media queries definitions for 2-pattern layout" toReformat="false" toShortenFQNames="true">
+  <template name="ydfcp" value="YDF_ColorPalette.$HUE$.$LIGHTNESS$&#10;&#10;// Hues:&#10;// red deepOrange orange amber deepYellow yellow youngFoliage green mint cyan skyBlue deepSkyBlue blue indigo deepPurple&#10;// purple magenta pink deepPink&#10;&#10;// Lightnesses:&#10;// dark mediumDark slightlyDark    bright      &#10;// slightlyLight mediumLight light pastelBright pastelSlightlyLight pastelMediumLight pastelLight faded&#10;// pastelGradient lightGradient darkGradient glossyGradient" description="`YDF_ColorPalette` object" toReformat="false" toShortenFQNames="true">
+    <variable name="HUE" expression="enum(&quot;red&quot;, &quot;deepOrange&quot;, &quot;orange&quot;, &quot;amber&quot;, &quot;deepYellow&quot;, &quot;yellow&quot;, &quot;youngFoliage&quot;, &quot;green&quot;, &quot;mint&quot;, &quot;cyan&quot;, &quot;skyBlue&quot;, &quot;deepSkyBlue&quot;, &quot;blue&quot;, &quot;indigo&quot;, &quot;deepPurple&quot;, &quot;purple&quot;, &quot;magenta&quot;, &quot;pink&quot;, &quot;deepPink&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="LIGHTNESS" expression="enum(&quot;dark&quot;, &quot;mediumDark&quot;, &quot;slightlyDark&quot;, &quot;bright&quot;, &quot;slightlyLight&quot;, &quot;mediumLight&quot;, &quot;light&quot;, &quot;pastelBright&quot;, &quot;pastelSlightlyLight&quot;, &quot;pastelMediumLight&quot;, &quot;pastelLight&quot;, &quot;faded&quot;, &quot;pastelGradient&quot;, &quot;lightGradient&quot;, &quot;darkGradient&quot;, &quot;glossyGradient&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="ydfc-fs" value="YDF_Configuration.fontsStacks.$FONTS_STACK$" description="The element of `YDF_Configuration.fontsStacks` associative array" toReformat="false" toShortenFQNames="true">
+    <variable name="FONTS_STACK" expression="enum(&quot;main&quot;, &quot;mainSansSerif&quot;, &quot;mainSerif&quot;, &quot;mainMonospaced&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="ydfc-tg" value="YDF_Configuration.textGeometry.$PROPERTY$" description="The element of `YDF_Configuration.textGeometry` associative array" toReformat="false" toShortenFQNames="true">
+    <variable name="PROPERTY" expression="enum(&quot;basicFontSize&quot;, &quot;basicLineHeight&quot;, &quot;basicLineHeightInMultilineTextBlocks&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="oydfc" value="// TODO For each propery, either set another value or delete to keep the default one &#10;overrideObject(&#10;&#9;YDF_Configuration, &#10;&#9;{$END$&#10;&#10;&#9;&#9;fontsStacks: {&#10;&#10;      main: unquote(\&#10;        &quot;system-ui,&quot; +\&#10;        &quot;-apple-system,&quot; +\&#10;        &quot;BlinkMacSystemFont,&quot; +\&#10;        &quot;Segoe UI,&quot; +\&#10;        &quot;Roboto,&quot; +\&#10;        &quot;Helvetica Neue,&quot; +\&#10;        &quot;Arial,&quot; +\&#10;        &quot;Noto Sans,&quot; +\&#10;        &quot;Liberation Sans,&quot; +\&#10;        &quot;sans-serif,&quot; +\&#10;        &quot;Apple Color Emoji,&quot; +\&#10;        &quot;Segoe UI Emoji,&quot; +\&#10;        &quot;Segoe UI Symbol,&quot; +\&#10;        &quot;Noto Color Emoji&quot;&#10;      ),&#10;&#10;&#9;&#9;&#9;mainSansSerif: unquote(\&#10;&#9;&#9;&#9;&#9;&quot;system-ui,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;-apple-system,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;BlinkMacSystemFont,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Segoe UI,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Roboto,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Helvetica Neue,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Arial,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Noto Sans,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Liberation Sans,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;sans-serif,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Apple Color Emoji,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Segoe UI Emoji,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Segoe UI Symbol,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Noto Color Emoji&quot;&#10;&#9;&#9;&#9;),&#10;&#10;&#9;&#9;&#9;mainSerif: unquote(&#10;&#9;&#9;&#9;&#9;&quot;TimesNewRoman,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Times New Roman,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Times,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Baskerville,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Georgia,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;serif&quot;&#10;&#9;&#9;&#9;),&#10;&#10;&#9;&#9;&#9;mainMonospaced: unquote(&#10;&#9;&#9;&#9;&#9;&quot;Lucida Console,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Lucida Sans Typewriter,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;monaco,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;Bitstream Vera Sans Mono,&quot; +\&#10;&#9;&#9;&#9;&#9;&quot;monospace&quot;&#10;&#9;&#9;&#9;)&#10;&#10;&#9;&#9;},&#10;&#10;&#9;&#9;textGeometry: {&#10;&#9;&#9;&#9;basicFontSize: 14px,&#10;&#9;&#9;&#9;basicLineHeight: 1,&#10;&#9;&#9;&#9;basicLineHeightInMultilineTextBlocks: 1.4&#10;&#9;&#9;},&#10;&#10;&#9;&#9;zIndexes: {&#10;&#9;&#9;&#9;lowermostLayer: 0,&#10;&#9;&#9;&#9;drawers: 10,&#10;&#9;&#9;&#9;floatingBelowModalsComponents: 20,&#10;&#9;&#9;&#9;modalsUnderlay: 30,&#10;&#9;&#9;&#9;floatingAboveModalsComponents: 40,&#10;&#9;&#9;&#9;blockingOverlay: 50,&#10;&#9;&#9;&#9;floatingNotifications: 60&#10;&#9;&#9;}&#10;&#10;&#9;}&#10;)" description="Override the `YDF_Configuration` object" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="CSS_RULESET_LIST" value="true" />
+    </context>
+  </template>
+  <template name="ydfc" value="YDF_Configuration.$GROUP$.$END$&#10;&#10;/*&#10;&#10; + fontsStacks&#10;   + main&#10;   + mainSansSerif&#10;   + mainSerif&#10;   + mainMonospaced&#10;&#10; + textGeometry&#10;   + basicFontSize&#10;   + basicLineHeight&#10;   + basicLineHeightInMultilineTextBlocks&#10;   &#10; + zIndexes&#10;   + lowermostLayer&#10;   + drawers&#10;   + floatingBelowModalsComponents&#10;   + modalsUnderlay&#10;   + floatingAboveModalsComponents&#10;   + blockingOverlay&#10;   + floatingNotifications&#10;&#10;*/" description="`YDF_Configuration` object" toReformat="false" toShortenFQNames="true">
+    <variable name="GROUP" expression="enum(&quot;fontsStacks&quot;, &quot;textGeometry&quot;, &quot;zIndexes&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+    </context>
+  </template>
+  <template name="isCalcExpression" value="isCalcExpression($END$)" description="`isCalcExpression` function" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_PROPERTY_VALUE" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="isFunction" value="isFunction($END$)" description="`isFunction` function" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_PROPERTY_VALUE" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="appendUnit" value="appendUnit($NUMBER$, &quot;$UNIT$&quot;)" description="`appendUnit` function (YDF)" toReformat="false" toShortenFQNames="true">
+    <variable name="NUMBER" expression="" defaultValue="&quot;1&quot;" alwaysStopAt="true" />
+    <variable name="UNIT" expression="" defaultValue="&quot;px&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_PROPERTY_VALUE" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="computeExtraSpaceCausedByLineHeightAtTopOrBottom" value="// One line&#10;computeExtraSpaceCausedByLineHeightAtTopOrBottom({ fontSize: $FONT_SIZE$, lineSpacing: $LINE_SPACING$, lineHeight: $LINE_HEIGHT$ })&#10;&#10;// Multi lines&#10;computeExtraSpaceCausedByLineHeightAtTopOrBottom({ &#10;  fontSize: $FONT_SIZE$, &#10;  lineSpacing: $LINE_SPACING$, &#10;  lineHeight: $LINE_HEIGHT$ &#10;})&#10;// TODO Select between &quot;lineSpacing&quot; and &quot;lineHeight&quot; then delete remaining one&#10;// === END OF AUTOMATICALLY GENERATED CODE =============================================================================" description="`computeExtraSpaceCausedByLineHeightAtTopOrBottom` function (YDF)" toReformat="false" toShortenFQNames="true">
+    <variable name="FONT_SIZE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LINE_SPACING" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LINE_HEIGHT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_PROPERTY_VALUE" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="getLineHeightByFontSizeAndLineSpacing" value="getLineHeightByFontSizeAndLineSpacing({&#10;  fontSize: $FONT_SIZE$,&#10;  lineSpacing: $LINE_SPACING$,&#10;  mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: $MUST_MAKE_LINE_HEIGHT_EQUAL_TO_FONT_SIZE_WHEN_LINE_SPACING_IS_0$,&#10;  mustOutputDimensionalQuantityIfPossible: $MUST_OUTPUT_DIMENSIONAL_QUANTITY_IF_POSSIBLE$&#10;})" description="Eponymous function calling expression (YDF)" toReformat="false" toShortenFQNames="true">
+    <variable name="FONT_SIZE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LINE_SPACING" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MUST_MAKE_LINE_HEIGHT_EQUAL_TO_FONT_SIZE_WHEN_LINE_SPACING_IS_0" expression="enum(&quot;true&quot;, &quot;false&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="MUST_OUTPUT_DIMENSIONAL_QUANTITY_IF_POSSIBLE" expression="enum(&quot;true&quot;, &quot;false&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_PROPERTY_VALUE" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="getLineSpacingByFontSizeAndLineHeight" value="getLineSpacingByFontSizeAndLineHeight({&#10;  fontSize: $FONT_SIZE$,&#10;  lineHeight: $LINE_HEIGHT$,&#10;  mustOutputDimensionalQuantityIfPossible: $MUST_OUTPUT_DIMENSIONAL_QUANTITY_IF_POSSIBLE$&#10;})" description="Eponymous function calling expression (YDF)" toReformat="false" toShortenFQNames="true">
+    <variable name="FONT_SIZE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LINE_HEIGHT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MUST_OUTPUT_DIMENSIONAL_QUANTITY_IF_POSSIBLE" expression="enum(&quot;true&quot;, &quot;false&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_PROPERTY_VALUE" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="removeUnitFromAmount" value="removeUnitFromAmount($AMOUNT$)" description="Eponymous function calling expression (YDF)" toReformat="false" toShortenFQNames="true">
+    <variable name="AMOUNT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_PROPERTY_VALUE" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="createObjectWithComputedProperties" value="createObjectWithComputedProperties(&#10;  {&#10;    // TODO Specify properties&#10;    $END$&#10;  }, &#10;  @(objectWithoutGetters) =&gt; {&#10;    // TODO Add computed properties  &#10;  }&#10;)" description="Eponymous YDF function calling expression" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_PROPERTY_VALUE" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="ensc" value="+ExtraNarrowScreensConfiguration()&#10;&#10;  $END$" description="`ExtraNarrowScreensConfiguration` media query" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="CSS_DECLARATION_BLOCK" value="true" />
     </context>
   </template>
-  <template name="med5p" value="EXTRA_WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 1024px&#10;WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 860px&#10;MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 680px&#10;NARROW_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 500px&#10;&#10;ExtraWideScreensLayout()&#10;  @media screen and (min-width: EXTRA_WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH)&#10;    {block}&#10;&#10;WideScreensLayout()&#10;  @media screen and (min-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH) and (max-width: EXTRA_WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;&#10;MediumScreensLayout()&#10;  @media screen and (min-width: MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH) and (max-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;&#10;NarrowScreensLayout()&#10;  @media screen and (min-width: NARROW_SCREENS_CONFIGURATION_MINIMAL_WIDTH) and (max-width: MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;&#10;ExtraNarrowScreensLayout()&#10;  @media screen and (max-width: NARROW_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}" description="Media queries definitions for 5-patterns layout" toReformat="false" toShortenFQNames="true">
+  <template name="NARROWEST_SCREEN_WIDTH_UNIT--YDF" value="NARROWEST_SCREEN_WIDTH_UNIT--YDF" description="`NARROWEST_SCREEN_WIDTH_UNIT--YDF` constant (320px)" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="DataTypes--YDF" value="DataTypes--YDF.$TYPE$" description="`DataTypes--YDF` enumeration" toReformat="false" toShortenFQNames="true">
+    <variable name="TYPE" expression="enum(&quot;dimensionalQuantity&quot;, &quot;dimensionlessQuantity&quot;, &quot;string&quot;, &quot;boolean&quot;, &quot;object&quot;, &quot;colorDefinition&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_PROPERTY_VALUE" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="SMALLEST_DIVISION_OF_CSS_PIXEL--YDF" value="SMALLEST_DIVISION_OF_CSS_PIXEL--YDF" description="`SMALLEST_DIVISION_OF_CSS_PIXEL--YDF` constant (0.02)" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="sdocp" value="SMALLEST_DIVISION_OF_CSS_PIXEL--YDF" description="`SMALLEST_DIVISION_OF_CSS_PIXEL--YDF` constant (0.02)" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="PracticalColorCoordinateSystem--YDF" value="PracticalColorCoordinateSystem--YDF.$TONE$.$COLOR$&#10;&#10;// * Available tones: &quot;vivid&quot;, &quot;bright&quot;, &quot;strong&quot;, &quot;deep&quot;, &quot;light&quot;, &quot;soft&quot;, &quot;dull&quot;, &quot;dark&quot;, &quot;pale&quot;, &quot;lightGrayish&quot;, &#10;//       &quot;grayish&quot;, &quot;darkGrayish&quot;, &quot;white&quot;, &quot;lightGray8_5&quot;, &quot;lightGray7_5&quot;, &quot;mediumGray6_5&quot;, &quot;mediumGray5_5&quot;, &quot;mediumGray4_5&quot;, &#10;//       &quot;darkGray3_5&quot;, &quot;darkGray2_5&quot;, &quot;black&quot;&#10;// * Available colors: &quot;purplishRed1&quot;, &quot;red2&quot;, &quot;yellowishRed3&quot;, &quot;reddishOrange4&quot;, &quot;orange5&quot;, &quot;yellowishOrange6&quot;, &#10;//       &quot;reddishYellow7&quot;, &quot;yellow8&quot;, &quot;greenishYellow9&quot;, &quot;yellowGreen10&quot;, &quot;yellowishGreen11&quot;, &quot;green12&quot;, &quot;bluishGreen13&quot;, &#10;//       &quot;blueGreen14&quot;, &quot;blueGreen15&quot;, &quot;geenishBlue16&quot;, &quot;blue17&quot;, &quot;blue18&quot;, &quot;purplishBlue19&quot;, &quot;violet20&quot;, &quot;bluishPurple21&quot;,&#10;//       &quot;purple22&quot;, &quot;reddishPurple23&quot;, &quot;redPurple24&quot; (except white, lightGray8_5, etc. until black!) &#10;" description="`PracticalColorCoordinateSystem--YDF` object" toReformat="false" toShortenFQNames="true">
+    <variable name="TONE" expression="enum(&quot;vivid&quot;, &quot;bright&quot;, &quot;strong&quot;, &quot;deep&quot;, &quot;light&quot;, &quot;soft&quot;, &quot;dull&quot;, &quot;dark&quot;, &quot;pale&quot;, &quot;lightGrayish&quot;, &quot;grayish&quot;, &quot;darkGrayish&quot;, &quot;white&quot;, &quot;lightGray8_5&quot;, &quot;lightGray7_5&quot;, &quot;mediumGray6_5&quot;, &quot;mediumGray5_5&quot;, &quot;mediumGray4_5&quot;, &quot;darkGray3_5&quot;, &quot;darkGray2_5&quot;, &quot;black&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="COLOR" expression="enum(&quot;purplishRed1&quot;, &quot;red2&quot;, &quot;yellowishRed3&quot;, &quot;reddishOrange4&quot;, &quot;orange5&quot;, &quot;yellowishOrange6&quot;, &quot;reddishYellow7&quot;, &quot;yellow8&quot;, &quot;greenishYellow9&quot;, &quot;yellowGreen10&quot;, &quot;yellowishGreen11&quot;, &quot;green12&quot;, &quot;bluishGreen13&quot;, &quot;blueGreen14&quot;, &quot;blueGreen15&quot;, &quot;geenishBlue16&quot;, &quot;blue17&quot;, &quot;blue18&quot;, &quot;purplishBlue19&quot;, &quot;violet20&quot;, &quot;bluishPurple21&quot;, &quot;purple22&quot;, &quot;reddishPurple23&quot;, &quot;redPurple24&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="tsh" value="TemporarySemitransparentHighlighting--YDF.$TONE$.$OPACITY$&#10;// * Available tones: red, orange, yellow, green, cyan, blue, magenta, purple&#10;// * Available opacity values: opacity10Percent, opacity25Percent, opacity50Percent, opacity75Percent" description="`TemporarySemitransparentHighlighting--YDF` object" toReformat="false" toShortenFQNames="true">
+    <variable name="TONE" expression="enum(&quot;red&quot;, &quot;orange&quot;, &quot;yellow&quot;, &quot;green&quot;, &quot;cyan&quot;, &quot;blue&quot;, &quot;magenta&quot;, &quot;purple&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="OPACITY" expression="enum(&quot;opacity10Percent&quot;, &quot;opacity25Percent&quot;, &quot;opacity50Percent&quot;, &quot;opacity75Percent&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+    </context>
+  </template>
+  <template name="bgc-tsh" value="background-color: TemporarySemitransparentHighlighting--YDF.$TONE$.$OPACITY$&#10;// * Available tones: red, orange, yellow, green, cyan, blue, magenta, purple&#10;// * Available opacity values: opacity10Percent, opacity25Percent, opacity50Percent, opacity75Percent" description="`background-color` property with value of `TemporarySemitransparentHighlighting--YDF` type" toReformat="false" toShortenFQNames="true">
+    <variable name="TONE" expression="enum(&quot;red&quot;, &quot;orange&quot;, &quot;yellow&quot;, &quot;green&quot;, &quot;cyan&quot;, &quot;blue&quot;, &quot;magenta&quot;, &quot;purple&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="OPACITY" expression="enum(&quot;opacity10Percent&quot;, &quot;opacity25Percent&quot;, &quot;opacity50Percent&quot;, &quot;opacity75Percent&quot;)" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="CSS_DECLARATION_BLOCK" value="true" />
     </context>
   </template>
-  <template name="med4c" value="EXTRA_WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 1024px&#10;WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 860px&#10;MEDIUM_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 680px&#10;NARROW_SCREENS_CONFIGURATION_MINIMAL_WIDTH = 500px&#10;&#10;ExtraWideScreensLayout()&#10;  @media screen and (min-width: EXTRA_WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH)&#10;    {block}&#10;&#10;WideScreensLayout()&#10;  @media screen and (min-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH) and (max-width: EXTRA_WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;&#10;NarrowScreensLayout()&#10;  @media screen and (min-width: NARROW_SCREENS_CONFIGURATION_MINIMAL_WIDTH) and (max-width: WIDE_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}&#10;&#10;ExtraNarrowScreensLayout()&#10;  @media screen and (max-width: NARROW_SCREENS_CONFIGURATION_MINIMAL_WIDTH - 1)&#10;    {block}" description="Media queries definitions for 4-patterns layout" toReformat="false" toShortenFQNames="true">
+  <template name="W3C_39_ShadesOfGray--YDF" value="W3C_39_ShadesOfGray--YDF[$NUMBER$]&#10;// Please note that valid number of element must be from 0 to 38 (not 39)" description="`W3C_39_ShadesOfGray--YDF` array" toReformat="false" toShortenFQNames="true">
+    <variable name="NUMBER" expression="enum(&quot;0&quot;,&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,&quot;5&quot;,&quot;6&quot;,&quot;7&quot;,&quot;8&quot;,&quot;9&quot;,&quot;10&quot;,&quot;11&quot;,&quot;12&quot;,&quot;13&quot;,&quot;14&quot;,&quot;15&quot;,&quot;16&quot;,&quot;17&quot;,&quot;18&quot;,&quot;19&quot;,&quot;20&quot;,&quot;21&quot;,&quot;22&quot;,&quot;23&quot;,&quot;24&quot;,&quot;25&quot;,&quot;26&quot;,&quot;27&quot;,&quot;28&quot;,&quot;29&quot;,&quot;30&quot;,&quot;31&quot;,&quot;32&quot;,&quot;33&quot;,&quot;34&quot;,&quot;35&quot;,&quot;36&quot;,&quot;37&quot;,&quot;38&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="YDF_ColorPalette" value="YDF_ColorPalette.$HUE$.$LIGHTNESS$&#10;&#10;// Hues:&#10;// red deepOrange orange amber deepYellow yellow youngFoliage green mint cyan skyBlue deepSkyBlue blue indigo deepPurple&#10;// purple magenta pink deepPink&#10;&#10;// Lightnesses:&#10;// dark mediumDark slightlyDark    bright      &#10;// slightlyLight mediumLight light pastelBright pastelSlightlyLight pastelMediumLight pastelLight faded&#10;// pastelGradient lightGradient darkGradient glossyGradient" description="`YDF_ColorPalette` object" toReformat="false" toShortenFQNames="true">
+    <variable name="HUE" expression="enum(&quot;red&quot;, &quot;deepOrange&quot;, &quot;orange&quot;, &quot;amber&quot;, &quot;deepYellow&quot;, &quot;yellow&quot;, &quot;youngFoliage&quot;, &quot;green&quot;, &quot;mint&quot;, &quot;cyan&quot;, &quot;skyBlue&quot;, &quot;deepSkyBlue&quot;, &quot;blue&quot;, &quot;indigo&quot;, &quot;deepPurple&quot;, &quot;purple&quot;, &quot;magenta&quot;, &quot;pink&quot;, &quot;deepPink&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="LIGHTNESS" expression="enum(&quot;dark&quot;, &quot;mediumDark&quot;, &quot;slightlyDark&quot;, &quot;bright&quot;, &quot;slightlyLight&quot;, &quot;mediumLight&quot;, &quot;light&quot;, &quot;pastelBright&quot;, &quot;pastelSlightlyLight&quot;, &quot;pastelMediumLight&quot;, &quot;pastelLight&quot;, &quot;faded&quot;, &quot;pastelGradient&quot;, &quot;lightGradient&quot;, &quot;darkGradient&quot;, &quot;glossyGradient&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+      <option name="CSS_DECLARATION_BLOCK" value="false" />
+      <option name="CSS_RULESET_LIST" value="false" />
+    </context>
+  </template>
+  <template name="c-ydfcp" value="color: YDF_ColorPalette.$HUE$.$LIGHTNESS$&#10;&#10;// Hues:&#10;// red deepOrange orange amber deepYellow yellow youngFoliage green mint cyan skyBlue deepSkyBlue blue indigo deepPurple&#10;// purple magenta pink deepPink&#10;&#10;// Lightnesses:&#10;// dark mediumDark slightlyDark    bright      &#10;// slightlyLight mediumLight light pastelBright pastelSlightlyLight pastelMediumLight pastelLight faded&#10;// pastelGradient lightGradient darkGradient glossyGradient" description="`color` property with value of `YDF_ColorPalette` type" toReformat="false" toShortenFQNames="true">
+    <variable name="HUE" expression="enum(&quot;red&quot;, &quot;deepOrange&quot;, &quot;orange&quot;, &quot;amber&quot;, &quot;deepYellow&quot;, &quot;yellow&quot;, &quot;youngFoliage&quot;, &quot;green&quot;, &quot;mint&quot;, &quot;cyan&quot;, &quot;skyBlue&quot;, &quot;deepSkyBlue&quot;, &quot;blue&quot;, &quot;indigo&quot;, &quot;deepPurple&quot;, &quot;purple&quot;, &quot;magenta&quot;, &quot;pink&quot;, &quot;deepPink&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="LIGHTNESS" expression="enum(&quot;dark&quot;, &quot;mediumDark&quot;, &quot;slightlyDark&quot;, &quot;bright&quot;, &quot;slightlyLight&quot;, &quot;mediumLight&quot;, &quot;light&quot;, &quot;pastelBright&quot;, &quot;pastelSlightlyLight&quot;, &quot;pastelMediumLight&quot;, &quot;pastelLight&quot;, &quot;faded&quot;, &quot;pastelGradient&quot;, &quot;lightGradient&quot;, &quot;darkGradient&quot;, &quot;glossyGradient&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS_DECLARATION_BLOCK" value="true" />
+    </context>
+  </template>
+  <template name="bgc-ydfcs" value="backgroud-color: YDF_ColorPalette.$HUE$.$LIGHTNESS$&#10;&#10;// Hues:&#10;// red deepOrange orange amber deepYellow yellow youngFoliage green mint cyan skyBlue deepSkyBlue blue indigo deepPurple&#10;// purple magenta pink deepPink&#10;&#10;// Lightnesses:&#10;// dark mediumDark slightlyDark    bright      &#10;// slightlyLight mediumLight light pastelBright pastelSlightlyLight pastelMediumLight pastelLight faded&#10;// pastelGradient lightGradient darkGradient glossyGradient" description="`backgroud-color` property with value of `YDF_ColorPalette` type" toReformat="false" toShortenFQNames="true">
+    <variable name="HUE" expression="enum(&quot;red&quot;, &quot;deepOrange&quot;, &quot;orange&quot;, &quot;amber&quot;, &quot;deepYellow&quot;, &quot;yellow&quot;, &quot;youngFoliage&quot;, &quot;green&quot;, &quot;mint&quot;, &quot;cyan&quot;, &quot;skyBlue&quot;, &quot;deepSkyBlue&quot;, &quot;blue&quot;, &quot;indigo&quot;, &quot;deepPurple&quot;, &quot;purple&quot;, &quot;magenta&quot;, &quot;pink&quot;, &quot;deepPink&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="LIGHTNESS" expression="enum(&quot;dark&quot;, &quot;mediumDark&quot;, &quot;slightlyDark&quot;, &quot;bright&quot;, &quot;slightlyLight&quot;, &quot;mediumLight&quot;, &quot;light&quot;, &quot;pastelBright&quot;, &quot;pastelSlightlyLight&quot;, &quot;pastelMediumLight&quot;, &quot;pastelLight&quot;, &quot;faded&quot;, &quot;pastelGradient&quot;, &quot;lightGradient&quot;, &quot;darkGradient&quot;, &quot;glossyGradient&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS_DECLARATION_BLOCK" value="true" />
+    </context>
+  </template>
+  <template name="bgi-ydfcp" value="backgroud-image: appendDirectionToLinearGradientColorStopsExpression--YDF($DIRECTION$, YDF_ColorPalette.$HUE$.$GRADIENT_TYPE$)&#10;&#10;// Hues:&#10;// red deepOrange orange amber deepYellow yellow youngFoliage green mint cyan skyBlue deepSkyBlue blue indigo deepPurple&#10;// purple magenta pink deepPink&#10;&#10;// Gradient types:&#10;// pastelGradient lightGradient darkGradient glossyGradient" description="`backgroud-image` property with gradient value of `YDF_ColorPalette` type" toReformat="false" toShortenFQNames="true">
+    <variable name="DIRECTION" expression="enum(&quot;to top&quot;, &quot;to bottom&quot;, &quot;to left&quot;, &quot;to right&quot;, &quot;Ndeg&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="HUE" expression="enum(&quot;red&quot;, &quot;deepOrange&quot;, &quot;orange&quot;, &quot;amber&quot;, &quot;deepYellow&quot;, &quot;yellow&quot;, &quot;youngFoliage&quot;, &quot;green&quot;, &quot;mint&quot;, &quot;cyan&quot;, &quot;skyBlue&quot;, &quot;deepSkyBlue&quot;, &quot;blue&quot;, &quot;indigo&quot;, &quot;deepPurple&quot;, &quot;purple&quot;, &quot;magenta&quot;, &quot;pink&quot;, &quot;deepPink&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="GRADIENT_TYPE" expression="enum(&quot;pastelGradient&quot;, &quot;lightGradient&quot;, &quot;darkGradient&quot;, &quot;glossyGradient&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS_DECLARATION_BLOCK" value="true" />
+    </context>
+  </template>
+  <template name="YDF_Configuration" value="YDF_Configuration.$GROUP$.$END$&#10;&#10;/*&#10;&#10; + fontsStacks&#10;   + main&#10;   + mainSansSerif&#10;   + mainSerif&#10;   + mainMonospaced&#10;&#10; + textGeometry&#10;   + basicFontSize&#10;   + basicLineHeight&#10;   + basicLineHeightInMultilineTextBlocks&#10;   &#10; + zIndexes&#10;   + lowermostLayer&#10;   + drawers&#10;   + floatingBelowModalsComponents&#10;   + modalsUnderlay&#10;   + floatingAboveModalsComponents&#10;   + blockingOverlay&#10;   + floatingNotifications&#10;&#10;*/" description="`YDF_Configuration` object" toReformat="false" toShortenFQNames="true">
+    <variable name="GROUP" expression="enum(&quot;fontsStacks&quot;, &quot;textGeometry&quot;, &quot;zIndexes&quot;)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS" value="true" />
+    </context>
+  </template>
+  <template name="CenteredContentWithDynamicInlinePaddings" value="CenteredContentWithDynamicInlinePaddings--YDF({&#10;  maximalContentWidth: $MINIMAL_CONTENT_WIDTH$,&#10;  minimalInlinePaddings: $MINIMAL_INLINE_PADDINGS$&#10;})" description="`CenteredContentWithDynamicInlinePaddings` mixin (YDF)" toReformat="false" toShortenFQNames="true">
+    <variable name="MINIMAL_CONTENT_WIDTH" expression="" defaultValue="&quot;3*NARROWEST_SCREEN_WIDTH_UNIT--YDF&quot;" alwaysStopAt="true" />
+    <variable name="MINIMAL_INLINE_PADDINGS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="CSS_DECLARATION_BLOCK" value="true" />
+    </context>
+  </template>
+  <template name="ccwdip" value="CenteredContentWithDynamicInlinePaddings--YDF({&#10;  maximalContentWidth: $MINIMAL_CONTENT_WIDTH$,&#10;  minimalInlinePaddings: $MINIMAL_INLINE_PADDINGS$&#10;})" description="`CenteredContentWithDynamicInlinePaddings` mixin (YDF)" toReformat="false" toShortenFQNames="true">
+    <variable name="MINIMAL_CONTENT_WIDTH" expression="" defaultValue="&quot;3*NARROWEST_SCREEN_WIDTH_UNIT--YDF&quot;" alwaysStopAt="true" />
+    <variable name="MINIMAL_INLINE_PADDINGS" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="CSS_DECLARATION_BLOCK" value="true" />
     </context>

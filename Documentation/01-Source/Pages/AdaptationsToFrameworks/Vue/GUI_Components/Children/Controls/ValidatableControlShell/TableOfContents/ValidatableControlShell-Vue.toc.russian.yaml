@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "Краткий обзор"
+
+ValidatableControlShellClass:
+
+  $heading: "Класс <code>ValidatableControlShellClass</code>"
+
+  vueProperties:
+
+    $heading: "Vue-свойства"

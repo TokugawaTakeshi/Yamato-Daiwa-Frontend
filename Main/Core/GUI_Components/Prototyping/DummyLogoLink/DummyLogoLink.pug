@@ -1,0 +1,18 @@
+mixin DummyLogoLink--YDF(properties)
+
+  -
+    const {
+      iconTextContent,
+      heading = "NNN Application Prototype",
+      subheading
+    } = properties
+
+
+  a.DummyLogoLink--YDF(
+    href="#"
+  )&attributes(attributes)
+
+    .DummyLogoLink--YDF-Icon= iconTextContent
+
+    .DummyLogoLink--YDF-Heading= heading
+    .DummyLogoLink--YDF-Subheading= subheading

@@ -1,0 +1,20 @@
+extends ../../../../../node_modules/@yamato-daiwa/frontend/PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: "ValidatableControlShell Component Testing"
+      },
+      scriptsURIs: {
+        atEndOfBody: [ "@Workbenches/GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell.workbench" ]
+      }
+    });
+
+
+block append PageContent
+
+  #APPLICATION

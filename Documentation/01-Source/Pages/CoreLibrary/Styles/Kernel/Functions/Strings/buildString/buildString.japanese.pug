@@ -1,0 +1,192 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.japanese.pug
+  include ../../../../../../../SharedComponents/SharedComponents.japanese.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle("buildString"),
+        description: MetaDescriptionTemplates.stylusFunction({
+          functionName: "buildString",
+          whatFunctionDoes: "ES6テンプレートリテラルと似た様な構文を活用し、文字列を組み合わせる機能を提供。"
+        })
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.styles.kernel.functions.strings.buildString");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.
+          strings.$children.buildString.$URI,
+      russian: routing.russian.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.
+          strings.$children.buildString.$URI
+    });
+
+    const {
+      $sectioning: localizedSectioning,
+      $heading: topHeading
+    } = routing.japanese.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.
+        strings.$children.buildString;
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    +CallableExpressionScheme--YDF_DK({
+      technicalName: "buildString",
+      parametersSpecification: [
+        {
+          genericTechnicalName: "targetString",
+          localizedName: "対象文字列",
+          type: "string",
+          required: true,
+        },
+        {
+          genericTechnicalName: "templateVariables",
+          localizedName: "テンプレート変数",
+          type: "object",
+          required: true
+        },
+      ],
+      returnedValue: "string",
+      headingTag: "h1"
+    })
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.notCheckedByNativeSpeakers })
+
+    p.Article-Paragraph
+      +Link--YDF({
+        unendorsedExternalURI: sharedExternalLinks.mdn.javaScript.string.ES6TemplateLiteral
+      }) ES6テンプレートリテラル
+      | と似た様な構文を活用し、#[+Term--YDID 文字列]を組み合わせる機能を提供。
+      | 但し#[+ImportantEntity--YDID Stylus]#[+Term--YDID プリプロセッサ]の制限の為、#[+ImportantEntity--YDID ２引数目]で
+      |   #[+Term--YDID キー]が#[+Term__Contrast--YDID テンプレート変数]と一致している様な#[+Term--YDID 連想配列]系の
+      |   #[+Term__Contrast--YDID オブジェクト]を渡す必要が有る。
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus })
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          p(buildString("Good morning, ${name}", { name: "Takeshi" }))
+        +CodeViewer-Explanation--YDF.
+          #[+Term--YDID 文字列]が短く、#[+Term--YDID 変数]も#[+ImportantEntity--YDID 1~2程度]しかない場合、
+            #[+ImportantEntity__Code--YDID buildString]と言う#[+Term--YDID 関数]呼び出し#[+Term__Contrast--YDID 表現]を
+            一行で展開出来ます。
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          p(buildString("Good morning, ${ name }", { name: "Takeshi" }))
+        +CodeViewer-Explanation--YDF.
+          #[+Term--YDID 山括弧]の中に#[+Keyword--YDID 半角]#[+Term--YDID 空白]使っても良いです。
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          p(
+            buildString(
+              "In the quaint village of ${ villageName }, nestled amidst the rolling hills of the countryside, lived the " +\
+                "${ familyName } family. " +\
+              "Mr. ${ givenName } ${ familyName }, a respected member of the community, was known for his " +\
+                "kindness and generosity.",
+              {
+                villageName: "Willowbrook",
+                familyName: "Thompson",
+                givenName: "Jonathan"
+              }
+            )
+          )
+        +CodeViewer-Explanation--YDF.
+          普通だと、コードは複数行に成ります。
+          #[+ImportantEntity--YDID Stylus]#[+Term--YDID プリプロセッサ]は同じ行内#[+Term__Contrast--YDID 逆斜線]の後で
+            #[+Keyphrase--YDID #[+Term--YDID 半角空白]を含めて]文字を許していないので、折り返しの際気を付けて下さい。
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          p(buildString("You have ${ messagesCount } message(s)", { messagesCount: 2 }))
+        +CodeViewer-Explanation--YDF.
+          数型の値も補間出来ます。
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          // 不正構文！！
+          p(buildString("Good morning, ${name}", { name }));
+        +CodeViewer-Explanation--YDF.
+          残念ながら、#[+ImportantEntity--YDID ECMAScript 2015]以降#[+ImportantEntity--YDID ECMAScript系]言語に追加された
+            #[+Term--YDID オブジェクト・ショートハンド・プロパティ]は#[+ImportantEntity--YDID Stylus]#[+Term--YDID プリプロセッサ]には
+            #[+Keyword--YDID 無い]。
+
+
+    //- ━━━ 文字列組み合わせ方法の比較 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.interpolationMethodsComparison.$heading,
+      HTML_ID: localizedSectioning.interpolationMethodsComparison.$anchor
+    }).Article-Heading2
+
+    //- ─── ネイティブ連結 ─────────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.interpolationMethodsComparison.$children.concatenation.$heading,
+      HTML_ID: localizedSectioning.interpolationMethodsComparison.$children.concatenation.$anchor
+    }).Article-Heading3
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }).
+        givenName = "Takeshi"
+        familyName = "Tokugawa"
+
+        p("Good morning, " + givenName + " " + familyName)
+
+
+    //- ─── Sprintf （ネイティブ） ─────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.interpolationMethodsComparison.$children.sprintf.$heading,
+      HTML_ID: localizedSectioning.interpolationMethodsComparison.$children.sprintf.$anchor
+    }).Article-Heading3
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }).
+        givenName = "Takeshi"
+        familyName = "Tokugawa"
+
+        outputString = "Good morning, %s %s" % (unquote(givenName) unquote(familyName))
+
+        p(outputString)
+
+
+    //- ─── `buildString` (YDF) ────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+     level: 3,
+     innerHTML: localizedSectioning.interpolationMethodsComparison.$children.buildString.$heading,
+     HTML_ID: localizedSectioning.interpolationMethodsComparison.$children.buildString.$anchor
+    }).Article-Heading3
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }).
+        p(
+          buildString(
+            "Good morning, ${ givenName } ${ familyName }",
+            {
+              givenName: "Takeshi",
+              familyName: "Tokugawa"
+            }
+          )
+        )

@@ -1,0 +1,9 @@
+extends _ClosingButtonGalleryPage.template.pug
+
+
+block append Metadata
+
+  -
+
+    RegularWebPageTemplate__YDF.metadata.title = generateHTML_PageTitle();
+    GalleryConfigurator.visuallyHideTopHeadingIf(__IS_PRODUCTION_BUILDING_MODE__);

@@ -1,0 +1,17 @@
+﻿$projectBuilding:
+
+  $stylesProcessing:
+
+    $entryPointsGroups:
+
+      Workbenches:
+
+        $sourceFilesTopDirectoryRelativePath: Pages
+
+        $partialsRecognition:
+          $excludeFilesWithPrefixes: "_"
+          $excludeSubdirectoriesWithPrefixes: "_"
+
+        $buildingModeDependent:
+          $localDevelopment:
+            $outputTopDirectoryRelativePath: wwwroot/css

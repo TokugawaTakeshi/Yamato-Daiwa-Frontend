@@ -1,0 +1,21 @@
+@using YamatoDaiwa.CSharpExtensions
+
+@implements YamatoDaiwa.Frontend.GUI_Components.Abstractions.IHTML_AttributesFallthrough
+
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 18 20"
+  class=@(rootElementHTML_Attributes?.TryGetValue("class", out object? classValue) == true ? classValue : null)
+  @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary
+>
+  <path d="M17.75 2.51L14.62.06H14.16a.59.59 0 00-.38.23l-1.57 1.96 4.05 3.28 1.62-2.17a.61.61 0 00-.13-.85zM2.85 14.59L2 19.53a.35.35 0 00.38.4.16.16 0 00.09 0L7 17.79l9-11.93-4.14-3.28zm3.64 2.07v.42l-.08.11-2.74 1.31L3 18l.52-3.1.08-.11.4-.06h.08a.47.47 0 01.38.1.57.57 0 01.2.36A1.08 1.08 0 005 16a1.06 1.06 0 00.86.21.46.46 0 01.39.1.52.52 0 01.19.36zM14.9 5.94l-7.85 10.4v-.45a.5.5 0 00-.19-.36.46.46 0 00-.39-.1 1.06 1.06 0 01-.86-.21 1.12 1.12 0 01-.43-.79A.52.52 0 005 14a.5.5 0 00-.39-.1l-.47.1L12 3.64zM6 4.4H3.6V2H2.4v2.4H0v1.2h2.4V8h1.2V5.6H6V4.4z"></path>
+</svg>
+
+
+@code {
+
+  [Microsoft.AspNetCore.Components.Parameter(CaptureUnmatchedValues = true)]
+  public Dictionary<string, object>? rootElementHTML_Attributes { get; set; }
+
+}

@@ -1,0 +1,10 @@
+buildString--YDF(template, variables)
+
+  workpiece = template
+
+  for variableName, variableValue in variables
+
+    // [ Theory ] Before use the "variableValue" in "replace" it is required to convert it to string
+    workpiece = replace("\${\s*" + variableName + "\s*}", "" + variableValue, workpiece)
+
+  return workpiece

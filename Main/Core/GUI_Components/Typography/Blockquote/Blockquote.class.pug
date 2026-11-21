@@ -1,0 +1,105 @@
+-
+
+  class Blockquote__YDF {
+
+    static CSS_NAMESPACE = "Blockquote--YDF";
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static Themes = { regular: "REGULAR" };
+
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineThemes(themesNames, Blockquote__YDF);
+    }
+
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    static considerThemesAsCommon() {
+      Blockquote__YDF.areThemesCSS_ClassesCommon = true;
+      return Blockquote__YDF;
+    }
+
+
+    /* ─── Geometric Variations ───────────────────────────────────────────────────────────────────────────────────── */
+    static GeometricVariations = { regular: "REGULAR" };
+
+    static defineGeometricVariations(geometricVariationsNames) {
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, Blockquote__YDF);
+    }
+
+
+    /* ─── Decorative Variations ──────────────────────────────────────────────────────────────────────────────────── */
+    static DecorativeVariations = { regular: "REGULAR" };
+
+    static defineDecorativeVariations(decorativeVariationsNames) {
+      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, Badge__YDF);
+    }
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    static propertiesSpecification = {
+
+      authorPhotoURI: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      authorPhotoAlternatingText: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      publicationPhotoURI: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      publicationPhotoAlternatingText: {
+        type: String,
+        isUndefinedForbidden: false,
+        isNullForbidden: true,
+        minimalCharactersCount: 1
+      },
+
+      theme: {
+        type: String,
+        undefinedValueSubstitution: Blockquote__YDF.Themes.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Blockquote__YDF.Themes).
+            map(([ key, value ]) => ({ key: `Blockquote__YDF.Themes.${ key }`, value }))
+      },
+
+      areThemesCSS_ClassesCommon: {
+        type: Boolean,
+        undefinedValueSubstitution: Blockquote__YDF.areThemesCSS_ClassesCommon,
+        isNullForbidden: true
+      },
+
+      geometricVariation: {
+        type: String,
+        undefinedValueSubstitution: Blockquote__YDF.GeometricVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Blockquote__YDF.GeometricVariations).
+            map(([ key, value ]) => ({ key: `Blockquote__YDF.GeometricVariations.${ key }`, value }))
+      },
+
+      decorativeVariation: {
+        type: String,
+        undefinedValueSubstitution: Blockquote__YDF.DecorativeVariations.regular,
+        isNullForbidden: true,
+        allowedAlternatives: Object.
+            entries(Blockquote__YDF.DecorativeVariations).
+            map(([ key, value ]) => ({ key: `Blockquote__YDF.DecorativeVariations.${ key }`, value }))
+      }
+
+    }
+
+  }

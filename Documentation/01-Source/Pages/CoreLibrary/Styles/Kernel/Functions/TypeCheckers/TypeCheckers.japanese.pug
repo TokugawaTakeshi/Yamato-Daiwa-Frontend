@@ -1,0 +1,610 @@
+extends ../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../SharedAssets/Markup/SharedAssets.japanese.pug
+  include ../../../../../../SharedComponents/SharedComponents.japanese.pug
+
+
+block append Metadata
+
+  -
+
+    const {
+      $heading: pageTopHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.typeCheckers;
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle(pageTopHeading),
+        description:
+          "やまとダイワフロントエンド（技術名：「Yamato Daiwa Frontend」、省略：「YDF」）というフロントエンド開発専用のライブラリは標準の「typeof」という" +
+            "Stylus関数より値についてより詳しい情報を得る為のStylus関数を提供している。"
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.
+          typeCheckers.$URI,
+      russian: routing.russian.coreLibrary.$children.styles.$children.kernel.$children.functions.$children.
+          typeCheckers.$URI
+    });
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ 値の型を確認 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= pageTopHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.notCheckedByNativeSpeakers })
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ┅┅┅ 文字列 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.strings.$heading,
+      HTML_ID: localizedSectioning.strings.$anchor
+    }).Article-Heading2
+
+
+    //- ╍╍╍ `isEmptyString` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.strings.$children.isEmptyString.$heading,
+      HTML_ID: localizedSectioning.strings.$children.isEmptyString.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]の#[+Term__Contrast--YDID 値]が#[+Keyword--YDID 空の]#[+Term--YDID 文字列]になっている時
+        #[+Keyword--YDID だけ]#[+ImportantEntity__Code--YDID true]を返し、其れ以外の場合には
+        #[+ImportantEntity__Code--YDID false]を返す。
+
+    p.Article-Paragraph.
+      簡易な#[+Term--YDID 関数]ではあるが、他の#[+ImportantEntity--YDID Stylus]#[+Term--YDID 関数]や#[+Term--YDID ミックスイン]
+        を開発する時役に立つ場合が有る。
+      例えば、#[+ImportantEntity__Code--YDID isDimensionlessQuantity]という他の値の型確認系の#[+Term--YDID 関数]を実装する時に
+        利用された。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus}): :code_listing--yda
+        isDimensionlessQuantity(value)
+
+          return typeof(value) == "unit" && isEmptyString(unit(value))
+
+
+    //- ╍╍╍ `isNonEmptyString` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.strings.$children.isNonEmptyString.$heading,
+      HTML_ID: localizedSectioning.strings.$children.isNonEmptyString.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]の#[+Term__Contrast--YDID 値]が#[+Keyword--YDID 空の]#[+Term--YDID 文字列]に
+        #[+Keyword--YDID なっていない]時#[+Keyword--YDID だけ]#[+ImportantEntity__Code--YDID true]を返し、其れ以外の場合には
+        #[+ImportantEntity__Code--YDID false]を返す。
+
+    +AdmonitionBlock--YDF({
+      SVG_Icon: true,
+      geometricVariation: AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike,
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning
+    }).
+      #[+ImportantEntity__Code--YDID isNonEmptyString(X)]は#[+ImportantEntity__Code--YDID !isEmptyString(X)]に
+        同等では#[+Keyword--YDID ない]。
+      上述通り、#[+ImportantEntity__Code--YDID isNonEmptyString(X)]は#[+Term--YDID 引数]の#[+Term__Contrast--YDID 値]が
+        #[+Term--YDID 文字列]だが空#[+Keyword--YDID でない]時#[+Keyword--YDID だけ]#[+ImportantEntity__Code--YDID true]
+        を返し、#[+ImportantEntity__Code--YDID !isEmptyString(X)]は#[+Term--YDID 引数]の#[+Term__Contrast--YDID 値]
+        が#[+Term--YDID 文字列]に#[+Keyword--YDID なっていない]時に#[+Keyword__Contrast--YDID も]
+        #[+ImportantEntity__Code--YDID true]を返す。
+
+    p.Article-Paragraph.
+      #[+ImportantEntity__Code--YDID !isNonEmptyString(X)]という利用もよく有る。
+      ２重否定（#[+Term--YDID 「non」]を含めて）は読みにくいが、#[+Keyword--YDID 空の]#[+Term--YDID 文字列]#[+Keyword--YDID 以外の]
+        #[+Term--YDID 値]を除外する機能は需要が有る。
+
+
+    //- ╍╍╍ `isString` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.strings.$children.isString.$heading,
+      HTML_ID: localizedSectioning.strings.$children.isString.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]の#[+Term__Contrast--YDID 値]が#[+Term--YDID 文字列]になっている時#[+Keyword--YDID だけ]
+        #[+ImportantEntity__Code--YDID true]を返す、但し#[+Keyword--YDID 文字数]は#[+Keyword__Contrast--YDID 不問]で、
+        #[+ImportantEntity--YDID 0]文字の時#[+Keyword--YDID も]#[+ImportantEntity__Code--YDID true]。
+      #[+ImportantEntity__Code--YDID typeof(value) == "string"]の短い同等。
+
+
+    //- ━━━ 量 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.quantities.$heading,
+      HTML_ID: localizedSectioning.quantities.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph.
+      殆どのプログラミング言語と違って、#[+Term--YDID CSSプリプロセッサ]になってる#[+ImportantEntity--YDID Stylus]は一般の#[+Term--YDID 数]
+        を取り扱っているのでは#[+Keyword--YDID なく]、#[+Term--YDID 量]を取り扱い、此れは#[+Term--YDID 次元量]・#[+Term--YDID 無次元量]の
+        #[+ImportantEntity--YDID ２種類]が在る。
+      何方を#[+ImportantEntity__Code--YDID typeof()]に渡しても、返す結果は#[+ImportantEntity--YDID "unit"]なので、
+        #[+Term--YDID 次元量]か#[+Term--YDID 無次元量]か明確にする必用が有る時追加の確認が必用。
+      此の目的の為に、下記の#[+Term--YDID 関数]の中、#[+ImportantEntity__Code--YDID isDimensionalQuantity]と
+        #[+ImportantEntity__Code--YDID isDimensionlessQuantity]も提供。
+      尚、#[+ImportantEntity__Code--YDID isDimensionalOrDimensionlessQuantity]#[+Term--YDID 関数]は
+        #[+ImportantEntity__Code--YDID typeof(x) == "unit"]の#[+Keyword--YDID 同等]になってはいるが、和訳すると、
+        #[+ImportantEntity__Code--YDID true]が#[+Term--YDID 次元量]の時#[+Keyword--YDID も]、#[+Term--YDID 無次元量]の時
+        #[+Keyword--YDID も]返される事が明確。
+
+
+    //- ╍╍╍ `isDimensionalOrDimensionlessQuantity` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.quantities.$children.isDimensionalOrDimensionlessQuantity.$heading,
+      HTML_ID: localizedSectioning.quantities.$children.isDimensionalOrDimensionlessQuantity.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]は#[+Term__Contrast--YDID 次元量]#[+Keyword--YDID 又は]#[+Term__Contrast--YDID 無次元量]になっている時
+        #[+ImportantEntity__Code--YDID true]を返す、#[+Keyword--YDID さもなくば]#[+ImportantEntity__Code--YDID false]を返す。
+      #[+ImportantEntity__Code--YDID typeof(x) == "unit"]に#[+Keyword--YDID 同等]だが、和訳すると、
+        #[+Term--YDID 次元量]に確認されるか、#[+Term--YDID 無次元量]に確認されるか（此の場合は両方）、明確に成る。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }): :code_listing--yda
+        log(isDimensionalOrDimensionlessQuantity(2px)) // true
+        log(isDimensionalOrDimensionlessQuantity(2))   // true
+
+
+    //- ╍╍╍ `isDimensionalQuantity` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.quantities.$children.isDimensionalQuantity.$heading,
+      HTML_ID: localizedSectioning.quantities.$children.isDimensionalQuantity.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]は#[+Keyword--YDID 次元量]になっている時#[+Keyword--YDID だけ]#[+ImportantEntity__Code--YDID true]を返す、
+        #[+Keyword--YDID さもなくば]#[+ImportantEntity__Code--YDID false]を返す。
+      但し、#[+ImportantEntity__Code--YDID 0]を#[+Keyword--YDID 次元量]として見做すかどうか、#[+ImportantEntity--YDID ２個目]の
+        #[+Term--YDID 引数]で指定#[+Keyword--YDID しなければいけない]。
+      #[+ImportantEntity--YDID CSS]の基礎に依ると、#[+Keyphrase--YDID #[+Term--YDID 単位]を関係なく]#[+Term--YDID 量]は
+        #[+ImportantEntity--YDID 0]の時#[+Term--YDID 単位]を#[+Keyword--YDID 省略]しても良い。
+      つまり、#[+ImportantEntity--YDID 0px]も、#[+ImportantEntity--YDID 0rem]、
+        #[+Keyphrase--YDID 現在の#[+ImportantEntity--YDID CSS]がサポートされる中の]他の#[+Term--YDID 単位]も
+        #[+ImportantEntity--YDID 0]に#[+Keyword--YDID 同等]。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus}): :code_listing--yda
+        isDimensionalQuantity(2px, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY") // true
+        isDimensionalQuantity(2, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY")   // false
+        isDimensionalQuantity(0, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY")   // true
+        isDimensionalQuantity(0, "MUST_NOT_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY") // false
+
+    +AdmonitionBlock--YDF({
+      title: "第２引数は必須",
+      SVG_Icon: true,
+      geometricVariation: AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike,
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning
+    }).
+      #[+Keyphrase--YDID #[+ImportantEntity--YDID 第１引数]の#[+Term--YDID 値]に関係#[+Keyword--YDID 無く]]、
+        #[+ImportantEntity--YDID 第２引数]の指定は#[+Keyword--YDID 必須]。
+
+    p.Article-Paragraph.
+      上記の例だと、#[+ImportantEntity--YDID 第１引数]の#[+Term--YDID 値]はハードディスクされたが、#[+Keyword--YDID 実践上]
+        #[+Keyword__Contrast--YDID 常に]#[+Keyword--YDID 動的]（事前に不明）なので、
+        #[+ImportantEntity--YDID 第２引数]は#[+Keyword--YDID 必須]になっている。
+
+
+    //- ╍╍╍ `isDimensionlessQuantity` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.quantities.$children.isDimensionlessQuantity.$heading,
+      HTML_ID: localizedSectioning.quantities.$children.isDimensionlessQuantity.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]は#[+Term--YDID 無次元量]になっている時#[+Keyword--YDID に限って]#[+ImportantEntity__Code--YDID true]を返す、
+        #[+Keyword--YDID さもなくば]#[+ImportantEntity__Code--YDID false]を返す。
+      但し、#[+ImportantEntity--YDID 0]は#[+Keyword--YDID いつも]#[+Term--YDID 無次元量]として取り扱われる事になっている。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus}): :code_listing--yda
+        isDimensionlessQuantity(2px) // false
+        isDimensionlessQuantity(2)   // true
+        isDimensionlessQuantity(0)   // true
+
+
+    //- ╍╍╍ `isNaturalNumber` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.quantities.$children.isNaturalNumber.$heading,
+      HTML_ID: localizedSectioning.quantities.$children.isNaturalNumber.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]は#[+Term--YDID 無次元量]であり、#[+Keyword--YDID 自然数]になっている時に#[+Keyword--YDID 限って]
+        #[+ImportantEntity__Code--YDID true]を返す、#[+Keyword--YDID さもなくば]#[+ImportantEntity__Code--YDID false]を返す。
+
+    +AdmonitionBlock--YDF({
+      SVG_Icon: true,
+      geometricVariation: AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike,
+      decorativeVariation: AdmonitionBlock__YDF.DecorativeVariations.warning
+    }) #[+ImportantEntity--YDID 0]が#[+Term--YDID 自然数]には#[+Keyword--YDID なっていない]事に気を付ける。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus }): :code_listing--yda
+        p(isNaturalNumber(1))    // true
+        p(isNaturalNumber(0))    // false
+        p(isNaturalNumber(1.1))  // false
+        p(isNaturalNumber(1e+1)) // false
+        p(isNaturalNumber(-1))   // false
+
+
+    //- ━━━ 真偽 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.booleans.$heading,
+      HTML_ID: localizedSectioning.booleans.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph.
+      取り組み#[+Term--YDID 型安全性]が#[+Keyword--YDID 無い]言語として、#[+ImportantEntity--YDID Stylus]は
+        #[+Keyword--YDID 非真偽型]の#[+Term--YDID 値]を#[+Keyword--YDID 自動的に]#[+Term--YDID 真偽型]に変換する
+        場合が有る（例えば、#[+Term--YDID 条件的表現]に於いて）。
+      とは言え、#[+ImportantEntity--YDID Stylus]の振る舞いは開発者達が慣れた#[+ImportantEntity--YDID JavaScript]らしい振る舞いと
+        異なる事が有る。
+      例えば、#[+ImportantEntity--YDID Stylus]言語だと、#[+SecondaryEntity__Code--YDID if someVariable]に於いて
+        #[+SecondaryEntity__Code--YDID someVariable]変数が初期化#[+Keyword--YDID されていなくても]、#[+Keyword--YDID true]が
+        返される。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus}): :code_listing--yda
+        definedVariable = true
+
+        if definedVariable
+
+          p("明かに、コンソールに出力される")
+
+
+        if undefinedVariable
+
+          p("'typeof(undefinedVariable)'が'ident'で、falseに変換されていないので、此方もコンソールに出力される")
+
+    p.Article-Paragraph.
+      予想外のバグを避けるには、#[+ImportantEntity__Code--YDID someVariable == true]か
+        #[+ImportantEntity__Code--YDID someVariable == false]の様に#[+Keyword--YDID 明示的に]比較する
+        #[+Keyword--YDID 推薦]だが、当ライブラリが提供している#[+ImportantEntity__Code--YDID isTrue(someVariable)]と
+        #[+ImportantEntity__Code--YDID isFalse(someVariable)]はより短い選択肢。
+
+
+    //- ╍╍╍ `isBoolean` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.booleans.$children.isBoolean.$heading,
+      HTML_ID: localizedSectioning.booleans.$children.isBoolean.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+ImportantEntity__Code--YDID typeof(x) == "boolean"]#[+Term--YDID 比較表現]の短い#[+Term--YDID 代替物]。
+      此処で#[+SecondaryEntity__Code--YDID x]は未宣言の場合を含めて#[+Keyword--YDID 適当な]#[+Term--YDID 変数]。
+
+    //- ╍╍╍ `isFalse` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+     level: 3,
+     innerHTML: localizedSectioning.booleans.$children.isFalse.$heading,
+     HTML_ID: localizedSectioning.booleans.$children.isFalse.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+ImportantEntity__Code--YDID x == false]#[+Term--YDID 比較表現]の#[+Term--YDID 代替物]。
+      此処で#[+SecondaryEntity__Code--YDID x]は未宣言の場合を含めて#[+Keyword--YDID 適当な]#[+Term--YDID 変数]。
+
+    //- ╍╍╍ `isTrue` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.booleans.$children.isTrue.$heading,
+      HTML_ID: localizedSectioning.booleans.$children.isTrue.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+ImportantEntity__Code--YDID x == true]#[+Term--YDID 比較表現]の#[+Keyword--YDID 代替物]。
+      此処で#[+SecondaryEntity__Code--YDID x]は未宣言の場合を含めて#[+Keyword--YDID 適当な]#[+Term--YDID 変数]。
+
+
+    //- ━━━ Null系 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.nullables.$heading,
+      HTML_ID: localizedSectioning.nullables.$anchor
+    }).Article-Heading2
+
+    p.Article-Paragraph.
+      #[+ImportantEntity--YDID Stylus]に於いては#[+ImportantEntity__Code--YDID null]値と関連している欠陥が何件が有る。
+      当#[+Term--YDID 関数]群は上記の欠陥に依る落とし穴を避けて安全に#[+Term--YDID null・非null確認]機能を提供。
+      より明確な情報が必要な場合、下記の理論を参考迄に。
+
+
+    //- ╍╍╍ 【最少理論】 Stylusに於けるnull値 ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.nullables.$children.theoreticalMinimum.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.theoreticalMinimum.$anchor
+    }).Article-Heading3
+
+    //- ─── `null`キーワード ──────────────────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.nullables.$children.theoreticalMinimum.$children.nullKeyword.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.theoreticalMinimum.$children.nullKeyword.$anchor
+    }).Article-Heading4
+
+    p.Article-Paragraph.
+      下記のコードを考察しておこう。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus}): :code_listing--yda
+        sample1 = null
+        p(sample1)
+        p(typeof(sample1))
+        p(sample1 == null)
+        p(typeof(sample1) == "null")
+
+    p.Article-Paragraph.
+      #[+Keyphrase--YDID 今のところは]、#[+ImportantEntity--YDID Stylus]の振る舞いに異常が無い。
+
+    +ConsoleOutput--YDF: :html_special_characters_to_html_entities
+      inspect: null
+      inspect: 'null'
+      inspect: true
+      inspect: true
+
+
+    //- ─── オブジェクトの存在していないプロパティー ────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.nullables.$children.theoreticalMinimum.$children.nonExistingObjectProperty.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.theoreticalMinimum.$children.nonExistingObjectProperty.$anchor
+    }).Article-Heading4
+
+    p.Article-Paragraph.
+      下記のコードを考察しておこう。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus}): :code_listing--yda
+        sample1 = null
+        p(sample1)
+        p(typeof(sample1))
+        p(sample1 == null)
+        p(typeof(sample1) == "null")
+
+    p.Article-Paragraph.
+      #[+Keyphrase--YDID 今のところは]、#[+ImportantEntity--YDID Stylus]の振る舞いに異常が無い。
+
+    +ConsoleOutput--YDF: :html_special_characters_to_html_entities
+      inspect: null
+      inspect: 'null'
+      inspect: true
+      inspect: true
+
+
+    //- ─── 残りの引数しかない関数・ミックスイン ────────────────────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.nullables.$children.theoreticalMinimum.$children.
+          functionOrMixinWithRestParametersOnly.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.theoreticalMinimum.$children.
+          functionOrMixinWithRestParametersOnly.$anchor
+    }).Article-Heading4
+
+    p.Article-Paragraph.
+      下記のコードを考察しておこう。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus}): :code_listing--yda
+        sampleFunction1(parameters...)
+
+          sample3 = parameters
+
+          p(sample3)
+          p(typeof(sample3))
+          p(sample3 == null)
+          p(typeof(sample3) == "null")
+
+        sampleFunction1()
+
+    p.Article-Paragraph.
+      異常は此処から始まる。
+      #[+ImportantEntity__Code--YDID sample3 == null]は#[+Keyword--YDID 偽]になってはいるが、
+        #[+ImportantEntity__Code--YDID typeof(sample3) == "null"]は#[+Keyword--YDID 真]。
+
+    +ConsoleOutput--YDF: :html_special_characters_to_html_entities
+      inspect: ()
+      inspect: 'null'
+      inspect: false
+      inspect: true
+
+
+    //- ─── 最初位置の場合を除き残りの引数持ちの関数・ミックスイン ─────────────────────────────────────────────────────────────────
+    +Heading--YDF({
+      level: 4,
+      text: localizedSectioning.nullables.$children.theoreticalMinimum.$children.
+          functionOrMixinWithRestParametersInSubsequentPosition.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.theoreticalMinimum.$children.
+          functionOrMixinWithRestParametersInSubsequentPosition.$anchor
+    }).Article-Heading4
+
+    p.Article-Paragraph.
+      下記のコードを考察しておこう。
+
+    +CodeViewer--YDF
+      +CodeViewer-Listing--YDF({codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus}): :code_listing--yda
+        sampleFunction2(parameter, restParameters...)
+
+          sample4 = restParameters
+
+          p("Checkpoint1")
+          p(sample4)
+          p("Checkpoint2")
+          p(typeof(sample4))
+          p(sample4 == null)
+          p(typeof(sample4) == "null")
+
+        sampleFunction2("TEST")
+
+    p.Article-Paragraph.
+      出力は下記通りになっている。
+
+    +ConsoleOutput--YDF: :html_special_characters_to_html_entities
+      inspect: "Checkpoint1"
+      inspect: "Checkpoint2"
+      inspect: 'null'
+      inspect: false
+      inspect: true
+
+    p.Article-Paragraph.
+      此処下記の#[+Keyword--YDID 異常]に気付くべき。
+
+    ul.Article-UnorderedList
+
+      li #[+SecondaryEntity__Code--YDID p(sample4)]は#[+Keyword--YDID 無視]された。
+
+      li.
+        #[+SecondaryEntity__Code--YDID typeof(sample4) == "null"]は#[+Keyword--YDID 真]になっているが、
+          #[+SecondaryEntity__Code--YDID sample4 == null]は#[+Keyword__Contrast--YDID 嘘]。
+
+    p.Article-Paragraph.
+      上記の実験に基づいた#[+Keyword--YDID 結論]は、#[+ImportantEntity__Code--YDID null]と#[+Keyword--YDID 直接]比較する事は
+        安全では#[+Keyword--YDID ない]事。
+      #[+Keyword__Contrast--YDID 代わりに]、#[+ImportantEntity__Code--YDID typeof]という#[+Keyword--YDID ネイティブ]
+        #[+Term--YDID 関数]を用いて、
+        #[+ImportantEntity__Code--YDID typeof(x) == "null]・#[+ImportantEntity__Code--YDID typeof(x) == "null]
+        の様に比較するべきだが、#[+ImportantEntity--YDID YDF]が提供している#[+Term--YDID 関数]がより短い。
+
+
+    //- ╍╍╍ `isNotNull`╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.nullables.$children.isNotNull.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.isNotNull.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]の値が#[+ImportantEntity__Code--YDID null]#[+Keyword--YDID 以外]の場合に
+        #[+ImportantEntity__Code--YDID true]を返し、#[+ImportantEntity__Code--YDID null]になっている場合に
+        #[+Keyword--YDID 限って]#[+ImportantEntity__Code--YDID false]を返す。
+      上記の解説通り、#[+ImportantEntity__Code--YDID null]と明示的な比較は予想通り動いているとは#[+Keyword--YDID 限らない]ので、
+        #[+ImportantEntity__Code--YDID isNotNull]は#[+ImportantEntity__Code--YDID x != null]と同じ効果では
+        #[+Keyword--YDID ない]。
+
+
+    //- ╍╍╍ `isNull`╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.nullables.$children.isNull.$heading,
+      HTML_ID: localizedSectioning.nullables.$children.isNull.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]の値が#[+ImportantEntity__Code--YDID null]になっている場合に#[+Keyword--YDID 限って]
+        #[+ImportantEntity__Code--YDID true]を返している、さもなくば戻る値は#[+ImportantEntity__Code--YDID false]。
+      上記の解説通り、#[+ImportantEntity__Code--YDID null]と明示的な比較は予想通り動いているとは#[+Keyword--YDID 限らない]ので、
+        #[+ImportantEntity__Code--YDID isNotNull]は#[+ImportantEntity__Code--YDID x != null]と同じ効果では
+        #[+Keyword--YDID ない]。
+
+
+    //- ━━━ 其の他 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.others.$heading,
+      HTML_ID: localizedSectioning.others.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ `isCalcExpression` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.others.$children.isCalcExpression.$heading,
+      HTML_ID: localizedSectioning.others.$children.isCalcExpression.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]が#[+Term__Contrast--YDID Stylusリテラル]になり、#[+ImportantEntity__Code--YDID calc(]から始める場合
+        #[+Keyword--YDID に限って]#[+ImportantEntity__Code--YDID true]を返している、さもなくば戻る値は
+        #[+ImportantEntity__Code--YDID false]。
+      #[+Term--YDID calc表現]専用の#[+Term--YDID データ型]が#[+ImportantEntity--YDID Stylus]上存在していないが、
+        #[+Term--YDID リテラル]が#[+Term--YDID calc表現]を代表しているか、分析する事は可能。
+      其れは、此の関数がやっている事である。
+
+
+    //- ╍╍╍ `isFunction` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.others.$children.isFunction.$heading,
+      HTML_ID: localizedSectioning.others.$children.isFunction.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]の値が#[+Term--YDID 関数]になっている場合に#[+Keyword--YDID 限って]#[+ImportantEntity__Code--YDID true]
+        を返している、さもなくば戻る値は#[+ImportantEntity__Code--YDID false]。
+      #[+ImportantEntity__Code--YDID typeof(x) == "function"]の短い代替。
+
+
+    //- ╍╍╍ `isIdentifier` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.others.$children.isIdentifier.$heading,
+      HTML_ID: localizedSectioning.others.$children.isIdentifier.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]の値が#[+Term--YDID 識別子]になっている場合に#[+Keyword--YDID 限って]#[+ImportantEntity__Code--YDID true]
+        を返している、さもなくば戻る値は#[+ImportantEntity__Code--YDID false]。
+      #[+ImportantEntity__Code--YDID typeof(x) == "function"]の代替。
+
+
+    //- ╍╍╍ `isObject` ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      innerHTML: localizedSectioning.others.$children.isObject.$heading,
+      HTML_ID: localizedSectioning.others.$children.isObject.$anchor
+    }).Article-Heading3
+
+    p.Article-Paragraph.
+      #[+Term--YDID 引数]の値が#[+Term--YDID 関数]になっている場合に#[+Keyword--YDID 限って]#[+ImportantEntity__Code--YDID true]
+        を返している、さもなくば戻る値は#[+ImportantEntity__Code--YDID false]。
+      #[+ImportantEntity__Code--YDID typeof(x) == "object"]の短い代替。
+
+
+    //- ━━━ 外部リンク ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.externalLinks.$heading,
+      HTML_ID: localizedSectioning.externalLinks.$anchor
+    }).Article-Heading2
+
+    +LinksCardsFlow--YDF
+
+      +LinksCardsFlow-ItemWithSVG_Icon--YDF({
+        unendorsedExternalURI: GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/Styles/02-Kernel/03-Functions/01-TypeCheckers",
+        title: "ソースコード"
+      }): +File__SourceCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon
+
+      +LinksCardsFlow-ItemWithSVG_Icon--YDF({
+        unendorsedExternalURI: GIT_HUB_REPOSITORY_URI_COMMON_PART__ACTUAL_BRANCH__WITH_TRAILING_SLASH +
+            "CoreLibrary/Package/Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/01-TypeCheckers",
+        title: "テストコード"
+      }): +File__TestCode--YDF_Icon.LinksCardsFlow--YDF-SVG_Icon

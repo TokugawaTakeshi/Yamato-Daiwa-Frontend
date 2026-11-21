@@ -1,0 +1,99 @@
+//- ━━━ Abstract ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+mixin AdmonitionBlockComponent-Abstract
+
+  p.Article-Paragraph.
+    The framed text was used long before computerization, in the books and other printed products.
+    Although mainly the important text being framed, sometimes the notices and other secondary information also being.
+
+  p.Article-Paragraph.
+    In the development of web sites and web applications, the text framing has become more advanced and frequent.
+
+  ul.Article-UnorderedList
+
+    li.
+      As in printed products, the frame is being used on the web sites with large amount of text for the accenting
+        of specific fragments.
+      To allow the visitor instantly estimate the level of importance of accented text, the color coding is being used.
+      For the important block, the warm colors is being selected (red, orange, yellow), and for the secondary
+        information the cold colors (blue, green) or achromatic (black or gray frame with white or light gray
+        background).
+      Additionally, the icons are frequently been used.
+
+    li.
+      In the #[+Term--YDID GUI], the framed text has acquired the additional role by becoming to the tool for
+        notifications of users.
+      Unlike #[+Term--YDID popup messages] which are displaying for the short period of time, the framed text
+        usually displaying constantly or until user will dismiss it by dedicated button (if it is).
+      It also recommended to suggest the used to react to the message by adding of one or more buttons inside.
+
+  p.Article-Paragraph.
+    The framed text is being recommended for using in the following cases:
+
+  dl.Article-DescriptionList
+
+    dt The displaying of #[+Keyword--YDID retrieving] of data from the #[+Term--YDID server] error
+    dd In this case it will be great to add the button for the initiating of new data retrieving attempt.
+
+    dt The displaying of message about absence of the data which could be shown
+    dd.
+      It is better to prepare the #[+Keyword--YDID separate] messages for case when there is no&nbsp;data satisfying to
+        filtering and there is no&nbsp;data at whole.
+      The suggested reaction will different too: in first case it will be the button for the resetting of the
+        searching conditions, and in the second case it will be suggested to add some data (if it is allowed for
+        current authenticated used).
+
+    dt The displaying of #[+Keyword--YDID short] guidances about usage of the website or web application
+    dd.
+      It is very important not only for new users of your product but only for the user with low lever of
+        computer literacy computer literacy there are still a many of them.
+
+    dt The prompting of the user for the specific action
+    dd.
+      For example if in your website or application the authentication is optional, it is possible to suggest the
+        sign up and explain which benefits the authorized uses have.
+      Of course, in this case there are must be the links to the signing up page and, for the registered uses,
+        to singing in page.
+
+  p.Article-Paragraph.
+    Contrariwise, for the following cases the framed text is&nbsp;#[+Keyword--YDID not]&nbsp; the best choice.
+
+  ul.Article-UnorderedList
+    li The displaying of the #[+Keyword--YDID submitting] data errors
+    li The displaying of the messages about successful submitting of the data
+    li The displaying of the messages about successful signing in or signing out
+
+  p.Article-Paragraph.
+    The #[+Term--YDID floating messages] (in #[+ImportantEntity--YDID YDF] it is the #[+ImportantEntity--YDID Snackbar]
+      component) are better suited with such cases).
+
+
+//- ━━━ Overview ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  AdmonitionBlockGUI_ComponentOverviewLocalization.setLocalizer(
+    () => ({
+      themes: {
+        [AdmonitionBlock__YDF.Themes.regular]: "Basic (Default)"
+      },
+      geometricVariations: {
+        [AdmonitionBlock__YDF.GeometricVariations.regular]: "Basic (Default)",
+        [AdmonitionBlock__YDF.GeometricVariations.stickyNoteLike]: "Sticky note-like"
+      },
+      decorativeVariations: {
+        [AdmonitionBlock__YDF.DecorativeVariations.notice]: "Notice",
+        [AdmonitionBlock__YDF.DecorativeVariations.error]: "Error or critical notice",
+        [AdmonitionBlock__YDF.DecorativeVariations.warning]: "Warning",
+        [AdmonitionBlock__YDF.DecorativeVariations.success]: "Successfully completed action",
+        [AdmonitionBlock__YDF.DecorativeVariations.guidance]: "Guidance",
+        [AdmonitionBlock__YDF.DecorativeVariations.question]: "Question"
+      }
+    })
+  );
+
+
+//- ━━━ Pug Mixin or Class Synopsis ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-
+
+  AdmonitionBlockComponentPugMixinOrClassSynopsisLocalization.GUI_ComponentSpecificStringResources = {
+    pugMixinParametersLocalization: [ { localizedName: "Properties" } ]
+  };

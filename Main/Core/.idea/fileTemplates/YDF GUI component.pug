@@ -1,0 +1,129 @@
+include ${NAME}.class.pug
+
+
+mixin ${NAME}--YDF(properties, statesSimulations)
+
+  -
+
+    const COMPONENT_ID = ${NAME}__YDF.generateComponentID();
+
+    const {
+
+      label,
+      accessibilityGuidance,
+      externalLabelHTML_ID,
+      guidance,
+      placeholder,
+
+      disabled,
+      readonly,
+
+      required,
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+
+      coreElementHTML_ID,
+      labelElementHTML_ID,
+
+      /** @var { string } [ theme = ${NAME}__YDF.Themes.regular ] */
+      theme,
+
+      /** @var { boolean } [ areThemesCSS_ClassesCommon = ${NAME}__YDF.areThemesCSS_ClassesCommon ] */
+      areThemesCSS_ClassesCommon,
+
+      /** @var { string } [ geometricVariation = ${NAME}__YDF.GeometricVariations.regular ] */
+      geometricVariation,
+
+      /** @var { Array<string> } [ geometricModifiers = [] ] */
+      geometricModifiers,
+
+      // TODO Delete one
+      /** @var { string } */
+      /** @var { string } [ geometricVariation = ${NAME}__YDF.DecorativeVariations.regular ] */
+      decorativeVariation,
+
+      /** @var { Array<string> } [ decorativeModifiers = [] ] */
+      decorativeModifiers
+
+    } = processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: ${NAME}__YDF.propertiesSpecification,
+      mixinName: ${NAME}__YDF.CSS_NAMESPACE
+    });
+
+    const {
+      invalidInputHighlightingIfAnyValidationErrorsMessages,
+      validValueHighlightingIfNoValidationErrorsMessages,
+      validationErrorsMessages,
+      asynchronousValidationsStatuses
+    } = processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: ${NAME}__YDF.statesSimulationsSpecification,
+      mixinName: ${NAME}__YDF.CSS_NAMESPACE
+    });
+
+    /** @var { Array<string> } */
+    const rootElementModifierCSS_Classes = [
+
+      ...disabled ? [ `${ ${NAME}__YDF.CSS_NAMESPACE }__DisabledState` ] : [],
+      ...invalidInputHighlightingIfAnyValidationErrorsMessages && validationErrorsMessages.length > 0 ?
+          [ `${ ${NAME}.CSS_NAMESPACE }__InvalidValueState` ] : [],
+      ...validValueHighlightingIfNoValidationErrorsMessages && validationErrorsMessages.length === 0 ?
+          [ `${ ${NAME}.CSS_NAMESPACE }__ValueState` ] : [],
+
+      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
+        theme,
+        allThemes: ${NAME}__YDF.Themes,
+        CSS_Namespace: ${NAME}__YDF.CSS_NAMESPACE,
+        areThemesCSS_ClassesCommon
+      }),
+
+      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
+        geometricVariation,
+        allGeometricVariations: ${NAME}__YDF.GeometricVariations,
+        CSS_Namespace: ${NAME}__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedGeometricModifiersCSS_Classes(${NAME}__YDF.CSS_NAMESPACE, geometricModifiers),
+
+      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
+        decorativeVariation,
+        allDecorativeVariations: ${NAME}__YDF.DecorativeVariations,
+        CSS_Namespace: ${NAME}__YDF.CSS_NAMESPACE
+      }),
+
+      ...ComponentsAuxiliaries.generateDemandedDecorativeModifiersCSS_Classes(${NAME}__YDF.CSS_NAMESPACE, decorativeModifiers)
+
+    ];
+
+  +CompoundControlShell--YDF(
+    {
+
+      label,
+      guidance,
+
+      required,
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+      coreElementHTML_ID: coreElementHTML_ID,
+      labelElementHTML_ID: labelElementHTML_ID,
+
+      theme: ${NAME}__YDF.selfAndCompoundControlShellThemesCorrespondence.compoundControlShell[theme],
+      areThemesCSS_ClassesCommon,
+      geometricVariation: ${NAME}__YDF.selfAndCompoundControlShellGeometricVariationsCorrespondence.
+          compoundControlShell[geometricVariation],
+      decorativeVariation: ${NAME}__YDF.selfAndCompoundControlShellGeometricVariationsCorrespondence.
+          compoundControlShell[decorativeVariation]
+
+    },
+    {
+      validationErrorsMessages,
+      asynchronousValidationsStatuses
+    }
+  ).${NAME}--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)

@@ -1,0 +1,43 @@
+strings:
+
+  $heading: "Strings"
+
+quantities:
+
+  $heading: "Quantities"
+
+booleans:
+
+  $heading: "Booleans"
+
+nullables:
+
+  $heading: "Nullables"
+
+  theoreticalMinimum:
+
+    $heading: "Theoretical Minimum: Nullability in Stylus"
+
+    nullKeyword:
+
+      $heading: "`null` Keyword"
+
+    nonExistingObjectProperty:
+
+      $heading: "Non-existing Object Property"
+
+    functionOrMixinWithRestParametersOnly:
+
+      $heading: "Function/Mixin with Rest Parameters Only"
+
+    functionOrMixinWithRestParametersInSubsequentPosition:
+
+      $heading: "Function/Mixin with Rest Parameters in Subsequent Position"
+
+others:
+
+  $heading: "Others"
+
+externalLinks:
+
+  $heading: "External Links"

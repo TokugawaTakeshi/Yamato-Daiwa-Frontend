@@ -1,0 +1,90 @@
+extends ../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../SharedAssets/Markup/SharedAssets.japanese.pug
+  include ../../../../../../SharedComponents/SharedComponents.japanese.pug
+
+
+block append Metadata
+
+  -
+
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = localizedRouting.adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.Badge;
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle(topHeading),
+        description: MetaDescriptionTemplates.GUI_Components.Badge
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("adaptationsToFrameworks.react.GUI_Components.Badge");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.Badge.$URI,
+      russian: routing.russian.adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.Badge.$URI
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ `Badge` (React) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
+
+    +WebPageViewer--YDF({
+      URI: "$Demos:React/GUI_Components/Badge/BadgeGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "Badge" })
+    })
+
+    +BadgeComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ┅┅┅ 概要 ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
+    }).Article-Heading2
+
+    +BadgeComponent-Overview({ framework: SupportedFrameworks.react })
+
+
+    //- ┅┅┅ `Badge`クラス ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      innerHTML: localizedSectioning.BadgeClass.$heading,
+      HTML_ID: localizedSectioning.BadgeClass.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ Reactプロパティ ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.BadgeClass.$children.reactProperties.$heading,
+      HTML_ID: localizedSectioning.BadgeClass.$children.reactProperties.$anchor
+    }).Article-Heading3
+
+    +BadgeComponent-PugMixinOrClassSynopsis({ framework: SupportedFrameworks.react })

@@ -1,0 +1,84 @@
+PositionalRelationship--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "PositionalRelationship--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      definitions: {
+        type: DataTypes--YDF.string,
+        required: true
+      },
+      contextSelector: {
+        type: DataTypes--YDF.string,
+        required: false
+      },
+      referenceElementSelector: {
+        type: DataTypes--YDF.string,
+        defaultValue: selector()
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  definitions = compoundParameter.definitions
+  referenceElementSelector = compoundParameter.referenceElementSelector
+  contextSelector = compoundParameter.contextSelector
+
+
+  iterateAssociativeArray--YDF(definitions, @(targetElementSelector, definition) {
+
+    if (isNotNull--YDF(definition.retireFromIt) && (isNotNull--YDF(definition.retireFromIt.x) || isNotNull--YDF(definition.retireFromIt.y))) {
+
+      // [ Example ]
+      // For:
+      //    targetElementSelector: "h3"
+      //    contextSelector: "EmailFormatting"
+      //    referenceElementSelector: "p"
+      // we need:
+      //    .EmailFormatting h3 + p
+      elementFromWhichToRetireSelector = isNull--YDF(contextSelector) ?\
+          targetElementSelector : contextSelector + " " + targetElementSelector
+
+      /{elementFromWhichToRetireSelector} + {referenceElementSelector} {
+        if (definition.retireFromIt.usePaddingsInsteadOfMargins) {
+          applyIfNotNull--YDF({
+            padding-left: definition.retireFromIt.x,
+            padding-top: definition.retireFromIt.y
+          })
+        } else {
+          applyIfNotNull--YDF({
+            margin-left: definition.retireFromIt.x,
+            margin-top: definition.retireFromIt.y
+          })
+        }
+      }
+    }
+
+    if (isNotNull--YDF(definition.pushItFromSelf) && (isNotNull--YDF(definition.pushItFromSelf.x) || isNotNull--YDF(definition.pushItFromSelf.y))) {
+
+      // [ Example ]
+      //    targetElementSelector: "h3"
+      //    contextSelector: "EmailFormatting"
+      //    referenceElementSelector: "p"
+      // we need:
+      //    .EmailFormatting p + 3
+      elementFromWhichToRetireSelector = isNull--YDF(contextSelector) ?\
+          referenceElementSelector : contextSelector + " " + referenceElementSelector
+
+      /{elementFromWhichToRetireSelector} + {targetElementSelector} {
+        if (definition.pushItFromSelf.usePaddingsInsteadOfMargins) {
+          applyIfNotNull--YDF({
+            padding-left: definition.pushItFromSelf.x,
+            padding-top: definition.pushItFromSelf.y
+          })
+        } else {
+          applyIfNotNull--YDF({
+            margin-left: definition.pushItFromSelf.x,
+            margin-top: definition.pushItFromSelf.y
+          })
+        }
+      }
+    }
+  })

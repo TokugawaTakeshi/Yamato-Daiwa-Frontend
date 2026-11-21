@@ -1,0 +1,110 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/08-ParametersValidation/validateObjectTypeParameter.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/08-ParametersValidation/validateObjectTypeParameter.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+// --- Wrong parameter type test ---------------------------------------------------------------------------------------
+//buildBEM_ClassName--YDF("ALPHA")
+
+
+// --- Forbidden subsequent parameters test ----------------------------------------------------------------------------
+//buildBEM_ClassName--YDF({}, "ALPHA")
+
+
+// --- Required property absence ---------------------------------------------------------------------------------------
+//buildBEM_ClassName--YDF({ element: "Icon" })
+
+
+// --- Conditional requirement -----------------------------------------------------------------------------------------
+//.Sample
+//
+//  TextElementHeightSizing--YDF({
+//    type: TextElementHeightSizingTypes--YDF.fixed
+//  })
+
+
+// --- Default values --------------------------------------------------------------------------------------------------
+//p(buildBEM_ClassName--YDF({
+//  block: "Component",
+//  element: "Element",
+//  modifier: "Modifier"
+//}))
+//
+//p(buildBEM_ClassName--YDF({
+//  block: "Component",
+//  element: "Element",
+//  modifier: "Modifier",
+//  elementSeparator: "-",
+//  modifierSeparator: "__"
+//}))
+
+
+// --- Invalid property type -------------------------------------------------------------------------------------------
+//buildBEM_ClassName--YDF({ block: 1 })
+
+
+// --- Incompatible properties -----------------------------------------------------------------------------------------
+//widthSizing({
+//  fixedWidth: 100px,
+//  minimalWidth: 80px,
+//  maximalWidth: 120px
+//})
+
+//BordersSizing--YDF({
+//  thickness: {
+//    horizontalSymmetric: 2px,
+//    left: 4px
+//  }
+//})
+
+// --- Amounts ---------------------------------------------------------------------------------------------------------
+// --- Allow both dimensional and dimensionless amount
+//.Correct1
+//
+//  TextElementHeightSizing--YDF({
+//    type: TextElementHeightSizingTypes--YDF.natural,
+//    lineHeight: 18px
+//  })
+//
+//
+//.Correct2
+//
+//  TextElementHeightSizing--YDF({
+//    type: TextElementHeightSizingTypes--YDF.natural,
+//    lineHeight: 1.3
+//  })
+//
+//
+//.Incorrect
+//
+//  TextElementHeightSizing--YDF({
+//    type: TextElementHeightSizingTypes--YDF.natural,
+//    lineHeight: "Invalid"
+//  })
+
+
+// --- Minimal value
+//.Sample
+//
+//  TextElementHeightSizing--YDF({
+//    type: TextElementHeightSizingTypes--YDF.natural,
+//    linesCount: 0
+//  })
+
+
+// --- Strings ---------------------------------------------------------------------------------------------------------
+// --- Minimal characters count
+//buildBEM_ClassName--YDF({ block: "" })
+
+// --- Allowed alternatives
+//.Sample
+//
+//  TextElementHeightSizing--YDF({
+//    type: "OTHER"
+//  })

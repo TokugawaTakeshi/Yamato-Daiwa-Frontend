@@ -1,0 +1,60 @@
+Breadcrumb--YDF-generateStyles()
+
+  .Breadcrumb--YDF
+
+    &-List
+
+      display flex
+      align-items center
+      flex-wrap wrap
+      //margin-top: -0.2rem
+      //margin-bottom: -0.2rem
+
+
+      &-Item
+
+        display flex
+        align-items center
+
+        overflow hidden
+
+        padding-top 0.2rem
+        padding-bottom 0.2rem
+
+
+        &-Button
+
+          min-width 0  //* [ Why? ] Preventing of the overflow (See https://stackoverflow.com/a/66689926/4818123) */
+
+
+        &-Label
+
+          &__SingleLine
+
+            font-size: Configuration--YDF.textGeometry.basicFontSize
+            SingleLineTextElementOverflowSafety--YDF({ displayEllipsis: true })
+
+
+          &__MultiLine
+
+            applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+              fontSize: Configuration--YDF.textGeometry.basicFontSize,
+              lineHeight: Configuration--YDF.textGeometry.basicLineHeightInMultilineTextBlocks,
+              mustAllowWordsBreakingAnywhere: true
+            })
+
+
+          &__Inactive
+
+            color W3C_39_ShadesOfGray--YDF[16]
+
+
+    &-LinksSeparator
+
+      height 8px
+
+      fill gray
+
+      flex-shrink 0
+      margin-left 8px
+      margin-right 8px

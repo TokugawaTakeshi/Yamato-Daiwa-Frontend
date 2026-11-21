@@ -1,0 +1,16 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+ButtonClass:
+
+  $heading: `ButtonClass.$heading`
+  $anchor: BUTTON_CLASS--SECTION
+
+  $children:
+
+    reactProperties:
+
+      $heading: `ButtonClass.reactProperties.$heading`
+      $anchor: BUTTON_CLASS-REACT_PROPERTIES--SECTION

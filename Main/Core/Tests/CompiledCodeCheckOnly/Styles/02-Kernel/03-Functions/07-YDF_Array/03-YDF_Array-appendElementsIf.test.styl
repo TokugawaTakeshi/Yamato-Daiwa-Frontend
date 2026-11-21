@@ -1,0 +1,14 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/07-YDF_Array/03-YDF_Array-appendElementsIf.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/07-YDF_Array/03-YDF_Array-appendElementsIf.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+experimentalSample1 = YDF_Array-create("AA", "BB", "CC");
+
+log(YDF_Array-appendElementsIf(experimentalSample1, @(element) { return length(element) == 2 }, "DD", "EEE", "FF"))

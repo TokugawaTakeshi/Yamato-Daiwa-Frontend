@@ -1,0 +1,61 @@
+buildCalcExpressionTermwise--YDF(polymorphicElements)
+
+  accumulatingStringifiedCalcExpression = "calc("
+
+  for element, index in polymorphicElements
+
+    if index == 0
+
+      if length(element) != 1
+
+        error(
+          "buildCalcExpressionTermwise--YDF(), the first element must be the single quntity wihtout operand, " +\
+            "got: " + element
+        )
+
+
+      if isNotNull--YDF(element) && element != 0
+
+        accumulatingStringifiedCalcExpression = accumulatingStringifiedCalcExpression + element
+
+    else
+
+      if length(element) != 2
+
+        error(
+          "buildCalcExpressionTermwise--YDF(), the subsequent element of list type parameter " +\
+            'must the pair of stringified operator and quantity like ("+" 1px), got: ' + element
+        )
+
+
+      operand = element[0]
+      term = element[1]
+
+      if isNotNull--YDF(term) && term != 0
+
+        if accumulatingStringifiedCalcExpression == "calc("
+
+          if operand == "+"
+
+            accumulatingStringifiedCalcExpression = accumulatingStringifiedCalcExpression + term
+
+          else if operand == "-"
+
+            accumulatingStringifiedCalcExpression = accumulatingStringifiedCalcExpression + "-" + term
+
+          else
+
+            accumulatingStringifiedCalcExpression = accumulatingStringifiedCalcExpression + "0" + operand + term
+
+        else
+
+          accumulatingStringifiedCalcExpression = accumulatingStringifiedCalcExpression + " " + operand + " " + term
+
+
+  if accumulatingStringifiedCalcExpression == "calc("
+
+    return 0
+
+  else
+
+    return unquote(accumulatingStringifiedCalcExpression + ")")

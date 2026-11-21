@@ -1,0 +1,56 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/01-TypeCheckers/isDimensionalOrDimensionlessQuantity.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/03-Functions/01-TypeCheckers/isDimensionalOrDimensionlessQuantity.test.css `
+    --include Styles
+*/
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+testForTrue--YDF(
+  "'2px' is either dimensional or dimensionless quantity",
+  isDimensionalOrDimensionlessQuantity--YDF(2px)
+)
+
+testForTrue--YDF(
+  "2px is the dimensional quantity",
+  isDimensionalQuantity--YDF(2px, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY")
+)
+
+testForFalse--YDF(
+  "2px is not the dimensionless quantity",
+  isDimensionlessQuantity--YDF(2px)
+)
+
+
+testForTrue--YDF(
+  "'2' is either dimensional or dimensionless quantity",
+  isDimensionalOrDimensionlessQuantity--YDF(2)
+)
+
+testForFalse--YDF(
+  "'2' is not the dimensional quantity",
+  isDimensionalQuantity--YDF(2, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY")
+)
+
+testForTrue--YDF(
+  "'2' is the the dimensionless quantity",
+  isDimensionlessQuantity--YDF(2)
+)
+
+
+testForTrue--YDF(
+  "'0' could be considered as dimensional quantity",
+  isDimensionalQuantity--YDF(0, "MUST_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY")
+)
+
+testForFalse--YDF(
+  "'0' could be not considered as dimensional quantity",
+  isDimensionalQuantity--YDF(0, "MUST_NOT_CONSIDER_DIMENSIONLESS_ZERO_AS_DIMENSIONAL_QUANTITY")
+)
+
+testForTrue--YDF(
+  "'0' could be considered as dimentionless quantity",
+  isDimensionlessQuantity--YDF(0)
+)

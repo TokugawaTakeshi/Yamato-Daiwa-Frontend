@@ -1,0 +1,128 @@
+extends ../../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../../../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    HTML_PAGE_LANGUAGE = "ru";
+    HTML_PAGE_TITLE = buildHTML_PageTitle("deeplyCloneAndOverrideObject");
+    HTML_PageMetaData = {
+      description: "",
+      author: HTML_PAGE_AUTHOR
+    };
+
+    FAVICON_URI = "@MustBeInPublicRoot/favicon";
+
+    styleSheetsURIs = [
+      "$CommonStyles",
+      "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+      "$PreMadesStyles",
+      "@CustomizedExternalComponents"
+    ];
+
+    scriptsURIs.endOfBody = [ "$CommonLogic" ];
+
+    YDF.RoutingEmulator.setCurrentRoute("coreLibrary.styles.kernel.functions.objects.deeplyCloneAndOverrideObject");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: "./deeplyCloneAndOverrideObject.english.html",
+      japanese: "./deeplyCloneAndOverrideObject.japanese.html"
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    h1 deeplyCloneAndOverrideObject
+
+    +CodeViewer--YDF
+      +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Stylus })
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          operand1 = {
+            alpha: {
+              bravo: "FOO",
+              charlie: "BAR"
+            }
+          }
+
+          operand2 = {
+            alpha: {
+              bravo: null,
+              delta: "BAZ"
+            },
+            echo: "HOGE"
+          }
+
+          result = deeplyCloneAndOverrideObject(operand1, operand2)
+        +CodeViewer-Explanation--YDF
+          p.Article-Paragraph.
+            Зная, что #[+Keyword--YDID второй] операнд будет иметь #[+Keyword--YDID приоритет] над первым мы можем
+              лего предсказать #[+SecondaryEntity__Code--YDID result]:
+
+          ul.Article-UnorderedList
+
+            li.
+              #[+SecondaryEntity__Code--YDID alpha.bravo] будет #[+SecondaryEntity__Code--YDID null], во втором операнде
+                по этому полному квалифицированному пути находится #[+Keyword--YDID явный]
+                #[+SecondaryEntity__Code--YDID null], который перезапишет значение из первого операнда.
+
+            li.
+              #[+SecondaryEntity__Code--YDID alpha.charlie] неизменно будет #[+SecondaryEntity__Code--YDID "BAR"],
+                поскольку во втором операнде это свойство отсутствует, а значит перезаписи не&nbsp;произойдёт.
+
+            li.
+              #[+SecondaryEntity__Code--YDID alpha.delta] будет равно #[+SecondaryEntity__Code--YDID "BAZ"],
+                поскольку во первом операнде это свойство отсутствует, а значит оно будет просто добавлено к результату.
+              Аналогично и с #[+SecondaryEntity__Code--YDID echo] — свойства первого уровня.
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          result.alpha.bravo = "FUGA"
+        +CodeViewer-Explanation--YDF.
+          Изменение значения свойства по полному квалификационному пути
+            #[+ImportantEntity__Code--YDID alpha.bravo] у переменной #[+ImportantEntity__Code--YDID result]
+            #[+Keyword--YDID никак]&nbsp;#[+Keyword__Contrast--YDID не]&nbsp;#[+Term--YDID повлияет] на начальные
+            операнды.
+          Вроде бы, так и должно быть, но давайте сравним это с тем, как работает стандартная Stylus-функция #
+            [+ImportantEntity__Code--YDID merge] (она же #[+ImportantEntity__Code--YDID extend]):
+
+        +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+          operand1 = {
+            alpha: {
+              bravo: "FOO",
+              charlie: "BAR"
+            }
+          }
+
+          operand2 = {
+            alpha: {
+              bravo: null,
+              delta: "BAZ"
+            },
+            echo: "HOGE"
+          }
+
+          result = merge(operand1, operand2)
+        +CodeViewer-Explanation--YDF.
+          В значении #[+SecondaryEntity__Code--YDID result] будет отсутствовать свойство
+          #[+SecondaryEntity__Code--YDID alpha.charlie]:
+            #[+SecondaryEntity__Code--YDID { alpha : { bravo: null, delta: "BAZ" }, echo: "HOGE" }].
+          Какие бы причины тому ни&nbsp;были, это ещё лишь пол-беды: если мы вывести в консоль
+            #[+SecondaryEntity__Code--YDID operand1] и #[+SecondaryEntity__Code--YDID operand2], то их значения
+            будут совпадать со значением #[+SecondaryEntity__Code--YDID result]!
+          (Проверено на версии #[+SecondaryEntity__Code--YDID 0.58.1] препроцессора #[+ImportantEntity--YDID Stylus]).

@@ -1,0 +1,155 @@
+mixin ComponentMarkupProvidingGuidanceFragment(properties)
+
+  -
+    const {
+      componentName,
+      pugMixinName = `${ componentName }--YDF`
+    } = properties
+
+  p.Article-Paragraph
+    | 当#[+Term--YDID GUIコンポーネント]の#[+Term__Contrast--YDID マークアップ]は
+    |   #[+Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.mixins }) Pugミクスイン]の
+    |   #[+ImportantEntity__Code--YDID #{ pugMixinName }]に依り確保される。
+    | 取り組み方法は
+    |
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.GUI_Components.$sectioning.markup.$children.providing.$URI
+    }) 通常
+    |   即ち#[+ImportantEntity__Code--YDID Components.pug]と言う#[+Term--YDID Pugファイル]の
+    |
+    +Link--YDF({ unendorsedExternalURI: sharedExternalLinks.pug.homePage.includes }) 含め
+    |   。
+    | 但し#[+Keyphrase--YDID 其の前]#[+ImportantEntity__Code--YDID Functionality.pug]ファイルも含めなければいけないが、
+    +Link--YDF({
+      internalURI: localizedRouting.coreLibrary.$children.markup.$children.pagesTemplates.$URI
+    }) ページのテンプレート
+    |   の場合、#[+ImportantEntity__Code--YDID Functionality.pug]は#[+Keyword--YDID 含め済み]で、
+    |   #[+Keyword__Contrast--YDID 重複し]含めてると#[+Keyphrase--YDID エラーが発生する]のだ。
+
+  +CodeViewer--YDF
+    +CodeViewer-TabPanel--YDF({ codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.Pug })
+      +CodeViewer-PartialListing--YDF: :html_special_characters_to_html_entities
+        include ../../node_modules/@yamato-daiwa/frontend/Functionality.pug
+        include ../../node_modules/@yamato-daiwa/frontend/Components.pug
+      +CodeViewer-Explanation--YDF
+        p.Article-Paragraph.
+          上記のコードを含めている#[+Term--YDID Pugファイル]の配置に依り、貴方の場合#[+ImportantEntity--YDID node_modules]
+            #[+Term--YDID ディジタル]への#[+Term__Contrast--YDID 早退パス]が異なる可能性が有ります。
+        p.Article-Paragraph.
+          ところで、#[+Term--YDID GUIコンポーネント]とは限らず#[+ImportantEntity--YDID YDF]の仕組み上の基本的な事ではありますが、
+            上記のファイルを含めるだけでは#[+Term--YDID HTMLコード]が#[+Keyword--YDID 一切]生成#[+Keyword__Contrast--YDID されない]
+            と忘れないでおきましょう。
+          #[+ImportantEntity--YDID #{ componentName }]#[+Term--YDID コンポーネント]の#[+Term__Contrast--YDID HTMLコード]を
+            生成させるには、#[+ImportantEntity__Code--YDID #{ pugMixinName }]と言う#[+Term--YDID Pugミクスイン]を呼び出す必用が有ります。
+          尚、#[+Keyphrase--YDID 現時点では]#[+Term--YDID スタイル]が未だ確保されていなければ、#[+Term--YDID HTMLコード]が生成されたとしても、
+            表示が未だ未だ崩れている状態ですが、勿論此のページ無い#[+Term--YDID スタイル]確保方法を説明しますので、御安心下さい。
+
+
+mixin IntelliJ_IDEA_IDEs_LiveTemplateUsageGuidance(properties)
+
+  -
+
+    const {
+      imageURI,
+      target,
+      relatedTableOfContentsMetadata
+    } = properties;
+
+    let localizedTarget;
+
+    switch (target) {
+      case "function": {
+        localizedTarget = "関数呼び出し表現"
+      }
+    }
+
+
+  //- ━━━ 「IntelliJ IDEA」ファミリー統合開発環境に於ける高速入力 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  +Heading--YDF({
+    level: 2,
+    text: relatedTableOfContentsMetadata.$heading,
+    HTML_ID: relatedTableOfContentsMetadata.$anchor
+  }).Article-Heading2
+
+  +SingleImageViewer--YDF({
+    imageURI: imageURI,
+    imageAlternateText: "「Live template」機能を使用したIntelliJ IDEAファミリー統合開発環境での高速入力"
+  })
+
+  p.Article-Paragraph
+    +Link--YDF({
+      unendorsedExternalURI: sharedExternalLinks.jetBrains.intelliJ_IDEA_FamilyIDEs
+    }) 「IntelliJ IDEA」ファミリー
+    |   の#[+Term--YDID 統合開発環境]の
+    +Link--YDF({ unendorsedExternalURI: sharedExternalLinks.jetBrains.liveTemplates }) Live templates
+    |   機能利用の恩恵に依り、#[+Term--YDID #{ localizedTarget }]等の入力速度が向上する。
+    | #[+ImportantEntity--YDID YDF]の#[+Term--YDID ライブテンプレート]を取得するには、当ライブラリの
+    +Link--YDF({ unendorsedExternalURI: sharedExternalLinks.jetBrains.YDF_Plugin }) 正式プラグイン
+    |   を導入する必要が有る。
+
+
+  //- ─── Live Templateの利用手順 ───────────────────────────────────────────────────────────────────────────
+  +Heading--YDF({
+    level: 3,
+    text: relatedTableOfContentsMetadata.$children.steps.$heading,
+    HTML_ID: relatedTableOfContentsMetadata.$children.steps.$anchor
+  }).Article-Heading3
+
+  p.Article-Paragraph.
+    #[+Term--YDID ライブテンプレート]を使った事が無い場合でも、充実した内容の手順書が下記にある為、心配は無用である。
+    #[+Term--YDID ライブテンプレート]に慣れてしまえば、（キーボードのショートカット利用と同じ様な習慣）僅か数秒程度で下記の操作を行える。
+
+  block
+
+
+-
+
+  GUI_ComponentPugMixinOrClassSynopsisLocalization.localizationOfReusables = {
+    componentProperties: "引数",
+    propertiesLocalizedInterpretations: {
+
+      required: "入力が必須か",
+      disabled: "非活性状態の真偽",
+      readonly: "読み込み専用か",
+      toggled: "押したまま状態の真偽",
+
+      label: "キャプション",
+      guidance: "説明文",
+      accessibilityGuidance: "アクセシビリティ技術専用説明文",
+      placeholder: "空入力の時表示本文",
+      mustDisplayAppropriateBadgeIfInputIsRequired: "入力が必須な時「必須」バッジの表示が要るか",
+      mustDisplayAppropriateBadgeIfInputIsOptional: "入力が任意な時「任意」バッジの表示が要るか",
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge: "バッジ表示が不要な時、高さ調整の為見えないバッジの追加が要るか",
+
+      instanceID_UniqueDynamicPart: "インスタンス識別子の唯一な動的部分",
+      HTML_IDs: "HTML識別子の揃い",
+
+      theme: "テーマ",
+      areThemesCSS_ClassesCommon: "テーマCSSクラスは共通真偽",
+      geometricVariation: "幾何学的変形",
+      geometricModifiers: "幾何学的改変",
+      decorativeVariation: "修飾的変形",
+      decorativeModifiers: "修飾的修飾子",
+
+      className: "空白で区切られた根要素の修飾子CSSクラス一覧",
+
+      rootElementModifierCSS_Class: "根要素の修飾子CSSクラス",
+      rootElementModifierCSS_Classes: "根要素の修飾子CSSクラスの配列",
+      rootElementSpaceSeparatedModifierCSS_Classes: "空白で区切られた根要素の修飾子CSSクラス一覧"
+
+    },
+    statesSimulationsLocalizedInterpretations: {
+      invalidInputHighlightingIfAnyValidationErrorsMessages: "入力妥当性確認のメッセージが１件以上の時不正入力ファイライトが要るか",
+      validValueHighlightingIfNoValidationErrorsMessages: "入力妥当性確認のメッセージが０件の時妥当入力ファイライトが要るか",
+      validationErrorsMessages: "入力妥当性確認エラーメッセージ",
+      asynchronousValidationsStatuses: "入力非同期妥当性確認状態"
+    },
+    customThemingGuidanceGenerator: constantExpression => `\`${ constantExpression }\`で定義された中から何れか`
+  }
+
+
+include ReusableFragments/GUI_Components/AdmonitionBlock-ReusableFragments.japanese.pug
+include ReusableFragments/GUI_Components/Badge-ReusableFragments.japanese.pug
+include ReusableFragments/GUI_Components/Controls/Button-ReusableFragments.japanese.pug
+include ReusableFragments/GUI_Components/Controls/ValidatableControlShell-ReusableFragments.japanese.pug
+include ReusableFragments/GUI_Components/Controls/Validatables/TextBox-ReusableFragments.japanese.pug

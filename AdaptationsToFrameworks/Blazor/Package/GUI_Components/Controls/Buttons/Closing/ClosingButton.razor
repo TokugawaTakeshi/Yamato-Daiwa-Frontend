@@ -1,0 +1,26 @@
+﻿@using YamatoDaiwa.CSharpExtensions
+@using YamatoDaiwa.Frontend.Helpers
+
+
+<button 
+  type="button"
+  class=@classAttributeValueForRootElement
+  aria-label=@(noLabel ? (accessibilityGuidance ?? localization.defaultAccessibilityGuidance) : null)  
+  @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary
+>
+  
+  <span 
+    class="ClosingButton--YDF-Icon" 
+    role="presentation"
+  ></span>
+  
+  @if (!noLabel)
+  {
+    <span
+      class=@CSS_Class.Join("ClosingButton--YDF-Label", labelCSS_ModifierClass)
+    >      
+      @( customLabel ?? localization.defaultLabel )
+    </span> 
+  }
+  
+</button>

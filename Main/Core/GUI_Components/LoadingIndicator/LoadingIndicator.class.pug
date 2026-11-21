@@ -1,0 +1,120 @@
+-
+
+  class LoadingIndicator__YDF {
+
+    /**
+     * @public
+     * @readonly
+     * @type string
+     */
+    static CSS_NAMESPACE = "LoadingIndicator--YDF";
+
+    /**
+     * @public
+     * @readonly
+     * @type {
+     *   Readonly<{
+     *     variableWidthArcSpinner: string;
+     *     twoConstantWidthArcsSpinner: string;
+     *   }>
+     * }
+     */
+    static Types = {
+      variableWidthArcSpinner: "VARIABLE_WIDTH_ARC_SPINNER",
+      twoConstantWidthArcsSpinner: "TWO_CONSTANT_WIDTH_ARCS_SPINNER"
+    };
+
+
+    /* ━━━ Theming ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /**
+    * @public
+    * @type { { [themeName: string]: string } }
+    * @description If you want to define new themes, do it only via `defineThemes` static method.
+    */
+    static Themes = { dark: "DARK" };
+
+    /**
+     * @public
+     * @param { Array<string> } themesNames
+     * @return { typeof LoadingIndicator__YDF }
+     */
+    static defineThemes(themesNames) {
+      return ComponentsAuxiliaries.defineThemes(themesNames, LoadingIndicator__YDF);
+    }
+
+    /**
+     * @private
+     * @type { boolean } [ areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon ]
+     * */
+    static areThemesCSS_ClassesCommon = ComponentsAuxiliaries.areComponentsThemesCommon;
+
+    /**
+     * @public
+     * @returns { typeof LoadingIndicator__YDF }
+     * */
+    static considerThemesAsExternal() {
+      LoadingIndicator__YDF.areThemesCSS_ClassesCommon = true;
+      return LoadingIndicator__YDF;
+    };
+
+
+    /* ─── Geometry ───────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [geometricVariationName: string]: string } }
+     * @description If you want to define new geometric variations, do it only via `defineGeometricVariations` static method.
+     */
+    static GeometricVariations = {
+      regular: "REGULAR",
+      small: "SMALL"
+    };
+
+    /**
+     * @public
+     * @param { Array<string> } geometricVariationsNames
+     * @return { typeof LoadingIndicator__YDF }
+     */
+    static defineGeometricVariations(geometricVariationsNames) {
+      return ComponentsAuxiliaries.defineGeometricVariations(geometricVariationsNames, LoadingIndicator__YDF);
+    }
+
+
+    /* ─── Decoration ─────────────────────────────────────────────────────────────────────────────────────────────── */
+
+    /**
+     * @public
+     * @type { { [decorativeVariationsName: string]: string } }
+     * @description If you want to define new decorative variations, do it only via `defineDecorativeVariations` static method.
+     */
+    static DecorativeVariations = { regular: "REGULAR" };
+
+    /**
+     * @public
+     * @param { Array<string> } decorativeVariationsNames
+     * @return { typeof LoadingIndicator__YDF }
+     */
+    static defineDecorativeVariations(decorativeVariationsNames) {
+      return ComponentsAuxiliaries.defineDecorativeVariations(decorativeVariationsNames, LoadingIndicator__YDF);
+    }
+
+
+    /* ━━━ Properties Specification ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+    /**
+     * @public
+     * @readonly
+     * @type { RawObjectDataProcessor.PropertiesSpecification }
+     * */
+    static propertiesSpecification = {
+
+      type: {
+        type: String,
+        isUndefinedForbidden: true,
+        isNullForbidden: true,
+        allowedAlternatives: Object.values(LoadingIndicator__YDF.Types)
+      }
+
+    };
+
+  }

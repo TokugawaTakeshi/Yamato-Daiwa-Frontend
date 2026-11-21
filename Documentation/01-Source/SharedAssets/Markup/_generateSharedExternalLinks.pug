@@ -1,0 +1,78 @@
+-
+
+  function generateSharedExternalLinks(localization) {
+
+    /* [ Methodology ] Keep this variable to easily copy the qualified name by IntelliJ IDEA IDEs functionality. */
+    const sharedExternalLinks = {
+
+      pug: {
+        homePage: {
+          top: "https://pugjs.org/api/getting-started.html",
+          mixins: "https://pugjs.org/language/mixins.html",
+          mixinBlocks: "https://pugjs.org/language/mixins.html#mixin-blocks",
+          includes: "https://pugjs.org/language/includes.html",
+          templateInheritance: "https://pugjs.org/language/inheritance.html",
+          block: "https://pugjs.org/language/inheritance.html#block-append-prepend",
+          inlineJavaScript: "https://pugjs.org/language/code.html",
+          conditionalRendering: "https://pugjs.org/language/conditionals.html"
+        }
+      },
+
+      stylus: {
+        homePage: {
+          top: "https://stylus-lang.com",
+          mixins: "https://stylus-lang.com/docs/mixins.html",
+          includes: "https://stylus-lang.com/docs/import.html"
+        }
+      },
+
+      vue: {
+        officialSite: {
+          top: "https://vuejs.org",
+          slots: localization.vue.officialSite.slots
+        }
+      },
+
+      YamatoDaiwaES_Extensions: {
+        top: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-ES-Extensions/blob/master/CoreLibrary/Package/README.md",
+        RawObjectDataProcessor: {
+          top: "https://github.com/TokugawaTakeshi/Yamato-Daiwa-ES-Extensions/blob/master/CoreLibrary/Package/Documentation/RawObjectDataProcessor/RawObjectDataProcessor.md",
+          PropertiesSpecification: localization.YamatoDaiwaES_Extensions.RawObjectDataProcessor.PropertiesSpecification
+        }
+      },
+
+      YamatoDaiwaAutomation: {
+        top: localization.YamatoDaiwaAutomation.top,
+        functionality: {
+          staticPreview: {
+            pagesVariations: localization.YamatoDaiwaAutomation.functionality.staticPreview.pagesVariations
+          }
+        }
+      },
+
+      jetBrains: {
+        intelliJ_IDEA_FamilyIDEs: "https://www.jetbrains.com/products/#type=ide",
+        liveTemplates: localization.jetBrains.liveTemplates,
+        YDF_Plugin: "https://plugins.jetbrains.com/plugin/17677-yamato-daiwa-frontend"
+      },
+
+      wikipedia: {
+        Base64: localization.wikipedia.Base64
+      },
+
+      mdn: {
+        HTML: {
+          metaTags: localization.mdn.HTML.metaTags
+        },
+        javaScript: {
+          string: {
+            ES6TemplateLiteral: localization.mdn.javaScript.string.ES6TemplateLiteral
+          }
+        }
+      }
+
+    };
+
+    return sharedExternalLinks;
+
+  }

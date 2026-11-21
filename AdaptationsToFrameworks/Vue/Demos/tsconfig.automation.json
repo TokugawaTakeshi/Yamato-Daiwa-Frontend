@@ -1,0 +1,25 @@
+{
+
+  "compilerOptions": {
+
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "types": [ "node" ],
+    "skipLibCheck": true,
+    "removeComments": true,
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+
+    "rootDir": "Source",
+    "outDir": "Distributable"
+
+  },
+
+  "files": [
+    "YDF_VueAdaptationPackageDebuggingProvider.ts"
+  ]
+
+}

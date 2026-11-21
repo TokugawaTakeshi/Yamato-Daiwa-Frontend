@@ -1,0 +1,30 @@
+﻿@page "/gui_components/validatable_control_shell"
+
+@using Microsoft.AspNetCore.Components.Web
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.ValidatableControlShell
+
+
+<HeadContent>
+  <link 
+    rel="stylesheet" 
+    href="@Assets["css/GUI_Components/Controls/ValidatableControlShell/ValidatableControlShellWorkbench.css"]" 
+  />
+</HeadContent>
+
+
+<ValidatableControlShell
+  label="Label"
+  guidance="Guidance"
+  validationErrorsMessages=@validationErrorsMessages
+  asynchronousChecksStatus=@asynchronousChecksStatus
+  mustDisplayErrorsMessagesIfAny=@true
+>
+  <div class="ValidatableControlShellGallery-CoreElementPlaceholder">Core Element Here</div>
+</ValidatableControlShell>
+
+<button
+  type="button"
+  onclick=@switchValidationErrorsMessages
+>
+   Switch VEM
+</button>

@@ -1,0 +1,28 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+
+usage:
+
+  $heading: `usage.$heading`
+  $anchor: USAGE--SECTION
+
+  $children:
+
+    markup:
+
+      $heading: `usage.markup.$heading`
+      $anchor: MARKUP--SECTION
+
+      $children:
+
+        includingToProject:
+          $heading: `usage.markup.includingToProject.$heading`
+          $anchor: INCLUDING_OF_MARKUP_TO_PROJECT--SECTION
+
+        pugMixin:
+
+          $heading: `usage.markup.pugMixin.$heading`
+          $anchor: PUG_MIXIN--SECTION

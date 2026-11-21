@@ -1,0 +1,57 @@
+mixin Link--YDF(properties)
+
+  -
+
+    const {
+      endorsedExternalURI,
+      unendorsedExternalURI,
+      internalURI,
+      anchor,
+      accessibilityGuidance,
+      disabled,
+      alwaysSingleLine = false
+    } = properties;
+
+
+    let hrefAttributeValue;
+
+    if (endorsedExternalURI) {
+      hrefAttributeValue = endorsedExternalURI;
+    } else if (unendorsedExternalURI) {
+      hrefAttributeValue = unendorsedExternalURI;
+    } else if (internalURI) {
+      hrefAttributeValue = internalURI;
+    } else if (anchor) {
+      hrefAttributeValue = `#${ anchor }`;
+    }
+
+    let targetAttributeValue;
+    let relAttributeValue;
+    const relations = [];
+
+    if (endorsedExternalURI || unendorsedExternalURI) {
+      targetAttributeValue = "_blank"
+      relations.push("noopener", "noreferrer");
+    }
+
+    if (unendorsedExternalURI) {
+      relations.push("nofollow");
+    }
+
+    if (relations.length > 0) {
+      relAttributeValue = relations.join(" ");
+    }
+
+    const rootElementModifierCSS_Classes = [
+      ...alwaysSingleLine ? [ "Link--YDF__AlwaysSingleLine" ] : [ "Link--YDF__LineBreakable" ]
+    ]
+
+  a.Link--YDF&attributes(attributes)(
+    href=hrefAttributeValue
+    target=targetAttributeValue
+    rel=relAttributeValue
+    aria-label=accessibilityGuidance
+    aria-disabled=(disabled ? "true" : undefined)
+    class=rootElementModifierCSS_Classes
+  )
+    block

@@ -1,0 +1,27 @@
+fillBodyVertically--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "fillBodyVertically--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+      verticalScrolling: {
+        required: true,
+        type: DataTypes--YDF.boolean
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  height 100%
+  max-height 100%
+
+
+  if compoundParameter.verticalScrolling
+
+    overflow-y auto
+
+  else
+
+    overflow-y hidden

@@ -1,0 +1,16 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+TextBoxClass:
+
+  $heading: `TextBoxClass.$heading`
+  $anchor: TEXT_BOX_CLASS--SECTION
+
+  $children:
+
+    razorComponentParameters:
+
+      $heading: `TextBoxClass.razorComponentParameters.$heading`
+      $anchor: TEXT_BOX_CLASS-RAZOR_COMPONENT_PROPERTIES--SECTION

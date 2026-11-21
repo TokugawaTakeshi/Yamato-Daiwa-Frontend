@@ -1,0 +1,103 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/01-Sizing/01-Borders/BordersSizing.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/01-Sizing/01-Borders/BordersSizing.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.BordersTesting
+
+  &-Thickness
+
+    &-All
+
+      BordersSizing--YDF({
+        thickness: {
+          all: 1px
+        }
+      })
+
+
+    &-Symmetric
+
+      BordersSizing--YDF({
+        thickness: {
+          horizontalSymmetric: 4px,
+          verticalSymmetric: 6px
+        }
+      })
+
+
+    &-Separate
+
+      BordersSizing--YDF({
+        thickness: {
+          top: 1px,
+          left: 2px,
+          right: 4px,
+          bottom: 6px
+        }
+      })
+
+
+  &-Radius
+
+    &-All
+
+      BordersSizing--YDF({
+        radius: {
+          all: 6px
+        }
+      })
+
+
+    &-LeftFillets
+
+      BordersSizing--YDF({
+        radius: {
+          leftFillets: 6px
+        }
+      })
+
+
+    &-RightFillets
+
+      BordersSizing--YDF({
+        radius: {
+          rightFillets: 6px
+        }
+      })
+
+
+    &-TopFillets
+
+      BordersSizing--YDF({
+        radius: {
+          topFillets: 6px
+        }
+      })
+
+
+    &-BottomFillets
+
+      BordersSizing--YDF({
+        radius: {
+          bottomFillets: 6px
+        }
+      })
+
+
+    &-Separate
+
+      BordersSizing--YDF({
+        radius: {
+          topLeft: 1px,
+          topRight: 2px,
+          bottomLeft: 3px,
+          bottomRight: 4px
+        }
+      })

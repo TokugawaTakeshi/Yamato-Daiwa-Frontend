@@ -1,0 +1,112 @@
+Button-RegularTheme-WarningDecoration--YDF = {
+
+  rootElement: {
+    text: {
+      color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor,
+      underline: null
+    },
+    background: {
+      color: spin(JQueryUI_BaseTheme.clickableElements.activeState.background, 180deg)
+    },
+    borders: {
+      style: solid,
+      color: spin(JQueryUI_BaseTheme.clickableElements.activeState.borderColor, 180deg)
+    },
+    outline: null,
+    shadow: null
+  },
+
+  SVG_Icon: {
+    color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor
+  },
+
+
+  stateDependent: {
+
+    hover: {
+
+      rootElement: {
+        text: {
+          color: JQueryUI_BaseTheme.clickableElements.hoverState.fontColor,
+          underline: null
+        },
+        background: {
+          color: JQueryUI_BaseTheme.clickableElements.hoverState.background
+        },
+        borders: {
+          style: null,
+          color: JQueryUI_BaseTheme.clickableElements.hoverState.borderColor
+        },
+        outline: null,
+        shadow: null
+      },
+
+      SVG_Icon: {
+        color: JQueryUI_BaseTheme.clickableElements.hoverState.fontColor
+      }
+    },
+
+    focus: {
+      rootElement: {
+        text: {
+          color: null,
+          underline: null
+        },
+        background: {
+          color: null
+        },
+        borders: {
+          style: null,
+          color: null
+        },
+        outline: null,
+        shadow: {
+          blurRadius: 3px,
+          spreadRadius: 1px,
+          color: spin(JQueryUI_BaseTheme.clickableElements.focusState.shadowColor, 180deg)
+        }
+      }
+    },
+
+    active: {
+
+      rootElement: {
+        text: {
+          color: JQueryUI_BaseTheme.clickableElements.defaultState.fontColor
+        },
+        background: {
+          color: JQueryUI_BaseTheme.clickableElements.defaultState.background
+        },
+        borders: {
+          style: null,
+          color: JQueryUI_BaseTheme.clickableElements.defaultState.borderColor
+        },
+        outline: null
+      },
+
+      SVG_Icon: {
+        color: JQueryUI_BaseTheme.clickableElements.activeState.fontColor
+      }
+    },
+
+    disabled: {
+
+      rootElement: {
+        text: {
+          color: W3C_39_ShadesOfGray--YDF[24]
+        },
+        background: {
+          color: W3C_39_ShadesOfGray--YDF[36]
+        },
+        borders: {
+          style: null,
+          color: W3C_39_ShadesOfGray--YDF[32]
+        }
+      },
+
+      SVG_Icon: {
+        color: W3C_39_ShadesOfGray--YDF[24]
+      }
+    }
+  }
+}

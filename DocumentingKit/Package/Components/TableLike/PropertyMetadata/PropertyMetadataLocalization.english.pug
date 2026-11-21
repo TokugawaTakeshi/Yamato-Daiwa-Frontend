@@ -1,0 +1,92 @@
+-
+
+  const propertyMetadataYDF_DK_ComponentLocalization__english = {
+
+    localizedInterpretation: "Interpretation",
+    type: "Type",
+    types: {
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.number]: "number",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.string]: "string",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.boolean]: "boolean",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.fixedSchemaObject]: "Object of fixed schema",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.associativeArray]: "Associative array type object",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.indexedArray]: "Indexed array",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.tuple]: "Tuple",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.ambiguousObject]: "Ambiguous object",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.ambiguousArray]: "Ambiguous array",
+      [YDF.RawObjectDataProcessor.ValuesTypesIDs.polymorphic]: "Polymorphic"
+    },
+
+    /* ━━━ Undefindability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    isUndefinedForbidden: "Is Undefined Forbidden",
+    undefinedForbiddenIf: "Undefined Forbidden if",
+    undefinedValueSubstitution: "Undefined Value Substitution",
+    mustTransformUndefinedToNull: "Will undefined be considered as null",
+    mustBeUndefinedIf: "Must be undefined if",
+
+    /* ━━━ Nullability ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    isNullForbidden: "Is Null Forbidden",
+    nullForbiddenIf: "Null Forbidden if",
+    nullValueSubstitution: "Null Value Substitution",
+    mustTransformNullToUndefined: "Will null be considered as undefined",
+    mustBeNullIf: "Must be null if",
+
+    /* ━━━ Common Requirement for Languages With Single Empty Type ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    defaultValue: "Default Value",
+    required: "Required",
+    requiredIf: "Required if",
+
+    /* ━━━ By Types ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* ─── Fixed Shema Objects ────────────────────────────────────────────────────────────────────────────────────── */
+    objectTypeSchema: "Schema",
+
+    /* ─── Associative Array ──────────────────────────────────────────────────────────────────────────────────────── */
+    areUndefinedTypeValuesForbidden: "Are Undefined Type Values Forbidden",
+    areNullTypeValuesForbidden: "Are Null Type Values Forbidden",
+    minimalEntriesCount: "Minimal Entries",
+    allowedKeys: "Allowed Keys",
+    associativeArrayValues: "Associative Array Values",
+
+    /* ─── Indexed Array Property ─────────────────────────────────────────────────────────────────────────────────── */
+    arrayElements: "Array Elements",
+    minimalElementsCount: "Minimal Elements",
+    areUndefinedElementsForbidden: "Are Undefined Elements Forbidden",
+    areNullElementsForbidden: "Are Null Elements Forbidden",
+
+    /* ─── Numbers ────────────────────────────────────────────────────────────────────────────────────────────────── */
+    numbersSet: "Numbers Set",
+    numbersSets: {
+      [YDF.RawObjectDataProcessor.NumbersSets.naturalNumber]: "natural number",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveIntegerOrZero]: "positive integer or zero",
+      [YDF.RawObjectDataProcessor.NumbersSets.naturalNumberOrZero]: "natural number or zero",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeInteger]: "negative integer",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeIntegerOrZero]: "negative integer of zero",
+      [YDF.RawObjectDataProcessor.NumbersSets.anyInteger]: "any integer",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveDecimalFraction]: "positive decimal fraction",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveDecimalFractionOrZero]: "positive decimal fraction or zero",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeDecimalFraction]: "negative decimal fraction",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeDecimalFractionOrZero]: "negative decimal fraction or zero",
+      [YDF.RawObjectDataProcessor.NumbersSets.anyDecimalFraction]: "any decimal fraction",
+      [YDF.RawObjectDataProcessor.NumbersSets.anyDecimalFractionOrZero]: "any decimal fraction or zero",
+      [YDF.RawObjectDataProcessor.NumbersSets.anyRealNumber]: "any real number",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveRealNumber]: "positive real number",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeRealNumber]: "negative real number",
+      [YDF.RawObjectDataProcessor.NumbersSets.positiveRealNumberOrZero]: "positive real number or zero",
+      [YDF.RawObjectDataProcessor.NumbersSets.negativeRealNumberOrZero]: "negative real number or zero"
+    },
+    minimalValue: "Minimal Value",
+    maximalValue: "Maximal Value",
+    allowedAlternatives: "Allowed Alternatives",
+
+    /* ─── Strings ────────────────────────────────────────────────────────────────────────────────────────────────── */
+    minimalCharactersCount: "Minimal Characters",
+    maximalCharactersCount: "Maximum Characters",
+
+    /* ─── Polymorphic ────────────────────────────────────────────────────────────────────────────────────────────── */
+    polymorphicPropertyVariants: "Variants",
+
+    /* ━━━ Other ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    yes: "Yes",
+    no: "No"
+
+  };

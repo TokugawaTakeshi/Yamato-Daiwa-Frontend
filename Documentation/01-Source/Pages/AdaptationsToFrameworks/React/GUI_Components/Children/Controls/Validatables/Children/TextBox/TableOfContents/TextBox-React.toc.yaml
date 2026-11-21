@@ -1,0 +1,16 @@
+overview:
+
+  $heading: `overview.$heading`
+  $anchor: OVERVIEW--SECTION
+
+TextBoxClass:
+
+  $heading: `TextBoxClass.$heading`
+  $anchor: TEXT_BOX_CLASS--SECTION
+
+  $children:
+
+    reactProperties:
+
+      $heading: `TextBoxClass.reactProperties.$heading`
+      $anchor: TEXT_BOX_CLASS-REACT_PROPERTIES--SECTION

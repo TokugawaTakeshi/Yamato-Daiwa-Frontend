@@ -1,0 +1,271 @@
+extends ../../../../../../../node_modules/@yamato-daiwa/programming_documentation/Layouts/TwoColumns/TwoColumnsLayout.pug
+
+
+block append Requirements
+
+  include ../../../../../../SharedAssets/Markup/SharedAssets.russian.pug
+  include ../../../../../../SharedComponents/SharedComponents.russian.pug
+
+
+block append Metadata
+
+  -
+
+    const {
+      $heading: topHeading,
+      $sectioning: localizedSectioning
+    } = routing.russian.adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.AdmonitionBlock;
+
+    RegularWebPageTemplate__YDF.configure({
+      metadata: {
+        title: buildHTML_PageTitle(topHeading),
+        description: MetaDescriptionTemplates.GUI_Components.AdmonitionBlock
+      },
+      stylesSheetsURIs: [
+        "$CommonStyles",
+        "$LayoutsStyles/TwoColumns/TwoColumnsLayout.css",
+        "$PreMadesStyles",
+        "@CustomizedExternalComponents"
+      ]
+    });
+
+    YDF.RoutingEmulator.setCurrentRoute("adaptationsToFrameworks.react.GUI_Components.AdmonitionBlock");
+
+    LanguageDropDownList__YDF_DK.setLinks({
+      english: routing.english.adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.AdmonitionBlock.$URI,
+      japanese: routing.japanese.adaptationsToFrameworks.$children.react.$children.GUI_Components.$children.AdmonitionBlock.$URI
+    });
+
+
+block append HeadScripts
+
+  if __IS_PRODUCTION_BUILDING_MODE__
+
+    +GoogleAnalyticsScript
+
+
+block append SpecificContent
+
+  article
+
+    //- ━━━ `AdmonitionBlock` (React) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    h1.Article-Heading1!= topHeading
+
+    +PageNotReadyApology--YDPD({ currentState: PageNotReadyApology__YDPD.States.initialTextNotComplete })
+
+    +WebPageViewer--YDF({
+      URI: "$Demos:React/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage.html",
+      title: ReusableTextings.GUI_Components.commonExampleWebViewer.generateDescription({ componentName: "AdmonitionBlock" })
+    })
+
+    +AdmonitionBlockComponent-Abstract
+
+    +CompactTableOfContents--YDF_DK(localizedSectioning)
+
+
+    //- ┅┅┅ Краткий обзор ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      text: localizedSectioning.overview.$heading,
+      HTML_ID: localizedSectioning.overview.$anchor
+    }).Article-Heading2
+
+    +AdmonitionBlockComponent-Overview({ framework: SupportedFrameworks.react })
+
+
+    //- ┅┅┅ Класс `AdmonitionBlock` ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅
+    +Heading--YDF({
+      level: 2,
+      innerHTML: localizedSectioning.AdmonitionBlockClass.$heading,
+      HTML_ID: localizedSectioning.AdmonitionBlockClass.$anchor
+    }).Article-Heading2
+
+    //- ╍╍╍ React-свойства ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+    +Heading--YDF({
+      level: 3,
+      text: localizedSectioning.AdmonitionBlockClass.$children.reactProperties.$heading,
+      HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.reactProperties.$anchor
+    }).Article-Heading3
+
+    +AdmonitionBlockComponent-PugMixinOrClassSynopsis({ framework: SupportedFrameworks.react })
+
+    //-
+
+      //- ─── Примеры ────────────────────────────────────────────────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 3,
+        text: localizedSectioning.AdmonitionBlockClass.$children.examples.$heading,
+        HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.examples.$anchor
+      }).Article-Heading3
+
+      //- ─── Минимальный пример (только обязательные свойства) ──────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 4,
+        innerHTML: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.minimal.$heading,
+        HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.minimal.$anchor
+      }).Article-Heading4
+
+      +AdmonitionBlockComponent-MinimalExampleDescription({ framework: SupportedFrameworks.react })
+
+      +CodeViewer--YDF
+        +CodeViewer-Listing--YDF({
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript
+        }): :code_listing--yda
+          <AdmonitionBlock
+            decorativeVariation={ AdmonitionBlock__YDF.DecorativeVariations.notice }
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+              commodo consequat.
+          </AdmonitionBlock>
+
+
+      //- ─── Заголовок (свойство `title`) ───────────────────────────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 4,
+        innerHTML: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.title.$heading,
+        HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.title.$anchor
+      }).Article-Heading4
+
+      +PropertyMetadata--YDF_DK(AdmonitionBlockComponentPropertiesSpecification.propertiesSpecification.title)
+
+      +AdmonitionBlockComponent-TitlePropertyDescription({ framework: SupportedFrameworks.react })
+
+      +CodeViewer--YDF
+        +CodeViewer-Listing--YDF({
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript
+        }): :code_listing--yda
+          <AdmonitionBlock
+            tile="Titulo"
+            decorativeVariation={ AdmonitionBlock__YDF.DecorativeVariations.notice }
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+              commodo consequat.
+          </AdmonitionBlock>
+
+
+      //- ─── SVG-иконки ─────────────────────────────────────────────────────────────────────────────────────────────────
+      +Heading--YDF({
+        level: 4,
+        text: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.SVG_Icons.$heading,
+        HTML_ID: localizedSectioning.AdmonitionBlockClass.$children.examples.$children.SVG_Icons.$anchor
+      }).Article-Heading4
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:React/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-DefaultSvgIcons.html",
+        title: "Примеры отображения компонента «AdmonitionBlock» с иконками " +
+            "(библиотека: «Yamato Daiwa Frontend React», сокращённо: «YDF React»). "
+      })
+
+      p.Article-Paragraph.
+        #[+Term--YDID Иконка] вдобавок к цвету фона позволяет лучше передать важность сообщения.
+        Для того, чтобы отобразилась иконка по умолчанию (зависит от #[+Term--YDID декоративной вариации]),
+          #[+Keyword--YDID необходимо] указать #[+Term--YDID React-свойству]
+          #[+ImportantEntity__Code--YDID SVG_Icon] значение #[+ImportantEntity__Code--YDID true]:
+
+      +CodeViewer--YDF
+        +CodeViewer-Listing--YDF({
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript
+        }): :code_listing--yda
+          <AdmonitionBlock
+            decorativeVariation={ AdmonitionBlock__YDF.DecorativeVariations.notice }
+            SVG_Icon={ true }
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+              commodo consequat.
+          </AdmonitionBlock>
+
+      p.Article-Paragraph.
+        #[+Keyword--YDID Наиболее] рекомендуемым вариантом является сочетание заголовков и иконок:
+
+      +WebPageViewer--YDF({
+        URI: "$Demos:React/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-TitlesAndSvgIcons.html",
+        title: "Примеры отображения компонента «AdmonitionBlock» с заголовками и иконками " +
+            "(библиотека: «Yamato Daiwa Frontend React», сокращённо: «YDF React»). "
+      })
+
+      +CodeViewer--YDF
+        +CodeViewer-Listing--YDF({
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.TypeScript
+        }): :code_listing--yda
+          <AdmonitionBlock
+            tile="Titulo"
+            decorativeVariation={ AdmonitionBlock__YDF.DecorativeVariations.notice }
+            SVG_Icon={ true }
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+              commodo consequat.
+          </AdmonitionBlock>
+
+      p.Article-Paragraph.
+        Если Вас не&nbsp;устраивает стандартная иконка, то указать #[+Term--YDID компонент], содержащий пользовательскую
+          иконку можно через то же самое #[+Term--YDID React-свойству] #[+ImportantEntity__Code--YDID SVG_Icon], при этом
+          #[+Term--YDID компонент] #[+Keyword--YDID должен] иметь #[+Term--YDID React-свойство]
+          #[+ImportantEntity__Code--YDID className], чтобы #[+ImportantEntity--YDID AdmonitionBlock] мог иконке
+          присвоить нужный #[+Term--YDID CSS-класс]:
+
+      +CodeViewer--YDF({
+        resultWebViewURI: "$Demos:React/GUI_Components/AdmonitionBlock/AdmonitionBlockGalleryPage-CustomSvgIcons.html"
+      })
+        +CodeViewer-Listing--YDF({
+          fileLabel: "Компонент, используй AdmonitionBlock",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML
+        }): :code_listing--yda
+          <AdmonitionBlock
+            decorativeVariation={ AdmonitionBlock.DecorativeVariations.warning }
+            SVG_Icon={ SampleThirdPartyIcon }
+            rootElementAttributes={ { lang: "la" } }
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+              commodo consequat.
+          </AdmonitionBlock>
+
+        +CodeViewer-Listing--YDF({
+          fileLabel: "Компонент пользовтельской иконки",
+          codeLanguage: CodeViewer__YDF.SupportedCodesLanguages.HTML
+        }): :code_listing--yda
+          import React from "react";
+
+          export const SampleThirdPartyIcon: React.FC<Readonly<{ className?: string; }>> =
+              ({ className }: Readonly<{ className?: string; }>): React.ReactNode =>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    className={ className }
+                  >
+                    <path
+                      d={
+                        "M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M13," +
+                          "13V7H11V13H13M13,17V15H11V17H13Z"
+                      }
+                    />
+                  </svg>;
+
+      p.Article-Paragraph.
+        Как видно, пользовательская иконка меньше по размерам, чем стандартная.
+        На самом деле, высота у них #[+Keyword--YDID одинаковая] (она задана в через #[+Term--YDID стили]), а проблема
+          заключается в том, что у этой иконки между областью, называемой #[+Term--YDID «view box»] и фигурой, которую
+          образует элемент #[+SecondaryEntity__Code--YDID path], имеется зазор.
+        Этот зазор #[+Keyword--YDID не]&nbsp;имеет отношения к #[+Term--YDID CSS-свойствам]
+          #[+ImportantEntity__Code--YDID padding] и #[+ImportantEntity--YDID margin], ровно как и
+          #[+Keyword--YDID не]&nbsp;имеет отношения с #[+ImportantEntity--YDID CSS] как к таковому — дело в самом
+          #[+Term--YDID SVG-изображении].
+        Проблема в том, что у каждого поставщика SVG-иконок своя величина этого зазора, а в
+          #[+ImportantEntity--YDID YDF] такого зазора #[+Keyword--YDID нет], потому что регулировать расстояние до
+          других элементов надлежит уже с помощью #[+ImportantEntity--YDID CSS].
+
+      p.Article-Paragraph.
+        Вероятно, Вы хотите знать, как сделать так, чтобы можно было легко заменять иконки от одного поставщика
+          иконками от другого поставщика, при этом их размеры выглядели одинаково и для всех иконок были одно и те
+          же стили.
+        Короткий ответ: #[+Keyword--YDID никак], из-за того самого зазора, о котором выше шла речь.
+        Придётся либо модифицировать SVG-код иконок с целью сделать им один и тот же зазор (или убрать его),
+          либо регулировать внешнюю геометрию каждой иконки индивидуальными #[+Term--YDID стилями].

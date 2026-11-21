@@ -1,0 +1,19 @@
+mixin WebPageViewer--YDF(properties)
+
+  -
+
+    const {
+      URI,
+      title,
+      aspectRatio = "16/9"
+    } = properties;
+
+    const rootElementStyles = {
+      "aspect-ratio": aspectRatio
+    };
+
+  iframe.WebPageViewer--YDF&attributes(attributes)(
+    src=URI
+    title=title
+    style=rootElementStyles
+  )

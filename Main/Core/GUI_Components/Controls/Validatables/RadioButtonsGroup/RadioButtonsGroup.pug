@@ -1,0 +1,205 @@
+﻿//- [ Reference ] https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/radio_role
+mixin RadioButtonsGroup--YDF(properties, statesSimulations)
+
+  -
+
+    const {
+
+      /** @type { string | undefined } */
+      label,
+
+      /** @type { string | undefined } */
+      accessibilityGuidance,
+
+      /** @type { string | undefined } */
+      externalLabelHTML_ID,
+
+      /** @type { string | undefined } */
+      guidance,
+
+      /** @type { ReadonlyArray<{ key: string | number; value: string | number; }> } */
+      selectingOptions,
+
+      /** @type { string | number | undefined } */
+      initiallySelectedOptionKey,
+
+      /** @type { string | undefined } */
+      radioButtonsHTML_Name,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      disabled,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      readonly,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      required,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+
+      /**
+       * @type { RadioButtonsGroup.Themes }
+       * @default RadioButtonsGroup.Themes.regular
+       * */
+      theme,
+
+      /**
+       * @type { boolean }
+       * @default RadioButtonsGroup.areThemesCSS_ClassesCommon
+       * */
+      areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { RadioButtonsGroup.GeometricVariations }
+       * @default RadioButtonsGroup.GeometricVariations.regular
+       * */
+      geometricVariation,
+
+      /**
+       * @type { RadioButtonsGroup.GeometricVariations }
+       * @default RadioButtonsGroup.DecorativeVariations.regular
+       * */
+      decorativeVariation,
+
+      ...instanceID_DependentProperties
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: RadioButtonsGroup__YDF.propertiesSpecification,
+      mixinName: "RadioButtonsGroup--YDF"
+    });
+
+    /** @type { string } */
+    const INSTANCE_ID = RadioButtonsGroup__YDF.generateInstanceID();
+
+    const {
+
+      /** @type { string } */
+      labelElementHTML_ID = `${ INSTANCE_ID }-LABEL`
+
+    } = instanceID_DependentProperties;
+
+    const {
+
+      /** @var { boolean } [ invalidInputHighlightingIfAnyValidationErrorsMessages = false ] */
+      invalidInputHighlightingIfAnyValidationErrorsMessages,
+
+      /** @var { boolean } [ validValueHighlightingIfNoValidationErrorsMessages = false ] */
+      validValueHighlightingIfNoValidationErrorsMessages,
+
+      /** @var { Array<string> | boolean } [ validationErrorsMessages = false ] */
+      validationErrorsMessages,
+
+      /** @var { Array<{ ID: string; message: string; }> | boolean } [ asynchronousValidationsStatuses = false ] */
+      asynchronousValidationsStatuses
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: statesSimulations,
+      parameterNumber: 2,
+      parameterName: "statesSimulations",
+      parameterPropertiesSpecification: RadioButtonsGroup__YDF.statesSimulationsSpecification,
+      mixinName: "RadioButtonsGroup--YDF"
+    });
+
+    /* @type { ReadonlyArray<string> } */
+    const rootElementModifierCSS_Classes =
+
+        RadioButtonsGroup__YDF.getActualRootElementModifierCSS_Classes({
+          disabled,
+          invalidInputHighlighting:
+              invalidInputHighlightingIfAnyValidationErrorsMessages &&
+              (validationErrorsMessages === true || validationErrorsMessages.length > 0),
+          validValueHighlighting:
+              validValueHighlightingIfNoValidationErrorsMessages &&
+              (validationErrorsMessages === false || validationErrorsMessages.length === 0),
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
+
+
+  +ValidatableControlShell--YDF(
+    {
+
+      label,
+      guidance,
+
+      required,
+      mustDisplayAppropriateBadgeIfInputIsRequired,
+      mustDisplayAppropriateBadgeIfInputIsOptional,
+      mustAddInvisibleBadgeForHeightEqualizingWhenNoBadge,
+
+      labelElementHTML_ID,
+
+      theme: RadioButtonsGroup__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.validatableControlShell[theme],
+      areThemesCSS_ClassesCommon,
+      geometricVariation: RadioButtonsGroup__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.validatableControlShell[geometricVariation],
+      decorativeVariation: RadioButtonsGroup__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.validatableControlShell[decorativeVariation]
+
+    },
+    {
+      invalidInputHighlightingIfAnyValidationErrorsMessages,
+      validValueHighlightingIfNoValidationErrorsMessages,
+      validationErrorsMessages,
+      asynchronousValidationsStatuses
+    }
+  ).RadioButtonsGroup--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
+
+    .RadioButtonsGroup--YDF-Flow(
+      role="radiogroup"
+      aria-label=accessibilityGuidance
+      aria-labelledby=(labelElementHTML_ID || externalLabelHTML_ID)
+      aria-disabled=disabled
+    )
+
+      if YDF.isNonEmptyArray(selectingOptions)
+
+        each option in selectingOptions
+
+          -
+
+            /** @type { boolean } */
+            const isCurrentOptionSelected =
+                YDF.isNotUndefined(
+                  (selectingOptions ?? []).
+                      find(option => option.key === initiallySelectedOptionKey)
+                );
+
+          +RadioButton--YDF({
+            label: option.label,
+            HTML_Name: radioButtonsHTML_Name || INSTANCE_ID,
+            HTML_Value: option.key,
+            checked: isCurrentOptionSelected,
+            theme: RadioButtonsGroup__YDF.selfAndChildrenComponentsThemesCorrespondence.radioButton[theme],
+            areThemesCSS_ClassesCommon,
+            geometricVariation: RadioButtonsGroup__YDF.selfAndChildrenComponentsGeometricVariationsCorrespondence.radioButton[geometricVariation],
+            decorativeVariation: RadioButtonsGroup__YDF.selfAndChildrenComponentsDecorativeVariationsCorrespondence.radioButton[decorativeVariation]
+          }).RadioButtonsGroup--YDF-RadioButton

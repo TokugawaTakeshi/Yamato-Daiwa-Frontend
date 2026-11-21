@@ -1,0 +1,8 @@
+/LocalGalleriesBuild/
+
+/node_modules/
+
+**/.DS_Store
+
+# Temporary
+/.yda/

@@ -1,0 +1,151 @@
+TableCellWidthSizing--YDF(compoundParameter, restParameters__MUST_NOT_BE...)
+
+  validateObjectTypeParameter--YDF({
+    mixinOrFunctionName: "TableCellWidthSizing--YDF",
+    targetParameterNumber: 1,
+    targetParameter: compoundParameter,
+    schema: {
+
+      fixedTotalWidth: {
+        type: DataTypes--YDF.dimensionalQuantity
+      },
+      totalMinimalWidth: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        incompatibleWith: "fixedTotalWidth"
+      },
+      totalMaximalWidth: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        incompatibleWith: "fixedTotalWidth"
+      },
+
+      fixedContentWidth: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        incompatibleWith: "fixedTotalWidth" "totalMinimalWidth" "totalMaximalWidth"
+      },
+      contentMinimalWidth: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        incompatibleWith: "fixedTotalWidth" "totalMinimalWidth" "totalMaximalWidth" "fixedContentWidth"
+      },
+      contentMaximalWidth: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        incompatibleWith: "fixedTotalWidth" "totalMinimalWidth" "totalMaximalWidth" "fixedContentWidth"
+      },
+
+      leftOrRightSymmetricBordersWidths: {
+        type: DataTypes--YDF.dimensionalQuantity
+      },
+      leftBorderWidth: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        incompatibleWith: "leftOrRightSymmetricBordersWidths"
+      },
+      rightBorderWidth: {
+        type: DataTypes--YDF.dimensionalQuantity,
+        incompatibleWith: "leftOrRightSymmetricBordersWidths"
+      },
+
+      leftOrRightSymmetricPaddings: {
+        type: DataTypes--YDF.dimensionalQuantity
+      },
+      leftPadding: {
+        type: DataTypes--YDF.dimensionalQuantity,
+         incompatibleWith: "leftOrRightSymmetricPaddings"
+      },
+      rightPadding: {
+        type: DataTypes--YDF.dimensionalQuantity,
+         incompatibleWith: "leftOrRightSymmetricPaddings"
+      },
+
+      truncateOnOverflow: {
+        type: DataTypes--YDF.boolean
+      },
+      displayEllipsisOnOverflow: {
+        type: DataTypes--YDF.boolean
+      }
+    },
+    followingParametersWhichMustNotBe: restParameters__MUST_NOT_BE
+  })
+
+
+  fixedTotalWidth = compoundParameter.fixedTotalWidth
+  totalMinimalWidth = compoundParameter.totalMinimalWidth
+  totalMaximalWidth = compoundParameter.totalMaximalWidth
+
+  fixedContentWidth = compoundParameter.fixedContentWidth
+  contentMinimalWidth = compoundParameter.contentMinimalWidth
+  contentMaximalWidth = compoundParameter.contentMaximalWidth
+
+  leftBorderWidth = substituteNull--YDF(compoundParameter.leftBorderWidth, compoundParameter.leftOrRightSymmetricBordersWidths)
+  rightBorderWidth = substituteNull--YDF(compoundParameter.rightBorderWidth, compoundParameter.leftOrRightSymmetricBordersWidths)
+
+  leftPadding = substituteNull--YDF(compoundParameter.leftPadding, compoundParameter.leftOrRightSymmetricPaddings)
+  rightPadding = substituteNull--YDF(compoundParameter.rightPadding, compoundParameter.leftOrRightSymmetricPaddings)
+
+  truncateOnOverflow = compoundParameter.truncateOnOverflow
+  displayEllipsisOnOverflow = compoundParameter.displayEllipsisOnOverflow
+
+
+  if isNotNull--YDF(fixedTotalWidth)
+
+    width fixedTotalWidth
+
+  else if isNotNull--YDF(fixedContentWidth)
+
+    width: buildCalcExpression--YDF(
+      "${fixedContentWidth} + ${leftBorderWidth} + ${rightBorderWidth} + ${leftPadding} + ${rightPadding}",
+      {
+        fixedContentWidth: fixedContentWidth,
+        leftBorderWidth: leftBorderWidth,
+        rightBorderWidth: rightBorderWidth,
+        leftPadding: leftPadding,
+        rightPadding: rightPadding
+      }
+    )
+
+
+  if isNotNull--YDF(totalMinimalWidth)
+
+    min-width totalMinimalWidth
+
+  else if isNotNull--YDF(contentMinimalWidth)
+
+    min-width: buildCalcExpression--YDF(
+      "${contentMinimalWidth} + ${leftBorderWidth} + ${rightBorderWidth} + ${leftPadding} + ${rightPadding}",
+      {
+        contentMinimalWidth: contentMinimalWidth,
+        leftBorderWidth: leftBorderWidth,
+        rightBorderWidth: rightBorderWidth,
+        leftPadding: leftPadding,
+        rightPadding: rightPadding
+      }
+    )
+
+
+  if isNotNull--YDF(totalMaximalWidth)
+
+    max-width totalMaximalWidth
+
+  else if isNotNull--YDF(contentMaximalWidth)
+
+    max-width: buildCalcExpression--YDF(
+      "${contentMaximalWidth} + ${leftBorderWidth} + ${rightBorderWidth} + ${leftPadding} + ${rightPadding}",
+      {
+        contentMaximalWidth: contentMaximalWidth,
+        leftBorderWidth: leftBorderWidth,
+        rightBorderWidth: rightBorderWidth,
+        leftPadding: leftPadding,
+        rightPadding: rightPadding
+      }
+    )
+
+
+  applyIfNotNull--YDF({
+    border-left-width: leftBorderWidth,
+    border-right-width: rightBorderWidth,
+    padding-left: leftPadding,
+    padding-right: rightPadding
+  })
+
+
+  if truncateOnOverflow
+
+    SingleLineElementOverflowTolerance({ displayEllipsis: displayEllipsisOnOverflow })

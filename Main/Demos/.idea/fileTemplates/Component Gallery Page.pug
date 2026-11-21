@@ -1,0 +1,46 @@
+//- TODO Correct the relative path
+extends ../../../../node_modules/@yamato-daiwa/frontend/PagesTemplates/RegularWebPageTemplate.pug
+
+
+block append Requirements
+
+  //- TODO Correct the relative paths
+  include ../../../../node_modules/@yamato-daiwa/frontend/GUI_Components.pug
+  include ../../../../Galleries/GalleryConfigurator.pug
+  include _${COMPONENT_NAME}GalleryPage.partials.pug
+  include ../../../Galleries/GUI_Components/${COMPONENT_NAME}/${COMPONENT_NAME}Gallery.pug
+
+
+block append Metadata
+
+  -
+
+    /**
+     * @param { string | undefined } partialTitle
+     * @returns { string }
+     * */
+    function generateHTML_Page_Title(partialTitle) {
+      return [
+        "${COMPONENT_NAME} Component Demos",
+        ...partialTitle ? [ ` — ${ partialTitle }` ] : [],
+        " — Yamato Daiwa Frontend (YDF)"
+      ].join("");
+    }
+
+    RegularWebPageTemplate__YDF.configure({
+      stylesSheetsURIs: [
+        "@Partials/YDF-Demos-Primer",
+        "@Partials/YDF-Demos-CommonRequirements",
+        "@Pages/GUI_Components/${COMPONENT_NAME}/${COMPONENT_NAME}GalleryPage" // TODO Correct the path
+      ],
+      scriptsURIs: {
+        atEndOfBody: [ "@CompletePages/GUI_Components/${COMPONENT_NAME}/${COMPONENT_NAME}GalleryPage" ]
+      }
+    });
+
+
+block append PageContent
+
+  .YDF_Gallery
+
+    +${COMPONENT_NAME}Gallery

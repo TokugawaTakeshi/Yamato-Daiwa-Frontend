@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "@yamato-daiwa/frontend-documenting_kit-localization-japanese",
+  "version": "0.0.0",
+  "description": "Japanese localization for '@yamato-daiwa/frontend-documenting_kit' package.",
+  "keywords": [
+    "frontend",
+    "pug",
+    "stylus",
+    "documenting",
+    "localization",
+    "japanese"
+  ],
+  "author": {
+    "name": "Takeshi Tokugawa",
+    "email": "tokugawa.takesi@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TokugawaTakeshi/yamato_daiwa-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TokugawaTakeshi/yamato_daiwa-frontend/issues",
+    "email": "tokugawa.takesi@gmail.com"
+  },
+  "files": [
+    "StaticPreviewAnywherePageLocalization.pug"
+  ]
+}

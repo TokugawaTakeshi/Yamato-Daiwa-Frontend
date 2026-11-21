@@ -1,0 +1,86 @@
+TextElementHeightSizingTypes--YDF = {
+  fixed: "FIXED",
+  natural: "NATURAL"
+}
+
+TextElementHeightSizingSpecificationSchema--YDF = {
+
+  type: {
+    type: DataTypes--YDF.string,
+    required: true,
+    allowedAlternatives: values(TextElementHeightSizingTypes--YDF)
+  },
+
+  fixedHeight: {
+    type: DataTypes--YDF.dimensionalQuantity,
+    requiredIf: {
+      predicate: @(textElementHeightSizingSpecification) {
+        return textElementHeightSizingSpecification.type == TextElementHeightSizingTypes--YDF.fixed
+      },
+      conditionDescription: "'type' is 'TextElementHeightSizingTypes--YDF.fixed'"
+    }
+  },
+
+
+  borders: {
+    type: DataTypes--YDF.object,
+    defaultValue: {},
+    properties: BordersSizingSpecificationSchema--YDF
+  },
+
+
+  paddings: {
+    type: DataTypes--YDF.object,
+    defaultValue: {},
+    properties: PaddingsSpecificationSchema--YDF
+  },
+
+  isExplicitPaddingZeroDeclarationRequired: {
+    type: DataTypes--YDF.boolean
+  },
+
+
+  fontSize: {
+    type: DataTypes--YDF.dimensionalQuantity,
+    required: true
+  },
+
+  lineSpacing: {
+    type: DataTypes--YDF.dimensionalQuantity DataTypes--YDF.dimensionlessQuantity
+  },
+
+  lineHeight: {
+    type: DataTypes--YDF.dimensionalQuantity DataTypes--YDF.dimensionlessQuantity,
+    requiredIf: {
+      predicate: @(compoundParameter) { return isNull--YDF(compoundParameter.lineSpacing) },
+      descriptionForLogging: "The 'lineSpacing' is not specified"
+    },
+    incompatibleWith: "lineSpacing",
+  },
+
+  fixedLinesCount: {
+    type: DataTypes--YDF.dimensionlessQuantity
+    required: false,
+    minimalValue: 1
+  },
+
+  mustMakeLineHeightEqualToFontSizeWhenLineSpacingIs0: {
+    type: DataTypes--YDF.boolean,
+    defaultValue: true
+  },
+
+  mustApplyDimensionalLineHeightIfPossible: {
+    type: DataTypes--YDF.boolean,
+    defaultValue: false
+  },
+
+  mustReduceVerticalPaddingsByExtraSpaceCausedByLineHeight: {
+    type: DataTypes--YDF.boolean,
+    defaultValue: false
+  },
+
+  mustFixateHeight: {
+    type: DataTypes--YDF.boolean
+  }
+
+}

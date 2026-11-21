@@ -1,0 +1,11 @@
+overview:
+
+  $heading: "Краткий обзор"
+
+{{ GUI_ComponentName__pascalCase }}Class:
+
+  $heading: "Класс <code>{{ GUI_ComponentName__pascalCase }}</code>"
+
+  reactProperties:
+
+    $heading: "React-свойства"

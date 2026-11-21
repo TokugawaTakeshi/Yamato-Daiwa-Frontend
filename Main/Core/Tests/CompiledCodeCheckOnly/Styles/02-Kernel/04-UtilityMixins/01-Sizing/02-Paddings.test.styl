@@ -1,0 +1,54 @@
+/* === Execution
+stylus Tests/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/01-Sizing/02-Paddings.test.styl `
+    --out Tests/Build/CompiledCodeCheckOnly/Styles/02-Kernel/04-UtilityMixins/01-Sizing/02-Paddings.test.css `
+    --include Styles
+*/
+
+
+@require "01-Assets.styl"
+@require "02-Kernel.styl"
+
+
+.Example1
+
+  // Equivalent to `padding: 3px`
+  Paddings--YDF({ all: 3px })
+
+
+.Example2
+
+  // Equivalent to `padding-left: 4px; padding-right: 4px;`
+  Paddings--YDF({ horizontalSymmetric: 4px })
+
+
+.Example3
+
+  // Equivalent to `padding-top: 5px; padding-bottom: 5px;`
+  Paddings--YDF({ verticalSymmetric: 5px })
+
+
+.Example4
+
+  // Equivalent to `padding: 3px 2px 4px 1px;`
+  Paddings--YDF({
+    left: 1px,
+    right: 2px,
+    top: 3px,
+    bottom: 4px
+  })
+
+
+.Example5
+
+  Paddings--YDF({
+    top: 1px,
+    horizontalSymmetric: 4px
+  })
+
+
+.Example6
+
+  Paddings--YDF({
+    verticalSymmetric: 6px,
+    upwardShifting: 1px
+  })

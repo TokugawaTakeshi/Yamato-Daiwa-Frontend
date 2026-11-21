@@ -1,0 +1,132 @@
+YamatoDaiwaInformationDesignColors--YDF = {
+  importantEntity: hsl(0, 100, 40),
+  secondaryEntity: hsl(40, 100, 40),
+  definableTerm: hsl(110, 100, 40),
+  term: hsl(225, 100, 40),
+  term__variation: hsl(200, 100, 40),
+  keyword: hsl(290, 100, 40),
+  keyword__variation: hsl(315, 100, 40)
+}
+
+
+DefinableTerm--YDID()
+
+  font-weight bold
+  font-style normal
+  color: YamatoDaiwaInformationDesignColors--YDF.definableTerm
+
+
+Term--YDID()
+
+  font-style normal
+  color: YamatoDaiwaInformationDesignColors--YDF.term
+
+Term__Contrast--YDID()
+
+  font-style normal
+  color: YamatoDaiwaInformationDesignColors--YDF.term__variation
+
+
+Keyword--YDID()
+
+  font-style: normal
+  color: YamatoDaiwaInformationDesignColors--YDF.keyword
+
+Keyword__Contrast--YDID()
+
+  font-style: normal
+  color: YamatoDaiwaInformationDesignColors--YDF.keyword__variation
+
+
+ImportantEntity--YDID()
+
+  word-break break-all
+
+  font-weight bold
+  font-style normal
+  color: YamatoDaiwaInformationDesignColors--YDF.importantEntity
+
+
+ImportantEntity__Code--YDID()
+
+  word-break break-all
+
+  ImportantEntity--YDID()
+  font-family Consolas, monaco, Meiryo UI, monospace
+
+
+SecondaryEntity--YDID()
+
+  word-break break-all
+
+  font-weight bold
+  font-style normal
+  color: YamatoDaiwaInformationDesignColors--YDF.secondaryEntity
+
+
+SecondaryEntity__Code--YDID()
+
+  word-break break-all
+
+  SecondaryEntity--YDID()
+  font-family Consolas, monaco, Meiryo UI, monospace
+
+
+Keyphrase--YDID()
+
+  padding-bottom 1px
+
+  font-weight normal
+  box-shadow: inset -3px -6px 0 -4px YamatoDaiwaInformationDesignColors--YDF.importantEntity
+
+
+provideYamatoDaiwaInformationDesignClasses()
+
+  .DefinableTerm--YDID
+
+    DefinableTerm--YDID()
+
+
+  .Term--YDID
+
+    Term--YDID()
+
+
+  .Term__Contrast--YDID
+
+    Term__Contrast--YDID()
+
+
+  .Keyword--YDID
+
+    Keyword--YDID()
+
+
+  .Keyword__Contrast--YDID
+
+    Keyword__Contrast--YDID()
+
+
+  .Keyphrase--YDID
+
+    Keyphrase--YDID()
+
+
+  .ImportantEntity--YDID
+
+    ImportantEntity--YDID()
+
+
+  .ImportantEntity__Code--YDID
+
+    ImportantEntity__Code--YDID()
+
+
+  .SecondaryEntity--YDID
+
+    SecondaryEntity--YDID()
+
+
+  .SecondaryEntity__Code--YDID
+
+    SecondaryEntity__Code--YDID()

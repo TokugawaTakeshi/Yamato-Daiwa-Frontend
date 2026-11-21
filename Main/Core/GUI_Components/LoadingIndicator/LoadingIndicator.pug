@@ -1,0 +1,32 @@
+mixin LoadingIndicator--YDF(properties)
+
+  -
+
+    const {
+
+      /** @type { LoadingIndicator.Types } */
+      type
+
+    } = YDF.processObjectTypeParameterOfPugMixin({
+      rawParameter: properties,
+      parameterNumber: 1,
+      parameterName: "properties",
+      parameterPropertiesSpecification: LoadingIndicator__YDF.propertiesSpecification,
+      mixinName: "LoadingIndicator--YDF"
+    });
+
+
+  case type
+
+    when LoadingIndicator__YDF.Types.variableWidthArcSpinner
+
+      .LoadingIndicator--YDF__VariableWidthArcSpinnerType&attributes(attributes)
+        div
+        div
+        div
+        div
+
+
+    when LoadingIndicator__YDF.Types.twoConstantWidthArcsSpinner
+
+      .LoadingIndicator--YDF__TwoConstantWidthArcsSpinnerType&attributes(attributes)

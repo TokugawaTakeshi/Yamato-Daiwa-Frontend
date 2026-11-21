@@ -1,0 +1,167 @@
+ObjectTypeAbstract--YDF_DK = {
+  CSS_NAMESPACE: "ObjectTypeAbstract--YDF_DK"
+}
+
+
+provideObjectTypeAbstractYDF_DK_Component()
+
+  .ObjectTypeAbstract--YDF_DK
+
+    border-width 1px
+    border-radius 3px
+    padding 0.3rem 0.5rem
+
+    border-style solid
+    border-color: JQueryUI_BaseTheme.content.borderColor
+
+
+    &-TypeNameHeading
+
+      font-family Consolas, monaco, monospace
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: 1.2rem,
+        lineSpacing: 0.2rem,
+        mustAllowWordsBreakingAnywhere: true
+      })
+
+      font-weight bold
+      color: YDF_ColorPalette.red.mediumDark
+
+      flex 1 1 100%
+
+
+    &-LocalizedDescriptiveHeading
+
+      applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+        fontSize: 1rem,
+        lineSpacing: 0.2rem,
+        mustAllowWordsBreakingAnywhere: true
+      })
+
+      font-weight bold
+      color: W3C_39_ShadesOfGray--YDF[16]
+
+      flex 1 1 100%
+      margin-top 0.2rem
+
+
+    &-Group
+
+      WIDE_CONTAINERS_CONFIGURATION_MINIMAL_WIDTH = 300px
+
+      WideContainersConfiguration()
+        @media container and (min-width: WIDE_CONTAINERS_CONFIGURATION_MINIMAL_WIDTH)
+          {block}
+
+      NarrowContainersConfiguration()
+        @media container and (max-width: WIDE_CONTAINERS_CONFIGURATION_MINIMAL_WIDTH - 1)
+          {block}
+
+
+      display grid
+      grid-template-areas\
+          "UPPER_BRACKET UPPER_BRACKET"\
+          "LINE SPECIFIC_CONTENT"\
+          "LOWER_BRACKET LOWER_BRACKET"
+      grid-template-columns auto minmax(0, 1fr)
+      column-gap 6px
+      row-gap 4px
+      container-type inline-size
+
+
+      retireFrom--YDF({
+        definitions:\
+            (".ObjectTypeAbstract--YDF_DK-TypeNameHeading" { y: 0.2rem })\
+            (".ObjectTypeAbstract--YDF_DK-LocalizedDescriptiveHeading" { y: 0.4rem })
+      })
+
+      &-Bracket
+
+        font-family "Arial Black", "Arial Bold", "Gadget", sans-serif
+        font-size 1.2rem
+        font-weight bold //* [ Why ] Required for non-alphabetic languages */
+
+        color: W3C_39_ShadesOfGray--YDF[16]
+
+
+        &:first-child
+
+          grid-area UPPER_BRACKET
+
+
+        &:last-child
+
+          grid-area LOWER_BRACKET
+
+
+      &-Line
+
+        width 2px
+
+        background-color: W3C_39_ShadesOfGray--YDF[32]
+
+        grid-area: LINE
+        justify-self center
+
+
+      &-SpecificContent
+
+        grid-area SPECIFIC_CONTENT
+
+
+        &__KeyAndValueType
+
+          +WideContainersConfiguration()
+
+            display grid
+            grid-template-columns minmax(0, 1fr) minmax(0, 3fr)
+
+            column-gap 1.2rem
+            row-gap 1.6rem
+
+
+      &-PropertyKeyLabel
+
+        font-family "Lucida Console", "Lucida Sans Typewriter", monaco, "Bitstream Vera Sans Mono", monospace
+        applyTextGeometryWithoutExtraSpaceCausedByLineHeight--YDF({
+          fontSize: 1rem,
+          lineSpacing: 0.2rem,
+          mustAllowWordsBreakingAnywhere: true
+        })
+
+        font-weight bold
+        color: W3C_39_ShadesOfGray--YDF[8]
+
+
+        +WideContainersConfiguration()
+
+          text-align right
+
+
+      &-PropertyMetadataCell
+
+        container-type inline-size
+
+
+        +NarrowContainersConfiguration()
+
+          PositionalRelationship--YDF({
+            definitions: (\
+              ".ObjectTypeAbstract--YDF_DK-Group-PropertyKeyLabel"\
+              { retireFromIt: { y: 0.3rem }, pushItFromSelf: { y: 1rem } }
+            )
+          })
+
+          margin-left 0.6rem
+
+
+    &-LogicOperatorLabel
+
+      font-family "Arial Black", "Arial Bold", "Gadget", sans-serif
+
+      font-weight bold //* [ Why ] Required for non-alphabetic languages */
+      color: W3C_39_ShadesOfGray--YDF[16]
+
+      margin-top 0.2rem
+      margin-bottom 0.2rem
+      margin-left 0.2rem

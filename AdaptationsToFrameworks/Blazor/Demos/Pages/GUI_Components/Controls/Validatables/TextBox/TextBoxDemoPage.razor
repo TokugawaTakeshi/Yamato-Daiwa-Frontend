@@ -1,0 +1,11 @@
+﻿@page "/TextBox"
+@using YamatoDaiwa.Frontend.GUI_Components.Controls.Validatables.TextBox
+
+
+<TextBox
+  label="Test"
+  guidance="Guidance"
+  payload=@samplePayload
+  validityHighlightingActivationMode=@TextBox.ValidityHighlightingActivationModes.immediate
+  @ref=@sampleTextBox
+/>
