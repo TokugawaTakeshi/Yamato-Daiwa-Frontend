@@ -44,13 +44,15 @@ mixin AdmonitionBlock--YDF(properties)
       /** @type { string } */
       decorativeVariation
 
-    } = YDF.processObjectTypeParameterOfPugMixin({
-      rawParameter: properties,
-      parameterNumber: 1,
-      parameterName: "properties",
-      parameterPropertiesSpecification: AdmonitionBlock__YDF.propertiesSpecification,
-      mixinName: "AdmonitionBlock--YDF"
-    });
+    } =
+
+        YDF.processObjectTypeParameterOfPugMixin({
+          rawParameter: properties,
+          parameterNumber: 1,
+          parameterName: "properties",
+          parameterPropertiesSpecification: AdmonitionBlock__YDF.propertiesSpecification,
+          mixinName: "AdmonitionBlock--YDF"
+        });
 
     /** @type { Array<string> } */
     const rootElementModifierCSS_Classes =
@@ -121,7 +123,10 @@ mixin AdmonitionBlock--YDF(properties)
 
 
     if dismissible
+
       button.AdmonitionBlock--YDF-DismissingButton(
         type="button"
         aria-label= AdmonitionBlock__YDF.localization.dismissingButton.accessibilityGuidance
-      ): +MultiplicationSign__Boxed__Filled--YDF_Icon.AdmonitionBlock--YDF-DismissingButton-Icon
+      )&attributes({
+        [AdmonitionBlock__YDF.DOM_AccessResources.dismissingButton.DATA_ATTRIBUTE_KEY]: ""
+      }): +MultiplicationSign__Boxed__Filled--YDF_Icon.AdmonitionBlock--YDF-DismissingButton-Icon

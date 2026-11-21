@@ -1,8 +1,12 @@
 export type AdmonitionBlockDOM_AccessResources = Readonly<{
-  dismissingButton: Readonly<{
-    DATA_ATTRIBUTE_KEY: string;
-    INTERNALLY_UNIQUE_SELECTOR: string;
-  }>;
+
+  dismissingButton:
+
+      Readonly<{
+        DATA_ATTRIBUTE_KEY: string;
+        INTERNALLY_UNIQUE_SELECTOR: string;
+      }>;
+
 }>;
 
 

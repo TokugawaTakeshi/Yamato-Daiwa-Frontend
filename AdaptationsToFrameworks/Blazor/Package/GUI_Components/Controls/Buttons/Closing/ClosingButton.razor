@@ -1,7 +1,9 @@
 ﻿@using YamatoDaiwa.CSharpExtensions
+@using YamatoDaiwa.Frontend.Helpers
 
 
 <button 
+  type="button"
   class=@classAttributeValueForRootElement
   aria-label=@(noLabel ? (accessibilityGuidance ?? localization.defaultAccessibilityGuidance) : null)  
   @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary

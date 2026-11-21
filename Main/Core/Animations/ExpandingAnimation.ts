@@ -22,7 +22,8 @@ class ExpandingAnimation {
         ExpandingAnimation.Options.Common &
         ExpandingAnimation.Options.NodeReplacement &
         TargetElementDefinition &
-        ExpandingAnimation.Options.DurationDefinition
+        ExpandingAnimation.Options.DurationDefinition &
+        ExpandingAnimation.Options.EasingFunctionDefinition
   ): Promise<void>;
 
   public static replaceNodeAndAnimate(
@@ -31,7 +32,8 @@ class ExpandingAnimation {
         ExpandingAnimation.Options.Common &
         ExpandingAnimation.Options.NodeReplacement &
         TargetElementDefinition &
-        ExpandingAnimation.Options.DurationDefinition
+        ExpandingAnimation.Options.DurationDefinition &
+        ExpandingAnimation.Options.EasingFunctionDefinition
   ): void;
 
   public static replaceNodeAndAnimate(
@@ -44,7 +46,8 @@ class ExpandingAnimation {
         ExpandingAnimation.Options.Common &
         ExpandingAnimation.Options.NodeReplacement &
         TargetElementDefinition &
-        ExpandingAnimation.Options.DurationDefinition
+        ExpandingAnimation.Options.DurationDefinition &
+        ExpandingAnimation.Options.EasingFunctionDefinition
   ): Promise<void> | void {
 
     const targetElement: HTMLElement = ExpandingAnimation.resolveTargetElement(options);
@@ -82,7 +85,8 @@ class ExpandingAnimation {
         ExpandingAnimation.Options.PromiseAPI &
         ExpandingAnimation.Options.Common &
         TargetElementDefinition &
-        ExpandingAnimation.Options.DurationDefinition
+        ExpandingAnimation.Options.DurationDefinition &
+        ExpandingAnimation.Options.EasingFunctionDefinition
   ): Promise<void>;
 
   public static animate(
@@ -90,7 +94,8 @@ class ExpandingAnimation {
         ExpandingAnimation.Options.CallbackAPI &
         ExpandingAnimation.Options.Common &
         TargetElementDefinition &
-        ExpandingAnimation.Options.DurationDefinition
+        ExpandingAnimation.Options.DurationDefinition &
+        ExpandingAnimation.Options.EasingFunctionDefinition
   ): void;
 
   public static animate(
@@ -102,7 +107,8 @@ class ExpandingAnimation {
         Readonly<{ mustReturnPromise: boolean; }> &
         ExpandingAnimation.Options.Common &
         TargetElementDefinition &
-        ExpandingAnimation.Options.DurationDefinition
+        ExpandingAnimation.Options.DurationDefinition &
+        ExpandingAnimation.Options.EasingFunctionDefinition
   ): Promise<void> | void {
 
     const targetElement: HTMLElement = ExpandingAnimation.resolveTargetElement(options);
@@ -170,7 +176,8 @@ class ExpandingAnimation {
         targetElement: HTMLElement;
         callback: () => void;
       }> &
-      ExpandingAnimation.Options.DurationDefinition
+      ExpandingAnimation.Options.DurationDefinition &
+      ExpandingAnimation.Options.EasingFunctionDefinition
   ): void {
 
     targetElement.style.position = "absolute";
@@ -211,6 +218,7 @@ class ExpandingAnimation {
         paddingBottom: finalPaddingBottom
       },
       {
+
         duration:
             "averageSpeed__pixelsPerSecond" in options ?
                 roundUpToSpecificIntegerPlaceValue({
@@ -219,7 +227,10 @@ class ExpandingAnimation {
                   ),
                   trailingZerosCount: 3
                 }) :
-                secondsToMilliseconds(options.duration__seconds)
+                secondsToMilliseconds(options.duration__seconds),
+
+        easing: options.easingFunction
+
       }
     );
 
@@ -253,6 +264,8 @@ namespace ExpandingAnimation {
     export type NodeReplacement = Readonly<{
       nodeToReplace: ChildNode;
     }>;
+
+    export type EasingFunctionDefinition = Readonly<{ easingFunction?: string; }>;
 
     export type DurationDefinition = Readonly<
       { averageSpeed__pixelsPerSecond: number; } |

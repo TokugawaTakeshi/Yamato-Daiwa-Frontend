@@ -90,7 +90,8 @@ class CollapsingAnimation {
             paddingBottom: 0
           },
           {
-            duration: duration__milliseconds
+            duration: duration__milliseconds,
+            easing: options.easingFunction
           }
         );
 
@@ -157,12 +158,15 @@ namespace CollapsingAnimation {
     type Common =
         TargetElementDefinition &
         DurationDefinition &
+        EasingFunctionDefinition &
         Readonly<{
           finalStateFixation?: FinalStateFixation;
           mustReplaceWithElementOnceComplete?: ChildNode;
           mustRemoveOnceComplete?: boolean;
           callback?: () => unknown;
         }>;
+
+    export type EasingFunctionDefinition = Readonly<{ easingFunction?: string; }>;
 
     export type DurationDefinition = Readonly<
       { averageSpeed__pixelsPerSecond: number; } |

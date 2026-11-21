@@ -3,8 +3,7 @@
 namespace YamatoDaiwa.Frontend.Localizations.Russian.GUI_Components.Controls.Buttons;
 
 
-public record HamburgerMenuButtonEnglishLocalization : HamburgerMenuButton.Localization
-{
-  public override required string defaultLabel { get; init; } = "Меню";
-  public override required string defaultAccessibilityGuidance { get; init; } = "Меню";
-}
+public record HamburgerMenuButtonRussianLocalization() : HamburgerMenuButton.Localization(
+  defaultLabel: "Меню",
+  defaultAccessibilityGuidance: "Меню"
+);

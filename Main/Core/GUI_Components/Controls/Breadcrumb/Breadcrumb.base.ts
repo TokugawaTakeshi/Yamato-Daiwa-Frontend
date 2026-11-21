@@ -1,5 +1,5 @@
-import type { YDF_Component } from "../_Auxiliaries/YDF_Component";
-import YDF_ComponentsCoordinator from "../_Auxiliaries/YDF_ComponentsCoordinator";
+import type { YDF_Component } from "../../_Auxiliaries/YDF_Component";
+import YDF_ComponentsCoordinator from "../../_Auxiliaries/YDF_ComponentsCoordinator";
 
 
 export abstract class Breadcrumb {

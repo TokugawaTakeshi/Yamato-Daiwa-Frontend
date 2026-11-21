@@ -1,0 +1,32 @@
+﻿@using YamatoDaiwa.CSharpExtensions
+@using YamatoDaiwa.Frontend.Helpers
+
+
+<button 
+  type="button"
+  class=@classAttributeValueForRootElement
+  aria-label=@(noLabel ? (accessibilityGuidance ?? localization.defaultAccessibilityGuidance) : null)  
+  @attributes=@rootElementHTML_Attributes?.DeleteOnePairFromSwallowCopy("class").UpdatedDictionary
+>
+  
+  <span 
+    class="HamburgerMenuButton--YDF-Icon" 
+    role="presentation"
+  ></span>
+  
+  @if (!noLabel)
+  {
+    <span
+      class=@CSS_Class.Join("HamburgerMenuButton--YDF-Label", labelCSS_ModifierClass)
+    > 
+      @if (alwaysEnglishLabel)
+      {
+        @:"MENU"
+      } else
+      {
+        @( customLabel ?? localization.defaultLabel )
+      }
+    </span> 
+  }
+  
+</button>

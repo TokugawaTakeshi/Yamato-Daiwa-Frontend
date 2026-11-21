@@ -4,7 +4,6 @@
 namespace YamatoDaiwa.Frontend.GUI_Components.AdmonitionBlock;
 
 
-[System.Diagnostics.CodeAnalysis.SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 public partial class AdmonitionBlock :
     Microsoft.AspNetCore.Components.ComponentBase,
     YamatoDaiwa.Frontend.GUI_Components.Abstractions.IHTML_AttributesFallthrough
@@ -34,7 +33,7 @@ public partial class AdmonitionBlock :
   [Microsoft.AspNetCore.Components.Parameter]
   public bool dismissible { get; set; } = false;
 
-  private readonly JavaScriptFunctionality javaScriptFunctionality = JavaScriptFunctionality.GetNotInitializedYetInstance();
+  protected readonly JavaScriptFunctionality javaScriptFunctionality = JavaScriptFunctionality.GetNotInitializedYetInstance();
   
   [Microsoft.AspNetCore.Components.Inject]
   public required Microsoft.JSInterop.IJSRuntime JSRuntime
@@ -55,7 +54,7 @@ public partial class AdmonitionBlock :
   [Microsoft.AspNetCore.Components.Inject]
   protected Microsoft.JSInterop.IJSRuntime javaScriptRuntime { get; set; } = null!;
 
-  private async Task onClickDismissingButton()
+  protected async Task onClickDismissingButton()
   {
 
     await this.javaScriptFunctionality.CollapsingAnimation.Animate(
@@ -195,7 +194,7 @@ public partial class AdmonitionBlock :
 
 
   /* ━━━ CSS Classes ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-  private string classAttributeValueForRootElement => 
+  protected string classAttributeValueForRootElement => 
       YDF_ComponentsHelper.GenerateClassAttributeValueForRootElement(
         new YDF_ComponentsHelper.SettingsForGeneratingOfClassAttributeValueForRootElement
         {
@@ -238,12 +237,12 @@ public partial class AdmonitionBlock :
   /* ━━━ IDs ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   /* ─── Instance ID ──────────────────────────────────────────────────────────────────────────────────────────────── */
   protected readonly string INSTANCE_ID = AdmonitionBlock.generateInstanceID();
-  protected static uint counterForBasicID_Generating = 0;
+  protected static uint counterForInstanceID_Generating = 0;
 
   public static string generateInstanceID()
   {
-    AdmonitionBlock.counterForBasicID_Generating++;
-    return $"ADMONITION_BLOCK--YDF-{ AdmonitionBlock.counterForBasicID_Generating }";
+    AdmonitionBlock.counterForInstanceID_Generating++;
+    return $"ADMONITION_BLOCK--YDF-{ AdmonitionBlock.counterForInstanceID_Generating }";
   }
 
 

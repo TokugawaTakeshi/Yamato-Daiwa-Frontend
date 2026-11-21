@@ -80,11 +80,7 @@ public partial class ClosingButton :
   
   
   /* ┅┅┅ Geometry ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  public enum StandardGeometricVariations
-  {
-    regular,
-    stickyNoteLike
-  }
+  public enum StandardGeometricVariations { regular }
 
   protected internal static Type? CustomGeometricVariations;
 
@@ -116,15 +112,7 @@ public partial class ClosingButton :
 
 
   /* ┅┅┅ Decoration ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-  public enum StandardDecorativeVariations
-  {
-    notice,
-    error,
-    warning,
-    success,
-    guidance,
-    question
-  }
+  public enum StandardDecorativeVariations { regular }
 
   protected internal static Type? CustomDecorativeVariations;
 

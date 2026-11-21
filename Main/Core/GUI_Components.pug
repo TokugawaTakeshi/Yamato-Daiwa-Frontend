@@ -7,13 +7,15 @@ include Markup/InlineECMAScript/GUI_ComponentsRequirements.generated.pug
 
     YDF_ComponentsCoordinator,
 
-    Accordion: Accordion__YDF,
     AdmonitionBlock: AdmonitionBlock__YDF,
     Badge: Badge__YDF,
     BlockingLoadingOverlay: BlockingLoadingOverlay__YDF,
-    Breadcrumb: Breadcrumb__YDF,
+    LoadingIndicator: LoadingIndicator__YDF,
 
     /* ━━━ Controls ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    Accordion: Accordion__YDF,
+    Breadcrumb: Breadcrumb__YDF,
+
     /* ┅┅┅ Buttons ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
     Button: Button__YDF,
     ClosingButton: ClosingButton__YDF,
@@ -69,6 +71,7 @@ include Markup/InlineECMAScript/GUI_ComponentsRequirements.generated.pug
     /* ┅┅┅ Validatables ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 
     /* ━━━ Typography ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    InformationSourceReference: InformationSourceReference__YDF,
     QuestionAndAnswerBoxYDF_GUI_ComponentLocalization__English,
 
     /* ━━━ Viewers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -90,12 +93,12 @@ include GUI_Components/Controls/ValidatableControlShell/ValidatableControlShell.
 //- ====================================================================================================================
 
 
-include GUI_Components/Accordion/Accordion.pug
+include GUI_Components/Controls/Accordion/Accordion.pug
 include GUI_Components/AdmonitionBlock/AdmonitionBlock.pug
 include GUI_Components/Badge/Badge.pug
 include GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlay.pug
-include GUI_Components/Breadcrumb/Breadcrumb.pug
 
+include GUI_Components/Controls/Breadcrumb/Breadcrumb.pug
 include GUI_Components/Controls/Buttons/Closing/ClosingButton.pug
 include GUI_Components/Controls/Buttons/HamburgerMenu/HamburgerMenuButton.pug
 include GUI_Components/Controls/Buttons/Plain/Button.pug
@@ -120,7 +123,6 @@ include GUI_Components/Controls/Validatables/NumberBox/NumberBox.pug
 include GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup.pug
 include GUI_Components/Controls/Validatables/TextBox/TextBox.pug
 
-include GUI_Components/InformationSourceReference/InformationSourceReference.pug
 include GUI_Components/LoadingIndicator/LoadingIndicator.pug
 include GUI_Components/OverflowSafeSingleLineLabel/OverflowSafeSingleLineLabel.pug
 include GUI_Components/Popover/Popover.pug
@@ -136,6 +138,7 @@ include GUI_Components/Typography/ConsoleOutput/ConsoleOutput.pug
 include GUI_Components/Typography/CodeListing/CodeListing.pug
 include GUI_Components/Typography/Footnote/Footnote.pug
 include GUI_Components/Typography/Heading/Heading.pug
+include GUI_Components/Typography/InformationSourceReference/InformationSourceReference.pug
 include GUI_Components/Typography/Blockquote/Blockquote.pug
 include GUI_Components/Typography/ImprovedList/ImprovedList.pug
 include GUI_Components/Typography/Link/Link.pug

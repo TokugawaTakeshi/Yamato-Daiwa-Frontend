@@ -23,6 +23,19 @@ export abstract class Accordion extends AccordionBase {
       isNullForbidden: true
     },
 
+    headerTag: {
+      type: String,
+      isUndefinedForbidden: false,
+      isNullForbidden: true,
+      minimalCharactersCount: 1
+    },
+
+    mustUseHeadingTagDecidedByHeadingLevelsCoordinatorForHeader: {
+      type: Boolean,
+      undefinedValueSubstitution: false,
+      isNullForbidden: true
+    },
+
     panelAdditionalCSS_Classes: {
       type: RawObjectDataProcessor.ValuesTypesIDs.polymorphic,
       undefinedValueSubstitution: [],

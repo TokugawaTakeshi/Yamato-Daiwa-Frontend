@@ -1,5 +1,12 @@
-import CollapsingAnimation from "../../Animations/CollapsingAnimation";
+/* ━━━ < Imports ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+import AdmonitionBlockBase from "./AdmonitionBlock.base";
 
+/* ┅┅┅ Assets ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+import AdmonitionBlockDOM_AccessResources from "./AdmonitionBlockDOM_AccessResources";
+
+/* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+import CollapsingAnimation from "../../Animations/CollapsingAnimation";
+import type { RootElementDefinition } from "../../Logic/Types/RootElementDefinition";
 import {
   Logger,
   InvalidParameterValueError,
@@ -8,47 +15,42 @@ import {
   isNotNull,
   isArrayOfCertainTypeElements
 } from "@yamato-daiwa/es-extensions";
-
 import {
   getExpectedToBeSingleDOM_Element,
   LeftClickEventListener,
   resolveContextDOM_ElementPolymorphicSpecification
 } from "@yamato-daiwa/es-extensions-browserjs";
+/* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 
-export abstract class AdmonitionBlock {
+export class AdmonitionBlock extends AdmonitionBlockBase {
 
-  protected static readonly ROOT_ELEMENT_CSS_CLASS: string = "AdmonitionBlock--YDF";
-  protected static readonly ROOT_ELEMENT_SELECTOR: string = `.${ AdmonitionBlock.ROOT_ELEMENT_CSS_CLASS }`;
-  protected static readonly DISMISSING_BUTTON_ELEMENT_SELECTOR: string =
-      `.${ AdmonitionBlock.ROOT_ELEMENT_CSS_CLASS }-DismissingButton`;
+  /* ━━━ Fields ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /* ┅┅┅ DOM ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  protected static readonly INITIALIZATION_COMPLETE_DATASET_KEY: string = "initialized__ydf";
 
-  protected static readonly INITIALIZATION_COMPLETE_DATA_ATTRIBUTE_KEY: string = "initialized__ydf";
+  protected static readonly DOM_AccessResources: AdmonitionBlockDOM_AccessResources = AdmonitionBlockDOM_AccessResources;
+
+  protected readonly rootElement: HTMLElement;
 
 
-  public static initializeOne(
-    initializationProperties: Readonly<
-      {
-        rootElement: Readonly<{ selector: string; }>;
-        contextElement?: ParentNode | Readonly<{ selector: string; }>;
-      } |
-      {
-        rootElement: Element;
-        contextElement?: never;
-      }
-    >
-  ): void {
+  /* ┅┅┅ Events Listeners ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+  protected readonly dismissingButtonLeftClickEventListener?: LeftClickEventListener;
 
-    const contextElement: Element | ParentNode | null = resolveContextDOM_ElementPolymorphicSpecification(
-      initializationProperties.contextElement
-    );
 
-    const rootElement: Element = initializationProperties.rootElement instanceof Element ?
-        initializationProperties.rootElement :
-        getExpectedToBeSingleDOM_Element({
-          selector: initializationProperties.rootElement.selector,
-          ...isNotNull(contextElement) ? { contextElement } : null
-        });
+  /* ━━━ Static Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public static initializeOne(initializationProperties: RootElementDefinition): AdmonitionBlock {
+
+    const contextElement: Element | ParentNode | null =
+        resolveContextDOM_ElementPolymorphicSpecification(initializationProperties.contextElement);
+
+    const rootElement: Element =
+        initializationProperties.rootElement instanceof Element ?
+            initializationProperties.rootElement :
+            getExpectedToBeSingleDOM_Element({
+              selector: initializationProperties.rootElement.selector,
+              ...isNotNull(contextElement) ? { contextElement } : null
+            });
 
     if (!(rootElement instanceof HTMLElement)) {
       Logger.throwErrorWithFormattedMessage({
@@ -56,8 +58,8 @@ export abstract class AdmonitionBlock {
           parameterNumber: 1,
           parameterName: "initializationProperties",
           messageSpecificPart:
-              "The root element passed directly or via selector must be the instance of HTMLElement while actually " +
-                "it does not."
+              "The root element passed directly or via selector must be the instance of HTMLElement while " +
+                "actually it does not."
         }),
         title: InvalidParameterValueError.localization.defaultTitle,
         occurrenceLocation: "AdmonitionBlock.initializeOne(initializationProperties)"
@@ -65,58 +67,17 @@ export abstract class AdmonitionBlock {
     }
 
 
-    if (isNotUndefined(rootElement.dataset[AdmonitionBlock.INITIALIZATION_COMPLETE_DATA_ATTRIBUTE_KEY])) {
-      return;
-    }
+    const admonitionBlockInstance: AdmonitionBlock = new AdmonitionBlock(rootElement);
 
+    rootElement.dataset[AdmonitionBlock.INITIALIZATION_COMPLETE_DATASET_KEY] = "";
 
-    if (!rootElement.classList.contains(AdmonitionBlock.ROOT_ELEMENT_CSS_CLASS)) {
-      Logger.throwErrorWithFormattedMessage({
-        errorInstance: new InvalidParameterValueError({
-          parameterNumber: 1,
-          parameterName: "initializationProperties",
-          messageSpecificPart:
-              "The root element passed directly or via selector must have the namespace CSS class " +
-                `"${ AdmonitionBlock.ROOT_ELEMENT_CSS_CLASS }" while actually it have no.`
-        }),
-        title: InvalidParameterValueError.localization.defaultTitle,
-        occurrenceLocation: "AdmonitionBlock.initializeOne(initializationProperties)"
-      });
-    }
-
-
-    const dismissingButton: Element | null = rootElement.querySelector(AdmonitionBlock.DISMISSING_BUTTON_ELEMENT_SELECTOR);
-
-    if (isNull(dismissingButton)) {
-      rootElement.dataset[AdmonitionBlock.INITIALIZATION_COMPLETE_DATA_ATTRIBUTE_KEY] = "";
-      return;
-    }
-
-
-    const leftClickEventListener: LeftClickEventListener = new LeftClickEventListener({
-
-      targetElement: dismissingButton,
-
-      handler(): void {
-
-        CollapsingAnimation.animate({
-          targetElement: rootElement,
-          mustRemoveOnceComplete: true,
-          duration__seconds: 0.5,
-          mustReturnPromise: false
-        });
-
-        leftClickEventListener.utilize();
-
-      }
-
-    });
+    return admonitionBlockInstance;
 
   }
 
   public static initializeUninitializedOnes(
     {
-      rootElements: rootElementsDefinition = { selector: AdmonitionBlock.ROOT_ELEMENT_SELECTOR },
+      rootElements: rootElementsDefinition = { selector: `.${ AdmonitionBlock.CSS_NAMESPACE }` },
       contextElement
     }: Readonly<
       {
@@ -127,17 +88,16 @@ export abstract class AdmonitionBlock {
         rootElements?: ReadonlyArray<Element>;
         contextElement?: never;
       }
-    > = {
-      rootElements: { selector: AdmonitionBlock.ROOT_ELEMENT_SELECTOR }
-    }
-  ): void {
+    > =
+        { rootElements: { selector: `.${ AdmonitionBlock.CSS_NAMESPACE }` } }
+  ): ReadonlyArray<AdmonitionBlock> {
 
-    let rootElements: Array<Element>;
+    let rootElements: Array<HTMLElement>;
 
     if (
       isArrayOfCertainTypeElements(
         rootElementsDefinition,
-        (element: unknown): element is Element => element instanceof Element
+        (element: unknown): element is HTMLElement => element instanceof HTMLElement
       )
     ) {
 
@@ -167,9 +127,76 @@ export abstract class AdmonitionBlock {
 
     }
 
-    for (const rootElement of rootElements) {
-      AdmonitionBlock.initializeOne({ rootElement });
+
+    return rootElements.flatMap(
+      (rootElement: HTMLElement): Array<AdmonitionBlock> => {
+
+        if (isNotUndefined(rootElement.dataset[AdmonitionBlock.INITIALIZATION_COMPLETE_DATASET_KEY])) {
+          return [];
+        }
+
+
+        const admonitionBlockInstance: AdmonitionBlock = new AdmonitionBlock(rootElement);
+
+        rootElement.dataset[AdmonitionBlock.INITIALIZATION_COMPLETE_DATASET_KEY] = "";
+
+        return [ admonitionBlockInstance ];
+
+      }
+    );
+
+  }
+
+
+  /* ━━━ Constructor ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  protected constructor(rootElement: HTMLElement) {
+
+    super();
+
+    this.rootElement = rootElement;
+
+    const dismissingButton: Element | null =
+        this.rootElement.querySelector(AdmonitionBlock.DOM_AccessResources.dismissingButton.INTERNALLY_UNIQUE_SELECTOR);
+
+    if (isNull(dismissingButton)) {
+      this.rootElement.dataset[AdmonitionBlock.INITIALIZATION_COMPLETE_DATASET_KEY] = "";
+      return;
     }
+
+
+    this.dismissingButtonLeftClickEventListener =
+
+        new LeftClickEventListener({
+
+          targetElement: dismissingButton,
+
+          handler: (): void => {
+
+            CollapsingAnimation.animate({
+              targetElement: rootElement,
+              mustRemoveOnceComplete: true,
+              duration__seconds: 0.5,
+              mustReturnPromise: false,
+              callback:
+                  (): void => {
+                    this.utilize();
+                  }
+            });
+
+          }
+
+        });
+
+  }
+
+
+  /* ━━━ Public Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  public utilize(): void {
+
+    this.dismissingButtonLeftClickEventListener?.utilize();
+
+    /* eslint-disable-next-line @typescript-eslint/no-dynamic-delete -- The key in the readonly constant. */
+    delete this.rootElement.dataset[AdmonitionBlock.INITIALIZATION_COMPLETE_DATASET_KEY];
 
   }
 

@@ -1,13 +1,10 @@
-include LoadingIndicator.class.pug
-
-
-mixin LoadingIndicator--YDF(properties, statesSimulations)
+mixin LoadingIndicator--YDF(properties)
 
   -
 
     const {
 
-      /** @type { LoadingIndicator__YDF.Types } */
+      /** @type { LoadingIndicator.Types } */
       type
 
     } = YDF.processObjectTypeParameterOfPugMixin({
@@ -15,7 +12,7 @@ mixin LoadingIndicator--YDF(properties, statesSimulations)
       parameterNumber: 1,
       parameterName: "properties",
       parameterPropertiesSpecification: LoadingIndicator__YDF.propertiesSpecification,
-      mixinName: LoadingIndicator__YDF.CSS_NAMESPACE
+      mixinName: "LoadingIndicator--YDF"
     });
 
 

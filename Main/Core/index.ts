@@ -2,10 +2,6 @@
  * https://github.com/Microsoft/TypeScript/issues/15479 */
 
 /* ━━━ GUI Components ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-/* ┅┅┅ Accordion ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-export { Accordion as AccordionBase } from "./GUI_Components/Accordion/Accordion.base";
-export { Accordion } from "./GUI_Components/Accordion/Accordion.logic";
-
 /* ┅┅┅ AdmonitionBlock ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 export { default as AdmonitionBlockBase } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock.base";
 export { AdmonitionBlock } from "./GUI_Components/AdmonitionBlock/AdmonitionBlock.logic";
@@ -20,10 +16,17 @@ export { BlockingLoadingOverlay } from "./GUI_Components/BlockingLoadingOverlay/
 export { BlockingLoadingOverlayLocalization__English } from
     "./GUI_Components/BlockingLoadingOverlay/BlockingLoadingOverlayLocalization.english";
 
-/* ┅┅┅ Breadcrumb ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
-export { Breadcrumb as BreadcrumbBase } from "./GUI_Components/Breadcrumb/Breadcrumb.base";
+/* ┅┅┅ LoadingIndicator ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+export { default as LoadingIndicatorBase } from "./GUI_Components/LoadingIndicator/LoadingIndicator.base";
 
 /* ┅┅┅ Controls ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+/* ╍╍╍ Accordion ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+export { Accordion as AccordionBase } from "./GUI_Components/Controls/Accordion/Accordion.base";
+export { Accordion } from "./GUI_Components/Controls/Accordion/Accordion.logic";
+
+/* ╍╍╍ Breadcrumb ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+export { Breadcrumb as BreadcrumbBase } from "./GUI_Components/Controls/Breadcrumb/Breadcrumb.base";
+
 /* ╍╍╍ Buttons ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
 /* ─── Plain ──────────────────────────────────────────────────────────────────────────────────────────────────────── */
 export { default as ButtonBase } from "./GUI_Components/Controls/Buttons/Plain/Button.base";
@@ -99,20 +102,28 @@ export { DropDownList } from "./GUI_Components/Controls/Validatables/DropDownLis
 export { DropDownListLocalization__English } from
     "./GUI_Components/Controls/Validatables/DropDownLists/Plain/DropDownListLocalization.english";
 
-/* ┅┅┅ FilesUploader ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+/* ╍╍╍ FilesUploader ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
 export { default as FilesUploaderBase } from "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploader.base";
 export { FilesUploader } from "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploader.logic";
-export { FilesUploaderLocalization__English } from "./Markup/InlineECMAScript/Source/GUI_ComponentsRequirements";
+export { FilesUploaderLocalization__English } from
+    "./GUI_Components/Controls/Validatables/FilesUploader/FilesUploaderLocalization.english";
 
-/* ┅┅┅ NumberBox ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+/* ╍╍╍ NumberBox ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
 export { default as NumberBoxBase } from "./GUI_Components/Controls/Validatables/NumberBox/NumberBox.base";
 export { NumberBox } from "./GUI_Components/Controls/Validatables/NumberBox/NumberBox.logic";
 export { NumberBoxLocalization__English } from "./GUI_Components/Controls/Validatables/NumberBox/NumberBoxLocalization.english";
 
-/* ┅┅┅ RadioButtonGroup ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+/* ╍╍╍ RadioButtonGroup ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
 export { default as RadioButtonsGroupBase } from
     "./GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup.base";
 export { RadioButtonsGroup } from "./GUI_Components/Controls/Validatables/RadioButtonsGroup/RadioButtonsGroup.logic";
+
+/* ┅┅┅ Typography ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
+/* ╍╍╍ InformationSourceReference ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍ */
+export { default as InformationSourceReferenceBase } from
+    "./GUI_Components/Typography/InformationSourceReference/InformationSourceReference.base";
+export { InformationSourceReferenceLocalization__English } from
+    "./GUI_Components/Typography/InformationSourceReference/InformationSourceReference.english";
 // ━━━ TODO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 /* ━━━ Beta ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export { default as CodeViewer } from "./GUI_Components/Viewers/Code/CodeViewer";
