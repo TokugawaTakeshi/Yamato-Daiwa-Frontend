@@ -1,8 +1,5 @@
-include CodeListing.class.pug
+mixin ConsoleOutput--YDF()
 
-
-mixin CodeListing--YDF()
-
-  pre.CodeListing--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
-    code
+  pre.ConsoleOutput--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)
+    samp
       block

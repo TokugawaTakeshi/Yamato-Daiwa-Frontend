@@ -115,7 +115,7 @@ class Badge extends VueComponent {
   declare public static readonly defineGeometricVariations:
       YDF_Component.GeometricVariationDefiners.NoChildrenComponentsCase<Badge>;
 
-  declare public static readonly GeometricModifiers: Badge.GeometricModifiers;
+  declare public static readonly GeometricModifiers: typeof BadgeBase.GeometricModifiers;
 
   @VueProperty({
     default: (): ReadonlyArray<Badge.GeometricModifiers> => [],
@@ -137,7 +137,7 @@ class Badge extends VueComponent {
   declare public static readonly defineDecorativeVariations:
       YDF_Component.DecorativeVariationDefiners.NoChildrenComponentsCase<Badge>;
 
-  declare public static readonly DecorativeModifiers: Badge.DecorativeModifiers;
+  declare public static readonly DecorativeModifiers: typeof BadgeBase.DecorativeModifiers;
 
   @VueProperty({
     default: (): ReadonlyArray<Badge.DecorativeModifiers> => [],
@@ -188,10 +188,10 @@ class Badge extends VueComponent {
 namespace Badge {
 
   export type GeometricVariations = BadgeBase.GeometricVariations;
-  export type GeometricModifiers = typeof BadgeBase.GeometricModifiers;
+  export type GeometricModifiers = BadgeBase.GeometricModifiers;
 
   export type DecorativeVariations = BadgeBase.DecorativeVariations;
-  export type DecorativeModifiers = typeof BadgeBase.DecorativeModifiers;
+  export type DecorativeModifiers = BadgeBase.DecorativeModifiers;
 
 }
 

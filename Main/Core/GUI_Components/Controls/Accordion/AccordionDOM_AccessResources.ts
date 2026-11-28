@@ -1,19 +1,40 @@
 type AccordionDOM_AccessResources = Readonly<{
 
-  rootElement: Readonly<{
-    CSS_NAMESPACE_CLASS: string;
-    SELECTOR_BY_CSS_NAMESPACE_CLASS: string;
-  }>;
+  rootElement:
 
-  button: Readonly<{
-    DATA_ATTRIBUTE_KEY: string;
-    INTERNALLY_UNIQUE_SELECTOR: string;
-  }>;
+      Readonly<{
+        CSS_NAMESPACE_CLASS: string;
+        SELECTOR_BY_CSS_NAMESPACE_CLASS: string;
+      }>;
 
-  panel: Readonly<{
-    DATA_ATTRIBUTE_KEY: string;
-    INTERNALLY_UNIQUE_SELECTOR: string;
-  }>;
+  button:
+
+      Readonly<{
+
+        DATA_ATTRIBUTE_KEY: string;
+        INTERNALLY_UNIQUE_SELECTOR: string;
+
+        icons:
+
+            Readonly<{
+
+              [keys in "expanded" | "collapsed"]:
+
+                  Readonly<{
+                    DATA_ATTRIBUTE_KEY: string;
+                    INTERNALLY_UNIQUE_SELECTOR: string;
+                  }>;
+
+            }>;
+
+      }>;
+
+  panel:
+
+      Readonly<{
+        DATA_ATTRIBUTE_KEY: string;
+        INTERNALLY_UNIQUE_SELECTOR: string;
+      }>;
 
 }>;
 
@@ -26,8 +47,24 @@ const AccordionDOM_AccessResources: AccordionDOM_AccessResources = {
   },
 
   button: {
+
     DATA_ATTRIBUTE_KEY: "data-bt--ydf",
-    get INTERNALLY_UNIQUE_SELECTOR(): string { return `[${ this.DATA_ATTRIBUTE_KEY }]`; }
+    get INTERNALLY_UNIQUE_SELECTOR(): string { return `[${ this.DATA_ATTRIBUTE_KEY }]`; },
+
+    icons: {
+
+      expanded: {
+        DATA_ATTRIBUTE_KEY: "data-bt-e--ydf",
+        get INTERNALLY_UNIQUE_SELECTOR(): string { return `[${ this.DATA_ATTRIBUTE_KEY }]`; }
+      },
+
+      collapsed: {
+        DATA_ATTRIBUTE_KEY: "data-bt-c--ydf",
+        get INTERNALLY_UNIQUE_SELECTOR(): string { return `[${ this.DATA_ATTRIBUTE_KEY }]`; }
+      }
+
+    }
+
   },
 
   panel: {

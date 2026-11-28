@@ -1,52 +1,63 @@
-include Blockquote.class.pug
-
-
 mixin Blockquote--YDF(properties)
 
   -
 
     const {
 
+      /** @type { string | undefined } */
       authorPhotoURI,
+
+          /** @type { string | undefined } */
       authorPhotoAlternatingText,
+
+      /** @type { string | undefined } */
       publicationPhotoURI,
+
+      /** @type { string | undefined } */
       publicationPhotoAlternatingText,
 
+      /**
+       * @type { string }
+       * @default Blockquote__YDF.Themes.regular
+       * */
       theme,
+
+      /**
+       * @type { boolean }
+       * @default Blockquote__YDF.areThemesCSS_ClassesCommon
+       */
       areThemesCSS_ClassesCommon,
+
+      /**
+       * @type { string }
+       * @default Blockquote__YDF.GeometricVariations.regular
+       */
       geometricVariation,
+
+      /**
+       * @type { string }
+       * @default Blockquote__YDF.DecorativeVariations.regular
+       */
       decorativeVariation
 
-    } = YDF.processObjectTypeParameterOfPugMixin({
-      rawParameter: properties,
-      parameterNumber: 1,
-      parameterName: "properties",
-      parameterPropertiesSpecification: Blockquote__YDF.propertiesSpecification,
-      mixinName: Blockquote__YDF.CSS_NAMESPACE
-    })
+    } =
 
-    const rootElementModifierCSS_Classes = [
+        YDF.processObjectTypeParameterOfPugMixin({
+          rawParameter: properties,
+          parameterNumber: 1,
+          parameterName: "properties",
+          parameterPropertiesSpecification: Blockquote__YDF.propertiesSpecification,
+          mixinName: "Blockquote--YDF"
+        });
 
-      ...ComponentsAuxiliaries.addThemeCSS_ClassToArrayIfMust({
-        theme,
-        allThemes: Blockquote__YDF.Themes,
-        CSS_Namespace: Blockquote__YDF.CSS_NAMESPACE,
-        areThemesCSS_ClassesCommon
-      }),
-
-      ...ComponentsAuxiliaries.addGeometricVariationCSS_ClassToArrayIfMust({
-        geometricVariation,
-        allGeometricVariations: Blockquote__YDF.GeometricVariations,
-        CSS_Namespace: Blockquote__YDF.CSS_NAMESPACE
-      }),
-
-      ...ComponentsAuxiliaries.addDecorativeVariationCSS_ClassToArrayIfMust({
-        decorativeVariation,
-        allDecorativeVariations: Blockquote__YDF.DecorativeVariations,
-        CSS_Namespace: Blockquote__YDF.CSS_NAMESPACE
-      })
-
-    ];
+    /** @type { Array<string> } */
+    const rootElementModifierCSS_Classes =
+        Blockquote__YDF.getActualRootElementModifierCSS_Classes({
+          theme,
+          areThemesCSS_ClassesCommon,
+          geometricVariation,
+          decorativeVariation
+        });
 
 
   blockquote.Blockquote--YDF&attributes(attributes)(class=rootElementModifierCSS_Classes)

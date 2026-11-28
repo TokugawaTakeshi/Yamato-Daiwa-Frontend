@@ -3,15 +3,28 @@ mixin Heading--YDF(properties)
   -
 
     const {
+
+      /** @type { number } */
       level,
+
+      /** @type { string | undefined } */
       text,
+
+      /** @type { string | undefined } */
       innerHTML,
+
+      /** @type { string | undefined } */
       HTML_ID,
+
+      /** @type { boolean } */
       innerLink = false
+
     } = properties;
 
 
+    /** @type */
     const tag = `h${ level }`
+
 
   #{ tag }&attributes(attributes)(
     id=HTML_ID

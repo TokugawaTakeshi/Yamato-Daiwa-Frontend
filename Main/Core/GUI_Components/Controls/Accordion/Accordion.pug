@@ -16,6 +16,15 @@ mixin Accordion--YDF(properties, statesSimulations)
        * */
       initiallyExpanded,
 
+      /** @type { string | undefined } */
+      headerTag: explicitlySpecifiedHeaderTag,
+
+      /**
+       * @type { boolean }
+       * @default false
+       * */
+      mustUseHeadingTagDecidedByHeadingLevelsCoordinatorForHeader,
+
       /**
        * @type { ReadonlyArray<string> }
        * @default []
@@ -46,22 +55,25 @@ mixin Accordion--YDF(properties, statesSimulations)
        */
       decorativeVariation
 
-    } = YDF.processObjectTypeParameterOfPugMixin({
-      rawParameter: properties,
-      parameterNumber: 1,
-      parameterName: "properties",
-      parameterPropertiesSpecification: Accordion__YDF.propertiesSpecification,
-      mixinName: "Accordion--YDF"
-    });
+    } =
+
+        YDF.processObjectTypeParameterOfPugMixin({
+          rawParameter: properties,
+          parameterNumber: 1,
+          parameterName: "properties",
+          parameterPropertiesSpecification: Accordion__YDF.propertiesSpecification,
+          mixinName: "Accordion--YDF"
+        });
+
 
     /** @type { string } */
-    const COMPONENT_ID = Accordion__YDF.generateInstanceID();
+    const INSTANCE_ID = Accordion__YDF.generateInstanceID();
 
     /** @type { string } */
-    const BUTTON_ID = `${COMPONENT_ID}-BUTTON`;
+    const BUTTON_HTML_ID = `${ INSTANCE_ID }-BUTTON`;
 
     /** @type { string } */
-    const PANEL_ID = `${COMPONENT_ID}-PANEL`
+    const PANEL_HTML_ID = `${ INSTANCE_ID }-PANEL`
 
     /** @type { Array<string> } */
     const rootElementModifierCSS_Classes =
@@ -72,27 +84,45 @@ mixin Accordion--YDF(properties, statesSimulations)
           decorativeVariation
         });
 
+    /** @type { string } */
+    const headerTag =
+        explicitlySpecifiedHeaderTag ??
+        mustUseHeadingTagDecidedByHeadingLevelsCoordinatorForHeader ?
+            YDF.HeadingLevelsCoordinator.headingTagOfCurrentLevel :
+            "div";
+
 
   .Accordion--YDF&attributes(attributes)(
-    role="alert"
     class=rootElementModifierCSS_Classes
   )
 
-    .Accordion--YDF-Header
+    #{ headerTag }.Accordion--YDF-Header
       +Button--YDF.Accordion--YDF-Button(
-        aria-expanded=initiallyExpanded
-        aria-controls=PANEL_ID
-        id=BUTTON_ID
+        aria-expanded=String(initiallyExpanded)
+        aria-controls=PANEL_HTML_ID
+        id=BUTTON_HTML_ID
       )&attributes({ [Accordion__YDF.DOM_AccessResources.button.DATA_ATTRIBUTE_KEY]: "" })
-        +Triangle__Rightward__Filled--YDF_Icon.Button--YDF-SVG_Icon
+
+        +Triangle__Rightward__Filled--YDF_Icon.Button--YDF-SVG_Icon&attributes({
+          [Accordion__YDF.DOM_AccessResources.button.icons.collapsed.DATA_ATTRIBUTE_KEY]: "",
+          "aria-hidden": initiallyExpanded
+        })
+
+        +Triangle__Downward__Filled--YDF_Icon.Button--YDF-SVG_Icon&attributes({
+          [Accordion__YDF.DOM_AccessResources.button.icons.expanded.DATA_ATTRIBUTE_KEY]: "",
+          "aria-hidden": !initiallyExpanded
+        })
+
         span.Button--YDF-Label= title
 
     .Accordion--YDF-Panel(
-      id=PANEL_ID
-      role="region"
-      hidden=!initiallyExpanded
-      aria-labelledby=BUTTON_ID
+      id=PANEL_HTML_ID
+      aria-labelledby=BUTTON_HTML_ID
       class=panelAdditionalCSS_Classes
-    )&attributes({ [Accordion__YDF.DOM_AccessResources.panel.DATA_ATTRIBUTE_KEY]: "" })
+      style={ display: initiallyExpanded ? "initial" : "none" }
+    )&attributes({
+      [Accordion__YDF.DOM_AccessResources.panel.DATA_ATTRIBUTE_KEY]: "",
+      role: /^h[1-6]$/.test(headerTag) ? null : "region"
+    })
 
       block

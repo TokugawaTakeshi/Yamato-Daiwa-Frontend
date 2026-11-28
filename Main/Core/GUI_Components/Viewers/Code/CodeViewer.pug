@@ -1,21 +1,33 @@
-include CodeViewer.class.pug
-
-
 mixin CodeViewer--YDF(properties)
 
   -
 
     const {
+
+      /** @type { string | undefined } */
       title,
+
+      /** @type { string | undefined } */
       resultWebViewURI,
-      defaultPaddingsInViewport = false
-    } = YDF.processObjectTypeParameterOfPugMixin({
-      rawParameter: properties,
-      parameterNumber: 1,
-      parameterName: "properties",
-      parameterPropertiesSpecification: CodeViewer__YDF.propertiesSpecification,
-      mixinName: "CodeViewer--YDF"
-    })
+
+      /** @type { string | undefined } */
+      inlineFrameTitle,
+
+      /**
+       * @type { boolean }
+       * @default false
+       */
+      defaultPaddingsInViewport
+
+    } =
+
+        YDF.processObjectTypeParameterOfPugMixin({
+          rawParameter: properties,
+          parameterNumber: 1,
+          parameterName: "properties",
+          parameterPropertiesSpecification: CodeViewer__YDF.propertiesSpecification,
+          mixinName: "CodeViewer--YDF"
+        })
 
 
   .CodeViewer--YDF&attributes(attributes)
@@ -30,7 +42,7 @@ mixin CodeViewer--YDF(properties)
       iframe.CodeViewer--YDF-IFrame(
         src= resultWebViewURI
         class= defaultPaddingsInViewport && "CodeViewer--YDF-IFrame__DefaultPaddings"
-        title="The visual output of the code"
+        title= inlineFrameTitle || CodeViewer__YDF.localization.iFrame.defaultTitle
       )
 
 
@@ -46,20 +58,25 @@ mixin CodeViewer--YDF(properties)
     .CodeViewer--YDF-TabsFlow(
       role="tablist"
       aria-label= CodeViewer__YDF.localization.tabsFlow.accessibilityGuidance
-    )
-
+    )&attributes({
+      [CodeViewer__YDF.DOM_AccessResources.tabsFlow.DATA_ATTRIBUTE_KEY]: ""
+    })
 
     block
 
 
-    template.CodeViewer--YDF-TabTemplate
+    template.CodeViewer--YDF-TabTemplate&attributes({
+      [CodeViewer__YDF.DOM_AccessResources.tabTemplate.DATA_ATTRIBUTE_KEY]: ""
+    })
 
       button.CodeViewer--YDF-Tab(
         role="tab"
         type="button"
         aria-selected="false"
         tabindex="-1"
-      )
+      )&attributes({
+        [CodeViewer__YDF.DOM_AccessResources.tab.DATA_ATTRIBUTE_KEY]: ""
+      })
         span.CodeViewer--YDF-Tab-FileLabel
         span.CodeViewer--YDF-Tab-LanguageKeyLabel= CodeViewer__YDF.localization.tab.languageKeyLabel
         span.CodeViewer--YDF-Tab-LanguageValueLabel
@@ -70,16 +87,25 @@ mixin CodeViewer-TabPanel--YDF(properties, logging)
   -
 
     const {
+
+      /** @type { string | undefined } */
       fileLabel,
-      isActive = false,
+
+      /** @type { string | undefined } */
+      isActive,
+
+      /** @type { CodeViewer.SupportedCodesLanguages } */
       codeLanguage
-    } = YDF.processObjectTypeParameterOfPugMixin({
-      rawParameter: properties,
-      parameterNumber: 1,
-      parameterName: "properties",
-      parameterPropertiesSpecification: CodeViewer__YDF.tabPanelPropertiesSpecification,
-      mixinName: logging?.wrapperComponentName ?? "CodeViewer-TabPanel--YDF"
-    });
+
+    } =
+
+        YDF.processObjectTypeParameterOfPugMixin({
+          rawParameter: properties,
+          parameterNumber: 1,
+          parameterName: "properties",
+          parameterPropertiesSpecification: CodeViewer__YDF.tabPanelPropertiesSpecification,
+          mixinName: logging?.wrapperComponentName ?? "CodeViewer-TabPanel--YDF"
+        });
 
   .CodeViewer--YDF-TabPanel(
     data-file_label= fileLabel
@@ -88,7 +114,12 @@ mixin CodeViewer-TabPanel--YDF(properties, logging)
     data-code_language_label= CodeViewer__YDF.languagesAndTitlesMap[codeLanguage]
     role="tabpanel"
     hidden= !isActive
-  )&attributes(attributes)
+  )&attributes(
+    Object.assign(
+      attributes,
+      { [CodeViewer__YDF.DOM_AccessResources.tabPanel.DATA_ATTRIBUTE_KEY]: "" }
+    )
+  )
 
     block
 

@@ -19,15 +19,14 @@ import {
   cloneDOM_Element,
   getExpectedToBeSingleChildOfTemplateElement
 } from "@yamato-daiwa/es-extensions-browserjs";
+import CodeViewerDOM_AccessResources from "./CodeViewerDOM_AccessResources";
+import CodeViewerBase from "./CodeViewer.base";
 
 
-export class CodeViewer {
+export class CodeViewer extends CodeViewerBase {
 
-  protected static readonly ROOT_ELEMENT_SELECTOR: string = ".CodeViewer--YDF";
-  protected static readonly TABS_FLOW_SELECTOR: string = ".CodeViewer--YDF-TabsFlow";
-  protected static readonly TAB_TEMPLATE_ELEMENT_SELECTOR: string = ".CodeViewer--YDF-TabTemplate";
-  protected static readonly TAB_SELECTOR: string = ".CodeViewer--YDF-Tab";
-  protected static readonly TAB_PANEL_SELECTOR: string = ".CodeViewer--YDF-TabPanel";
+  public static readonly DOM_AccessResources: CodeViewerDOM_AccessResources = CodeViewerDOM_AccessResources;
+
   protected static readonly TAB_FILE_LABEL_SELECTOR: string = ".CodeViewer--YDF-Tab-FileLabel";
   protected static readonly TAB_FILE_LANGUAGE_VALUE_LABEL_SELECTOR: string = ".CodeViewer--YDF-Tab-LanguageValueLabel";
   protected static readonly ACTION_BAR_SELECTOR: string = ".CodeViewer--YDF-ActionBar";
@@ -50,7 +49,7 @@ export class CodeViewer {
 
   /* ━━━ Public Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
   public static initializeAllInstances(): Array<CodeViewer> {
-    return Array.from(document.querySelectorAll(CodeViewer.ROOT_ELEMENT_SELECTOR)).
+    return Array.from(document.querySelectorAll(CodeViewer.CSS_NAMESPACE)).
         map((componentRootElement: Element): CodeViewer => CodeViewer.initializeSingleInstance(componentRootElement));
   }
 
@@ -64,14 +63,18 @@ export class CodeViewer {
 
   protected constructor(componentRootElement: Element) {
 
+    super();
+
     this.rootElement = componentRootElement;
 
-    this.tabsFlow = getExpectedToBeSingleDOM_Element({
-      selector: CodeViewer.TABS_FLOW_SELECTOR,
-      contextElement: componentRootElement
-    });
+    this.tabsFlow =
+        getExpectedToBeSingleDOM_Element({
+          selector: CodeViewer.DOM_AccessResources.tabTemplate.INTERNALLY_UNIQUE_SELECTOR,
+          contextElement: componentRootElement
+        });
 
-    this.tabsPanels = componentRootElement.querySelectorAll<HTMLElement>(CodeViewer.TAB_PANEL_SELECTOR);
+    this.tabsPanels =
+        componentRootElement.querySelectorAll<HTMLElement>(CodeViewer.DOM_AccessResources.tabPanel.INTERNALLY_UNIQUE_SELECTOR);
 
   }
 
@@ -110,7 +113,7 @@ export class CodeViewer {
 
 
     const emptyTab: HTMLElement = getExpectedToBeSingleChildOfTemplateElement({
-      templateElementSelector: CodeViewer.TAB_TEMPLATE_ELEMENT_SELECTOR,
+      templateElementSelector: CodeViewer.DOM_AccessResources.tabTemplate.INTERNALLY_UNIQUE_SELECTOR,
       contextElement: this.rootElement,
       expectedChildElementSubtype: HTMLElement,
       mustRemoveTemplateElementOnceDone: true
@@ -262,7 +265,7 @@ export class CodeViewer {
     DelegatedLeftClickEventListener.createAndAssign({
       delegatingContainer: this.tabsFlow,
       handlersBySelectors: {
-        [CodeViewer.TAB_SELECTOR]: (clickedTab: Element): void => {
+        [CodeViewer.DOM_AccessResources.tab.INTERNALLY_UNIQUE_SELECTOR]: (clickedTab: Element): void => {
           if (clickedTab instanceof HTMLElement) {
             this.onClickTab(clickedTab);
           }

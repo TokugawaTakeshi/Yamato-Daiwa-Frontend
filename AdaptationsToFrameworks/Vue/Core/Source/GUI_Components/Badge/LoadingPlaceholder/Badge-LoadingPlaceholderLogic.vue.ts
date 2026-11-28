@@ -19,7 +19,6 @@ import {
 
 /* ┅┅┅ Utils ┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅ */
 import YDF_ComponentsCoordinator from "../../YDF_ComponentsCoordinator";
-import { type ElementOfPseudoEnumeration } from "@yamato-daiwa/es-extensions";
 /* ━━━ Imports > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 
@@ -70,7 +69,7 @@ export default class BadgeLoadingPlaceholder extends VueComponent {
     })
   })
   @preventNullForOptionalVueProperty
-  protected readonly geometricModifiers!: ReadonlyArray<ElementOfPseudoEnumeration<Badge.GeometricModifiers>>;
+  protected readonly geometricModifiers!: ReadonlyArray<Badge.GeometricModifiers>;
 
 
   protected get rootElementModifierCSS_Classes(): ReadonlyArray<string> {
